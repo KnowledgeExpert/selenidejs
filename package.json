@@ -1,0 +1,18 @@
+{
+  "name": "protractor-extensions",
+  "version": "1.0.0",
+  "main": "built/index.js",
+  "typings": "built/index.d.ts",
+  "dependencies": {
+    "axios": "0.17.1",
+    "protractor": "5.2.2",
+    "saucelabs": "1.4.0",
+    "testingbot-api": "1.0.5",
+    "typescript": "2.5.3",
+    "jimp": "0.2.28",
+    "merge-img": "2.1.2"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}

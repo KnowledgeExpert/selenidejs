@@ -1,0 +1,30 @@
+export declare module x {
+    function all(): string;
+    function label(): string;
+    function button(): string;
+    function div(): string;
+    function link(): string;
+    function textarea(): string;
+    function input(): string;
+    function iframe(): string;
+    function table(): string;
+    function tbody(): string;
+    function tableRow(): string;
+    function tableCell(): string;
+    function tableHeader(): string;
+    function main(): string;
+    function dt(): string;
+    function dl(): string;
+    function h3(): string;
+    function ul(): string;
+    function li(): string;
+    function select(): string;
+    function option(): string;
+    function span(): string;
+    function nobr(): string;
+    function parent(): string;
+    function followingSiblings(): string;
+    function followingSiblingsByTag(tag: string): string;
+    function precedingSiblings(): string;
+    function ancestors(): string;
+}
