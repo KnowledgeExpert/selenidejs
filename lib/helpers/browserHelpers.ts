@@ -4,6 +4,12 @@ import {be} from "../conditions/helpers/be";
 
 
 export module BrowserHelpers {
+
+    export async function openUrl(url: string) {
+        await browser.get(url);
+        await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.hight);
+    }
+
     export async function clearCacheAndCookies() {
         try {
             await browser.executeScript('window.localStorage.clear();');

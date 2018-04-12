@@ -4,6 +4,11 @@ const protractor_1 = require("protractor");
 const be_1 = require("../conditions/helpers/be");
 var BrowserHelpers;
 (function (BrowserHelpers) {
+    async function openUrl(url) {
+        await protractor_1.browser.get(url);
+        await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.hight);
+    }
+    BrowserHelpers.openUrl = openUrl;
     async function clearCacheAndCookies() {
         try {
             await protractor_1.browser.executeScript('window.localStorage.clear();');
