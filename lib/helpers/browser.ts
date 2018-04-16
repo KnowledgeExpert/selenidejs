@@ -15,9 +15,9 @@ export module Browser {
     }
 
     export async function resizeWindow() {
-        getPropValue(['params', 'windowSize', 'width'], browser);
-        getPropValue(['params', 'windowSize', 'height'], browser);
-        if (!browser.params.windowSize.width == null && !browser.params.windowSize.height == null) {
+        // getPropValue(['params', 'windowSize', 'width'], browser);
+        // getPropValue(['params', 'windowSize', 'height'], browser);
+        if (browser.params.windowSize.width && browser.params.windowSize.height) {
             await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);
             windowResized = true;
         }

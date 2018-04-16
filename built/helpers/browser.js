@@ -14,9 +14,9 @@ var Browser;
     }
     Browser.get = get;
     async function resizeWindow() {
-        getPropValue(['params', 'windowSize', 'width'], protractor_1.browser);
-        getPropValue(['params', 'windowSize', 'height'], protractor_1.browser);
-        if (!protractor_1.browser.params.windowSize.width == null && !protractor_1.browser.params.windowSize.height == null) {
+        // getPropValue(['params', 'windowSize', 'width'], browser);
+        // getPropValue(['params', 'windowSize', 'height'], browser);
+        if (protractor_1.browser.params.windowSize.width && protractor_1.browser.params.windowSize.height) {
             await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.height);
             windowResized = true;
         }
