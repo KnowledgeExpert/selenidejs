@@ -2,7 +2,6 @@ import {browser} from "protractor";
 import {Element} from "../base-entities/element";
 import {be} from "../conditions/helpers/be";
 
-
 export module Browser {
 
     let windowResized: boolean = false;
