@@ -12,7 +12,7 @@ export { With } from "./locators/with";
 export { x } from "./xpath/x";
 export { xFiltered } from "./xpath/xFiltered";
 export { Screenshot } from "./screenshot";
-export { BrowserHelpers } from "./helpers/browserHelpers";
+export { Browser } from "./helpers/browser";
 export { FileHelper } from "./helpers/fileHelper";
 export { HttpHelper } from "./helpers/httpHelper";
 export { By, WebElement, WebElementPromise } from "selenium-webdriver";

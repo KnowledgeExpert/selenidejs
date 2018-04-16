@@ -1,5 +1,7 @@
 import { Element } from "../base-entities/element";
-export declare module BrowserHelpers {
+export declare module Browser {
+    function get(url: string): Promise<void>;
+    function resizeWindow(): Promise<void>;
     function clearCacheAndCookies(): Promise<void>;
     function nextTab(): Promise<void>;
     function previosTab(): Promise<void>;

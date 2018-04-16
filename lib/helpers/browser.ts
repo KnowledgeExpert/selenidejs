@@ -2,8 +2,34 @@ import {browser} from "protractor";
 import {Element} from "../base-entities/element";
 import {be} from "../conditions/helpers/be";
 
+export module Browser {
 
-export module BrowserHelpers {
+    let windowResized: boolean = false;
+
+    export async function get(url: string) {
+        await browser.get(url);
+        if (!windowResized) {
+            await resizeWindow();
+            windowResized = true;
+        }
+    }
+
+    export async function resizeWindow() {
+        // getPropValue(['params', 'windowSize', 'width'], browser);
+        // getPropValue(['params', 'windowSize', 'height'], browser);
+        if (browser.params.windowSize.width && browser.params.windowSize.height) {
+            await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);
+            windowResized = true;
+        }
+    }
+
+    function getPropValue(pathToProp, objectToScan) {
+        return pathToProp.reduce(
+            (step, otherStep) => (step && step[otherStep] ? step[otherStep] : null),
+            objectToScan)
+    }
+
+
     export async function clearCacheAndCookies() {
         try {
             await browser.executeScript('window.localStorage.clear();');

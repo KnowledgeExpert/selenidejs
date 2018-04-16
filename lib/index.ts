@@ -18,9 +18,10 @@ export {xFiltered} from "./xpath/xFiltered";
 
 export {Screenshot} from "./screenshot";
 
-export {BrowserHelpers} from "./helpers/browserHelpers";
+export {Browser} from "./helpers/browser";
 export {FileHelper} from "./helpers/fileHelper";
 export {HttpHelper} from "./helpers/httpHelper";
+
 
 //RE-EXPORT
 export {By, WebElement, WebElementPromise} from "selenium-webdriver";

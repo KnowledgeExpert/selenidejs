@@ -2,8 +2,29 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 const be_1 = require("../conditions/helpers/be");
-var BrowserHelpers;
-(function (BrowserHelpers) {
+var Browser;
+(function (Browser) {
+    let windowResized = false;
+    async function get(url) {
+        await protractor_1.browser.get(url);
+        if (!windowResized) {
+            await resizeWindow();
+            windowResized = true;
+        }
+    }
+    Browser.get = get;
+    async function resizeWindow() {
+        // getPropValue(['params', 'windowSize', 'width'], browser);
+        // getPropValue(['params', 'windowSize', 'height'], browser);
+        if (protractor_1.browser.params.windowSize.width && protractor_1.browser.params.windowSize.height) {
+            await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.height);
+            windowResized = true;
+        }
+    }
+    Browser.resizeWindow = resizeWindow;
+    function getPropValue(pathToProp, objectToScan) {
+        return pathToProp.reduce((step, otherStep) => (step && step[otherStep] ? step[otherStep] : null), objectToScan);
+    }
     async function clearCacheAndCookies() {
         try {
             await protractor_1.browser.executeScript('window.localStorage.clear();');
@@ -17,29 +38,29 @@ var BrowserHelpers;
         }
         await protractor_1.browser.driver.manage().deleteAllCookies();
     }
-    BrowserHelpers.clearCacheAndCookies = clearCacheAndCookies;
+    Browser.clearCacheAndCookies = clearCacheAndCookies;
     async function nextTab() {
         const currentTab = await protractor_1.browser.getWindowHandle();
         const allTabs = await protractor_1.browser.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
         await protractor_1.browser.switchTo().window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
     }
-    BrowserHelpers.nextTab = nextTab;
+    Browser.nextTab = nextTab;
     async function previosTab() {
         const currentTab = await protractor_1.browser.getWindowHandle();
         const allTabs = await protractor_1.browser.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
         await protractor_1.browser.switchTo().window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
     }
-    BrowserHelpers.previosTab = previosTab;
+    Browser.previosTab = previosTab;
     async function switchToFrame(frameElement) {
         await frameElement.should(be_1.be.visible());
         await protractor_1.browser.switchTo().frame(await frameElement.getWebElement());
     }
-    BrowserHelpers.switchToFrame = switchToFrame;
+    Browser.switchToFrame = switchToFrame;
     async function switchToDefaultFrame() {
         await protractor_1.browser.switchTo().defaultContent();
     }
-    BrowserHelpers.switchToDefaultFrame = switchToDefaultFrame;
-})(BrowserHelpers = exports.BrowserHelpers || (exports.BrowserHelpers = {}));
-//# sourceMappingURL=browserHelpers.js.map
+    Browser.switchToDefaultFrame = switchToDefaultFrame;
+})(Browser = exports.Browser || (exports.Browser = {}));
+//# sourceMappingURL=browser.js.map
