@@ -4,15 +4,18 @@ import {Condition} from "./conditions/condition";
 
 export namespace Wait {
 
-    export async function hard(intervalInMilliseconds = browser.params.timeout.toHardWaitInMs) {
+    export let DEFAULT_WAIT_MS = 4000;
+    export let DEFAULT_HARD_WAIT_MS = 2000;
+
+    export async function hard(intervalInMilliseconds = DEFAULT_HARD_WAIT_MS) {
         await browser.driver.sleep(intervalInMilliseconds);
     }
 
-    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = browser.params.timeout.toWaitElementsInMs): Promise<T> {
+    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = DEFAULT_WAIT_MS): Promise<T> {
         return await until(entity, condition, true, timeout);
     }
 
-    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = browser.params.timeout.toWaitElementsInMs): Promise<boolean> {
+    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = DEFAULT_WAIT_MS): Promise<boolean> {
         return !!await until(entity, condition, false, timeout);
     }
 

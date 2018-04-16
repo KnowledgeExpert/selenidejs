@@ -3,15 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 var Wait;
 (function (Wait) {
-    async function hard(intervalInMilliseconds = protractor_1.browser.params.timeout.toHardWaitInMs) {
+    Wait.DEFAULT_WAIT_MS = 4000;
+    Wait.DEFAULT_HARD_WAIT_MS = 2000;
+    async function hard(intervalInMilliseconds = Wait.DEFAULT_HARD_WAIT_MS) {
         await protractor_1.browser.driver.sleep(intervalInMilliseconds);
     }
     Wait.hard = hard;
-    async function shouldMatch(entity, condition, timeout = protractor_1.browser.params.timeout.toWaitElementsInMs) {
+    async function shouldMatch(entity, condition, timeout = Wait.DEFAULT_WAIT_MS) {
         return await until(entity, condition, true, timeout);
     }
     Wait.shouldMatch = shouldMatch;
-    async function isMatch(entity, condition, timeout = protractor_1.browser.params.timeout.toWaitElementsInMs) {
+    async function isMatch(entity, condition, timeout = Wait.DEFAULT_WAIT_MS) {
         return !!await until(entity, condition, false, timeout);
     }
     Wait.isMatch = isMatch;
