@@ -16,7 +16,7 @@ export namespace Browser {
 
     export async function resizeWindow() {
         await browser.manage().window().setSize(getValueFromPath(browser.params, 'windowSize.width'),
-            getValueFromPath(browser.params, '.windowSize.eight'));
+            getValueFromPath(browser.params, '.windowSize.height'));
         windowResized = true;
     }
 
