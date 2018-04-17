@@ -15,10 +15,6 @@ export namespace Browser {
     }
 
     export async function resizeWindow() {
-        const isWidth = getValueFromPath(browser, 'params.windowSize.width');
-        const isHeight = getValueFromPath(browser, 'params.windowSize.height');
-        console.log(isWidth.toString());
-        console.log(isHeight.toString());
         if (!(getValueFromPath(browser, 'params.windowSize.width')) === undefined
             && !(getValueFromPath(browser, 'params.windowSize.height')) === undefined) {
             await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);

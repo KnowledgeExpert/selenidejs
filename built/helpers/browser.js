@@ -14,10 +14,6 @@ var Browser;
     }
     Browser.get = get;
     async function resizeWindow() {
-        const isWidth = getValueFromPath(protractor_1.browser, 'params.windowSize.width');
-        const isHeight = getValueFromPath(protractor_1.browser, 'params.windowSize.height');
-        console.log(isWidth.toString());
-        console.log(isHeight.toString());
         if (!(getValueFromPath(protractor_1.browser, 'params.windowSize.width')) === undefined
             && !(getValueFromPath(protractor_1.browser, 'params.windowSize.height')) === undefined) {
             await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.height);
