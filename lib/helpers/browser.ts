@@ -1,6 +1,7 @@
 import {browser} from "protractor";
 import {Element} from "../base-entities/element";
 import {be} from "../conditions/helpers/be";
+import {isUndefined} from "util";
 
 export namespace Browser {
 
@@ -14,10 +15,14 @@ export namespace Browser {
         }
     }
 
-    export async function resizeWindow() {
-        await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);
-        windowResized = true;
+    async function resizeWindow() {
+        if (!isUndefined(getValueFromPath(browser.params, "windowSize.width"))
+            && !isUndefined(getValueFromPath(browser.params, "windowSize.height"))) {
+            await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);
+            windowResized = true;
+        }
     }
+
 
     function getValueFromPath(obj: any, objPath: string): any {
         if (obj === undefined) return undefined;

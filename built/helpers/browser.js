@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 const be_1 = require("../conditions/helpers/be");
+const util_1 = require("util");
 var Browser;
 (function (Browser) {
     let windowResized = false;
@@ -14,10 +15,12 @@ var Browser;
     }
     Browser.get = get;
     async function resizeWindow() {
-        await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.height);
-        windowResized = true;
+        if (!util_1.isUndefined(getValueFromPath(protractor_1.browser.params, "windowSize.width"))
+            && !util_1.isUndefined(getValueFromPath(protractor_1.browser.params, "windowSize.height"))) {
+            await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.height);
+            windowResized = true;
+        }
     }
-    Browser.resizeWindow = resizeWindow;
     function getValueFromPath(obj, objPath) {
         if (obj === undefined)
             return undefined;
