@@ -1,27 +1,16 @@
-import {ElementCondition} from "../elementCondition";
 import {Conditions} from "../conditions";
 
 
 export namespace be {
 
-    export function selected(): ElementCondition {
-        return Conditions.element.selected();
-    }
+    export const selected = Conditions.element.selected;
 
-    export function absent(): ElementCondition {
-        return Conditions.element.absent();
-    }
+    export const absent = Conditions.element.absent;
 
-    export function present(): ElementCondition {
-        return Conditions.element.present()
-    }
+    export const present = Conditions.element.present;
 
-    export function visible(): ElementCondition {
-        return Conditions.element.visible();
-    }
+    export const visible = Conditions.element.visible;
 
-    export function hidden(): ElementCondition {
-        return Conditions.element.hidden();
-    }
+    export const hidden = Conditions.element.hidden;
 
 }

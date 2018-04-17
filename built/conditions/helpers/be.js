@@ -3,25 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const conditions_1 = require("../conditions");
 var be;
 (function (be) {
-    function selected() {
-        return conditions_1.Conditions.element.selected();
-    }
-    be.selected = selected;
-    function absent() {
-        return conditions_1.Conditions.element.absent();
-    }
-    be.absent = absent;
-    function present() {
-        return conditions_1.Conditions.element.present();
-    }
-    be.present = present;
-    function visible() {
-        return conditions_1.Conditions.element.visible();
-    }
-    be.visible = visible;
-    function hidden() {
-        return conditions_1.Conditions.element.hidden();
-    }
-    be.hidden = hidden;
+    be.selected = conditions_1.Conditions.element.selected;
+    be.absent = conditions_1.Conditions.element.absent;
+    be.present = conditions_1.Conditions.element.present;
+    be.visible = conditions_1.Conditions.element.visible;
+    be.hidden = conditions_1.Conditions.element.hidden;
 })(be = exports.be || (exports.be = {}));
 //# sourceMappingURL=be.js.map

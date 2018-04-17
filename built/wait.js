@@ -3,24 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 var Wait;
 (function (Wait) {
-    //todo: refactor default waits and check below for better implementation of default timeout usage
-    Wait.DEFAULT_WAIT_MS = 4000;
-    Wait.DEFAULT_HARD_WAIT_MS = 2000;
-    async function hard(intervalInMilliseconds = Wait.DEFAULT_HARD_WAIT_MS) {
+    const DEFAULT_WAIT_MS = 4000;
+    const DEFAULT_HARD_WAIT_MS = 2000;
+    Wait.WAIT_MS = getValueFromPath(protractor_1.browser, `params.timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    Wait.HARD_WAIT_MS = getValueFromPath(protractor_1.browser, `params.timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    async function hard(intervalInMilliseconds = Wait.HARD_WAIT_MS) {
         await protractor_1.browser.driver.sleep(intervalInMilliseconds);
     }
     Wait.hard = hard;
-    async function shouldMatch(entity, condition, timeout = null) {
-        if (timeout == null) {
-            timeout = protractor_1.browser.params.timeout.toWaitElementsInMs;
-        }
+    async function shouldMatch(entity, condition, timeout = Wait.WAIT_MS) {
         return await until(entity, condition, true, timeout);
     }
     Wait.shouldMatch = shouldMatch;
-    async function isMatch(entity, condition, timeout = null) {
-        if (timeout == null) {
-            timeout = protractor_1.browser.params.timeout.toWaitElementsInMs;
-        }
+    async function isMatch(entity, condition, timeout = Wait.WAIT_MS) {
         return !!await until(entity, condition, false, timeout);
     }
     Wait.isMatch = isMatch;
@@ -41,6 +36,12 @@ var Wait;
             throw lastError;
         }
         return null;
+    }
+    function getValueFromPath(obj, dotSeparatedPath) {
+        if (obj === undefined)
+            return undefined;
+        const parts = dotSeparatedPath.split('.');
+        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
 })(Wait = exports.Wait || (exports.Wait = {}));
 //# sourceMappingURL=wait.js.map

@@ -4,25 +4,21 @@ import {Condition} from "./conditions/condition";
 
 export namespace Wait {
 
-    //todo: refactor default waits and check below for better implementation of default timeout usage
-    export let DEFAULT_WAIT_MS = 4000;
-    export let DEFAULT_HARD_WAIT_MS = 2000;
+    const DEFAULT_WAIT_MS = 4000;
+    const DEFAULT_HARD_WAIT_MS = 2000;
 
-    export async function hard(intervalInMilliseconds = DEFAULT_HARD_WAIT_MS) {
+    export const WAIT_MS = getValueFromPath(browser, `params.timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    export const HARD_WAIT_MS = getValueFromPath(browser, `params.timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+
+    export async function hard(intervalInMilliseconds = HARD_WAIT_MS) {
         await browser.driver.sleep(intervalInMilliseconds);
     }
 
-    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = null): Promise<T> {
-        if (timeout == null) {
-            timeout = browser.params.timeout.toWaitElementsInMs;
-        }
+    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = WAIT_MS): Promise<T> {
         return await until(entity, condition, true, timeout);
     }
 
-    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = null): Promise<boolean> {
-        if (timeout == null) {
-            timeout = browser.params.timeout.toWaitElementsInMs;
-        }
+    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = WAIT_MS): Promise<boolean> {
         return !!await until(entity, condition, false, timeout);
     }
 
@@ -43,6 +39,12 @@ export namespace Wait {
             throw lastError;
         }
         return null;
+    }
+
+    function getValueFromPath(obj: any, dotSeparatedPath: string): any {
+        if (obj === undefined) return undefined;
+        const parts = dotSeparatedPath.split('.');
+        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
 
 }
