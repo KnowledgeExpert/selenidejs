@@ -3,17 +3,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 var Wait;
 (function (Wait) {
+    //todo: refactor default waits and check below for better implementation of default timeout usage
     Wait.DEFAULT_WAIT_MS = 4000;
     Wait.DEFAULT_HARD_WAIT_MS = 2000;
     async function hard(intervalInMilliseconds = Wait.DEFAULT_HARD_WAIT_MS) {
         await protractor_1.browser.driver.sleep(intervalInMilliseconds);
     }
     Wait.hard = hard;
-    async function shouldMatch(entity, condition, timeout = Wait.DEFAULT_WAIT_MS) {
+    async function shouldMatch(entity, condition, timeout = null) {
+        if (timeout == null) {
+            timeout = protractor_1.browser.params.timeout.toWaitElementsInMs;
+        }
         return await until(entity, condition, true, timeout);
     }
     Wait.shouldMatch = shouldMatch;
-    async function isMatch(entity, condition, timeout = Wait.DEFAULT_WAIT_MS) {
+    async function isMatch(entity, condition, timeout = null) {
+        if (timeout == null) {
+            timeout = protractor_1.browser.params.timeout.toWaitElementsInMs;
+        }
         return !!await until(entity, condition, false, timeout);
     }
     Wait.isMatch = isMatch;

@@ -4,6 +4,7 @@ import {Condition} from "./conditions/condition";
 
 export namespace Wait {
 
+    //todo: refactor default waits and check below for better implementation of default timeout usage
     export let DEFAULT_WAIT_MS = 4000;
     export let DEFAULT_HARD_WAIT_MS = 2000;
 
@@ -11,11 +12,17 @@ export namespace Wait {
         await browser.driver.sleep(intervalInMilliseconds);
     }
 
-    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = DEFAULT_WAIT_MS): Promise<T> {
+    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = null): Promise<T> {
+        if (timeout == null) {
+            timeout = browser.params.timeout.toWaitElementsInMs;
+        }
         return await until(entity, condition, true, timeout);
     }
 
-    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = DEFAULT_WAIT_MS): Promise<boolean> {
+    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = null): Promise<boolean> {
+        if (timeout == null) {
+            timeout = browser.params.timeout.toWaitElementsInMs;
+        }
         return !!await until(entity, condition, false, timeout);
     }
 
