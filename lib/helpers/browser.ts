@@ -15,9 +15,11 @@ export namespace Browser {
     }
 
     export async function resizeWindow() {
-        getValueFromPath(browser, 'params.windowSize.width');
-        getValueFromPath(browser, 'params.windowSize.height');
-        if (!browser.params.windowSize.width == undefined && !browser.params.windowSize.height == undefined) {
+        const isWidth = getValueFromPath(browser, 'params.windowSize.width');
+        const isHeight = getValueFromPath(browser, 'params.windowSize.height');
+        console.log(isWidth);
+        console.log(isHeight);
+        if (!isWidth == undefined && !isHeight == undefined) {
             await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);
             windowResized = true;
         }
