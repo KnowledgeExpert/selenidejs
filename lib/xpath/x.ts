@@ -1,4 +1,4 @@
-export module x {
+export namespace x {
 
     export function all(): string {
         return '//*';

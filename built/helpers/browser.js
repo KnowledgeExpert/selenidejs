@@ -14,16 +14,18 @@ var Browser;
     }
     Browser.get = get;
     async function resizeWindow() {
-        // getPropValue(['params', 'windowSize', 'width'], browser);
-        // getPropValue(['params', 'windowSize', 'height'], browser);
-        if (protractor_1.browser.params.windowSize.width && protractor_1.browser.params.windowSize.height) {
+        if (!(getValueFromPath(protractor_1.browser, 'params.windowSize.width')) === undefined
+            && !(getValueFromPath(protractor_1.browser, 'params.windowSize.height')) === undefined) {
             await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.height);
             windowResized = true;
         }
     }
     Browser.resizeWindow = resizeWindow;
-    function getPropValue(pathToProp, objectToScan) {
-        return pathToProp.reduce((step, otherStep) => (step && step[otherStep] ? step[otherStep] : null), objectToScan);
+    function getValueFromPath(obj, objPath) {
+        if (obj === undefined)
+            return undefined;
+        const parts = objPath.split('.');
+        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
     async function clearCacheAndCookies() {
         try {

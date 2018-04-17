@@ -4,7 +4,7 @@ import {x} from '../xpath/x';
 import {xFiltered} from '../xpath/xFiltered';
 
 
-export module With {
+export namespace With {
 
     const NORMALIZE_SPACE_XPATH = "normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))";
 

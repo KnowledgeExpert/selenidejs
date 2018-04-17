@@ -1,5 +1,5 @@
 import { By } from "selenium-webdriver";
-export declare module With {
+export declare namespace With {
     function type(type: string): By;
     function value(value: string): By;
     function partialId(...idParts: string[]): By;
