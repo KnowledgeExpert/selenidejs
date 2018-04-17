@@ -15,18 +15,18 @@ export module Browser {
     }
 
     export async function resizeWindow() {
-        // getPropValue(['params', 'windowSize', 'width'], browser);
-        // getPropValue(['params', 'windowSize', 'height'], browser);
-        if (browser.params.windowSize.width && browser.params.windowSize.height) {
+        getValueFromPath(browser, 'params.windowSize.width');
+        getValueFromPath(browser, 'params.windowSize.height');
+        if (!browser.params.windowSize.width == undefined && !browser.params.windowSize.height == undefined) {
             await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);
             windowResized = true;
         }
     }
 
-    function getPropValue(pathToProp, objectToScan) {
-        return pathToProp.reduce(
-            (step, otherStep) => (step && step[otherStep] ? step[otherStep] : null),
-            objectToScan)
+    function getValueFromPath(obj: any, objPath: string): any {
+        if (obj === undefined) return undefined;
+        const parts = objPath.split('.');
+        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
 
 
