@@ -15,11 +15,9 @@ export namespace Browser {
     }
 
     export async function resizeWindow() {
-        if (!(getValueFromPath(browser, 'params.windowSize.width')) === undefined
-            && !(getValueFromPath(browser, 'params.windowSize.height')) === undefined) {
-            await browser.manage().window().setSize(browser.params.windowSize.width, browser.params.windowSize.height);
-            windowResized = true;
-        }
+        await browser.manage().window().setSize(getValueFromPath(browser.params.windowSize, 'width'),
+            getValueFromPath(browser.params.windowSize, 'height'));
+        windowResized = true;
     }
 
     function getValueFromPath(obj: any, objPath: string): any {

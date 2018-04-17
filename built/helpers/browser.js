@@ -14,11 +14,8 @@ var Browser;
     }
     Browser.get = get;
     async function resizeWindow() {
-        if (!(getValueFromPath(protractor_1.browser, 'params.windowSize.width')) === undefined
-            && !(getValueFromPath(protractor_1.browser, 'params.windowSize.height')) === undefined) {
-            await protractor_1.browser.manage().window().setSize(protractor_1.browser.params.windowSize.width, protractor_1.browser.params.windowSize.height);
-            windowResized = true;
-        }
+        await protractor_1.browser.manage().window().setSize(getValueFromPath(protractor_1.browser.params.windowSize, 'width'), getValueFromPath(protractor_1.browser.params.windowSize, 'height'));
+        windowResized = true;
     }
     Browser.resizeWindow = resizeWindow;
     function getValueFromPath(obj, objPath) {
