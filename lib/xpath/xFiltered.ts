@@ -1,4 +1,4 @@
-export module xFiltered {
+export namespace xFiltered {
 
     export function byText(text: string | number): string {
         return `[contains(normalize-space(.), '${text}')]`;

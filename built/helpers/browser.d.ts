@@ -1,5 +1,5 @@
 import { Element } from "../base-entities/element";
-export declare module Browser {
+export declare namespace Browser {
     function get(url: string): Promise<void>;
     function resizeWindow(): Promise<void>;
     function clearCacheAndCookies(): Promise<void>;

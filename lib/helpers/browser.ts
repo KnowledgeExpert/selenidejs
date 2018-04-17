@@ -2,7 +2,7 @@ import {browser} from "protractor";
 import {Element} from "../base-entities/element";
 import {be} from "../conditions/helpers/be";
 
-export module Browser {
+export namespace Browser {
 
     let windowResized: boolean = false;
 

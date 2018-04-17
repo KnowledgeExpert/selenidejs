@@ -1,4 +1,4 @@
-export declare module x {
+export declare namespace x {
     function all(): string;
     function label(): string;
     function button(): string;

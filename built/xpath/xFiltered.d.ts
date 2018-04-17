@@ -1,4 +1,4 @@
-export declare module xFiltered {
+export declare namespace xFiltered {
     function byText(text: string | number): string;
     function byCssClass(cssClass: string): string;
     function exceptCssClass(cssClass: string): string;
