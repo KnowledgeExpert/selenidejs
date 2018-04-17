@@ -20,19 +20,19 @@ export class Collection {
     }
 
     async should(condition: CollectionCondition, timeout?: number): Promise<Collection> {
-        return await Wait.shouldMatch(this, condition, timeout);
+        return timeout ? await Wait.shouldMatch(this, condition, timeout) : await Wait.shouldMatch(this, condition);
     }
 
-    async shouldNot(condition: CollectionCondition): Promise<Collection> {
-        return await this.should(Condition.not(condition));
+    async shouldNot(condition: CollectionCondition, timeout?: number): Promise<Collection> {
+        return await this.should(Condition.not(condition), timeout);
     }
 
     async is(condition: CollectionCondition, timeout?: number): Promise<boolean> {
-        return await Wait.isMatch(this, condition, timeout);
+        return timeout ? await Wait.isMatch(this, condition, timeout) : await Wait.isMatch(this, condition);
     }
 
-    async isNot(condition: CollectionCondition): Promise<boolean> {
-        return await this.is(Condition.not(condition));
+    async isNot(condition: CollectionCondition, timeout?: number): Promise<boolean> {
+        return await this.is(Condition.not(condition), timeout);
     }
 
     get(index: number): Element {

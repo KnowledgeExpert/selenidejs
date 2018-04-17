@@ -13,5 +13,6 @@ export declare namespace have {
     function size(size: number): CollectionCondition;
     function texts(...texts: string[]): CollectionCondition;
     function exactTexts(...texts: string[]): CollectionCondition;
+    function tabsSize(size: number): BrowserCondition;
     function tabsSizeGreaterThan(size: number): BrowserCondition;
 }

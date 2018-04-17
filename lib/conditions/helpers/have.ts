@@ -51,6 +51,10 @@ export namespace have {
         return Conditions.collection.hasExactTexts(texts);
     }
 
+    export function tabsSize(size: number): BrowserCondition {
+        return Conditions.driver.tabsHaveSize(size);
+    }
+
     export function tabsSizeGreaterThan(size: number): BrowserCondition {
         return Conditions.driver.tabsHaveSizeGreaterThan(size);
     }
