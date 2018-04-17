@@ -329,6 +329,25 @@ export namespace Conditions {
             });
         }
 
+        export function tabsHaveSize(size: number): BrowserCondition {
+            return new BrowserCondition({
+                matches: async (browser: ProtractorBrowser) => {
+                    let tabs = [];
+                    try {
+                        tabs = await browser.getAllWindowHandles();
+                        if (tabs.length === size) {
+                            return browser;
+                        }
+                    } catch (ignored) {
+                    }
+                    throw new ConditionDoesNotMatchError(`${this.toString()}, but was ${tabs.length}`);
+                },
+                toString: function () {
+                    return `have tabs size '${size}'`;
+                }
+            });
+        }
+
         export function tabsHaveSizeGreaterThan(size: number): BrowserCondition {
             return new BrowserCondition({
                 matches: async (browser: ProtractorBrowser) => {

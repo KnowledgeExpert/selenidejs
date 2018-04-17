@@ -12,16 +12,16 @@ class Collection {
         this.locator = locator;
     }
     async should(condition, timeout) {
-        return await wait_1.Wait.shouldMatch(this, condition, timeout);
+        return timeout ? await wait_1.Wait.shouldMatch(this, condition, timeout) : await wait_1.Wait.shouldMatch(this, condition);
     }
-    async shouldNot(condition) {
-        return await this.should(condition_1.Condition.not(condition));
+    async shouldNot(condition, timeout) {
+        return await this.should(condition_1.Condition.not(condition), timeout);
     }
     async is(condition, timeout) {
-        return await wait_1.Wait.isMatch(this, condition, timeout);
+        return timeout ? await wait_1.Wait.isMatch(this, condition, timeout) : await wait_1.Wait.isMatch(this, condition);
     }
-    async isNot(condition) {
-        return await this.is(condition_1.Condition.not(condition));
+    async isNot(condition, timeout) {
+        return await this.is(condition_1.Condition.not(condition), timeout);
     }
     get(index) {
         return new element_1.Element(new byIndexedWebElementLocator_1.ByIndexedWebElementLocator(index, this));

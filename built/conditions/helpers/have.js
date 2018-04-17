@@ -47,6 +47,10 @@ var have;
         return conditions_1.Conditions.collection.hasExactTexts(texts);
     }
     have.exactTexts = exactTexts;
+    function tabsSize(size) {
+        return conditions_1.Conditions.driver.tabsHaveSize(size);
+    }
+    have.tabsSize = tabsSize;
     function tabsSizeGreaterThan(size) {
         return conditions_1.Conditions.driver.tabsHaveSizeGreaterThan(size);
     }

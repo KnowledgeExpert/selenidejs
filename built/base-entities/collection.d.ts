@@ -7,9 +7,9 @@ export declare class Collection {
     private readonly locator;
     constructor(locator: Locator<Promise<WebElement[]>>);
     should(condition: CollectionCondition, timeout?: number): Promise<Collection>;
-    shouldNot(condition: CollectionCondition): Promise<Collection>;
+    shouldNot(condition: CollectionCondition, timeout?: number): Promise<Collection>;
     is(condition: CollectionCondition, timeout?: number): Promise<boolean>;
-    isNot(condition: CollectionCondition): Promise<boolean>;
+    isNot(condition: CollectionCondition, timeout?: number): Promise<boolean>;
     get(index: number): Element;
     first(): Element;
     filter(condition: ElementCondition): Collection;

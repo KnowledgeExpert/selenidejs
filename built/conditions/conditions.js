@@ -337,6 +337,26 @@ var Conditions;
             });
         }
         driver.urlContains = urlContains;
+        function tabsHaveSize(size) {
+            return new browserCondition_1.BrowserCondition({
+                matches: async (browser) => {
+                    let tabs = [];
+                    try {
+                        tabs = await browser.getAllWindowHandles();
+                        if (tabs.length === size) {
+                            return browser;
+                        }
+                    }
+                    catch (ignored) {
+                    }
+                    throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${this.toString()}, but was ${tabs.length}`);
+                },
+                toString: function () {
+                    return `have tabs size '${size}'`;
+                }
+            });
+        }
+        driver.tabsHaveSize = tabsHaveSize;
         function tabsHaveSizeGreaterThan(size) {
             return new browserCondition_1.BrowserCondition({
                 matches: async (browser) => {

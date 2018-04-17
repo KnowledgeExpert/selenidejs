@@ -25,6 +25,7 @@ export declare namespace Conditions {
     }
     namespace driver {
         function urlContains(url: string): BrowserCondition;
+        function tabsHaveSize(size: number): BrowserCondition;
         function tabsHaveSizeGreaterThan(size: number): BrowserCondition;
     }
 }
