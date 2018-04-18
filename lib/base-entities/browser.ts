@@ -15,8 +15,8 @@ export namespace Browser {
     export const params = browser.params;
 
     export async function get(url: string) {
-        if (getSelenidejsParam('width') && getSelenidejsParam('height')) {
-            await resizeWindow(getSelenidejsParam('width'), getSelenidejsParam('height'));
+        if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
+            await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
         }
         await browser.get(url);
     }
