@@ -6,9 +6,10 @@ export namespace Wait {
 
     const DEFAULT_WAIT_MS = 4000;
     const DEFAULT_HARD_WAIT_MS = 2000;
+    const params = browser.params;
 
-    export const WAIT_MS = getValueFromPath(browser, `params.timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    export const HARD_WAIT_MS = getValueFromPath(browser, `params.timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    export const WAIT_MS = getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    export const HARD_WAIT_MS = getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
 
     export async function hard(intervalInMilliseconds = HARD_WAIT_MS) {
         await browser.driver.sleep(intervalInMilliseconds);
@@ -41,9 +42,14 @@ export namespace Wait {
         return null;
     }
 
-    function getValueFromPath(obj: any, dotSeparatedPath: string): any {
+    function getSelenidejsParam(dotSeparatedPath: string) {
+        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
+    }
+
+    function getValueFromPath(obj: any, objPath: string): any {
         if (obj === undefined) return undefined;
-        const parts = dotSeparatedPath.split('.');
+        if (obj === null) return null;
+        const parts = objPath.split('.');
         return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
 

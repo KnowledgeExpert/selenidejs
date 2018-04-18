@@ -18,7 +18,7 @@ export {xFiltered} from "./xpath/xFiltered";
 
 export {Screenshot} from "./screenshot";
 
-export {Browser} from "./helpers/browser";
+export {Browser} from "./base-entities/browser";
 export {FileHelper} from "./helpers/fileHelper";
 export {HttpHelper} from "./helpers/httpHelper";
 

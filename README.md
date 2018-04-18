@@ -8,14 +8,24 @@ In order to use selenidejs you have to add
 
 to `dependencies` in `package.json`.
 
-## Base entities in selenidejs (element and collection)
+## Base entities in selenidejs
 
-To call base entities you have to use the `element(string | By)` or  `all(string | By)` methods. It wil return an object with type `Element` or `Collection` correspondingly:
+* `Browser` - wrapper for protractor's `browser` with bunch of new useful functions
+* `Element` - 'lazy' web element
+* `Collection` - 'lazy' web elements collection
 
- - `element("#header")`
+To create 'lazy' element you can use `Browser.element(string | By)` or simply `element(string | By)`.
+ - `Browser.element("#header")`
+ - `element(With.exactText('Continue'))`
+
+To create 'lazy' collection you can use `Browser.all(string | By)` or simply `all(string | By)`.
  - `all(".//span[@id='header']")`
+ - `Browser.all(With.id('chkbx'))`
 
-These functions (`all(...)`, `element(...)`) accept Webdriver `By` or `string` (which transforms to `By.css` or `By.xpath`, basing on content). You can use our helper [With](https://github.com/KnowledgeExpert/protractor-extensions/blob/master/lib/protractor-extensions/lib/locators/with.ts) several useful `By`'s:
+
+You can pass an Webdriver `By` or `string` (which transforms to `By.css` or `By.xpath`, basing on content) to initialize 'lazy' element(s).
+
+ Also you can use our helper [With](https://github.com/KnowledgeExpert/protractor-extensions/blob/master/lib/protractor-extensions/lib/locators/with.ts) several useful `By`'s:
   - `element(With.exactText('Continue'))`
   - `all(With.attribute("href", "/continue"))`
 
@@ -39,7 +49,7 @@ It is also possible to build "locators chains", getting one element (or elements
       `element(".menuItem").parent().element(".//ul[contains(@id, 'navigation')]").click();`
 
 
- ## [Collection](./lib/base-entities/collection.ts)
+## [Collection](./lib/base-entities/collection.ts)
 
  "Clever" collection also will be received at the moment when we will need it (like a ["clever element"](#element)).
 

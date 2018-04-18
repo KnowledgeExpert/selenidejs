@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { ProtractorBrowser } from "protractor";
 import { Element } from "./element";
 import { BrowserCondition } from "..";
@@ -5,6 +6,9 @@ import { By } from "selenium-webdriver";
 import { Collection } from "./collection";
 export declare namespace Browser {
     const params: any;
+    function get(url: string): Promise<void>;
+    function viewportScreenshot(): Promise<string>;
+    function fullpageScreenshot(): Promise<Buffer>;
     function resizeWindow(width: number, height: number): Promise<void>;
     function element(locator: string | By): Element;
     function all(locator: string | By): Collection;

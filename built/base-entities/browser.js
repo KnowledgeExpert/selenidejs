@@ -9,9 +9,25 @@ const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const with_1 = require("../locators/with");
 const collection_1 = require("./collection");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
+const screenshot_1 = require("../screenshot");
 var Browser;
 (function (Browser) {
     Browser.params = protractor_1.browser.params;
+    async function get(url) {
+        if (getSelenidejsParam('width') && getSelenidejsParam('height')) {
+            await resizeWindow(getSelenidejsParam('width'), getSelenidejsParam('height'));
+        }
+        await protractor_1.browser.get(url);
+    }
+    Browser.get = get;
+    async function viewportScreenshot() {
+        return await protractor_1.browser.takeScreenshot();
+    }
+    Browser.viewportScreenshot = viewportScreenshot;
+    async function fullpageScreenshot() {
+        return await screenshot_1.Screenshot.take();
+    }
+    Browser.fullpageScreenshot = fullpageScreenshot;
     async function resizeWindow(width, height) {
         await protractor_1.browser.manage().window().setSize(width, height);
     }
@@ -85,5 +101,16 @@ var Browser;
         }
     }
     Browser.clearCacheAndCookies = clearCacheAndCookies;
+    function getSelenidejsParam(dotSeparatedPath) {
+        return getValueFromPath(Browser.params, `selenidejs.${dotSeparatedPath}`);
+    }
+    function getValueFromPath(obj, objPath) {
+        if (obj === undefined)
+            return undefined;
+        if (obj === null)
+            return null;
+        const parts = objPath.split('.');
+        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
+    }
 })(Browser = exports.Browser || (exports.Browser = {}));
 //# sourceMappingURL=browser.js.map

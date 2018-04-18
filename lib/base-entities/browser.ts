@@ -8,10 +8,26 @@ import {ByWebElementLocator} from "./locators/byWebElementLocator";
 import {With} from "../locators/with";
 import {Collection} from "./collection";
 import {ByWebElementsLocator} from "./locators/byWebElementsLocator";
+import {Screenshot} from "../screenshot";
 
 export namespace Browser {
 
     export const params = browser.params;
+
+    export async function get(url: string) {
+        if (getSelenidejsParam('width') && getSelenidejsParam('height')) {
+            await resizeWindow(getSelenidejsParam('width'), getSelenidejsParam('height'));
+        }
+        await browser.get(url);
+    }
+
+    export async function viewportScreenshot(): Promise<string> {
+        return await browser.takeScreenshot();
+    }
+
+    export async function fullpageScreenshot(): Promise<Buffer> {
+        return await Screenshot.take();
+    }
 
     export async function resizeWindow(width: number, height: number) {
         await browser.manage().window().setSize(width, height);
@@ -81,6 +97,17 @@ export namespace Browser {
             await browser.driver.manage().deleteAllCookies();
         } catch (ignored) {
         }
+    }
+
+    function getSelenidejsParam(dotSeparatedPath: string) {
+        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
+    }
+
+    function getValueFromPath(obj: any, objPath: string): any {
+        if (obj === undefined) return undefined;
+        if (obj === null) return null;
+        const parts = objPath.split('.');
+        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
 
 }

@@ -5,8 +5,9 @@ var Wait;
 (function (Wait) {
     const DEFAULT_WAIT_MS = 4000;
     const DEFAULT_HARD_WAIT_MS = 2000;
-    Wait.WAIT_MS = getValueFromPath(protractor_1.browser, `params.timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    Wait.HARD_WAIT_MS = getValueFromPath(protractor_1.browser, `params.timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    const params = protractor_1.browser.params;
+    Wait.WAIT_MS = getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    Wait.HARD_WAIT_MS = getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
     async function hard(intervalInMilliseconds = Wait.HARD_WAIT_MS) {
         await protractor_1.browser.driver.sleep(intervalInMilliseconds);
     }
@@ -37,10 +38,15 @@ var Wait;
         }
         return null;
     }
-    function getValueFromPath(obj, dotSeparatedPath) {
+    function getSelenidejsParam(dotSeparatedPath) {
+        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
+    }
+    function getValueFromPath(obj, objPath) {
         if (obj === undefined)
             return undefined;
-        const parts = dotSeparatedPath.split('.');
+        if (obj === null)
+            return null;
+        const parts = objPath.split('.');
         return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
 })(Wait = exports.Wait || (exports.Wait = {}));
