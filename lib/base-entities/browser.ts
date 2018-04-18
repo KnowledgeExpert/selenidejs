@@ -15,8 +15,14 @@ export namespace Browser {
     export const params = browser.params;
 
     export async function get(url: string) {
-        if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
-            await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
+        // if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
+        //     await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
+        // }
+
+        if (getValueFromPath(browser.params.selenidejs.windowSize, 'width')
+            && getValueFromPath(browser.params.selenidejs.windowSize, 'height')) {
+            await resizeWindow(getValueFromPath(browser.params.selenidejs.windowSize, 'width'),
+                getValueFromPath(browser.params.selenidejs.windowSize, 'height'));
         }
         await browser.get(url);
     }

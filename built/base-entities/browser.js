@@ -14,8 +14,12 @@ var Browser;
 (function (Browser) {
     Browser.params = protractor_1.browser.params;
     async function get(url) {
-        if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
-            await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
+        // if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
+        //     await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
+        // }
+        if (getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'width')
+            && getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'height')) {
+            await resizeWindow(getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'width'), getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'height'));
         }
         await protractor_1.browser.get(url);
     }
