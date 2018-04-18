@@ -8,8 +8,8 @@ export namespace Wait {
     const DEFAULT_HARD_WAIT_MS = 2000;
     const params = browser.params;
 
-    export const WAIT_MS = getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    export const HARD_WAIT_MS = getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    export const WAIT_MS = getSelenidejsParam(`timeout.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    export const HARD_WAIT_MS = getSelenidejsParam(`timeout.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
 
     export async function hard(intervalInMilliseconds = HARD_WAIT_MS) {
         await browser.driver.sleep(intervalInMilliseconds);

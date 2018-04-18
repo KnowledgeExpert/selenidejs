@@ -6,8 +6,8 @@ var Wait;
     const DEFAULT_WAIT_MS = 4000;
     const DEFAULT_HARD_WAIT_MS = 2000;
     const params = protractor_1.browser.params;
-    Wait.WAIT_MS = getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    Wait.HARD_WAIT_MS = getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    Wait.WAIT_MS = getSelenidejsParam(`timeout.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    Wait.HARD_WAIT_MS = getSelenidejsParam(`timeout.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
     async function hard(intervalInMilliseconds = Wait.HARD_WAIT_MS) {
         await protractor_1.browser.driver.sleep(intervalInMilliseconds);
     }
