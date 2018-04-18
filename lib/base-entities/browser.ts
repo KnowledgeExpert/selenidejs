@@ -99,7 +99,7 @@ export namespace Browser {
         }
     }
 
-    export function getSelenidejsParam(dotSeparatedPath: string) {
+    function getSelenidejsParam(dotSeparatedPath: string) {
         return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
     }
 

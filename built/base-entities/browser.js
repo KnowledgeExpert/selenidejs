@@ -112,5 +112,6 @@ var Browser;
         const parts = objPath.split('.');
         return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
+    Browser.getValueFromPath = getValueFromPath;
 })(Browser = exports.Browser || (exports.Browser = {}));
 //# sourceMappingURL=browser.js.map
