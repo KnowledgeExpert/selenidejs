@@ -21,5 +21,4 @@ export declare namespace Browser {
     function switchToFrame(frameElement: Element): Promise<void>;
     function switchToDefaultFrame(): Promise<void>;
     function clearCacheAndCookies(): Promise<void>;
-    function getValueFromPath(obj: any, objPath: string): any;
 }

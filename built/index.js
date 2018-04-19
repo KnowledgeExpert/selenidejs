@@ -38,6 +38,8 @@ var fileHelper_1 = require("./helpers/fileHelper");
 exports.FileHelper = fileHelper_1.FileHelper;
 var httpHelper_1 = require("./helpers/httpHelper");
 exports.HttpHelper = httpHelper_1.HttpHelper;
+var utils_1 = require("./utils/utils");
+exports.Utils = utils_1.Utils;
 //RE-EXPORT
 var selenium_webdriver_1 = require("selenium-webdriver");
 exports.By = selenium_webdriver_1.By;

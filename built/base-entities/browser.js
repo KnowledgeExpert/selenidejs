@@ -10,16 +10,13 @@ const with_1 = require("../locators/with");
 const collection_1 = require("./collection");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const screenshot_1 = require("../screenshot");
+const utils_1 = require("../utils/utils");
 var Browser;
 (function (Browser) {
     Browser.params = protractor_1.browser.params;
     async function get(url) {
-        // if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
-        //     await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
-        // }
-        if (getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'width')
-            && getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'height')) {
-            await resizeWindow(getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'width'), getValueFromPath(protractor_1.browser.params.selenidejs.windowSize, 'height'));
+        if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
+            await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
         }
         await protractor_1.browser.get(url);
     }
@@ -106,16 +103,7 @@ var Browser;
     }
     Browser.clearCacheAndCookies = clearCacheAndCookies;
     function getSelenidejsParam(dotSeparatedPath) {
-        return getValueFromPath(Browser.params, `selenidejs.${dotSeparatedPath}`);
+        return utils_1.Utils.getValueFromPath(Browser.params, `selenidejs.${dotSeparatedPath}`);
     }
-    function getValueFromPath(obj, objPath) {
-        if (obj === undefined)
-            return undefined;
-        if (obj === null)
-            return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
-    }
-    Browser.getValueFromPath = getValueFromPath;
 })(Browser = exports.Browser || (exports.Browser = {}));
 //# sourceMappingURL=browser.js.map

@@ -9,21 +9,17 @@ import {With} from "../locators/with";
 import {Collection} from "./collection";
 import {ByWebElementsLocator} from "./locators/byWebElementsLocator";
 import {Screenshot} from "../screenshot";
+import {Utils} from "../utils/utils";
 
 export namespace Browser {
 
     export const params = browser.params;
 
     export async function get(url: string) {
-        // if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
-        //     await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
-        // }
-
-        if (getValueFromPath(browser.params.selenidejs.windowSize, 'width')
-            && getValueFromPath(browser.params.selenidejs.windowSize, 'height')) {
-            await resizeWindow(getValueFromPath(browser.params.selenidejs.windowSize, 'width'),
-                getValueFromPath(browser.params.selenidejs.windowSize, 'height'));
+        if (getSelenidejsParam('windowSize.width') && getSelenidejsParam('windowSize.height')) {
+            await resizeWindow(getSelenidejsParam('windowSize.width'), getSelenidejsParam('windowSize.height'));
         }
+
         await browser.get(url);
     }
 
@@ -106,14 +102,6 @@ export namespace Browser {
     }
 
     function getSelenidejsParam(dotSeparatedPath: string) {
-        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
+        return Utils.getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
     }
-
-    export function getValueFromPath(obj: any, objPath: string): any {
-        if (obj === undefined) return undefined;
-        if (obj === null) return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
-    }
-
 }
