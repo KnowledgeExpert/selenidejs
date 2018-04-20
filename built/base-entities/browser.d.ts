@@ -5,7 +5,7 @@ import { BrowserCondition } from "..";
 import { By } from "selenium-webdriver";
 import { Collection } from "./collection";
 export declare namespace Browser {
-    const params: any;
+    function params(dotSeparatedPath?: string): any;
     function get(url: string): Promise<void>;
     function title(): Promise<string>;
     function pageSource(): Promise<string>;

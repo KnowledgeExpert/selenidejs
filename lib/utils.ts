@@ -47,7 +47,7 @@ export namespace Utils {
         return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
     }
 
-    function getValueFromPath(obj: any, objPath: string): any {
+    export function getValueFromPath(obj: any, objPath: string): any {
         if (obj === undefined) return undefined;
         if (obj === null) return null;
         const parts = objPath.split('.');

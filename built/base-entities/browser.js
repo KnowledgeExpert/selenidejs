@@ -13,7 +13,10 @@ const screenshot_1 = require("../screenshot");
 const utils_1 = require("../utils");
 var Browser;
 (function (Browser) {
-    Browser.params = protractor_1.browser.params;
+    function params(dotSeparatedPath) {
+        return dotSeparatedPath ? protractor_1.browser.params : utils_1.Utils.getValueFromPath(protractor_1.browser.params, dotSeparatedPath);
+    }
+    Browser.params = params;
     async function get(url) {
         if (utils_1.Utils.getSelenidejsParam('windowSize.width') && utils_1.Utils.getSelenidejsParam('windowSize.width')) {
             await resizeWindow(utils_1.Utils.getSelenidejsParam('windowSize.width'), utils_1.Utils.getSelenidejsParam('windowSize.width'));

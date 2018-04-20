@@ -14,13 +14,14 @@ import {Utils} from "../utils";
 
 export namespace Browser {
 
-    export const params = browser.params;
+    export function params(dotSeparatedPath?: string): any {
+        return dotSeparatedPath ? browser.params : Utils.getValueFromPath(browser.params, dotSeparatedPath);
+    }
 
     export async function get(url: string) {
         if (Utils.getSelenidejsParam('windowSize.width') && Utils.getSelenidejsParam('windowSize.width')) {
             await resizeWindow(Utils.getSelenidejsParam('windowSize.width'), Utils.getSelenidejsParam('windowSize.width'));
         }
-
         await browser.get(url);
     }
 
