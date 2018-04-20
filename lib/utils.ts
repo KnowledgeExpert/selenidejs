@@ -48,13 +48,10 @@ export namespace Utils {
     }
 
     export function getValueFromPath(obj: any, objPath: string): any {
-        console.log(`obj == ${obj}`);
-        console.log(`objpath == ${objPath}`);
         if (obj === undefined) return undefined;
         if (obj === null) return null;
         const parts = objPath.split('.');
-        console.log(`parts == ${parts}`);
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join(','));
+        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join('.'));
     }
 
 }
