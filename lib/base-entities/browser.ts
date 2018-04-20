@@ -19,8 +19,8 @@ export namespace Browser {
     }
 
     export async function get(url: string) {
-        if (Utils.getSelenidejsParam('windowSize.width') && Utils.getSelenidejsParam('windowSize.width')) {
-            await resizeWindow(Utils.getSelenidejsParam('windowSize.width'), Utils.getSelenidejsParam('windowSize.width'));
+        if (Utils.getSelenidejsParam('windowSize.width') && Utils.getSelenidejsParam('windowSize.height')) {
+            await resizeWindow(Utils.getSelenidejsParam('windowSize.width'), Utils.getSelenidejsParam('windowSize.height'));
         }
         await browser.get(url);
     }

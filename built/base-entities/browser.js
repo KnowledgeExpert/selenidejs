@@ -18,8 +18,8 @@ var Browser;
     }
     Browser.params = params;
     async function get(url) {
-        if (utils_1.Utils.getSelenidejsParam('windowSize.width') && utils_1.Utils.getSelenidejsParam('windowSize.width')) {
-            await resizeWindow(utils_1.Utils.getSelenidejsParam('windowSize.width'), utils_1.Utils.getSelenidejsParam('windowSize.width'));
+        if (utils_1.Utils.getSelenidejsParam('windowSize.width') && utils_1.Utils.getSelenidejsParam('windowSize.height')) {
+            await resizeWindow(utils_1.Utils.getSelenidejsParam('windowSize.width'), utils_1.Utils.getSelenidejsParam('windowSize.height'));
         }
         await protractor_1.browser.get(url);
     }
