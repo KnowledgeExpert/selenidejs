@@ -9,19 +9,29 @@ import {With} from "../locators/with";
 import {Collection} from "./collection";
 import {ByWebElementsLocator} from "./locators/byWebElementsLocator";
 import {Screenshot} from "../screenshot";
+import {Utils} from "../utils";
+
 
 export namespace Browser {
 
     export const params = browser.params;
 
     export async function get(url: string) {
-        if (getSelenidejsParam('width') && getSelenidejsParam('height')) {
-            await resizeWindow(getSelenidejsParam('width'), getSelenidejsParam('height'));
+        if (Utils.getSelenidejsParam('width') && Utils.getSelenidejsParam('height')) {
+            await resizeWindow(Utils.getSelenidejsParam('width'), Utils.getSelenidejsParam('height'));
         }
         await browser.get(url);
     }
 
-    export async function viewportScreenshot(): Promise<string> {
+    export async function title(): Promise<string> {
+        return await browser.getTitle();
+    }
+
+    export async function pageSource(): Promise<string> {
+        return await browser.getPageSource();
+    }
+
+    export async function screenshot(): Promise<string> {
         return await browser.takeScreenshot();
     }
 
@@ -76,7 +86,7 @@ export namespace Browser {
     }
 
     export async function switchToFrame(frameElement: Element) {
-        await frameElement.should(be.visible());
+        await frameElement.should(be.visible);
         await browser.switchTo().frame(await frameElement.getWebElement());
     }
 
@@ -97,17 +107,6 @@ export namespace Browser {
             await browser.driver.manage().deleteAllCookies();
         } catch (ignored) {
         }
-    }
-
-    function getSelenidejsParam(dotSeparatedPath: string) {
-        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
-    }
-
-    function getValueFromPath(obj: any, objPath: string): any {
-        if (obj === undefined) return undefined;
-        if (obj === null) return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
     }
 
 }

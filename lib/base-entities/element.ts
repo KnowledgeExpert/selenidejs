@@ -11,6 +11,7 @@ import {Wait} from "../wait";
 import {With} from "../locators/with";
 import {Condition} from "../conditions/condition";
 import {ByExtendedWebElementLocator} from "./locators/byExtendedWebElementLocator";
+import {Utils} from "../utils";
 
 
 export class Element {
@@ -131,7 +132,7 @@ export class Element {
     }
 
     async scrollIntoView() {
-        await this.should(be.visible());
+        await this.should(be.visible);
         await browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
     }
 
@@ -172,7 +173,7 @@ export class Element {
     }
 
     async text(): Promise<string> {
-        await this.should(be.visible());
+        await this.should(be.visible);
         return await (await this.getWebElement()).getText();
     }
 
@@ -188,15 +189,30 @@ export class Element {
         try {
             await action(this);
         } catch (ignored) {
-            await this.should(be.visible());
+            await this.should(be.visible);
             if (browser.params.scrollIntoViewBeforeAction) {
                 await this.scrollIntoView();
             }
             try {
                 await action(this);
             } catch (error) {
-                const message = `For element ${this.toString()}: cannot perform ${actionName}\n\treason: ${error.message}`;
-                // await AllureReporterExtensions.attachScreenshot(message); // TODO remove or refactor to just save screenshot?
+                let message = `For element ${this.toString()}: cannot perform ${actionName}\n\treason: ${error.message}`;
+                if (Utils.getSelenidejsParam(`saveScreenshot`)) {
+                    try {
+                        const screenshotPath = await Utils.saveScreenshot();
+                        message = `${message}\nSaved screenshot: ${screenshotPath}`;
+                    } catch (error) {
+                        console.error(`Cannot save screenshot cause of:\n${error}`);
+                    }
+                }
+                if (Utils.getSelenidejsParam(`saveHtml`)) {
+                    try {
+                        const htmlPath = await Utils.savePageSource();
+                        message = `${message}\nSaved html: ${htmlPath}`;
+                    } catch (error) {
+                        console.error(`Cannot save page source cause of:\n${error}`);
+                    }
+                }
                 throw new CannotPerformActionError(message);
             }
         }
@@ -219,7 +235,7 @@ export class Element {
     }
 
     visibleElement(cssSelector: string): Element {
-        return all(cssSelector).findBy(be.visible());
+        return all(cssSelector).findBy(be.visible);
     }
 
     all(locator: string | By): Collection {
@@ -242,7 +258,7 @@ export function element(locator: string | By): Element {
 }
 
 export function visibleElement(cssSelector: string): Element {
-    return all(cssSelector).findBy(be.visible());
+    return all(cssSelector).findBy(be.visible);
 }
 
 export function elementSmart(locator: string): Element {

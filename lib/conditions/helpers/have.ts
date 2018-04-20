@@ -8,27 +8,27 @@ import {BrowserCondition} from "../browserCondition";
 export namespace have {
 
     export function visibleElement(locator: By) {
-        return Conditions.element.visibleElement(locator);
+        return Conditions.visibleElement(locator);
     }
 
     export function exactText(value: string | number): ElementCondition {
-        return Conditions.element.hasExactText(value);
+        return Conditions.elementHasExactText(value);
     }
 
     export function text(value: string | number) {
-        return Conditions.element.hasText(value);
+        return Conditions.elementHasText(value);
     }
 
     export function attribute(attributeName: string, attributeValue?: string | number): ElementCondition {
         return attributeValue === undefined
-            ? Conditions.element.hasAttribute(attributeName)
-            : Conditions.element.hasAttributeWithValue(attributeName, attributeValue);
+            ? Conditions.elementHasAttribute(attributeName)
+            : Conditions.elementHasAttributeWithValue(attributeName, attributeValue);
     }
 
     export function exactAttribute(attributeName: string, attributeValue?: string | number): ElementCondition {
         return attributeValue === undefined
-            ? Conditions.element.hasAttribute(attributeName)
-            : Conditions.element.hasAttributeWithExactValue(attributeName, attributeValue);
+            ? Conditions.elementHasAttribute(attributeName)
+            : Conditions.elementHasAttributeWithExactValue(attributeName, attributeValue);
     }
 
     export function value(value: string | number) {
@@ -36,27 +36,27 @@ export namespace have {
     }
 
     export function cssClass(cssClass: string): ElementCondition {
-        return Conditions.element.hasClass(cssClass);
+        return Conditions.elementHasClass(cssClass);
     }
 
     export function size(size: number): CollectionCondition {
-        return Conditions.collection.hasSize(size);
+        return Conditions.collectionHasSize(size);
     }
 
     export function texts(...texts: string[]): CollectionCondition {
-        return Conditions.collection.hasExactTexts(texts);
+        return Conditions.collectionHasExactTexts(texts);
     }
 
     export function exactTexts(...texts: string[]): CollectionCondition {
-        return Conditions.collection.hasExactTexts(texts);
+        return Conditions.collectionHasExactTexts(texts);
     }
 
     export function tabsSize(size: number): BrowserCondition {
-        return Conditions.driver.tabsHaveSize(size);
+        return Conditions.browserTabsHaveSize(size);
     }
 
     export function tabsSizeGreaterThan(size: number): BrowserCondition {
-        return Conditions.driver.tabsHaveSizeGreaterThan(size);
+        return Conditions.browserTabsHaveSizeGreaterThan(size);
     }
 
 }

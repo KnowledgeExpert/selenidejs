@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
+const utils_1 = require("./utils");
 var Wait;
 (function (Wait) {
     const DEFAULT_WAIT_MS = 4000;
     const DEFAULT_HARD_WAIT_MS = 2000;
-    const params = protractor_1.browser.params;
-    Wait.WAIT_MS = getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    Wait.HARD_WAIT_MS = getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    Wait.WAIT_MS = utils_1.Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    Wait.HARD_WAIT_MS = utils_1.Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
     async function hard(intervalInMilliseconds = Wait.HARD_WAIT_MS) {
         await protractor_1.browser.driver.sleep(intervalInMilliseconds);
     }
@@ -32,22 +32,28 @@ var Wait;
             }
         } while (new Date().getTime() < finishTime);
         if (throwError) {
-            // await attachScreenshot(lastError.message); // TODO remove or refactor to just save screenshot?
             lastError.message = `${entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
+            if (utils_1.Utils.getSelenidejsParam(`saveScreenshot`)) {
+                try {
+                    const screenshotPath = await utils_1.Utils.saveScreenshot();
+                    lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
+                }
+                catch (error) {
+                    console.error(`Cannot save screenshot cause of:\n${error}`);
+                }
+            }
+            if (utils_1.Utils.getSelenidejsParam(`saveHtml`)) {
+                try {
+                    const htmlPath = await utils_1.Utils.savePageSource();
+                    lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
+                }
+                catch (error) {
+                    console.error(`Cannot save page source cause of:\n${error}`);
+                }
+            }
             throw lastError;
         }
-        return null;
-    }
-    function getSelenidejsParam(dotSeparatedPath) {
-        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
-    }
-    function getValueFromPath(obj, objPath) {
-        if (obj === undefined)
-            return undefined;
-        if (obj === null)
-            return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
+        return entity;
     }
 })(Wait = exports.Wait || (exports.Wait = {}));
 //# sourceMappingURL=wait.js.map

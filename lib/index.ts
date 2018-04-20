@@ -16,8 +16,6 @@ export {With} from "./locators/with";
 export {x} from "./xpath/x";
 export {xFiltered} from "./xpath/xFiltered";
 
-export {Screenshot} from "./screenshot";
-
 export {Browser} from "./base-entities/browser";
 export {FileHelper} from "./helpers/fileHelper";
 export {HttpHelper} from "./helpers/httpHelper";

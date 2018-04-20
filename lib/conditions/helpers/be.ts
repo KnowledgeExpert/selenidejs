@@ -1,16 +1,14 @@
+import {ElementCondition} from "../elementCondition"; // DO NOT DELETE THIS LINE!
 import {Conditions} from "../conditions";
 
-
 export namespace be {
+    export const selected = Conditions.elementIsSelected;
 
-    export const selected = Conditions.element.selected;
+    export const absent = Conditions.elementIsAbsent;
 
-    export const absent = Conditions.element.absent;
+    export const present = Conditions.elementIsPresent;
 
-    export const present = Conditions.element.present;
+    export const visible = Conditions.elementIsVisible;
 
-    export const visible = Conditions.element.visible;
-
-    export const hidden = Conditions.element.hidden;
-
+    export const hidden = Conditions.elementIsHidden;
 }

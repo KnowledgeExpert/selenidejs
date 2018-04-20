@@ -1,8 +1,8 @@
-import { Conditions } from "../conditions";
+import { ElementCondition } from "../elementCondition";
 export declare namespace be {
-    const selected: typeof Conditions.element.selected;
-    const absent: typeof Conditions.element.absent;
-    const present: typeof Conditions.element.present;
-    const visible: typeof Conditions.element.visible;
-    const hidden: typeof Conditions.element.hidden;
+    const selected: ElementCondition;
+    const absent: ElementCondition;
+    const present: ElementCondition;
+    const visible: ElementCondition;
+    const hidden: ElementCondition;
 }

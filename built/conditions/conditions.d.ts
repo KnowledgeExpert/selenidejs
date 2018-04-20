@@ -3,29 +3,23 @@ import { BrowserCondition } from "./browserCondition";
 import { CollectionCondition } from "./collectionCondition";
 import { By } from "selenium-webdriver";
 export declare namespace Conditions {
-    namespace element {
-        function visibleElement(locator: By): ElementCondition;
-        function selected(): ElementCondition;
-        function absent(): ElementCondition;
-        function present(): ElementCondition;
-        function visible(): ElementCondition;
-        function hidden(): ElementCondition;
-        function hasText(text: string | number): ElementCondition;
-        function hasExactText(text: string | number): ElementCondition;
-        function hasAttribute(attributeName: string): ElementCondition;
-        function hasAttributeWithValue(attributeName: string, attributeValue: string | number): ElementCondition;
-        function hasAttributeWithExactValue(attributeName: string, attributeValue: string | number): ElementCondition;
-        function hasClass(cssClass: string | number): ElementCondition;
-    }
-    namespace collection {
-        function hasSize(size: number): CollectionCondition;
-        function hasSizeMoreThan(size: number): CollectionCondition;
-        function hasTexts(texts: string[] | number[]): CollectionCondition;
-        function hasExactTexts(texts: string[] | number[]): CollectionCondition;
-    }
-    namespace driver {
-        function urlContains(url: string): BrowserCondition;
-        function tabsHaveSize(size: number): BrowserCondition;
-        function tabsHaveSizeGreaterThan(size: number): BrowserCondition;
-    }
+    function visibleElement(locator: By): ElementCondition;
+    const elementIsSelected: ElementCondition;
+    const elementIsAbsent: ElementCondition;
+    const elementIsPresent: ElementCondition;
+    const elementIsVisible: ElementCondition;
+    const elementIsHidden: ElementCondition;
+    function elementHasText(text: string | number): ElementCondition;
+    function elementHasExactText(text: string | number): ElementCondition;
+    function elementHasAttribute(attributeName: string): ElementCondition;
+    function elementHasAttributeWithValue(attributeName: string, attributeValue: string | number): ElementCondition;
+    function elementHasAttributeWithExactValue(attributeName: string, attributeValue: string | number): ElementCondition;
+    function elementHasClass(cssClass: string | number): ElementCondition;
+    function collectionHasSize(size: number): CollectionCondition;
+    function collectionHasSizeMoreThan(size: number): CollectionCondition;
+    function collectionHasTexts(texts: string[] | number[]): CollectionCondition;
+    function collectionHasExactTexts(texts: string[] | number[]): CollectionCondition;
+    function browserUrlContains(url: string): BrowserCondition;
+    function browserTabsHaveSize(size: number): BrowserCondition;
+    function browserTabsHaveSizeGreaterThan(size: number): BrowserCondition;
 }

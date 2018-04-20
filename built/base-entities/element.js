@@ -10,6 +10,7 @@ const wait_1 = require("../wait");
 const with_1 = require("../locators/with");
 const condition_1 = require("../conditions/condition");
 const byExtendedWebElementLocator_1 = require("./locators/byExtendedWebElementLocator");
+const utils_1 = require("../utils");
 class Element {
     constructor(locator) {
         this.locator = locator;
@@ -107,7 +108,7 @@ class Element {
         }, "pressTab");
     }
     async scrollIntoView() {
-        await this.should(be_1.be.visible());
+        await this.should(be_1.be.visible);
         await protractor_1.browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
     }
     async should(condition, timeout) {
@@ -140,7 +141,7 @@ class Element {
         return await (await this.getWebElement()).getAttribute("value");
     }
     async text() {
-        await this.should(be_1.be.visible());
+        await this.should(be_1.be.visible);
         return await (await this.getWebElement()).getText();
     }
     async attribute(attributeName) {
@@ -154,7 +155,7 @@ class Element {
             await action(this);
         }
         catch (ignored) {
-            await this.should(be_1.be.visible());
+            await this.should(be_1.be.visible);
             if (protractor_1.browser.params.scrollIntoViewBeforeAction) {
                 await this.scrollIntoView();
             }
@@ -162,8 +163,25 @@ class Element {
                 await action(this);
             }
             catch (error) {
-                const message = `For element ${this.toString()}: cannot perform ${actionName}\n\treason: ${error.message}`;
-                // await AllureReporterExtensions.attachScreenshot(message); // TODO remove or refactor to just save screenshot?
+                let message = `For element ${this.toString()}: cannot perform ${actionName}\n\treason: ${error.message}`;
+                if (utils_1.Utils.getSelenidejsParam(`saveScreenshot`)) {
+                    try {
+                        const screenshotPath = await utils_1.Utils.saveScreenshot();
+                        message = `${message}\nSaved screenshot: ${screenshotPath}`;
+                    }
+                    catch (error) {
+                        console.error(`Cannot save screenshot cause of:\n${error}`);
+                    }
+                }
+                if (utils_1.Utils.getSelenidejsParam(`saveHtml`)) {
+                    try {
+                        const htmlPath = await utils_1.Utils.savePageSource();
+                        message = `${message}\nSaved html: ${htmlPath}`;
+                    }
+                    catch (error) {
+                        console.error(`Cannot save page source cause of:\n${error}`);
+                    }
+                }
                 throw new cannotPerformActionError_1.CannotPerformActionError(message);
             }
         }
@@ -181,7 +199,7 @@ class Element {
         return new Element(new byExtendedWebElementLocator_1.ByExtendedWebElementLocator(locator, this));
     }
     visibleElement(cssSelector) {
-        return collection_1.all(cssSelector).findBy(be_1.be.visible());
+        return collection_1.all(cssSelector).findBy(be_1.be.visible);
     }
     all(locator) {
         return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === "string"
@@ -200,7 +218,7 @@ function element(locator) {
 }
 exports.element = element;
 function visibleElement(cssSelector) {
-    return collection_1.all(cssSelector).findBy(be_1.be.visible());
+    return collection_1.all(cssSelector).findBy(be_1.be.visible);
 }
 exports.visibleElement = visibleElement;
 function elementSmart(locator) {

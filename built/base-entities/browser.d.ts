@@ -7,7 +7,9 @@ import { Collection } from "./collection";
 export declare namespace Browser {
     const params: any;
     function get(url: string): Promise<void>;
-    function viewportScreenshot(): Promise<string>;
+    function title(): Promise<string>;
+    function pageSource(): Promise<string>;
+    function screenshot(): Promise<string>;
     function fullpageScreenshot(): Promise<Buffer>;
     function resizeWindow(width: number, height: number): Promise<void>;
     function element(locator: string | By): Element;

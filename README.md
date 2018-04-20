@@ -70,10 +70,10 @@ Assertion conditions are used in "assertion actions" on elements and in "filter 
   * `all(With.testId('2014100609491604293426')).first().shouldNot(have.text("New Case"))`
 
 ## [Full page screenshot](./lib/screenshot.ts)
-Full page browser screenshot achieved via screen-and-scroll strategy (take multiple screenshots and merge them into single image). To get full page screenshot use function `Screenshot.take()`.
+Full page browser screenshot achieved via screen-and-scroll strategy (take multiple screenshots and merge them into single image). To get full page screenshot use function `Browser.fullpageScreenshot()`.
 
 ## Custom project parameters
-* `params.timeout.toWaitElementsInMs`
+* `params.selenidejs.timeouts.toWaitElementsInMs`
   * timeout in milliseconds
   * for smart waits
     * "smart" means - the "wait implementation" will wait only the minimum needed amount of time, not greater than specified timeout
@@ -81,12 +81,10 @@ Full page browser screenshot achieved via screen-and-scroll strategy (take multi
     * asserts / checking test steps results
     * access to elements
   * Default value = `10000`
-  * `npm test -- --params.timeout.toWaitElementsInMs=20000`
-* `params.timeout.toHardWaitInMs`
+  * `npm test -- --params.selenidejs.timeouts.toWaitElementsInMs=20000`
+* `params.selenidejs.timeouts.toHardWaitInMs`
   * timeout in milliseconds
   * for hard wait
     * "hard" means -  the "wait implementation" will wait whole timeout interval
   * Default value = `1000`
-  * `npm test -- --params.timeout.toHardWaitInMs=2000`
-
-
+  * `npm test -- --params.selenidejs.timeouts.toHardWaitInMs=2000`

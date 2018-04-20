@@ -1,15 +1,15 @@
 import {browser} from 'protractor';
 import {Condition} from "./conditions/condition";
+import {Utils} from "./utils";
 
 
 export namespace Wait {
 
     const DEFAULT_WAIT_MS = 4000;
     const DEFAULT_HARD_WAIT_MS = 2000;
-    const params = browser.params;
 
-    export const WAIT_MS = getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    export const HARD_WAIT_MS = getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    export const WAIT_MS = Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    export const HARD_WAIT_MS = Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
 
     export async function hard(intervalInMilliseconds = HARD_WAIT_MS) {
         await browser.driver.sleep(intervalInMilliseconds);
@@ -35,22 +35,26 @@ export namespace Wait {
         } while (new Date().getTime() < finishTime);
 
         if (throwError) {
-            // await attachScreenshot(lastError.message); // TODO remove or refactor to just save screenshot?
             lastError.message = `${entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
+            if (Utils.getSelenidejsParam(`saveScreenshot`)) {
+                try {
+                    const screenshotPath = await Utils.saveScreenshot();
+                    lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
+                } catch (error) {
+                    console.error(`Cannot save screenshot cause of:\n${error}`);
+                }
+            }
+            if (Utils.getSelenidejsParam(`saveHtml`)) {
+                try {
+                    const htmlPath = await Utils.savePageSource();
+                    lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
+                } catch (error) {
+                    console.error(`Cannot save page source cause of:\n${error}`);
+                }
+            }
             throw lastError;
         }
-        return null;
-    }
-
-    function getSelenidejsParam(dotSeparatedPath: string) {
-        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
-    }
-
-    function getValueFromPath(obj: any, objPath: string): any {
-        if (obj === undefined) return undefined;
-        if (obj === null) return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
+        return entity;
     }
 
 }

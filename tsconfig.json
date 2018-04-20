@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "outDir": "built/"
   },
-  "exclude": [
-    "node_modules"
+  "include": [
+    "lib"
   ]
 }

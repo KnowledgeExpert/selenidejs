@@ -10,20 +10,29 @@ const with_1 = require("../locators/with");
 const collection_1 = require("./collection");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const screenshot_1 = require("../screenshot");
+const utils_1 = require("../utils");
 var Browser;
 (function (Browser) {
     Browser.params = protractor_1.browser.params;
     async function get(url) {
-        if (getSelenidejsParam('width') && getSelenidejsParam('height')) {
-            await resizeWindow(getSelenidejsParam('width'), getSelenidejsParam('height'));
+        if (utils_1.Utils.getSelenidejsParam('width') && utils_1.Utils.getSelenidejsParam('height')) {
+            await resizeWindow(utils_1.Utils.getSelenidejsParam('width'), utils_1.Utils.getSelenidejsParam('height'));
         }
         await protractor_1.browser.get(url);
     }
     Browser.get = get;
-    async function viewportScreenshot() {
+    async function title() {
+        return await protractor_1.browser.getTitle();
+    }
+    Browser.title = title;
+    async function pageSource() {
+        return await protractor_1.browser.getPageSource();
+    }
+    Browser.pageSource = pageSource;
+    async function screenshot() {
         return await protractor_1.browser.takeScreenshot();
     }
-    Browser.viewportScreenshot = viewportScreenshot;
+    Browser.screenshot = screenshot;
     async function fullpageScreenshot() {
         return await screenshot_1.Screenshot.take();
     }
@@ -75,7 +84,7 @@ var Browser;
     }
     Browser.previosTab = previosTab;
     async function switchToFrame(frameElement) {
-        await frameElement.should(be_1.be.visible());
+        await frameElement.should(be_1.be.visible);
         await protractor_1.browser.switchTo().frame(await frameElement.getWebElement());
     }
     Browser.switchToFrame = switchToFrame;
@@ -101,16 +110,5 @@ var Browser;
         }
     }
     Browser.clearCacheAndCookies = clearCacheAndCookies;
-    function getSelenidejsParam(dotSeparatedPath) {
-        return getValueFromPath(Browser.params, `selenidejs.${dotSeparatedPath}`);
-    }
-    function getValueFromPath(obj, objPath) {
-        if (obj === undefined)
-            return undefined;
-        if (obj === null)
-            return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).reduce((f, s) => `${f} ${s}`));
-    }
 })(Browser = exports.Browser || (exports.Browser = {}));
 //# sourceMappingURL=browser.js.map
