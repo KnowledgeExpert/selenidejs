@@ -15,8 +15,8 @@ var Browser;
 (function (Browser) {
     Browser.params = protractor_1.browser.params;
     async function get(url) {
-        if (utils_1.Utils.getSelenidejsParam('width') && utils_1.Utils.getSelenidejsParam('height')) {
-            await resizeWindow(utils_1.Utils.getSelenidejsParam('width'), utils_1.Utils.getSelenidejsParam('height'));
+        if (utils_1.Utils.getSelenidejsParam('windowSize.width') && utils_1.Utils.getSelenidejsParam('windowSize.width')) {
+            await resizeWindow(utils_1.Utils.getSelenidejsParam('windowSize.width'), utils_1.Utils.getSelenidejsParam('windowSize.width'));
         }
         await protractor_1.browser.get(url);
     }

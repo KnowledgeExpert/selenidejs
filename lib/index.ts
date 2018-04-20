@@ -20,6 +20,5 @@ export {Browser} from "./base-entities/browser";
 export {FileHelper} from "./helpers/fileHelper";
 export {HttpHelper} from "./helpers/httpHelper";
 
-
 //RE-EXPORT
 export {By, WebElement, WebElementPromise} from "selenium-webdriver";
