@@ -15,7 +15,8 @@ import {Utils} from "../utils";
 export namespace Browser {
 
     export function params(dotSeparatedPath?: string): any {
-        return dotSeparatedPath ? browser.params : Utils.getValueFromPath(browser.params, dotSeparatedPath);
+        return dotSeparatedPath ? Utils.getValueFromPath(browser.params, dotSeparatedPath) : browser.params ;
+
     }
 
     export async function get(url: string) {

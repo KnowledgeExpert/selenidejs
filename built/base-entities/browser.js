@@ -14,7 +14,7 @@ const utils_1 = require("../utils");
 var Browser;
 (function (Browser) {
     function params(dotSeparatedPath) {
-        return dotSeparatedPath ? protractor_1.browser.params : utils_1.Utils.getValueFromPath(protractor_1.browser.params, dotSeparatedPath);
+        return dotSeparatedPath ? utils_1.Utils.getValueFromPath(protractor_1.browser.params, dotSeparatedPath) : protractor_1.browser.params;
     }
     Browser.params = params;
     async function get(url) {
