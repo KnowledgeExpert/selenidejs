@@ -44,7 +44,7 @@ export namespace Utils {
     }
 
     export function getSelenidejsParam(dotSeparatedPath: string) {
-        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
+        return getValueFromPath(Browser.params(), `selenidejs.${dotSeparatedPath}`);
     }
 
     export function getValueFromPath(obj: any, objPath: string): any {

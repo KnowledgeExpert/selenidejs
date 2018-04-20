@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const browser_1 = require("./base-entities/browser");
 const fs = require("fs");
 const path = require("path");
-var params = browser_1.Browser.params;
 var Utils;
 (function (Utils) {
     const DEFAULT_SCREENSHOT_PATH = path.resolve("./screenshots");
@@ -43,7 +42,7 @@ var Utils;
     }
     Utils.buildFilePath = buildFilePath;
     function getSelenidejsParam(dotSeparatedPath) {
-        return getValueFromPath(params, `selenidejs.${dotSeparatedPath}`);
+        return getValueFromPath(browser_1.Browser.params(), `selenidejs.${dotSeparatedPath}`);
     }
     Utils.getSelenidejsParam = getSelenidejsParam;
     function getValueFromPath(obj, objPath) {
