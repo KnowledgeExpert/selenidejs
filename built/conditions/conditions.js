@@ -35,7 +35,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsAbsent";
+            return "be absent";
         }
     });
     Conditions.elementIsPresent = new elementCondition_1.ElementCondition({
@@ -49,7 +49,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsPresent";
+            return "be present";
         }
     });
     Conditions.elementIsVisible = new elementCondition_1.ElementCondition({
@@ -64,7 +64,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsVisible";
+            return "be visible";
         }
     });
     Conditions.elementIsHidden = new elementCondition_1.ElementCondition({
@@ -79,7 +79,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsHidden";
+            return "be hidden";
         }
     });
     function elementHasText(text) {

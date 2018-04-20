@@ -36,7 +36,7 @@ export namespace Wait {
 
         if (throwError) {
             lastError.message = `${entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
-            if (Utils.getSelenidejsParam(`saveScreenshot`)) {
+            if (Utils.getSelenidejsParam(`saveScreenshotOnFail`)) {
                 try {
                     const screenshotPath = await Utils.saveScreenshot();
                     lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
@@ -44,7 +44,7 @@ export namespace Wait {
                     console.error(`Cannot save screenshot cause of:\n${error}`);
                 }
             }
-            if (Utils.getSelenidejsParam(`saveHtml`)) {
+            if (Utils.getSelenidejsParam(`saveHtmlOnFail`)) {
                 try {
                     const htmlPath = await Utils.savePageSource();
                     lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;

@@ -62,12 +62,33 @@ It is also possible to build "locators chains", getting one element (or elements
   * or get element by index:
     * `all(".autocomplete-results").get(2)`
 
- ## Assertion Conditions: [be.*](./lib/conditions/helpers/be.ts) and [have.*](./lib/conditions/helpers/have.ts)
+## Assertion Conditions: [be.*](./lib/conditions/helpers/be.ts) and [have.*](./lib/conditions/helpers/have.ts)
 
 Assertion conditions are used in "assertion actions" on elements and in "filter actions" on collections:
 
   * `element(".assignment_title").should(be.visible)`
   * `all(With.testId('2014100609491604293426')).first().shouldNot(have.text("New Case"))`
+
+## Extended errors logging
+On errors throwing (for example if `element.click()` or `Browser.should(...)` throws an exception) you can enable attaching of screenshots and page source to an error. It can be useful in debugging, to make errors clearer and easier to resolve.
+
+For enabling that feature you should add in your `protractor.conf` next properties in `selenidejs` section:
+```
+export const config = {
+    params: {
+        selenidejs: {
+            saveScreenshotOnFail: true, // put any trufy value here to enable automatic screenshot on error
+            saveHtmlOnFail: true, // put any trufy value here to enable automatic page source on error
+
+            // provide here custom path for saving screenshots directory (default - './screenshots')
+            screenshotPath: path.resolve("./myscreenshots"),
+
+            // provide here custom path for saving htmls directory (default - './htmls')
+            htmlPath: path.resolve("./mypagesources")
+        }
+    }
+};
+```
 
 ## [Full page screenshot](./lib/screenshot.ts)
 Full page browser screenshot achieved via screen-and-scroll strategy (take multiple screenshots and merge them into single image). To get full page screenshot use function `Browser.fullpageScreenshot()`.

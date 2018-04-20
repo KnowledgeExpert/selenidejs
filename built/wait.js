@@ -33,7 +33,7 @@ var Wait;
         } while (new Date().getTime() < finishTime);
         if (throwError) {
             lastError.message = `${entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
-            if (utils_1.Utils.getSelenidejsParam(`saveScreenshot`)) {
+            if (utils_1.Utils.getSelenidejsParam(`saveScreenshotOnFail`)) {
                 try {
                     const screenshotPath = await utils_1.Utils.saveScreenshot();
                     lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
@@ -42,7 +42,7 @@ var Wait;
                     console.error(`Cannot save screenshot cause of:\n${error}`);
                 }
             }
-            if (utils_1.Utils.getSelenidejsParam(`saveHtml`)) {
+            if (utils_1.Utils.getSelenidejsParam(`saveHtmlOnFail`)) {
                 try {
                     const htmlPath = await utils_1.Utils.savePageSource();
                     lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;

@@ -38,7 +38,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsAbsent";
+            return "be absent";
         }
     });
 
@@ -52,7 +52,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsPresent";
+            return "be present";
         }
     });
 
@@ -67,7 +67,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsVisible";
+            return "be visible";
         }
     });
 
@@ -82,7 +82,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be elementIsHidden";
+            return "be hidden";
         }
     });
 
