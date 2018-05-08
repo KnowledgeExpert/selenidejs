@@ -3,7 +3,7 @@ import {Element} from "./element";
 import {be} from "../conditions/helpers/be";
 import {BrowserCondition, Condition} from "..";
 import {Wait} from "../wait";
-import {By} from "selenium-webdriver";
+import {ActionSequence, By} from "selenium-webdriver";
 import {ByWebElementLocator} from "./locators/byWebElementLocator";
 import {With} from "../locators/with";
 import {Collection} from "./collection";
@@ -71,6 +71,14 @@ export namespace Browser {
 
     export async function isNot(condition: BrowserCondition, timeout?: number): Promise<boolean> {
         return await is(Condition.not(condition), timeout);
+    }
+
+    export async function executeScript(script: string | Function, ...args: any[]) {
+        return await browser.executeScript(script, args);
+    }
+
+    export function actions(): ActionSequence {
+        return browser.actions();
     }
 
     export async function nextTab() {

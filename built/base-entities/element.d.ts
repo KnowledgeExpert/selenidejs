@@ -3,6 +3,8 @@ import { Collection } from './collection';
 import { By, WebElement } from "selenium-webdriver";
 import { ElementCondition } from "../conditions/elementCondition";
 export declare class Element {
+    static beforeActionHooks: ((element: Element, actionName: string) => void)[];
+    static afterActionHooks: ((element: Element, actionName: string) => void)[];
     private readonly locator;
     constructor(locator: Locator<Promise<WebElement>>);
     click(): Promise<void>;
@@ -10,7 +12,6 @@ export declare class Element {
     setValue(value: string | number): Promise<void>;
     setValueByJS(value: string | number): Promise<void>;
     sendKeys(value: string | number): Promise<void>;
-    fireEvent(...events: string[]): Promise<void>;
     doubleClick(): Promise<void>;
     hover(): Promise<void>;
     contextClick(): Promise<void>;
@@ -28,7 +29,10 @@ export declare class Element {
     value(): Promise<string>;
     text(): Promise<string>;
     attribute(attributeName: string): Promise<string>;
+    innerHtml(): Promise<string>;
+    outerHtml(): Promise<string>;
     getWebElement(): Promise<WebElement>;
+    private fireEvent(...events);
     private performActionOnVisible(action, actionName);
     parent(): Element;
     followingSibling(predicate?: string): Element;

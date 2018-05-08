@@ -1,7 +1,7 @@
 import {Locator} from './locators/locator';
 import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {ByWebElementLocator} from './locators/byWebElementLocator';
-import {browser, protractor} from 'protractor';
+import {protractor} from 'protractor';
 import {all, Collection} from './collection';
 import {By, WebElement} from "selenium-webdriver";
 import {CannotPerformActionError} from "../errors/cannotPerformActionError";
@@ -12,9 +12,13 @@ import {With} from "../locators/with";
 import {Condition} from "../conditions/condition";
 import {ByExtendedWebElementLocator} from "./locators/byExtendedWebElementLocator";
 import {Utils} from "../utils";
+import {Browser} from "./browser";
 
 
 export class Element {
+
+    public static beforeActionHooks: ((element: Element, actionName: string) => void)[] = [];
+    public static afterActionHooks: ((element: Element, actionName: string) => void)[] = [];
 
     private readonly locator: Locator<Promise<WebElement>>;
 
@@ -22,15 +26,17 @@ export class Element {
         this.locator = locator;
     }
 
+    @ActionHooks
     async click() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).click();
         }, "click");
     }
 
+    @ActionHooks
     async clickByJS() {
         await this.performActionOnVisible(async (element) => {
-            await browser.executeScript(
+            await Browser.executeScript(
                 `return (function(webelement) {
                     const clickEvent  = document.createEvent('MouseEvents');
                     clickEvent.initEvent('click', true, true);
@@ -40,6 +46,7 @@ export class Element {
         }, "clickByJS");
     }
 
+    @ActionHooks
     async setValue(value: string | number) {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).clear();
@@ -47,10 +54,11 @@ export class Element {
         }, "setValue");
     }
 
+    @ActionHooks
     async setValueByJS(value: string | number) {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).clear();
-            await browser.executeScript(
+            await Browser.executeScript(
                 `return (function(webelement, text) {
                     var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
                     webelement.value = maxlength == -1 ? text 
@@ -62,78 +70,61 @@ export class Element {
         }, "setValueByJS");
     }
 
+    @ActionHooks
     async sendKeys(value: string | number) {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(String(value));
         }, "sendKeys");
     }
 
-    async fireEvent(...events: string[]) {
-        //usage - await this.fireEvent("focus", "keydown", "keypress", "input", "keyup", "change", "blur");
-        const jsCodeToTriggerEvent: string =
-            `(function() {
-                var webElement = arguments[0];
-                var eventNames = arguments[1];
-                for (var i = 0; i < eventNames.length; i++) {
-                    if (document.createEventObject) {
-                        var evt = document.createEventObject();
-                        webElement.fireEvent('on' + eventNames[i], evt);
-                    } else {
-                        var evt = document.createEvent('HTMLEvents');
-                        evt.initEvent(eventNames[i], true, true );
-                        webElement.dispatchEvent(evt);
-                    }
-                }
-            })();`;
-
-        try {
-            await browser.executeScript(jsCodeToTriggerEvent, this.getWebElement(), events);
-        } catch (error) {
-            console.log("Failed to trigger events " + events + ": " + error.message);
-        }
-    }
-
+    @ActionHooks
     async doubleClick() {
         await this.performActionOnVisible(async (element) => {
-            await browser.actions().mouseMove(await element.getWebElement()).perform();
-            await browser.actions().doubleClick().perform();
+            await Browser.actions().mouseMove(await element.getWebElement()).perform();
+            await Browser.actions().doubleClick().perform();
         }, "doubleClick");
     }
 
+    @ActionHooks
     async hover() {
         await this.performActionOnVisible(async (element) => {
-            await browser.actions().mouseMove(await element.getWebElement()).perform();
+            await Browser.actions().mouseMove(await element.getWebElement()).perform();
         }, "hover");
     }
 
+    @ActionHooks
     async contextClick() {
         await this.performActionOnVisible(async (element) => {
-            await browser.actions().mouseMove(await element.getWebElement()).perform();
-            await browser.actions().click(protractor.Button.RIGHT).perform();
+            await Browser.actions().mouseMove(await element.getWebElement()).perform();
+            await Browser.actions().click(protractor.Button.RIGHT).perform();
         }, "contextClick");
     }
 
+    @ActionHooks
     async pressEnter() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor.Key.ENTER);
         }, "pressEnter");
     }
 
+    @ActionHooks
     async pressEscape() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor.Key.ESCAPE);
         }, "pressEscape");
     }
 
+    @ActionHooks
     async pressTab() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor.Key.TAB);
         }, "pressTab");
     }
 
+    @ActionHooks
     async scrollIntoView() {
         await this.should(be.visible);
-        await browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
+        await Browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
     }
 
     async should(condition: ElementCondition, timeout?: number): Promise<Element> {
@@ -181,8 +172,41 @@ export class Element {
         return await (await this.getWebElement()).getAttribute(attributeName);
     }
 
+    async innerHtml(): Promise<string> {
+        return await this.attribute('innerHTML');
+    }
+
+    async outerHtml(): Promise<string> {
+        return await this.attribute('outerHTML');
+    }
+
     async getWebElement(): Promise<WebElement> {
         return await this.locator.find();
+    }
+
+    private async fireEvent(...events: string[]) {
+        //usage - await this.fireEvent("focus", "keydown", "keypress", "input", "keyup", "change", "blur");
+        const jsCodeToTriggerEvent: string =
+            `(function() {
+                var webElement = arguments[0];
+                var eventNames = arguments[1];
+                for (var i = 0; i < eventNames.length; i++) {
+                    if (document.createEventObject) {
+                        var evt = document.createEventObject();
+                        webElement.fireEvent('on' + eventNames[i], evt);
+                    } else {
+                        var evt = document.createEvent('HTMLEvents');
+                        evt.initEvent(eventNames[i], true, true );
+                        webElement.dispatchEvent(evt);
+                    }
+                }
+            })();`;
+
+        try {
+            await Browser.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
+        } catch (error) {
+            console.log("Failed to trigger events " + events + ": " + error.message);
+        }
     }
 
     private async performActionOnVisible(action: (element: Element) => void, actionName: string) {
@@ -190,7 +214,7 @@ export class Element {
             await action(this);
         } catch (ignored) {
             await this.should(be.visible);
-            if (browser.params.scrollIntoViewBeforeAction) {
+            if (Browser.params().scrollIntoViewBeforeAction) {
                 await this.scrollIntoView();
             }
             try {
@@ -264,3 +288,31 @@ export function visibleElement(cssSelector: string): Element {
 export function elementSmart(locator: string): Element {
     return new Element(new ByExtendedWebElementLocator(locator));
 }
+
+function ActionHooks(target, methodName, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
+    const beforeHooks = Element.beforeActionHooks;
+    const afterHooks = Element.afterActionHooks;
+
+    async function safeApplyActionHooks(hooks: ((element, actionName) => void | Promise<void>)[], element, actionName) {
+        for (let hook of hooks) {
+            try {
+                await hook(element, actionName);
+            } catch (error) {
+                console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
+            }
+        }
+    }
+
+    descriptor.value = async function () {
+        try {
+            await safeApplyActionHooks(beforeHooks, this, methodName);
+            return await originalMethod.apply(this, arguments);
+        } catch (error) {
+            throw error;
+        } finally {
+            await safeApplyActionHooks(afterHooks, this, methodName);
+        }
+    }
+}
+

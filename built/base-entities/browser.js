@@ -72,6 +72,14 @@ var Browser;
         return await is(__1.Condition.not(condition), timeout);
     }
     Browser.isNot = isNot;
+    async function executeScript(script, ...args) {
+        return await protractor_1.browser.executeScript(script, args);
+    }
+    Browser.executeScript = executeScript;
+    function actions() {
+        return protractor_1.browser.actions();
+    }
+    Browser.actions = actions;
     async function nextTab() {
         const currentTab = await protractor_1.browser.getWindowHandle();
         const allTabs = await protractor_1.browser.getAllWindowHandles();

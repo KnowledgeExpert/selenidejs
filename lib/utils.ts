@@ -1,7 +1,6 @@
 import {Browser} from "./base-entities/browser";
 import * as fs from "fs";
 import * as path from "path";
-import params = Browser.params;
 
 
 export namespace Utils {

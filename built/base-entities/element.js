@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
@@ -11,6 +17,7 @@ const with_1 = require("../locators/with");
 const condition_1 = require("../conditions/condition");
 const byExtendedWebElementLocator_1 = require("./locators/byExtendedWebElementLocator");
 const utils_1 = require("../utils");
+const browser_1 = require("./browser");
 class Element {
     constructor(locator) {
         this.locator = locator;
@@ -22,7 +29,7 @@ class Element {
     }
     async clickByJS() {
         await this.performActionOnVisible(async (element) => {
-            await protractor_1.browser.executeScript(`return (function(webelement) {
+            await browser_1.Browser.executeScript(`return (function(webelement) {
                     const clickEvent  = document.createEvent('MouseEvents');
                     clickEvent.initEvent('click', true, true);
                     arguments[0].dispatchEvent(clickEvent);
@@ -38,7 +45,7 @@ class Element {
     async setValueByJS(value) {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).clear();
-            await protractor_1.browser.executeScript(`return (function(webelement, text) {
+            await browser_1.Browser.executeScript(`return (function(webelement, text) {
                     var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
                     webelement.value = maxlength == -1 ? text 
                             : text.length <= maxlength ? text 
@@ -52,44 +59,21 @@ class Element {
             await (await element.getWebElement()).sendKeys(String(value));
         }, "sendKeys");
     }
-    async fireEvent(...events) {
-        //usage - await this.fireEvent("focus", "keydown", "keypress", "input", "keyup", "change", "blur");
-        const jsCodeToTriggerEvent = `(function() {
-                var webElement = arguments[0];
-                var eventNames = arguments[1];
-                for (var i = 0; i < eventNames.length; i++) {
-                    if (document.createEventObject) {
-                        var evt = document.createEventObject();
-                        webElement.fireEvent('on' + eventNames[i], evt);
-                    } else {
-                        var evt = document.createEvent('HTMLEvents');
-                        evt.initEvent(eventNames[i], true, true );
-                        webElement.dispatchEvent(evt);
-                    }
-                }
-            })();`;
-        try {
-            await protractor_1.browser.executeScript(jsCodeToTriggerEvent, this.getWebElement(), events);
-        }
-        catch (error) {
-            console.log("Failed to trigger events " + events + ": " + error.message);
-        }
-    }
     async doubleClick() {
         await this.performActionOnVisible(async (element) => {
-            await protractor_1.browser.actions().mouseMove(await element.getWebElement()).perform();
-            await protractor_1.browser.actions().doubleClick().perform();
+            await browser_1.Browser.actions().mouseMove(await element.getWebElement()).perform();
+            await browser_1.Browser.actions().doubleClick().perform();
         }, "doubleClick");
     }
     async hover() {
         await this.performActionOnVisible(async (element) => {
-            await protractor_1.browser.actions().mouseMove(await element.getWebElement()).perform();
+            await browser_1.Browser.actions().mouseMove(await element.getWebElement()).perform();
         }, "hover");
     }
     async contextClick() {
         await this.performActionOnVisible(async (element) => {
-            await protractor_1.browser.actions().mouseMove(await element.getWebElement()).perform();
-            await protractor_1.browser.actions().click(protractor_1.protractor.Button.RIGHT).perform();
+            await browser_1.Browser.actions().mouseMove(await element.getWebElement()).perform();
+            await browser_1.Browser.actions().click(protractor_1.protractor.Button.RIGHT).perform();
         }, "contextClick");
     }
     async pressEnter() {
@@ -109,7 +93,7 @@ class Element {
     }
     async scrollIntoView() {
         await this.should(be_1.be.visible);
-        await protractor_1.browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
+        await browser_1.Browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
     }
     async should(condition, timeout) {
         return await wait_1.Wait.shouldMatch(this, condition, timeout);
@@ -147,8 +131,37 @@ class Element {
     async attribute(attributeName) {
         return await (await this.getWebElement()).getAttribute(attributeName);
     }
+    async innerHtml() {
+        return await this.attribute('innerHTML');
+    }
+    async outerHtml() {
+        return await this.attribute('outerHTML');
+    }
     async getWebElement() {
         return await this.locator.find();
+    }
+    async fireEvent(...events) {
+        //usage - await this.fireEvent("focus", "keydown", "keypress", "input", "keyup", "change", "blur");
+        const jsCodeToTriggerEvent = `(function() {
+                var webElement = arguments[0];
+                var eventNames = arguments[1];
+                for (var i = 0; i < eventNames.length; i++) {
+                    if (document.createEventObject) {
+                        var evt = document.createEventObject();
+                        webElement.fireEvent('on' + eventNames[i], evt);
+                    } else {
+                        var evt = document.createEvent('HTMLEvents');
+                        evt.initEvent(eventNames[i], true, true );
+                        webElement.dispatchEvent(evt);
+                    }
+                }
+            })();`;
+        try {
+            await browser_1.Browser.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
+        }
+        catch (error) {
+            console.log("Failed to trigger events " + events + ": " + error.message);
+        }
     }
     async performActionOnVisible(action, actionName) {
         try {
@@ -156,7 +169,7 @@ class Element {
         }
         catch (ignored) {
             await this.should(be_1.be.visible);
-            if (protractor_1.browser.params.scrollIntoViewBeforeAction) {
+            if (browser_1.Browser.params().scrollIntoViewBeforeAction) {
                 await this.scrollIntoView();
             }
             try {
@@ -210,6 +223,44 @@ class Element {
         return this.locator.toString();
     }
 }
+Element.beforeActionHooks = [];
+Element.afterActionHooks = [];
+__decorate([
+    ActionHooks
+], Element.prototype, "click", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "clickByJS", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "setValue", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "setValueByJS", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "sendKeys", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "doubleClick", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "hover", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "contextClick", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "pressEnter", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "pressEscape", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "pressTab", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "scrollIntoView", null);
 exports.Element = Element;
 function element(locator) {
     return new Element(new byWebElementLocator_1.ByWebElementLocator(typeof locator === "string"
@@ -225,4 +276,31 @@ function elementSmart(locator) {
     return new Element(new byExtendedWebElementLocator_1.ByExtendedWebElementLocator(locator));
 }
 exports.elementSmart = elementSmart;
+function ActionHooks(target, methodName, descriptor) {
+    const originalMethod = descriptor.value;
+    const beforeHooks = Element.beforeActionHooks;
+    const afterHooks = Element.afterActionHooks;
+    descriptor.value = async function () {
+        try {
+            await safeApplyActionHooks(beforeHooks, this, methodName);
+            return await originalMethod.apply(this, arguments);
+        }
+        catch (error) {
+            throw error;
+        }
+        finally {
+            await safeApplyActionHooks(afterHooks, this, methodName);
+        }
+    };
+}
+async function safeApplyActionHooks(hooks, element, actionName) {
+    for (let hook of hooks) {
+        try {
+            await hook(element, actionName);
+        }
+        catch (error) {
+            console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
+        }
+    }
+}
 //# sourceMappingURL=element.js.map

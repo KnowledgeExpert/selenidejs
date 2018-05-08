@@ -48,6 +48,45 @@ When the required element is found you can:
 It is also possible to build "locators chains", getting one element (or elements) inside another:
       `element(".menuItem").parent().element(".//ul[contains(@id, 'navigation')]").click();`
 
+## Element action hooks
+
+You can add after/before hooks to `Element` actions. It can be useful for specific conditions testing (f.e. if you might want to ensure that some script is present/loaded/initialized on a page before element action), logging, debugging.
+
+Hooks api introduced by hook signature `(element: Element, actionName: string) => void | Promise<void>` and lists for before/after hooks.
+
+Example:
+```
+// log element's .toString() to console
+const logElementHook = async (element: Element, actionName: string) => console.log(await element.toString());
+// log element's .text() to console
+const logElementTextHook = async (element: Element, actionName: string) => console.log(await element.text()));
+
+// add hooks to log element info before and after action
+Element.beforeActionHooks.push(logElementHook, logElementTextHook);
+Element.afterActionHooks.push(logElementHook, logElementTextHook);
+```
+
+Element actions list:
+ * click
+ * clickByJS
+ * setValue
+ * setValueByJS
+ * sendKeys
+ * doubleClick
+ * hover
+ * contextClick
+ * pressEnter
+ * pressEscape
+ * pressTab
+ * scrollIntoView
+
+*Note: you should NOT use action methods inside hooks code, it will cause recursion*
+Example:
+```
+// that is not correct!
+const clickBeforeActionHook = async (element: Element, actionName: string) => await element.click());
+```
+
 
 ## [Collection](./lib/base-entities/collection.ts)
 
@@ -69,7 +108,7 @@ Assertion conditions are used in "assertion actions" on elements and in "filter 
   * `element(".assignment_title").should(be.visible)`
   * `all(With.testId('2014100609491604293426')).first().shouldNot(have.text("New Case"))`
 
-## Extended errors logging
+## Extended logging
 On errors throwing (for example if `element.click()` or `Browser.should(...)` throws an exception) you can enable attaching of screenshots and page source to an error. It can be useful in debugging, to make errors clearer and easier to resolve.
 
 For enabling that feature you should add in your `protractor.conf` next properties in `selenidejs` section:
