@@ -280,27 +280,29 @@ function ActionHooks(target, methodName, descriptor) {
     const originalMethod = descriptor.value;
     const beforeHooks = Element.beforeActionHooks;
     const afterHooks = Element.afterActionHooks;
+    async function safeApplyActionHooks(hooks, element, actionName, actionError) {
+        for (let hook of hooks) {
+            try {
+                await hook(element, actionName, actionError);
+            }
+            catch (error) {
+                console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
+            }
+        }
+    }
     descriptor.value = async function () {
+        let err;
         try {
             await safeApplyActionHooks(beforeHooks, this, methodName);
             return await originalMethod.apply(this, arguments);
         }
         catch (error) {
+            err = error;
             throw error;
         }
         finally {
-            await safeApplyActionHooks(afterHooks, this, methodName);
+            await safeApplyActionHooks(afterHooks, this, methodName, err);
         }
     };
-}
-async function safeApplyActionHooks(hooks, element, actionName) {
-    for (let hook of hooks) {
-        try {
-            await hook(element, actionName);
-        }
-        catch (error) {
-            console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
-        }
-    }
 }
 //# sourceMappingURL=element.js.map

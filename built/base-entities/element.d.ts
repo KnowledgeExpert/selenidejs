@@ -4,7 +4,7 @@ import { By, WebElement } from "selenium-webdriver";
 import { ElementCondition } from "../conditions/elementCondition";
 export declare class Element {
     static beforeActionHooks: ((element: Element, actionName: string) => void)[];
-    static afterActionHooks: ((element: Element, actionName: string) => void)[];
+    static afterActionHooks: ((element: Element, actionName: string, actionError?: Error) => void)[];
     private readonly locator;
     constructor(locator: Locator<Promise<WebElement>>);
     click(): Promise<void>;

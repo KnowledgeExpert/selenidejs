@@ -18,7 +18,7 @@ import {Browser} from "./browser";
 export class Element {
 
     public static beforeActionHooks: ((element: Element, actionName: string) => void)[] = [];
-    public static afterActionHooks: ((element: Element, actionName: string) => void)[] = [];
+    public static afterActionHooks: ((element: Element, actionName: string, actionError?: Error) => void)[] = [];
 
     private readonly locator: Locator<Promise<WebElement>>;
 
@@ -294,10 +294,10 @@ function ActionHooks(target, methodName, descriptor: PropertyDescriptor) {
     const beforeHooks = Element.beforeActionHooks;
     const afterHooks = Element.afterActionHooks;
 
-    async function safeApplyActionHooks(hooks: ((element, actionName) => void | Promise<void>)[], element, actionName) {
+    async function safeApplyActionHooks(hooks: ((element: Element, actionName: string, actionError?: Error) => void | Promise<void>)[], element, actionName, actionError?: Error) {
         for (let hook of hooks) {
             try {
-                await hook(element, actionName);
+                await hook(element, actionName, actionError);
             } catch (error) {
                 console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
             }
@@ -305,13 +305,15 @@ function ActionHooks(target, methodName, descriptor: PropertyDescriptor) {
     }
 
     descriptor.value = async function () {
+        let err;
         try {
             await safeApplyActionHooks(beforeHooks, this, methodName);
             return await originalMethod.apply(this, arguments);
         } catch (error) {
+            err = error;
             throw error;
         } finally {
-            await safeApplyActionHooks(afterHooks, this, methodName);
+            await safeApplyActionHooks(afterHooks, this, methodName, err);
         }
     }
 }
