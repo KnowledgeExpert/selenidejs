@@ -8,23 +8,26 @@ export namespace Wait {
     const DEFAULT_WAIT_MS = 4000;
     const DEFAULT_HARD_WAIT_MS = 2000;
 
-    export const WAIT_MS = Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    export const HARD_WAIT_MS = Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    export const WAIT_MS = () => Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    export const HARD_WAIT_MS = () => Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_WAIT_MS;
+    // export const WAIT_MS = Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    // export const HARD_WAIT_MS = Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
 
-    export async function hard(intervalInMilliseconds = HARD_WAIT_MS) {
+    export async function hard(intervalInMilliseconds = HARD_WAIT_MS()) {
         await browser.driver.sleep(intervalInMilliseconds);
     }
 
-    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = WAIT_MS): Promise<T> {
+    export async function shouldMatch<T>(entity: T, condition: Condition<T>, timeout = WAIT_MS()): Promise<T> {
         return await until(entity, condition, true, timeout);
     }
 
-    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = WAIT_MS): Promise<boolean> {
+    export async function isMatch<T>(entity: T, condition: Condition<T>, timeout = WAIT_MS()): Promise<boolean> {
         return !!await until(entity, condition, false, timeout);
     }
 
     async function until<T>(entity: T, condition: Condition<T>, throwError: boolean, timeout: number): Promise<T> {
         const finishTime = new Date().getTime() + timeout;
+
         let lastError;
         do {
             try {

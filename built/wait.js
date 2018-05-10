@@ -6,17 +6,19 @@ var Wait;
 (function (Wait) {
     const DEFAULT_WAIT_MS = 4000;
     const DEFAULT_HARD_WAIT_MS = 2000;
-    Wait.WAIT_MS = utils_1.Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
-    Wait.HARD_WAIT_MS = utils_1.Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
-    async function hard(intervalInMilliseconds = Wait.HARD_WAIT_MS) {
+    Wait.WAIT_MS = () => utils_1.Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    Wait.HARD_WAIT_MS = () => utils_1.Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_WAIT_MS;
+    // export const WAIT_MS = Utils.getSelenidejsParam(`timeouts.toWaitElementsInMs`) || DEFAULT_WAIT_MS;
+    // export const HARD_WAIT_MS = Utils.getSelenidejsParam(`timeouts.toHardWaitInMs`) || DEFAULT_HARD_WAIT_MS;
+    async function hard(intervalInMilliseconds = Wait.HARD_WAIT_MS()) {
         await protractor_1.browser.driver.sleep(intervalInMilliseconds);
     }
     Wait.hard = hard;
-    async function shouldMatch(entity, condition, timeout = Wait.WAIT_MS) {
+    async function shouldMatch(entity, condition, timeout = Wait.WAIT_MS()) {
         return await until(entity, condition, true, timeout);
     }
     Wait.shouldMatch = shouldMatch;
-    async function isMatch(entity, condition, timeout = Wait.WAIT_MS) {
+    async function isMatch(entity, condition, timeout = Wait.WAIT_MS()) {
         return !!await until(entity, condition, false, timeout);
     }
     Wait.isMatch = isMatch;
