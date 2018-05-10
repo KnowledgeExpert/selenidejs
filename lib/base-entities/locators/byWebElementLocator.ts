@@ -14,7 +14,7 @@ export class ByWebElementLocator implements Locator<Promise<WebElement>> {
         this.searchContext = searchContext;
     }
 
-    public async find(): Promise<WebElement> {
+    async find(): Promise<WebElement> {
         const elements = this.searchContext ? await (await this.searchContext.getWebElement()).findElements(this.by) : await browser.findElements(this.by);
         if (elements.length == 0) {
             throw new Error(`No elements found using ${this.toString()}`);
@@ -24,7 +24,7 @@ export class ByWebElementLocator implements Locator<Promise<WebElement>> {
         // return this.searchContext ? await (await this.searchContext.getWebElement()).findElement(this.by) : await element(this.by).getWebElement();
     }
 
-    public toString(): string {
+    toString(): string {
         return `${this.searchContext ? this.searchContext.toString() : "browser"}.find(${this.by})`;
     }
 

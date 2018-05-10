@@ -346,5 +346,4 @@ export namespace Conditions {
             }
         });
     }
-
 }

@@ -13,7 +13,7 @@ export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> 
         this.index = index;
     }
 
-    public async find(): Promise<WebElement> {
+    async find(): Promise<WebElement> {
         const elements = await this.searchContext.getWebElements();
         if (elements.length < this.index) {
             throw new Error(`Cannot get ${this.index} element from webelements collection with length ${elements.length}`);
@@ -22,7 +22,7 @@ export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> 
         // return (await this.searchContext.getWebElements())[this.index]
     }
 
-    public toString(): string {
+    toString(): string {
         return `${this.searchContext.toString()}.get(${this.index})`;
     }
 

@@ -9,7 +9,7 @@ export class Condition<T> {
         this.matches = params.matches;
     }
 
-    public and<T>(...conditions: Condition<T>[]): Condition<T> {
+    and<T>(...conditions: Condition<T>[]): Condition<T> {
         return new Condition<T>({
             toString: function () {
                 return conditions.map(condition => condition.toString()).join(' AND ');
@@ -25,7 +25,7 @@ export class Condition<T> {
         });
     }
 
-    public static not<T>(condition: Condition<T>): Condition<T> {
+    static not<T>(condition: Condition<T>): Condition<T> {
         return new Condition<T>({
             toString: function () {
                 return `not ${condition.toString()}`;

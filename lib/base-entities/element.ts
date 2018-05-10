@@ -17,8 +17,8 @@ import {Browser} from "./browser";
 
 export class Element {
 
-    public static beforeActionHooks: ((element: Element, actionName: string) => void)[] = [];
-    public static afterActionHooks: ((element: Element, actionName: string, actionError?: Error) => void)[] = [];
+    static beforeActionHooks: ((element: Element, actionName: string) => void)[] = [];
+    static afterActionHooks: ((element: Element, actionName: string, actionError?: Error) => void)[] = [];
 
     private readonly locator: Locator<Promise<WebElement>>;
 
