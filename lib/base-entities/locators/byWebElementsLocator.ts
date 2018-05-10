@@ -14,12 +14,12 @@ export class ByWebElementsLocator implements Locator<Promise<WebElement[]>> {
         this.searchContext = searchContext;
     }
 
-    public async find(): Promise<WebElement[]> {
+    async find(): Promise<WebElement[]> {
         // return this.searchContext ? await (await this.searchContext.getWebElement()).findElements(this.by) : await (element.all(this.by)).getWebElements();
         return this.searchContext ? await (await this.searchContext.getWebElement()).findElements(this.by) : await browser.findElements(this.by);
     }
 
-    public toString(): string {
+    toString(): string {
         return `${this.searchContext ? this.searchContext.toString() : "browser"}.all(${this.by})`;
     }
 

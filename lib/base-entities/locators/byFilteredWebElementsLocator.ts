@@ -14,7 +14,7 @@ export class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[
         this.searchContext = searchContext;
     }
 
-    public async find(): Promise<WebElement[]> {
+    async find(): Promise<WebElement[]> {
         const webElements = await this.searchContext.getWebElements();
 
         const result: WebElement[] = [];
@@ -29,7 +29,7 @@ export class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[
         return result;
     }
 
-    public toString(): string {
+    toString(): string {
         return `${this.searchContext.toString()}.filteredBy(${this.elementCondition.toString()})`;
     }
 

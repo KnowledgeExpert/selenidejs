@@ -16,7 +16,7 @@ export class ByExtendedWebElementLocator implements Locator<Promise<WebElement>>
         this.searchContext = searchContext;
     }
 
-    public async find(): Promise<WebElement> {
+    async find(): Promise<WebElement> {
 
         const context = this.searchContext ? (await this.searchContext.getWebElement()) : browser;
         if (this.cachedBy) {
@@ -47,7 +47,7 @@ export class ByExtendedWebElementLocator implements Locator<Promise<WebElement>>
         return webelements[0];
     }
 
-    public toString(): string {
+    toString(): string {
         return `${this.searchContext ? this.searchContext.toString() : "browser"}.find(${this.cachedBy ? this.cachedBy : `extended selector: '${this.extendedSelector}'`})`;
     }
 
