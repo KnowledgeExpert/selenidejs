@@ -1,4 +1,4 @@
-import { By } from "selenium-webdriver";
+import { By } from 'selenium-webdriver';
 export declare namespace With {
     function type(type: string): By;
     function value(value: string): By;

@@ -20,7 +20,7 @@ export class ByWebElementsLocator implements Locator<Promise<WebElement[]>> {
     }
 
     toString(): string {
-        return `${this.searchContext ? this.searchContext.toString() : "browser"}.all(${this.by})`;
+        return `${this.searchContext ? this.searchContext.toString() : 'browser'}.all(${this.by})`;
     }
 
 }

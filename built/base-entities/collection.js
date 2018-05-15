@@ -50,8 +50,8 @@ class Collection {
 }
 exports.Collection = Collection;
 function all(locator) {
-    return new Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === "string"
-        ? locator.includes("/") ? with_1.With.xpath(locator) : with_1.With.css(locator)
+    return new Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === 'string'
+        ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
         : locator));
 }
 exports.all = all;

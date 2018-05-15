@@ -81,7 +81,7 @@ var Screenshot;
         return String(await protractor_1.browser.executeScript(`
             return (function () {
                 var origOverflow = ${element};
-                ${element} = ${overflowValue ? `"${overflowValue}"` : 'undefined'};
+                ${element} = ${overflowValue ? `'${overflowValue}'` : 'undefined'};
                 return origOverflow;
                 })();
         `));

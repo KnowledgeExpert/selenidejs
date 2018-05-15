@@ -17,23 +17,23 @@ export namespace xFiltered {
     }
 
     export function byAttributeValue(attrName: string, attrValue: string | number): string {
-        return `[@${attrName}="${attrValue}"]`;
+        return `[@${attrName}='${attrValue}']`;
     }
 
     export function byId(id: string): string {
-        return byAttributeValue("id", id);
+        return byAttributeValue('id', id);
     }
 
     export function byClass(value: string): string {
-        return byAttributeValue("class", value);
+        return byAttributeValue('class', value);
     }
 
     export function byTitle(title: string): string {
-        return byAttributeValue("title", title);
+        return byAttributeValue('title', title);
     }
 
     export function byPartialId(...idParts: string[]): string {
-        return "[" + idParts.map(idPart => `contains(@id, "${idPart}")`).join(" and ") + "]";
+        return '[' + idParts.map(idPart => `contains(@id, '${idPart}')`).join(' and ') + ']';
     }
 
     export function byIndex(index: number): string {
@@ -53,10 +53,10 @@ export namespace xFiltered {
     }
 
     export function byOneFromCssClasses(...cssClasses: string[]): string {
-        return "[" +
+        return '[' +
             cssClasses.map(cssClass => `contains(concat(' ', normalize-space(@class), ' '), ' ${cssClass} ')`)
-                .join(" or ") +
-            "]";
+                .join(' or ') +
+            ']';
 
     }
 

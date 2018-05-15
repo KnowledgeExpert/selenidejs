@@ -1,4 +1,4 @@
-import { Condition } from "./conditions/condition";
+import { Condition } from './conditions/condition';
 export declare namespace Wait {
     const WAIT_MS: () => any;
     const HARD_WAIT_MS: () => any;

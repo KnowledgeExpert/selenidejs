@@ -1,4 +1,4 @@
-import { ElementCondition } from "../elementCondition";
+import { ElementCondition } from '../elementCondition';
 export declare namespace be {
     const selected: ElementCondition;
     const absent: ElementCondition;

@@ -1,15 +1,15 @@
-import {browser, ProtractorBrowser} from "protractor";
-import {Element} from "./element";
-import {be} from "../conditions/helpers/be";
-import {BrowserCondition, Condition} from "..";
-import {Wait} from "../wait";
-import {ActionSequence, By} from "selenium-webdriver";
-import {ByWebElementLocator} from "./locators/byWebElementLocator";
-import {With} from "../locators/with";
-import {Collection} from "./collection";
-import {ByWebElementsLocator} from "./locators/byWebElementsLocator";
-import {Screenshot} from "../screenshot";
-import {Utils} from "../utils";
+import {browser, ProtractorBrowser} from 'protractor';
+import {Element} from './element';
+import {be} from '../conditions/helpers/be';
+import {BrowserCondition, Condition} from '..';
+import {Wait} from '../wait';
+import {ActionSequence, By} from 'selenium-webdriver';
+import {ByWebElementLocator} from './locators/byWebElementLocator';
+import {With} from '../locators/with';
+import {Collection} from './collection';
+import {ByWebElementsLocator} from './locators/byWebElementsLocator';
+import {Screenshot} from '../screenshot';
+import {Utils} from '../utils';
 
 
 export namespace Browser {
@@ -46,14 +46,14 @@ export namespace Browser {
     }
 
     export function element(locator: string | By): Element {
-        return new Element(new ByWebElementLocator(typeof locator === "string"
-            ? locator.includes("/") ? With.xpath(locator) : With.css(locator)
+        return new Element(new ByWebElementLocator(typeof locator === 'string'
+            ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
             : locator))
     }
 
     export function all(locator: string | By): Collection {
-        return new Collection(new ByWebElementsLocator(typeof locator === "string"
-            ? locator.includes("/") ? With.xpath(locator) : With.css(locator)
+        return new Collection(new ByWebElementsLocator(typeof locator === 'string'
+            ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
             : locator));
     }
 

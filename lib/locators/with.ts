@@ -1,12 +1,12 @@
 import {by} from 'protractor';
-import {By} from "selenium-webdriver";
+import {By} from 'selenium-webdriver';
 import {x} from '../xpath/x';
 import {xFiltered} from '../xpath/xFiltered';
 
 
 export namespace With {
 
-    const NORMALIZE_SPACE_XPATH = "normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))";
+    const NORMALIZE_SPACE_XPATH = `normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))`;
 
     export function type(type: string): By {
         return by.xpath(x.all() + xFiltered.byAttributeValue('type', type));
@@ -52,7 +52,6 @@ export namespace With {
     }
 
     export function testId(testId: string): By {
-        return by.css("[data-test-id='" + testId + "']");
+        return by.css(`[data-test-id='` + testId + `']`);
     }
-
 }

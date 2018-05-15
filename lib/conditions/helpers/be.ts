@@ -1,5 +1,5 @@
-import {ElementCondition} from "../elementCondition"; // DO NOT DELETE THIS LINE!
-import {Conditions} from "../conditions";
+import {ElementCondition} from '../elementCondition'; // DO NOT DELETE THIS LINE!
+import {Conditions} from '../conditions';
 
 export namespace be {
     export const selected = Conditions.elementIsSelected;

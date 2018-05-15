@@ -1,8 +1,8 @@
-import {Conditions} from "../conditions";
-import {ElementCondition} from "../elementCondition";
-import {CollectionCondition} from "../collectionCondition";
-import {By} from "selenium-webdriver";
-import {BrowserCondition} from "../browserCondition";
+import {Conditions} from '../conditions';
+import {ElementCondition} from '../elementCondition';
+import {CollectionCondition} from '../collectionCondition';
+import {By} from 'selenium-webdriver';
+import {BrowserCondition} from '../browserCondition';
 
 
 export namespace have {
@@ -32,7 +32,7 @@ export namespace have {
     }
 
     export function value(value: string | number) {
-        return attribute("value", value);
+        return attribute('value', value);
     }
 
     export function cssClass(cssClass: string): ElementCondition {

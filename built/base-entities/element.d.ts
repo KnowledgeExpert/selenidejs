@@ -1,7 +1,7 @@
 import { Locator } from './locators/locator';
 import { Collection } from './collection';
-import { By, WebElement } from "selenium-webdriver";
-import { ElementCondition } from "../conditions/elementCondition";
+import { By, WebElement } from 'selenium-webdriver';
+import { ElementCondition } from '../conditions/elementCondition';
 export declare class Element {
     static beforeActionHooks: ((element: Element, actionName: string) => void)[];
     static afterActionHooks: ((element: Element, actionName: string, actionError?: Error) => void)[];

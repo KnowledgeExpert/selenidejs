@@ -1,7 +1,7 @@
 import {Collection} from '../collection';
 import {WebElement} from 'selenium-webdriver';
 import {Locator} from './locator';
-import {ElementCondition} from "../../conditions/elementCondition";
+import {ElementCondition} from '../../conditions/elementCondition';
 
 
 export class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[]>> {

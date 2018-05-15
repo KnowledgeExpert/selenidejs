@@ -1,7 +1,7 @@
-import { ElementCondition } from "../elementCondition";
-import { CollectionCondition } from "../collectionCondition";
-import { By } from "selenium-webdriver";
-import { BrowserCondition } from "../browserCondition";
+import { ElementCondition } from '../elementCondition';
+import { CollectionCondition } from '../collectionCondition';
+import { By } from 'selenium-webdriver';
+import { BrowserCondition } from '../browserCondition';
 export declare namespace have {
     function visibleElement(locator: By): ElementCondition;
     function exactText(value: string | number): ElementCondition;

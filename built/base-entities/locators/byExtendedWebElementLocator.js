@@ -35,7 +35,7 @@ class ByExtendedWebElementLocator {
         return webelements[0];
     }
     toString() {
-        return `${this.searchContext ? this.searchContext.toString() : "browser"}.find(${this.cachedBy ? this.cachedBy : `extended selector: '${this.extendedSelector}'`})`;
+        return `${this.searchContext ? this.searchContext.toString() : 'browser'}.find(${this.cachedBy ? this.cachedBy : `extended selector: '${this.extendedSelector}'`})`;
     }
 }
 exports.ByExtendedWebElementLocator = ByExtendedWebElementLocator;

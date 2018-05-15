@@ -1,8 +1,8 @@
 import { Locator } from './locators/locator';
 import { By, WebElement } from 'selenium-webdriver';
-import { Element } from "./element";
-import { CollectionCondition } from "../conditions/collectionCondition";
-import { ElementCondition } from "../conditions/elementCondition";
+import { Element } from './element';
+import { CollectionCondition } from '../conditions/collectionCondition';
+import { ElementCondition } from '../conditions/elementCondition';
 export declare class Collection {
     private readonly locator;
     constructor(locator: Locator<Promise<WebElement[]>>);

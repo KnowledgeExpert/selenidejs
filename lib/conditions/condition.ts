@@ -1,4 +1,4 @@
-import {ConditionDoesNotMatchError} from "../errors/conditionDoesNotMatchError";
+import {ConditionDoesNotMatchError} from '../errors/conditionDoesNotMatchError';
 
 export class Condition<T> {
     readonly matches: (entity: T) => Promise<T>;

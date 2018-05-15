@@ -25,7 +25,7 @@ class Element {
     async click() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).click();
-        }, "click");
+        }, 'click');
     }
     async clickByJS() {
         await this.performActionOnVisible(async (element) => {
@@ -34,13 +34,13 @@ class Element {
                     clickEvent.initEvent('click', true, true);
                     arguments[0].dispatchEvent(clickEvent);
                 })(arguments[0]);`, await element.getWebElement());
-        }, "clickByJS");
+        }, 'clickByJS');
     }
     async setValue(value) {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).clear();
             await (await element.getWebElement()).sendKeys(String(value));
-        }, "setValue");
+        }, 'setValue');
     }
     async setValueByJS(value) {
         await this.performActionOnVisible(async (element) => {
@@ -52,48 +52,48 @@ class Element {
                                 : text.substring(0, maxlength);
                     return null;
                     })(arguments[0], arguments[1]);`, await this.getWebElement(), String(value));
-        }, "setValueByJS");
+        }, 'setValueByJS');
     }
     async sendKeys(value) {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(String(value));
-        }, "sendKeys");
+        }, 'sendKeys');
     }
     async doubleClick() {
         await this.performActionOnVisible(async (element) => {
             await browser_1.Browser.actions().mouseMove(await element.getWebElement()).perform();
             await browser_1.Browser.actions().doubleClick().perform();
-        }, "doubleClick");
+        }, 'doubleClick');
     }
     async hover() {
         await this.performActionOnVisible(async (element) => {
             await browser_1.Browser.actions().mouseMove(await element.getWebElement()).perform();
-        }, "hover");
+        }, 'hover');
     }
     async contextClick() {
         await this.performActionOnVisible(async (element) => {
             await browser_1.Browser.actions().mouseMove(await element.getWebElement()).perform();
             await browser_1.Browser.actions().click(protractor_1.protractor.Button.RIGHT).perform();
-        }, "contextClick");
+        }, 'contextClick');
     }
     async pressEnter() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor_1.protractor.Key.ENTER);
-        }, "pressEnter");
+        }, 'pressEnter');
     }
     async pressEscape() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor_1.protractor.Key.ESCAPE);
-        }, "pressEscape");
+        }, 'pressEscape');
     }
     async pressTab() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor_1.protractor.Key.TAB);
-        }, "pressTab");
+        }, 'pressTab');
     }
     async scrollIntoView() {
         await this.should(be_1.be.visible);
-        await browser_1.Browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
+        await browser_1.Browser.executeScript('arguments[0].scrollIntoView(true);', await this.getWebElement());
     }
     async should(condition, timeout) {
         return await wait_1.Wait.shouldMatch(this, condition, timeout);
@@ -122,7 +122,7 @@ class Element {
         return !(await this.isPresent());
     }
     async value() {
-        return await (await this.getWebElement()).getAttribute("value");
+        return await (await this.getWebElement()).getAttribute('value');
     }
     async text() {
         await this.should(be_1.be.visible);
@@ -141,7 +141,7 @@ class Element {
         return await this.locator.find();
     }
     async fireEvent(...events) {
-        //usage - await this.fireEvent("focus", "keydown", "keypress", "input", "keyup", "change", "blur");
+        //usage - await this.fireEvent('focus', 'keydown', 'keypress', 'input', 'keyup', 'change', 'blur');
         const jsCodeToTriggerEvent = `(function() {
                 var webElement = arguments[0];
                 var eventNames = arguments[1];
@@ -160,7 +160,7 @@ class Element {
             await browser_1.Browser.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
         }
         catch (error) {
-            console.log("Failed to trigger events " + events + ": " + error.message);
+            console.log('Failed to trigger events ' + events + ': ' + error.message);
         }
     }
     async performActionOnVisible(action, actionName) {
@@ -200,13 +200,13 @@ class Element {
         }
     }
     parent() {
-        return this.element(with_1.With.xpath("./.."));
+        return this.element(with_1.With.xpath('./..'));
     }
     followingSibling(predicate = '') {
-        return this.element(with_1.With.xpath("./following-sibling::*" + predicate));
+        return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
     }
     element(cssOrLocator) {
-        return new Element(new byWebElementLocator_1.ByWebElementLocator((typeof cssOrLocator === "string" ? with_1.With.css(cssOrLocator) : cssOrLocator), this));
+        return new Element(new byWebElementLocator_1.ByWebElementLocator((typeof cssOrLocator === 'string' ? with_1.With.css(cssOrLocator) : cssOrLocator), this));
     }
     elementSmart(locator) {
         return new Element(new byExtendedWebElementLocator_1.ByExtendedWebElementLocator(locator, this));
@@ -215,8 +215,8 @@ class Element {
         return collection_1.all(cssSelector).findBy(be_1.be.visible);
     }
     all(locator) {
-        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === "string"
-            ? locator.includes("/") ? with_1.With.xpath(locator) : with_1.With.css(locator)
+        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === 'string'
+            ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
             : locator, this));
     }
     toString() {
@@ -263,8 +263,8 @@ __decorate([
 ], Element.prototype, "scrollIntoView", null);
 exports.Element = Element;
 function element(locator) {
-    return new Element(new byWebElementLocator_1.ByWebElementLocator(typeof locator === "string"
-        ? locator.includes("/") ? with_1.With.xpath(locator) : with_1.With.css(locator)
+    return new Element(new byWebElementLocator_1.ByWebElementLocator(typeof locator === 'string'
+        ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
         : locator));
 }
 exports.element = element;

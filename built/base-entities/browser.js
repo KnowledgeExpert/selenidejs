@@ -45,14 +45,14 @@ var Browser;
     }
     Browser.resizeWindow = resizeWindow;
     function element(locator) {
-        return new element_1.Element(new byWebElementLocator_1.ByWebElementLocator(typeof locator === "string"
-            ? locator.includes("/") ? with_1.With.xpath(locator) : with_1.With.css(locator)
+        return new element_1.Element(new byWebElementLocator_1.ByWebElementLocator(typeof locator === 'string'
+            ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
             : locator));
     }
     Browser.element = element;
     function all(locator) {
-        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === "string"
-            ? locator.includes("/") ? with_1.With.xpath(locator) : with_1.With.css(locator)
+        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === 'string'
+            ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
             : locator));
     }
     Browser.all = all;

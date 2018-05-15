@@ -19,23 +19,23 @@ var xFiltered;
     }
     xFiltered.byAttribute = byAttribute;
     function byAttributeValue(attrName, attrValue) {
-        return `[@${attrName}="${attrValue}"]`;
+        return `[@${attrName}='${attrValue}']`;
     }
     xFiltered.byAttributeValue = byAttributeValue;
     function byId(id) {
-        return byAttributeValue("id", id);
+        return byAttributeValue('id', id);
     }
     xFiltered.byId = byId;
     function byClass(value) {
-        return byAttributeValue("class", value);
+        return byAttributeValue('class', value);
     }
     xFiltered.byClass = byClass;
     function byTitle(title) {
-        return byAttributeValue("title", title);
+        return byAttributeValue('title', title);
     }
     xFiltered.byTitle = byTitle;
     function byPartialId(...idParts) {
-        return "[" + idParts.map(idPart => `contains(@id, "${idPart}")`).join(" and ") + "]";
+        return '[' + idParts.map(idPart => `contains(@id, '${idPart}')`).join(' and ') + ']';
     }
     xFiltered.byPartialId = byPartialId;
     function byIndex(index) {
@@ -55,10 +55,10 @@ var xFiltered;
     }
     xFiltered.nth = nth;
     function byOneFromCssClasses(...cssClasses) {
-        return "[" +
+        return '[' +
             cssClasses.map(cssClass => `contains(concat(' ', normalize-space(@class), ' '), ' ${cssClass} ')`)
-                .join(" or ") +
-            "]";
+                .join(' or ') +
+            ']';
     }
     xFiltered.byOneFromCssClasses = byOneFromCssClasses;
 })(xFiltered = exports.xFiltered || (exports.xFiltered = {}));

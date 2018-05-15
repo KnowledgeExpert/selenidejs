@@ -1,6 +1,6 @@
 import { WebElement } from 'selenium-webdriver';
-import { Locator } from "./locator";
-import { Element } from "../element";
+import { Locator } from './locator';
+import { Element } from '../element';
 export declare class ByExtendedWebElementLocator implements Locator<Promise<WebElement>> {
     private readonly extendedSelector;
     private cachedBy;

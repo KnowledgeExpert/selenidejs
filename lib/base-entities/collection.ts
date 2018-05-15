@@ -2,13 +2,13 @@ import {Locator} from './locators/locator';
 import {ByIndexedWebElementLocator} from './locators/byIndexedWebElementLocator';
 import {ByFilteredWebElementsLocator} from './locators/byFilteredWebElementsLocator';
 import {By, WebElement} from 'selenium-webdriver';
-import {Element} from "./element";
-import {CollectionCondition} from "../conditions/collectionCondition";
-import {ElementCondition} from "../conditions/elementCondition";
-import {Wait} from "../wait";
-import {ByWebElementsLocator} from "./locators/byWebElementsLocator";
-import {With} from "../locators/with";
-import {Condition} from "../conditions/condition";
+import {Element} from './element';
+import {CollectionCondition} from '../conditions/collectionCondition';
+import {ElementCondition} from '../conditions/elementCondition';
+import {Wait} from '../wait';
+import {ByWebElementsLocator} from './locators/byWebElementsLocator';
+import {With} from '../locators/with';
+import {Condition} from '../conditions/condition';
 
 
 export class Collection {
@@ -70,7 +70,7 @@ export class Collection {
 }
 
 export function all(locator: string | By): Collection {
-    return new Collection(new ByWebElementsLocator(typeof locator === "string"
-        ? locator.includes("/") ? With.xpath(locator) : With.css(locator)
+    return new Collection(new ByWebElementsLocator(typeof locator === 'string'
+        ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
         : locator));
 }

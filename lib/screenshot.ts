@@ -1,8 +1,8 @@
-import {browser} from "protractor";
-import {Wait} from "./wait";
+import {browser} from 'protractor';
+import {Wait} from './wait';
 import * as mergeImg from 'merge-img';
 import * as Jimp from 'jimp';
-import {WebElement} from "selenium-webdriver";
+import {WebElement} from 'selenium-webdriver';
 
 
 export namespace Screenshot {
@@ -91,7 +91,7 @@ export namespace Screenshot {
         return String(await browser.executeScript(`
             return (function () {
                 var origOverflow = ${element};
-                ${element} = ${overflowValue ? `"${overflowValue}"` : 'undefined'};
+                ${element} = ${overflowValue ? `'${overflowValue}'` : 'undefined'};
                 return origOverflow;
                 })();
         `));

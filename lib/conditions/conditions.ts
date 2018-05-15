@@ -1,12 +1,12 @@
 import {ProtractorBrowser} from 'protractor';
-import {Element} from "../base-entities/element";
-import {ElementCondition} from "./elementCondition";
-import {BrowserCondition} from "./browserCondition";
-import {ConditionDoesNotMatchError} from "../errors/conditionDoesNotMatchError";
-import {CollectionCondition} from "./collectionCondition";
-import {Collection} from "../base-entities/collection";
-import {be} from "./helpers/be";
-import {By} from "selenium-webdriver";
+import {Element} from '../base-entities/element';
+import {ElementCondition} from './elementCondition';
+import {BrowserCondition} from './browserCondition';
+import {ConditionDoesNotMatchError} from '../errors/conditionDoesNotMatchError';
+import {CollectionCondition} from './collectionCondition';
+import {Collection} from '../base-entities/collection';
+import {be} from './helpers/be';
+import {By} from 'selenium-webdriver';
 
 
 export namespace Conditions {
@@ -26,7 +26,7 @@ export namespace Conditions {
         });
     }
 
-    export const elementIsSelected: ElementCondition = elementHasAttribute("elementIsSelected");
+    export const elementIsSelected: ElementCondition = elementHasAttribute('elementIsSelected');
 
     export const elementIsAbsent: ElementCondition = new ElementCondition({
         matches: async function (element: Element) {
@@ -38,7 +38,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be absent";
+            return 'be absent';
         }
     });
 
@@ -52,7 +52,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be present";
+            return 'be present';
         }
     });
 
@@ -67,7 +67,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be visible";
+            return 'be visible';
         }
     });
 
@@ -82,7 +82,7 @@ export namespace Conditions {
             throw new ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be hidden";
+            return 'be hidden';
         }
     });
 
@@ -184,8 +184,8 @@ export namespace Conditions {
             matches: async function (element: Element) {
                 let actualCssClass: string;
                 try {
-                    actualCssClass = await element.attribute("class");
-                    if (actualCssClass.split(" ").includes(String(cssClass))) {
+                    actualCssClass = await element.attribute('class');
+                    if (actualCssClass.split(' ').includes(String(cssClass))) {
                         return element;
                     }
                 } catch (ignored) {

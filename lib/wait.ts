@@ -1,6 +1,6 @@
 import {browser} from 'protractor';
-import {Condition} from "./conditions/condition";
-import {Utils} from "./utils";
+import {Utils} from './utils';
+import {Condition} from './conditions/condition';
 
 
 export namespace Wait {

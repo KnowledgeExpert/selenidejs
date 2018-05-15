@@ -28,7 +28,7 @@ var have;
     }
     have.exactAttribute = exactAttribute;
     function value(value) {
-        return attribute("value", value);
+        return attribute('value', value);
     }
     have.value = value;
     function cssClass(cssClass) {

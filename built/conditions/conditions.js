@@ -23,7 +23,7 @@ var Conditions;
         });
     }
     Conditions.visibleElement = visibleElement;
-    Conditions.elementIsSelected = elementHasAttribute("elementIsSelected");
+    Conditions.elementIsSelected = elementHasAttribute('elementIsSelected');
     Conditions.elementIsAbsent = new elementCondition_1.ElementCondition({
         matches: async function (element) {
             try {
@@ -35,7 +35,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be absent";
+            return 'be absent';
         }
     });
     Conditions.elementIsPresent = new elementCondition_1.ElementCondition({
@@ -49,7 +49,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be present";
+            return 'be present';
         }
     });
     Conditions.elementIsVisible = new elementCondition_1.ElementCondition({
@@ -64,7 +64,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be visible";
+            return 'be visible';
         }
     });
     Conditions.elementIsHidden = new elementCondition_1.ElementCondition({
@@ -79,7 +79,7 @@ var Conditions;
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
         toString: function () {
-            return "be hidden";
+            return 'be hidden';
         }
     });
     function elementHasText(text) {
@@ -185,8 +185,8 @@ var Conditions;
             matches: async function (element) {
                 let actualCssClass;
                 try {
-                    actualCssClass = await element.attribute("class");
-                    if (actualCssClass.split(" ").includes(String(cssClass))) {
+                    actualCssClass = await element.attribute('class');
+                    if (actualCssClass.split(' ').includes(String(cssClass))) {
                         return element;
                     }
                 }

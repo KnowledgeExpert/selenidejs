@@ -1,7 +1,7 @@
-import {browser} from "protractor";
+import {browser} from 'protractor';
 import {By, WebElement} from 'selenium-webdriver';
-import {Locator} from "./locator";
-import {Element} from "../element";
+import {Locator} from './locator';
+import {Element} from '../element';
 
 
 export class ByWebElementLocator implements Locator<Promise<WebElement>> {
@@ -25,7 +25,7 @@ export class ByWebElementLocator implements Locator<Promise<WebElement>> {
     }
 
     toString(): string {
-        return `${this.searchContext ? this.searchContext.toString() : "browser"}.find(${this.by})`;
+        return `${this.searchContext ? this.searchContext.toString() : 'browser'}.find(${this.by})`;
     }
 
 }

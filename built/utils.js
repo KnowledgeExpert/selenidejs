@@ -5,8 +5,8 @@ const fs = require("fs");
 const path = require("path");
 var Utils;
 (function (Utils) {
-    const DEFAULT_SCREENSHOT_PATH = path.resolve("./screenshots");
-    const DEFAULT_HTML_PATH = path.resolve("./htmls");
+    const DEFAULT_SCREENSHOT_PATH = path.resolve('./screenshots');
+    const DEFAULT_HTML_PATH = path.resolve('./htmls');
     async function savePageSource(filePath = getSelenidejsParam(`htmlPath`) ? getSelenidejsParam(`htmlPath`) : DEFAULT_HTML_PATH) {
         const pageTitle = await browser_1.Browser.title();
         const dateTime = new Date().toLocaleString().replace(/ /g, `_`);
@@ -30,11 +30,11 @@ var Utils;
     }
     Utils.saveScreenshot = saveScreenshot;
     function buildFilePath(path) {
-        const parts = path.split("/").filter(item => item.length !== 0);
+        const parts = path.split('/').filter(item => item.length !== 0);
         const isFilePresentInPath = !!parts[parts.length - 1].match(/\.[a-zA-Z]+$/g);
         let lastFolder = `/${parts[0]}`;
         for (let i = 1; i < parts.length - (isFilePresentInPath ? 1 : 0); i++) {
-            lastFolder = lastFolder + "/" + parts[i];
+            lastFolder = lastFolder + '/' + parts[i];
             if (!(fs.existsSync(lastFolder))) {
                 fs.mkdirSync(lastFolder);
             }

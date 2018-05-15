@@ -15,7 +15,7 @@ class ByWebElementLocator {
         // return this.searchContext ? await (await this.searchContext.getWebElement()).findElement(this.by) : await element(this.by).getWebElement();
     }
     toString() {
-        return `${this.searchContext ? this.searchContext.toString() : "browser"}.find(${this.by})`;
+        return `${this.searchContext ? this.searchContext.toString() : 'browser'}.find(${this.by})`;
     }
 }
 exports.ByWebElementLocator = ByWebElementLocator;

@@ -1,12 +1,12 @@
-import {Browser} from "./base-entities/browser";
-import * as fs from "fs";
-import * as path from "path";
+import {Browser} from './base-entities/browser';
+import * as fs from 'fs';
+import * as path from 'path';
 
 
 export namespace Utils {
 
-    const DEFAULT_SCREENSHOT_PATH = path.resolve("./screenshots");
-    const DEFAULT_HTML_PATH = path.resolve("./htmls");
+    const DEFAULT_SCREENSHOT_PATH = path.resolve('./screenshots');
+    const DEFAULT_HTML_PATH = path.resolve('./htmls');
 
     export async function savePageSource(filePath = getSelenidejsParam(`htmlPath`) ? getSelenidejsParam(`htmlPath`) : DEFAULT_HTML_PATH): Promise<string> {
         const pageTitle = await Browser.title();
@@ -31,11 +31,11 @@ export namespace Utils {
     }
 
     export function buildFilePath(path: string) {
-        const parts = path.split("/").filter(item => item.length !== 0);
+        const parts = path.split('/').filter(item => item.length !== 0);
         const isFilePresentInPath = !!parts[parts.length - 1].match(/\.[a-zA-Z]+$/g);
         let lastFolder = `/${parts[0]}`;
         for (let i = 1; i < parts.length - (isFilePresentInPath ? 1 : 0); i++) {
-            lastFolder = lastFolder + "/" + parts[i];
+            lastFolder = lastFolder + '/' + parts[i];
             if (!(fs.existsSync(lastFolder))) {
                 fs.mkdirSync(lastFolder);
             }

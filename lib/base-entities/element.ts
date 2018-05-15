@@ -3,16 +3,16 @@ import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {ByWebElementLocator} from './locators/byWebElementLocator';
 import {protractor} from 'protractor';
 import {all, Collection} from './collection';
-import {By, WebElement} from "selenium-webdriver";
-import {CannotPerformActionError} from "../errors/cannotPerformActionError";
-import {be} from "../conditions/helpers/be";
-import {ElementCondition} from "../conditions/elementCondition";
-import {Wait} from "../wait";
-import {With} from "../locators/with";
-import {Condition} from "../conditions/condition";
-import {ByExtendedWebElementLocator} from "./locators/byExtendedWebElementLocator";
-import {Utils} from "../utils";
-import {Browser} from "./browser";
+import {By, WebElement} from 'selenium-webdriver';
+import {CannotPerformActionError} from '../errors/cannotPerformActionError';
+import {be} from '../conditions/helpers/be';
+import {ElementCondition} from '../conditions/elementCondition';
+import {Wait} from '../wait';
+import {With} from '../locators/with';
+import {Condition} from '../conditions/condition';
+import {ByExtendedWebElementLocator} from './locators/byExtendedWebElementLocator';
+import {Utils} from '../utils';
+import {Browser} from './browser';
 
 
 export class Element {
@@ -30,7 +30,7 @@ export class Element {
     async click() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).click();
-        }, "click");
+        }, 'click');
     }
 
     @ActionHooks
@@ -43,7 +43,7 @@ export class Element {
                     arguments[0].dispatchEvent(clickEvent);
                 })(arguments[0]);`,
                 await element.getWebElement());
-        }, "clickByJS");
+        }, 'clickByJS');
     }
 
     @ActionHooks
@@ -51,7 +51,7 @@ export class Element {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).clear();
             await (await element.getWebElement()).sendKeys(String(value));
-        }, "setValue");
+        }, 'setValue');
     }
 
     @ActionHooks
@@ -67,14 +67,14 @@ export class Element {
                     return null;
                     })(arguments[0], arguments[1]);`,
                 await this.getWebElement(), String(value));
-        }, "setValueByJS");
+        }, 'setValueByJS');
     }
 
     @ActionHooks
     async sendKeys(value: string | number) {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(String(value));
-        }, "sendKeys");
+        }, 'sendKeys');
     }
 
     @ActionHooks
@@ -82,14 +82,14 @@ export class Element {
         await this.performActionOnVisible(async (element) => {
             await Browser.actions().mouseMove(await element.getWebElement()).perform();
             await Browser.actions().doubleClick().perform();
-        }, "doubleClick");
+        }, 'doubleClick');
     }
 
     @ActionHooks
     async hover() {
         await this.performActionOnVisible(async (element) => {
             await Browser.actions().mouseMove(await element.getWebElement()).perform();
-        }, "hover");
+        }, 'hover');
     }
 
     @ActionHooks
@@ -97,34 +97,34 @@ export class Element {
         await this.performActionOnVisible(async (element) => {
             await Browser.actions().mouseMove(await element.getWebElement()).perform();
             await Browser.actions().click(protractor.Button.RIGHT).perform();
-        }, "contextClick");
+        }, 'contextClick');
     }
 
     @ActionHooks
     async pressEnter() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor.Key.ENTER);
-        }, "pressEnter");
+        }, 'pressEnter');
     }
 
     @ActionHooks
     async pressEscape() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor.Key.ESCAPE);
-        }, "pressEscape");
+        }, 'pressEscape');
     }
 
     @ActionHooks
     async pressTab() {
         await this.performActionOnVisible(async (element) => {
             await (await element.getWebElement()).sendKeys(protractor.Key.TAB);
-        }, "pressTab");
+        }, 'pressTab');
     }
 
     @ActionHooks
     async scrollIntoView() {
         await this.should(be.visible);
-        await Browser.executeScript("arguments[0].scrollIntoView(true);", await this.getWebElement());
+        await Browser.executeScript('arguments[0].scrollIntoView(true);', await this.getWebElement());
     }
 
     async should(condition: ElementCondition, timeout?: number): Promise<Element> {
@@ -160,7 +160,7 @@ export class Element {
     }
 
     async value(): Promise<string> {
-        return await (await this.getWebElement()).getAttribute("value");
+        return await (await this.getWebElement()).getAttribute('value');
     }
 
     async text(): Promise<string> {
@@ -185,7 +185,7 @@ export class Element {
     }
 
     private async fireEvent(...events: string[]) {
-        //usage - await this.fireEvent("focus", "keydown", "keypress", "input", "keyup", "change", "blur");
+        //usage - await this.fireEvent('focus', 'keydown', 'keypress', 'input', 'keyup', 'change', 'blur');
         const jsCodeToTriggerEvent: string =
             `(function() {
                 var webElement = arguments[0];
@@ -205,7 +205,7 @@ export class Element {
         try {
             await Browser.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
         } catch (error) {
-            console.log("Failed to trigger events " + events + ": " + error.message);
+            console.log('Failed to trigger events ' + events + ': ' + error.message);
         }
     }
 
@@ -243,15 +243,15 @@ export class Element {
     }
 
     parent(): Element {
-        return this.element(With.xpath("./.."));
+        return this.element(With.xpath('./..'));
     }
 
     followingSibling(predicate: string = ''): Element {
-        return this.element(With.xpath("./following-sibling::*" + predicate));
+        return this.element(With.xpath('./following-sibling::*' + predicate));
     }
 
     element(cssOrLocator: string | By): Element {
-        return new Element(new ByWebElementLocator((typeof cssOrLocator === "string" ? With.css(cssOrLocator) : cssOrLocator), this));
+        return new Element(new ByWebElementLocator((typeof cssOrLocator === 'string' ? With.css(cssOrLocator) : cssOrLocator), this));
     }
 
     elementSmart(locator: string): Element {
@@ -263,8 +263,8 @@ export class Element {
     }
 
     all(locator: string | By): Collection {
-        return new Collection(new ByWebElementsLocator(typeof locator === "string"
-            ? locator.includes("/") ? With.xpath(locator) : With.css(locator)
+        return new Collection(new ByWebElementsLocator(typeof locator === 'string'
+            ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
             : locator,
             this));
     }
@@ -276,8 +276,8 @@ export class Element {
 }
 
 export function element(locator: string | By): Element {
-    return new Element(new ByWebElementLocator(typeof locator === "string"
-        ? locator.includes("/") ? With.xpath(locator) : With.css(locator)
+    return new Element(new ByWebElementLocator(typeof locator === 'string'
+        ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
         : locator));
 }
 
