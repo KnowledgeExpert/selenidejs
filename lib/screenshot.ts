@@ -1,3 +1,17 @@
+// Copyright 2018 Knowledge Expert SA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+//     You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+//     Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+//     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//     See the License for the specific language governing permissions and
+// limitations under the License.
+
 import {browser} from 'protractor';
 import {Wait} from './wait';
 import * as mergeImg from 'merge-img';
@@ -22,7 +36,6 @@ export namespace Screenshot {
         }
 
         await hideScrollbars();
-        // await disableFixedElements(); // TODO check somewhere is it working
         const browserData = await getBrowserData();
         const screensCount = Math.ceil(browserData.pageHeight / browserData.innerHeight);
         const delta = (browserData.innerHeight * screensCount) - browserData.pageHeight;
@@ -64,20 +77,20 @@ export namespace Screenshot {
         await setDocumentOverflow();
     }
 
-    async function disableFixedElements() { // TODO can be used to avoid fixed elements appearing multiple times on fullpage screenshots (f.e. when footer is sticed to the top)
-        const JS_GET_IS_BODY_OVERFLOW_HIDDEN = `
-            return (function () {
-                var styles = window.getComputedStyle(document.body, null);
-                var overflow = styles.getPropertyValue('overflow');
-                var overflowX = styles.getPropertyValue('overflow-x');
-                var overflowY = styles.getPropertyValue('overflow-y');
-                return overflow == 'hidden' || overflowX == 'hidden' || overflowY == 'hidden';
-                })();`;
-        const isBodyOverflowisHidden = Boolean(await browser.executeScript(JS_GET_IS_BODY_OVERFLOW_HIDDEN));
-        if (isBodyOverflowisHidden) {
-            await setBodyOverflow();
-        }
-    }
+    // async function disableFixedElements() { // TODO can be used to avoid fixed elements appearing multiple times on fullpage screenshots (f.e. when footer is sticed to the top)
+    //     const JS_GET_IS_BODY_OVERFLOW_HIDDEN = `
+    //         return (function () {
+    //             var styles = window.getComputedStyle(document.body, null);
+    //             var overflow = styles.getPropertyValue('overflow');
+    //             var overflowX = styles.getPropertyValue('overflow-x');
+    //             var overflowY = styles.getPropertyValue('overflow-y');
+    //             return overflow == 'hidden' || overflowX == 'hidden' || overflowY == 'hidden';
+    //             })();`;
+    //     const isBodyOverflowisHidden = Boolean(await browser.executeScript(JS_GET_IS_BODY_OVERFLOW_HIDDEN));
+    //     if (isBodyOverflowisHidden) {
+    //         await setBodyOverflow();
+    //     }
+    // }
 
     async function setDocumentOverflow(overflowValue = 'hidden'): Promise<string> {
         return setOverflow('document.documentElement.style.overflow', overflowValue);
