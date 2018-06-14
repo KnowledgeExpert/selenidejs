@@ -1,6 +1,8 @@
 {
   "name": "selenidejs",
-  "version": "1.0.0",
+  "description": "Protractor wrapper",
+  "homepage": "https://github.com/KnowledgeExpert/selenidejs",
+  "version": "0.1.0",
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {
@@ -14,5 +16,18 @@
   },
   "scripts": {
     "build": "tsc"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KnowledgeExpert/selenidejs.git"
+  },
+  "keywords": [
+    "angular",
+    "test",
+    "testing",
+    "webdriver",
+    "webdriverjs",
+    "selenium"
+  ],
+  "license": "Apache-2.0"
 }
