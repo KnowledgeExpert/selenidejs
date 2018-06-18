@@ -23,13 +23,13 @@ To create 'lazy' collection you can use `Browser.all(string | By)` or simply `al
 
 You can pass an Webdriver `By` or `string` (which transforms to `By.css` or `By.xpath`, basing on content) to initialize 'lazy' element(s).
 
- Also you can use our helper [With](https://github.com/KnowledgeExpert/protractor-extensions/blob/master/lib/protractor-extensions/lib/locators/with.ts) several useful `By`'s:
+ Also you can use our helper [With](./lib/protractor-extensions/lib/locators/with.ts) several useful `By`'s:
   - `element(With.exactText('Continue'))`
   - `all(With.attribute("href", "/continue"))`
 
 ## [Element](./lib/base-entities/element.ts)
 
-In Protractor-extensions we are using "clever" elements, because an actual "version" of the real element from the page will be received at the moment when we will need it, and then we can perform some action or condition check on it. If it is impossible to perform an action within the specified timeout, you will receive an error message.
+In **Selenidejs** we are using "clever" elements, because an actual "version" of the real element from the page will be received at the moment when we will need it, and then we can perform some action or condition check on it. If it is impossible to perform an action within the specified timeout, you will receive an error message.
 
 There is also `visibleElement(string)` method. It is very useful when there are several identical elements on the page, but only one of them is visible. This method returns the first of the visible elements found by the locator.
 
