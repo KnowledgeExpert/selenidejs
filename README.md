@@ -1,12 +1,10 @@
-Protractor-extensions is a wrapper for Element and Collection of Elements that uses [Protractor](https://www.protractortest.org/#/) as a runner.
+Selenidejs is a wrapper for Element and Collection of Elements that uses [Protractor](https://www.protractortest.org/#/) as a runner.
 
 ## How to use Selenidejs
 
-In order to use selenidejs you have to add
+### Installation
 
-`"selenidejs": "git+ssh://git@github.com/KnowledgeExpert/selenidejs.git"`
-
-to `dependencies` in `package.json`.
+`npm i selenidejs`
 
 ## Base entities in selenidejs
 
