@@ -1,8 +1,8 @@
-Selenidejs is a wrapper for Element and Collection of Elements that uses [Protractor](https://www.protractortest.org/#/) as a runner.
+**Selenidejs** is a wrapper for Element and Collection of Elements that uses [Protractor](https://www.protractortest.org/#/) as a runner.
 
 ## How to use Selenidejs
 
-### Installation
+## Installation
 
 `npm i selenidejs`
 
