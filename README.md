@@ -23,7 +23,7 @@ To create 'lazy' collection you can use `Browser.all(string | By)` or simply `al
 
 You can pass an Webdriver `By` or `string` (which transforms to `By.css` or `By.xpath`, basing on content) to initialize 'lazy' element(s).
 
- Also you can use our helper [With](./lib/protractor-extensions/lib/locators/with.ts) several useful `By`'s:
+ Also you can use our helper [With](./lib/locators/with.ts) several useful `By`'s:
   - `element(With.exactText('Continue'))`
   - `all(With.attribute("href", "/continue"))`
 
