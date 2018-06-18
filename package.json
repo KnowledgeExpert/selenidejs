@@ -2,7 +2,7 @@
   "name": "selenidejs",
   "description": "Protractor wrapper",
   "homepage": "https://github.com/KnowledgeExpert/selenidejs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {
