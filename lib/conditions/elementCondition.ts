@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Condition} from './condition';
-import {Element} from '../base-entities/element';
+
+import {Condition} from "./condition";
+import {Element} from "../baseEntities/element";
 
 export class ElementCondition extends Condition<Element> {
     readonly matches: (entity: Element) => Promise<Element>;

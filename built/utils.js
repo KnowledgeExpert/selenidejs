@@ -13,59 +13,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const browser_1 = require("./base-entities/browser");
-const fs = require("fs");
-const path = require("path");
+const fs = require("fs-extra");
+const driver_1 = require("./baseEntities/driver");
+const collection_1 = require("./baseEntities/collection");
+const element_1 = require("./baseEntities/element");
 var Utils;
 (function (Utils) {
-    const DEFAULT_SCREENSHOT_PATH = path.resolve('./screenshots');
-    const DEFAULT_HTML_PATH = path.resolve('./htmls');
-    async function savePageSource(filePath = getSelenidejsParam(`htmlPath`) ? getSelenidejsParam(`htmlPath`) : DEFAULT_HTML_PATH) {
-        const pageTitle = await browser_1.Browser.title();
-        const dateTime = new Date().toLocaleString().replace(/ /g, `_`);
+    async function savePageSource(selenideDriver, filePath) {
+        const pageTitle = await selenideDriver.title();
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const pageSource = await browser_1.Browser.pageSource();
-        buildFilePath(filePath);
-        fs.writeFileSync(completeFilePath, pageSource);
+        const pageSource = await selenideDriver.pageSource();
+        fs.outputFileSync(completeFilePath, pageSource);
         return completeFilePath;
     }
     Utils.savePageSource = savePageSource;
-    async function saveScreenshot(filePath = getSelenidejsParam(`screenshotPath`) ? getSelenidejsParam(`screenshotPath`) : DEFAULT_SCREENSHOT_PATH) {
-        const pageTitle = await browser_1.Browser.title();
-        const dateTime = new Date().toLocaleString().replace(/ /g, `_`);
+    async function saveScreenshot(selenideDriver, filePath) {
+        const pageTitle = await selenideDriver.title();
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const screenshot = await browser_1.Browser.screenshot();
-        buildFilePath(filePath);
-        fs.writeFileSync(completeFilePath, new Buffer(screenshot, 'base64'));
+        const screenshot = await selenideDriver.screenshot();
+        fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
     }
     Utils.saveScreenshot = saveScreenshot;
-    function buildFilePath(path) {
-        const parts = path.split('/').filter(item => item.length !== 0);
-        const isFilePresentInPath = !!parts[parts.length - 1].match(/\.[a-zA-Z]+$/g);
-        let lastFolder = `/${parts[0]}`;
-        for (let i = 1; i < parts.length - (isFilePresentInPath ? 1 : 0); i++) {
-            lastFolder = lastFolder + '/' + parts[i];
-            if (!(fs.existsSync(lastFolder))) {
-                fs.mkdirSync(lastFolder);
-            }
+    function getDriver(entity) {
+        if (entity instanceof element_1.Element || entity instanceof collection_1.Collection) {
+            return entity.driver;
+        }
+        else if (entity instanceof driver_1.Driver) {
+            return entity;
         }
     }
-    Utils.buildFilePath = buildFilePath;
-    function getSelenidejsParam(dotSeparatedPath) {
-        return getValueFromPath(browser_1.Browser.params(), `selenidejs.${dotSeparatedPath}`);
+    Utils.getDriver = getDriver;
+    function isDriver(entity) {
+        return entity['quit'];
     }
-    Utils.getSelenidejsParam = getSelenidejsParam;
-    function getValueFromPath(obj, objPath) {
-        if (obj === undefined)
-            return undefined;
-        if (obj === null)
-            return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join('.'));
-    }
-    Utils.getValueFromPath = getValueFromPath;
+    Utils.isDriver = isDriver;
 })(Utils = exports.Utils || (exports.Utils = {}));
 //# sourceMappingURL=utils.js.map

@@ -1,7 +1,9 @@
+import { Driver } from "./baseEntities/driver";
+import { Collection } from "./baseEntities/collection";
+import { Element } from "./baseEntities/element";
 export declare namespace Utils {
-    function savePageSource(filePath?: any): Promise<string>;
-    function saveScreenshot(filePath?: any): Promise<string>;
-    function buildFilePath(path: string): void;
-    function getSelenidejsParam(dotSeparatedPath: string): any;
-    function getValueFromPath(obj: any, objPath: string): any;
+    function savePageSource(selenideDriver: Driver, filePath: string): Promise<string>;
+    function saveScreenshot(selenideDriver: Driver, filePath: string): Promise<string>;
+    function getDriver(entity: Driver | Collection | Element): Driver;
+    function isDriver(entity: Driver | Element): boolean;
 }

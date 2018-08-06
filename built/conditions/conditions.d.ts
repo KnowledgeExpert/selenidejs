@@ -1,7 +1,7 @@
-import { ElementCondition } from './elementCondition';
-import { BrowserCondition } from './browserCondition';
-import { CollectionCondition } from './collectionCondition';
 import { By } from 'selenium-webdriver';
+import { ElementCondition } from "./elementCondition";
+import { CollectionCondition } from "./collectionCondition";
+import { DriverCondition } from "./driverCondition";
 export declare namespace Conditions {
     function visibleElement(locator: By): ElementCondition;
     const elementIsSelected: ElementCondition;
@@ -19,7 +19,7 @@ export declare namespace Conditions {
     function collectionHasSizeMoreThan(size: number): CollectionCondition;
     function collectionHasTexts(texts: string[] | number[]): CollectionCondition;
     function collectionHasExactTexts(texts: string[] | number[]): CollectionCondition;
-    function browserUrlContains(url: string): BrowserCondition;
-    function browserTabsHaveSize(size: number): BrowserCondition;
-    function browserTabsHaveSizeGreaterThan(size: number): BrowserCondition;
+    function browserUrlContains(url: string): DriverCondition;
+    function browserTabsHaveSize(size: number): DriverCondition;
+    function browserTabsHaveSizeGreaterThan(size: number): DriverCondition;
 }

@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const conditions_1 = require("../conditions");
+const conditions_1 = require("../conditions"); // DO NOT DELETE THIS LINE!
 var be;
 (function (be) {
     be.selected = conditions_1.Conditions.elementIsSelected;

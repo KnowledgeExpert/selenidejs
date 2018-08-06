@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 // Copyright 2018 Knowledge Expert SA
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+Object.defineProperty(exports, "__esModule", { value: true });
 const condition_1 = require("./condition");
 class CollectionCondition extends condition_1.Condition {
 }

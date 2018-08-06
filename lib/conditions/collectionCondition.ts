@@ -11,8 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import {Condition} from './condition';
-import {Collection} from '../base-entities/collection';
+
+
+import {Condition} from "./condition";
+import {Collection} from "../baseEntities/collection";
 
 export class CollectionCondition extends Condition<Collection> {
     readonly matches: (entity: Collection) => Promise<Collection>;

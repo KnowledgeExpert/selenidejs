@@ -16,8 +16,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const conditionDoesNotMatchError_1 = require("../errors/conditionDoesNotMatchError");
 class Condition {
     constructor(params) {
-        this.toString = params.toString;
         this.matches = params.matches;
+        this.toString = params.toString;
     }
     and(...conditions) {
         return new Condition({

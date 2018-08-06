@@ -1,0 +1,13 @@
+git:
+  depth: 1
+
+language: node_js
+node_js:
+  - "8"
+
+install: npm install
+
+script: npm run build
+
+after_script:
+  - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
