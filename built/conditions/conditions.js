@@ -13,11 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const elementCondition_1 = require("./elementCondition");
-const browserCondition_1 = require("./browserCondition");
 const conditionDoesNotMatchError_1 = require("../errors/conditionDoesNotMatchError");
-const collectionCondition_1 = require("./collectionCondition");
 const be_1 = require("./helpers/be");
+const elementCondition_1 = require("./elementCondition");
+const collectionCondition_1 = require("./collectionCondition");
+const driverCondition_1 = require("./driverCondition");
 var Conditions;
 (function (Conditions) {
     function visibleElement(locator) {
@@ -145,7 +145,7 @@ var Conditions;
                 }
                 catch (ignored) {
                 }
-                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`Element ${element.toString()} should have attribute '${attributeName}'`);
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`SelenideElement ${element.toString()} should have attribute '${attributeName}'`);
             },
             toString: function () {
                 return `have attribute '${attributeName}'`;
@@ -308,13 +308,13 @@ var Conditions;
     }
     Conditions.collectionHasExactTexts = collectionHasExactTexts;
     function browserUrlContains(url) {
-        return new browserCondition_1.BrowserCondition({
-            matches: async (browser) => {
+        return new driverCondition_1.DriverCondition({
+            matches: async function (selenideDriver) {
                 let actualUrl;
                 try {
-                    actualUrl = await browser.getCurrentUrl();
+                    actualUrl = await selenideDriver.url();
                     if (actualUrl.includes(url)) {
-                        return browser;
+                        return selenideDriver;
                     }
                 }
                 catch (ignored) {
@@ -328,13 +328,13 @@ var Conditions;
     }
     Conditions.browserUrlContains = browserUrlContains;
     function browserTabsHaveSize(size) {
-        return new browserCondition_1.BrowserCondition({
-            matches: async (browser) => {
+        return new driverCondition_1.DriverCondition({
+            matches: async (selenideDriver) => {
                 let tabs = [];
                 try {
-                    tabs = await browser.getAllWindowHandles();
+                    tabs = await selenideDriver.webdriver.getAllWindowHandles();
                     if (tabs.length === size) {
-                        return browser;
+                        return selenideDriver;
                     }
                 }
                 catch (ignored) {
@@ -348,13 +348,13 @@ var Conditions;
     }
     Conditions.browserTabsHaveSize = browserTabsHaveSize;
     function browserTabsHaveSizeGreaterThan(size) {
-        return new browserCondition_1.BrowserCondition({
-            matches: async (browser) => {
+        return new driverCondition_1.DriverCondition({
+            matches: async (selenideDriver) => {
                 let tabs = [];
                 try {
-                    tabs = await browser.getAllWindowHandles();
+                    tabs = await selenideDriver.webdriver.getAllWindowHandles();
                     if (tabs.length > size) {
-                        return browser;
+                        return selenideDriver;
                     }
                 }
                 catch (ignored) {

@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Conditions} from '../conditions';
 import {ElementCondition} from '../elementCondition';
 import {CollectionCondition} from '../collectionCondition';
 import {By} from 'selenium-webdriver';
-import {BrowserCondition} from '../browserCondition';
+import {DriverCondition} from '../driverCondition';
+import {Conditions} from "../conditions";
+
 
 export namespace have {
 
@@ -60,15 +61,19 @@ export namespace have {
         return Conditions.collectionHasExactTexts(texts);
     }
 
+    export function url(urlPart: string): DriverCondition {
+        return Conditions.browserUrlContains(urlPart);
+    }
+
     export function exactTexts(...texts: string[]): CollectionCondition {
         return Conditions.collectionHasExactTexts(texts);
     }
 
-    export function tabsSize(size: number): BrowserCondition {
+    export function tabsSize(size: number): DriverCondition {
         return Conditions.browserTabsHaveSize(size);
     }
 
-    export function tabsSizeGreaterThan(size: number): BrowserCondition {
+    export function tabsSizeGreaterThan(size: number): DriverCondition {
         return Conditions.browserTabsHaveSizeGreaterThan(size);
     }
 }

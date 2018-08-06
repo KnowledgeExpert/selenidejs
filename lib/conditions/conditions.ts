@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {ProtractorBrowser} from 'protractor';
-import {Element} from '../base-entities/element';
-import {ElementCondition} from './elementCondition';
-import {BrowserCondition} from './browserCondition';
-import {ConditionDoesNotMatchError} from '../errors/conditionDoesNotMatchError';
-import {CollectionCondition} from './collectionCondition';
-import {Collection} from '../base-entities/collection';
-import {be} from './helpers/be';
-import {By} from 'selenium-webdriver';
+import { ConditionDoesNotMatchError } from '../errors/conditionDoesNotMatchError';
+import { be } from './helpers/be';
+import { By } from 'selenium-webdriver';
+import { Element } from "../baseEntities/element";
+import { ElementCondition } from "./elementCondition";
+import { Collection } from "../baseEntities/collection";
+import { CollectionCondition } from "./collectionCondition";
+import { Driver } from "../baseEntities/driver";
+import { DriverCondition } from "./driverCondition";
 
 
 export namespace Conditions {
@@ -147,7 +147,7 @@ export namespace Conditions {
                     }
                 } catch (ignored) {
                 }
-                throw new ConditionDoesNotMatchError(`Element ${element.toString()} should have attribute '${attributeName}'`);
+                throw new ConditionDoesNotMatchError(`SelenideElement ${element.toString()} should have attribute '${attributeName}'`);
             },
             toString: function () {
                 return `have attribute '${attributeName}'`;
@@ -304,14 +304,14 @@ export namespace Conditions {
         });
     }
 
-    export function browserUrlContains(url: string): BrowserCondition {
-        return new BrowserCondition({
-            matches: async (browser: ProtractorBrowser) => {
+    export function browserUrlContains(url: string): DriverCondition {
+        return new DriverCondition({
+            matches: async function (selenideDriver: Driver) {
                 let actualUrl;
                 try {
-                    actualUrl = await browser.getCurrentUrl();
+                    actualUrl = await selenideDriver.url();
                     if (actualUrl.includes(url)) {
-                        return browser;
+                        return selenideDriver;
                     }
                 } catch (ignored) {
                 }
@@ -323,14 +323,14 @@ export namespace Conditions {
         });
     }
 
-    export function browserTabsHaveSize(size: number): BrowserCondition {
-        return new BrowserCondition({
-            matches: async (browser: ProtractorBrowser) => {
+    export function browserTabsHaveSize(size: number): DriverCondition {
+        return new DriverCondition({
+            matches: async (selenideDriver: Driver) => {
                 let tabs = [];
                 try {
-                    tabs = await browser.getAllWindowHandles();
+                    tabs = await selenideDriver.webdriver.getAllWindowHandles();
                     if (tabs.length === size) {
-                        return browser;
+                        return selenideDriver;
                     }
                 } catch (ignored) {
                 }
@@ -342,14 +342,14 @@ export namespace Conditions {
         });
     }
 
-    export function browserTabsHaveSizeGreaterThan(size: number): BrowserCondition {
-        return new BrowserCondition({
-            matches: async (browser: ProtractorBrowser) => {
+    export function browserTabsHaveSizeGreaterThan(size: number): DriverCondition {
+        return new DriverCondition({
+            matches: async (selenideDriver: Driver) => {
                 let tabs = [];
                 try {
-                    tabs = await browser.getAllWindowHandles();
+                    tabs = await selenideDriver.webdriver.getAllWindowHandles();
                     if (tabs.length > size) {
-                        return browser;
+                        return selenideDriver;
                     }
                 } catch (ignored) {
                 }

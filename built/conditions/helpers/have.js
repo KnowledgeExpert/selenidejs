@@ -56,6 +56,10 @@ var have;
         return conditions_1.Conditions.collectionHasExactTexts(texts);
     }
     have.texts = texts;
+    function url(urlPart) {
+        return conditions_1.Conditions.browserUrlContains(urlPart);
+    }
+    have.url = url;
     function exactTexts(...texts) {
         return conditions_1.Conditions.collectionHasExactTexts(texts);
     }

@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {ConditionDoesNotMatchError} from '../errors/conditionDoesNotMatchError';
+import { ConditionDoesNotMatchError } from '../errors/conditionDoesNotMatchError';
 
 export class Condition<T> {
     readonly matches: (entity: T) => Promise<T>;
     readonly toString: () => string;
 
-    constructor(params: { toString: () => string, matches: (entity: T) => Promise<T> }) {
-        this.toString = params.toString;
+    constructor(params: { matches: (entity: T) => Promise<T>, toString: () => string }) {
         this.matches = params.matches;
+        this.toString = params.toString;
     }
 
     and<T>(...conditions: Condition<T>[]): Condition<T> {

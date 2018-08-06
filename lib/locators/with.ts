@@ -6,16 +6,13 @@
 //
 // http://www.apache.org/licenses/LICENSE-2.0
 //
-// Unless required by applicable law or agreed to in writing, software
+// Unless required By applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {by} from 'protractor';
-import {By} from 'selenium-webdriver';
-import {x} from '../xpath/x';
-import {xFiltered} from '../xpath/xFiltered';
+import { By } from 'selenium-webdriver';
 
 
 export namespace With {
@@ -23,49 +20,50 @@ export namespace With {
     const NORMALIZE_SPACE_XPATH = `normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))`;
 
     export function type(type: string): By {
-        return by.xpath(x.all() + xFiltered.byAttributeValue('type', type));
+        return By.xpath(`//*[@type = '${type}']`);
     }
 
     export function value(value: string): By {
-        return by.xpath(x.all() + xFiltered.byAttributeValue('value', value));
+        return By.xpath(`//*[@value = '${value}']`);
     }
 
     export function partialId(...idParts: string[]): By {
-        return by.xpath(x.all() + xFiltered.byPartialId(...idParts));
+        return By.xpath('//*[' + idParts.map(idPart => `contains(@id, '${idPart}')`).join(" and ") + ']');
     }
 
     export function text(text: string) {
-        return by.xpath(`.//*/text()[contains(${NORMALIZE_SPACE_XPATH}, "${text}")]/parent::*`);
+        return By.xpath(`.//*/text()[contains(${NORMALIZE_SPACE_XPATH}, "${text}")]/parent::*`);
     }
 
     export function exactText(text: string) {
-        return by.xpath(`.//*/text()[${NORMALIZE_SPACE_XPATH} = "${text}"]/parent::*`);
+        return By.xpath(`.//*/text()[${NORMALIZE_SPACE_XPATH} = "${text}"]/parent::*`);
     }
 
     export function id(id: string): By {
-        return by.id(id);
+        return By.id(id);
     }
 
     export function name(name: string): By {
-        return by.name(name);
+        return By.name(name);
     }
+
     export function className(className: string): By {
-        return by.className(className);
+        return By.className(className);
     }
 
     export function xpath(xpath: string): By {
-        return by.xpath(xpath);
+        return By.xpath(xpath);
     }
 
     export function css(css: string): By {
-        return by.css(css);
+        return By.css(css);
     }
 
     export function attribute(attributeName: string, attributeValue: string): By {
-        return by.xpath(`.${x.all()}${xFiltered.byAttributeValue(attributeName, attributeValue)}`)
+        return By.xpath(`.//*[@${attributeName} = '${attributeValue}']`)
     }
 
     export function testId(testId: string): By {
-        return by.css(`[data-test-id='` + testId + `']`);
+        return By.css(`[data-test-id='` + testId + `']`);
     }
 }

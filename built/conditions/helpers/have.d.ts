@@ -1,7 +1,7 @@
 import { ElementCondition } from '../elementCondition';
 import { CollectionCondition } from '../collectionCondition';
 import { By } from 'selenium-webdriver';
-import { BrowserCondition } from '../browserCondition';
+import { DriverCondition } from '../driverCondition';
 export declare namespace have {
     function visibleElement(locator: By): ElementCondition;
     function exactText(value: string | number): ElementCondition;
@@ -12,7 +12,8 @@ export declare namespace have {
     function cssClass(cssClass: string): ElementCondition;
     function size(size: number): CollectionCondition;
     function texts(...texts: string[]): CollectionCondition;
+    function url(urlPart: string): DriverCondition;
     function exactTexts(...texts: string[]): CollectionCondition;
-    function tabsSize(size: number): BrowserCondition;
-    function tabsSizeGreaterThan(size: number): BrowserCondition;
+    function tabsSize(size: number): DriverCondition;
+    function tabsSizeGreaterThan(size: number): DriverCondition;
 }

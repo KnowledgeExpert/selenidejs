@@ -12,59 +12,43 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Browser} from './base-entities/browser';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'fs-extra';
+import {Driver} from "./baseEntities/driver";
+import { Collection } from "./baseEntities/collection";
+import { Element } from "./baseEntities/element";
 
 
 export namespace Utils {
 
-    const DEFAULT_SCREENSHOT_PATH = path.resolve('./screenshots');
-    const DEFAULT_HTML_PATH = path.resolve('./htmls');
-
-    export async function savePageSource(filePath = getSelenidejsParam(`htmlPath`) ? getSelenidejsParam(`htmlPath`) : DEFAULT_HTML_PATH): Promise<string> {
-        const pageTitle = await Browser.title();
-        const dateTime = new Date().toLocaleString().replace(/ /g, `_`);
+    export async function savePageSource(selenideDriver: Driver, filePath: string): Promise<string> {
+        const pageTitle = await selenideDriver.title();
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const pageSource = await Browser.pageSource();
-        buildFilePath(filePath);
-        fs.writeFileSync(completeFilePath, pageSource);
+        const pageSource = await selenideDriver.pageSource();
+        fs.outputFileSync(completeFilePath, pageSource);
         return completeFilePath;
     }
 
-    export async function saveScreenshot(filePath = getSelenidejsParam(`screenshotPath`) ? getSelenidejsParam(`screenshotPath`) : DEFAULT_SCREENSHOT_PATH): Promise<string> {
-        const pageTitle = await Browser.title();
-        const dateTime = new Date().toLocaleString().replace(/ /g, `_`);
+    export async function saveScreenshot(selenideDriver: Driver, filePath: string): Promise<string> {
+        const pageTitle = await selenideDriver.title();
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const screenshot = await Browser.screenshot();
-        buildFilePath(filePath);
-        fs.writeFileSync(completeFilePath, new Buffer(screenshot, 'base64'));
+        const screenshot = await selenideDriver.screenshot();
+        fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
     }
 
-    export function buildFilePath(path: string) {
-        const parts = path.split('/').filter(item => item.length !== 0);
-        const isFilePresentInPath = !!parts[parts.length - 1].match(/\.[a-zA-Z]+$/g);
-        let lastFolder = `/${parts[0]}`;
-        for (let i = 1; i < parts.length - (isFilePresentInPath ? 1 : 0); i++) {
-            lastFolder = lastFolder + '/' + parts[i];
-            if (!(fs.existsSync(lastFolder))) {
-                fs.mkdirSync(lastFolder);
-            }
+    export function getDriver(entity: Driver | Collection | Element): Driver {
+        if (entity instanceof Element || entity instanceof Collection) {
+            return entity.driver
+        } else if (entity instanceof Driver) {
+            return entity;
         }
     }
 
-    export function getSelenidejsParam(dotSeparatedPath: string) {
-        return getValueFromPath(Browser.params(), `selenidejs.${dotSeparatedPath}`);
+    export function isDriver(entity: Driver | Element): boolean {
+        return entity['quit'];
     }
-
-    export function getValueFromPath(obj: any, objPath: string): any {
-        if (obj === undefined) return undefined;
-        if (obj === null) return null;
-        const parts = objPath.split('.');
-        return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join('.'));
-    }
-
 }
