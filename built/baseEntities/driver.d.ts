@@ -1,10 +1,10 @@
 /// <reference types="node" />
-import { ActionSequence, By, WebDriver } from "selenium-webdriver";
-import { Element } from "./element";
-import { Configuration } from "./config/configuration";
-import { Wait } from "./wait";
-import { DriverCondition } from "../conditions/driverCondition";
-import { Collection } from "./collection";
+import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
+import { DriverCondition } from '../conditions/driverCondition';
+import { Collection } from './collection';
+import { Configuration } from './config/configuration';
+import { Element } from './element';
+import { Wait } from './wait';
 export declare class Driver {
     readonly config: Configuration;
     readonly webdriver: WebDriver;

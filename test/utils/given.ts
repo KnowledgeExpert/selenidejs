@@ -1,6 +1,6 @@
-import {Browser} from "../../lib/index";
-import {TestUtils} from "./testUtils";
-import {When} from "./when";
+import { Browser } from '../../lib/index';
+import { TestUtils } from './testUtils';
+import { When } from './when';
 
 
 export namespace Given {

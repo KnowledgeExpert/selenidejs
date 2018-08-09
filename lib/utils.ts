@@ -13,16 +13,18 @@
 // limitations under the License.
 
 import * as fs from 'fs-extra';
-import {Driver} from "./baseEntities/driver";
-import { Collection } from "./baseEntities/collection";
-import { Element } from "./baseEntities/element";
+import { By } from 'selenium-webdriver';
+import { Collection } from './baseEntities/collection';
+import { Driver } from './baseEntities/driver';
+import { Element } from './baseEntities/element';
+import { With } from './locators/with';
 
 
 export namespace Utils {
 
     export async function savePageSource(selenideDriver: Driver, filePath: string): Promise<string> {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
         const pageSource = await selenideDriver.pageSource();
@@ -32,7 +34,7 @@ export namespace Utils {
 
     export async function saveScreenshot(selenideDriver: Driver, filePath: string): Promise<string> {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
         const screenshot = await selenideDriver.screenshot();
@@ -42,13 +44,21 @@ export namespace Utils {
 
     export function getDriver(entity: Driver | Collection | Element): Driver {
         if (entity instanceof Element || entity instanceof Collection) {
-            return entity.driver
+            return entity.driver;
         } else if (entity instanceof Driver) {
             return entity;
         }
     }
 
     export function isDriver(entity: Driver | Element): boolean {
+        /* tslint:disable:no-string-literal */
         return entity['quit'];
+        /* tslint:enable:no-string-literal */
+    }
+
+    export function toBy(cssOrXpathOrBy: string | By): By {
+        return (typeof cssOrXpathOrBy === 'string')
+            ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
+            : cssOrXpathOrBy;
     }
 }

@@ -17,7 +17,7 @@ import { By } from 'selenium-webdriver';
 
 export namespace With {
 
-    const NORMALIZE_SPACE_XPATH = `normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))`;
+    const NORMALIZE_SPACE_XPATH = "normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))";
 
     export function type(type: string): By {
         return By.xpath(`//*[@type = '${type}']`);
@@ -27,9 +27,11 @@ export namespace With {
         return By.xpath(`//*[@value = '${value}']`);
     }
 
+    /* tslint:disable:prefer-template */
     export function partialId(...idParts: string[]): By {
-        return By.xpath('//*[' + idParts.map(idPart => `contains(@id, '${idPart}')`).join(" and ") + ']');
+        return By.xpath('//*[' + idParts.map(idPart => `contains(@id, '${idPart}')`).join(' and ') + ']');
     }
+    /* tslint:enable:prefer-template */
 
     export function text(text: string) {
         return By.xpath(`.//*/text()[contains(${NORMALIZE_SPACE_XPATH}, "${text}")]/parent::*`);
@@ -60,10 +62,7 @@ export namespace With {
     }
 
     export function attribute(attributeName: string, attributeValue: string): By {
-        return By.xpath(`.//*[@${attributeName} = '${attributeValue}']`)
+        return By.xpath(`.//*[@${attributeName} = '${attributeValue}']`);
     }
 
-    export function testId(testId: string): By {
-        return By.css(`[data-test-id='` + testId + `']`);
-    }
 }

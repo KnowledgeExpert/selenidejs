@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Element} from "./element";
-import {ActionSequence, By, WebDriver} from "selenium-webdriver";
-import {Driver} from "./driver";
-import {Configuration} from "./config/configuration";
-import {Collection} from "./collection";
-import {DriverCondition} from "../conditions/driverCondition";
+import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
+import { DriverCondition } from '../conditions/driverCondition';
+import { Collection } from './collection';
+import { Configuration } from './config/configuration';
+import { Driver } from './driver';
+import { Element } from './element';
 
 
 export namespace Browser {
@@ -26,42 +26,44 @@ export namespace Browser {
     export let config: Configuration;
 
     export function setDriver(driver: WebDriver | Driver, configuration?: Configuration) {
+        /* tslint:disable:no-string-literal */
         selenideDriver = driver['should']
             ? driver as Driver
             : new Driver(driver as WebDriver, configuration);
         config = selenideDriver.config;
+        /* tslint:enable:no-string-literal */
     }
 
     export async function get(url: string) {
-        return await selenideDriver.get(url);
+        return selenideDriver.get(url);
     }
 
     export async function close() {
-        return await selenideDriver.close();
+        return selenideDriver.close();
     }
 
     export async function quit() {
-        return await selenideDriver.quit();
+        return selenideDriver.quit();
     }
 
     export async function url(): Promise<string> {
-        return await selenideDriver.url();
+        return selenideDriver.url();
     }
 
     export async function title(): Promise<string> {
-        return await selenideDriver.title();
+        return selenideDriver.title();
     }
 
     export async function pageSource(): Promise<string> {
-        return await selenideDriver.pageSource();
+        return selenideDriver.pageSource();
     }
 
     export async function screenshot(): Promise<Buffer> {
-        return await selenideDriver.screenshot();
+        return selenideDriver.screenshot();
     }
 
     export async function resizeWindow(width: number, height: number) {
-        return await selenideDriver.resizeWindow(width, height);
+        return selenideDriver.resizeWindow(width, height);
     }
 
     export function actions(): ActionSequence {
@@ -77,43 +79,45 @@ export namespace Browser {
     }
 
     export async function should(condition: DriverCondition, timeout?: number): Promise<Driver> {
-        return await selenideDriver.should(condition, timeout);
+        return selenideDriver.should(condition, timeout);
     }
 
     export async function shouldNot(condition: DriverCondition, timeout?: number): Promise<Driver> {
-        return await selenideDriver.shouldNot(condition, timeout);
+        return selenideDriver.shouldNot(condition, timeout);
     }
 
     export async function is(condition: DriverCondition, timeout?: number): Promise<boolean> {
-        return await selenideDriver.is(condition, timeout);
+        return selenideDriver.is(condition, timeout);
     }
 
     export async function isNot(condition: DriverCondition, timeout?: number): Promise<boolean> {
-        return await selenideDriver.isNot(condition, timeout);
+        return selenideDriver.isNot(condition, timeout);
     }
 
+    /* tslint:disable:ban-types */
     export async function executeScript(script: string | Function, ...args: any[]) {
-        return await selenideDriver.executeScript(script, args);
+        return selenideDriver.executeScript(script, args);
     }
+    /* tslint:enable:ban-types */
 
     export async function nextTab() {
-        return await selenideDriver.nextTab();
+        return selenideDriver.nextTab();
     }
 
     export async function previousTab() {
-        return await selenideDriver.previousTab();
+        return selenideDriver.previousTab();
     }
 
     export async function switchToFrame(frameElement: Element) {
-        return await selenideDriver.switchToFrame(frameElement);
+        return selenideDriver.switchToFrame(frameElement);
     }
 
     export async function switchToDefaultFrame() {
-        return await selenideDriver.switchToDefaultFrame();
+        return selenideDriver.switchToDefaultFrame();
     }
 
     export async function clearCacheAndCookies() {
-        return await selenideDriver.clearCacheAndCookies();
+        return selenideDriver.clearCacheAndCookies();
     }
 
 }

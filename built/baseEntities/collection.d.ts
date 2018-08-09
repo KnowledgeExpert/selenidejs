@@ -1,9 +1,9 @@
-import { Locator } from './locators/locator';
 import { WebElement } from 'selenium-webdriver';
-import { Element } from "./element";
-import { Driver } from "./driver";
-import { CollectionCondition } from "../conditions/collectionCondition";
-import { ElementCondition } from "../conditions/elementCondition";
+import { CollectionCondition } from '../conditions/collectionCondition';
+import { ElementCondition } from '../conditions/elementCondition';
+import { Driver } from './driver';
+import { Element } from './element';
+import { Locator } from './locators/locator';
 export declare class Collection {
     readonly driver: Driver;
     private readonly locator;

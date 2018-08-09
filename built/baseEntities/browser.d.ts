@@ -1,10 +1,10 @@
 /// <reference types="node" />
-import { Element } from "./element";
-import { ActionSequence, By, WebDriver } from "selenium-webdriver";
-import { Driver } from "./driver";
-import { Configuration } from "./config/configuration";
-import { Collection } from "./collection";
-import { DriverCondition } from "../conditions/driverCondition";
+import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
+import { DriverCondition } from '../conditions/driverCondition';
+import { Collection } from './collection';
+import { Configuration } from './config/configuration';
+import { Driver } from './driver';
+import { Element } from './element';
 export declare namespace Browser {
     let selenideDriver: Driver;
     let config: Configuration;

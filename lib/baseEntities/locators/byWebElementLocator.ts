@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import { By, WebElement } from 'selenium-webdriver';
-import { Locator } from './locator';
+import { Utils } from '../../utils';
+import { Driver } from '../driver';
 import { Element } from '../element';
-import { Driver } from "../driver";
-import { Utils } from "../../utils";
+import { Locator } from './locator';
 
 
 export class ByWebElementLocator implements Locator<Promise<WebElement>> {
@@ -35,7 +35,7 @@ export class ByWebElementLocator implements Locator<Promise<WebElement>> {
             : await (this.searchContext as Element).getWebElement();
         const elements = await context.findElements(this.by);
 
-        if (elements.length == 0) {
+        if (elements.length === 0) {
             throw new Error(`No elements found using ${this.toString()}`);
         }
 

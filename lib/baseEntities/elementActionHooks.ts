@@ -12,14 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Element } from "./element";
-import { AfterElementActionHook } from "./afterElementActionHook";
-import { BeforeElementActionHook } from "./beforeElementActionHook";
+import { AfterElementActionHook } from './afterElementActionHook';
+import { BeforeElementActionHook } from './beforeElementActionHook';
+import { Element } from './element';
 
 
 export function ElementActionHooks(target, methodName, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
+    /* tslint:disable:space-before-function-paren*/
+    /* tslint:disable:no-invalid-this*/
     descriptor.value = async function () {
         let actionError;
 
@@ -33,11 +35,13 @@ export function ElementActionHooks(target, methodName, descriptor: PropertyDescr
         } finally {
             await runAfterHooks(Element.afterActionHooks, actionError, this, methodName);
         }
-    }
+    };
+    /* tslint:enable:space-before-function-paren*/
+    /* tslint:enable:no-invalid-this*/
 }
 
 async function runBeforeHooks(hooks: BeforeElementActionHook[], element, actionName) {
-    for (let beforeHook of hooks) {
+    for (const beforeHook of hooks) {
         try {
             await beforeHook(element, actionName);
         } catch (error) {
@@ -47,7 +51,7 @@ async function runBeforeHooks(hooks: BeforeElementActionHook[], element, actionN
 }
 
 async function runAfterHooks(hooks: AfterElementActionHook[], actionError, element, actionName) {
-    for (let afterHook of hooks) {
+    for (const afterHook of hooks) {
         try {
             await afterHook(actionError ? actionError : null, element, actionName);
         } catch (error) {
@@ -57,8 +61,11 @@ async function runAfterHooks(hooks: AfterElementActionHook[], actionError, eleme
 }
 
 function logFailedHook(error: Error, actionName: string) {
+    /* tslint:disable:no-console */
     console.warn(`
     Cannot perform hook on '${actionName}' action cause of:
     \n\tError message: ${error.message}
-    \n\tError stacktrace: ${error.stack}`);
+    \n\tError stacktrace: ${error.stack}`
+    );
+    /* tslint:enable:no-console*/
 }

@@ -13,11 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const byIndexedWebElementLocator_1 = require("./locators/byIndexedWebElementLocator");
-const byFilteredWebElementsLocator_1 = require("./locators/byFilteredWebElementsLocator");
-const element_1 = require("./element");
-const wait_1 = require("./wait");
 const condition_1 = require("../conditions/condition");
+const element_1 = require("./element");
+const byFilteredWebElementsLocator_1 = require("./locators/byFilteredWebElementsLocator");
+const byIndexedWebElementLocator_1 = require("./locators/byIndexedWebElementLocator");
+const wait_1 = require("./wait");
 class Collection {
     constructor(locator, driver) {
         this.locator = locator;
@@ -26,19 +26,19 @@ class Collection {
     }
     async should(condition, timeout) {
         return timeout
-            ? await this.wait.shouldMatch(condition, timeout)
-            : await this.wait.shouldMatch(condition);
+            ? this.wait.shouldMatch(condition, timeout)
+            : this.wait.shouldMatch(condition);
     }
     async shouldNot(condition, timeout) {
-        return await this.should(condition_1.Condition.not(condition), timeout);
+        return this.should(condition_1.Condition.not(condition), timeout);
     }
     async is(condition, timeout) {
         return timeout
-            ? await this.wait.isMatch(condition, timeout)
-            : await this.wait.isMatch(condition);
+            ? this.wait.isMatch(condition, timeout)
+            : this.wait.isMatch(condition);
     }
     async isNot(condition, timeout) {
-        return await this.is(condition_1.Condition.not(condition), timeout);
+        return this.is(condition_1.Condition.not(condition), timeout);
     }
     get(index) {
         return new element_1.Element(new byIndexedWebElementLocator_1.ByIndexedWebElementLocator(index, this), this.driver);
@@ -60,20 +60,14 @@ class Collection {
         return (await this.getWebElements()).length;
     }
     async count() {
-        return await this.size();
+        return this.size();
     }
     async getWebElements() {
-        return await this.locator.find();
+        return this.locator.find();
     }
     toString() {
         return this.locator.toString();
     }
 }
 exports.Collection = Collection;
-//
-// export function all(locator: string | By): SelenideCollection {
-//     return new SelenideCollection(new ByWebElementsLocator(typeof locator === 'string'
-//         ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
-//         : locator));
-// }
 //# sourceMappingURL=collection.js.map

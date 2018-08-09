@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-import {Condition} from "./condition";
-import {Collection} from "../baseEntities/collection";
+import { Collection } from '../baseEntities/collection';
+import { Condition } from './condition';
 
 export class CollectionCondition extends Condition<Collection> {
     readonly matches: (entity: Collection) => Promise<Collection>;

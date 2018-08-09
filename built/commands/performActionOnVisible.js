@@ -19,34 +19,30 @@ class PerformActionOnVisible {
     async perform(element, ...args) {
         const actionName = args[0];
         const action = args[1];
-        const actionArguments = args.slice(2);
+        const actionArgumentsStartIndex = 2;
+        const actionArguments = args.slice(actionArgumentsStartIndex);
         const config = element.driver.config;
         try {
-            // console.log('try action')
             await action(element, actionArguments);
-            // console.log('try action - OK')
         }
         catch (ignored) {
-            // console.log('try action - FAILED, wait until visible')
             await element.should(be_1.be.visible);
-            // console.log('try action - FAILED, wait until visible - OK')
             try {
-                // console.log('try action again')
                 await action(element, actionArguments);
-                // console.log('try action again')
             }
             catch (error) {
-                error.message = `For element ${element.toString()}: cannot perform ${actionName}
-                \treason: ${error.message}`;
-                for (let func of config.onFailureHooks) {
-                    // console.log('call onFailure hooks in action, quantity ', config.onFailureHooks.length)
+                error.message =
+                    `For element ${element.toString()}: cannot perform ${actionName} reason: ${error.message}`;
+                for (const func of config.onFailureHooks) {
                     try {
                         await func(error, element);
                     }
                     catch (hookError) {
-                        console.error(`Cannot perform hook '${func.toString()}' function cause of:
-                            \tError message: ${hookError.message}
-                            \tError stacktrace: ${hookError.stackTrace}`);
+                        /* tslint:disable:no-console */
+                        console.warn(`Cannot perform hook '${func.toString()}' function cause of:
+                                Error message: ${hookError.message}
+                                Error stacktrace: ${hookError.stackTrace}`);
+                        /* tslint:enable:no-console */
                     }
                 }
                 throw new cannotPerformActionError_1.CannotPerformActionError(error.message);

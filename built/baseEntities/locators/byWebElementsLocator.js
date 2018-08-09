@@ -23,7 +23,7 @@ class ByWebElementsLocator {
         const context = utils_1.Utils.isDriver(this.searchContext)
             ? this.searchContext.webdriver
             : this.searchContext.getWebElement();
-        return await context.findElements(this.by);
+        return context.findElements(this.by);
     }
     toString() {
         return `${utils_1.Utils.isDriver(this.searchContext) ? 'browser' : this.searchContext.toString()}.all(${this.by})`;

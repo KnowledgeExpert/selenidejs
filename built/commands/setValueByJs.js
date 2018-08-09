@@ -19,9 +19,11 @@ class SetValueByJs {
         const driver = entity.driver;
         const value = args[0];
         const script = `return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text 
-                            : text.length <= maxlength ? text 
+                    var maxlength = webelement.getAttribute('maxlength') == null
+                        ? -1
+                        : parseInt(webelement.getAttribute('maxlength'));
+                    webelement.value = maxlength == -1 ? text
+                            : text.length <= maxlength ? text
                                 : text.substring(0, maxlength);
                     return null;
                     })(arguments[0], arguments[1]);`;

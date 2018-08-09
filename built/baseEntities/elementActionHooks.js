@@ -16,6 +16,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const element_1 = require("./element");
 function ElementActionHooks(target, methodName, descriptor) {
     const originalMethod = descriptor.value;
+    /* tslint:disable:space-before-function-paren*/
+    /* tslint:disable:no-invalid-this*/
     descriptor.value = async function () {
         let actionError;
         await runBeforeHooks(element_1.Element.beforeActionHooks, this, methodName);
@@ -30,10 +32,12 @@ function ElementActionHooks(target, methodName, descriptor) {
             await runAfterHooks(element_1.Element.afterActionHooks, actionError, this, methodName);
         }
     };
+    /* tslint:enable:space-before-function-paren*/
+    /* tslint:enable:no-invalid-this*/
 }
 exports.ElementActionHooks = ElementActionHooks;
 async function runBeforeHooks(hooks, element, actionName) {
-    for (let beforeHook of hooks) {
+    for (const beforeHook of hooks) {
         try {
             await beforeHook(element, actionName);
         }
@@ -43,7 +47,7 @@ async function runBeforeHooks(hooks, element, actionName) {
     }
 }
 async function runAfterHooks(hooks, actionError, element, actionName) {
-    for (let afterHook of hooks) {
+    for (const afterHook of hooks) {
         try {
             await afterHook(actionError ? actionError : null, element, actionName);
         }
@@ -53,9 +57,11 @@ async function runAfterHooks(hooks, actionError, element, actionName) {
     }
 }
 function logFailedHook(error, actionName) {
+    /* tslint:disable:no-console */
     console.warn(`
     Cannot perform hook on '${actionName}' action cause of:
     \n\tError message: ${error.message}
     \n\tError stacktrace: ${error.stack}`);
+    /* tslint:enable:no-console*/
 }
 //# sourceMappingURL=elementActionHooks.js.map

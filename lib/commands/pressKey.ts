@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Command } from "./command";
-import { Element } from "../baseEntities/element";
-import { Key } from "selenium-webdriver";
+import { Element } from '../baseEntities/element';
+import { Command } from './command';
 
 export class PressKey implements Command<Element> {
     async perform(entity: Element, ...args: any[]): Promise<void> {

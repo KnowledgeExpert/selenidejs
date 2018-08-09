@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Collection} from '../collection';
-import {WebElement} from 'selenium-webdriver';
-import {Locator} from './locator';
-import {ElementCondition} from '../../conditions/elementCondition';
+import { WebElement } from 'selenium-webdriver';
+import { ElementCondition } from '../../conditions/elementCondition';
+import { Collection } from '../collection';
+import { Locator } from './locator';
 
 
 export class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[]>> {

@@ -19,26 +19,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
-const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const selenium_webdriver_1 = require("selenium-webdriver");
-const be_1 = require("../conditions/helpers/be");
-const with_1 = require("../locators/with");
-const wait_1 = require("./wait");
-const condition_1 = require("../conditions/condition");
-const collection_1 = require("./collection");
 const click_1 = require("../commands/click");
 const clickByJs_1 = require("../commands/clickByJs");
-const setValue_1 = require("../commands/setValue");
-const setValueByJs_1 = require("../commands/setValueByJs");
-const sendKeys_1 = require("../commands/sendKeys");
+const contextClick_1 = require("../commands/contextClick");
 const doubleClick_1 = require("../commands/doubleClick");
 const hover_1 = require("../commands/hover");
-const contextClick_1 = require("../commands/contextClick");
+const performActionOnVisible_1 = require("../commands/performActionOnVisible");
 const pressKey_1 = require("../commands/pressKey");
 const scrollIntoView_1 = require("../commands/scrollIntoView");
-const performActionOnVisible_1 = require("../commands/performActionOnVisible");
+const sendKeys_1 = require("../commands/sendKeys");
+const setValue_1 = require("../commands/setValue");
+const setValueByJs_1 = require("../commands/setValueByJs");
+const condition_1 = require("../conditions/condition");
+const be_1 = require("../conditions/helpers/be");
+const with_1 = require("../locators/with");
+const utils_1 = require("../utils");
+const collection_1 = require("./collection");
 const elementActionHooks_1 = require("./elementActionHooks");
+const byWebElementLocator_1 = require("./locators/byWebElementLocator");
+const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
+const wait_1 = require("./wait");
 class Element {
     constructor(locator, driver) {
         this.locator = locator;
@@ -82,72 +83,44 @@ class Element {
         await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'scrollIntoView', new scrollIntoView_1.ScrollIntoView().perform);
     }
     async should(condition, timeout) {
-        return await this.wait.shouldMatch(condition, timeout);
+        return this.wait.shouldMatch(condition, timeout);
     }
     async shouldNot(condition) {
-        return await this.should(condition_1.Condition.not(condition));
+        return this.should(condition_1.Condition.not(condition));
     }
     async is(condition, timeout) {
-        return await this.wait.isMatch(condition, timeout);
+        return this.wait.isMatch(condition, timeout);
     }
     async isNot(condition) {
-        return await this.is(condition_1.Condition.not(condition));
+        return this.is(condition_1.Condition.not(condition));
     }
     async isVisible() {
-        return await (await this.getWebElement()).isDisplayed();
+        return this.getWebElement().then(result => result.isDisplayed(), err => false);
     }
     async isPresent() {
-        try {
-            return !!(await this.getWebElement());
-        }
-        catch (ignored) {
-            return false;
-        }
+        return this.getWebElement().then(result => !!result, err => false);
     }
     async isAbsent() {
-        return !(await this.isPresent());
-    }
-    async value() {
-        return await (await this.getWebElement()).getAttribute('value');
+        return this.isPresent().then(result => !result);
     }
     async text() {
         await this.should(be_1.be.visible);
-        return await (await this.getWebElement()).getText();
+        return (await this.getWebElement()).getText();
     }
     async attribute(attributeName) {
-        return await (await this.getWebElement()).getAttribute(attributeName);
+        return this.getWebElement().then(result => result.getAttribute(attributeName), err => '');
     }
     async innerHtml() {
-        return await this.attribute('innerHTML');
+        return this.attribute('innerHTML');
     }
     async outerHtml() {
-        return await this.attribute('outerHTML');
+        return this.attribute('outerHTML');
+    }
+    async value() {
+        return this.attribute('value');
     }
     async getWebElement() {
-        return await this.locator.find();
-    }
-    async fireEvent(...events) {
-        //usage - await this.fireEvent('focus', 'keydown', 'keypress', 'input', 'keyup', 'change', 'blur');
-        const jsCodeToTriggerEvent = `(function() {
-                var webElement = arguments[0];
-                var eventNames = arguments[1];
-                for (var i = 0; i < eventNames.length; i++) {
-                    if (document.createEventObject) {
-                        var evt = document.createEventObject();
-                        webElement.fireEvent('on' + eventNames[i], evt);
-                    } else {
-                        var evt = document.createEvent('HTMLEvents');
-                        evt.initEvent(eventNames[i], true, true );
-                        webElement.dispatchEvent(evt);
-                    }
-                }
-            })();`;
-        try {
-            await this.driver.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
-        }
-        catch (error) {
-            console.log(`Failed to trigger events ${events}: ${error.message}`);
-        }
+        return this.locator.find();
     }
     parent() {
         return this.element(with_1.With.xpath('./..'));
@@ -156,9 +129,7 @@ class Element {
         return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
     }
     element(cssOrXpathOrBy) {
-        const by = (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
-            : cssOrXpathOrBy;
+        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
         const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
         return new Element(locator, this.driver);
     }
@@ -166,9 +137,7 @@ class Element {
         return this.all(cssSelector).findBy(be_1.be.visible);
     }
     all(cssOrXpathOrBy) {
-        const by = (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
-            : cssOrXpathOrBy;
+        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
         const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
         return new collection_1.Collection(locator, this.driver);
     }

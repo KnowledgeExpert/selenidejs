@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Query } from "./query";
-import { Driver } from "..";
-import { WebDriver, WebElement } from "selenium-webdriver";
-import * as mergeImg from 'merge-img';
 import * as Jimp from 'jimp';
+import * as mergeImg from 'merge-img';
+import { WebDriver, WebElement } from 'selenium-webdriver';
+import { Driver } from '..';
+import { Query } from './query';
 
 
 export class FullpageScreenshot implements Query<Driver> {
@@ -59,22 +59,25 @@ export class FullpageScreenshot implements Query<Driver> {
 
         // if was in frame, need to switch it again to avoid breaking flow
         if (currentFrameElement !== null) {
-            await webdriver.switchTo().frame(await currentFrameElement);
+            await webdriver.switchTo().frame(currentFrameElement);
         }
 
-        return await mergeImg(screens, {direction: true})
+        return mergeImg(screens, {direction: true})
             .then(mergedScreenshot => FullpageScreenshot.getBuffer(mergedScreenshot));
     }
 
     private async getCurrentFrameWebElement(webdriver: WebDriver): Promise<WebElement> {
-        return (await webdriver.executeScript(`return window.frameElement`)) as WebElement;
+        return (await webdriver.executeScript('return window.frameElement')) as WebElement;
     }
 
     private async hideScrollbars(webdriver: WebDriver) {
         await this.setDocumentOverflow(webdriver);
     }
 
-    // async function disableFixedElements() { // TODO can be used to avoid fixed elements appearing multiple times on fullpage screenshots (f.e. when footer is sticed to the top)
+    // TODO can be used to avoid fixed elements appearing
+    // TODO multiple times on fullpage screenshots (f.e. when footer is sticed to the top)
+
+    // async function disableFixedElements() {
     //     const JS_GET_IS_BODY_OVERFLOW_HIDDEN = `
     //         return (function () {
     //             var styles = window.getComputedStyle(document.body, null);
@@ -93,9 +96,9 @@ export class FullpageScreenshot implements Query<Driver> {
         return this.setOverflow(webdriver, 'document.documentElement.style.overflow', overflowValue);
     }
 
-    private async setBodyOverflow(webdriver: WebDriver, overflowValue = 'initial'): Promise<string> {
-        return this.setOverflow(webdriver, 'document.body.style.overflow', overflowValue);
-    }
+    // private async setBodyOverflow(webdriver: WebDriver, overflowValue = 'initial'): Promise<string> {
+    //     return this.setOverflow(webdriver, 'document.body.style.overflow', overflowValue);
+    // }
 
     private async setOverflow(webdriver: WebDriver, element: string, overflowValue: string): Promise<string> {
         return String(await webdriver.executeScript(`
@@ -121,12 +124,14 @@ export class FullpageScreenshot implements Query<Driver> {
     }
 
     private async scrollToNthScreen(webdriver: WebDriver, browserData: any, index: number) {
-        await webdriver.executeScript(`window.scrollTo(0, + ${(browserData.innerHeight / browserData.devicePixelRatio) * index});`);
+        const script = `window.scrollTo(0, + ${(browserData.innerHeight / browserData.devicePixelRatio) * index});`;
+        await webdriver.executeScript(script);
     }
 
     private async takeScreenshotWithWait(webdriver: WebDriver): Promise<Buffer> {
-        await webdriver.sleep(100);
-        return new Buffer(await webdriver.takeScreenshot(), 'base64')
+        const timeoutForScrollToFinish = 100;
+        await webdriver.sleep(timeoutForScrollToFinish);
+        return Buffer.from(await webdriver.takeScreenshot(), 'base64');
     }
 
     private static async crop(screenBuffer: Buffer, delta: number): Promise<Buffer> {
@@ -139,10 +144,10 @@ export class FullpageScreenshot implements Query<Driver> {
     }
 
     private static async getBuffer(jimpImage): Promise<Buffer> {
-        return await new Promise<Buffer>((resolve, reject) => {
+        return new Promise<Buffer>((resolve, reject) => {
             jimpImage.getBuffer(Jimp.AUTO, (err, buff) => {
                 if (err) reject(err);
-                resolve(buff)
+                resolve(buff);
             });
         });
     }
@@ -155,5 +160,5 @@ type BrowserData = {
     height: number,
     innerHeight: number,
     pageWidth: number,
-    pageHeight: number
+    pageHeight: number,
 };

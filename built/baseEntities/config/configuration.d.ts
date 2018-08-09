@@ -1,4 +1,4 @@
-import { OnFailureHook } from "../onFailureHook";
+import { OnFailureHook } from '../onFailureHook';
 export declare class Configuration {
     static readonly DEFAULT: Configuration;
     htmlPath: string;

@@ -1,5 +1,5 @@
-import { Query } from "./query";
-import { Driver } from "..";
+import { Driver } from '..';
+import { Query } from './query';
 export declare class FullpageScreenshot implements Query<Driver> {
     perform(driver: Driver, ...args: any[]): Promise<any>;
     /**
@@ -12,7 +12,6 @@ export declare class FullpageScreenshot implements Query<Driver> {
     private getCurrentFrameWebElement(webdriver);
     private hideScrollbars(webdriver);
     private setDocumentOverflow(webdriver, overflowValue?);
-    private setBodyOverflow(webdriver, overflowValue?);
     private setOverflow(webdriver, element, overflowValue);
     private getBrowserData(webdriver);
     private scrollToNthScreen(webdriver, browserData, index);

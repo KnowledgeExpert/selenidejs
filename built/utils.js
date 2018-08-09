@@ -14,14 +14,15 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs-extra");
-const driver_1 = require("./baseEntities/driver");
 const collection_1 = require("./baseEntities/collection");
+const driver_1 = require("./baseEntities/driver");
 const element_1 = require("./baseEntities/element");
+const with_1 = require("./locators/with");
 var Utils;
 (function (Utils) {
     async function savePageSource(selenideDriver, filePath) {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
         const pageSource = await selenideDriver.pageSource();
@@ -31,7 +32,7 @@ var Utils;
     Utils.savePageSource = savePageSource;
     async function saveScreenshot(selenideDriver, filePath) {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, `_`);
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
         const screenshot = await selenideDriver.screenshot();
@@ -49,8 +50,16 @@ var Utils;
     }
     Utils.getDriver = getDriver;
     function isDriver(entity) {
+        /* tslint:disable:no-string-literal */
         return entity['quit'];
+        /* tslint:enable:no-string-literal */
     }
     Utils.isDriver = isDriver;
+    function toBy(cssOrXpathOrBy) {
+        return (typeof cssOrXpathOrBy === 'string')
+            ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
+            : cssOrXpathOrBy;
+    }
+    Utils.toBy = toBy;
 })(Utils = exports.Utils || (exports.Utils = {}));
 //# sourceMappingURL=utils.js.map

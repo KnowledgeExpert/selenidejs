@@ -15,6 +15,23 @@
 import { ConditionDoesNotMatchError } from '../errors/conditionDoesNotMatchError';
 
 export class Condition<T> {
+
+    static not<T>(condition: Condition<T>): Condition<T> {
+        return new Condition<T>({
+            toString() {
+                return `not ${condition.toString()}`;
+            },
+            async matches(entity: T) {
+                try {
+                    await condition.matches(entity);
+                } catch (error) {
+                    return entity;
+                }
+                throw new ConditionDoesNotMatchError(this.toString());
+            }
+        });
+    }
+
     readonly matches: (entity: T) => Promise<T>;
     readonly toString: () => string;
 
@@ -23,32 +40,16 @@ export class Condition<T> {
         this.toString = params.toString;
     }
 
-    and<T>(...conditions: Condition<T>[]): Condition<T> {
+    and<T>(...conditions: Array<Condition<T>>): Condition<T> {
         return new Condition<T>({
-            toString: function () {
+            toString() {
                 return conditions.map(condition => condition.toString()).join(' AND ');
             },
-            matches: async function (entity: T) {
+            async matches(entity: T) {
                 try {
-                    await Promise.all(conditions.map(async (condition) => await condition.matches(entity)));
+                    await Promise.all(conditions.map(condition => condition.matches(entity)));
                     return entity;
                 } catch (ignored) {
-                }
-                throw new ConditionDoesNotMatchError(this.toString());
-            }
-        });
-    }
-
-    static not<T>(condition: Condition<T>): Condition<T> {
-        return new Condition<T>({
-            toString: function () {
-                return `not ${condition.toString()}`;
-            },
-            matches: async function (entity: T) {
-                try {
-                    await condition.matches(entity);
-                } catch (error) {
-                    return entity;
                 }
                 throw new ConditionDoesNotMatchError(this.toString());
             }
