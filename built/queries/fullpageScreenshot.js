@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const mergeImg = require("merge-img");
 const Jimp = require("jimp");
+const mergeImg = require("merge-img");
 class FullpageScreenshot {
     async perform(driver, ...args) {
         return this.take(driver.webdriver);
@@ -49,18 +49,20 @@ class FullpageScreenshot {
         }
         // if was in frame, need to switch it again to avoid breaking flow
         if (currentFrameElement !== null) {
-            await webdriver.switchTo().frame(await currentFrameElement);
+            await webdriver.switchTo().frame(currentFrameElement);
         }
-        return await mergeImg(screens, { direction: true })
+        return mergeImg(screens, { direction: true })
             .then(mergedScreenshot => FullpageScreenshot.getBuffer(mergedScreenshot));
     }
     async getCurrentFrameWebElement(webdriver) {
-        return (await webdriver.executeScript(`return window.frameElement`));
+        return (await webdriver.executeScript('return window.frameElement'));
     }
     async hideScrollbars(webdriver) {
         await this.setDocumentOverflow(webdriver);
     }
-    // async function disableFixedElements() { // TODO can be used to avoid fixed elements appearing multiple times on fullpage screenshots (f.e. when footer is sticed to the top)
+    // TODO can be used to avoid fixed elements appearing
+    // TODO multiple times on fullpage screenshots (f.e. when footer is sticed to the top)
+    // async function disableFixedElements() {
     //     const JS_GET_IS_BODY_OVERFLOW_HIDDEN = `
     //         return (function () {
     //             var styles = window.getComputedStyle(document.body, null);
@@ -77,9 +79,9 @@ class FullpageScreenshot {
     async setDocumentOverflow(webdriver, overflowValue = 'hidden') {
         return this.setOverflow(webdriver, 'document.documentElement.style.overflow', overflowValue);
     }
-    async setBodyOverflow(webdriver, overflowValue = 'initial') {
-        return this.setOverflow(webdriver, 'document.body.style.overflow', overflowValue);
-    }
+    // private async setBodyOverflow(webdriver: WebDriver, overflowValue = 'initial'): Promise<string> {
+    //     return this.setOverflow(webdriver, 'document.body.style.overflow', overflowValue);
+    // }
     async setOverflow(webdriver, element, overflowValue) {
         return String(await webdriver.executeScript(`
             return (function () {
@@ -102,11 +104,13 @@ class FullpageScreenshot {
         return windowData;
     }
     async scrollToNthScreen(webdriver, browserData, index) {
-        await webdriver.executeScript(`window.scrollTo(0, + ${(browserData.innerHeight / browserData.devicePixelRatio) * index});`);
+        const script = `window.scrollTo(0, + ${(browserData.innerHeight / browserData.devicePixelRatio) * index});`;
+        await webdriver.executeScript(script);
     }
     async takeScreenshotWithWait(webdriver) {
-        await webdriver.sleep(100);
-        return new Buffer(await webdriver.takeScreenshot(), 'base64');
+        const timeoutForScrollToFinish = 100;
+        await webdriver.sleep(timeoutForScrollToFinish);
+        return Buffer.from(await webdriver.takeScreenshot(), 'base64');
     }
     static async crop(screenBuffer, delta) {
         return Jimp.read(screenBuffer).then(img => {
@@ -117,7 +121,7 @@ class FullpageScreenshot {
         });
     }
     static async getBuffer(jimpImage) {
-        return await new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             jimpImage.getBuffer(Jimp.AUTO, (err, buff) => {
                 if (err)
                     reject(err);

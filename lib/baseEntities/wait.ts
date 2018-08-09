@@ -1,4 +1,4 @@
-//Copyright 2018 Knowledge Expert SA
+// Copyright 2018 Knowledge Expert SA
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {Configuration} from "./config/configuration";
-import {Condition} from "../conditions/condition";
-import {Driver} from "./driver";
-import {Element} from "./element";
-import {Collection} from "./collection";
+import { Condition } from '../conditions/condition';
+import { Collection } from './collection';
+import { Configuration } from './config/configuration';
+import { Driver } from './driver';
+import { Element } from './element';
 
 
 export class Wait<T extends Driver | Element | Collection> {
@@ -28,11 +28,13 @@ export class Wait<T extends Driver | Element | Collection> {
     constructor(entity: T, config: Configuration) {
         this.configuration = config;
         this.entity = entity;
+        /* tslint:disable:no-string-literal */
         this.selenideDriver = entity['driver'] ? entity['driver'] : entity as Driver;
+        /* tslint:enable:no-string-literal */
     }
 
     async shouldMatch(condition: Condition<T>, timeout = this.configuration.timeout): Promise<T> {
-        return await this.until(condition, timeout, true);
+        return this.until(condition, timeout, true);
     }
 
     async isMatch(condition: Condition<T>, timeout = this.configuration.timeout): Promise<boolean> {
@@ -53,13 +55,19 @@ export class Wait<T extends Driver | Element | Collection> {
         } while (new Date().getTime() < finishTime);
 
         if (throwError) {
-            lastError.message = `${this.entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
+            lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
 
-            for (let func of this.configuration.onFailureHooks) {
+            for (const func of this.configuration.onFailureHooks) {
                 try {
                     await func(lastError, this.entity, condition);
                 } catch (error) {
-                    console.error(`Cannot perform hook '${func.toString()}' function cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
+                    /* tslint:disable:no-console */
+                    console.warn(
+                        `Cannot perform hook '${func.toString()}' function cause of:
+                            Error message: ${error.message}
+                            Error stacktrace: ${error.stackTrace}`
+                    );
+                    /* tslint:enable:no-console */
                 }
             }
             throw lastError;

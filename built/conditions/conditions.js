@@ -14,12 +14,16 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const conditionDoesNotMatchError_1 = require("../errors/conditionDoesNotMatchError");
-const be_1 = require("./helpers/be");
-const elementCondition_1 = require("./elementCondition");
 const collectionCondition_1 = require("./collectionCondition");
 const driverCondition_1 = require("./driverCondition");
+const elementCondition_1 = require("./elementCondition");
+const be_1 = require("./helpers/be");
 var Conditions;
 (function (Conditions) {
+    /* tslint:disable:object-literal-shorthand */
+    /* tslint:disable:no-invalid-this */
+    /* tslint:disable:space-before-function-paren */
+    /* tslint:disable:only-arrow-functions */
     function visibleElement(locator) {
         return new elementCondition_1.ElementCondition({
             matches: async function (element) {
@@ -259,7 +263,7 @@ var Conditions;
                 let actualTexts = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
+                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
                     if (texts.length !== actualTexts.length) {
                         throw new Error();
                     }
@@ -286,8 +290,8 @@ var Conditions;
                 let actualTexts = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
-                    if (actualTexts.length != texts.length) {
+                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
+                    if (actualTexts.length !== texts.length) {
                         throw new Error();
                     }
                     for (let i = 0; i < texts.length; i++) {

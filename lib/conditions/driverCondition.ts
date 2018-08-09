@@ -13,8 +13,8 @@
 // limitations under the License.ific language governing permissions and
 // limitations under the License.
 
-import {Condition} from "./condition";
-import {Driver} from "../baseEntities/driver";
+import { Driver } from '../baseEntities/driver';
+import { Condition } from './condition';
 
 export class DriverCondition extends Condition<Driver> {
     readonly matches: (entity: Driver) => Promise<Driver>;

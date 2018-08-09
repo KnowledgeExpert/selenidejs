@@ -18,52 +18,56 @@ const utils_1 = require("../../utils");
 const browser_1 = require("../browser");
 class Configuration {
     constructor(customConfiguration) {
-        this.windowWidth = customConfiguration.windowWidth ? customConfiguration.windowWidth : Configuration.DEFAULT.windowWidth;
-        this.windowHeight = customConfiguration.windowWidth ? customConfiguration.windowWidth : Configuration.DEFAULT.windowWidth;
-        this.hardTimeout = customConfiguration.hardTimeout ? customConfiguration.hardTimeout : Configuration.DEFAULT.hardTimeout;
-        this.timeout = customConfiguration.timeout ? customConfiguration.timeout : Configuration.DEFAULT.timeout;
+        this.windowWidth = customConfiguration.windowWidth
+            ? customConfiguration.windowWidth
+            : Configuration.DEFAULT.windowWidth;
+        this.windowHeight = customConfiguration.windowWidth
+            ? customConfiguration.windowWidth
+            : Configuration.DEFAULT.windowWidth;
+        this.hardTimeout = customConfiguration.hardTimeout
+            ? customConfiguration.hardTimeout
+            : Configuration.DEFAULT.hardTimeout;
+        this.timeout = customConfiguration.timeout
+            ? customConfiguration.timeout
+            : Configuration.DEFAULT.timeout;
         this.fullpageScreenshot = customConfiguration.fullpageScreenshot
-            ? customConfiguration.fullpageScreenshot : Configuration.DEFAULT.fullpageScreenshot;
-        this.screenshotPath = customConfiguration.screenshotPath ? customConfiguration.screenshotPath : Configuration.DEFAULT.screenshotPath;
-        this.htmlPath = customConfiguration.htmlPath ? customConfiguration.htmlPath : Configuration.DEFAULT.htmlPath;
+            ? customConfiguration.fullpageScreenshot
+            : Configuration.DEFAULT.fullpageScreenshot;
+        this.screenshotPath = customConfiguration.screenshotPath
+            ? customConfiguration.screenshotPath
+            : Configuration.DEFAULT.screenshotPath;
+        this.htmlPath = customConfiguration.htmlPath
+            ? customConfiguration.htmlPath
+            : Configuration.DEFAULT.htmlPath;
         this.onFailureHooks = customConfiguration.onFailureHooks
-            ? [...Configuration.DEFAULT.onFailureHooks, ...customConfiguration.onFailureHooks] : Configuration.DEFAULT.onFailureHooks;
+            ? [...Configuration.DEFAULT.onFailureHooks, ...customConfiguration.onFailureHooks]
+            : Configuration.DEFAULT.onFailureHooks;
     }
 }
 Configuration.DEFAULT = {
-    htmlPath: path.resolve('./htmls'),
-    screenshotPath: path.resolve('./screenshots'),
-    timeout: 4000,
-    hardTimeout: 4000,
-    windowWidth: '',
-    windowHeight: '',
     fullpageScreenshot: true,
+    hardTimeout: 4000,
+    htmlPath: path.resolve('./htmls'),
     onFailureHooks: [
         async (lastError, entity, condition) => {
             const driver = utils_1.Utils.getDriver(entity);
             if (driver.config.screenshotPath) {
-                try {
-                    const screenshotPath = await utils_1.Utils.saveScreenshot(driver, browser_1.Browser.config.screenshotPath);
-                    lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
-                }
-                catch (error) {
-                    console.error(`Cannot save screenshot cause of:\n${error}`);
-                }
+                const screenshotPath = await utils_1.Utils.saveScreenshot(driver, browser_1.Browser.config.screenshotPath);
+                lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
             }
         },
         async (lastError, entity, condition) => {
             const driver = utils_1.Utils.getDriver(entity);
             if (driver.config.htmlPath) {
-                try {
-                    const htmlPath = await utils_1.Utils.savePageSource(driver, browser_1.Browser.config.htmlPath);
-                    lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
-                }
-                catch (error) {
-                    console.error(`Cannot save page source cause of:\n${error}`);
-                }
+                const htmlPath = await utils_1.Utils.savePageSource(driver, browser_1.Browser.config.htmlPath);
+                lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
             }
         }
-    ]
+    ],
+    screenshotPath: path.resolve('./screenshots'),
+    timeout: 4000,
+    windowHeight: '',
+    windowWidth: ''
 };
 exports.Configuration = Configuration;
 //# sourceMappingURL=configuration.js.map

@@ -19,33 +19,33 @@ class Condition {
         this.matches = params.matches;
         this.toString = params.toString;
     }
-    and(...conditions) {
-        return new Condition({
-            toString: function () {
-                return conditions.map(condition => condition.toString()).join(' AND ');
-            },
-            matches: async function (entity) {
-                try {
-                    await Promise.all(conditions.map(async (condition) => await condition.matches(entity)));
-                    return entity;
-                }
-                catch (ignored) {
-                }
-                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
-            }
-        });
-    }
     static not(condition) {
         return new Condition({
-            toString: function () {
+            toString() {
                 return `not ${condition.toString()}`;
             },
-            matches: async function (entity) {
+            async matches(entity) {
                 try {
                     await condition.matches(entity);
                 }
                 catch (error) {
                     return entity;
+                }
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
+            }
+        });
+    }
+    and(...conditions) {
+        return new Condition({
+            toString() {
+                return conditions.map(condition => condition.toString()).join(' AND ');
+            },
+            async matches(entity) {
+                try {
+                    await Promise.all(conditions.map(condition => condition.matches(entity)));
+                    return entity;
+                }
+                catch (ignored) {
                 }
                 throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
             }

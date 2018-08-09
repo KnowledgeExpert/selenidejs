@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {WebElement} from 'selenium-webdriver';
-import {Locator} from './locator';
-import {Collection} from '../collection';
+import { WebElement } from 'selenium-webdriver';
+import { Collection } from '../collection';
+import { Locator } from './locator';
 
 
 export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> {

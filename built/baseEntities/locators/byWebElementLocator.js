@@ -24,7 +24,7 @@ class ByWebElementLocator {
             ? this.searchContext.webdriver
             : await this.searchContext.getWebElement();
         const elements = await context.findElements(this.by);
-        if (elements.length == 0) {
+        if (elements.length === 0) {
             throw new Error(`No elements found using ${this.toString()}`);
         }
         return elements[0];

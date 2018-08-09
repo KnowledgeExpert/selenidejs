@@ -1,7 +1,7 @@
 import { By, WebElement } from 'selenium-webdriver';
-import { Locator } from './locator';
+import { Driver } from '../driver';
 import { Element } from '../element';
-import { Driver } from "../driver";
+import { Locator } from './locator';
 export declare class ByWebElementLocator implements Locator<Promise<WebElement>> {
     private readonly by;
     private readonly searchContext;

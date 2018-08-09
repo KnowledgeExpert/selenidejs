@@ -12,18 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ConditionDoesNotMatchError } from '../errors/conditionDoesNotMatchError';
-import { be } from './helpers/be';
 import { By } from 'selenium-webdriver';
-import { Element } from "../baseEntities/element";
-import { ElementCondition } from "./elementCondition";
-import { Collection } from "../baseEntities/collection";
-import { CollectionCondition } from "./collectionCondition";
-import { Driver } from "../baseEntities/driver";
-import { DriverCondition } from "./driverCondition";
+import { Collection } from '../baseEntities/collection';
+import { Driver } from '../baseEntities/driver';
+import { Element } from '../baseEntities/element';
+import { ConditionDoesNotMatchError } from '../errors/conditionDoesNotMatchError';
+import { CollectionCondition } from './collectionCondition';
+import { DriverCondition } from './driverCondition';
+import { ElementCondition } from './elementCondition';
+import { be } from './helpers/be';
 
 
 export namespace Conditions {
+
+    /* tslint:disable:object-literal-shorthand */
+    /* tslint:disable:no-invalid-this */
+    /* tslint:disable:space-before-function-paren */
+    /* tslint:disable:only-arrow-functions */
 
     export function visibleElement(locator: By): ElementCondition {
         return new ElementCondition({
@@ -256,7 +261,7 @@ export namespace Conditions {
                 let actualTexts: string[] = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
+                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
 
                     if (texts.length !== actualTexts.length) {
                         throw new Error();
@@ -283,9 +288,9 @@ export namespace Conditions {
                 let actualTexts: string[] = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
+                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
 
-                    if (actualTexts.length != texts.length) {
+                    if (actualTexts.length !== texts.length) {
                         throw new Error();
                     }
                     for (let i = 0; i < texts.length; i++) {

@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Element } from "./element";
-import { Driver } from "./driver";
-import { Collection } from "./collection";
-import { Condition } from "../index";
+import { Condition } from '../index';
+import { Collection } from './collection';
+import { Driver } from './driver';
+import { Element } from './element';
 
+/* tslint:disable:max-line-length */
 export type OnFailureHook = (<T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => void | Promise<void>);
+/* tslint:enable:max-line-length */

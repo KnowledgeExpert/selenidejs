@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {ElementCondition} from '../elementCondition';
-import {CollectionCondition} from '../collectionCondition';
-import {By} from 'selenium-webdriver';
-import {DriverCondition} from '../driverCondition';
-import {Conditions} from "../conditions";
+import { By } from 'selenium-webdriver';
+import { CollectionCondition } from '../collectionCondition';
+import { Conditions } from '../conditions';
+import { DriverCondition } from '../driverCondition';
+import { ElementCondition } from '../elementCondition';
 
 
 export namespace have {
@@ -76,4 +76,5 @@ export namespace have {
     export function tabsSizeGreaterThan(size: number): DriverCondition {
         return Conditions.browserTabsHaveSizeGreaterThan(size);
     }
+
 }

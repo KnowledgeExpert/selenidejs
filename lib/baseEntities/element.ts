@@ -12,37 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Locator } from './locators/locator';
-import { ByWebElementsLocator } from './locators/byWebElementsLocator';
-import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { By, Key, WebElement } from 'selenium-webdriver';
+import { Click } from '../commands/click';
+import { ClickByJs } from '../commands/clickByJs';
+import { ContextClick } from '../commands/contextClick';
+import { DoubleClick } from '../commands/doubleClick';
+import { Hover } from '../commands/hover';
+import { PerformActionOnVisible } from '../commands/performActionOnVisible';
+import { PressKey } from '../commands/pressKey';
+import { ScrollIntoView } from '../commands/scrollIntoView';
+import { SendKeys } from '../commands/sendKeys';
+import { SetValue } from '../commands/setValue';
+import { SetValueByJs } from '../commands/setValueByJs';
+import { Condition } from '../conditions/condition';
+import { ElementCondition } from '../conditions/elementCondition';
 import { be } from '../conditions/helpers/be';
 import { With } from '../locators/with';
-import { Driver } from "./driver";
-import { Wait } from "./wait";
-import { Condition } from "../conditions/condition";
-import { ElementCondition } from "../conditions/elementCondition";
-import { Collection } from "./collection";
-import { Click } from "../commands/click";
-import { ClickByJs } from "../commands/clickByJs";
-import { SetValue } from "../commands/setValue";
-import { SetValueByJs } from "../commands/setValueByJs";
-import { SendKeys } from "../commands/sendKeys";
-import { DoubleClick } from "../commands/doubleClick";
-import { Hover } from "../commands/hover";
-import { ContextClick } from "../commands/contextClick";
-import { PressKey } from "../commands/pressKey";
-import { ScrollIntoView } from "../commands/scrollIntoView";
-import { PerformActionOnVisible } from "../commands/performActionOnVisible";
-import { ElementActionHooks } from "./elementActionHooks";
-import { BeforeElementActionHook } from "./beforeElementActionHook";
-import { AfterElementActionHook } from "./afterElementActionHook";
+import { Utils } from '../utils';
+import { AfterElementActionHook } from './afterElementActionHook';
+import { BeforeElementActionHook } from './beforeElementActionHook';
+import { Collection } from './collection';
+import { Driver } from './driver';
+import { ElementActionHooks } from './elementActionHooks';
+import { ByWebElementLocator } from './locators/byWebElementLocator';
+import { ByWebElementsLocator } from './locators/byWebElementsLocator';
+import { Locator } from './locators/locator';
+import { Wait } from './wait';
 
 
 export class Element {
 
-    public static beforeActionHooks: BeforeElementActionHook[] = [];
-    public static afterActionHooks: AfterElementActionHook[] = [];
+    static beforeActionHooks: BeforeElementActionHook[] = [];
+    static afterActionHooks: AfterElementActionHook[] = [];
 
     readonly driver: Driver;
     private readonly locator: Locator<Promise<WebElement>>;
@@ -115,85 +116,56 @@ export class Element {
     }
 
     async should(condition: ElementCondition, timeout?: number): Promise<Element> {
-        return await this.wait.shouldMatch(condition, timeout);
+        return this.wait.shouldMatch(condition, timeout);
     }
 
     async shouldNot(condition: ElementCondition): Promise<Element> {
-        return await this.should(Condition.not(condition));
+        return this.should(Condition.not(condition));
     }
 
     async is(condition: ElementCondition, timeout?: number): Promise<boolean> {
-        return await this.wait.isMatch(condition, timeout);
+        return this.wait.isMatch(condition, timeout);
     }
 
     async isNot(condition: ElementCondition): Promise<boolean> {
-        return await this.is(Condition.not(condition));
+        return this.is(Condition.not(condition));
     }
 
     async isVisible(): Promise<boolean> {
-        return await (await this.getWebElement()).isDisplayed();
+        return this.getWebElement().then(result => result.isDisplayed(), err => false);
     }
 
     async isPresent(): Promise<boolean> {
-        try {
-            return !!(await this.getWebElement());
-        } catch (ignored) {
-            return false;
-        }
+        return this.getWebElement().then(result => !!result, err => false);
     }
 
     async isAbsent(): Promise<boolean> {
-        return !(await this.isPresent());
-    }
-
-    async value(): Promise<string> {
-        return await (await this.getWebElement()).getAttribute('value');
+        return this.isPresent().then(result => !result);
     }
 
     async text(): Promise<string> {
         await this.should(be.visible);
-        return await (await this.getWebElement()).getText();
+        return (await this.getWebElement()).getText();
     }
 
     async attribute(attributeName: string): Promise<string> {
-        return await (await this.getWebElement()).getAttribute(attributeName);
+        return this.getWebElement().then(result => result.getAttribute(attributeName), err => '');
     }
 
     async innerHtml(): Promise<string> {
-        return await this.attribute('innerHTML');
+        return this.attribute('innerHTML');
     }
 
     async outerHtml(): Promise<string> {
-        return await this.attribute('outerHTML');
+        return this.attribute('outerHTML');
+    }
+
+    async value(): Promise<string> {
+        return this.attribute('value');
     }
 
     async getWebElement(): Promise<WebElement> {
-        return await this.locator.find();
-    }
-
-    private async fireEvent(...events: string[]) {
-        //usage - await this.fireEvent('focus', 'keydown', 'keypress', 'input', 'keyup', 'change', 'blur');
-        const jsCodeToTriggerEvent: string =
-            `(function() {
-                var webElement = arguments[0];
-                var eventNames = arguments[1];
-                for (var i = 0; i < eventNames.length; i++) {
-                    if (document.createEventObject) {
-                        var evt = document.createEventObject();
-                        webElement.fireEvent('on' + eventNames[i], evt);
-                    } else {
-                        var evt = document.createEvent('HTMLEvents');
-                        evt.initEvent(eventNames[i], true, true );
-                        webElement.dispatchEvent(evt);
-                    }
-                }
-            })();`;
-
-        try {
-            await this.driver.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
-        } catch (error) {
-            console.log(`Failed to trigger events ${events}: ${error.message}`);
-        }
+        return this.locator.find();
     }
 
     parent(): Element {
@@ -205,22 +177,17 @@ export class Element {
     }
 
     element(cssOrXpathOrBy: string | By): Element {
-        const by = (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
-            : cssOrXpathOrBy;
+        const by = Utils.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementLocator(by, this);
         return new Element(locator, this.driver);
     }
-
 
     visibleElement(cssSelector: string): Element {
         return this.all(cssSelector).findBy(be.visible);
     }
 
     all(cssOrXpathOrBy: string | By): Collection {
-        const by = (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
-            : cssOrXpathOrBy;
+        const by = Utils.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementsLocator(by, this);
         return new Collection(locator, this.driver);
     }
@@ -228,4 +195,30 @@ export class Element {
     toString(): string {
         return this.locator.toString();
     }
+
+    // private async fireEvent(...events: string[]) {
+    //     //usage - await this.fireEvent('focus', 'keydown', 'keypress', 'input', 'keyup', 'change', 'blur');
+    //     const jsCodeToTriggerEvent: string =
+    //         `(function() {
+    //             var webElement = arguments[0];
+    //             var eventNames = arguments[1];
+    //             for (var i = 0; i < eventNames.length; i++) {
+    //                 if (document.createEventObject) {
+    //                     var evt = document.createEventObject();
+    //                     webElement.fireEvent('on' + eventNames[i], evt);
+    //                 } else {
+    //                     var evt = document.createEvent('HTMLEvents');
+    //                     evt.initEvent(eventNames[i], true, true );
+    //                     webElement.dispatchEvent(evt);
+    //                 }
+    //             }
+    //         })();`;
+    //
+    //     try {
+    //         await this.driver.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
+    //     } catch (error) {
+    //         console.warn(`Failed to trigger events ${events}: ${error.message}`);
+    //     }
+    // }
+
 }

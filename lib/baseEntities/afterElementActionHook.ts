@@ -12,6 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Element } from "./element";
+import { Element } from './element';
 
-export type AfterElementActionHook = (actionError: Error, element: Element, actionName: string) => void | Promise<void>
+export type AfterElementActionHook = (actionError: Error, element: Element, actionName: string) => void | Promise<void>;

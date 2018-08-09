@@ -1,5 +1,5 @@
-import * as child_process from "child_process";
-import {Builder, WebDriver} from "selenium-webdriver";
+import * as child_process from 'child_process';
+import { Builder, WebDriver } from 'selenium-webdriver';
 
 
 export namespace TestUtils {
@@ -12,7 +12,7 @@ export namespace TestUtils {
     }
 
     export function shutdownServer() {
-        server.kill("SIGINT");
+        server.kill('SIGINT');
     }
 
     export function resourcesUrl(): string {
@@ -20,10 +20,10 @@ export namespace TestUtils {
     }
 
     export function buildWebDriver(browserName = 'chrome',
-                                   // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
-                                   remoteUrl = "http://217.73.84.220:4444/wd/hub"): WebDriver {
+                                   remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
         return new Builder().forBrowser(browserName)
             .usingServer(remoteUrl)
             .build();
     }
+
 }

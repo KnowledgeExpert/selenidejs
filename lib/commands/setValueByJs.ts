@@ -12,19 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Command } from "./command";
-import { Element } from "../baseEntities/element";
+import { Element } from '../baseEntities/element';
+import { Command } from './command';
 
 export class SetValueByJs implements Command<Element> {
     async perform(entity: Element, ...args: any[]): Promise<void> {
         const webelement = await entity.getWebElement();
         const driver = entity.driver;
         const value = args[0];
-        const script =
-            `return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text 
-                            : text.length <= maxlength ? text 
+        const script = `return (function(webelement, text) {
+                    var maxlength = webelement.getAttribute('maxlength') == null
+                        ? -1
+                        : parseInt(webelement.getAttribute('maxlength'));
+                    webelement.value = maxlength == -1 ? text
+                            : text.length <= maxlength ? text
                                 : text.substring(0, maxlength);
                     return null;
                     })(arguments[0], arguments[1]);`;

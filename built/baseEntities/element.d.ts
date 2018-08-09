@@ -1,10 +1,10 @@
-import { Locator } from './locators/locator';
 import { By, WebElement } from 'selenium-webdriver';
-import { Driver } from "./driver";
-import { ElementCondition } from "../conditions/elementCondition";
-import { Collection } from "./collection";
-import { BeforeElementActionHook } from "./beforeElementActionHook";
-import { AfterElementActionHook } from "./afterElementActionHook";
+import { ElementCondition } from '../conditions/elementCondition';
+import { AfterElementActionHook } from './afterElementActionHook';
+import { BeforeElementActionHook } from './beforeElementActionHook';
+import { Collection } from './collection';
+import { Driver } from './driver';
+import { Locator } from './locators/locator';
 export declare class Element {
     static beforeActionHooks: BeforeElementActionHook[];
     static afterActionHooks: AfterElementActionHook[];
@@ -31,13 +31,12 @@ export declare class Element {
     isVisible(): Promise<boolean>;
     isPresent(): Promise<boolean>;
     isAbsent(): Promise<boolean>;
-    value(): Promise<string>;
     text(): Promise<string>;
     attribute(attributeName: string): Promise<string>;
     innerHtml(): Promise<string>;
     outerHtml(): Promise<string>;
+    value(): Promise<string>;
     getWebElement(): Promise<WebElement>;
-    private fireEvent(...events);
     parent(): Element;
     followingSibling(predicate?: string): Element;
     element(cssOrXpathOrBy: string | By): Element;

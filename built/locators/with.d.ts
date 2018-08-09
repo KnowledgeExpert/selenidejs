@@ -11,5 +11,4 @@ export declare namespace With {
     function xpath(xpath: string): By;
     function css(css: string): By;
     function attribute(attributeName: string, attributeValue: string): By;
-    function testId(testId: string): By;
 }

@@ -1,5 +1,5 @@
 "use strict";
-//Copyright 2018 Knowledge Expert SA
+// Copyright 2018 Knowledge Expert SA
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,10 +17,12 @@ class Wait {
     constructor(entity, config) {
         this.configuration = config;
         this.entity = entity;
+        /* tslint:disable:no-string-literal */
         this.selenideDriver = entity['driver'] ? entity['driver'] : entity;
+        /* tslint:enable:no-string-literal */
     }
     async shouldMatch(condition, timeout = this.configuration.timeout) {
-        return await this.until(condition, timeout, true);
+        return this.until(condition, timeout, true);
     }
     async isMatch(condition, timeout = this.configuration.timeout) {
         return !!await this.until(condition, timeout, false);
@@ -37,13 +39,17 @@ class Wait {
             }
         } while (new Date().getTime() < finishTime);
         if (throwError) {
-            lastError.message = `${this.entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
-            for (let func of this.configuration.onFailureHooks) {
+            lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
+            for (const func of this.configuration.onFailureHooks) {
                 try {
                     await func(lastError, this.entity, condition);
                 }
                 catch (error) {
-                    console.error(`Cannot perform hook '${func.toString()}' function cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
+                    /* tslint:disable:no-console */
+                    console.warn(`Cannot perform hook '${func.toString()}' function cause of:
+                            Error message: ${error.message}
+                            Error stacktrace: ${error.stackTrace}`);
+                    /* tslint:enable:no-console */
                 }
             }
             throw lastError;

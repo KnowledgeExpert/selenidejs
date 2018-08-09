@@ -1,7 +1,7 @@
 import { By } from 'selenium-webdriver';
-import { ElementCondition } from "./elementCondition";
-import { CollectionCondition } from "./collectionCondition";
-import { DriverCondition } from "./driverCondition";
+import { CollectionCondition } from './collectionCondition';
+import { DriverCondition } from './driverCondition';
+import { ElementCondition } from './elementCondition';
 export declare namespace Conditions {
     function visibleElement(locator: By): ElementCondition;
     const elementIsSelected: ElementCondition;

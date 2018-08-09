@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import { By, WebElement } from 'selenium-webdriver';
+import { Utils } from '../../utils';
+import { Driver } from '../driver';
+import { Element } from '../element';
 import { Locator } from './locator';
-import { Element } from "../element";
-import { Driver } from "../driver";
-import { Utils } from "../../utils";
 
 
 export class ByWebElementsLocator implements Locator<Promise<WebElement[]>> {
@@ -33,7 +33,7 @@ export class ByWebElementsLocator implements Locator<Promise<WebElement[]>> {
         const context: any = Utils.isDriver(this.searchContext)
             ? (this.searchContext as Driver).webdriver
             : (this.searchContext as Element).getWebElement();
-        return await context.findElements(this.by);
+        return context.findElements(this.by);
     }
 
     toString(): string {
