@@ -13,13 +13,13 @@
 // limitations under the License.
 
 import * as path from 'path';
-import { Condition } from '../..';
-import { Utils } from '../../utils';
-import { Browser } from '../browser';
-import { Collection } from '../collection';
-import { Driver } from '../driver';
-import { Element } from '../element';
-import { OnFailureHook } from '../onFailureHook';
+import { Condition } from '../index';
+import { Utils } from '../utils';
+import { Browser } from './browser';
+import { Collection } from './collection';
+import { Driver } from './driver';
+import { Element } from './element';
+import { OnFailureHook } from './onFailureHook';
 
 
 export class Configuration {

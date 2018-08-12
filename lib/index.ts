@@ -14,7 +14,7 @@
 
 export { Browser } from './baseEntities/browser';
 export { Collection } from './baseEntities/collection';
-export { Configuration } from './baseEntities/config/configuration';
+export { Configuration } from './baseEntities/configuration';
 export { Driver } from './baseEntities/driver';
 export { Element } from './baseEntities/element';
 export { Wait } from './baseEntities/wait';

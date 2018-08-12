@@ -15,7 +15,7 @@
 import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
 import { DriverCondition } from '../conditions/driverCondition';
 import { Collection } from './collection';
-import { Configuration } from './config/configuration';
+import { Configuration } from './configuration';
 import { Driver } from './driver';
 import { Element } from './element';
 

@@ -19,7 +19,7 @@ import { be } from '../conditions/helpers/be';
 import { FullpageScreenshot } from '../queries/fullpageScreenshot';
 import { Utils } from '../utils';
 import { Collection } from './collection';
-import { Configuration } from './config/configuration';
+import { Configuration } from './configuration';
 import { Element } from './element';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
