@@ -34,14 +34,14 @@ export class Wait<T extends Driver | Element | Collection> {
     }
 
     async shouldMatch(condition: Condition<T>, timeout = this.configuration.timeout): Promise<T> {
-        return this.until(condition, timeout, true);
+        return this.until(condition, timeout);
     }
 
     async isMatch(condition: Condition<T>, timeout = this.configuration.timeout): Promise<boolean> {
-        return !!await this.until(condition, timeout, false);
+        return this.until(condition, timeout).then(res => true, err => false);
     }
 
-    private async until(condition: Condition<T>, timeout: number, throwError: boolean): Promise<T> {
+    private async until(condition: Condition<T>, timeout: number): Promise<T> {
 
         const finishTime = new Date().getTime() + timeout;
         let lastError: Error;
@@ -54,25 +54,21 @@ export class Wait<T extends Driver | Element | Collection> {
             }
         } while (new Date().getTime() < finishTime);
 
-        if (throwError) {
-            lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
+        lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
 
-            for (const func of this.configuration.onFailureHooks) {
-                try {
-                    await func(lastError, this.entity, condition);
-                } catch (error) {
-                    /* tslint:disable:no-console */
-                    console.warn(
-                        `Cannot perform hook '${func.toString()}' function cause of:
+        for (const func of this.configuration.onFailureHooks) {
+            try {
+                await func(lastError, this.entity, condition);
+            } catch (error) {
+                /* tslint:disable:no-console */
+                console.warn(
+                    `Cannot perform hook '${func.toString()}' function cause of:
                             Error message: ${error.message}
                             Error stacktrace: ${error.stackTrace}`
-                    );
-                    /* tslint:enable:no-console */
-                }
+                );
+                /* tslint:enable:no-console */
             }
-            throw lastError;
         }
-        return this.entity;
-
+        throw lastError;
     }
 }

@@ -22,12 +22,12 @@ class Wait {
         /* tslint:enable:no-string-literal */
     }
     async shouldMatch(condition, timeout = this.configuration.timeout) {
-        return this.until(condition, timeout, true);
+        return this.until(condition, timeout);
     }
     async isMatch(condition, timeout = this.configuration.timeout) {
-        return !!await this.until(condition, timeout, false);
+        return this.until(condition, timeout).then(res => true, err => false);
     }
-    async until(condition, timeout, throwError) {
+    async until(condition, timeout) {
         const finishTime = new Date().getTime() + timeout;
         let lastError;
         do {
@@ -38,23 +38,20 @@ class Wait {
                 lastError = error;
             }
         } while (new Date().getTime() < finishTime);
-        if (throwError) {
-            lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
-            for (const func of this.configuration.onFailureHooks) {
-                try {
-                    await func(lastError, this.entity, condition);
-                }
-                catch (error) {
-                    /* tslint:disable:no-console */
-                    console.warn(`Cannot perform hook '${func.toString()}' function cause of:
+        lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
+        for (const func of this.configuration.onFailureHooks) {
+            try {
+                await func(lastError, this.entity, condition);
+            }
+            catch (error) {
+                /* tslint:disable:no-console */
+                console.warn(`Cannot perform hook '${func.toString()}' function cause of:
                             Error message: ${error.message}
                             Error stacktrace: ${error.stackTrace}`);
-                    /* tslint:enable:no-console */
-                }
+                /* tslint:enable:no-console */
             }
-            throw lastError;
         }
-        return this.entity;
+        throw lastError;
     }
 }
 exports.Wait = Wait;
