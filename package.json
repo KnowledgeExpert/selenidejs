@@ -1,8 +1,8 @@
 {
-  "name": "Selenidejs",
+  "name": "selenidejs",
   "description": "Decorator for Selenium Webdriver",
   "homepage": "https://github.com/KnowledgeExpert/selenidejs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {
