@@ -149,3 +149,16 @@ Full page browser screenshot achieved via screen-and-scroll strategy (take multi
     * "hard" means -  the "wait implementation" will wait whole timeout interval
   * Default value = `1000`
   * `npm test -- --params.selenidejs.timeouts.toHardWaitInMs=2000`
+
+# How to contribute
+
+## Issues
+
+Labels to apply:
+- refactorings, code review items to be discussed or implemented later: **code review** label
+- documentation related issues: **document** label
+- tbd...
+
+## Commits
+
+- if an issue exist for commit, a commit should contain issue number in its message
