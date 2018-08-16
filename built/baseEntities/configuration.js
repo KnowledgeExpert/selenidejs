@@ -14,8 +14,8 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
-const utils_1 = require("../../utils");
-const browser_1 = require("../browser");
+const utils_1 = require("../utils");
+const browser_1 = require("./browser");
 class Configuration {
     constructor(customConfiguration) {
         this.windowWidth = customConfiguration.windowWidth

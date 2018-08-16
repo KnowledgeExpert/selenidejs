@@ -18,7 +18,7 @@ const be_1 = require("../conditions/helpers/be");
 const fullpageScreenshot_1 = require("../queries/fullpageScreenshot");
 const utils_1 = require("../utils");
 const collection_1 = require("./collection");
-const configuration_1 = require("./config/configuration");
+const configuration_1 = require("./configuration");
 const element_1 = require("./element");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
@@ -89,7 +89,7 @@ class Driver {
     }
     /* tslint:disable:ban-types */
     async executeScript(script, ...args) {
-        return this.webdriver.executeScript(script, args);
+        return this.webdriver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
     async nextTab() {

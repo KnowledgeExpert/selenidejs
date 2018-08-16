@@ -196,6 +196,7 @@ export class Element {
         return this.locator.toString();
     }
 
+
     // private async fireEvent(...events: string[]) {
     //     //usage - await this.fireEvent('focus', 'keydown', 'keypress', 'input', 'keyup', 'change', 'blur');
     //     const jsCodeToTriggerEvent: string =

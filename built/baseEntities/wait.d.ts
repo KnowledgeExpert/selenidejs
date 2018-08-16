@@ -1,6 +1,6 @@
 import { Condition } from '../conditions/condition';
 import { Collection } from './collection';
-import { Configuration } from './config/configuration';
+import { Configuration } from './configuration';
 import { Driver } from './driver';
 import { Element } from './element';
 export declare class Wait<T extends Driver | Element | Collection> {

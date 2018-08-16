@@ -16,16 +16,20 @@ import { Element } from '../baseEntities/element';
 import { Command } from './command';
 
 export class ClickByJs implements Command<Element> {
+
+    static getClickOnElementWithOffsetScript(offsetX: number, offsetY: number): string {
+        return `arguments[0].dispatchEvent(new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true,
+            'clientX': arguments[0].getClientRects()[0].left + ${offsetX},
+            'clientY': arguments[0].getClientRects()[0].top + ${offsetY}
+        }))`;
+    }
+
     async perform(entity: Element, ...args: any[]): Promise<void> {
         const webelement = await entity.getWebElement();
-        const driver = entity.driver;
-        const script =
-            `return (function(webelement) {
-                    const clickEvent  = document.createEvent('MouseEvents');
-                    clickEvent.initEvent('click', true, true);
-                    arguments[0].dispatchEvent(clickEvent);
-                })(arguments[0]);`;
-
-        await driver.executeScript(script, webelement);
+        await entity.driver.executeScript(ClickByJs.getClickOnElementWithOffsetScript(0, 0), webelement);
     }
+
 }

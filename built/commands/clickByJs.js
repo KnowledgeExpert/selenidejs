@@ -14,15 +14,18 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 class ClickByJs {
+    static getClickOnElementWithOffsetScript(offsetX, offsetY) {
+        return `arguments[0].dispatchEvent(new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true,
+            'clientX': arguments[0].getClientRects()[0].left + ${offsetX},
+            'clientY': arguments[0].getClientRects()[0].top + ${offsetY}
+        }))`;
+    }
     async perform(entity, ...args) {
         const webelement = await entity.getWebElement();
-        const driver = entity.driver;
-        const script = `return (function(webelement) {
-                    const clickEvent  = document.createEvent('MouseEvents');
-                    clickEvent.initEvent('click', true, true);
-                    arguments[0].dispatchEvent(clickEvent);
-                })(arguments[0]);`;
-        await driver.executeScript(script, webelement);
+        await entity.driver.executeScript(ClickByJs.getClickOnElementWithOffsetScript(0, 0), webelement);
     }
 }
 exports.ClickByJs = ClickByJs;

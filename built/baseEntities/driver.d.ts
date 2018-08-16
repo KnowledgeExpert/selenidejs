@@ -2,7 +2,7 @@
 import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
 import { DriverCondition } from '../conditions/driverCondition';
 import { Collection } from './collection';
-import { Configuration } from './config/configuration';
+import { Configuration } from './configuration';
 import { Element } from './element';
 import { Wait } from './wait';
 export declare class Driver {

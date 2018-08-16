@@ -21,7 +21,6 @@ export class ContextClick implements Command<Element> {
         const webelement = await entity.getWebElement();
         const driver = entity.driver;
 
-        await driver.actions().mouseMove(webelement).perform();
-        await driver.actions().click(Button.RIGHT).perform();
+        await driver.webdriver.actions().click(webelement, String(Button.RIGHT)).perform();
     }
 }

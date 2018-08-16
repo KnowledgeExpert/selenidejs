@@ -1,10 +1,5 @@
 {
   "extends": "tslint:recommended",
-  "linterOptions": {
-    "include": [
-      "*test.ts"
-    ]
-  },
   "rules": {
     "adjacent-overload-signatures": true,
     "member-access": [

@@ -17,7 +17,7 @@ class PressKey {
     async perform(entity, ...args) {
         const webelement = await entity.getWebElement();
         const key = args[0];
-        await webelement.sendKeys(key);
+        await webelement.sendKeys(String(key));
     }
 }
 exports.PressKey = PressKey;

@@ -25,4 +25,6 @@ export namespace be {
     export const visible = Conditions.elementIsVisible;
 
     export const hidden = Conditions.elementIsHidden;
+
+    export const focused = Conditions.elementIsFocused;
 }

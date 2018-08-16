@@ -113,7 +113,7 @@ export class Driver {
 
     /* tslint:disable:ban-types */
     async executeScript(script: string | Function, ...args: any[]) {
-        return this.webdriver.executeScript(script, args);
+        return this.webdriver.executeScript(script, ...args);
     }
 
     /* tslint:enable:ban-types */

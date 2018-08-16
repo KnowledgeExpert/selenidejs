@@ -5,4 +5,5 @@ export declare namespace be {
     const present: ElementCondition;
     const visible: ElementCondition;
     const hidden: ElementCondition;
+    const focused: ElementCondition;
 }

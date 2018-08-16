@@ -87,7 +87,7 @@ var Browser;
     Browser.isNot = isNot;
     /* tslint:disable:ban-types */
     async function executeScript(script, ...args) {
-        return Browser.selenideDriver.executeScript(script, args);
+        return Browser.selenideDriver.executeScript(script, ...args);
     }
     Browser.executeScript = executeScript;
     /* tslint:enable:ban-types */

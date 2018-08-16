@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const selenium_webdriver_1 = require("selenium-webdriver");
 const conditionDoesNotMatchError_1 = require("../errors/conditionDoesNotMatchError");
 const collectionCondition_1 = require("./collectionCondition");
 const driverCondition_1 = require("./driverCondition");
@@ -53,6 +54,19 @@ var Conditions;
         },
         toString: function () {
             return 'be absent';
+        }
+    });
+    Conditions.elementIsFocused = new elementCondition_1.ElementCondition({
+        matches: async function (element) {
+            const script = 'return document.activeElement';
+            const focusedElement = await element.driver.executeScript(script);
+            if (focusedElement && selenium_webdriver_1.WebElement.equals(focusedElement, await element.getWebElement())) {
+                return element;
+            }
+            throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
+        },
+        toString: function () {
+            return 'be focused';
         }
     });
     Conditions.elementIsPresent = new elementCondition_1.ElementCondition({

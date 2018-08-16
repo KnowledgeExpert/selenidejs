@@ -1,11 +1,26 @@
-import { Describe, It } from 'jasmine-cookies';
-import { Browser } from '../../lib/baseEntities/browser';
-import { Element } from '../../lib/baseEntities/element';
-import { TestUtils } from '../utils/testUtils';
-import { Given } from '../utils/given';
-import { When } from '../utils/when';
-import { CannotPerformActionError } from '../../lib/errors/cannotPerformActionError';
+// Copyright 2018 Knowledge Expert SA
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
+import { Describe, It } from 'jasmine-cookies';
+import { Browser } from '../../../lib/baseEntities/browser';
+import { Element } from '../../../lib/baseEntities/element';
+import { Given } from '../../utils/given';
+import { When } from '../../utils/when';
+import '../base';
+
+/* tslint:disable:space-before-function-paren */
+/* tslint:disable:no-magic-numbers */
 
 Describe('Element Before Action Hook', () => {
 
@@ -18,16 +33,7 @@ Describe('Element Before Action Hook', () => {
     };
 
     beforeAll(async () => {
-        Browser.setDriver(TestUtils.buildWebDriver());
-        TestUtils.startServer();
         Browser.config.timeout = 0.1;
-        Browser.config.onFailureHooks = [];
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
-    });
-
-    afterAll(async () => {
-        await Browser.quit();
-        TestUtils.shutdownServer();
     });
 
     beforeEach(async () => {
@@ -37,18 +43,16 @@ Describe('Element Before Action Hook', () => {
 
     It('should be called on success action', async () => {
         Element.beforeActionHooks = [hook.before];
-        await Given.openedEmptyPage();
-        await When.withBody('<h1 id=\'test\'>Test</h1>');
+        await Given.openedEmptyPageWithBody('<h1>Test</h1>');
 
-        await Browser.element('#test').click();
+        await Browser.element('h1').click();
         expect(hook.before).toHaveBeenCalled();
     });
 
     It('should be called on success with correct arguments', async () => {
         Element.beforeActionHooks = [hook.before];
-        await Given.openedEmptyPage();
-        await When.withBody('<h1 id=\'test\'>Test</h1>');
-        const element = Browser.element('#test');
+        await Given.openedEmptyPageWithBody('<h1>Test</h1>');
+        const element = Browser.element('h1');
 
         await element.click();
         expect(hook.before).toHaveBeenCalledWith(element, 'click');
@@ -94,17 +98,7 @@ Describe('Element After Action Hook', () => {
     };
 
     beforeAll(async () => {
-        Browser.setDriver(TestUtils.buildWebDriver());
-        TestUtils.startServer();
         Browser.config.timeout = 0.1;
-        Browser.config.onFailureHooks = [];
-
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
-    });
-
-    afterAll(async () => {
-        await Browser.quit();
-        TestUtils.shutdownServer();
     });
 
     beforeEach(async () => {

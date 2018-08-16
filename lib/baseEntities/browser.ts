@@ -96,7 +96,7 @@ export namespace Browser {
 
     /* tslint:disable:ban-types */
     export async function executeScript(script: string | Function, ...args: any[]) {
-        return selenideDriver.executeScript(script, args);
+        return selenideDriver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
 

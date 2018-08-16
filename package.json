@@ -6,12 +6,12 @@
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {
-    "@types/fs-extra": "5.0.3",
+    "@types/fs-extra": "5.0.1",
     "@types/selenium-webdriver": "3.0.10",
     "fs-extra": "6.0.1",
     "jimp": "0.2.28",
     "merge-img": "2.1.2",
-    "selenium-webdriver": "4.0.0-alpha.1",
+    "selenium-webdriver": "3.6.0",
     "typescript": "2.5.3",
     "xpather": "0.0.1"
   },
@@ -29,7 +29,7 @@
     "startserver": "http-server ./resources -p 4445",
     "pretest": "npm run clean && npm run compile-test",
     "lint": "tslint --project lib",
-    "test": "nyc --reporter=lcov --check-coverage --lines 50 --functions 25 --branches 30 jasmine ./built/test/**/*.test.js",
+    "test": "nyc jasmine --config=./test/jasmine.json",
     "build": "npm run lint && npm run test && npm run clean && npm run compile"
   },
   "repository": {

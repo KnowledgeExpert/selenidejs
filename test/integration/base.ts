@@ -12,13 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Element } from '../baseEntities/element';
-import { Command } from './command';
+/* tslint:disable:space-before-function-paren */
+/* tslint:disable:no-magic-numbers */
 
-export class PressKey implements Command<Element> {
-    async perform(entity: Element, ...args: any[]): Promise<void> {
-        const webelement = await entity.getWebElement();
-        const key = args[0];
-        await webelement.sendKeys(String(key));
-    }
-}
+import { Browser } from '../../lib/baseEntities/browser';
+import { TestUtils } from '../utils/testUtils';
+
+beforeAll(async () => {
+    Browser.setDriver(TestUtils.buildWebDriver());
+    Browser.config.onFailureHooks = [];
+    TestUtils.startServer();
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
+});
+
+afterAll(async () => {
+    await Browser.quit();
+    TestUtils.shutdownServer();
+});

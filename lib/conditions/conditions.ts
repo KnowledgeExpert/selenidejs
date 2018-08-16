@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By } from 'selenium-webdriver';
+import { By, WebElement } from 'selenium-webdriver';
 import { Collection } from '../baseEntities/collection';
 import { Driver } from '../baseEntities/driver';
 import { Element } from '../baseEntities/element';
@@ -58,6 +58,20 @@ export namespace Conditions {
         },
         toString: function () {
             return 'be absent';
+        }
+    });
+
+    export const elementIsFocused: ElementCondition = new ElementCondition({
+        matches: async function (element: Element) {
+            const script = 'return document.activeElement';
+            const focusedElement = await element.driver.executeScript(script) as WebElement;
+            if (focusedElement && WebElement.equals(focusedElement, await element.getWebElement())) {
+                return element;
+            }
+            throw new ConditionDoesNotMatchError(this.toString());
+        },
+        toString: function () {
+            return 'be focused';
         }
     });
 
