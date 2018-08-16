@@ -145,7 +145,7 @@ var Conditions;
                 }
                 catch (ignored) {
                 }
-                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}`);
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}'`);
             },
             toString: function () {
                 return `have exact text '${text}'`;

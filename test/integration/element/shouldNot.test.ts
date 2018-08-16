@@ -21,34 +21,34 @@ import '../base';
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-Describe('Element "Should" method', () => {
+Describe('Element "ShouldNot" method', () => {
 
     beforeAll(async () => {
         Browser.config.timeout = 1;
     });
 
     It('should not throw error if successful', async () => {
-        await Given.openedEmptyPageWithBody('<span id="test">Test text</span>');
+        await Given.openedEmptyPageWithBody('<span id="test">Test</span>');
 
-        await Browser.element('#test').should(have.exactText('Test text')).catch(
+        await Browser.element('#test').shouldNot(have.exactText('Test text')).catch(
             error => fail('Expected should to be successful')
         );
     });
 
     It('should return element if successful', async () => {
-        await Given.openedEmptyPageWithBody('<span id="test">Test text</span>');
+        await Given.openedEmptyPageWithBody('<span id="test">Test</span>');
 
         const element = Browser.element('#test');
-        await element.should(have.exactText('Test text')).then(
+        await element.shouldNot(have.exactText('Test text')).then(
             result => expect(result).toBe(element),
             error => fail('Expected should to be successful')
         );
     });
 
     It('should throw error if failed', async () => {
-        await Given.openedEmptyPageWithBody('<span id="test">Test text</span>');
+        await Given.openedEmptyPageWithBody('<span id="test">Test</span>');
 
-        await Browser.element('#test').should(have.exactText('Invalid')).then(
+        await Browser.element('#test').shouldNot(have.exactText('Test')).then(
             () => fail('Expected should to be failed'),
             ignored => {}
         );
@@ -57,10 +57,10 @@ Describe('Element "Should" method', () => {
     It('should throw error with correct message if failed', async () => {
         await Given.openedEmptyPageWithBody('<span id="test">Test</span>');
 
-        await Browser.element('#test').should(have.exactText('Invalid')).then(
+        await Browser.element('#test').shouldNot(have.exactText('Test')).then(
             () => fail('Expected should to be failed'),
             error => expect(error.message).toBe(
-                "browser.find(By(css selector, #test)) should have exact text 'Invalid', but was 'Test'. " +
+                "browser.find(By(css selector, #test)) should not have exact text 'Test'. " +
                 'Wait timed out after 1ms'
             )
         );

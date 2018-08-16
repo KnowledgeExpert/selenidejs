@@ -149,7 +149,7 @@ export namespace Conditions {
                     }
                 } catch (ignored) {
                 }
-                throw new ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}`);
+                throw new ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}'`);
             },
             toString: function () {
                 return `have exact text '${text}'`;

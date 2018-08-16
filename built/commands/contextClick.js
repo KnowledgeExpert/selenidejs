@@ -19,10 +19,6 @@ class ContextClick {
         const webelement = await entity.getWebElement();
         const driver = entity.driver;
         await driver.webdriver.actions().click(webelement, String(selenium_webdriver_1.Button.RIGHT)).perform();
-        // await driver.actions().mouseMove(webelement).perform();
-        // const ms = 500;
-        // await driver.webdriver.sleep(ms);
-        // await driver.actions().click(Button.RIGHT).perform();
     }
 }
 exports.ContextClick = ContextClick;
