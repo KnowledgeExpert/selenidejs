@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { Describe, It } from 'jasmine-cookies';
+import { preprocessDirectives } from 'tslint/lib/verify/parse';
 import { Browser } from '../../../lib/baseEntities/browser';
 import { be, have } from '../../../lib/index';
 import { Given } from '../../utils/given';
@@ -102,14 +103,32 @@ Describe('Element', () => {
         expect(await Browser.element('#hoverable').text()).toBe('Its not hover');
     });
 
-    It('should performActionOnVisible', async () => {
+    It('should perform action without waiting for visibility if possible', async () => {
+        await Given.openedEmptyPageWithBody('<input id="test" />');
+
+        await Browser.element('input').click().catch(error => fail(error.message));
+    });
+
+    It('should wait for visibility if possible', async () => {
         Browser.config.timeout = 2000;
-        await Given.openedEmptyPageWithBody('<input style="display:none" />');
+        await Given.openedEmptyPageWithBody('<input id="test" style="display:none" />');
         await Browser.executeScript(
-            'setTimeout(_ => { document.getElementsByTagName("input")[0].style = "display:block"; }, 1000);'
+            'setTimeout(_ => { document.getElementById("test").style = "display:block"; }, 1000);'
         );
 
         await Browser.element('input').click().catch(error => fail(error.message));
+    });
+
+    It('should fail with reason if visible but action fails', async () => {
+        await Given.openedEmptyPageWithBody('<label id="test">Test</label>');
+
+        await Browser.element('#test').setValue('')
+            .then(
+                () => fail('Expected: error to be thrown'),
+                error => expect(error.message).toContain(
+                    'reason: invalid element state: Element must be user-editable in order to clear it.'
+                )
+            );
     });
 
     It('should be able to scrollIntoView', async () => {

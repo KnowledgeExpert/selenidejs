@@ -16,7 +16,6 @@ import { Describe, It } from 'jasmine-cookies';
 import { be, Browser, Collection, Condition, Driver, have } from '../../lib';
 import { Element } from '../../lib/baseEntities/element';
 import { Given } from '../utils/given';
-import { When } from '../utils/when';
 import './base';
 
 /* tslint:disable:space-before-function-paren */
@@ -38,12 +37,8 @@ Describe('On Failure Hook', () => {
         Browser.config.timeout = 1;
     });
 
-    beforeEach(async () => {
-        spyOn(hook, 'onFailure');
-        spyOn(hook, 'brokenOnFailure');
-    });
-
     It('should not be called on success Element command', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPageWithBody('<h1 id="test">Test</h1>');
 
@@ -52,6 +47,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should not interrupt flow if hook is broken', async () => {
+        spyOn(hook, 'brokenOnFailure');
         Browser.config.onFailureHooks = [hook.brokenOnFailure];
         await Given.openedEmptyPage();
 
@@ -63,6 +59,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Element command', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPage();
 
@@ -73,6 +70,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Element command with correct arguments', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPageWithBody('<h1 id="test">Test</h1>');
         const element = Browser.element('#test');
@@ -87,6 +85,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Element assert', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPage();
 
@@ -97,6 +96,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Element assert with correct arguments', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPage();
         const element = Browser.element('#non-existing-element');
@@ -114,6 +114,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Collection assert', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPageWithBody('<h1 id="test">Test</h1>');
         await Browser.all('#test').should(have.size(0)).then(
@@ -123,6 +124,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Collection assert with correct arguments', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPageWithBody('<h1 id="test">Test</h1>');
         const elements = Browser.all('#test');
@@ -131,7 +133,7 @@ Describe('On Failure Hook', () => {
             () => fail('Assertion should fail when failed'),
             error => expect(hook.onFailure).toHaveBeenCalledWith(
                 new Error(
-                    "browser.all(By(css selector, #test)) should have size '0', but was '1'. " +
+                    'browser.all(By(css selector, #test)) should have size \'0\', but was \'1\'. ' +
                     'Wait timed out after 1ms'
                 ),
                 elements,
@@ -141,6 +143,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Driver assert', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPage();
 
@@ -151,6 +154,7 @@ Describe('On Failure Hook', () => {
     });
 
     It('should be called on failed Driver assert with correct arguments', async () => {
+        spyOn(hook, 'onFailure');
         Browser.config.onFailureHooks = [hook.onFailure];
         await Given.openedEmptyPage();
         const condition = have.url('invalid');
@@ -159,7 +163,7 @@ Describe('On Failure Hook', () => {
             () => fail('Assertion should fail when failed'),
             error => expect(hook.onFailure).toHaveBeenCalledWith(
                 new Error(
-                    "browser should have url 'invalid', but was 'http://localhost:4444/empty.html'. " +
+                    'browser should have url \'invalid\', but was \'http://localhost:4444/empty.html\'. ' +
                     'Wait timed out after 1ms'
                 ),
                 Browser.selenideDriver,
