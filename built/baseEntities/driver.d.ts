@@ -26,8 +26,10 @@ export declare class Driver {
     is(condition: DriverCondition, timeout?: number): Promise<boolean>;
     isNot(condition: DriverCondition, timeout?: number): Promise<boolean>;
     executeScript(script: string | Function, ...args: any[]): Promise<{}>;
+    getTabs(): Promise<string[]>;
     nextTab(): Promise<void>;
     previousTab(): Promise<void>;
+    switchToTab(tabId: string): Promise<void>;
     switchToFrame(frameElement: Element): Promise<void>;
     switchToDefaultFrame(): Promise<void>;
     clearCacheAndCookies(): Promise<void>;

@@ -92,6 +92,9 @@ class Driver {
         return this.webdriver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
+    async getTabs() {
+        return this.webdriver.getAllWindowHandles();
+    }
     async nextTab() {
         const currentTab = await this.webdriver.getWindowHandle();
         const allTabs = await this.webdriver.getAllWindowHandles();
@@ -107,6 +110,9 @@ class Driver {
         await this.webdriver
             .switchTo()
             .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
+    }
+    async switchToTab(tabId) {
+        await this.webdriver.switchTo().window(tabId);
     }
     async switchToFrame(frameElement) {
         await frameElement.should(be_1.be.visible);

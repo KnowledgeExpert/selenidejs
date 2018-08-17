@@ -100,12 +100,20 @@ export namespace Browser {
     }
     /* tslint:enable:ban-types */
 
+    export async function getTabs() {
+        return selenideDriver.getTabs();
+    }
+
     export async function nextTab() {
         return selenideDriver.nextTab();
     }
 
     export async function previousTab() {
         return selenideDriver.previousTab();
+    }
+
+    export async function switchToTab(tabId: string) {
+        return selenideDriver.switchToTab(tabId);
     }
 
     export async function switchToFrame(frameElement: Element) {

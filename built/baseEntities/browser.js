@@ -91,6 +91,10 @@ var Browser;
     }
     Browser.executeScript = executeScript;
     /* tslint:enable:ban-types */
+    async function getTabs() {
+        return Browser.selenideDriver.getTabs();
+    }
+    Browser.getTabs = getTabs;
     async function nextTab() {
         return Browser.selenideDriver.nextTab();
     }
@@ -99,6 +103,10 @@ var Browser;
         return Browser.selenideDriver.previousTab();
     }
     Browser.previousTab = previousTab;
+    async function switchToTab(tabId) {
+        return Browser.selenideDriver.switchToTab(tabId);
+    }
+    Browser.switchToTab = switchToTab;
     async function switchToFrame(frameElement) {
         return Browser.selenideDriver.switchToFrame(frameElement);
     }

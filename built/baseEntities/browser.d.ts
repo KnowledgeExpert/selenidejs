@@ -25,8 +25,10 @@ export declare namespace Browser {
     function is(condition: DriverCondition, timeout?: number): Promise<boolean>;
     function isNot(condition: DriverCondition, timeout?: number): Promise<boolean>;
     function executeScript(script: string | Function, ...args: any[]): Promise<{}>;
+    function getTabs(): Promise<string[]>;
     function nextTab(): Promise<void>;
     function previousTab(): Promise<void>;
+    function switchToTab(tabId: string): Promise<void>;
     function switchToFrame(frameElement: Element): Promise<void>;
     function switchToDefaultFrame(): Promise<void>;
     function clearCacheAndCookies(): Promise<void>;

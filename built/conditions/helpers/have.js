@@ -35,9 +35,7 @@ var have;
     }
     have.attribute = attribute;
     function exactAttribute(attributeName, attributeValue) {
-        return attributeValue === undefined
-            ? conditions_1.Conditions.elementHasAttribute(attributeName)
-            : conditions_1.Conditions.elementHasAttributeWithExactValue(attributeName, attributeValue);
+        return conditions_1.Conditions.elementHasAttributeWithExactValue(attributeName, attributeValue);
     }
     have.exactAttribute = exactAttribute;
     function value(value) {
@@ -53,17 +51,17 @@ var have;
     }
     have.size = size;
     function texts(...texts) {
-        return conditions_1.Conditions.collectionHasExactTexts(texts);
+        return conditions_1.Conditions.collectionHasTexts(texts);
     }
     have.texts = texts;
-    function url(urlPart) {
-        return conditions_1.Conditions.browserUrlContains(urlPart);
-    }
-    have.url = url;
     function exactTexts(...texts) {
         return conditions_1.Conditions.collectionHasExactTexts(texts);
     }
     have.exactTexts = exactTexts;
+    function url(urlPart) {
+        return conditions_1.Conditions.browserUrlContains(urlPart);
+    }
+    have.url = url;
     function tabsSize(size) {
         return conditions_1.Conditions.browserTabsHaveSize(size);
     }

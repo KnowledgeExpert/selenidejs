@@ -45,7 +45,7 @@ export namespace Conditions {
         });
     }
 
-    export const elementIsSelected: ElementCondition = elementHasAttribute('elementIsSelected');
+    export const elementIsSelected: ElementCondition = elementHasAttribute('selected');
 
     export const elementIsAbsent: ElementCondition = new ElementCondition({
         matches: async function (element: Element) {
@@ -64,8 +64,9 @@ export namespace Conditions {
     export const elementIsFocused: ElementCondition = new ElementCondition({
         matches: async function (element: Element) {
             const script = 'return document.activeElement';
+            const currentElement = await element.getWebElement();
             const focusedElement = await element.driver.executeScript(script) as WebElement;
-            if (focusedElement && WebElement.equals(focusedElement, await element.getWebElement())) {
+            if (focusedElement && WebElement.equals(focusedElement, currentElement)) {
                 return element;
             }
             throw new ConditionDoesNotMatchError(this.toString());
@@ -166,7 +167,9 @@ export namespace Conditions {
                     }
                 } catch (ignored) {
                 }
-                throw new ConditionDoesNotMatchError(`SelenideElement ${element.toString()} should have attribute '${attributeName}'`);
+                throw new ConditionDoesNotMatchError(
+                    `SelenideElement ${element.toString()} should have attribute '${attributeName}'`
+                );
             },
             toString: function () {
                 return `have attribute '${attributeName}'`;

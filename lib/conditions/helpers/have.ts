@@ -39,10 +39,8 @@ export namespace have {
             : Conditions.elementHasAttributeWithValue(attributeName, attributeValue);
     }
 
-    export function exactAttribute(attributeName: string, attributeValue?: string | number): ElementCondition {
-        return attributeValue === undefined
-            ? Conditions.elementHasAttribute(attributeName)
-            : Conditions.elementHasAttributeWithExactValue(attributeName, attributeValue);
+    export function exactAttribute(attributeName: string, attributeValue: string | number): ElementCondition {
+        return Conditions.elementHasAttributeWithExactValue(attributeName, attributeValue);
     }
 
     export function value(value: string | number) {
@@ -58,15 +56,15 @@ export namespace have {
     }
 
     export function texts(...texts: string[]): CollectionCondition {
+        return Conditions.collectionHasTexts(texts);
+    }
+
+    export function exactTexts(...texts: string[]): CollectionCondition {
         return Conditions.collectionHasExactTexts(texts);
     }
 
     export function url(urlPart: string): DriverCondition {
         return Conditions.browserUrlContains(urlPart);
-    }
-
-    export function exactTexts(...texts: string[]): CollectionCondition {
-        return Conditions.collectionHasExactTexts(texts);
     }
 
     export function tabsSize(size: number): DriverCondition {

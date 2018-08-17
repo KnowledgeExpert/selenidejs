@@ -41,7 +41,7 @@ var Conditions;
         });
     }
     Conditions.visibleElement = visibleElement;
-    Conditions.elementIsSelected = elementHasAttribute('elementIsSelected');
+    Conditions.elementIsSelected = elementHasAttribute('selected');
     Conditions.elementIsAbsent = new elementCondition_1.ElementCondition({
         matches: async function (element) {
             try {
@@ -59,8 +59,9 @@ var Conditions;
     Conditions.elementIsFocused = new elementCondition_1.ElementCondition({
         matches: async function (element) {
             const script = 'return document.activeElement';
+            const currentElement = await element.getWebElement();
             const focusedElement = await element.driver.executeScript(script);
-            if (focusedElement && selenium_webdriver_1.WebElement.equals(focusedElement, await element.getWebElement())) {
+            if (focusedElement && selenium_webdriver_1.WebElement.equals(focusedElement, currentElement)) {
                 return element;
             }
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
