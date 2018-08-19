@@ -17,13 +17,12 @@ import { be } from '../conditions/helpers/be';
 import { CannotPerformActionError } from '../errors/cannotPerformActionError';
 import { Command } from './command';
 
-export class PerformActionOnVisible implements Command<Element> {
+export class ActionPerformer implements Command<Element> {
     async perform(element: Element, ...args: any[]): Promise<void> {
         const actionName = args[0];
         const action = args[1];
         const actionArgumentsStartIndex = 2;
         const actionArguments = args.slice(actionArgumentsStartIndex);
-        const config = element.driver.config;
 
         try {
             await action(element, actionArguments);
@@ -34,21 +33,26 @@ export class PerformActionOnVisible implements Command<Element> {
             } catch (error) {
                 error.message =
                     `For element ${element.toString()}: cannot perform ${actionName} reason: ${error.message}`;
-
-                for (const func of config.onFailureHooks) {
-                    try {
-                        await func(error, element);
-                    } catch (hookError) {
-                        /* tslint:disable:no-console */
-                        console.warn(
-                            `Cannot perform hook '${func.toString()}' function cause of:
-                                Error message: ${hookError.message}
-                                Error stacktrace: ${hookError.stackTrace}`);
-                        /* tslint:enable:no-console */
-                    }
-                }
+                await this.executeOnFailureHooks(element, error);
 
                 throw new CannotPerformActionError(error.message);
+            }
+        }
+    }
+
+    private async executeOnFailureHooks(element: Element, error): Promise<void> {
+        const config = element.driver.config;
+
+        for (const func of config.onFailureHooks) {
+            try {
+                await func(error, element);
+            } catch (hookError) {
+                /* tslint:disable:no-console */
+                console.warn(
+                    `Cannot perform hook '${func.toString()}' function cause of:
+                                Error message: ${hookError.message}
+                                Error stacktrace: ${hookError.stackTrace}`);
+                /* tslint:enable:no-console */
             }
         }
     }
