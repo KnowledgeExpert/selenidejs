@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import { By, Key, WebElement } from 'selenium-webdriver';
+import { ActionPerformer } from '../commands/ActionPerformer';
 import { Click } from '../commands/click';
 import { ClickByJs } from '../commands/clickByJs';
 import { ContextClick } from '../commands/contextClick';
 import { DoubleClick } from '../commands/doubleClick';
 import { Hover } from '../commands/hover';
-import { PerformActionOnVisible } from '../commands/performActionOnVisible';
 import { PressKey } from '../commands/pressKey';
 import { ScrollIntoView } from '../commands/scrollIntoView';
 import { SendKeys } from '../commands/sendKeys';
@@ -57,62 +57,62 @@ export class Element {
 
     @ElementActionHooks
     async click() {
-        await new PerformActionOnVisible().perform(this, 'click', new Click().perform);
+        await new ActionPerformer().perform(this, 'click', new Click().perform);
     }
 
     @ElementActionHooks
     async clickByJS() {
-        await new PerformActionOnVisible().perform(this, 'clickByJs', new ClickByJs().perform);
+        await new ActionPerformer().perform(this, 'clickByJs', new ClickByJs().perform);
     }
 
     @ElementActionHooks
     async setValue(value: string | number) {
-        await new PerformActionOnVisible().perform(this, 'setValue', new SetValue().perform, value);
+        await new ActionPerformer().perform(this, 'setValue', new SetValue().perform, value);
     }
 
     @ElementActionHooks
     async setValueByJS(value: string | number) {
-        await new PerformActionOnVisible().perform(this, 'setValueByJS', new SetValueByJs().perform, value);
+        await new ActionPerformer().perform(this, 'setValueByJS', new SetValueByJs().perform, value);
     }
 
     @ElementActionHooks
     async sendKeys(value: string | number) {
-        await new PerformActionOnVisible().perform(this, 'sendKeys', new SendKeys().perform, value);
+        await new ActionPerformer().perform(this, 'sendKeys', new SendKeys().perform, value);
     }
 
     @ElementActionHooks
     async doubleClick() {
-        await new PerformActionOnVisible().perform(this, 'doubleClick', new DoubleClick().perform);
+        await new ActionPerformer().perform(this, 'doubleClick', new DoubleClick().perform);
     }
 
     @ElementActionHooks
     async hover() {
-        await new PerformActionOnVisible().perform(this, 'hover', new Hover().perform);
+        await new ActionPerformer().perform(this, 'hover', new Hover().perform);
     }
 
     @ElementActionHooks
     async contextClick() {
-        await new PerformActionOnVisible().perform(this, 'contextClick', new ContextClick().perform);
+        await new ActionPerformer().perform(this, 'contextClick', new ContextClick().perform);
     }
 
     @ElementActionHooks
     async pressEnter() {
-        await new PerformActionOnVisible().perform(this, 'pressEnter', new PressKey().perform, Key.ENTER);
+        await new ActionPerformer().perform(this, 'pressEnter', new PressKey().perform, Key.ENTER);
     }
 
     @ElementActionHooks
     async pressEscape() {
-        await new PerformActionOnVisible().perform(this, 'pressEscape', new PressKey().perform, Key.ESCAPE);
+        await new ActionPerformer().perform(this, 'pressEscape', new PressKey().perform, Key.ESCAPE);
     }
 
     @ElementActionHooks
     async pressTab() {
-        await new PerformActionOnVisible().perform(this, 'pressTab', new PressKey().perform, Key.TAB);
+        await new ActionPerformer().perform(this, 'pressTab', new PressKey().perform, Key.TAB);
     }
 
     @ElementActionHooks
     async scrollIntoView() {
-        await new PerformActionOnVisible().perform(this, 'scrollIntoView', new ScrollIntoView().perform);
+        await new ActionPerformer().perform(this, 'scrollIntoView', new ScrollIntoView().perform);
     }
 
     async should(condition: ElementCondition, timeout?: number): Promise<Element> {
