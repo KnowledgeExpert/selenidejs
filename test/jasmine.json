@@ -1,7 +1,8 @@
 {
   "spec_dir": "./built/test",
   "spec_files": [
-    "integration/**/*.test.js"
+    "integration/**/*.test.js",
+    "unit/**/*.test.js"
   ],
   "helpers": [
     "utils/**/*.js"

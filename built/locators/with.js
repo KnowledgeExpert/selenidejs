@@ -16,27 +16,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 var With;
 (function (With) {
-    const NORMALIZE_SPACE_XPATH = "normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))";
+    const NORMALIZE_SPACE_XPATH = 'normalize-space(translate(string(.), "\t\n\r\u00a0", "    "))';
     function type(type) {
-        return selenium_webdriver_1.By.xpath(`//*[@type = '${type}']`);
+        return selenium_webdriver_1.By.xpath(`//*[@type = "${type}"]`);
     }
     With.type = type;
     function value(value) {
-        return selenium_webdriver_1.By.xpath(`//*[@value = '${value}']`);
+        return selenium_webdriver_1.By.xpath(`//*[@value = "${value}"]`);
     }
     With.value = value;
     /* tslint:disable:prefer-template */
     function partialId(...idParts) {
-        return selenium_webdriver_1.By.xpath('//*[' + idParts.map(idPart => `contains(@id, '${idPart}')`).join(' and ') + ']');
+        return selenium_webdriver_1.By.xpath('//*[' + idParts.map(idPart => `contains(@id, "${idPart}")`).join(' and ') + ']');
     }
     With.partialId = partialId;
     /* tslint:enable:prefer-template */
     function text(text) {
-        return selenium_webdriver_1.By.xpath(`.//*/text()[contains(${NORMALIZE_SPACE_XPATH}, "${text}")]/parent::*`);
+        return selenium_webdriver_1.By.xpath(`//*/text()[contains(${NORMALIZE_SPACE_XPATH}, "${text}")]/parent::*`);
     }
     With.text = text;
     function exactText(text) {
-        return selenium_webdriver_1.By.xpath(`.//*/text()[${NORMALIZE_SPACE_XPATH} = "${text}"]/parent::*`);
+        return selenium_webdriver_1.By.xpath(`//*/text()[${NORMALIZE_SPACE_XPATH} = "${text}"]/parent::*`);
     }
     With.exactText = exactText;
     function id(id) {
@@ -60,8 +60,12 @@ var With;
     }
     With.css = css;
     function attribute(attributeName, attributeValue) {
-        return selenium_webdriver_1.By.xpath(`.//*[@${attributeName} = '${attributeValue}']`);
+        return selenium_webdriver_1.By.xpath(`.//*[contains(@${attributeName}, "${attributeValue}")]`);
     }
     With.attribute = attribute;
+    function exactAttribute(attributeName, attributeValue) {
+        return selenium_webdriver_1.By.xpath(`.//*[@${attributeName} = "${attributeValue}"]`);
+    }
+    With.exactAttribute = exactAttribute;
 })(With = exports.With || (exports.With = {}));
 //# sourceMappingURL=with.js.map
