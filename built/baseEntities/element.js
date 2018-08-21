@@ -98,7 +98,7 @@ class Element {
         return this.getWebElement().then(result => result.isDisplayed(), err => false);
     }
     async isPresent() {
-        return this.getWebElement().then(result => !!result, err => false);
+        return this.getWebElement().then(result => true, err => false);
     }
     async isAbsent() {
         return this.isPresent().then(result => !result);
@@ -106,6 +106,9 @@ class Element {
     async text() {
         await this.should(be_1.be.visible);
         return (await this.getWebElement()).getText();
+    }
+    async hasAttribute(attributeName) {
+        return this.getWebElement().then(result => result.getAttribute(attributeName) !== null, err => false);
     }
     async attribute(attributeName) {
         return this.getWebElement().then(result => result.getAttribute(attributeName), err => '');

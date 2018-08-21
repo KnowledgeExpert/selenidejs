@@ -62,6 +62,13 @@ class Collection {
     async count() {
         return this.size();
     }
+    async texts() {
+        const result = [];
+        for (let i = 0; i < await this.size(); i++) {
+            result.push(await this.get(i).text());
+        }
+        return result;
+    }
     async getWebElements() {
         return this.locator.find();
     }

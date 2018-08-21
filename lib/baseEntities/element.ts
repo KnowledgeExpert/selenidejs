@@ -136,7 +136,7 @@ export class Element {
     }
 
     async isPresent(): Promise<boolean> {
-        return this.getWebElement().then(result => !!result, err => false);
+        return this.getWebElement().then(result => true, err => false);
     }
 
     async isAbsent(): Promise<boolean> {
@@ -146,6 +146,10 @@ export class Element {
     async text(): Promise<string> {
         await this.should(be.visible);
         return (await this.getWebElement()).getText();
+    }
+
+    async hasAttribute(attributeName: string): Promise<boolean> {
+        return this.getWebElement().then(result => result.getAttribute(attributeName) !== null, err => false);
     }
 
     async attribute(attributeName: string): Promise<string> {

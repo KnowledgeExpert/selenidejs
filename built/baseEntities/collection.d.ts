@@ -20,6 +20,7 @@ export declare class Collection {
     findBy(condition: ElementCondition): Element;
     size(): Promise<number>;
     count(): Promise<number>;
+    texts(): Promise<string[]>;
     getWebElements(): Promise<WebElement[]>;
     toString(): string;
 }

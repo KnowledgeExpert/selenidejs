@@ -32,6 +32,7 @@ export declare class Element {
     isPresent(): Promise<boolean>;
     isAbsent(): Promise<boolean>;
     text(): Promise<string>;
+    hasAttribute(attributeName: string): Promise<boolean>;
     attribute(attributeName: string): Promise<string>;
     innerHtml(): Promise<string>;
     outerHtml(): Promise<string>;

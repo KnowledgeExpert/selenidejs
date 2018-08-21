@@ -85,6 +85,14 @@ export class Collection {
         return this.size();
     }
 
+    async texts(): Promise<string[]> {
+        const result = [];
+        for (let i = 0; i < await this.size(); i++) {
+            result.push(await this.get(i).text());
+        }
+        return result;
+    }
+
     async getWebElements(): Promise<WebElement[]> {
         return this.locator.find();
     }
