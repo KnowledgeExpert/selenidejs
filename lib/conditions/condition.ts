@@ -47,7 +47,9 @@ export class Condition<T> {
             },
             async matches(entity: T) {
                 try {
-                    await Promise.all(conditions.map(condition => condition.matches(entity)));
+                    for (const condition of conditions) {
+                        await condition.matches(entity);
+                    }
                     return entity;
                 } catch (ignored) {
                 }

@@ -21,7 +21,6 @@ class ByFilteredWebElementsLocator {
     async find() {
         const webElements = await this.searchContext.getWebElements();
         const result = [];
-        // todo swap to promise filter
         for (let i = 0; i < webElements.length; i++) {
             try {
                 await this.elementCondition.matches(this.searchContext.get(i));

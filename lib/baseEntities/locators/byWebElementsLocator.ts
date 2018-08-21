@@ -32,7 +32,7 @@ export class ByWebElementsLocator implements Locator<Promise<WebElement[]>> {
     async find(): Promise<WebElement[]> {
         const context: any = Utils.isDriver(this.searchContext)
             ? (this.searchContext as Driver).webdriver
-            : (this.searchContext as Element).getWebElement();
+            : await (this.searchContext as Element).getWebElement();
         return context.findElements(this.by);
     }
 

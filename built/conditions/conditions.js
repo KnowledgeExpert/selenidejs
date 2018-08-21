@@ -275,10 +275,11 @@ var Conditions;
     function collectionHasTexts(texts) {
         return new collectionCondition_1.CollectionCondition({
             matches: async function (collection) {
-                let actualTexts = [];
+                const actualTexts = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
+                    for (const webElement of actualElements)
+                        actualTexts.push(await webElement.getText());
                     if (texts.length !== actualTexts.length) {
                         throw new Error();
                     }
@@ -302,10 +303,11 @@ var Conditions;
     function collectionHasExactTexts(texts) {
         return new collectionCondition_1.CollectionCondition({
             matches: async function (collection) {
-                let actualTexts = [];
+                const actualTexts = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
+                    for (const webElement of actualElements)
+                        actualTexts.push(await webElement.getText());
                     if (actualTexts.length !== texts.length) {
                         throw new Error();
                     }

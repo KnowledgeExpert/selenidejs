@@ -29,7 +29,7 @@ export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> 
 
     async find(): Promise<WebElement> {
         const elements = await this.searchContext.getWebElements();
-        if (elements.length < this.index) {
+        if (elements.length <= this.index) {
             throw new Error(`Cannot get ${this.index} element from webelements collection with length ${elements.length}`);
         }
         return elements[this.index];

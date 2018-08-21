@@ -275,10 +275,11 @@ export namespace Conditions {
     export function collectionHasTexts(texts: string[] | number[]): CollectionCondition {
         return new CollectionCondition({
             matches: async function (collection: Collection) {
-                let actualTexts: string[] = [];
+                const actualTexts: string[] = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
+
+                    for (const webElement of actualElements) actualTexts.push(await webElement.getText());
 
                     if (texts.length !== actualTexts.length) {
                         throw new Error();
@@ -302,10 +303,10 @@ export namespace Conditions {
     export function collectionHasExactTexts(texts: string[] | number[]): CollectionCondition {
         return new CollectionCondition({
             matches: async function (collection: Collection) {
-                let actualTexts: string[] = [];
+                const actualTexts: string[] = [];
                 try {
                     const actualElements = await collection.getWebElements();
-                    actualTexts = await Promise.all(actualElements.map(webElement => webElement.getText()));
+                    for (const webElement of actualElements) actualTexts.push(await webElement.getText());
 
                     if (actualTexts.length !== texts.length) {
                         throw new Error();

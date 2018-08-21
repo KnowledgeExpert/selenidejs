@@ -45,15 +45,12 @@ export namespace Utils {
     export function getDriver(entity: Driver | Collection | Element): Driver {
         if (entity instanceof Element || entity instanceof Collection) {
             return entity.driver;
-        } else if (entity instanceof Driver) {
-            return entity;
         }
+        return entity;
     }
 
     export function isDriver(entity: Driver | Element): boolean {
-        /* tslint:disable:no-string-literal */
-        return entity['quit'];
-        /* tslint:enable:no-string-literal */
+        return entity instanceof Driver;
     }
 
     export function toBy(cssOrXpathOrBy: string | By): By {

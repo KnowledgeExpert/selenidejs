@@ -42,7 +42,9 @@ class Condition {
             },
             async matches(entity) {
                 try {
-                    await Promise.all(conditions.map(condition => condition.matches(entity)));
+                    for (const condition of conditions) {
+                        await condition.matches(entity);
+                    }
                     return entity;
                 }
                 catch (ignored) {

@@ -22,7 +22,7 @@ class ByWebElementsLocator {
     async find() {
         const context = utils_1.Utils.isDriver(this.searchContext)
             ? this.searchContext.webdriver
-            : this.searchContext.getWebElement();
+            : await this.searchContext.getWebElement();
         return context.findElements(this.by);
     }
     toString() {

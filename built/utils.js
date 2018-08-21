@@ -44,15 +44,11 @@ var Utils;
         if (entity instanceof element_1.Element || entity instanceof collection_1.Collection) {
             return entity.driver;
         }
-        else if (entity instanceof driver_1.Driver) {
-            return entity;
-        }
+        return entity;
     }
     Utils.getDriver = getDriver;
     function isDriver(entity) {
-        /* tslint:disable:no-string-literal */
-        return entity['quit'];
-        /* tslint:enable:no-string-literal */
+        return entity instanceof driver_1.Driver;
     }
     Utils.isDriver = isDriver;
     function toBy(cssOrXpathOrBy) {
