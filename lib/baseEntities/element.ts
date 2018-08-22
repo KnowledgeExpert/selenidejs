@@ -196,6 +196,10 @@ export class Element {
         return new Collection(locator, this.driver);
     }
 
+    async equals(element: Element) {
+        return WebElement.equals(await this.getWebElement(), await element.getWebElement());
+    }
+
     toString(): string {
         return this.locator.toString();
     }

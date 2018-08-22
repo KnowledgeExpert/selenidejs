@@ -43,5 +43,6 @@ export declare class Element {
     element(cssOrXpathOrBy: string | By): Element;
     visibleElement(cssSelector: string): Element;
     all(cssOrXpathOrBy: string | By): Collection;
+    equals(element: Element): Promise<boolean>;
     toString(): string;
 }

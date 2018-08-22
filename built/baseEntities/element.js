@@ -144,6 +144,9 @@ class Element {
         const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
         return new collection_1.Collection(locator, this.driver);
     }
+    async equals(element) {
+        return selenium_webdriver_1.WebElement.equals(await this.getWebElement(), await element.getWebElement());
+    }
     toString() {
         return this.locator.toString();
     }
