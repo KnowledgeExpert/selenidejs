@@ -13,6 +13,7 @@ export declare namespace Browser {
     function close(): Promise<void>;
     function quit(): Promise<void>;
     function refresh(): Promise<void>;
+    function acceptAlert(): Promise<void>;
     function url(): Promise<string>;
     function title(): Promise<string>;
     function pageSource(): Promise<string>;

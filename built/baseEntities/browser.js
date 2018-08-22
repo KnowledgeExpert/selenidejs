@@ -41,6 +41,10 @@ var Browser;
         return Browser.selenideDriver.refresh();
     }
     Browser.refresh = refresh;
+    async function acceptAlert() {
+        return Browser.selenideDriver.acceptAlert();
+    }
+    Browser.acceptAlert = acceptAlert;
     async function url() {
         return Browser.selenideDriver.url();
     }

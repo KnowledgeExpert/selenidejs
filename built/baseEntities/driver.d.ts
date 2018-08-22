@@ -14,6 +14,7 @@ export declare class Driver {
     close(): Promise<void>;
     quit(): Promise<void>;
     refresh(): Promise<void>;
+    acceptAlert(): Promise<void>;
     url(): Promise<string>;
     title(): Promise<string>;
     pageSource(): Promise<string>;

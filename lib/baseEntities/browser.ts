@@ -50,6 +50,10 @@ export namespace Browser {
         return selenideDriver.refresh();
     }
 
+    export async function acceptAlert() {
+        return selenideDriver.acceptAlert();
+    }
+
     export async function url(): Promise<string> {
         return selenideDriver.url();
     }
