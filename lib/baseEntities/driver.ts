@@ -53,6 +53,10 @@ export class Driver {
         await this.webdriver.quit();
     }
 
+    async refresh() {
+        await this.webdriver.navigate().refresh();
+    }
+
     async url(): Promise<string> {
         return this.webdriver.getCurrentUrl();
     }

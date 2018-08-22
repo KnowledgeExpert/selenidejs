@@ -41,6 +41,9 @@ class Driver {
     async quit() {
         await this.webdriver.quit();
     }
+    async refresh() {
+        await this.webdriver.navigate().refresh();
+    }
     async url() {
         return this.webdriver.getCurrentUrl();
     }

@@ -46,6 +46,10 @@ export namespace Browser {
         return selenideDriver.quit();
     }
 
+    export async function refresh() {
+        return selenideDriver.refresh();
+    }
+
     export async function url(): Promise<string> {
         return selenideDriver.url();
     }

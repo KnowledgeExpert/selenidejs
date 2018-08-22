@@ -13,6 +13,7 @@ export declare class Driver {
     get(url: string): Promise<void>;
     close(): Promise<void>;
     quit(): Promise<void>;
+    refresh(): Promise<void>;
     url(): Promise<string>;
     title(): Promise<string>;
     pageSource(): Promise<string>;
