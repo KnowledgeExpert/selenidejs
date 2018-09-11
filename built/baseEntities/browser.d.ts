@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
+import { ActionSequence, By } from 'selenium-webdriver';
 import { DriverCondition } from '../conditions/driverCondition';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
@@ -8,7 +8,7 @@ import { Element } from './element';
 export declare namespace Browser {
     let selenideDriver: Driver;
     let config: Configuration;
-    function setDriver(driver: WebDriver | Driver, configuration?: Configuration): void;
+    function setDriver(driverOrConfiguration: Driver | Configuration): void;
     function get(url: string): Promise<void>;
     function close(): Promise<void>;
     function quit(): Promise<void>;

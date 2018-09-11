@@ -1,2 +1,2 @@
-import { Element } from './element';
+import { Element } from '../element';
 export declare type BeforeElementActionHook = (element: Element, actionName: string) => void | Promise<void>;

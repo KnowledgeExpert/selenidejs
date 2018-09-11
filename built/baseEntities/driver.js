@@ -24,48 +24,47 @@ const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const wait_1 = require("./wait");
 class Driver {
-    constructor(webdriver, config = {}) {
+    constructor(config = {}) {
         this.config = new configuration_1.Configuration(config);
-        this.webdriver = webdriver;
         this.wait = new wait_1.Wait(this, this.config);
     }
     async get(url) {
         if (this.config.windowHeight && this.config.windowWidth) {
             await this.resizeWindow(parseInt(this.config.windowHeight), parseInt(this.config.windowWidth));
         }
-        await this.webdriver.get(url);
+        await this.config.webdriver.get(url);
     }
     async close() {
-        await this.webdriver.close();
+        await this.config.webdriver.close();
     }
     async quit() {
-        await this.webdriver.quit();
+        await this.config.webdriver.quit();
     }
     async refresh() {
-        await this.webdriver.navigate().refresh();
+        await this.config.webdriver.navigate().refresh();
     }
     async acceptAlert() {
-        await this.webdriver.switchTo().alert().accept();
+        await this.config.webdriver.switchTo().alert().accept();
     }
     async url() {
-        return this.webdriver.getCurrentUrl();
+        return this.config.webdriver.getCurrentUrl();
     }
     async title() {
-        return this.webdriver.getTitle();
+        return this.config.webdriver.getTitle();
     }
     async pageSource() {
-        return this.webdriver.getPageSource();
+        return this.config.webdriver.getPageSource();
     }
     async screenshot() {
         return this.config.fullpageScreenshot
             ? new fullpageScreenshot_1.FullpageScreenshot().perform(this)
-            : Buffer.from(await this.webdriver.takeScreenshot(), 'base64');
+            : Buffer.from(await this.config.webdriver.takeScreenshot(), 'base64');
     }
     async resizeWindow(width, height) {
-        await this.webdriver.manage().window().setSize(width, height);
+        await this.config.webdriver.manage().window().setSize(width, height);
     }
     actions() {
-        return this.webdriver.actions();
+        return this.config.webdriver.actions();
     }
     element(cssOrXpathOrBy) {
         const by = utils_1.Utils.toBy(cssOrXpathOrBy);
@@ -95,44 +94,44 @@ class Driver {
     }
     /* tslint:disable:ban-types */
     async executeScript(script, ...args) {
-        return this.webdriver.executeScript(script, ...args);
+        return this.config.webdriver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
     async getTabs() {
-        return this.webdriver.getAllWindowHandles();
+        return this.config.webdriver.getAllWindowHandles();
     }
     async nextTab() {
-        const currentTab = await this.webdriver.getWindowHandle();
-        const allTabs = await this.webdriver.getAllWindowHandles();
+        const currentTab = await this.config.webdriver.getWindowHandle();
+        const allTabs = await this.config.webdriver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.webdriver
+        await this.config.webdriver
             .switchTo()
             .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
     }
     async previousTab() {
-        const currentTab = await this.webdriver.getWindowHandle();
-        const allTabs = await this.webdriver.getAllWindowHandles();
+        const currentTab = await this.config.webdriver.getWindowHandle();
+        const allTabs = await this.config.webdriver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.webdriver
+        await this.config.webdriver
             .switchTo()
             .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
     }
     async switchToTab(tabId) {
-        await this.webdriver.switchTo().window(tabId);
+        await this.config.webdriver.switchTo().window(tabId);
     }
     async switchToFrame(frameElement) {
         await frameElement.should(be_1.be.visible);
-        await this.webdriver.switchTo().frame(await frameElement.getWebElement());
+        await this.config.webdriver.switchTo().frame(await frameElement.getWebElement());
     }
     async switchToDefaultFrame() {
-        await this.webdriver.switchTo().defaultContent();
+        await this.config.webdriver.switchTo().defaultContent();
     }
     async clearCacheAndCookies() {
-        await this.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
+        await this.config.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
         });
-        await this.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
+        await this.config.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
         });
-        await this.webdriver.manage().deleteAllCookies().catch(ignored => {
+        await this.config.webdriver.manage().deleteAllCookies().catch(ignored => {
         });
     }
     toString() {

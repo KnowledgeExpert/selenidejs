@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
+import { ActionSequence, By } from 'selenium-webdriver';
 import { DriverCondition } from '../conditions/driverCondition';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
@@ -25,13 +25,11 @@ export namespace Browser {
     export let selenideDriver: Driver;
     export let config: Configuration;
 
-    export function setDriver(driver: WebDriver | Driver, configuration?: Configuration) {
-        /* tslint:disable:no-string-literal */
-        selenideDriver = driver['should']
-            ? driver as Driver
-            : new Driver(driver as WebDriver, configuration);
+    export function setDriver(driverOrConfiguration: Driver | Configuration) {
+        selenideDriver = driverOrConfiguration instanceof Driver
+            ? driverOrConfiguration as Driver
+            : new Driver(driverOrConfiguration as Configuration);
         config = selenideDriver.config;
-        /* tslint:enable:no-string-literal */
     }
 
     export async function get(url: string) {
@@ -79,10 +77,12 @@ export namespace Browser {
     }
 
     export function element(cssOrXpathOrBy: string | By): Element {
+        if (!selenideDriver) setDriver({} as Configuration);
         return selenideDriver.element(cssOrXpathOrBy);
     }
 
     export function all(cssOrXpathOrBy: string | By): Collection {
+        if (!selenideDriver) setDriver({} as Configuration);
         return selenideDriver.all(cssOrXpathOrBy);
     }
 

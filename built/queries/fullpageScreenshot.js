@@ -13,11 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const Jimp = require("jimp");
 const mergeImg = require("merge-img");
+/* tslint:disable:no-var-requires*/
+const jimp = require('jimp');
+/* tslint:enable:no-no-var-requires*/
 class FullpageScreenshot {
     async perform(driver, ...args) {
-        return this.take(driver.webdriver);
+        return this.take(driver.config.webdriver);
     }
     /**
      * The method allows to take full page screenshots by scrolling screen and merging taken parts of screen
@@ -52,7 +54,13 @@ class FullpageScreenshot {
             await webdriver.switchTo().frame(currentFrameElement);
         }
         return mergeImg(screens, { direction: true })
-            .then(mergedScreenshot => FullpageScreenshot.getBuffer(mergedScreenshot));
+            .then(jimpImage => new Promise((resolve, reject) => {
+            jimpImage.getBuffer(jimp.MIME_PNG, ((err, buffer) => {
+                if (err)
+                    reject(err);
+                resolve(buffer);
+            }));
+        }));
     }
     async getCurrentFrameWebElement(webdriver) {
         return (await webdriver.executeScript('return window.frameElement'));
@@ -113,21 +121,11 @@ class FullpageScreenshot {
         return Buffer.from(await webdriver.takeScreenshot(), 'base64');
     }
     static async crop(screenBuffer, delta) {
-        return Jimp.read(screenBuffer).then(img => {
-            const width = img.bitmap.width;
-            const height = img.bitmap.height;
-            const croppedImg = img.clone().crop(0, delta, width, height);
-            return FullpageScreenshot.getBuffer(croppedImg);
-        });
-    }
-    static async getBuffer(jimpImage) {
-        return new Promise((resolve, reject) => {
-            jimpImage.getBuffer(Jimp.AUTO, (err, buff) => {
-                if (err)
-                    reject(err);
-                resolve(buff);
-            });
-        });
+        const jimpImage = await jimp.read(screenBuffer);
+        const width = jimpImage.bitmap.width;
+        const height = jimpImage.bitmap.height;
+        const croppedImg = jimpImage.clone().crop(0, delta, width, height);
+        return croppedImg.getBufferAsync(jimp.MIME_PNG);
     }
 }
 exports.FullpageScreenshot = FullpageScreenshot;

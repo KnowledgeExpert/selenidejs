@@ -17,9 +17,6 @@ class Wait {
     constructor(entity, config) {
         this.configuration = config;
         this.entity = entity;
-        /* tslint:disable:no-string-literal */
-        this.selenideDriver = entity['driver'] ? entity['driver'] : entity;
-        /* tslint:enable:no-string-literal */
     }
     async shouldMatch(condition, timeout = this.configuration.timeout) {
         return this.until(condition, timeout);

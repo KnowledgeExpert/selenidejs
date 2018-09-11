@@ -26,7 +26,7 @@ import { Wait } from './wait';
 
 export class Collection {
 
-    readonly driver: Driver;
+    private readonly driver: Driver;
     private readonly locator: Locator<Promise<WebElement[]>>;
     private readonly wait: Wait<Collection>;
 

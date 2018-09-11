@@ -2,7 +2,7 @@
     "check-coverage": true,
     "lines": 85,
     "statements": 85,
-    "functions": 80,
+    "functions": 75,
     "branches": 70,
     "include": [
       "./built/lib/**/*.js"

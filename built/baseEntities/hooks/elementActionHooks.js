@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const element_1 = require("./element");
+const element_1 = require("../element");
 function ElementActionHooks(target, methodName, descriptor) {
     const originalMethod = descriptor.value;
     /* tslint:disable:space-before-function-paren*/

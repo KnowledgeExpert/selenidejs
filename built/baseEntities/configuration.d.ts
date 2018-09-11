@@ -1,4 +1,5 @@
-import { OnFailureHook } from './onFailureHook';
+import { WebDriver } from 'selenium-webdriver';
+import { OnFailureHook } from './hooks/onFailureHook';
 export declare class Configuration {
     static readonly DEFAULT: Configuration;
     htmlPath: string;
@@ -9,5 +10,6 @@ export declare class Configuration {
     windowHeight: string;
     fullpageScreenshot: boolean;
     onFailureHooks: OnFailureHook[];
+    webdriver: WebDriver;
     constructor(customConfiguration: Configuration);
 }

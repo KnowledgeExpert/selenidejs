@@ -42,6 +42,7 @@ class Configuration {
         this.onFailureHooks = customConfiguration.onFailureHooks
             ? [...Configuration.DEFAULT.onFailureHooks, ...customConfiguration.onFailureHooks]
             : Configuration.DEFAULT.onFailureHooks;
+        this.webdriver = customConfiguration.webdriver;
     }
 }
 Configuration.DEFAULT = {
@@ -66,6 +67,7 @@ Configuration.DEFAULT = {
     ],
     screenshotPath: path.resolve('./screenshots'),
     timeout: 4000,
+    webdriver: null,
     windowHeight: '',
     windowWidth: ''
 };

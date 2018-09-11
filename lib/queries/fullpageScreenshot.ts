@@ -12,17 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as Jimp from 'jimp';
 import * as mergeImg from 'merge-img';
 import { WebDriver, WebElement } from 'selenium-webdriver';
 import { Driver } from '..';
 import { Query } from './query';
+/* tslint:disable:no-var-requires*/
+const jimp = require('jimp');
+/* tslint:enable:no-no-var-requires*/
 
 
 export class FullpageScreenshot implements Query<Driver> {
 
     async perform(driver: Driver, ...args: any[]): Promise<any> {
-        return this.take(driver.webdriver);
+        return this.take(driver.config.webdriver);
     }
 
     /**
@@ -63,7 +65,12 @@ export class FullpageScreenshot implements Query<Driver> {
         }
 
         return mergeImg(screens, {direction: true})
-            .then(mergedScreenshot => FullpageScreenshot.getBuffer(mergedScreenshot));
+            .then(jimpImage => new Promise((resolve, reject) => {
+                jimpImage.getBuffer(jimp.MIME_PNG, ((err, buffer) => {
+                    if (err) reject(err);
+                    resolve(buffer);
+                }));
+            }));
     }
 
     private async getCurrentFrameWebElement(webdriver: WebDriver): Promise<WebElement> {
@@ -135,21 +142,11 @@ export class FullpageScreenshot implements Query<Driver> {
     }
 
     private static async crop(screenBuffer: Buffer, delta: number): Promise<Buffer> {
-        return Jimp.read(screenBuffer).then(img => {
-            const width = img.bitmap.width;
-            const height = img.bitmap.height;
-            const croppedImg = img.clone().crop(0, delta, width, height);
-            return FullpageScreenshot.getBuffer(croppedImg);
-        });
-    }
-
-    private static async getBuffer(jimpImage): Promise<Buffer> {
-        return new Promise<Buffer>((resolve, reject) => {
-            jimpImage.getBuffer(Jimp.AUTO, (err, buff) => {
-                if (err) reject(err);
-                resolve(buff);
-            });
-        });
+        const jimpImage = await jimp.read(screenBuffer);
+        const width = jimpImage.bitmap.width;
+        const height = jimpImage.bitmap.height;
+        const croppedImg = jimpImage.clone().crop(0, delta, width, height);
+        return croppedImg.getBufferAsync(jimp.MIME_PNG);
     }
 
 }

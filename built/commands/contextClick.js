@@ -14,11 +14,12 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
+const utils_1 = require("../utils");
 class ContextClick {
     async perform(entity, ...args) {
         const webelement = await entity.getWebElement();
-        const driver = entity.driver;
-        await driver.webdriver.actions().click(webelement, String(selenium_webdriver_1.Button.RIGHT)).perform();
+        const driver = utils_1.Utils.getDriver(entity);
+        await driver.actions().click(webelement, String(selenium_webdriver_1.Button.RIGHT)).perform();
     }
 }
 exports.ContextClick = ContextClick;

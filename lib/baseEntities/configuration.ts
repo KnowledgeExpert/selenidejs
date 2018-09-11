@@ -13,13 +13,14 @@
 // limitations under the License.
 
 import * as path from 'path';
+import { WebDriver } from 'selenium-webdriver';
 import { Condition } from '../index';
 import { Utils } from '../utils';
 import { Browser } from './browser';
 import { Collection } from './collection';
 import { Driver } from './driver';
 import { Element } from './element';
-import { OnFailureHook } from './onFailureHook';
+import { OnFailureHook } from './hooks/onFailureHook';
 
 
 export class Configuration {
@@ -46,6 +47,7 @@ export class Configuration {
         ],
         screenshotPath: path.resolve('./screenshots'),
         timeout: 4000,
+        webdriver: null,
         windowHeight: '',
         windowWidth: ''
     };
@@ -58,6 +60,7 @@ export class Configuration {
     windowHeight: string;
     fullpageScreenshot: boolean;
     onFailureHooks: OnFailureHook[];
+    webdriver: WebDriver;
 
     constructor(customConfiguration: Configuration) {
         this.windowWidth = customConfiguration.windowWidth
@@ -84,6 +87,7 @@ export class Configuration {
         this.onFailureHooks = customConfiguration.onFailureHooks
             ? [...Configuration.DEFAULT.onFailureHooks, ...customConfiguration.onFailureHooks]
             : Configuration.DEFAULT.onFailureHooks;
+        this.webdriver = customConfiguration.webdriver;
     }
 
 }

@@ -21,7 +21,7 @@ class ByWebElementLocator {
     }
     async find() {
         const context = utils_1.Utils.isDriver(this.searchContext)
-            ? this.searchContext.webdriver
+            ? this.searchContext.config.webdriver
             : await this.searchContext.getWebElement();
         const elements = await context.findElements(this.by);
         if (elements.length === 0) {

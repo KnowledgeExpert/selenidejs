@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = require("../utils");
 class ClickByJs {
     static getClickOnElementWithOffsetScript(offsetX, offsetY) {
         return `arguments[0].dispatchEvent(new MouseEvent('click', {
@@ -25,7 +26,8 @@ class ClickByJs {
     }
     async perform(entity, ...args) {
         const webelement = await entity.getWebElement();
-        await entity.driver.executeScript(ClickByJs.getClickOnElementWithOffsetScript(0, 0), webelement);
+        const driver = utils_1.Utils.getDriver(entity);
+        await driver.executeScript(ClickByJs.getClickOnElementWithOffsetScript(0, 0), webelement);
     }
 }
 exports.ClickByJs = ClickByJs;

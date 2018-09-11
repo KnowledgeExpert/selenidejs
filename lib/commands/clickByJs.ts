@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { Element } from '../baseEntities/element';
+import { Utils } from '../utils';
 import { Command } from './command';
 
 export class ClickByJs implements Command<Element> {
@@ -29,7 +30,8 @@ export class ClickByJs implements Command<Element> {
 
     async perform(entity: Element, ...args: any[]): Promise<void> {
         const webelement = await entity.getWebElement();
-        await entity.driver.executeScript(ClickByJs.getClickOnElementWithOffsetScript(0, 0), webelement);
+        const driver = Utils.getDriver(entity);
+        await driver.executeScript(ClickByJs.getClickOnElementWithOffsetScript(0, 0), webelement);
     }
 
 }

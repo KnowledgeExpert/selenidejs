@@ -42,7 +42,9 @@ var Utils;
     Utils.saveScreenshot = saveScreenshot;
     function getDriver(entity) {
         if (entity instanceof element_1.Element || entity instanceof collection_1.Collection) {
-            return entity.driver;
+            /* tslint:disable:no-string-literal*/
+            return entity['driver'];
+            /* tslint:enable:no-string-literal*/
         }
         return entity;
     }

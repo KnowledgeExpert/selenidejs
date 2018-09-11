@@ -44,7 +44,9 @@ export namespace Utils {
 
     export function getDriver(entity: Driver | Collection | Element): Driver {
         if (entity instanceof Element || entity instanceof Collection) {
-            return entity.driver;
+            /* tslint:disable:no-string-literal*/
+            return entity['driver'] as Driver;
+            /* tslint:enable:no-string-literal*/
         }
         return entity;
     }

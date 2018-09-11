@@ -7,9 +7,6 @@ node_js:
 
 install: npm install
 
-env:
-  - SELENIDEJS_REMOTE_URL="http://217.73.84.220:4444/wd/hub"
-
 script: npm run build
 
 after_script:

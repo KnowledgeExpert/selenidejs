@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
+import { ActionSequence, By } from 'selenium-webdriver';
 import { DriverCondition } from '../conditions/driverCondition';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
@@ -7,9 +7,8 @@ import { Element } from './element';
 import { Wait } from './wait';
 export declare class Driver {
     readonly config: Configuration;
-    readonly webdriver: WebDriver;
     readonly wait: Wait<Driver>;
-    constructor(webdriver: WebDriver, config?: Configuration);
+    constructor(config?: Configuration);
     get(url: string): Promise<void>;
     close(): Promise<void>;
     quit(): Promise<void>;

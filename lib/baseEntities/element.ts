@@ -29,11 +29,11 @@ import { ElementCondition } from '../conditions/elementCondition';
 import { be } from '../conditions/helpers/be';
 import { With } from '../locators/with';
 import { Utils } from '../utils';
-import { AfterElementActionHook } from './afterElementActionHook';
-import { BeforeElementActionHook } from './beforeElementActionHook';
 import { Collection } from './collection';
 import { Driver } from './driver';
-import { ElementActionHooks } from './elementActionHooks';
+import { AfterElementActionHook } from './hooks/afterElementActionHook';
+import { BeforeElementActionHook } from './hooks/beforeElementActionHook';
+import { ElementActionHooks } from './hooks/elementActionHooks';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
@@ -45,7 +45,7 @@ export class Element {
     static beforeActionHooks: BeforeElementActionHook[] = [];
     static afterActionHooks: AfterElementActionHook[] = [];
 
-    readonly driver: Driver;
+    private readonly driver: Driver;
     private readonly locator: Locator<Promise<WebElement>>;
     private readonly wait: Wait<Element>;
 
@@ -203,31 +203,5 @@ export class Element {
     toString(): string {
         return this.locator.toString();
     }
-
-
-    // private async fireEvent(...events: string[]) {
-    //     //usage - await this.fireEvent('focus', 'keydown', 'keypress', 'input', 'keyup', 'change', 'blur');
-    //     const jsCodeToTriggerEvent: string =
-    //         `(function() {
-    //             var webElement = arguments[0];
-    //             var eventNames = arguments[1];
-    //             for (var i = 0; i < eventNames.length; i++) {
-    //                 if (document.createEventObject) {
-    //                     var evt = document.createEventObject();
-    //                     webElement.fireEvent('on' + eventNames[i], evt);
-    //                 } else {
-    //                     var evt = document.createEvent('HTMLEvents');
-    //                     evt.initEvent(eventNames[i], true, true );
-    //                     webElement.dispatchEvent(evt);
-    //                 }
-    //             }
-    //         })();`;
-    //
-    //     try {
-    //         await this.driver.executeScript(jsCodeToTriggerEvent, await this.getWebElement(), events);
-    //     } catch (error) {
-    //         console.warn(`Failed to trigger events ${events}: ${error.message}`);
-    //     }
-    // }
 
 }

@@ -16,13 +16,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const driver_1 = require("./driver");
 var Browser;
 (function (Browser) {
-    function setDriver(driver, configuration) {
-        /* tslint:disable:no-string-literal */
-        Browser.selenideDriver = driver['should']
-            ? driver
-            : new driver_1.Driver(driver, configuration);
+    function setDriver(driverOrConfiguration) {
+        Browser.selenideDriver = driverOrConfiguration instanceof driver_1.Driver
+            ? driverOrConfiguration
+            : new driver_1.Driver(driverOrConfiguration);
         Browser.config = Browser.selenideDriver.config;
-        /* tslint:enable:no-string-literal */
     }
     Browser.setDriver = setDriver;
     async function get(url) {
@@ -70,10 +68,14 @@ var Browser;
     }
     Browser.actions = actions;
     function element(cssOrXpathOrBy) {
+        if (!Browser.selenideDriver)
+            setDriver({});
         return Browser.selenideDriver.element(cssOrXpathOrBy);
     }
     Browser.element = element;
     function all(cssOrXpathOrBy) {
+        if (!Browser.selenideDriver)
+            setDriver({});
         return Browser.selenideDriver.all(cssOrXpathOrBy);
     }
     Browser.all = all;

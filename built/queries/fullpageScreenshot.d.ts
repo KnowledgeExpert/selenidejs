@@ -8,14 +8,13 @@ export declare class FullpageScreenshot implements Query<Driver> {
      * If there are frames, the method will automatically switch to DEFAULT content to avoid breaking flow.
      * @returns {Promise<Buffer>}
      */
-    private take(webdriver);
-    private getCurrentFrameWebElement(webdriver);
-    private hideScrollbars(webdriver);
-    private setDocumentOverflow(webdriver, overflowValue?);
-    private setOverflow(webdriver, element, overflowValue);
-    private getBrowserData(webdriver);
-    private scrollToNthScreen(webdriver, browserData, index);
-    private takeScreenshotWithWait(webdriver);
-    private static crop(screenBuffer, delta);
-    private static getBuffer(jimpImage);
+    private take;
+    private getCurrentFrameWebElement;
+    private hideScrollbars;
+    private setDocumentOverflow;
+    private setOverflow;
+    private getBrowserData;
+    private scrollToNthScreen;
+    private takeScreenshotWithWait;
+    private static crop;
 }

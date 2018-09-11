@@ -1,14 +1,14 @@
 import { By, WebElement } from 'selenium-webdriver';
 import { ElementCondition } from '../conditions/elementCondition';
-import { AfterElementActionHook } from './afterElementActionHook';
-import { BeforeElementActionHook } from './beforeElementActionHook';
 import { Collection } from './collection';
 import { Driver } from './driver';
+import { AfterElementActionHook } from './hooks/afterElementActionHook';
+import { BeforeElementActionHook } from './hooks/beforeElementActionHook';
 import { Locator } from './locators/locator';
 export declare class Element {
     static beforeActionHooks: BeforeElementActionHook[];
     static afterActionHooks: AfterElementActionHook[];
-    readonly driver: Driver;
+    private readonly driver;
     private readonly locator;
     private readonly wait;
     constructor(locator: Locator<Promise<WebElement>>, driver: Driver);

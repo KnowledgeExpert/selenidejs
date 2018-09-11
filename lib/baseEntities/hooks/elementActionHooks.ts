@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { Element } from '../element';
 import { AfterElementActionHook } from './afterElementActionHook';
 import { BeforeElementActionHook } from './beforeElementActionHook';
-import { Element } from './element';
 
 
 export function ElementActionHooks(target, methodName, descriptor: PropertyDescriptor) {

@@ -13,13 +13,12 @@
 // limitations under the License.
 
 import { Element } from '../baseEntities/element';
+import { Utils } from '../utils';
 import { Command } from './command';
 
 export class ScrollIntoView implements Command<Element> {
     async perform(entity: Element, ...args: any[]): Promise<void> {
         const webelement = await entity.getWebElement();
-        const driver = entity.driver;
-
-        await driver.executeScript('arguments[0].scrollIntoView(true);', webelement);
+        await Utils.getDriver(entity).executeScript('arguments[0].scrollIntoView(true);', webelement);
     }
 }

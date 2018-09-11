@@ -15,13 +15,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const be_1 = require("../conditions/helpers/be");
 const cannotPerformActionError_1 = require("../errors/cannotPerformActionError");
+const utils_1 = require("../utils");
 class PerformActionOnVisible {
     async perform(element, ...args) {
         const actionName = args[0];
         const action = args[1];
         const actionArgumentsStartIndex = 2;
         const actionArguments = args.slice(actionArgumentsStartIndex);
-        const config = element.driver.config;
+        const driver = utils_1.Utils.getDriver(element);
+        const config = driver.config;
         try {
             await action(element, actionArguments);
         }

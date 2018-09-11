@@ -13,12 +13,13 @@
 // limitations under the License.
 
 import { Element } from '../baseEntities/element';
+import { Utils } from '../utils';
 import { Command } from './command';
 
 export class SetValueByJs implements Command<Element> {
     async perform(entity: Element, ...args: any[]): Promise<void> {
         const webelement = await entity.getWebElement();
-        const driver = entity.driver;
+        const driver = Utils.getDriver(entity);
         const value = args[0];
         const script = `return (function(webelement, text) {
                     var maxlength = webelement.getAttribute('maxlength') == null

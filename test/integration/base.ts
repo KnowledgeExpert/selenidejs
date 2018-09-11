@@ -15,11 +15,12 @@
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
+import { Configuration } from '../../lib';
 import { Browser } from '../../lib/baseEntities/browser';
 import { TestUtils } from '../utils/testUtils';
 
 beforeAll(async () => {
-    Browser.setDriver(TestUtils.buildWebDriver());
+    Browser.setDriver({webdriver: TestUtils.buildWebDriver()} as Configuration);
     Browser.config.onFailureHooks = [];
     TestUtils.startServer();
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

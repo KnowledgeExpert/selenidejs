@@ -23,14 +23,10 @@ export class Wait<T extends Driver | Element | Collection> {
 
     readonly configuration: Configuration;
     readonly entity: T;
-    readonly selenideDriver: Driver;
 
     constructor(entity: T, config: Configuration) {
         this.configuration = config;
         this.entity = entity;
-        /* tslint:disable:no-string-literal */
-        this.selenideDriver = entity['driver'] ? entity['driver'] : entity as Driver;
-        /* tslint:enable:no-string-literal */
     }
 
     async shouldMatch(condition: Condition<T>, timeout = this.configuration.timeout): Promise<T> {

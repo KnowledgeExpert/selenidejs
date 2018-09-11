@@ -24,6 +24,16 @@ import focused = be.focused;
 
 Describe('Driver', () => {
 
+    It('should be able to take viewport screenshot', async () => {
+        Browser.config.fullpageScreenshot = false;
+        await Given.openedEmptyPage();
+
+        const viewportScreenshot = await Browser.screenshot();
+
+        expect(viewportScreenshot).toBeDefined();
+        expect(viewportScreenshot instanceof Buffer).toBeTruthy();
+    });
+
     It('should be able to take fullpage screenshot', async () => {
         Browser.config.fullpageScreenshot = true;
         await Given.openedEmptyPage();

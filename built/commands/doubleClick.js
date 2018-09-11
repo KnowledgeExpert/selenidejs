@@ -13,10 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = require("../utils");
 class DoubleClick {
     async perform(entity, ...args) {
         const webelement = await entity.getWebElement();
-        const driver = entity.driver;
+        const driver = utils_1.Utils.getDriver(entity);
         await driver.actions().mouseMove(webelement).perform();
         await driver.actions().doubleClick().perform();
     }

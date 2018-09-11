@@ -15,6 +15,7 @@
 import { Element } from '../baseEntities/element';
 import { be } from '../conditions/helpers/be';
 import { CannotPerformActionError } from '../errors/cannotPerformActionError';
+import { Utils } from '../utils';
 import { Command } from './command';
 
 export class PerformActionOnVisible implements Command<Element> {
@@ -23,7 +24,8 @@ export class PerformActionOnVisible implements Command<Element> {
         const action = args[1];
         const actionArgumentsStartIndex = 2;
         const actionArguments = args.slice(actionArgumentsStartIndex);
-        const config = element.driver.config;
+        const driver = Utils.getDriver(element);
+        const config = driver.config;
 
         try {
             await action(element, actionArguments);

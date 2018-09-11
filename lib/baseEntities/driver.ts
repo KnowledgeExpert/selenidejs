@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ActionSequence, By, WebDriver } from 'selenium-webdriver';
+import { ActionSequence, By } from 'selenium-webdriver';
 import { Condition } from '../conditions/condition';
 import { DriverCondition } from '../conditions/driverCondition';
 import { be } from '../conditions/helpers/be';
@@ -29,12 +29,10 @@ import { Wait } from './wait';
 export class Driver {
 
     readonly config: Configuration;
-    readonly webdriver: WebDriver;
     readonly wait: Wait<Driver>;
 
-    constructor(webdriver: WebDriver, config = {} as Configuration) {
+    constructor(config = {} as Configuration) {
         this.config = new Configuration(config);
-        this.webdriver = webdriver;
         this.wait = new Wait(this, this.config);
     }
 
@@ -42,49 +40,49 @@ export class Driver {
         if (this.config.windowHeight && this.config.windowWidth) {
             await this.resizeWindow(parseInt(this.config.windowHeight), parseInt(this.config.windowWidth));
         }
-        await this.webdriver.get(url);
+        await this.config.webdriver.get(url);
     }
 
     async close() {
-        await this.webdriver.close();
+        await this.config.webdriver.close();
     }
 
     async quit() {
-        await this.webdriver.quit();
+        await this.config.webdriver.quit();
     }
 
     async refresh() {
-        await this.webdriver.navigate().refresh();
+        await this.config.webdriver.navigate().refresh();
     }
 
     async acceptAlert() {
-        await this.webdriver.switchTo().alert().accept();
+        await this.config.webdriver.switchTo().alert().accept();
     }
 
     async url(): Promise<string> {
-        return this.webdriver.getCurrentUrl();
+        return this.config.webdriver.getCurrentUrl();
     }
 
     async title(): Promise<string> {
-        return this.webdriver.getTitle();
+        return this.config.webdriver.getTitle();
     }
 
     async pageSource(): Promise<string> {
-        return this.webdriver.getPageSource();
+        return this.config.webdriver.getPageSource();
     }
 
     async screenshot(): Promise<Buffer> {
         return this.config.fullpageScreenshot
             ? new FullpageScreenshot().perform(this)
-            : Buffer.from(await this.webdriver.takeScreenshot(), 'base64');
+            : Buffer.from(await this.config.webdriver.takeScreenshot(), 'base64');
     }
 
     async resizeWindow(width: number, height: number) {
-        await this.webdriver.manage().window().setSize(width, height);
+        await this.config.webdriver.manage().window().setSize(width, height);
     }
 
     actions(): ActionSequence {
-        return this.webdriver.actions();
+        return this.config.webdriver.actions();
     }
 
     element(cssOrXpathOrBy: string | By): Element {
@@ -121,51 +119,51 @@ export class Driver {
 
     /* tslint:disable:ban-types */
     async executeScript(script: string | Function, ...args: any[]) {
-        return this.webdriver.executeScript(script, ...args);
+        return this.config.webdriver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
 
     async getTabs() {
-        return this.webdriver.getAllWindowHandles();
+        return this.config.webdriver.getAllWindowHandles();
     }
 
     async nextTab() {
-        const currentTab = await this.webdriver.getWindowHandle();
-        const allTabs = await this.webdriver.getAllWindowHandles();
+        const currentTab = await this.config.webdriver.getWindowHandle();
+        const allTabs = await this.config.webdriver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.webdriver
+        await this.config.webdriver
             .switchTo()
             .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
     }
 
     async previousTab() {
-        const currentTab = await this.webdriver.getWindowHandle();
-        const allTabs = await this.webdriver.getAllWindowHandles();
+        const currentTab = await this.config.webdriver.getWindowHandle();
+        const allTabs = await this.config.webdriver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.webdriver
+        await this.config.webdriver
             .switchTo()
             .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
     }
 
     async switchToTab(tabId: string) {
-        await this.webdriver.switchTo().window(tabId);
+        await this.config.webdriver.switchTo().window(tabId);
     }
 
     async switchToFrame(frameElement: Element) {
         await frameElement.should(be.visible);
-        await this.webdriver.switchTo().frame(await frameElement.getWebElement());
+        await this.config.webdriver.switchTo().frame(await frameElement.getWebElement());
     }
 
     async switchToDefaultFrame() {
-        await this.webdriver.switchTo().defaultContent();
+        await this.config.webdriver.switchTo().defaultContent();
     }
 
     async clearCacheAndCookies() {
-        await this.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
+        await this.config.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
         });
-        await this.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
+        await this.config.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
         });
-        await this.webdriver.manage().deleteAllCookies().catch(ignored => {
+        await this.config.webdriver.manage().deleteAllCookies().catch(ignored => {
         });
     }
 
