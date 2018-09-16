@@ -13,27 +13,22 @@
 // limitations under the License.
 
 import { By, WebElement } from 'selenium-webdriver';
-import { Utils } from '../../utils';
-import { Driver } from '../driver';
-import { Element } from '../element';
+import { SearchContext } from '../SearchContext';
 import { Locator } from './locator';
 
 
 export class ByWebElementLocator implements Locator<Promise<WebElement>> {
 
     private readonly by: By;
-    private readonly searchContext: Element | Driver;
+    private readonly context: SearchContext;
 
-    constructor(by: By, searchContext: Element | Driver) {
+    constructor(by: By, context: SearchContext) {
         this.by = by;
-        this.searchContext = searchContext;
+        this.context = context;
     }
 
     async find(): Promise<WebElement> {
-        const context = Utils.isDriver(this.searchContext)
-            ? (this.searchContext as Driver).config.webdriver
-            : await (this.searchContext as Element).getWebElement();
-        const elements = await context.findElements(this.by);
+        const elements = await this.context.findElements(this.by);
 
         if (elements.length === 0) {
             throw new Error(`No elements found using ${this.toString()}`);
@@ -43,7 +38,7 @@ export class ByWebElementLocator implements Locator<Promise<WebElement>> {
     }
 
     toString(): string {
-        return `${Utils.isDriver(this.searchContext) ? 'browser' : this.searchContext.toString()}.find(${this.by})`;
+        return `${this.context.toString()}.find(${this.by})`;
     }
 
 }

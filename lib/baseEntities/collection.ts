@@ -33,7 +33,7 @@ export class Collection {
     constructor(locator: Locator<Promise<WebElement[]>>, driver: Driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new Wait(this, driver.config);
+        this.wait = new Wait(this, driver);
     }
 
     async should(condition: CollectionCondition, timeout?: number): Promise<Collection> {
@@ -100,4 +100,5 @@ export class Collection {
     toString() {
         return this.locator.toString();
     }
+
 }

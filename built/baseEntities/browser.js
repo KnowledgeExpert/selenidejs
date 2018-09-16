@@ -16,11 +16,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const driver_1 = require("./driver");
 var Browser;
 (function (Browser) {
-    function setDriver(driverOrConfiguration) {
-        Browser.selenideDriver = driverOrConfiguration instanceof driver_1.Driver
-            ? driverOrConfiguration
-            : new driver_1.Driver(driverOrConfiguration);
-        Browser.config = Browser.selenideDriver.config;
+    function setDriver(customConfiguration) {
+        Browser.selenideDriver = new driver_1.Driver(customConfiguration);
+        Browser.configuration = Browser.selenideDriver.configuration;
     }
     Browser.setDriver = setDriver;
     async function get(url) {

@@ -14,13 +14,14 @@
 
 import { Button } from 'selenium-webdriver';
 import { Element } from '../baseEntities/element';
-import { Utils } from '../utils';
 import { Command } from './command';
 
 export class ContextClick implements Command<Element> {
-    async perform(entity: Element, ...args: any[]): Promise<void> {
-        const webelement = await entity.getWebElement();
-        const driver = Utils.getDriver(entity);
+    async perform(element: Element, ...args: any[]): Promise<void> {
+        const webelement = await element.getWebElement();
+        /* tslint:disable:no-string-literal */
+        const driver = element['driver'];
+        /* tslint:enable:no-string-literal */
         await driver.actions().click(webelement, String(Button.RIGHT)).perform();
     }
 }

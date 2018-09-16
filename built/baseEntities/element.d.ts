@@ -2,12 +2,9 @@ import { By, WebElement } from 'selenium-webdriver';
 import { ElementCondition } from '../conditions/elementCondition';
 import { Collection } from './collection';
 import { Driver } from './driver';
-import { AfterElementActionHook } from './hooks/afterElementActionHook';
-import { BeforeElementActionHook } from './hooks/beforeElementActionHook';
 import { Locator } from './locators/locator';
-export declare class Element {
-    static beforeActionHooks: BeforeElementActionHook[];
-    static afterActionHooks: AfterElementActionHook[];
+import { SearchContext } from './SearchContext';
+export declare class Element implements SearchContext {
     private readonly driver;
     private readonly locator;
     private readonly wait;
@@ -44,5 +41,7 @@ export declare class Element {
     visibleElement(cssSelector: string): Element;
     all(cssOrXpathOrBy: string | By): Collection;
     equals(element: Element): Promise<boolean>;
+    findElements(locator: By): Promise<WebElement[]>;
+    findElement(locator: By): Promise<WebElement>;
     toString(): string;
 }

@@ -1,14 +1,15 @@
 /// <reference types="node" />
-import { ActionSequence, By } from 'selenium-webdriver';
+import { ActionSequence, By, WebElement } from 'selenium-webdriver';
 import { DriverCondition } from '../conditions/driverCondition';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
 import { Element } from './element';
+import { SearchContext } from './SearchContext';
 import { Wait } from './wait';
-export declare class Driver {
-    readonly config: Configuration;
+export declare class Driver implements SearchContext {
+    readonly configuration: Configuration;
     readonly wait: Wait<Driver>;
-    constructor(config?: Configuration);
+    constructor(customConfiguration: Configuration);
     get(url: string): Promise<void>;
     close(): Promise<void>;
     quit(): Promise<void>;
@@ -34,5 +35,7 @@ export declare class Driver {
     switchToFrame(frameElement: Element): Promise<void>;
     switchToDefaultFrame(): Promise<void>;
     clearCacheAndCookies(): Promise<void>;
+    findElements(locator: By): Promise<WebElement[]>;
+    findElement(locator: By): Promise<WebElement>;
     toString(): string;
 }

@@ -21,20 +21,20 @@ import { Locator } from './locator';
 export class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[]>> {
 
     private readonly elementCondition: ElementCondition;
-    private readonly searchContext: Collection;
+    private readonly collection: Collection;
 
-    constructor(condition: ElementCondition, searchContext: Collection) {
+    constructor(condition: ElementCondition, collection: Collection) {
         this.elementCondition = condition;
-        this.searchContext = searchContext;
+        this.collection = collection;
     }
 
     async find(): Promise<WebElement[]> {
-        const webElements = await this.searchContext.getWebElements();
+        const webElements = await this.collection.getWebElements();
 
         const result: WebElement[] = [];
         for (let i = 0; i < webElements.length; i++) {
             try {
-                await this.elementCondition.matches(this.searchContext.get(i));
+                await this.elementCondition.matches(this.collection.get(i));
                 result.push(webElements[i]);
             } catch (ignored) {
             }
@@ -43,7 +43,7 @@ export class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[
     }
 
     toString(): string {
-        return `${this.searchContext.toString()}.filteredBy(${this.elementCondition.toString()})`;
+        return `${this.collection.toString()}.filteredBy(${this.elementCondition.toString()})`;
     }
 
 }

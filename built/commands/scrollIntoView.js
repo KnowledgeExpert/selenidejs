@@ -13,11 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../utils");
 class ScrollIntoView {
-    async perform(entity, ...args) {
-        const webelement = await entity.getWebElement();
-        await utils_1.Utils.getDriver(entity).executeScript('arguments[0].scrollIntoView(true);', webelement);
+    async perform(element, ...args) {
+        const webelement = await element.getWebElement();
+        /* tslint:disable:no-string-literal */
+        const driver = element['driver'];
+        /* tslint:enable:no-string-literal */
+        await driver.executeScript('arguments[0].scrollIntoView(true);', webelement);
     }
 }
 exports.ScrollIntoView = ScrollIntoView;

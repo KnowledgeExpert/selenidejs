@@ -13,12 +13,14 @@
 // limitations under the License.
 
 import { Element } from '../baseEntities/element';
-import { Utils } from '../utils';
 import { Command } from './command';
 
 export class Hover implements Command<Element> {
-    async perform(entity: Element, ...args: any[]): Promise<void> {
-        const webelement = await entity.getWebElement();
-        await Utils.getDriver(entity).actions().mouseMove(webelement).perform();
+    async perform(element: Element, ...args: any[]): Promise<void> {
+        const webelement = await element.getWebElement();
+        /* tslint:disable:no-string-literal */
+        const driver = element['driver'];
+        /* tslint:enable:no-string-literal */
+        await driver.actions().mouseMove(webelement).perform();
     }
 }

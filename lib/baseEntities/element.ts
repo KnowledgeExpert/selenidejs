@@ -31,19 +31,15 @@ import { With } from '../locators/with';
 import { Utils } from '../utils';
 import { Collection } from './collection';
 import { Driver } from './driver';
-import { AfterElementActionHook } from './hooks/afterElementActionHook';
-import { BeforeElementActionHook } from './hooks/beforeElementActionHook';
 import { ElementActionHooks } from './hooks/elementActionHooks';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
+import { SearchContext } from './SearchContext';
 import { Wait } from './wait';
 
 
-export class Element {
-
-    static beforeActionHooks: BeforeElementActionHook[] = [];
-    static afterActionHooks: AfterElementActionHook[] = [];
+export class Element implements SearchContext {
 
     private readonly driver: Driver;
     private readonly locator: Locator<Promise<WebElement>>;
@@ -52,7 +48,7 @@ export class Element {
     constructor(locator: Locator<Promise<WebElement>>, driver: Driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new Wait(this, driver.config);
+        this.wait = new Wait(this, driver);
     }
 
     @ElementActionHooks
@@ -198,6 +194,14 @@ export class Element {
 
     async equals(element: Element) {
         return WebElement.equals(await this.getWebElement(), await element.getWebElement());
+    }
+
+    async findElements(locator: By): Promise<WebElement[]> {
+        return this.getWebElement().then(root => root.findElements(locator));
+    }
+
+    async findElement(locator: By): Promise<WebElement> {
+        return this.getWebElement().then(root => root.findElement(locator));
     }
 
     toString(): string {

@@ -16,8 +16,8 @@ import { Element } from '../baseEntities/element';
 import { Command } from './command';
 
 export class SendKeys implements Command<Element> {
-    async perform(entity: Element, ...args: any[]): Promise<void> {
-        const webelement = await entity.getWebElement();
+    async perform(element: Element, ...args: any[]): Promise<void> {
+        const webelement = await element.getWebElement();
         const value = args[0];
 
         await webelement.sendKeys(String(value));

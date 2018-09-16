@@ -3,7 +3,7 @@
     "lines": 85,
     "statements": 85,
     "functions": 75,
-    "branches": 70,
+    "branches": 75,
     "include": [
       "./built/lib/**/*.js"
     ],

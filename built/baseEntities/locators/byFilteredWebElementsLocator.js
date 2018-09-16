@@ -14,16 +14,16 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 class ByFilteredWebElementsLocator {
-    constructor(condition, searchContext) {
+    constructor(condition, collection) {
         this.elementCondition = condition;
-        this.searchContext = searchContext;
+        this.collection = collection;
     }
     async find() {
-        const webElements = await this.searchContext.getWebElements();
+        const webElements = await this.collection.getWebElements();
         const result = [];
         for (let i = 0; i < webElements.length; i++) {
             try {
-                await this.elementCondition.matches(this.searchContext.get(i));
+                await this.elementCondition.matches(this.collection.get(i));
                 result.push(webElements[i]);
             }
             catch (ignored) {
@@ -32,7 +32,7 @@ class ByFilteredWebElementsLocator {
         return result;
     }
     toString() {
-        return `${this.searchContext.toString()}.filteredBy(${this.elementCondition.toString()})`;
+        return `${this.collection.toString()}.filteredBy(${this.elementCondition.toString()})`;
     }
 }
 exports.ByFilteredWebElementsLocator = ByFilteredWebElementsLocator;

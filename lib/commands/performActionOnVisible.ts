@@ -12,20 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { Driver } from '..';
 import { Element } from '../baseEntities/element';
+import { OnElementFailureHook } from '../baseEntities/hooks/onElementFailureHook';
+import { OnFailureHook } from '../baseEntities/hooks/onFailureHook';
 import { be } from '../conditions/helpers/be';
 import { CannotPerformActionError } from '../errors/cannotPerformActionError';
-import { Utils } from '../utils';
 import { Command } from './command';
 
 export class PerformActionOnVisible implements Command<Element> {
     async perform(element: Element, ...args: any[]): Promise<void> {
+        /* tslint:disable:no-string-literal */
+        const driver = element['driver'];
+        /* tslint:enable:no-string-literal */
+        const configuration = driver.configuration;
         const actionName = args[0];
         const action = args[1];
         const actionArgumentsStartIndex = 2;
         const actionArguments = args.slice(actionArgumentsStartIndex);
-        const driver = Utils.getDriver(element);
-        const config = driver.config;
 
         try {
             await action(element, actionArguments);
@@ -37,21 +41,40 @@ export class PerformActionOnVisible implements Command<Element> {
                 error.message =
                     `For element ${element.toString()}: cannot perform ${actionName} reason: ${error.message}`;
 
-                for (const func of config.onFailureHooks) {
-                    try {
-                        await func(error, element);
-                    } catch (hookError) {
-                        /* tslint:disable:no-console */
-                        console.warn(
-                            `Cannot perform hook '${func.toString()}' function cause of:
-                                Error message: ${hookError.message}
-                                Error stacktrace: ${hookError.stackTrace}`);
-                        /* tslint:enable:no-console */
-                    }
-                }
+                await this.executeOnFailureHooks(error, configuration.onFailureHooks, driver);
+                await this.executeOnElementFailureHooks(error, element, configuration.onElementFailureHooks, driver);
 
                 throw new CannotPerformActionError(error.message);
             }
         }
     }
+
+    private async executeOnFailureHooks(error: Error, hooks: OnFailureHook[], driver: Driver) {
+        for (const onFailureHook of hooks) {
+            await this.tryExecuteHook(onFailureHook.bind(null, error, driver));
+        }
+    }
+
+    private async executeOnElementFailureHooks(
+        error: Error, element: Element, hooks: OnElementFailureHook[], driver: Driver
+    ) {
+        for (const onElementFailureHook of hooks) {
+            await this.tryExecuteHook(onElementFailureHook.bind(null, error, driver, element));
+        }
+    }
+
+    private async tryExecuteHook(hook) {
+        try {
+            await hook();
+        } catch (error) {
+            /* tslint:disable:no-console */
+            console.warn(
+                `Cannot perform hook '${hook.toString()}' function cause of:
+                            Error message: ${error.message}
+                            Error stacktrace: ${error.stackTrace}`
+            );
+            /* tslint:enable:no-console */
+        }
+    }
+
 }

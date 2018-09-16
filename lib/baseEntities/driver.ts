@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ActionSequence, By } from 'selenium-webdriver';
+import { ActionSequence, By, WebElement } from 'selenium-webdriver';
 import { Condition } from '../conditions/condition';
 import { DriverCondition } from '../conditions/driverCondition';
 import { be } from '../conditions/helpers/be';
@@ -23,66 +23,67 @@ import { Configuration } from './configuration';
 import { Element } from './element';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
+import { SearchContext } from './SearchContext';
 import { Wait } from './wait';
 
 
-export class Driver {
+export class Driver implements SearchContext {
 
-    readonly config: Configuration;
+    readonly configuration: Configuration;
     readonly wait: Wait<Driver>;
 
-    constructor(config = {} as Configuration) {
-        this.config = new Configuration(config);
-        this.wait = new Wait(this, this.config);
+    constructor(customConfiguration: Configuration) {
+        this.configuration = new Configuration(customConfiguration);
+        this.wait = new Wait(this, this);
     }
 
     async get(url: string) {
-        if (this.config.windowHeight && this.config.windowWidth) {
-            await this.resizeWindow(parseInt(this.config.windowHeight), parseInt(this.config.windowWidth));
+        if (this.configuration.windowHeight && this.configuration.windowWidth) {
+            await this.resizeWindow(this.configuration.windowWidth, this.configuration.windowHeight);
         }
-        await this.config.webdriver.get(url);
+        await this.configuration.webdriver.get(url);
     }
 
     async close() {
-        await this.config.webdriver.close();
+        await this.configuration.webdriver.close();
     }
 
     async quit() {
-        await this.config.webdriver.quit();
+        await this.configuration.webdriver.quit();
     }
 
     async refresh() {
-        await this.config.webdriver.navigate().refresh();
+        await this.configuration.webdriver.navigate().refresh();
     }
 
     async acceptAlert() {
-        await this.config.webdriver.switchTo().alert().accept();
+        await this.configuration.webdriver.switchTo().alert().accept();
     }
 
     async url(): Promise<string> {
-        return this.config.webdriver.getCurrentUrl();
+        return this.configuration.webdriver.getCurrentUrl();
     }
 
     async title(): Promise<string> {
-        return this.config.webdriver.getTitle();
+        return this.configuration.webdriver.getTitle();
     }
 
     async pageSource(): Promise<string> {
-        return this.config.webdriver.getPageSource();
+        return this.configuration.webdriver.getPageSource();
     }
 
     async screenshot(): Promise<Buffer> {
-        return this.config.fullpageScreenshot
+        return this.configuration.fullpageScreenshot
             ? new FullpageScreenshot().perform(this)
-            : Buffer.from(await this.config.webdriver.takeScreenshot(), 'base64');
+            : Buffer.from(await this.configuration.webdriver.takeScreenshot(), 'base64');
     }
 
     async resizeWindow(width: number, height: number) {
-        await this.config.webdriver.manage().window().setSize(width, height);
+        await this.configuration.webdriver.manage().window().setSize(width, height);
     }
 
     actions(): ActionSequence {
-        return this.config.webdriver.actions();
+        return this.configuration.webdriver.actions();
     }
 
     element(cssOrXpathOrBy: string | By): Element {
@@ -119,52 +120,60 @@ export class Driver {
 
     /* tslint:disable:ban-types */
     async executeScript(script: string | Function, ...args: any[]) {
-        return this.config.webdriver.executeScript(script, ...args);
+        return this.configuration.webdriver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
 
     async getTabs() {
-        return this.config.webdriver.getAllWindowHandles();
+        return this.configuration.webdriver.getAllWindowHandles();
     }
 
     async nextTab() {
-        const currentTab = await this.config.webdriver.getWindowHandle();
-        const allTabs = await this.config.webdriver.getAllWindowHandles();
+        const currentTab = await this.configuration.webdriver.getWindowHandle();
+        const allTabs = await this.configuration.webdriver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.config.webdriver
+        await this.configuration.webdriver
             .switchTo()
             .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
     }
 
     async previousTab() {
-        const currentTab = await this.config.webdriver.getWindowHandle();
-        const allTabs = await this.config.webdriver.getAllWindowHandles();
+        const currentTab = await this.configuration.webdriver.getWindowHandle();
+        const allTabs = await this.configuration.webdriver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.config.webdriver
+        await this.configuration.webdriver
             .switchTo()
             .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
     }
 
     async switchToTab(tabId: string) {
-        await this.config.webdriver.switchTo().window(tabId);
+        await this.configuration.webdriver.switchTo().window(tabId);
     }
 
     async switchToFrame(frameElement: Element) {
         await frameElement.should(be.visible);
-        await this.config.webdriver.switchTo().frame(await frameElement.getWebElement());
+        await this.configuration.webdriver.switchTo().frame(await frameElement.getWebElement());
     }
 
     async switchToDefaultFrame() {
-        await this.config.webdriver.switchTo().defaultContent();
+        await this.configuration.webdriver.switchTo().defaultContent();
     }
 
     async clearCacheAndCookies() {
-        await this.config.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
+        await this.configuration.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
         });
-        await this.config.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
+        await this.configuration.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
         });
-        await this.config.webdriver.manage().deleteAllCookies().catch(ignored => {
+        await this.configuration.webdriver.manage().deleteAllCookies().catch(ignored => {
         });
+    }
+
+    async findElements(locator: By): Promise<WebElement[]> {
+        return this.configuration.webdriver.findElements(locator);
+    }
+
+    async findElement(locator: By): Promise<WebElement> {
+        return this.configuration.webdriver.findElement(locator);
     }
 
     toString() {

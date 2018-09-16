@@ -25,7 +25,7 @@ import focused = be.focused;
 Describe('Driver', () => {
 
     It('should be able to take viewport screenshot', async () => {
-        Browser.config.fullpageScreenshot = false;
+        Browser.configuration.fullpageScreenshot = false;
         await Given.openedEmptyPage();
 
         const viewportScreenshot = await Browser.screenshot();
@@ -35,7 +35,7 @@ Describe('Driver', () => {
     });
 
     It('should be able to take fullpage screenshot', async () => {
-        Browser.config.fullpageScreenshot = true;
+        Browser.configuration.fullpageScreenshot = true;
         await Given.openedEmptyPage();
 
         const fullpageScreenshot = await Browser.screenshot();
@@ -45,7 +45,7 @@ Describe('Driver', () => {
     });
 
     It('should be able to take fullpage screenshot in iframe', async () => {
-        Browser.config.fullpageScreenshot = true;
+        Browser.configuration.fullpageScreenshot = true;
         await Given.openedEmptyPageWithBody('<iframe></iframe>');
         await Browser.switchToFrame(Browser.element('iframe'));
         const fullpageScreenshot = await Browser.screenshot();
@@ -55,7 +55,7 @@ Describe('Driver', () => {
     });
 
     It('should be able to take fullpage screenshot with large screen', async () => {
-        Browser.config.fullpageScreenshot = true;
+        Browser.configuration.fullpageScreenshot = true;
         await Given.openedEmptyPageWithBody('<div id="test"></div>');
         await Browser.executeScript('document.getElementById("test").style.height = "5000px"');
         const fullpageScreenshot = await Browser.screenshot();

@@ -1,2 +1,2 @@
 import { Element } from '../element';
-export declare type AfterElementActionHook = (actionError: Error, element: Element, actionName: string) => void | Promise<void>;
+export declare type AfterElementActionHook = (error: Error, element: Element, actionName: string) => void | Promise<void>;

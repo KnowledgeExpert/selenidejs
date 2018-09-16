@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import { Element } from '../baseEntities/element';
-import { Utils } from '../utils';
 import { Command } from './command';
 
 export class ClickByJs implements Command<Element> {
@@ -28,9 +27,11 @@ export class ClickByJs implements Command<Element> {
         }))`;
     }
 
-    async perform(entity: Element, ...args: any[]): Promise<void> {
-        const webelement = await entity.getWebElement();
-        const driver = Utils.getDriver(entity);
+    async perform(element: Element, ...args: any[]): Promise<void> {
+        const webelement = await element.getWebElement();
+        /* tslint:disable:no-string-literal */
+        const driver = element['driver'];
+        /* tslint:enable:no-string-literal */
         await driver.executeScript(ClickByJs.getClickOnElementWithOffsetScript(0, 0), webelement);
     }
 

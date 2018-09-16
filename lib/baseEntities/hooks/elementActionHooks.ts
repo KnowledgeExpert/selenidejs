@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Element } from '../element';
+import { Configuration } from '../configuration';
 import { AfterElementActionHook } from './afterElementActionHook';
 import { BeforeElementActionHook } from './beforeElementActionHook';
 
@@ -24,8 +24,8 @@ export function ElementActionHooks(target, methodName, descriptor: PropertyDescr
     /* tslint:disable:no-invalid-this*/
     descriptor.value = async function () {
         let actionError;
-
-        await runBeforeHooks(Element.beforeActionHooks, this, methodName);
+        const configuration = this.driver.configuration as Configuration;
+        await runBeforeHooks(configuration.beforeElementActionHooks, this, methodName);
 
         try {
             return await originalMethod.apply(this, arguments);
@@ -33,7 +33,7 @@ export function ElementActionHooks(target, methodName, descriptor: PropertyDescr
             actionError = error;
             throw error;
         } finally {
-            await runAfterHooks(Element.afterActionHooks, actionError, this, methodName);
+            await runAfterHooks(configuration.afterElementActionHooks, actionError, this, methodName);
         }
     };
     /* tslint:enable:space-before-function-paren*/

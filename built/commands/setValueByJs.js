@@ -13,11 +13,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../utils");
 class SetValueByJs {
-    async perform(entity, ...args) {
-        const webelement = await entity.getWebElement();
-        const driver = utils_1.Utils.getDriver(entity);
+    async perform(element, ...args) {
+        const webelement = await element.getWebElement();
+        /* tslint:disable:no-string-literal */
+        const driver = element['driver'];
+        /* tslint:enable:no-string-literal */
         const value = args[0];
         const script = `return (function(webelement, text) {
                     var maxlength = webelement.getAttribute('maxlength') == null

@@ -15,7 +15,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const conditionDoesNotMatchError_1 = require("../errors/conditionDoesNotMatchError");
-const utils_1 = require("../utils");
 const collectionCondition_1 = require("./collectionCondition");
 const driverCondition_1 = require("./driverCondition");
 const elementCondition_1 = require("./elementCondition");
@@ -59,7 +58,9 @@ var Conditions;
     });
     Conditions.elementIsFocused = new elementCondition_1.ElementCondition({
         matches: async function (element) {
-            const driver = utils_1.Utils.getDriver(element);
+            /* tslint:disable:no-string-literal */
+            const driver = element['driver'];
+            /* tslint:enable:no-string-literal */
             const script = 'return document.activeElement';
             const currentElement = await element.getWebElement();
             const focusedElement = await driver.executeScript(script);
@@ -355,7 +356,7 @@ var Conditions;
             matches: async (selenideDriver) => {
                 let tabs = [];
                 try {
-                    tabs = await selenideDriver.config.webdriver.getAllWindowHandles();
+                    tabs = await selenideDriver.configuration.webdriver.getAllWindowHandles();
                     if (tabs.length === size) {
                         return selenideDriver;
                     }
@@ -375,7 +376,7 @@ var Conditions;
             matches: async (selenideDriver) => {
                 let tabs = [];
                 try {
-                    tabs = await selenideDriver.config.webdriver.getAllWindowHandles();
+                    tabs = await selenideDriver.configuration.webdriver.getAllWindowHandles();
                     if (tabs.length > size) {
                         return selenideDriver;
                     }

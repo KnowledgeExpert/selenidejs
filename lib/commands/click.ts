@@ -16,8 +16,8 @@ import { Element } from '../baseEntities/element';
 import { Command } from './command';
 
 export class Click implements Command<Element> {
-    async perform(entity: Element, ...args: any[]): Promise<void> {
-        const webelement = await entity.getWebElement();
+    async perform(element: Element, ...args: any[]): Promise<void> {
+        const webelement = await element.getWebElement();
         await webelement.click();
     }
 }

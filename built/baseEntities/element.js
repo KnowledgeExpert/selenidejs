@@ -44,7 +44,7 @@ class Element {
     constructor(locator, driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new wait_1.Wait(this, driver.config);
+        this.wait = new wait_1.Wait(this, driver);
     }
     async click() {
         await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'click', new click_1.Click().perform);
@@ -147,12 +147,16 @@ class Element {
     async equals(element) {
         return selenium_webdriver_1.WebElement.equals(await this.getWebElement(), await element.getWebElement());
     }
+    async findElements(locator) {
+        return this.getWebElement().then(root => root.findElements(locator));
+    }
+    async findElement(locator) {
+        return this.getWebElement().then(root => root.findElement(locator));
+    }
     toString() {
         return this.locator.toString();
     }
 }
-Element.beforeActionHooks = [];
-Element.afterActionHooks = [];
 __decorate([
     elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "click", null);

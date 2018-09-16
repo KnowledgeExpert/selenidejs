@@ -24,7 +24,7 @@ const jimp = require('jimp');
 export class FullpageScreenshot implements Query<Driver> {
 
     async perform(driver: Driver, ...args: any[]): Promise<any> {
-        return this.take(driver.config.webdriver);
+        return this.take(driver.configuration.webdriver);
     }
 
     /**

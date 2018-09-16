@@ -19,7 +19,7 @@ const jimp = require('jimp');
 /* tslint:enable:no-no-var-requires*/
 class FullpageScreenshot {
     async perform(driver, ...args) {
-        return this.take(driver.config.webdriver);
+        return this.take(driver.configuration.webdriver);
     }
     /**
      * The method allows to take full page screenshots by scrolling screen and merging taken parts of screen

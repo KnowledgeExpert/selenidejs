@@ -17,7 +17,6 @@ import { Collection } from '../baseEntities/collection';
 import { Driver } from '../baseEntities/driver';
 import { Element } from '../baseEntities/element';
 import { ConditionDoesNotMatchError } from '../errors/conditionDoesNotMatchError';
-import { Utils } from '../utils';
 import { CollectionCondition } from './collectionCondition';
 import { DriverCondition } from './driverCondition';
 import { ElementCondition } from './elementCondition';
@@ -64,7 +63,9 @@ export namespace Conditions {
 
     export const elementIsFocused: ElementCondition = new ElementCondition({
         matches: async function (element: Element) {
-            const driver = Utils.getDriver(element);
+            /* tslint:disable:no-string-literal */
+            const driver = element['driver'];
+            /* tslint:enable:no-string-literal */
             const script = 'return document.activeElement';
             const currentElement = await element.getWebElement();
             const focusedElement = await driver.executeScript(script) as WebElement;
@@ -353,7 +354,7 @@ export namespace Conditions {
             matches: async (selenideDriver: Driver) => {
                 let tabs = [];
                 try {
-                    tabs = await selenideDriver.config.webdriver.getAllWindowHandles();
+                    tabs = await selenideDriver.configuration.webdriver.getAllWindowHandles();
                     if (tabs.length === size) {
                         return selenideDriver;
                     }
@@ -372,7 +373,7 @@ export namespace Conditions {
             matches: async (selenideDriver: Driver) => {
                 let tabs = [];
                 try {
-                    tabs = await selenideDriver.config.webdriver.getAllWindowHandles();
+                    tabs = await selenideDriver.configuration.webdriver.getAllWindowHandles();
                     if (tabs.length > size) {
                         return selenideDriver;
                     }

@@ -24,7 +24,7 @@ import '../base';
 Describe('Element "ShouldNot" method', () => {
 
     beforeAll(async () => {
-        Browser.config.timeout = 1;
+        Browser.configuration.timeout = 1;
     });
 
     It('should not throw error if successful', async () => {

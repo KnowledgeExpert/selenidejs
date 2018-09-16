@@ -22,7 +22,7 @@ class Collection {
     constructor(locator, driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new wait_1.Wait(this, driver.config);
+        this.wait = new wait_1.Wait(this, driver);
     }
     async should(condition, timeout) {
         return timeout

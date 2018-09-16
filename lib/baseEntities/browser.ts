@@ -23,13 +23,11 @@ import { Element } from './element';
 export namespace Browser {
 
     export let selenideDriver: Driver;
-    export let config: Configuration;
+    export let configuration: Configuration;
 
-    export function setDriver(driverOrConfiguration: Driver | Configuration) {
-        selenideDriver = driverOrConfiguration instanceof Driver
-            ? driverOrConfiguration as Driver
-            : new Driver(driverOrConfiguration as Configuration);
-        config = selenideDriver.config;
+    export function setDriver(customConfiguration: Configuration) {
+        selenideDriver = new Driver(customConfiguration);
+        configuration = selenideDriver.configuration;
     }
 
     export async function get(url: string) {

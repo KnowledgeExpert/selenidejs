@@ -48,7 +48,7 @@ Describe('Element search', () => {
     });
 
     It('should wait on visibility on actions', async () => {
-        Browser.config.timeout = 2000;
+        Browser.configuration.timeout = 2000;
         await Given.openedEmptyPageWithBody(`
             <a href='#second' style='display:none'>go to Heading 2</a>
             <h2 id='second'>Heading 2</h2>
@@ -62,7 +62,7 @@ Describe('Element search', () => {
     });
 
     It('should fail on timeout during waiting for visibility on actions', async () => {
-        Browser.config.timeout = 1;
+        Browser.configuration.timeout = 1;
         await Given.openedEmptyPageWithBody(`
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>

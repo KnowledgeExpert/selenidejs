@@ -28,7 +28,7 @@ import visible = be.visible;
 Describe('Condition', () => {
 
     beforeAll(async () => {
-        Browser.config.timeout = 1;
+        Browser.configuration.timeout = 1;
     });
 
     It('AND should check multiple conditions', async () => {

@@ -14,9 +14,7 @@
 
 import * as fs from 'fs-extra';
 import { By } from 'selenium-webdriver';
-import { Collection } from './baseEntities/collection';
 import { Driver } from './baseEntities/driver';
-import { Element } from './baseEntities/element';
 import { With } from './locators/with';
 
 
@@ -42,22 +40,10 @@ export namespace Utils {
         return completeFilePath;
     }
 
-    export function getDriver(entity: Driver | Collection | Element): Driver {
-        if (entity instanceof Element || entity instanceof Collection) {
-            /* tslint:disable:no-string-literal*/
-            return entity['driver'] as Driver;
-            /* tslint:enable:no-string-literal*/
-        }
-        return entity;
-    }
-
-    export function isDriver(entity: Driver | Element): boolean {
-        return entity instanceof Driver;
-    }
-
     export function toBy(cssOrXpathOrBy: string | By): By {
         return (typeof cssOrXpathOrBy === 'string')
             ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
+
 }

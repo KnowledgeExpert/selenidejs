@@ -110,7 +110,7 @@ Describe('Element', () => {
     });
 
     It('should wait for visibility if possible', async () => {
-        Browser.config.timeout = 2000;
+        Browser.configuration.timeout = 2000;
         await Given.openedEmptyPageWithBody('<input id="test" style="display:none" />');
         await Browser.executeScript(
             'setTimeout(_ => { document.getElementById("test").style = "display:block"; }, 1000);'

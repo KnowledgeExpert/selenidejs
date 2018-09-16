@@ -33,7 +33,7 @@ Describe('Element Before Action Hook', () => {
     };
 
     beforeAll(async () => {
-        Browser.config.timeout = 0.1;
+        Browser.configuration.timeout = 0.1;
     });
 
     beforeEach(async () => {
@@ -42,7 +42,7 @@ Describe('Element Before Action Hook', () => {
     });
 
     It('should be called on success action', async () => {
-        Element.beforeActionHooks = [hook.before];
+        Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPageWithBody('<h1>Test</h1>');
 
         await Browser.element('h1').click();
@@ -50,7 +50,7 @@ Describe('Element Before Action Hook', () => {
     });
 
     It('should be called on success with correct arguments', async () => {
-        Element.beforeActionHooks = [hook.before];
+        Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPageWithBody('<h1>Test</h1>');
         const element = Browser.element('h1');
 
@@ -59,7 +59,7 @@ Describe('Element Before Action Hook', () => {
     });
 
     It('should not interrupt flow if hook is broken', async () => {
-        Element.beforeActionHooks = [hook.brokenBefore];
+        Browser.configuration.beforeElementActionHooks = [hook.brokenBefore];
         await Given.openedEmptyPage();
 
         await Browser.element('#non-existing-element').click().catch(ignored => {
@@ -68,7 +68,7 @@ Describe('Element Before Action Hook', () => {
     });
 
     It('should be called on failed action', async () => {
-        Element.beforeActionHooks = [hook.before];
+        Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPage();
 
         await Browser.element('#non-existing-element').click().catch(ignored => {
@@ -77,7 +77,7 @@ Describe('Element Before Action Hook', () => {
     });
 
     It('should be called on failed action with correct arguments', async () => {
-        Element.beforeActionHooks = [hook.before];
+        Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPage();
         const element = Browser.element('#non-existing-element');
 
@@ -98,7 +98,7 @@ Describe('Element After Action Hook', () => {
     };
 
     beforeAll(async () => {
-        Browser.config.timeout = 0.1;
+        Browser.configuration.timeout = 0.1;
     });
 
     beforeEach(async () => {
@@ -107,7 +107,7 @@ Describe('Element After Action Hook', () => {
     });
 
     It('should be called on success action', async () => {
-        Element.afterActionHooks = [hook.after];
+        Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
         await When.withBody('<h1 id=\'test\'>Test</h1>');
 
@@ -116,7 +116,7 @@ Describe('Element After Action Hook', () => {
     });
 
     It('should be called on success with correct arguments', async () => {
-        Element.afterActionHooks = [hook.after];
+        Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
         await When.withBody('<h1 id=\'test\'>Test</h1>');
         const element = Browser.element('#test');
@@ -126,7 +126,7 @@ Describe('Element After Action Hook', () => {
     });
 
     It('should be called on failed action', async () => {
-        Element.afterActionHooks = [hook.after];
+        Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
 
         await Browser.element('#non-existing-element').click().catch(ignored => {
@@ -135,7 +135,7 @@ Describe('Element After Action Hook', () => {
     });
 
     It('should not interrupt flow if hook is broken', async () => {
-        Element.afterActionHooks = [hook.brokenAfter];
+        Browser.configuration.afterElementActionHooks = [hook.brokenAfter];
         await Given.openedEmptyPage();
 
         await Browser.element('#non-existing-element').click().catch(ignored => {
@@ -144,7 +144,7 @@ Describe('Element After Action Hook', () => {
     });
 
     It('should be called on failed action with correct arguments', async () => {
-        Element.afterActionHooks = [hook.after];
+        Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
         const element = Browser.element('#non-existing-element');
 

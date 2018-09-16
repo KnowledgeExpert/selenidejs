@@ -21,11 +21,13 @@ import { Element } from './element';
 
 export class Wait<T extends Driver | Element | Collection> {
 
-    readonly configuration: Configuration;
-    readonly entity: T;
+    private readonly entity: T;
+    private readonly driver: Driver;
+    private readonly configuration: Configuration;
 
-    constructor(entity: T, config: Configuration) {
-        this.configuration = config;
+    constructor(entity: T, driver: Driver) {
+        this.driver = driver;
+        this.configuration = driver.configuration;
         this.entity = entity;
     }
 
@@ -52,19 +54,52 @@ export class Wait<T extends Driver | Element | Collection> {
 
         lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
 
-        for (const func of this.configuration.onFailureHooks) {
-            try {
-                await func(lastError, this.entity, condition);
-            } catch (error) {
-                /* tslint:disable:no-console */
-                console.warn(
-                    `Cannot perform hook '${func.toString()}' function cause of:
-                            Error message: ${error.message}
-                            Error stacktrace: ${error.stackTrace}`
-                );
-                /* tslint:enable:no-console */
-            }
+        await this.executeOnFailureHooks(lastError);
+        if (this.entity instanceof Element) {
+            await this.executeOnElementFailureHooks(lastError, this.entity);
+        } else if (this.entity instanceof Collection) {
+            await this.executeOnCollectionFailureHooks(lastError, this.entity);
         }
+
         throw lastError;
     }
+
+    private async executeOnFailureHooks(error: Error) {
+        const hooks = this.configuration.onFailureHooks;
+        const driver = this.driver;
+        for (const onFailureHook of hooks) {
+            await this.tryExecuteHook(onFailureHook, error, driver);
+        }
+    }
+
+    private async executeOnElementFailureHooks(error: Error, element: Element) {
+        const hooks = this.configuration.onElementFailureHooks;
+        const driver = this.driver;
+        for (const onElementFailureHook of hooks) {
+            await this.tryExecuteHook(onElementFailureHook, error, driver, element);
+        }
+    }
+
+    private async executeOnCollectionFailureHooks(error: Error, collection: Collection) {
+        const hooks = this.configuration.onCollectionFailureHooks;
+        const driver = this.driver;
+        for (const onCollectionFailureHook of hooks) {
+            await this.tryExecuteHook(onCollectionFailureHook, error, driver, collection);
+        }
+    }
+
+    private async tryExecuteHook(hook, ...args: any[]) {
+        try {
+            await hook(...args);
+        } catch (error) {
+            /* tslint:disable:no-console */
+            console.warn(
+                `Cannot perform hook '${hook.toString()}' function cause of:
+                            Error message: ${error.message}
+                            Error stacktrace: ${error.stackTrace}`
+            );
+            /* tslint:enable:no-console */
+        }
+    }
+
 }

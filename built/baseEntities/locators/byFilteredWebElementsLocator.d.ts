@@ -4,8 +4,8 @@ import { Collection } from '../collection';
 import { Locator } from './locator';
 export declare class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[]>> {
     private readonly elementCondition;
-    private readonly searchContext;
-    constructor(condition: ElementCondition, searchContext: Collection);
+    private readonly collection;
+    constructor(condition: ElementCondition, collection: Collection);
     find(): Promise<WebElement[]>;
     toString(): string;
 }

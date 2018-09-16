@@ -23,7 +23,7 @@ import './base';
 Describe('Find', () => {
 
     beforeAll(async () => {
-        Browser.config.timeout = 1;
+        Browser.configuration.timeout = 1;
     });
 
     It('by filtered web elements should filter correctly', async () => {

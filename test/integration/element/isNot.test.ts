@@ -25,7 +25,7 @@ import '../base';
 Describe('Element "Is Not" method', () => {
 
     beforeAll(async () => {
-        Browser.config.timeout = 1;
+        Browser.configuration.timeout = 1;
     });
 
     It('should return true if successful', async () => {

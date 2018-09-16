@@ -14,8 +14,8 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 class Click {
-    async perform(entity, ...args) {
-        const webelement = await entity.getWebElement();
+    async perform(element, ...args) {
+        const webelement = await element.getWebElement();
         await webelement.click();
     }
 }

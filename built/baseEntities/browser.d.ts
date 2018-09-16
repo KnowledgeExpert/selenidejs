@@ -7,8 +7,8 @@ import { Driver } from './driver';
 import { Element } from './element';
 export declare namespace Browser {
     let selenideDriver: Driver;
-    let config: Configuration;
-    function setDriver(driverOrConfiguration: Driver | Configuration): void;
+    let configuration: Configuration;
+    function setDriver(customConfiguration: Configuration): void;
     function get(url: string): Promise<void>;
     function close(): Promise<void>;
     function quit(): Promise<void>;

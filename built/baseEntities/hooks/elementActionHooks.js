@@ -13,14 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const element_1 = require("../element");
 function ElementActionHooks(target, methodName, descriptor) {
     const originalMethod = descriptor.value;
     /* tslint:disable:space-before-function-paren*/
     /* tslint:disable:no-invalid-this*/
     descriptor.value = async function () {
         let actionError;
-        await runBeforeHooks(element_1.Element.beforeActionHooks, this, methodName);
+        const configuration = this.driver.configuration;
+        await runBeforeHooks(configuration.beforeElementActionHooks, this, methodName);
         try {
             return await originalMethod.apply(this, arguments);
         }
@@ -29,7 +29,7 @@ function ElementActionHooks(target, methodName, descriptor) {
             throw error;
         }
         finally {
-            await runAfterHooks(element_1.Element.afterActionHooks, actionError, this, methodName);
+            await runAfterHooks(configuration.afterElementActionHooks, actionError, this, methodName);
         }
     };
     /* tslint:enable:space-before-function-paren*/
