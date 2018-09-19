@@ -1,7 +1,7 @@
-import { Driver } from '..';
+import { Driver } from '../driver';
 import { Query } from './query';
 export declare class FullpageScreenshot implements Query<Driver> {
-    perform(driver: Driver, ...args: any[]): Promise<any>;
+    perform(driver: Driver): Promise<any>;
     /**
      * The method allows to take full page screenshots by scrolling screen and merging taken parts of screen
      * (without scrollbars) into one whole screenshot.

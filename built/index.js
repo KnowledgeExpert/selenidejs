@@ -13,17 +13,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-var browser_1 = require("./baseEntities/browser");
+var browser_1 = require("./browser");
 exports.Browser = browser_1.Browser;
-var collection_1 = require("./baseEntities/collection");
+var collection_1 = require("./collection");
 exports.Collection = collection_1.Collection;
-var configuration_1 = require("./baseEntities/configuration");
+var configuration_1 = require("./configuration");
 exports.Configuration = configuration_1.Configuration;
-var driver_1 = require("./baseEntities/driver");
+var driver_1 = require("./driver");
 exports.Driver = driver_1.Driver;
-var element_1 = require("./baseEntities/element");
+var element_1 = require("./element");
 exports.Element = element_1.Element;
-var wait_1 = require("./baseEntities/wait");
+var wait_1 = require("./wait");
 exports.Wait = wait_1.Wait;
 var condition_1 = require("./conditions/condition");
 exports.Condition = condition_1.Condition;
@@ -37,7 +37,7 @@ var be_1 = require("./conditions/helpers/be");
 exports.be = be_1.be;
 var have_1 = require("./conditions/helpers/have");
 exports.have = have_1.have;
-var with_1 = require("./locators/with");
+var with_1 = require("./with");
 exports.With = with_1.With;
 var selenium_webdriver_1 = require("selenium-webdriver");
 exports.By = selenium_webdriver_1.By;

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { Button } from 'selenium-webdriver';
-import { Element } from '../baseEntities/element';
+import { Element } from '../element';
 import { Utils } from '../utils';
 import { Command } from './command';
 

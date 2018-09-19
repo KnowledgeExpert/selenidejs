@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import { By, WebElement } from 'selenium-webdriver';
-import { Collection } from '../baseEntities/collection';
-import { Driver } from '../baseEntities/driver';
-import { Element } from '../baseEntities/element';
+import { Collection } from '../collection';
+import { Driver } from '../driver';
+import { Element } from '../element';
 import { ConditionDoesNotMatchError } from '../errors/conditionDoesNotMatchError';
 import { Utils } from '../utils';
 import { CollectionCondition } from './collectionCondition';

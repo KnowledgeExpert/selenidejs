@@ -45,6 +45,10 @@ Run ts linter:
 npm run lint
 ```
 
+## Documentation
+
+Generated API documentation can be found [here](docs/README.md).
+
 ## Contributing
 
 TBD
@@ -54,8 +58,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [NPM](http://npm.com/) for versioning. For the versions available, see the [NPM](https://www.npmjs
-.com/package/selenidejs#versions) or github [releases](https://github.com/KnowledgeExpert/selenidejs/releases).
+We use [NPM](http://npm.com/) for versioning. For the versions available, see the [NPM](https://www.npmjs.com/package/selenidejs#versions) or github [releases](https://github.com/KnowledgeExpert/selenidejs/releases).
 
 ## Authors
 

@@ -14,10 +14,10 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs-extra");
-const collection_1 = require("./baseEntities/collection");
-const driver_1 = require("./baseEntities/driver");
-const element_1 = require("./baseEntities/element");
-const with_1 = require("./locators/with");
+const collection_1 = require("./collection");
+const driver_1 = require("./driver");
+const element_1 = require("./element");
+const with_1 = require("./with");
 var Utils;
 (function (Utils) {
     async function savePageSource(selenideDriver, filePath) {

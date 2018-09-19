@@ -16,7 +16,7 @@
 /* tslint:disable:no-magic-numbers */
 
 import { Configuration } from '../../lib';
-import { Browser } from '../../lib/baseEntities/browser';
+import { Browser } from '../../lib/browser';
 import { TestUtils } from '../utils/testUtils';
 
 beforeAll(async () => {

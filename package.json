@@ -15,11 +15,13 @@
     "typescript": "3.0.3"
   },
   "devDependencies": {
-    "jasmine-cookies": "0.1.3",
-    "http-server": "0.11.1",
     "coveralls": "3.0.1",
+    "http-server": "0.11.1",
+    "jasmine-cookies": "0.1.3",
+    "nyc": "12.0.2",
     "tslint": "5.11.0",
-    "nyc": "12.0.2"
+    "typedoc": "0.12.0",
+    "typedoc-plugin-markdown": "^1.1.15"
   },
   "scripts": {
     "clean": "rm -rf ./built && rm -f package-lock.json",
@@ -29,7 +31,8 @@
     "pretest": "npm run clean && npm run compile-test",
     "lint": "tslint --project lib",
     "test": "nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json",
-    "build": "npm run lint && npm run test && npm run clean && npm run compile"
+    "build": "npm run lint && npm run test && npm run clean && npm run compile",
+    "documentation": "typedoc --theme markdown --mode file --readme none --tsconfig lib/tsconfig.json --out docs lib"
   },
   "repository": {
     "type": "git",

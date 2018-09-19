@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-import { Collection } from '../baseEntities/collection';
+import { Collection } from '../collection';
 import { Condition } from './condition';
 
 export class CollectionCondition extends Condition<Collection> {
