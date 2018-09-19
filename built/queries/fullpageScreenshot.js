@@ -18,7 +18,7 @@ const mergeImg = require("merge-img");
 const jimp = require('jimp');
 /* tslint:enable:no-no-var-requires*/
 class FullpageScreenshot {
-    async perform(driver, ...args) {
+    async perform(driver) {
         return this.take(driver.config.webdriver);
     }
     /**

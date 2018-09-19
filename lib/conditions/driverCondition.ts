@@ -13,7 +13,7 @@
 // limitations under the License.ific language governing permissions and
 // limitations under the License.
 
-import { Driver } from '../baseEntities/driver';
+import { Driver } from '../driver';
 import { Condition } from './condition';
 
 export class DriverCondition extends Condition<Driver> {

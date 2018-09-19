@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Element } from '../baseEntities/element';
 import { be } from '../conditions/helpers/be';
+import { Element } from '../element';
 import { CannotPerformActionError } from '../errors/cannotPerformActionError';
 import { Utils } from '../utils';
 import { Command } from './command';

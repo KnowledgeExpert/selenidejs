@@ -14,10 +14,10 @@
 
 import * as fs from 'fs-extra';
 import { By } from 'selenium-webdriver';
-import { Collection } from './baseEntities/collection';
-import { Driver } from './baseEntities/driver';
-import { Element } from './baseEntities/element';
-import { With } from './locators/with';
+import { Collection } from './collection';
+import { Driver } from './driver';
+import { Element } from './element';
+import { With } from './with';
 
 
 export namespace Utils {

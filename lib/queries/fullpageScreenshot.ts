@@ -14,7 +14,7 @@
 
 import * as mergeImg from 'merge-img';
 import { WebDriver, WebElement } from 'selenium-webdriver';
-import { Driver } from '..';
+import { Driver } from '../driver';
 import { Query } from './query';
 /* tslint:disable:no-var-requires*/
 const jimp = require('jimp');
@@ -23,7 +23,7 @@ const jimp = require('jimp');
 
 export class FullpageScreenshot implements Query<Driver> {
 
-    async perform(driver: Driver, ...args: any[]): Promise<any> {
+    async perform(driver: Driver): Promise<any> {
         return this.take(driver.config.webdriver);
     }
 

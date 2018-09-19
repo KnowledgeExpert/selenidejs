@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Driver } from '../baseEntities/driver';
-import { Element } from '../baseEntities/element';
+import { Driver } from '../driver';
+import { Element } from '../element';
 
 export interface Command<T extends Driver | Element> {
     perform(entity: T, ...args: any[]): void | Promise<void>;

@@ -14,7 +14,7 @@
 
 import { Describe, It } from 'jasmine-cookies';
 import { preprocessDirectives } from 'tslint/lib/verify/parse';
-import { Browser } from '../../../lib/baseEntities/browser';
+import { Browser } from '../../../lib/browser';
 import { be, have } from '../../../lib/index';
 import { Given } from '../../utils/given';
 import '../base';

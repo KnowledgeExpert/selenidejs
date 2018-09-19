@@ -14,7 +14,7 @@
 
 import { Describe, It } from 'jasmine-cookies';
 import { be, Browser, Collection, Condition, Driver, have } from '../../lib';
-import { Element } from '../../lib/baseEntities/element';
+import { Element } from '../../lib/element';
 import { Given } from '../utils/given';
 import './base';
 

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-import { Element } from '../baseEntities/element';
+import { Element } from '../element';
 import { Condition } from './condition';
 
 export class ElementCondition extends Condition<Element> {
