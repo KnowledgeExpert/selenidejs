@@ -11,4 +11,4 @@ export { ElementCondition } from './conditions/elementCondition';
 export { be } from './conditions/helpers/be';
 export { have } from './conditions/helpers/have';
 export { With } from './with';
-export { By, WebElement, WebElementPromise } from 'selenium-webdriver';
+export { By, WebElement } from 'selenium-webdriver';
