@@ -42,5 +42,4 @@ exports.With = with_1.With;
 var selenium_webdriver_1 = require("selenium-webdriver");
 exports.By = selenium_webdriver_1.By;
 exports.WebElement = selenium_webdriver_1.WebElement;
-exports.WebElementPromise = selenium_webdriver_1.WebElementPromise;
 //# sourceMappingURL=index.js.map
