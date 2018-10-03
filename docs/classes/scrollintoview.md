@@ -26,7 +26,7 @@
 
 ▸ **perform**(entity: *[Element](element.md)*, ...args: *`any`[]*): `Promise`<`void`>
 
-*Defined in [commands/scrollIntoView.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/commands/scrollIntoView.ts#L20)*
+*Defined in [commands/scrollIntoView.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands/scrollIntoView.ts#L20)*
 
 **Parameters:**
 

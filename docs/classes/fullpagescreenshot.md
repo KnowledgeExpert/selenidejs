@@ -35,7 +35,7 @@
 
 ▸ **getBrowserData**(webdriver: *`WebDriver`*): `Promise`<[BrowserData](../#browserdata)>
 
-*Defined in [queries/fullpageScreenshot.ts:120](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L120)*
+*Defined in [queries/fullpageScreenshot.ts:120](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L120)*
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ ___
 
 ▸ **getCurrentFrameWebElement**(webdriver: *`WebDriver`*): `Promise`<`WebElement`>
 
-*Defined in [queries/fullpageScreenshot.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L76)*
+*Defined in [queries/fullpageScreenshot.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L76)*
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **hideScrollbars**(webdriver: *`WebDriver`*): `Promise`<`void`>
 
-*Defined in [queries/fullpageScreenshot.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L80)*
+*Defined in [queries/fullpageScreenshot.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L80)*
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **perform**(driver: *[Driver](driver.md)*): `Promise`<`any`>
 
-*Defined in [queries/fullpageScreenshot.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L26)*
+*Defined in [queries/fullpageScreenshot.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L26)*
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ ___
 
 ▸ **scrollToNthScreen**(webdriver: *`WebDriver`*, browserData: *`any`*, index: *`number`*): `Promise`<`void`>
 
-*Defined in [queries/fullpageScreenshot.ts:133](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L133)*
+*Defined in [queries/fullpageScreenshot.ts:133](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L133)*
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **setDocumentOverflow**(webdriver: *`WebDriver`*, overflowValue?: *`string`*): `Promise`<`string`>
 
-*Defined in [queries/fullpageScreenshot.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L102)*
+*Defined in [queries/fullpageScreenshot.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L102)*
 
 **Parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **setOverflow**(webdriver: *`WebDriver`*, element: *`string`*, overflowValue: *`string`*): `Promise`<`string`>
 
-*Defined in [queries/fullpageScreenshot.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L110)*
+*Defined in [queries/fullpageScreenshot.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L110)*
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ ___
 
 ▸ **take**(webdriver: *`WebDriver`*): `Promise`<`Buffer`>
 
-*Defined in [queries/fullpageScreenshot.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L36)*
+*Defined in [queries/fullpageScreenshot.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L36)*
 
 The method allows to take full page screenshots by scrolling screen and merging taken parts of screen (without scrollbars) into one whole screenshot. If there are frames, the method will automatically switch to DEFAULT content to avoid breaking flow.
 
@@ -178,7 +178,7 @@ ___
 
 ▸ **takeScreenshotWithWait**(webdriver: *`WebDriver`*): `Promise`<`Buffer`>
 
-*Defined in [queries/fullpageScreenshot.ts:138](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L138)*
+*Defined in [queries/fullpageScreenshot.ts:138](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L138)*
 
 **Parameters:**
 
@@ -195,7 +195,7 @@ ___
 
 ▸ **crop**(screenBuffer: *`Buffer`*, delta: *`number`*): `Promise`<`Buffer`>
 
-*Defined in [queries/fullpageScreenshot.ts:144](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L144)*
+*Defined in [queries/fullpageScreenshot.ts:144](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L144)*
 
 **Parameters:**
 

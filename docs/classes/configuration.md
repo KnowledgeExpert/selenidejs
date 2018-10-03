@@ -38,7 +38,7 @@
 
 ⊕ **new Configuration**(customConfiguration: *[Configuration](configuration.md)*): [Configuration](configuration.md)
 
-*Defined in [configuration.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L63)*
+*Defined in [configuration.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L63)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 **● fullpageScreenshot**: *`boolean`*
 
-*Defined in [configuration.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L61)*
+*Defined in [configuration.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L61)*
 
 ___
 <a id="hardtimeout"></a>
@@ -67,7 +67,7 @@ ___
 
 **● hardTimeout**: *`number`*
 
-*Defined in [configuration.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L58)*
+*Defined in [configuration.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L58)*
 
 ___
 <a id="htmlpath"></a>
@@ -76,7 +76,7 @@ ___
 
 **● htmlPath**: *`string`*
 
-*Defined in [configuration.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L55)*
+*Defined in [configuration.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L55)*
 
 ___
 <a id="onfailurehooks"></a>
@@ -85,7 +85,7 @@ ___
 
 **● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]*
 
-*Defined in [configuration.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L62)*
+*Defined in [configuration.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L62)*
 
 ___
 <a id="screenshotpath"></a>
@@ -94,7 +94,7 @@ ___
 
 **● screenshotPath**: *`string`*
 
-*Defined in [configuration.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L56)*
+*Defined in [configuration.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L56)*
 
 ___
 <a id="timeout"></a>
@@ -103,7 +103,7 @@ ___
 
 **● timeout**: *`number`*
 
-*Defined in [configuration.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L57)*
+*Defined in [configuration.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L57)*
 
 ___
 <a id="webdriver"></a>
@@ -112,7 +112,7 @@ ___
 
 **● webdriver**: *`WebDriver`*
 
-*Defined in [configuration.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L63)*
+*Defined in [configuration.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L63)*
 
 ___
 <a id="windowheight"></a>
@@ -121,7 +121,7 @@ ___
 
 **● windowHeight**: *`string`*
 
-*Defined in [configuration.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L60)*
+*Defined in [configuration.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L60)*
 
 ___
 <a id="windowwidth"></a>
@@ -130,7 +130,7 @@ ___
 
 **● windowWidth**: *`string`*
 
-*Defined in [configuration.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L59)*
+*Defined in [configuration.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L59)*
 
 ___
 
@@ -142,7 +142,7 @@ ___
 
 **DEFAULT**: *`object`*
 
-*Defined in [configuration.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L28)*
+*Defined in [configuration.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L28)*
 
 <a id="default.fullpagescreenshot-1"></a>
 
@@ -150,7 +150,7 @@ ___
 
 **● fullpageScreenshot**: *`true`* = true
 
-*Defined in [configuration.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L29)*
+*Defined in [configuration.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L29)*
 
 ___
 <a id="default.hardtimeout-1"></a>
@@ -159,7 +159,7 @@ ___
 
 **● hardTimeout**: *`number`* = 4000
 
-*Defined in [configuration.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L30)*
+*Defined in [configuration.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L30)*
 
 ___
 <a id="default.htmlpath-1"></a>
@@ -168,7 +168,7 @@ ___
 
 **● htmlPath**: *`string`* =  path.resolve('./htmls')
 
-*Defined in [configuration.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L31)*
+*Defined in [configuration.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L31)*
 
 ___
 <a id="default.onfailurehooks-1"></a>
@@ -192,7 +192,7 @@ ___
             }
         ]
 
-*Defined in [configuration.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L32)*
+*Defined in [configuration.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L32)*
 
 ___
 <a id="default.screenshotpath-1"></a>
@@ -201,7 +201,7 @@ ___
 
 **● screenshotPath**: *`string`* =  path.resolve('./screenshots')
 
-*Defined in [configuration.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L48)*
+*Defined in [configuration.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L48)*
 
 ___
 <a id="default.timeout-1"></a>
@@ -210,7 +210,7 @@ ___
 
 **● timeout**: *`number`* = 4000
 
-*Defined in [configuration.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L49)*
+*Defined in [configuration.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L49)*
 
 ___
 <a id="default.webdriver-1"></a>
@@ -219,7 +219,7 @@ ___
 
 **● webdriver**: *`null`* =  null
 
-*Defined in [configuration.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L50)*
+*Defined in [configuration.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L50)*
 
 ___
 <a id="default.windowheight-1"></a>
@@ -228,7 +228,7 @@ ___
 
 **● windowHeight**: *`string`* = ""
 
-*Defined in [configuration.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L51)*
+*Defined in [configuration.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L51)*
 
 ___
 <a id="default.windowwidth-1"></a>
@@ -237,7 +237,7 @@ ___
 
 **● windowWidth**: *`string`* = ""
 
-*Defined in [configuration.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/configuration.ts#L52)*
+*Defined in [configuration.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L52)*
 
 ___
 

@@ -31,7 +31,7 @@
 
 ⊕ **new CannotPerformActionError**(message: *`string`*): [CannotPerformActionError](cannotperformactionerror.md)
 
-*Defined in [errors/cannotPerformActionError.ts:15](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/errors/cannotPerformActionError.ts#L15)*
+*Defined in [errors/cannotPerformActionError.ts:15](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/cannotPerformActionError.ts#L15)*
 
 **Parameters:**
 

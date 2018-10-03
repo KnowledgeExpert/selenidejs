@@ -27,7 +27,7 @@
 
 ▸ **perform**(entity: *[Element](element.md)*, ...args: *`any`[]*): `Promise`<`void`>
 
-*Defined in [commands/clickByJs.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/commands/clickByJs.ts#L31)*
+*Defined in [commands/clickByJs.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands/clickByJs.ts#L31)*
 
 **Parameters:**
 
@@ -45,7 +45,7 @@ ___
 
 ▸ **getClickOnElementWithOffsetScript**(offsetX: *`number`*, offsetY: *`number`*): `string`
 
-*Defined in [commands/clickByJs.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/commands/clickByJs.ts#L21)*
+*Defined in [commands/clickByJs.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands/clickByJs.ts#L21)*
 
 **Parameters:**
 

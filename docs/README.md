@@ -76,7 +76,7 @@
 
 **Ƭ AfterElementActionHook**: *`function`*
 
-*Defined in [hooks/afterElementActionHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/hooks/afterElementActionHook.ts#L17)*
+*Defined in [hooks/afterElementActionHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/afterElementActionHook.ts#L17)*
 
 #### Type declaration
 ▸(actionError: *`Error`*, element: *[Element](classes/element.md)*, actionName: *`string`*):  `void` &#124; `Promise`<`void`>
@@ -98,7 +98,7 @@ ___
 
 **Ƭ BeforeElementActionHook**: *`function`*
 
-*Defined in [hooks/beforeElementActionHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/hooks/beforeElementActionHook.ts#L17)*
+*Defined in [hooks/beforeElementActionHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/beforeElementActionHook.ts#L17)*
 
 #### Type declaration
 ▸(element: *[Element](classes/element.md)*, actionName: *`string`*):  `void` &#124; `Promise`<`void`>
@@ -119,7 +119,7 @@ ___
 
 **Ƭ BrowserData**: *`object`*
 
-*Defined in [queries/fullpageScreenshot.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L154)*
+*Defined in [queries/fullpageScreenshot.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L154)*
 
 #### Type declaration
 
@@ -142,7 +142,7 @@ ___
 
 **Ƭ OnFailureHook**: *`function`*
 
-*Defined in [hooks/onFailureHook.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/hooks/onFailureHook.ts#L21)*
+*Defined in [hooks/onFailureHook.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/onFailureHook.ts#L21)*
 
 #### Type declaration
 ▸<`T`>(lastError: *`Error`*, entity: *`T`*, condition?: *[Condition](classes/condition.md)<`T`>*):  `void` &#124; `Promise`<`void`>
@@ -171,7 +171,7 @@ ___
 
 **● jimp**: *`any`* =  require('jimp')
 
-*Defined in [queries/fullpageScreenshot.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/fullpageScreenshot.ts#L20)*
+*Defined in [queries/fullpageScreenshot.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L20)*
 
 ___
 
@@ -183,7 +183,7 @@ ___
 
 ▸ **ElementActionHooks**(target: *`any`*, methodName: *`any`*, descriptor: *`PropertyDescriptor`*): `void`
 
-*Defined in [hooks/elementActionHooks.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/hooks/elementActionHooks.ts#L20)*
+*Defined in [hooks/elementActionHooks.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/elementActionHooks.ts#L20)*
 
 **Parameters:**
 
@@ -202,7 +202,7 @@ ___
 
 ▸ **logFailedHook**(error: *`Error`*, actionName: *`string`*): `void`
 
-*Defined in [hooks/elementActionHooks.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/hooks/elementActionHooks.ts#L63)*
+*Defined in [hooks/elementActionHooks.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/elementActionHooks.ts#L63)*
 
 **Parameters:**
 
@@ -220,7 +220,7 @@ ___
 
 ▸ **runAfterHooks**(hooks: *[AfterElementActionHook](#afterelementactionhook)[]*, actionError: *`any`*, element: *`any`*, actionName: *`any`*): `Promise`<`void`>
 
-*Defined in [hooks/elementActionHooks.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/hooks/elementActionHooks.ts#L53)*
+*Defined in [hooks/elementActionHooks.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/elementActionHooks.ts#L53)*
 
 **Parameters:**
 
@@ -240,7 +240,7 @@ ___
 
 ▸ **runBeforeHooks**(hooks: *[BeforeElementActionHook](#beforeelementactionhook)[]*, element: *`any`*, actionName: *`any`*): `Promise`<`void`>
 
-*Defined in [hooks/elementActionHooks.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/hooks/elementActionHooks.ts#L43)*
+*Defined in [hooks/elementActionHooks.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/elementActionHooks.ts#L43)*
 
 **Parameters:**
 

@@ -26,7 +26,7 @@
 
 ▸ **perform**(element: *[Element](element.md)*, ...args: *`any`[]*): `Promise`<`void`>
 
-*Defined in [commands/performActionOnVisible.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/commands/performActionOnVisible.ts#L22)*
+*Defined in [commands/performActionOnVisible.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands/performActionOnVisible.ts#L22)*
 
 **Parameters:**
 

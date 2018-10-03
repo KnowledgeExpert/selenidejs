@@ -36,13 +36,16 @@
 
 *Inherited from [Condition](condition.md).[constructor](condition.md#constructor)*
 
-*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L36)*
+*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L36)*
 
 **Parameters:**
 
+**params: `object`**
+
 | Param | Type |
 | ------ | ------ |
-| params | `object` |
+| matches | `function` |
+| toString | `function` |
 
 **Returns:** [DriverCondition](drivercondition.md)
 
@@ -58,7 +61,7 @@ ___
 
 *Overrides [Condition](condition.md).[matches](condition.md#matches)*
 
-*Defined in [conditions/driverCondition.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/driverCondition.ts#L20)*
+*Defined in [conditions/driverCondition.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/driverCondition.ts#L20)*
 
 #### Type declaration
 ▸(entity: *[Driver](driver.md)*): `Promise`<[Driver](driver.md)>
@@ -80,7 +83,7 @@ ___
 
 *Inherited from [Condition](condition.md).[toString](condition.md#tostring)*
 
-*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L36)*
+*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L36)*
 
 #### Type declaration
 ▸(): `string`
@@ -99,7 +102,7 @@ ___
 
 *Inherited from [Condition](condition.md).[and](condition.md#and)*
 
-*Defined in [conditions/condition.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L43)*
+*Defined in [conditions/condition.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L43)*
 
 **Type parameters:**
 
@@ -121,7 +124,7 @@ ___
 
 *Inherited from [Condition](condition.md).[not](condition.md#not)*
 
-*Defined in [conditions/condition.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L19)*
+*Defined in [conditions/condition.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L19)*
 
 **Type parameters:**
 

@@ -39,7 +39,7 @@
 
 ▸ **perform**(entity: *`T`*, ...args: *`any`[]*):  `void` &#124; `Promise`<`void`>
 
-*Defined in [commands/command.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/commands/command.ts#L19)*
+*Defined in [commands/command.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands/command.ts#L19)*
 
 **Parameters:**
 
