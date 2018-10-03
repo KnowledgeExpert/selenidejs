@@ -36,7 +36,7 @@
 
 ⊕ **new Wait**(entity: *`T`*, config: *[Configuration](configuration.md)*): [Wait](wait.md)
 
-*Defined in [wait.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/wait.ts#L25)*
+*Defined in [wait.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L25)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● configuration**: *[Configuration](configuration.md)*
 
-*Defined in [wait.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/wait.ts#L24)*
+*Defined in [wait.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L24)*
 
 ___
 <a id="entity"></a>
@@ -66,7 +66,7 @@ ___
 
 **● entity**: *`T`*
 
-*Defined in [wait.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/wait.ts#L25)*
+*Defined in [wait.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L25)*
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 ▸ **isMatch**(condition: *[Condition](condition.md)<`T`>*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [wait.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/wait.ts#L36)*
+*Defined in [wait.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L36)*
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **shouldMatch**(condition: *[Condition](condition.md)<`T`>*, timeout?: *`number`*): `Promise`<`T`>
 
-*Defined in [wait.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/wait.ts#L32)*
+*Defined in [wait.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L32)*
 
 **Parameters:**
 
@@ -114,7 +114,7 @@ ___
 
 ▸ **until**(condition: *[Condition](condition.md)<`T`>*, timeout: *`number`*): `Promise`<`T`>
 
-*Defined in [wait.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/wait.ts#L40)*
+*Defined in [wait.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L40)*
 
 **Parameters:**
 

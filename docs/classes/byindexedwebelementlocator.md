@@ -36,7 +36,7 @@
 
 ⊕ **new ByIndexedWebElementLocator**(index: *`number`*, searchContext: *[Collection](collection.md)*): [ByIndexedWebElementLocator](byindexedwebelementlocator.md)
 
-*Defined in [locators/byIndexedWebElementLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byIndexedWebElementLocator.ts#L23)*
+*Defined in [locators/byIndexedWebElementLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexedWebElementLocator.ts#L23)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● index**: *`number`*
 
-*Defined in [locators/byIndexedWebElementLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byIndexedWebElementLocator.ts#L23)*
+*Defined in [locators/byIndexedWebElementLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexedWebElementLocator.ts#L23)*
 
 ___
 <a id="searchcontext"></a>
@@ -66,7 +66,7 @@ ___
 
 **● searchContext**: *[Collection](collection.md)*
 
-*Defined in [locators/byIndexedWebElementLocator.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byIndexedWebElementLocator.ts#L22)*
+*Defined in [locators/byIndexedWebElementLocator.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexedWebElementLocator.ts#L22)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/byIndexedWebElementLocator.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byIndexedWebElementLocator.ts#L30)*
+*Defined in [locators/byIndexedWebElementLocator.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexedWebElementLocator.ts#L30)*
 
 **Returns:** `Promise`<`WebElement`>
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/byIndexedWebElementLocator.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byIndexedWebElementLocator.ts#L38)*
+*Defined in [locators/byIndexedWebElementLocator.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexedWebElementLocator.ts#L38)*
 
 **Returns:** `string`
 

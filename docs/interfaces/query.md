@@ -29,7 +29,7 @@
 
 ▸ **perform**(entity: *`T`*, ...args: *`any`[]*):  `any` &#124; `Promise`<`any`>
 
-*Defined in [queries/query.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/queries/query.ts#L20)*
+*Defined in [queries/query.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/query.ts#L20)*
 
 **Parameters:**
 

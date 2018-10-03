@@ -45,7 +45,7 @@
 
 ⊕ **new Collection**(locator: *[Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>*, driver: *[Driver](driver.md)*): [Collection](collection.md)
 
-*Defined in [collection.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L31)*
+*Defined in [collection.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L31)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 **● driver**: *[Driver](driver.md)*
 
-*Defined in [collection.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L29)*
+*Defined in [collection.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L29)*
 
 ___
 <a id="locator"></a>
@@ -75,7 +75,7 @@ ___
 
 **● locator**: *[Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>*
 
-*Defined in [collection.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L30)*
+*Defined in [collection.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L30)*
 
 ___
 <a id="wait"></a>
@@ -84,7 +84,7 @@ ___
 
 **● wait**: *[Wait](wait.md)<[Collection](collection.md)>*
 
-*Defined in [collection.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L31)*
+*Defined in [collection.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L31)*
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **count**(): `Promise`<`number`>
 
-*Defined in [collection.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L84)*
+*Defined in [collection.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L84)*
 
 **Returns:** `Promise`<`number`>
 
@@ -107,7 +107,7 @@ ___
 
 ▸ **filter**(condition: *[ElementCondition](elementcondition.md)*): [Collection](collection.md)
 
-*Defined in [collection.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L67)*
+*Defined in [collection.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L67)*
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **filterBy**(condition: *[ElementCondition](elementcondition.md)*): [Collection](collection.md)
 
-*Defined in [collection.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L71)*
+*Defined in [collection.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L71)*
 
 **Parameters:**
 
@@ -141,7 +141,7 @@ ___
 
 ▸ **findBy**(condition: *[ElementCondition](elementcondition.md)*): [Element](element.md)
 
-*Defined in [collection.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L75)*
+*Defined in [collection.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L75)*
 
 **Parameters:**
 
@@ -158,7 +158,7 @@ ___
 
 ▸ **first**(): [Element](element.md)
 
-*Defined in [collection.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L63)*
+*Defined in [collection.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L63)*
 
 **Returns:** [Element](element.md)
 
@@ -169,7 +169,7 @@ ___
 
 ▸ **get**(index: *`number`*): [Element](element.md)
 
-*Defined in [collection.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L59)*
+*Defined in [collection.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L59)*
 
 **Parameters:**
 
@@ -186,7 +186,7 @@ ___
 
 ▸ **getWebElements**(): `Promise`<`WebElement`[]>
 
-*Defined in [collection.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L96)*
+*Defined in [collection.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L96)*
 
 **Returns:** `Promise`<`WebElement`[]>
 
@@ -197,7 +197,7 @@ ___
 
 ▸ **is**(condition: *[CollectionCondition](collectioncondition.md)*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [collection.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L49)*
+*Defined in [collection.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L49)*
 
 **Parameters:**
 
@@ -215,7 +215,7 @@ ___
 
 ▸ **isNot**(condition: *[CollectionCondition](collectioncondition.md)*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [collection.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L55)*
+*Defined in [collection.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L55)*
 
 **Parameters:**
 
@@ -233,7 +233,7 @@ ___
 
 ▸ **should**(condition: *[CollectionCondition](collectioncondition.md)*, timeout?: *`number`*): `Promise`<[Collection](collection.md)>
 
-*Defined in [collection.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L39)*
+*Defined in [collection.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L39)*
 
 **Parameters:**
 
@@ -251,7 +251,7 @@ ___
 
 ▸ **shouldNot**(condition: *[CollectionCondition](collectioncondition.md)*, timeout?: *`number`*): `Promise`<[Collection](collection.md)>
 
-*Defined in [collection.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L45)*
+*Defined in [collection.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L45)*
 
 **Parameters:**
 
@@ -269,7 +269,7 @@ ___
 
 ▸ **size**(): `Promise`<`number`>
 
-*Defined in [collection.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L80)*
+*Defined in [collection.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L80)*
 
 **Returns:** `Promise`<`number`>
 
@@ -280,7 +280,7 @@ ___
 
 ▸ **texts**(): `Promise`<`string`[]>
 
-*Defined in [collection.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L88)*
+*Defined in [collection.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L88)*
 
 **Returns:** `Promise`<`string`[]>
 
@@ -291,7 +291,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [collection.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/collection.ts#L100)*
+*Defined in [collection.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L100)*
 
 **Returns:** `string`
 

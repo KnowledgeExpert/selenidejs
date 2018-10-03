@@ -36,7 +36,7 @@
 
 ⊕ **new ByWebElementLocator**(by: *`By`*, searchContext: * [Element](element.md) &#124; [Driver](driver.md)*): [ByWebElementLocator](bywebelementlocator.md)
 
-*Defined in [locators/byWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byWebElementLocator.ts#L25)*
+*Defined in [locators/byWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L25)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● by**: *`By`*
 
-*Defined in [locators/byWebElementLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byWebElementLocator.ts#L24)*
+*Defined in [locators/byWebElementLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L24)*
 
 ___
 <a id="searchcontext"></a>
@@ -67,7 +67,7 @@ ___
 **● searchContext**: * [Element](element.md) &#124; [Driver](driver.md)
 *
 
-*Defined in [locators/byWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byWebElementLocator.ts#L25)*
+*Defined in [locators/byWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L25)*
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/byWebElementLocator.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byWebElementLocator.ts#L32)*
+*Defined in [locators/byWebElementLocator.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L32)*
 
 **Returns:** `Promise`<`WebElement`>
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/byWebElementLocator.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/locators/byWebElementLocator.ts#L45)*
+*Defined in [locators/byWebElementLocator.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L45)*
 
 **Returns:** `string`
 

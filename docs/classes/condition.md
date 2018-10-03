@@ -40,13 +40,16 @@
 
 ⊕ **new Condition**(params: *`object`*): [Condition](condition.md)
 
-*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L36)*
+*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L36)*
 
 **Parameters:**
 
+**params: `object`**
+
 | Param | Type |
 | ------ | ------ |
-| params | `object` |
+| matches | `function` |
+| toString | `function` |
 
 **Returns:** [Condition](condition.md)
 
@@ -60,7 +63,7 @@ ___
 
 **● matches**: *`function`*
 
-*Defined in [conditions/condition.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L35)*
+*Defined in [conditions/condition.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L35)*
 
 #### Type declaration
 ▸(entity: *`T`*): `Promise`<`T`>
@@ -80,7 +83,7 @@ ___
 
 **● toString**: *`function`*
 
-*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L36)*
+*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L36)*
 
 #### Type declaration
 ▸(): `string`
@@ -97,7 +100,7 @@ ___
 
 ▸ **and**<`T`>(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): [Condition](condition.md)<`T`>
 
-*Defined in [conditions/condition.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L43)*
+*Defined in [conditions/condition.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L43)*
 
 **Type parameters:**
 
@@ -117,7 +120,7 @@ ___
 
 ▸ **not**<`T`>(condition: *[Condition](condition.md)<`T`>*): [Condition](condition.md)<`T`>
 
-*Defined in [conditions/condition.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/conditions/condition.ts#L19)*
+*Defined in [conditions/condition.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L19)*
 
 **Type parameters:**
 

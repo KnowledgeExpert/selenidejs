@@ -22,7 +22,7 @@
 
 ▸ **getDriver**(entity: * [Driver](../classes/driver.md) &#124; [Collection](../classes/collection.md) &#124; [Element](../classes/element.md)*): [Driver](../classes/driver.md)
 
-*Defined in [utils.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/utils.ts#L45)*
+*Defined in [utils.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L45)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **isDriver**(entity: * [Driver](../classes/driver.md) &#124; [Element](../classes/element.md)*): `boolean`
 
-*Defined in [utils.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/utils.ts#L54)*
+*Defined in [utils.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L54)*
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **savePageSource**(selenideDriver: *[Driver](../classes/driver.md)*, filePath: *`string`*): `Promise`<`string`>
 
-*Defined in [utils.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/utils.ts#L25)*
+*Defined in [utils.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L25)*
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ ___
 
 ▸ **saveScreenshot**(selenideDriver: *[Driver](../classes/driver.md)*, filePath: *`string`*): `Promise`<`string`>
 
-*Defined in [utils.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/utils.ts#L35)*
+*Defined in [utils.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L35)*
 
 **Parameters:**
 
@@ -92,7 +92,7 @@ ___
 
 ▸ **toBy**(cssOrXpathOrBy: * `string` &#124; `By`*): `By`
 
-*Defined in [utils.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/utils.ts#L58)*
+*Defined in [utils.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L58)*
 
 **Parameters:**
 

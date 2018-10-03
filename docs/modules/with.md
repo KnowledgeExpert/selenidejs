@@ -34,7 +34,7 @@
 **● NORMALIZE_SPACE_XPATH**: *"normalize-space(translate(string(.), &quot;&quot;, &quot;    &quot;))"* = "normalize-space(translate(string(.), "	
  ", "    "))"
 
-*Defined in [with.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L20)*
+*Defined in [with.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L20)*
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 ▸ **attribute**(attributeName: *`string`*, attributeValue: *`string`*): `By`
 
-*Defined in [with.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L64)*
+*Defined in [with.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L64)*
 
 **Parameters:**
 
@@ -64,7 +64,7 @@ ___
 
 ▸ **className**(className: *`string`*): `By`
 
-*Defined in [with.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L52)*
+*Defined in [with.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L52)*
 
 **Parameters:**
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **css**(css: *`string`*): `By`
 
-*Defined in [with.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L60)*
+*Defined in [with.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L60)*
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ ___
 
 ▸ **exactAttribute**(attributeName: *`string`*, attributeValue: *`string`*): `By`
 
-*Defined in [with.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L68)*
+*Defined in [with.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L68)*
 
 **Parameters:**
 
@@ -116,7 +116,7 @@ ___
 
 ▸ **exactText**(text: *`string`*): `By`
 
-*Defined in [with.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L40)*
+*Defined in [with.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L40)*
 
 **Parameters:**
 
@@ -133,7 +133,7 @@ ___
 
 ▸ **id**(id: *`string`*): `By`
 
-*Defined in [with.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L44)*
+*Defined in [with.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L44)*
 
 **Parameters:**
 
@@ -150,7 +150,7 @@ ___
 
 ▸ **name**(name: *`string`*): `By`
 
-*Defined in [with.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L48)*
+*Defined in [with.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L48)*
 
 **Parameters:**
 
@@ -167,7 +167,7 @@ ___
 
 ▸ **partialId**(...idParts: *`string`[]*): `By`
 
-*Defined in [with.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L31)*
+*Defined in [with.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L31)*
 
 **Parameters:**
 
@@ -184,7 +184,7 @@ ___
 
 ▸ **text**(text: *`string`*): `By`
 
-*Defined in [with.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L36)*
+*Defined in [with.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L36)*
 
 **Parameters:**
 
@@ -201,7 +201,7 @@ ___
 
 ▸ **type**(type: *`string`*): `By`
 
-*Defined in [with.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L22)*
+*Defined in [with.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L22)*
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ ___
 
 ▸ **value**(value: *`string`*): `By`
 
-*Defined in [with.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L26)*
+*Defined in [with.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L26)*
 
 **Parameters:**
 
@@ -235,7 +235,7 @@ ___
 
 ▸ **xpath**(xpath: *`string`*): `By`
 
-*Defined in [with.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/with.ts#L56)*
+*Defined in [with.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/with.ts#L56)*
 
 **Parameters:**
 

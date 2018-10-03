@@ -26,7 +26,7 @@
 
 ▸ **perform**(entity: *[Element](element.md)*, ...args: *`any`[]*): `Promise`<`void`>
 
-*Defined in [commands/pressKey.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/647b1e4/lib/commands/pressKey.ts#L19)*
+*Defined in [commands/pressKey.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands/pressKey.ts#L19)*
 
 **Parameters:**
 
