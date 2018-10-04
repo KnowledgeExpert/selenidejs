@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.com/KnowledgeExpert/selenidejs.svg?branch=master)](https://travis-ci.com/KnowledgeExpert/selenidejs)
 [![Coverage Status](https://coveralls.io/repos/github/KnowledgeExpert/selenidejs/badge.svg?branch=master)](https://coveralls.io/github/KnowledgeExpert/selenidejs?branch=master)
 [![NPM Version](https://badge.fury.io/js/selenidejs.svg)](https://badge.fury.io/js/selenidejs)
-![NPM Downloads Per Month](https://img.shields.io/npm/dm/selenidejs.svg)
+![NPM Downloads Per Month](https://img.shields.io/npm/dm/selenidejs.svg)[![Join the chat at https://t
+.me/js_for_testing](https://img.shields.io/badge/join%20chat-telegram-blue.svg)](https://t.me/js_for_testing)
 
 # SelenideJS
 
