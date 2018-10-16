@@ -14,80 +14,69 @@
 
 import * as path from 'path';
 import { WebDriver } from 'selenium-webdriver';
-import { Browser } from './browser';
-import { Collection } from './collection';
 import { Driver } from './driver';
-import { Element } from './element';
+import { AfterElementActionHook } from './hooks/afterElementActionHook';
+import { BeforeElementActionHook } from './hooks/beforeElementActionHook';
+import { OnCollectionFailureHook } from './hooks/onCollectionFailureHook';
+import { OnElementFailureHook } from './hooks/onElementFailureHook';
 import { OnFailureHook } from './hooks/onFailureHook';
-import { Condition } from './index';
 import { Utils } from './utils';
 
 
 export class Configuration {
 
-    static readonly DEFAULT: Configuration = {
-        fullpageScreenshot: true,
-        hardTimeout: 4000,
-        htmlPath: path.resolve('./htmls'),
-        onFailureHooks: [
-            async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-                const driver = Utils.getDriver(entity);
-                if (driver.config.screenshotPath) {
-                    const screenshotPath = await Utils.saveScreenshot(driver, Browser.config.screenshotPath);
-                    lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
-                }
-            },
-            async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-                const driver = Utils.getDriver(entity);
-                if (driver.config.htmlPath) {
-                    const htmlPath = await Utils.savePageSource(driver, Browser.config.htmlPath);
-                    lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
-                }
+    static readonly DEFAULT_HTML_PATH = path.resolve('./htmls');
+    static readonly DEFAULT_SCREENSHOT_PATH = path.resolve('./screenshots');
+    static readonly DEFAULT_ON_FAILURE_HOOKS = [
+        async(error: Error, driver: Driver) => {
+            if (driver.configuration.screenshotPath) {
+                const screenshotPath = await Utils.saveScreenshot(driver, driver.configuration.screenshotPath);
+                error.message = `${error.message}\nSaved screenshot: ${screenshotPath}`;
             }
-        ],
-        screenshotPath: path.resolve('./screenshots'),
+        },
+        async(error: Error, driver: Driver) => {
+            if (driver.configuration.htmlPath) {
+                const htmlPath = await Utils.savePageSource(driver, driver.configuration.htmlPath);
+                error.message = `${error.message}\nSaved html: ${htmlPath}`;
+            }
+        }
+    ];
+
+    static readonly DEFAULT: Configuration = {
+        afterElementActionHooks: [],
+        beforeElementActionHooks: [],
+        clickByJs: false,
+        fullpageScreenshot: false,
+        htmlPath: Configuration.DEFAULT_HTML_PATH,
+        onCollectionFailureHooks: [],
+        onElementFailureHooks: [],
+        onFailureHooks: Configuration.DEFAULT_ON_FAILURE_HOOKS,
+        screenshotPath: Configuration.DEFAULT_SCREENSHOT_PATH,
+        setValueByJs: false,
         timeout: 4000,
         webdriver: null,
-        windowHeight: '',
-        windowWidth: ''
+        windowHeight: 480,
+        windowWidth: 640
     };
 
-    htmlPath: string;
-    screenshotPath: string;
-    timeout: number;
-    hardTimeout: number;
-    windowWidth: string;
-    windowHeight: string;
-    fullpageScreenshot: boolean;
-    onFailureHooks: OnFailureHook[];
-    webdriver: WebDriver;
+    afterElementActionHooks?: AfterElementActionHook[];
+    beforeElementActionHooks?: BeforeElementActionHook[];
+    clickByJs?: boolean;
+    fullpageScreenshot?: boolean;
+    htmlPath?: string;
+    onCollectionFailureHooks?: OnCollectionFailureHook[];
+    onElementFailureHooks?: OnElementFailureHook[];
+    onFailureHooks?: OnFailureHook[];
+    screenshotPath?: string;
+    setValueByJs?: boolean;
+    timeout?: number;
+    webdriver?: WebDriver;
+    windowHeight?: number;
+    windowWidth?: number;
 
-    constructor(customConfiguration: Configuration) {
-        this.windowWidth = customConfiguration.windowWidth
-            ? customConfiguration.windowWidth
-            : Configuration.DEFAULT.windowWidth;
-        this.windowHeight = customConfiguration.windowWidth
-            ? customConfiguration.windowWidth
-            : Configuration.DEFAULT.windowWidth;
-        this.hardTimeout = customConfiguration.hardTimeout
-            ? customConfiguration.hardTimeout
-            : Configuration.DEFAULT.hardTimeout;
-        this.timeout = customConfiguration.timeout
-            ? customConfiguration.timeout
-            : Configuration.DEFAULT.timeout;
-        this.fullpageScreenshot = customConfiguration.fullpageScreenshot
-            ? customConfiguration.fullpageScreenshot
-            : Configuration.DEFAULT.fullpageScreenshot;
-        this.screenshotPath = customConfiguration.screenshotPath
-            ? customConfiguration.screenshotPath
-            : Configuration.DEFAULT.screenshotPath;
-        this.htmlPath = customConfiguration.htmlPath
-            ? customConfiguration.htmlPath
-            : Configuration.DEFAULT.htmlPath;
-        this.onFailureHooks = customConfiguration.onFailureHooks
-            ? [...Configuration.DEFAULT.onFailureHooks, ...customConfiguration.onFailureHooks]
-            : Configuration.DEFAULT.onFailureHooks;
-        this.webdriver = customConfiguration.webdriver;
+    constructor(customConfiguration: any) {
+        Object.assign(this, Configuration.DEFAULT);
+        Object.assign(this, customConfiguration);
     }
 
 }

@@ -12,38 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By, Key, WebElement } from 'selenium-webdriver';
+import { By, WebElement } from 'selenium-webdriver';
+import { Actions } from './actions';
 import { Collection } from './collection';
-import { Click } from './commands/click';
-import { ClickByJs } from './commands/clickByJs';
-import { ContextClick } from './commands/contextClick';
-import { DoubleClick } from './commands/doubleClick';
-import { Hover } from './commands/hover';
-import { PerformActionOnVisible } from './commands/performActionOnVisible';
-import { PressKey } from './commands/pressKey';
-import { ScrollIntoView } from './commands/scrollIntoView';
-import { SendKeys } from './commands/sendKeys';
-import { SetValue } from './commands/setValue';
-import { SetValueByJs } from './commands/setValueByJs';
-import { Condition } from './conditions/condition';
-import { ElementCondition } from './conditions/elementCondition';
-import { be } from './conditions/helpers/be';
+import { Condition } from './condition';
 import { Driver } from './driver';
-import { AfterElementActionHook } from './hooks/afterElementActionHook';
-import { BeforeElementActionHook } from './hooks/beforeElementActionHook';
 import { ElementActionHooks } from './hooks/elementActionHooks';
-import { ByWebElementLocator } from './locators/byWebElementLocator';
-import { ByWebElementsLocator } from './locators/byWebElementsLocator';
+import { HookExecutor } from './hooks/hookExecutor';
 import { Locator } from './locators/locator';
-import { Utils } from './utils';
+import { SearchContext } from './locators/searchContext';
 import { Wait } from './wait';
-import { With } from './with';
 
 
-export class Element {
-
-    static beforeActionHooks: BeforeElementActionHook[] = [];
-    static afterActionHooks: AfterElementActionHook[] = [];
+export class Element implements SearchContext {
 
     private readonly driver: Driver;
     private readonly locator: Locator<Promise<WebElement>>;
@@ -52,120 +33,110 @@ export class Element {
     constructor(locator: Locator<Promise<WebElement>>, driver: Driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new Wait(this, driver.config);
+        this.wait = new Wait<Element>(this, this.driver.configuration, new HookExecutor<Element>(driver, this));
     }
 
     @ElementActionHooks
-    async click() {
-        await new PerformActionOnVisible().perform(this, 'click', new Click().perform);
+    async click(): Promise<Element> {
+        return Actions.click(this);
     }
 
     @ElementActionHooks
-    async clickByJS() {
-        await new PerformActionOnVisible().perform(this, 'clickByJs', new ClickByJs().perform);
+    async setValue(value: string | number): Promise<Element> {
+        return Actions.setValue(value)(this);
     }
 
     @ElementActionHooks
-    async setValue(value: string | number) {
-        await new PerformActionOnVisible().perform(this, 'setValue', new SetValue().perform, value);
+    async sendKeys(value: string | number): Promise<Element> {
+        return Actions.sendKeys(value)(this);
     }
 
     @ElementActionHooks
-    async setValueByJS(value: string | number) {
-        await new PerformActionOnVisible().perform(this, 'setValueByJS', new SetValueByJs().perform, value);
+    async doubleClick(): Promise<Element> {
+        return Actions.doubleClick(this);
     }
 
     @ElementActionHooks
-    async sendKeys(value: string | number) {
-        await new PerformActionOnVisible().perform(this, 'sendKeys', new SendKeys().perform, value);
+    async hover(): Promise<Element> {
+        return Actions.hover(this);
     }
 
     @ElementActionHooks
-    async doubleClick() {
-        await new PerformActionOnVisible().perform(this, 'doubleClick', new DoubleClick().perform);
+    async contextClick(): Promise<Element> {
+        return Actions.contextClick(this);
     }
 
     @ElementActionHooks
-    async hover() {
-        await new PerformActionOnVisible().perform(this, 'hover', new Hover().perform);
+    async pressEnter(): Promise<Element> {
+        return Actions.pressEnter(this);
     }
 
     @ElementActionHooks
-    async contextClick() {
-        await new PerformActionOnVisible().perform(this, 'contextClick', new ContextClick().perform);
+    async pressEscape(): Promise<Element> {
+        return Actions.pressEscape(this);
     }
 
     @ElementActionHooks
-    async pressEnter() {
-        await new PerformActionOnVisible().perform(this, 'pressEnter', new PressKey().perform, Key.ENTER);
+    async pressTab(): Promise<Element> {
+        return Actions.pressTab(this);
     }
 
     @ElementActionHooks
-    async pressEscape() {
-        await new PerformActionOnVisible().perform(this, 'pressEscape', new PressKey().perform, Key.ESCAPE);
+    async pressKey(key: string): Promise<Element> {
+        return Actions.pressKey(key)(this);
     }
 
     @ElementActionHooks
-    async pressTab() {
-        await new PerformActionOnVisible().perform(this, 'pressTab', new PressKey().perform, Key.TAB);
+    async scrollTo(): Promise<Element> {
+        return Actions.scrollTo(this);
     }
 
-    @ElementActionHooks
-    async scrollIntoView() {
-        await new PerformActionOnVisible().perform(this, 'scrollIntoView', new ScrollIntoView().perform);
-    }
-
-    async should(condition: ElementCondition, timeout?: number): Promise<Element> {
+    async should(condition: Condition<Element>, timeout?: number): Promise<Element> {
         return this.wait.shouldMatch(condition, timeout);
     }
 
-    async shouldNot(condition: ElementCondition): Promise<Element> {
+    async shouldNot(condition: Condition<Element>): Promise<Element> {
         return this.should(Condition.not(condition));
     }
 
-    async is(condition: ElementCondition, timeout?: number): Promise<boolean> {
+    async is(condition: Condition<Element>, timeout?: number): Promise<boolean> {
         return this.wait.isMatch(condition, timeout);
     }
 
-    async isNot(condition: ElementCondition): Promise<boolean> {
+    async isNot(condition: Condition<Element>): Promise<boolean> {
         return this.is(Condition.not(condition));
     }
 
     async isVisible(): Promise<boolean> {
-        return this.getWebElement().then(result => result.isDisplayed(), err => false);
+        return Actions.visibility(this);
     }
 
     async isPresent(): Promise<boolean> {
-        return this.getWebElement().then(result => true, err => false);
-    }
-
-    async isAbsent(): Promise<boolean> {
-        return this.isPresent().then(result => !result);
+        return Actions.presence(this);
     }
 
     async text(): Promise<string> {
-        await this.should(be.visible);
-        return (await this.getWebElement()).getText();
+        return Actions.text(this);
     }
 
     async hasAttribute(attributeName: string): Promise<boolean> {
-        return this.getWebElement().then(result => result.getAttribute(attributeName) !== null, err => false);
+        return Actions.attribute(attributeName)(this).then(result => true, err => false);
     }
 
     async attribute(attributeName: string): Promise<string> {
-        return this.getWebElement().then(result => result.getAttribute(attributeName), err => '');
+        return Actions.attribute(attributeName)(this);
     }
 
     async innerHtml(): Promise<string> {
-        return this.attribute('innerHTML');
+        return Actions.attribute('innerHtml')(this);
     }
 
     async outerHtml(): Promise<string> {
-        return this.attribute('outerHTML');
+        return Actions.attribute('outerHtml')(this);
     }
 
     async value(): Promise<string> {
-        return this.attribute('value');
+        return Actions.attribute('value')(this);
     }
 
     async getWebElement(): Promise<WebElement> {
@@ -173,31 +144,31 @@ export class Element {
     }
 
     parent(): Element {
-        return this.element(With.xpath('./..'));
+        return Actions.parent(this);
     }
 
     followingSibling(predicate: string = ''): Element {
-        return this.element(With.xpath('./following-sibling::*' + predicate));
+        return Actions.followingSibling(predicate)(this);
     }
 
     element(cssOrXpathOrBy: string | By): Element {
-        const by = Utils.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementLocator(by, this);
-        return new Element(locator, this.driver);
-    }
-
-    visibleElement(cssSelector: string): Element {
-        return this.all(cssSelector).findBy(be.visible);
+        return Actions.element(cssOrXpathOrBy)(this);
     }
 
     all(cssOrXpathOrBy: string | By): Collection {
-        const by = Utils.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementsLocator(by, this);
-        return new Collection(locator, this.driver);
+        return Actions.all(cssOrXpathOrBy)(this);
     }
 
     async equals(element: Element) {
         return WebElement.equals(await this.getWebElement(), await element.getWebElement());
+    }
+
+    async findElements(locator: By): Promise<WebElement[]> {
+        return this.getWebElement().then(root => root.findElements(locator));
+    }
+
+    async findElement(locator: By): Promise<WebElement> {
+        return this.getWebElement().then(root => root.findElement(locator));
     }
 
     toString(): string {

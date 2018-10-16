@@ -8,12 +8,6 @@
 
 **Condition**
 
-↳  [CollectionCondition](collectioncondition.md)
-
-↳  [DriverCondition](drivercondition.md)
-
-↳  [ElementCondition](elementcondition.md)
-
 ## Index
 
 ### Constructors
@@ -22,12 +16,15 @@
 
 ### Properties
 
-* [matches](condition.md#matches)
-* [toString](condition.md#tostring)
+* [description](condition.md#description)
+* [func](condition.md#func)
 
 ### Methods
 
 * [and](condition.md#and)
+* [matches](condition.md#matches)
+* [toString](condition.md#tostring)
+* [create](condition.md#create)
 * [not](condition.md#not)
 
 ---
@@ -36,20 +33,18 @@
 
 <a id="constructor"></a>
 
-###  constructor
+### `<Private>` constructor
 
-⊕ **new Condition**(params: *`object`*): [Condition](condition.md)
+⊕ **new Condition**(description: *`string`*, func: *`function`*): [Condition](condition.md)
 
-*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L36)*
+*Defined in [condition.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L39)*
 
 **Parameters:**
 
-**params: `object`**
-
 | Param | Type |
 | ------ | ------ |
-| matches | `function` |
-| toString | `function` |
+| description | `string` |
+| func | `function` |
 
 **Returns:** [Condition](condition.md)
 
@@ -57,38 +52,33 @@ ___
 
 ## Properties
 
-<a id="matches"></a>
+<a id="description"></a>
 
-###  matches
+### `<Private>` description
 
-**● matches**: *`function`*
+**● description**: *`any`*
 
-*Defined in [conditions/condition.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L35)*
+*Defined in [condition.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L39)*
+
+___
+<a id="func"></a>
+
+### `<Private>` func
+
+**● func**: *`function`*
+
+*Defined in [condition.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L38)*
 
 #### Type declaration
-▸(entity: *`T`*): `Promise`<`T`>
+▸(T: *`any`*): `Promise`<`void`>
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| entity | `T` |
+| T | `any` |
 
-**Returns:** `Promise`<`T`>
-
-___
-<a id="tostring"></a>
-
-###  toString
-
-**● toString**: *`function`*
-
-*Defined in [conditions/condition.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L36)*
-
-#### Type declaration
-▸(): `string`
-
-**Returns:** `string`
+**Returns:** `Promise`<`void`>
 
 ___
 
@@ -98,13 +88,10 @@ ___
 
 ###  and
 
-▸ **and**<`T`>(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): [Condition](condition.md)<`T`>
+▸ **and**(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): [Condition](condition.md)<`T`>
 
-*Defined in [conditions/condition.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L43)*
+*Defined in [condition.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L59)*
 
-**Type parameters:**
-
-#### T 
 **Parameters:**
 
 | Param | Type |
@@ -114,13 +101,62 @@ ___
 **Returns:** [Condition](condition.md)<`T`>
 
 ___
+<a id="matches"></a>
+
+###  matches
+
+▸ **matches**(entity: *`T`*): `Promise`<`void`>
+
+*Defined in [condition.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L46)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| entity | `T` |
+
+**Returns:** `Promise`<`void`>
+
+___
+<a id="tostring"></a>
+
+###  toString
+
+▸ **toString**(): `any`
+
+*Defined in [condition.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L74)*
+
+**Returns:** `any`
+
+___
+<a id="create"></a>
+
+### `<Static>` create
+
+▸ **create**<`T`>(description: *`string`*, func: *`function`*): [Condition](condition.md)<`T`>
+
+*Defined in [condition.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L20)*
+
+**Type parameters:**
+
+#### T 
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| description | `string` |
+| func | `function` |
+
+**Returns:** [Condition](condition.md)<`T`>
+
+___
 <a id="not"></a>
 
 ### `<Static>` not
 
-▸ **not**<`T`>(condition: *[Condition](condition.md)<`T`>*): [Condition](condition.md)<`T`>
+▸ **not**<`T`>(condition: *[Condition](condition.md)<`T`>*): [Condition](condition.md)<`Object`>
 
-*Defined in [conditions/condition.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/condition.ts#L19)*
+*Defined in [condition.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/condition.ts#L24)*
 
 **Type parameters:**
 
@@ -131,7 +167,7 @@ ___
 | ------ | ------ |
 | condition | [Condition](condition.md)<`T`> |
 
-**Returns:** [Condition](condition.md)<`T`>
+**Returns:** [Condition](condition.md)<`Object`>
 
 ___
 

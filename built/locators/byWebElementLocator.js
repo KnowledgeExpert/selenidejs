@@ -13,24 +13,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../utils");
+const elementNotFoundError_1 = require("../errors/elementNotFoundError");
 class ByWebElementLocator {
-    constructor(by, searchContext) {
+    constructor(by, context) {
         this.by = by;
-        this.searchContext = searchContext;
+        this.context = context;
     }
     async find() {
-        const context = utils_1.Utils.isDriver(this.searchContext)
-            ? this.searchContext.config.webdriver
-            : await this.searchContext.getWebElement();
-        const elements = await context.findElements(this.by);
+        const elements = await this.context.findElements(this.by);
         if (elements.length === 0) {
-            throw new Error(`No elements found using ${this.toString()}`);
+            throw new elementNotFoundError_1.ElementNotFoundError(`No elements found using ${this.toString()}`);
         }
         return elements[0];
     }
     toString() {
-        return `${utils_1.Utils.isDriver(this.searchContext) ? 'browser' : this.searchContext.toString()}.find(${this.by})`;
+        return `${this.context.toString()}.find(${this.by})`;
     }
 }
 exports.ByWebElementLocator = ByWebElementLocator;

@@ -12,13 +12,14 @@
 * [exactText](have.md#exacttext)
 * [exactTexts](have.md#exacttexts)
 * [size](have.md#size)
+* [sizeGreaterThan](have.md#sizegreaterthan)
 * [tabsSize](have.md#tabssize)
 * [tabsSizeGreaterThan](have.md#tabssizegreaterthan)
 * [text](have.md#text)
 * [texts](have.md#texts)
 * [url](have.md#url)
+* [urlPart](have.md#urlpart)
 * [value](have.md#value)
-* [visibleElement](have.md#visibleelement)
 
 ---
 
@@ -26,11 +27,11 @@
 
 <a id="attribute"></a>
 
-###  attribute
+### `<Const>` attribute
 
-▸ **attribute**(attributeName: *`string`*, attributeValue?: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
+▸ **attribute**(attributeName: *`string`*, attributeValue?: * `string` &#124; `number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L36)*
+*Defined in [helpers/have.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L23)*
 
 **Parameters:**
 
@@ -39,16 +40,16 @@
 | attributeName | `string` |
 | `Optional` attributeValue |  `string` &#124; `number`|
 
-**Returns:** [ElementCondition](../classes/elementcondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="cssclass"></a>
 
-###  cssClass
+### `<Const>` cssClass
 
-▸ **cssClass**(cssClass: *`string`*): [ElementCondition](../classes/elementcondition.md)
+▸ **cssClass**(cssClass: *`string`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions/helpers/have.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L50)*
+*Defined in [helpers/have.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L35)*
 
 **Parameters:**
 
@@ -56,16 +57,16 @@ ___
 | ------ | ------ |
 | cssClass | `string` |
 
-**Returns:** [ElementCondition](../classes/elementcondition.md)
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
 ___
 <a id="exactattribute"></a>
 
-###  exactAttribute
+### `<Const>` exactAttribute
 
-▸ **exactAttribute**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
+▸ **exactAttribute**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L42)*
+*Defined in [helpers/have.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L29)*
 
 **Parameters:**
 
@@ -74,16 +75,16 @@ ___
 | attributeName | `string` |
 | attributeValue |  `string` &#124; `number`|
 
-**Returns:** [ElementCondition](../classes/elementcondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="exacttext"></a>
 
-###  exactText
+### `<Const>` exactText
 
-▸ **exactText**(value: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
+▸ **exactText**(value: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions/helpers/have.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L28)*
+*Defined in [helpers/have.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L19)*
 
 **Parameters:**
 
@@ -91,16 +92,16 @@ ___
 | ------ | ------ |
 | value |  `string` &#124; `number`|
 
-**Returns:** [ElementCondition](../classes/elementcondition.md)
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
 ___
 <a id="exacttexts"></a>
 
-###  exactTexts
+### `<Const>` exactTexts
 
-▸ **exactTexts**(...texts: *`string`[]*): [CollectionCondition](../classes/collectioncondition.md)
+▸ **exactTexts**(...texts: *`string`[]*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L62)*
+*Defined in [helpers/have.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L43)*
 
 **Parameters:**
 
@@ -108,16 +109,16 @@ ___
 | ------ | ------ |
 | `Rest` texts | `string`[] |
 
-**Returns:** [CollectionCondition](../classes/collectioncondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="size"></a>
 
-###  size
+### `<Const>` size
 
-▸ **size**(size: *`number`*): [CollectionCondition](../classes/collectioncondition.md)
+▸ **size**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L54)*
+*Defined in [helpers/have.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L37)*
 
 **Parameters:**
 
@@ -125,16 +126,33 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [CollectionCondition](../classes/collectioncondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="sizegreaterthan"></a>
+
+### `<Const>` sizeGreaterThan
+
+▸ **sizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [helpers/have.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L39)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="tabssize"></a>
 
-###  tabsSize
+### `<Const>` tabsSize
 
-▸ **tabsSize**(size: *`number`*): [DriverCondition](../classes/drivercondition.md)
+▸ **tabsSize**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L70)*
+*Defined in [helpers/have.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L49)*
 
 **Parameters:**
 
@@ -142,16 +160,16 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [DriverCondition](../classes/drivercondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="tabssizegreaterthan"></a>
 
-###  tabsSizeGreaterThan
+### `<Const>` tabsSizeGreaterThan
 
-▸ **tabsSizeGreaterThan**(size: *`number`*): [DriverCondition](../classes/drivercondition.md)
+▸ **tabsSizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L74)*
+*Defined in [helpers/have.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L51)*
 
 **Parameters:**
 
@@ -159,16 +177,16 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [DriverCondition](../classes/drivercondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="text"></a>
 
-###  text
+### `<Const>` text
 
-▸ **text**(value: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
+▸ **text**(value: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions/helpers/have.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L32)*
+*Defined in [helpers/have.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L21)*
 
 **Parameters:**
 
@@ -176,16 +194,16 @@ ___
 | ------ | ------ |
 | value |  `string` &#124; `number`|
 
-**Returns:** [ElementCondition](../classes/elementcondition.md)
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
 ___
 <a id="texts"></a>
 
-###  texts
+### `<Const>` texts
 
-▸ **texts**(...texts: *`string`[]*): [CollectionCondition](../classes/collectioncondition.md)
+▸ **texts**(...texts: *`string`[]*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L58)*
+*Defined in [helpers/have.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L41)*
 
 **Parameters:**
 
@@ -193,16 +211,16 @@ ___
 | ------ | ------ |
 | `Rest` texts | `string`[] |
 
-**Returns:** [CollectionCondition](../classes/collectioncondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="url"></a>
 
-###  url
+### `<Const>` url
 
-▸ **url**(urlPart: *`string`*): [DriverCondition](../classes/drivercondition.md)
+▸ **url**(urlPart: *`string`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L66)*
+*Defined in [helpers/have.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L45)*
 
 **Parameters:**
 
@@ -210,16 +228,33 @@ ___
 | ------ | ------ |
 | urlPart | `string` |
 
-**Returns:** [DriverCondition](../classes/drivercondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="urlpart"></a>
+
+### `<Const>` urlPart
+
+▸ **urlPart**(urlPart: *`string`*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [helpers/have.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L47)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| urlPart | `string` |
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 <a id="value"></a>
 
-###  value
+### `<Const>` value
 
-▸ **value**(value: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
+▸ **value**(value: * `string` &#124; `number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/helpers/have.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L46)*
+*Defined in [helpers/have.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/have.ts#L33)*
 
 **Parameters:**
 
@@ -227,24 +262,7 @@ ___
 | ------ | ------ |
 | value |  `string` &#124; `number`|
 
-**Returns:** [ElementCondition](../classes/elementcondition.md)
-
-___
-<a id="visibleelement"></a>
-
-###  visibleElement
-
-▸ **visibleElement**(locator: *`By`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/helpers/have.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/have.ts#L24)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| locator | `By` |
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 

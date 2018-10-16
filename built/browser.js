@@ -16,117 +16,113 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const driver_1 = require("./driver");
 var Browser;
 (function (Browser) {
-    function setDriver(driverOrConfiguration) {
-        Browser.selenideDriver = driverOrConfiguration instanceof driver_1.Driver
-            ? driverOrConfiguration
-            : new driver_1.Driver(driverOrConfiguration);
-        Browser.config = Browser.selenideDriver.config;
+    Browser.driver = new driver_1.Driver({});
+    Browser.configuration = Browser.driver.configuration;
+    function setDriver(customConfiguration) {
+        Browser.driver = new driver_1.Driver(customConfiguration);
+        Browser.configuration = Browser.driver.configuration;
     }
     Browser.setDriver = setDriver;
-    async function get(url) {
-        return Browser.selenideDriver.get(url);
+    async function open(url) {
+        return Browser.driver.open(url);
     }
-    Browser.get = get;
+    Browser.open = open;
     async function close() {
-        return Browser.selenideDriver.close();
+        return Browser.driver.close();
     }
     Browser.close = close;
     async function quit() {
-        return Browser.selenideDriver.quit();
+        return Browser.driver.quit();
     }
     Browser.quit = quit;
     async function refresh() {
-        return Browser.selenideDriver.refresh();
+        return Browser.driver.refresh();
     }
     Browser.refresh = refresh;
     async function acceptAlert() {
-        return Browser.selenideDriver.acceptAlert();
+        return Browser.driver.acceptAlert();
     }
     Browser.acceptAlert = acceptAlert;
     async function url() {
-        return Browser.selenideDriver.url();
+        return Browser.driver.url();
     }
     Browser.url = url;
     async function title() {
-        return Browser.selenideDriver.title();
+        return Browser.driver.title();
     }
     Browser.title = title;
     async function pageSource() {
-        return Browser.selenideDriver.pageSource();
+        return Browser.driver.pageSource();
     }
     Browser.pageSource = pageSource;
     async function screenshot() {
-        return Browser.selenideDriver.screenshot();
+        return Browser.driver.screenshot();
     }
     Browser.screenshot = screenshot;
     async function resizeWindow(width, height) {
-        return Browser.selenideDriver.resizeWindow(width, height);
+        return Browser.driver.resizeWindow(width, height);
     }
     Browser.resizeWindow = resizeWindow;
     function actions() {
-        return Browser.selenideDriver.actions();
+        return Browser.driver.actions();
     }
     Browser.actions = actions;
     function element(cssOrXpathOrBy) {
-        if (!Browser.selenideDriver)
-            setDriver({});
-        return Browser.selenideDriver.element(cssOrXpathOrBy);
+        return Browser.driver.element(cssOrXpathOrBy);
     }
     Browser.element = element;
     function all(cssOrXpathOrBy) {
-        if (!Browser.selenideDriver)
-            setDriver({});
-        return Browser.selenideDriver.all(cssOrXpathOrBy);
+        return Browser.driver.all(cssOrXpathOrBy);
     }
     Browser.all = all;
     async function should(condition, timeout) {
-        return Browser.selenideDriver.should(condition, timeout);
+        return Browser.driver.should(condition, timeout);
     }
     Browser.should = should;
     async function shouldNot(condition, timeout) {
-        return Browser.selenideDriver.shouldNot(condition, timeout);
+        return Browser.driver.shouldNot(condition, timeout);
     }
     Browser.shouldNot = shouldNot;
     async function is(condition, timeout) {
-        return Browser.selenideDriver.is(condition, timeout);
+        return Browser.driver.is(condition, timeout);
     }
     Browser.is = is;
     async function isNot(condition, timeout) {
-        return Browser.selenideDriver.isNot(condition, timeout);
+        return Browser.driver.isNot(condition, timeout);
     }
     Browser.isNot = isNot;
     /* tslint:disable:ban-types */
     async function executeScript(script, ...args) {
-        return Browser.selenideDriver.executeScript(script, ...args);
+        return Browser.driver.executeScript(script, ...args);
     }
     Browser.executeScript = executeScript;
     /* tslint:enable:ban-types */
     async function getTabs() {
-        return Browser.selenideDriver.getTabs();
+        return Browser.driver.getTabs();
     }
     Browser.getTabs = getTabs;
     async function nextTab() {
-        return Browser.selenideDriver.nextTab();
+        return Browser.driver.nextTab();
     }
     Browser.nextTab = nextTab;
     async function previousTab() {
-        return Browser.selenideDriver.previousTab();
+        return Browser.driver.previousTab();
     }
     Browser.previousTab = previousTab;
     async function switchToTab(tabId) {
-        return Browser.selenideDriver.switchToTab(tabId);
+        return Browser.driver.switchToTab(tabId);
     }
     Browser.switchToTab = switchToTab;
     async function switchToFrame(frameElement) {
-        return Browser.selenideDriver.switchToFrame(frameElement);
+        return Browser.driver.switchToFrame(frameElement);
     }
     Browser.switchToFrame = switchToFrame;
     async function switchToDefaultFrame() {
-        return Browser.selenideDriver.switchToDefaultFrame();
+        return Browser.driver.switchToDefaultFrame();
     }
     Browser.switchToDefaultFrame = switchToDefaultFrame;
     async function clearCacheAndCookies() {
-        return Browser.selenideDriver.clearCacheAndCookies();
+        return Browser.driver.clearCacheAndCookies();
     }
     Browser.clearCacheAndCookies = clearCacheAndCookies;
 })(Browser = exports.Browser || (exports.Browser = {}));

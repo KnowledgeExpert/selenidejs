@@ -14,9 +14,6 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs-extra");
-const collection_1 = require("./collection");
-const driver_1 = require("./driver");
-const element_1 = require("./element");
 const with_1 = require("./with");
 var Utils;
 (function (Utils) {
@@ -40,24 +37,18 @@ var Utils;
         return completeFilePath;
     }
     Utils.saveScreenshot = saveScreenshot;
-    function getDriver(entity) {
-        if (entity instanceof element_1.Element || entity instanceof collection_1.Collection) {
-            /* tslint:disable:no-string-literal*/
-            return entity['driver'];
-            /* tslint:enable:no-string-literal*/
-        }
-        return entity;
-    }
-    Utils.getDriver = getDriver;
-    function isDriver(entity) {
-        return entity instanceof driver_1.Driver;
-    }
-    Utils.isDriver = isDriver;
     function toBy(cssOrXpathOrBy) {
         return (typeof cssOrXpathOrBy === 'string')
             ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
     Utils.toBy = toBy;
+    function getDriver(entity) {
+        /* tslint:disable:no-string-literal */
+        const driver = entity['driver'];
+        /* tslint:enable:no-string-literal */
+        return driver;
+    }
+    Utils.getDriver = getDriver;
 })(Utils = exports.Utils || (exports.Utils = {}));
 //# sourceMappingURL=utils.js.map

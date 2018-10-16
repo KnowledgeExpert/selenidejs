@@ -13,13 +13,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const timeoutError_1 = require("./errors/timeoutError");
+/* tslint:disable:space-before-function-paren */
 class Wait {
-    constructor(entity, config) {
-        this.configuration = config;
+    constructor(entity, configuration, hookExecutor) {
         this.entity = entity;
+        this.configuration = configuration;
+        this.hookExecutor = hookExecutor;
     }
     async shouldMatch(condition, timeout = this.configuration.timeout) {
-        return this.until(condition, timeout);
+        return this.until(condition, timeout)
+            .then(entity => entity, async (error) => {
+            await this.hookExecutor.executeOnFailureHooks(error);
+            throw error;
+        });
     }
     async isMatch(condition, timeout = this.configuration.timeout) {
         return this.until(condition, timeout).then(res => true, err => false);
@@ -29,26 +36,14 @@ class Wait {
         let lastError;
         do {
             try {
-                return await condition.matches(this.entity);
+                await condition.matches(this.entity);
+                return this.entity;
             }
             catch (error) {
                 lastError = error;
             }
         } while (new Date().getTime() < finishTime);
-        lastError.message = `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
-        for (const func of this.configuration.onFailureHooks) {
-            try {
-                await func(lastError, this.entity, condition);
-            }
-            catch (error) {
-                /* tslint:disable:no-console */
-                console.warn(`Cannot perform hook '${func.toString()}' function cause of:
-                            Error message: ${error.message}
-                            Error stacktrace: ${error.stackTrace}`);
-                /* tslint:enable:no-console */
-            }
-        }
-        throw lastError;
+        throw new timeoutError_1.TimeoutError(`${lastError.message}. Wait timed out after ${timeout}ms.`);
     }
 }
 exports.Wait = Wait;

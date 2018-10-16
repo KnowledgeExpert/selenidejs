@@ -8,6 +8,9 @@
     "removeComments": false,
     "noImplicitAny": false,
     "experimentalDecorators": true,
-    "outDir": "../built/"
+    "outDir": "../built/",
+    "types": [
+      "jasmine"
+    ]
   }
 }

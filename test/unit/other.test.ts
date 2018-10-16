@@ -15,18 +15,17 @@
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-import { Describe, It } from 'jasmine-cookies';
-import { Browser } from '../../lib';
+import { Browser } from '../../lib/browser';
 
-Describe('Other - ', () => {
+describe('Other - ', () => {
 
-    It('element should be able to initialize without webdriver', async () => {
+    it('element should be able to initialize without webdriver', async () => {
         expect(Browser.element('test')).toBeTruthy();
         expect(Browser.element('test').element('test2')).toBeTruthy();
         expect(Browser.element('test').all('test2')).toBeTruthy();
     });
 
-    It('element should produce valid toString', async () => {
+    it('element should produce valid toString', async () => {
         expect(Browser.element('test').toString()).toBe('browser.find(By(css selector, test))');
         expect(Browser.element('test').element('test2').toString())
             .toBe('browser.find(By(css selector, test)).find(By(css selector, test2))');
@@ -35,12 +34,12 @@ Describe('Other - ', () => {
     });
 
 
-    It('collection should be able to initialize without webdriver', async () => {
+    it('collection should be able to initialize without webdriver', async () => {
         expect(Browser.all('test')).toBeTruthy();
         expect(Browser.all('test').get(0)).toBeTruthy();
     });
 
-    It('collection should produce valid toString', async () => {
+    it('collection should produce valid toString', async () => {
         expect(Browser.all('test').toString()).toBe('browser.all(By(css selector, test))');
         expect(Browser.all('test').get(0).toString()).toBe('browser.all(By(css selector, test)).get(0)');
     });

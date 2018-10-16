@@ -6,162 +6,235 @@
 
 ### Variables
 
-* [elementIsAbsent](conditions.md#elementisabsent)
-* [elementIsFocused](conditions.md#elementisfocused)
-* [elementIsHidden](conditions.md#elementishidden)
-* [elementIsPresent](conditions.md#elementispresent)
-* [elementIsSelected](conditions.md#elementisselected)
-* [elementIsVisible](conditions.md#elementisvisible)
+* [absent](conditions.md#absent)
+* [focused](conditions.md#focused)
+* [hidden](conditions.md#hidden)
+* [present](conditions.md#present)
+* [selected](conditions.md#selected)
+* [visible](conditions.md#visible)
 
 ### Functions
 
-* [browserTabsHaveSize](conditions.md#browsertabshavesize)
-* [browserTabsHaveSizeGreaterThan](conditions.md#browsertabshavesizegreaterthan)
-* [browserUrlContains](conditions.md#browserurlcontains)
-* [collectionHasExactTexts](conditions.md#collectionhasexacttexts)
-* [collectionHasSize](conditions.md#collectionhassize)
-* [collectionHasSizeMoreThan](conditions.md#collectionhassizemorethan)
-* [collectionHasTexts](conditions.md#collectionhastexts)
-* [elementHasAttribute](conditions.md#elementhasattribute)
-* [elementHasAttributeWithExactValue](conditions.md#elementhasattributewithexactvalue)
-* [elementHasAttributeWithValue](conditions.md#elementhasattributewithvalue)
-* [elementHasClass](conditions.md#elementhasclass)
-* [elementHasExactText](conditions.md#elementhasexacttext)
-* [elementHasText](conditions.md#elementhastext)
-* [visibleElement](conditions.md#visibleelement)
+* [atributeWithValue](conditions.md#atributewithvalue)
+* [attribute](conditions.md#attribute)
+* [attributeWithExactValue](conditions.md#attributewithexactvalue)
+* [cssClass](conditions.md#cssclass)
+* [exactText](conditions.md#exacttext)
+* [exactTexts](conditions.md#exacttexts)
+* [size](conditions.md#size)
+* [sizeGreaterThan](conditions.md#sizegreaterthan)
+* [tabsSize](conditions.md#tabssize)
+* [tabsSizeGreaterThan](conditions.md#tabssizegreaterthan)
+* [text](conditions.md#text)
+* [texts](conditions.md#texts)
+* [url](conditions.md#url)
+* [urlPart](conditions.md#urlpart)
 
 ---
 
 ## Variables
 
-<a id="elementisabsent"></a>
+<a id="absent"></a>
 
-### `<Const>` elementIsAbsent
+### `<Const>` absent
 
-**● elementIsAbsent**: *[ElementCondition](../classes/elementcondition.md)* =  new ElementCondition({
-        matches: async function (element: Element) {
-            try {
-                await element.getWebElement();
-            } catch (error) {
-                return element;
-            }
-            throw new ConditionDoesNotMatchError(this.toString());
-        },
-        toString: function () {
-            return 'be absent';
+**● absent**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Condition.create('be absent', async (element: Element) => {
+        await element.getWebElement().then(
+            result => {
+                throw new ConditionDoesNotMatchError();
+            },
+            ignored => {}
+        );
+    })
+
+*Defined in [conditions.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L32)*
+
+___
+<a id="focused"></a>
+
+### `<Const>` focused
+
+**● focused**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Condition.create('be focused', async (element: Element) => {
+        const driver = Utils.getDriver(element);
+        const script = 'return document.activeElement';
+        const currentElement = await element.getWebElement();
+        const focusedElement = await driver.executeScript(script) as WebElement;
+        if (!focusedElement) {
+            throw new ConditionDoesNotMatchError();
+        }
+        if (!WebElement.equals(focusedElement, currentElement)) {
+            throw new ConditionDoesNotMatchError();
         }
     })
 
-*Defined in [conditions/conditions.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L51)*
+*Defined in [conditions.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L41)*
 
 ___
-<a id="elementisfocused"></a>
+<a id="hidden"></a>
 
-### `<Const>` elementIsFocused
+### `<Const>` hidden
 
-**● elementIsFocused**: *[ElementCondition](../classes/elementcondition.md)* =  new ElementCondition({
-        matches: async function (element: Element) {
-            const driver = Utils.getDriver(element);
-            const script = 'return document.activeElement';
-            const currentElement = await element.getWebElement();
-            const focusedElement = await driver.executeScript(script) as WebElement;
-            if (focusedElement && WebElement.equals(focusedElement, currentElement)) {
-                return element;
-            }
-            throw new ConditionDoesNotMatchError(this.toString());
-        },
-        toString: function () {
-            return 'be focused';
+**● hidden**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Condition.create('be hidden', async (element: Element) => {
+        await element.isVisible().then(visible => {
+            if (visible) throw new ConditionDoesNotMatchError();
+        });
+    })
+
+*Defined in [conditions.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L60)*
+
+___
+<a id="present"></a>
+
+### `<Const>` present
+
+**● present**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Condition.create('be present', async (element: Element) => {
+        await element.getWebElement();
+    })
+
+*Defined in [conditions.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L28)*
+
+___
+<a id="selected"></a>
+
+### `<Const>` selected
+
+**● selected**: *[Condition](../classes/condition.md)<`Object`>* =  Condition.create('be selected', async (element: Element) => {
+        const attribute = await element.attribute('selected');
+        if (attribute === null) {
+            throw new ConditionDoesNotMatchError();
         }
     })
 
-*Defined in [conditions/conditions.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L65)*
+*Defined in [conditions.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L93)*
 
 ___
-<a id="elementishidden"></a>
+<a id="visible"></a>
 
-### `<Const>` elementIsHidden
+### `<Const>` visible
 
-**● elementIsHidden**: *[ElementCondition](../classes/elementcondition.md)* =  new ElementCondition({
-        matches: async function (element: Element) {
-            try {
-                if (!(await element.isVisible())) {
-                    return element;
-                }
-            } catch (ignored) {
-            }
-            throw new ConditionDoesNotMatchError(this.toString());
-        },
-        toString: function () {
-            return 'be hidden';
-        }
+**● visible**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Condition.create('be visible', async (element: Element) => {
+        await element.isVisible().then(visible => {
+            if (!visible) throw new ConditionDoesNotMatchError();
+        });
     })
 
-*Defined in [conditions/conditions.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L110)*
-
-___
-<a id="elementispresent"></a>
-
-### `<Const>` elementIsPresent
-
-**● elementIsPresent**: *[ElementCondition](../classes/elementcondition.md)* =  new ElementCondition({
-        matches: async function (element: Element) {
-            try {
-                await element.getWebElement();
-                return element;
-            } catch (ignored) {
-            }
-            throw new ConditionDoesNotMatchError(this.toString());
-        },
-        toString: function () {
-            return 'be present';
-        }
-    })
-
-*Defined in [conditions/conditions.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L81)*
-
-___
-<a id="elementisselected"></a>
-
-### `<Const>` elementIsSelected
-
-**● elementIsSelected**: *[ElementCondition](../classes/elementcondition.md)* =  elementHasAttribute('selected')
-
-*Defined in [conditions/conditions.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L49)*
-
-___
-<a id="elementisvisible"></a>
-
-### `<Const>` elementIsVisible
-
-**● elementIsVisible**: *[ElementCondition](../classes/elementcondition.md)* =  new ElementCondition({
-        matches: async function (element: Element) {
-            try {
-                if (await element.isVisible()) {
-                    return element;
-                }
-            } catch (ignored) {
-            }
-            throw new ConditionDoesNotMatchError(this.toString());
-        },
-        toString: function () {
-            return 'be visible';
-        }
-    })
-
-*Defined in [conditions/conditions.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L95)*
+*Defined in [conditions.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L54)*
 
 ___
 
 ## Functions
 
-<a id="browsertabshavesize"></a>
+<a id="atributewithvalue"></a>
 
-###  browserTabsHaveSize
+###  atributeWithValue
 
-▸ **browserTabsHaveSize**(size: *`number`*): [DriverCondition](../classes/drivercondition.md)
+▸ **atributeWithValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/conditions.ts:351](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L351)*
+*Defined in [conditions.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L100)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| attributeName | `string` |
+| attributeValue |  `string` &#124; `number`|
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="attribute"></a>
+
+###  attribute
+
+▸ **attribute**(attributeName: *`string`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+*Defined in [conditions.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L84)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| attributeName | `string` |
+
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+___
+<a id="attributewithexactvalue"></a>
+
+###  attributeWithExactValue
+
+▸ **attributeWithExactValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [conditions.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L111)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| attributeName | `string` |
+| attributeValue |  `string` &#124; `number`|
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="cssclass"></a>
+
+###  cssClass
+
+▸ **cssClass**(cssClass: *`string`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+*Defined in [conditions.ts:122](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L122)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| cssClass | `string` |
+
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+___
+<a id="exacttext"></a>
+
+###  exactText
+
+▸ **exactText**(text: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+*Defined in [conditions.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L75)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| text |  `string` &#124; `number`|
+
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+___
+<a id="exacttexts"></a>
+
+###  exactTexts
+
+▸ **exactTexts**(...texts: *`Array`< `string` &#124; `number`>*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [conditions.ts:177](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L177)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| `Rest` texts | `Array`< `string` &#124; `number`> |
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="size"></a>
+
+###  size
+
+▸ **size**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [conditions.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L131)*
 
 **Parameters:**
 
@@ -169,16 +242,16 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [DriverCondition](../classes/drivercondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
-<a id="browsertabshavesizegreaterthan"></a>
+<a id="sizegreaterthan"></a>
 
-###  browserTabsHaveSizeGreaterThan
+###  sizeGreaterThan
 
-▸ **browserTabsHaveSizeGreaterThan**(size: *`number`*): [DriverCondition](../classes/drivercondition.md)
+▸ **sizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/conditions.ts:370](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L370)*
+*Defined in [conditions.ts:140](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L140)*
 
 **Parameters:**
 
@@ -186,16 +259,84 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [DriverCondition](../classes/drivercondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
-<a id="browserurlcontains"></a>
+<a id="tabssize"></a>
 
-###  browserUrlContains
+###  tabsSize
 
-▸ **browserUrlContains**(url: *`string`*): [DriverCondition](../classes/drivercondition.md)
+▸ **tabsSize**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/conditions.ts:332](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L332)*
+*Defined in [conditions.ts:223](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L223)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="tabssizegreaterthan"></a>
+
+###  tabsSizeGreaterThan
+
+▸ **tabsSizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [conditions.ts:232](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L232)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="text"></a>
+
+###  text
+
+▸ **text**(text: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+*Defined in [conditions.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L66)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| text |  `string` &#124; `number`|
+
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
+
+___
+<a id="texts"></a>
+
+###  texts
+
+▸ **texts**(...texts: *`Array`< `string` &#124; `number`>*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [conditions.ts:149](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L149)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| `Rest` texts | `Array`< `string` &#124; `number`> |
+
+**Returns:** [Condition](../classes/condition.md)<`Object`>
+
+___
+<a id="url"></a>
+
+###  url
+
+▸ **url**(url: *`string`*): [Condition](../classes/condition.md)<`Object`>
+
+*Defined in [conditions.ts:214](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L214)*
 
 **Parameters:**
 
@@ -203,196 +344,24 @@ ___
 | ------ | ------ |
 | url | `string` |
 
-**Returns:** [DriverCondition](../classes/drivercondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
-<a id="collectionhasexacttexts"></a>
+<a id="urlpart"></a>
 
-###  collectionHasExactTexts
+###  urlPart
 
-▸ **collectionHasExactTexts**(texts: * `string`[] &#124; `number`[]*): [CollectionCondition](../classes/collectioncondition.md)
+▸ **urlPart**(urlPart: *`string`*): [Condition](../classes/condition.md)<`Object`>
 
-*Defined in [conditions/conditions.ts:305](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L305)*
+*Defined in [conditions.ts:205](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L205)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| texts |  `string`[] &#124; `number`[]|
+| urlPart | `string` |
 
-**Returns:** [CollectionCondition](../classes/collectioncondition.md)
-
-___
-<a id="collectionhassize"></a>
-
-###  collectionHasSize
-
-▸ **collectionHasSize**(size: *`number`*): [CollectionCondition](../classes/collectioncondition.md)
-
-*Defined in [conditions/conditions.ts:239](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L239)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| size | `number` |
-
-**Returns:** [CollectionCondition](../classes/collectioncondition.md)
-
-___
-<a id="collectionhassizemorethan"></a>
-
-###  collectionHasSizeMoreThan
-
-▸ **collectionHasSizeMoreThan**(size: *`number`*): [CollectionCondition](../classes/collectioncondition.md)
-
-*Defined in [conditions/conditions.ts:258](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L258)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| size | `number` |
-
-**Returns:** [CollectionCondition](../classes/collectioncondition.md)
-
-___
-<a id="collectionhastexts"></a>
-
-###  collectionHasTexts
-
-▸ **collectionHasTexts**(texts: * `string`[] &#124; `number`[]*): [CollectionCondition](../classes/collectioncondition.md)
-
-*Defined in [conditions/conditions.ts:277](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L277)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| texts |  `string`[] &#124; `number`[]|
-
-**Returns:** [CollectionCondition](../classes/collectioncondition.md)
-
-___
-<a id="elementhasattribute"></a>
-
-###  elementHasAttribute
-
-▸ **elementHasAttribute**(attributeName: *`string`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/conditions.ts:163](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L163)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| attributeName | `string` |
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
-
-___
-<a id="elementhasattributewithexactvalue"></a>
-
-###  elementHasAttributeWithExactValue
-
-▸ **elementHasAttributeWithExactValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/conditions.ts:201](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L201)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| attributeName | `string` |
-| attributeValue |  `string` &#124; `number`|
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
-
-___
-<a id="elementhasattributewithvalue"></a>
-
-###  elementHasAttributeWithValue
-
-▸ **elementHasAttributeWithValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/conditions.ts:182](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L182)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| attributeName | `string` |
-| attributeValue |  `string` &#124; `number`|
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
-
-___
-<a id="elementhasclass"></a>
-
-###  elementHasClass
-
-▸ **elementHasClass**(cssClass: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/conditions.ts:220](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L220)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| cssClass |  `string` &#124; `number`|
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
-
-___
-<a id="elementhasexacttext"></a>
-
-###  elementHasExactText
-
-▸ **elementHasExactText**(text: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/conditions.ts:144](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L144)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| text |  `string` &#124; `number`|
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
-
-___
-<a id="elementhastext"></a>
-
-###  elementHasText
-
-▸ **elementHasText**(text: * `string` &#124; `number`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/conditions.ts:125](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L125)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| text |  `string` &#124; `number`|
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
-
-___
-<a id="visibleelement"></a>
-
-###  visibleElement
-
-▸ **visibleElement**(locator: *`By`*): [ElementCondition](../classes/elementcondition.md)
-
-*Defined in [conditions/conditions.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/conditions.ts#L34)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| locator | `By` |
-
-**Returns:** [ElementCondition](../classes/elementcondition.md)
+**Returns:** [Condition](../classes/condition.md)<`Object`>
 
 ___
 

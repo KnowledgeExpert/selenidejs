@@ -14,4 +14,4 @@
 
 import { Element } from '../element';
 
-export type AfterElementActionHook = (actionError: Error, element: Element, actionName: string) => void | Promise<void>;
+export type AfterElementActionHook = (error: Error, element: Element, actionName: string) => void | Promise<void>;

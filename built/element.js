@@ -20,67 +20,49 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
-const collection_1 = require("./collection");
-const click_1 = require("./commands/click");
-const clickByJs_1 = require("./commands/clickByJs");
-const contextClick_1 = require("./commands/contextClick");
-const doubleClick_1 = require("./commands/doubleClick");
-const hover_1 = require("./commands/hover");
-const performActionOnVisible_1 = require("./commands/performActionOnVisible");
-const pressKey_1 = require("./commands/pressKey");
-const scrollIntoView_1 = require("./commands/scrollIntoView");
-const sendKeys_1 = require("./commands/sendKeys");
-const setValue_1 = require("./commands/setValue");
-const setValueByJs_1 = require("./commands/setValueByJs");
-const condition_1 = require("./conditions/condition");
-const be_1 = require("./conditions/helpers/be");
+const actions_1 = require("./actions");
+const condition_1 = require("./condition");
 const elementActionHooks_1 = require("./hooks/elementActionHooks");
-const byWebElementLocator_1 = require("./locators/byWebElementLocator");
-const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
-const utils_1 = require("./utils");
+const hookExecutor_1 = require("./hooks/hookExecutor");
 const wait_1 = require("./wait");
-const with_1 = require("./with");
 class Element {
     constructor(locator, driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new wait_1.Wait(this, driver.config);
+        this.wait = new wait_1.Wait(this, this.driver.configuration, new hookExecutor_1.HookExecutor(driver, this));
     }
     async click() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'click', new click_1.Click().perform);
-    }
-    async clickByJS() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'clickByJs', new clickByJs_1.ClickByJs().perform);
+        return actions_1.Actions.click(this);
     }
     async setValue(value) {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'setValue', new setValue_1.SetValue().perform, value);
-    }
-    async setValueByJS(value) {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'setValueByJS', new setValueByJs_1.SetValueByJs().perform, value);
+        return actions_1.Actions.setValue(value)(this);
     }
     async sendKeys(value) {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'sendKeys', new sendKeys_1.SendKeys().perform, value);
+        return actions_1.Actions.sendKeys(value)(this);
     }
     async doubleClick() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'doubleClick', new doubleClick_1.DoubleClick().perform);
+        return actions_1.Actions.doubleClick(this);
     }
     async hover() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'hover', new hover_1.Hover().perform);
+        return actions_1.Actions.hover(this);
     }
     async contextClick() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'contextClick', new contextClick_1.ContextClick().perform);
+        return actions_1.Actions.contextClick(this);
     }
     async pressEnter() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'pressEnter', new pressKey_1.PressKey().perform, selenium_webdriver_1.Key.ENTER);
+        return actions_1.Actions.pressEnter(this);
     }
     async pressEscape() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'pressEscape', new pressKey_1.PressKey().perform, selenium_webdriver_1.Key.ESCAPE);
+        return actions_1.Actions.pressEscape(this);
     }
     async pressTab() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'pressTab', new pressKey_1.PressKey().perform, selenium_webdriver_1.Key.TAB);
+        return actions_1.Actions.pressTab(this);
     }
-    async scrollIntoView() {
-        await new performActionOnVisible_1.PerformActionOnVisible().perform(this, 'scrollIntoView', new scrollIntoView_1.ScrollIntoView().perform);
+    async pressKey(key) {
+        return actions_1.Actions.pressKey(key)(this);
+    }
+    async scrollTo() {
+        return actions_1.Actions.scrollTo(this);
     }
     async should(condition, timeout) {
         return this.wait.shouldMatch(condition, timeout);
@@ -95,76 +77,63 @@ class Element {
         return this.is(condition_1.Condition.not(condition));
     }
     async isVisible() {
-        return this.getWebElement().then(result => result.isDisplayed(), err => false);
+        return actions_1.Actions.visibility(this);
     }
     async isPresent() {
-        return this.getWebElement().then(result => true, err => false);
-    }
-    async isAbsent() {
-        return this.isPresent().then(result => !result);
+        return actions_1.Actions.presence(this);
     }
     async text() {
-        await this.should(be_1.be.visible);
-        return (await this.getWebElement()).getText();
+        return actions_1.Actions.text(this);
     }
     async hasAttribute(attributeName) {
-        return this.getWebElement().then(result => result.getAttribute(attributeName) !== null, err => false);
+        return actions_1.Actions.attribute(attributeName)(this).then(result => true, err => false);
     }
     async attribute(attributeName) {
-        return this.getWebElement().then(result => result.getAttribute(attributeName), err => '');
+        return actions_1.Actions.attribute(attributeName)(this);
     }
     async innerHtml() {
-        return this.attribute('innerHTML');
+        return actions_1.Actions.attribute('innerHtml')(this);
     }
     async outerHtml() {
-        return this.attribute('outerHTML');
+        return actions_1.Actions.attribute('outerHtml')(this);
     }
     async value() {
-        return this.attribute('value');
+        return actions_1.Actions.attribute('value')(this);
     }
     async getWebElement() {
         return this.locator.find();
     }
     parent() {
-        return this.element(with_1.With.xpath('./..'));
+        return actions_1.Actions.parent(this);
     }
     followingSibling(predicate = '') {
-        return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
+        return actions_1.Actions.followingSibling(predicate)(this);
     }
     element(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
-        return new Element(locator, this.driver);
-    }
-    visibleElement(cssSelector) {
-        return this.all(cssSelector).findBy(be_1.be.visible);
+        return actions_1.Actions.element(cssOrXpathOrBy)(this);
     }
     all(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
-        return new collection_1.Collection(locator, this.driver);
+        return actions_1.Actions.all(cssOrXpathOrBy)(this);
     }
     async equals(element) {
         return selenium_webdriver_1.WebElement.equals(await this.getWebElement(), await element.getWebElement());
+    }
+    async findElements(locator) {
+        return this.getWebElement().then(root => root.findElements(locator));
+    }
+    async findElement(locator) {
+        return this.getWebElement().then(root => root.findElement(locator));
     }
     toString() {
         return this.locator.toString();
     }
 }
-Element.beforeActionHooks = [];
-Element.afterActionHooks = [];
 __decorate([
     elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "click", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
-], Element.prototype, "clickByJS", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "setValue", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "setValueByJS", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "sendKeys", null);
@@ -188,6 +157,9 @@ __decorate([
 ], Element.prototype, "pressTab", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
-], Element.prototype, "scrollIntoView", null);
+], Element.prototype, "pressKey", null);
+__decorate([
+    elementActionHooks_1.ElementActionHooks
+], Element.prototype, "scrollTo", null);
 exports.Element = Element;
 //# sourceMappingURL=element.js.map

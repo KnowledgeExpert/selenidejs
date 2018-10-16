@@ -14,29 +14,32 @@
 
 import { WebElement } from 'selenium-webdriver';
 import { Collection } from '../collection';
+import { ElementNotFoundError } from '../errors/elementNotFoundError';
 import { Locator } from './locator';
 
 
 export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> {
 
-    private readonly searchContext: Collection;
+    private readonly collection: Collection;
     private readonly index: number;
 
-    constructor(index: number, searchContext: Collection) {
-        this.searchContext = searchContext;
+    constructor(index: number, collection: Collection) {
+        this.collection = collection;
         this.index = index;
     }
 
     async find(): Promise<WebElement> {
-        const elements = await this.searchContext.getWebElements();
+        const elements = await this.collection.getWebElements();
         if (elements.length <= this.index) {
-            throw new Error(`Cannot get ${this.index} element from webelements collection with length ${elements.length}`);
+            throw new ElementNotFoundError(
+                `Can't get '${this.index}' webelement from collection with length '${elements.length}'`
+            );
         }
         return elements[this.index];
     }
 
     toString(): string {
-        return `${this.searchContext.toString()}.get(${this.index})`;
+        return `${this.collection.toString()}.get(${this.index})`;
     }
 
 }

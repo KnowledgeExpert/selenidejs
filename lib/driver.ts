@@ -12,160 +12,136 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ActionSequence, By } from 'selenium-webdriver';
+import { ActionSequence, By, WebElement } from 'selenium-webdriver';
+import { Actions } from './actions';
 import { Collection } from './collection';
-import { Condition } from './conditions/condition';
-import { DriverCondition } from './conditions/driverCondition';
-import { be } from './conditions/helpers/be';
+import { Condition } from './condition';
 import { Configuration } from './configuration';
 import { Element } from './element';
-import { ByWebElementLocator } from './locators/byWebElementLocator';
-import { ByWebElementsLocator } from './locators/byWebElementsLocator';
-import { FullpageScreenshot } from './queries/fullpageScreenshot';
-import { Utils } from './utils';
+import { HookExecutor } from './hooks/hookExecutor';
+import { SearchContext } from './locators/searchContext';
 import { Wait } from './wait';
 
 
-export class Driver {
+export class Driver implements SearchContext {
 
-    readonly config: Configuration;
+    readonly configuration: Configuration;
     readonly wait: Wait<Driver>;
 
-    constructor(config = {} as Configuration) {
-        this.config = new Configuration(config);
-        this.wait = new Wait(this, this.config);
+    constructor(customConfiguration: Configuration) {
+        this.configuration = new Configuration(customConfiguration);
+        const hookExecutor = new HookExecutor<Driver>(this, this);
+        this.wait = new Wait<Driver>(this, this.configuration, hookExecutor);
     }
 
-    async get(url: string) {
-        if (this.config.windowHeight && this.config.windowWidth) {
-            await this.resizeWindow(parseInt(this.config.windowHeight), parseInt(this.config.windowWidth));
-        }
-        await this.config.webdriver.get(url);
+    async open(url: string) {
+        return Actions.open(url)(this);
+    }
+
+    async resizeWindow(width = this.configuration.windowWidth, height = this.configuration.windowHeight) {
+        return Actions.resizeWindow(width, height)(this);
     }
 
     async close() {
-        await this.config.webdriver.close();
+        return Actions.close(this);
     }
 
     async quit() {
-        await this.config.webdriver.quit();
+        return Actions.quit(this);
     }
 
     async refresh() {
-        await this.config.webdriver.navigate().refresh();
+        return Actions.refresh(this);
     }
 
     async acceptAlert() {
-        await this.config.webdriver.switchTo().alert().accept();
+        return Actions.acceptAlert(this);
     }
 
     async url(): Promise<string> {
-        return this.config.webdriver.getCurrentUrl();
+        return Actions.url(this);
     }
 
     async title(): Promise<string> {
-        return this.config.webdriver.getTitle();
+        return Actions.title(this);
     }
 
     async pageSource(): Promise<string> {
-        return this.config.webdriver.getPageSource();
-    }
-
-    async screenshot(): Promise<Buffer> {
-        return this.config.fullpageScreenshot
-            ? new FullpageScreenshot().perform(this)
-            : Buffer.from(await this.config.webdriver.takeScreenshot(), 'base64');
-    }
-
-    async resizeWindow(width: number, height: number) {
-        await this.config.webdriver.manage().window().setSize(width, height);
-    }
-
-    actions(): ActionSequence {
-        return this.config.webdriver.actions();
-    }
-
-    element(cssOrXpathOrBy: string | By): Element {
-        const by = Utils.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementLocator(by, this);
-        return new Element(locator, this);
-    }
-
-    all(cssOrXpathOrBy: string | By): Collection {
-        const by = Utils.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementsLocator(by, this);
-        return new Collection(locator, this);
-    }
-
-    async should(condition: DriverCondition, timeout?: number): Promise<Driver> {
-        return timeout
-            ? this.wait.shouldMatch(condition, timeout)
-            : this.wait.shouldMatch(condition);
-    }
-
-    async shouldNot(condition: DriverCondition, timeout?: number): Promise<Driver> {
-        return this.should(Condition.not(condition), timeout);
-    }
-
-    async is(condition: DriverCondition, timeout?: number): Promise<boolean> {
-        return timeout
-            ? this.wait.isMatch(condition, timeout)
-            : this.wait.isMatch(condition);
-    }
-
-    async isNot(condition: DriverCondition, timeout?: number): Promise<boolean> {
-        return this.is(Condition.not(condition), timeout);
+        return Actions.pageSource(this);
     }
 
     /* tslint:disable:ban-types */
     async executeScript(script: string | Function, ...args: any[]) {
-        return this.config.webdriver.executeScript(script, ...args);
+        return Actions.executeScript(script, ...args)(this);
     }
-
     /* tslint:enable:ban-types */
 
     async getTabs() {
-        return this.config.webdriver.getAllWindowHandles();
+        return Actions.tabs(this);
     }
 
     async nextTab() {
-        const currentTab = await this.config.webdriver.getWindowHandle();
-        const allTabs = await this.config.webdriver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.config.webdriver
-            .switchTo()
-            .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
+        return Actions.nextTab(this);
     }
 
     async previousTab() {
-        const currentTab = await this.config.webdriver.getWindowHandle();
-        const allTabs = await this.config.webdriver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.config.webdriver
-            .switchTo()
-            .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
+        return Actions.previousTab(this);
     }
 
     async switchToTab(tabId: string) {
-        await this.config.webdriver.switchTo().window(tabId);
+        return Actions.switchToTab(tabId)(this);
     }
 
     async switchToFrame(frameElement: Element) {
-        await frameElement.should(be.visible);
-        await this.config.webdriver.switchTo().frame(await frameElement.getWebElement());
+        return Actions.switchToFrame(frameElement)(this);
     }
 
     async switchToDefaultFrame() {
-        await this.config.webdriver.switchTo().defaultContent();
+        return Actions.switchToDefaultFrame(this);
     }
 
     async clearCacheAndCookies() {
-        await this.config.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
-        });
-        await this.config.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
-        });
-        await this.config.webdriver.manage().deleteAllCookies().catch(ignored => {
-        });
+        return Actions.clearCacheAndCookies(this);
+    }
+
+    async screenshot(): Promise<Buffer> {
+        return Actions.screenshot(this);
+    }
+
+    actions(): ActionSequence {
+        return this.configuration.webdriver.actions();
+    }
+
+    element(cssOrXpathOrBy: string | By): Element {
+        return Actions.element(cssOrXpathOrBy)(this);
+    }
+
+    all(cssOrXpathOrBy: string | By): Collection {
+        return Actions.all(cssOrXpathOrBy)(this);
+    }
+
+    async should(condition: Condition<Driver>, timeout?: number): Promise<Driver> {
+        return this.wait.shouldMatch(condition, timeout);
+    }
+
+    async shouldNot(condition: Condition<Driver>, timeout?: number): Promise<Driver> {
+        return this.should(Condition.not(condition), timeout);
+    }
+
+    async is(condition: Condition<Driver>, timeout?: number): Promise<boolean> {
+        return this.wait.isMatch(condition, timeout);
+    }
+
+    async isNot(condition: Condition<Driver>, timeout?: number): Promise<boolean> {
+        return this.is(Condition.not(condition), timeout);
+    }
+
+    async findElements(locator: By): Promise<WebElement[]> {
+        return this.configuration.webdriver.findElements(locator);
+    }
+
+    async findElement(locator: By): Promise<WebElement> {
+        return this.configuration.webdriver.findElement(locator);
     }
 
     toString() {

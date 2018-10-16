@@ -5,59 +5,46 @@
 
 ### Modules
 
+* [Actions](modules/actions.md)
 * [Browser](modules/browser.md)
 * [Conditions](modules/conditions.md)
 * [Utils](modules/utils.md)
 * [With](modules/with.md)
 * [be](modules/be.md)
 * [have](modules/have.md)
+* [perform](modules/perform.md)
+* [take](modules/take.md)
 
 ### Classes
 
+* [ActionError](classes/actionerror.md)
 * [ByFilteredWebElementsLocator](classes/byfilteredwebelementslocator.md)
 * [ByIndexedWebElementLocator](classes/byindexedwebelementlocator.md)
 * [ByWebElementLocator](classes/bywebelementlocator.md)
 * [ByWebElementsLocator](classes/bywebelementslocator.md)
-* [CannotPerformActionError](classes/cannotperformactionerror.md)
-* [Click](classes/click.md)
-* [ClickByJs](classes/clickbyjs.md)
 * [Collection](classes/collection.md)
-* [CollectionCondition](classes/collectioncondition.md)
 * [Condition](classes/condition.md)
 * [ConditionDoesNotMatchError](classes/conditiondoesnotmatcherror.md)
 * [Configuration](classes/configuration.md)
-* [ContextClick](classes/contextclick.md)
-* [DoubleClick](classes/doubleclick.md)
 * [Driver](classes/driver.md)
-* [DriverCondition](classes/drivercondition.md)
 * [Element](classes/element.md)
-* [ElementCondition](classes/elementcondition.md)
-* [FullpageScreenshot](classes/fullpagescreenshot.md)
-* [Hover](classes/hover.md)
-* [PerformActionOnVisible](classes/performactiononvisible.md)
-* [PressKey](classes/presskey.md)
-* [ScrollIntoView](classes/scrollintoview.md)
-* [SendKeys](classes/sendkeys.md)
-* [SetValue](classes/setvalue.md)
-* [SetValueByJs](classes/setvaluebyjs.md)
+* [ElementNotFoundError](classes/elementnotfounderror.md)
+* [HookExecutor](classes/hookexecutor.md)
+* [TimeoutError](classes/timeouterror.md)
 * [Wait](classes/wait.md)
 
 ### Interfaces
 
-* [Command](interfaces/command.md)
 * [Locator](interfaces/locator.md)
-* [Query](interfaces/query.md)
+* [SearchContext](interfaces/searchcontext.md)
 
 ### Type aliases
 
 * [AfterElementActionHook](#afterelementactionhook)
 * [BeforeElementActionHook](#beforeelementactionhook)
-* [BrowserData](#browserdata)
+* [OnCollectionFailureHook](#oncollectionfailurehook)
+* [OnElementFailureHook](#onelementfailurehook)
 * [OnFailureHook](#onfailurehook)
-
-### Variables
-
-* [jimp](#jimp)
 
 ### Functions
 
@@ -79,13 +66,13 @@
 *Defined in [hooks/afterElementActionHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/afterElementActionHook.ts#L17)*
 
 #### Type declaration
-▸(actionError: *`Error`*, element: *[Element](classes/element.md)*, actionName: *`string`*):  `void` &#124; `Promise`<`void`>
+▸(error: *`Error`*, element: *[Element](classes/element.md)*, actionName: *`string`*):  `void` &#124; `Promise`<`void`>
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| actionError | `Error` |
+| error | `Error` |
 | element | [Element](classes/element.md) |
 | actionName | `string` |
 
@@ -113,27 +100,48 @@ ___
 **Returns:**  `void` &#124; `Promise`<`void`>
 
 ___
-<a id="browserdata"></a>
+<a id="oncollectionfailurehook"></a>
 
-###  BrowserData
+###  OnCollectionFailureHook
 
-**Ƭ BrowserData**: *`object`*
+**Ƭ OnCollectionFailureHook**: *`function`*
 
-*Defined in [queries/fullpageScreenshot.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L154)*
+*Defined in [hooks/onCollectionFailureHook.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/onCollectionFailureHook.ts#L18)*
 
 #### Type declaration
+▸(error: *`Error`*, driver: *[Driver](classes/driver.md)*, collection: *[Collection](classes/collection.md)*):  `void` &#124; `Promise`<`void`>
 
- devicePixelRatio: `number`
+**Parameters:**
 
- height: `number`
+| Param | Type |
+| ------ | ------ |
+| error | `Error` |
+| driver | [Driver](classes/driver.md) |
+| collection | [Collection](classes/collection.md) |
 
- innerHeight: `number`
+**Returns:**  `void` &#124; `Promise`<`void`>
 
- pageHeight: `number`
+___
+<a id="onelementfailurehook"></a>
 
- pageWidth: `number`
+###  OnElementFailureHook
 
- width: `number`
+**Ƭ OnElementFailureHook**: *`function`*
+
+*Defined in [hooks/onElementFailureHook.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/onElementFailureHook.ts#L18)*
+
+#### Type declaration
+▸(error: *`Error`*, driver: *[Driver](classes/driver.md)*, element: *[Element](classes/element.md)*):  `void` &#124; `Promise`<`void`>
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| error | `Error` |
+| driver | [Driver](classes/driver.md) |
+| element | [Element](classes/element.md) |
+
+**Returns:**  `void` &#124; `Promise`<`void`>
 
 ___
 <a id="onfailurehook"></a>
@@ -142,36 +150,19 @@ ___
 
 **Ƭ OnFailureHook**: *`function`*
 
-*Defined in [hooks/onFailureHook.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/onFailureHook.ts#L21)*
+*Defined in [hooks/onFailureHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/hooks/onFailureHook.ts#L17)*
 
 #### Type declaration
-▸<`T`>(lastError: *`Error`*, entity: *`T`*, condition?: *[Condition](classes/condition.md)<`T`>*):  `void` &#124; `Promise`<`void`>
-
-**Type parameters:**
-
-#### T :   [Driver](classes/driver.md) &#124; [Element](classes/element.md) &#124; [Collection](classes/collection.md)
+▸(error: *`Error`*, driver: *[Driver](classes/driver.md)*):  `void` &#124; `Promise`<`void`>
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| lastError | `Error` |
-| entity | `T` |
-| `Optional` condition | [Condition](classes/condition.md)<`T`> |
+| error | `Error` |
+| driver | [Driver](classes/driver.md) |
 
 **Returns:**  `void` &#124; `Promise`<`void`>
-
-___
-
-## Variables
-
-<a id="jimp"></a>
-
-### `<Const>` jimp
-
-**● jimp**: *`any`* =  require('jimp')
-
-*Defined in [queries/fullpageScreenshot.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries/fullpageScreenshot.ts#L20)*
 
 ___
 

@@ -13,13 +13,11 @@
 // limitations under the License.
 
 import { WebElement } from 'selenium-webdriver';
-import { CollectionCondition } from './conditions/collectionCondition';
-import { Condition } from './conditions/condition';
-import { ElementCondition } from './conditions/elementCondition';
+import { Actions } from './actions';
+import { Condition } from './condition';
 import { Driver } from './driver';
 import { Element } from './element';
-import { ByFilteredWebElementsLocator } from './locators/byFilteredWebElementsLocator';
-import { ByIndexedWebElementLocator } from './locators/byIndexedWebElementLocator';
+import { HookExecutor } from './hooks/hookExecutor';
 import { Locator } from './locators/locator';
 import { Wait } from './wait';
 
@@ -33,64 +31,47 @@ export class Collection {
     constructor(locator: Locator<Promise<WebElement[]>>, driver: Driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new Wait(this, driver.config);
+        this.wait = new Wait(this, this.driver.configuration, new HookExecutor<Collection>(driver, this));
     }
 
-    async should(condition: CollectionCondition, timeout?: number): Promise<Collection> {
-        return timeout
-            ? this.wait.shouldMatch(condition, timeout)
-            : this.wait.shouldMatch(condition);
+    async should(condition: Condition<Collection>, timeout?: number): Promise<Collection> {
+        return this.wait.shouldMatch(condition, timeout);
     }
 
-    async shouldNot(condition: CollectionCondition, timeout?: number): Promise<Collection> {
+    async shouldNot(condition: Condition<Collection>, timeout?: number): Promise<Collection> {
         return this.should(Condition.not(condition), timeout);
     }
 
-    async is(condition: CollectionCondition, timeout?: number): Promise<boolean> {
-        return timeout
-            ? this.wait.isMatch(condition, timeout)
-            : this.wait.isMatch(condition);
+    async is(condition: Condition<Collection>, timeout?: number): Promise<boolean> {
+        return this.wait.isMatch(condition, timeout);
     }
 
-    async isNot(condition: CollectionCondition, timeout?: number): Promise<boolean> {
+    async isNot(condition: Condition<Collection>, timeout?: number): Promise<boolean> {
         return this.is(Condition.not(condition), timeout);
     }
 
     get(index: number): Element {
-        return new Element(new ByIndexedWebElementLocator(index, this), this.driver);
+        return Actions.nth(index)(this);
     }
 
     first(): Element {
         return this.get(0);
     }
 
-    filter(condition: ElementCondition): Collection {
-        return new Collection(new ByFilteredWebElementsLocator(condition, this), this.driver);
+    filter(condition: Condition<Element>): Collection {
+        return Actions.filtered(condition)(this);
     }
 
-    filterBy(condition: ElementCondition): Collection {
+    filterBy(condition: Condition<Element>): Collection {
         return this.filter(condition);
     }
 
-    findBy(condition: ElementCondition): Element {
-        return new Collection(new ByFilteredWebElementsLocator(condition, this), this.driver)
-            .get(0);
+    findBy(condition: Condition<Element>): Element {
+        return Actions.find(condition)(this);
     }
 
     async size(): Promise<number> {
-        return (await this.getWebElements()).length;
-    }
-
-    async count(): Promise<number> {
-        return this.size();
-    }
-
-    async texts(): Promise<string[]> {
-        const result = [];
-        for (let i = 0; i < await this.size(); i++) {
-            result.push(await this.get(i).text());
-        }
-        return result;
+        return Actions.size(this);
     }
 
     async getWebElements(): Promise<WebElement[]> {
@@ -100,4 +81,5 @@ export class Collection {
     toString() {
         return this.locator.toString();
     }
+
 }

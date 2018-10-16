@@ -13,20 +13,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const elementNotFoundError_1 = require("../errors/elementNotFoundError");
 class ByIndexedWebElementLocator {
-    constructor(index, searchContext) {
-        this.searchContext = searchContext;
+    constructor(index, collection) {
+        this.collection = collection;
         this.index = index;
     }
     async find() {
-        const elements = await this.searchContext.getWebElements();
+        const elements = await this.collection.getWebElements();
         if (elements.length <= this.index) {
-            throw new Error(`Cannot get ${this.index} element from webelements collection with length ${elements.length}`);
+            throw new elementNotFoundError_1.ElementNotFoundError(`Can't get '${this.index}' webelement from collection with length '${elements.length}'`);
         }
         return elements[this.index];
     }
     toString() {
-        return `${this.searchContext.toString()}.get(${this.index})`;
+        return `${this.collection.toString()}.get(${this.index})`;
     }
 }
 exports.ByIndexedWebElementLocator = ByIndexedWebElementLocator;

@@ -42,22 +42,17 @@ export namespace Utils {
         return completeFilePath;
     }
 
-    export function getDriver(entity: Driver | Collection | Element): Driver {
-        if (entity instanceof Element || entity instanceof Collection) {
-            /* tslint:disable:no-string-literal*/
-            return entity['driver'] as Driver;
-            /* tslint:enable:no-string-literal*/
-        }
-        return entity;
-    }
-
-    export function isDriver(entity: Driver | Element): boolean {
-        return entity instanceof Driver;
-    }
-
     export function toBy(cssOrXpathOrBy: string | By): By {
         return (typeof cssOrXpathOrBy === 'string')
             ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
+
+    export function getDriver(entity: Element | Collection): Driver {
+        /* tslint:disable:no-string-literal */
+        const driver = entity['driver'];
+        /* tslint:enable:no-string-literal */
+        return driver;
+    }
+
 }

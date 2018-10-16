@@ -15,13 +15,12 @@
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-import { Configuration } from '../../lib';
 import { Browser } from '../../lib/browser';
 import { TestUtils } from '../utils/testUtils';
 
 beforeAll(async () => {
-    Browser.setDriver({webdriver: TestUtils.buildWebDriver()} as Configuration);
-    Browser.config.onFailureHooks = [];
+    Browser.setDriver({webdriver: TestUtils.buildWebDriver()});
+    Browser.configuration.onFailureHooks = [];
     TestUtils.startServer();
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 });
@@ -29,4 +28,8 @@ beforeAll(async () => {
 afterAll(async () => {
     await Browser.quit();
     TestUtils.shutdownServer();
+});
+
+beforeEach(() => {
+    Browser.configuration.timeout = 1;
 });

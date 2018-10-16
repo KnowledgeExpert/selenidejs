@@ -21,54 +21,54 @@
 
 ### `<Const>` absent
 
-**● absent**: *[ElementCondition](../classes/elementcondition.md)* =  Conditions.elementIsAbsent
+**● absent**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.absent
 
-*Defined in [conditions/helpers/be.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/be.ts#L21)*
+*Defined in [helpers/be.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L20)*
 
 ___
 <a id="focused"></a>
 
 ### `<Const>` focused
 
-**● focused**: *[ElementCondition](../classes/elementcondition.md)* =  Conditions.elementIsFocused
+**● focused**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.focused
 
-*Defined in [conditions/helpers/be.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/be.ts#L29)*
+*Defined in [helpers/be.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L28)*
 
 ___
 <a id="hidden"></a>
 
 ### `<Const>` hidden
 
-**● hidden**: *[ElementCondition](../classes/elementcondition.md)* =  Conditions.elementIsHidden
+**● hidden**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.hidden
 
-*Defined in [conditions/helpers/be.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/be.ts#L27)*
+*Defined in [helpers/be.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L26)*
 
 ___
 <a id="present"></a>
 
 ### `<Const>` present
 
-**● present**: *[ElementCondition](../classes/elementcondition.md)* =  Conditions.elementIsPresent
+**● present**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.present
 
-*Defined in [conditions/helpers/be.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/be.ts#L23)*
+*Defined in [helpers/be.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L22)*
 
 ___
 <a id="selected"></a>
 
 ### `<Const>` selected
 
-**● selected**: *[ElementCondition](../classes/elementcondition.md)* =  Conditions.elementIsSelected
+**● selected**: *[Condition](../classes/condition.md)<`Object`>* =  Conditions.selected
 
-*Defined in [conditions/helpers/be.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/be.ts#L19)*
+*Defined in [helpers/be.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L18)*
 
 ___
 <a id="visible"></a>
 
 ### `<Const>` visible
 
-**● visible**: *[ElementCondition](../classes/elementcondition.md)* =  Conditions.elementIsVisible
+**● visible**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.visible
 
-*Defined in [conditions/helpers/be.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions/helpers/be.ts#L25)*
+*Defined in [helpers/be.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L24)*
 
 ___
 

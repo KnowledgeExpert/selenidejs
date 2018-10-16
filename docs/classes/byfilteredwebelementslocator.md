@@ -18,8 +18,8 @@
 
 ### Properties
 
+* [collection](byfilteredwebelementslocator.md#collection)
 * [elementCondition](byfilteredwebelementslocator.md#elementcondition)
-* [searchContext](byfilteredwebelementslocator.md#searchcontext)
 
 ### Methods
 
@@ -34,16 +34,16 @@
 
 ###  constructor
 
-⊕ **new ByFilteredWebElementsLocator**(condition: *[ElementCondition](elementcondition.md)*, searchContext: *[Collection](collection.md)*): [ByFilteredWebElementsLocator](byfilteredwebelementslocator.md)
+⊕ **new ByFilteredWebElementsLocator**(condition: *[Condition](condition.md)<[Element](element.md)>*, collection: *[Collection](collection.md)*): [ByFilteredWebElementsLocator](byfilteredwebelementslocator.md)
 
-*Defined in [locators/byFilteredWebElementsLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L24)*
+*Defined in [locators/byFilteredWebElementsLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L25)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [ElementCondition](elementcondition.md) |
-| searchContext | [Collection](collection.md) |
+| condition | [Condition](condition.md)<[Element](element.md)> |
+| collection | [Collection](collection.md) |
 
 **Returns:** [ByFilteredWebElementsLocator](byfilteredwebelementslocator.md)
 
@@ -51,20 +51,20 @@ ___
 
 ## Properties
 
+<a id="collection"></a>
+
+### `<Private>` collection
+
+**● collection**: *[Collection](collection.md)*
+
+*Defined in [locators/byFilteredWebElementsLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L25)*
+
+___
 <a id="elementcondition"></a>
 
 ### `<Private>` elementCondition
 
-**● elementCondition**: *[ElementCondition](elementcondition.md)*
-
-*Defined in [locators/byFilteredWebElementsLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L23)*
-
-___
-<a id="searchcontext"></a>
-
-### `<Private>` searchContext
-
-**● searchContext**: *[Collection](collection.md)*
+**● elementCondition**: *[Condition](condition.md)<[Element](element.md)>*
 
 *Defined in [locators/byFilteredWebElementsLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L24)*
 
@@ -80,7 +80,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/byFilteredWebElementsLocator.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L31)*
+*Defined in [locators/byFilteredWebElementsLocator.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L32)*
 
 **Returns:** `Promise`<`WebElement`[]>
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/byFilteredWebElementsLocator.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L45)*
+*Defined in [locators/byFilteredWebElementsLocator.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byFilteredWebElementsLocator.ts#L46)*
 
 **Returns:** `string`
 

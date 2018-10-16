@@ -7,7 +7,6 @@
 ### Functions
 
 * [getDriver](utils.md#getdriver)
-* [isDriver](utils.md#isdriver)
 * [savePageSource](utils.md#savepagesource)
 * [saveScreenshot](utils.md#savescreenshot)
 * [toBy](utils.md#toby)
@@ -20,34 +19,17 @@
 
 ###  getDriver
 
-▸ **getDriver**(entity: * [Driver](../classes/driver.md) &#124; [Collection](../classes/collection.md) &#124; [Element](../classes/element.md)*): [Driver](../classes/driver.md)
+▸ **getDriver**(entity: * [Element](../classes/element.md) &#124; [Collection](../classes/collection.md)*): [Driver](../classes/driver.md)
 
-*Defined in [utils.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L45)*
+*Defined in [utils.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L51)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| entity |  [Driver](../classes/driver.md) &#124; [Collection](../classes/collection.md) &#124; [Element](../classes/element.md)|
+| entity |  [Element](../classes/element.md) &#124; [Collection](../classes/collection.md)|
 
 **Returns:** [Driver](../classes/driver.md)
-
-___
-<a id="isdriver"></a>
-
-###  isDriver
-
-▸ **isDriver**(entity: * [Driver](../classes/driver.md) &#124; [Element](../classes/element.md)*): `boolean`
-
-*Defined in [utils.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L54)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| entity |  [Driver](../classes/driver.md) &#124; [Element](../classes/element.md)|
-
-**Returns:** `boolean`
 
 ___
 <a id="savepagesource"></a>
@@ -92,7 +74,7 @@ ___
 
 ▸ **toBy**(cssOrXpathOrBy: * `string` &#124; `By`*): `By`
 
-*Defined in [utils.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L58)*
+*Defined in [utils.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils.ts#L45)*
 
 **Parameters:**
 

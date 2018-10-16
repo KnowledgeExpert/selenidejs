@@ -13,126 +13,99 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const collection_1 = require("./collection");
-const condition_1 = require("./conditions/condition");
-const be_1 = require("./conditions/helpers/be");
+const actions_1 = require("./actions");
+const condition_1 = require("./condition");
 const configuration_1 = require("./configuration");
-const element_1 = require("./element");
-const byWebElementLocator_1 = require("./locators/byWebElementLocator");
-const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
-const fullpageScreenshot_1 = require("./queries/fullpageScreenshot");
-const utils_1 = require("./utils");
+const hookExecutor_1 = require("./hooks/hookExecutor");
 const wait_1 = require("./wait");
 class Driver {
-    constructor(config = {}) {
-        this.config = new configuration_1.Configuration(config);
-        this.wait = new wait_1.Wait(this, this.config);
+    constructor(customConfiguration) {
+        this.configuration = new configuration_1.Configuration(customConfiguration);
+        const hookExecutor = new hookExecutor_1.HookExecutor(this, this);
+        this.wait = new wait_1.Wait(this, this.configuration, hookExecutor);
     }
-    async get(url) {
-        if (this.config.windowHeight && this.config.windowWidth) {
-            await this.resizeWindow(parseInt(this.config.windowHeight), parseInt(this.config.windowWidth));
-        }
-        await this.config.webdriver.get(url);
+    async open(url) {
+        return actions_1.Actions.open(url)(this);
+    }
+    async resizeWindow(width = this.configuration.windowWidth, height = this.configuration.windowHeight) {
+        return actions_1.Actions.resizeWindow(width, height)(this);
     }
     async close() {
-        await this.config.webdriver.close();
+        return actions_1.Actions.close(this);
     }
     async quit() {
-        await this.config.webdriver.quit();
+        return actions_1.Actions.quit(this);
     }
     async refresh() {
-        await this.config.webdriver.navigate().refresh();
+        return actions_1.Actions.refresh(this);
     }
     async acceptAlert() {
-        await this.config.webdriver.switchTo().alert().accept();
+        return actions_1.Actions.acceptAlert(this);
     }
     async url() {
-        return this.config.webdriver.getCurrentUrl();
+        return actions_1.Actions.url(this);
     }
     async title() {
-        return this.config.webdriver.getTitle();
+        return actions_1.Actions.title(this);
     }
     async pageSource() {
-        return this.config.webdriver.getPageSource();
+        return actions_1.Actions.pageSource(this);
+    }
+    /* tslint:disable:ban-types */
+    async executeScript(script, ...args) {
+        return actions_1.Actions.executeScript(script, ...args)(this);
+    }
+    /* tslint:enable:ban-types */
+    async getTabs() {
+        return actions_1.Actions.tabs(this);
+    }
+    async nextTab() {
+        return actions_1.Actions.nextTab(this);
+    }
+    async previousTab() {
+        return actions_1.Actions.previousTab(this);
+    }
+    async switchToTab(tabId) {
+        return actions_1.Actions.switchToTab(tabId)(this);
+    }
+    async switchToFrame(frameElement) {
+        return actions_1.Actions.switchToFrame(frameElement)(this);
+    }
+    async switchToDefaultFrame() {
+        return actions_1.Actions.switchToDefaultFrame(this);
+    }
+    async clearCacheAndCookies() {
+        return actions_1.Actions.clearCacheAndCookies(this);
     }
     async screenshot() {
-        return this.config.fullpageScreenshot
-            ? new fullpageScreenshot_1.FullpageScreenshot().perform(this)
-            : Buffer.from(await this.config.webdriver.takeScreenshot(), 'base64');
-    }
-    async resizeWindow(width, height) {
-        await this.config.webdriver.manage().window().setSize(width, height);
+        return actions_1.Actions.screenshot(this);
     }
     actions() {
-        return this.config.webdriver.actions();
+        return this.configuration.webdriver.actions();
     }
     element(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
-        return new element_1.Element(locator, this);
+        return actions_1.Actions.element(cssOrXpathOrBy)(this);
     }
     all(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
-        return new collection_1.Collection(locator, this);
+        return actions_1.Actions.all(cssOrXpathOrBy)(this);
     }
     async should(condition, timeout) {
-        return timeout
-            ? this.wait.shouldMatch(condition, timeout)
-            : this.wait.shouldMatch(condition);
+        return this.wait.shouldMatch(condition, timeout);
     }
     async shouldNot(condition, timeout) {
         return this.should(condition_1.Condition.not(condition), timeout);
     }
     async is(condition, timeout) {
-        return timeout
-            ? this.wait.isMatch(condition, timeout)
-            : this.wait.isMatch(condition);
+        return this.wait.isMatch(condition, timeout);
     }
     async isNot(condition, timeout) {
         return this.is(condition_1.Condition.not(condition), timeout);
     }
-    /* tslint:disable:ban-types */
-    async executeScript(script, ...args) {
-        return this.config.webdriver.executeScript(script, ...args);
+    async findElements(locator) {
+        return this.configuration.webdriver.findElements(locator);
     }
-    /* tslint:enable:ban-types */
-    async getTabs() {
-        return this.config.webdriver.getAllWindowHandles();
-    }
-    async nextTab() {
-        const currentTab = await this.config.webdriver.getWindowHandle();
-        const allTabs = await this.config.webdriver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.config.webdriver
-            .switchTo()
-            .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
-    }
-    async previousTab() {
-        const currentTab = await this.config.webdriver.getWindowHandle();
-        const allTabs = await this.config.webdriver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
-        await this.config.webdriver
-            .switchTo()
-            .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
-    }
-    async switchToTab(tabId) {
-        await this.config.webdriver.switchTo().window(tabId);
-    }
-    async switchToFrame(frameElement) {
-        await frameElement.should(be_1.be.visible);
-        await this.config.webdriver.switchTo().frame(await frameElement.getWebElement());
-    }
-    async switchToDefaultFrame() {
-        await this.config.webdriver.switchTo().defaultContent();
-    }
-    async clearCacheAndCookies() {
-        await this.config.webdriver.executeScript('window.localStorage.clear();').catch(ignored => {
-        });
-        await this.config.webdriver.executeScript('window.sessionStorage.clear();').catch(ignored => {
-        });
-        await this.config.webdriver.manage().deleteAllCookies().catch(ignored => {
-        });
+    async findElement(locator) {
+        return this.configuration.webdriver.findElement(locator);
     }
     toString() {
         return 'browser';

@@ -19,7 +19,7 @@
 ### Properties
 
 * [by](bywebelementlocator.md#by)
-* [searchContext](bywebelementlocator.md#searchcontext)
+* [context](bywebelementlocator.md#context)
 
 ### Methods
 
@@ -34,16 +34,16 @@
 
 ###  constructor
 
-⊕ **new ByWebElementLocator**(by: *`By`*, searchContext: * [Element](element.md) &#124; [Driver](driver.md)*): [ByWebElementLocator](bywebelementlocator.md)
+⊕ **new ByWebElementLocator**(by: *`By`*, context: *[SearchContext](../interfaces/searchcontext.md)*): [ByWebElementLocator](bywebelementlocator.md)
 
-*Defined in [locators/byWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L25)*
+*Defined in [locators/byWebElementLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L24)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | by | `By` |
-| searchContext |  [Element](element.md) &#124; [Driver](driver.md)|
+| context | [SearchContext](../interfaces/searchcontext.md) |
 
 **Returns:** [ByWebElementLocator](bywebelementlocator.md)
 
@@ -57,17 +57,16 @@ ___
 
 **● by**: *`By`*
 
-*Defined in [locators/byWebElementLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L24)*
+*Defined in [locators/byWebElementLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L23)*
 
 ___
-<a id="searchcontext"></a>
+<a id="context"></a>
 
-### `<Private>` searchContext
+### `<Private>` context
 
-**● searchContext**: * [Element](element.md) &#124; [Driver](driver.md)
-*
+**● context**: *[SearchContext](../interfaces/searchcontext.md)*
 
-*Defined in [locators/byWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L25)*
+*Defined in [locators/byWebElementLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L24)*
 
 ___
 
@@ -81,7 +80,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/byWebElementLocator.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L32)*
+*Defined in [locators/byWebElementLocator.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L31)*
 
 **Returns:** `Promise`<`WebElement`>
 
@@ -92,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/byWebElementLocator.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L45)*
+*Defined in [locators/byWebElementLocator.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byWebElementLocator.ts#L41)*
 
 **Returns:** `string`
 

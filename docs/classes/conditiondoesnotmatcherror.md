@@ -29,7 +29,7 @@
 
 ###  constructor
 
-⊕ **new ConditionDoesNotMatchError**(message: *`string`*): [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md)
+⊕ **new ConditionDoesNotMatchError**(message?: *`string`*): [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md)
 
 *Defined in [errors/conditionDoesNotMatchError.ts:15](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L15)*
 
@@ -37,7 +37,7 @@
 
 | Param | Type |
 | ------ | ------ |
-| message | `string` |
+| `Optional` message | `string` |
 
 **Returns:** [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md)
 

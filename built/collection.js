@@ -13,61 +13,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const condition_1 = require("./conditions/condition");
-const element_1 = require("./element");
-const byFilteredWebElementsLocator_1 = require("./locators/byFilteredWebElementsLocator");
-const byIndexedWebElementLocator_1 = require("./locators/byIndexedWebElementLocator");
+const actions_1 = require("./actions");
+const condition_1 = require("./condition");
+const hookExecutor_1 = require("./hooks/hookExecutor");
 const wait_1 = require("./wait");
 class Collection {
     constructor(locator, driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new wait_1.Wait(this, driver.config);
+        this.wait = new wait_1.Wait(this, this.driver.configuration, new hookExecutor_1.HookExecutor(driver, this));
     }
     async should(condition, timeout) {
-        return timeout
-            ? this.wait.shouldMatch(condition, timeout)
-            : this.wait.shouldMatch(condition);
+        return this.wait.shouldMatch(condition, timeout);
     }
     async shouldNot(condition, timeout) {
         return this.should(condition_1.Condition.not(condition), timeout);
     }
     async is(condition, timeout) {
-        return timeout
-            ? this.wait.isMatch(condition, timeout)
-            : this.wait.isMatch(condition);
+        return this.wait.isMatch(condition, timeout);
     }
     async isNot(condition, timeout) {
         return this.is(condition_1.Condition.not(condition), timeout);
     }
     get(index) {
-        return new element_1.Element(new byIndexedWebElementLocator_1.ByIndexedWebElementLocator(index, this), this.driver);
+        return actions_1.Actions.nth(index)(this);
     }
     first() {
         return this.get(0);
     }
     filter(condition) {
-        return new Collection(new byFilteredWebElementsLocator_1.ByFilteredWebElementsLocator(condition, this), this.driver);
+        return actions_1.Actions.filtered(condition)(this);
     }
     filterBy(condition) {
         return this.filter(condition);
     }
     findBy(condition) {
-        return new Collection(new byFilteredWebElementsLocator_1.ByFilteredWebElementsLocator(condition, this), this.driver)
-            .get(0);
+        return actions_1.Actions.find(condition)(this);
     }
     async size() {
-        return (await this.getWebElements()).length;
-    }
-    async count() {
-        return this.size();
-    }
-    async texts() {
-        const result = [];
-        for (let i = 0; i < await this.size(); i++) {
-            result.push(await this.get(i).text());
-        }
-        return result;
+        return actions_1.Actions.size(this);
     }
     async getWebElements() {
         return this.locator.find();

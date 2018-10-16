@@ -2,9 +2,9 @@ import { WebElement } from 'selenium-webdriver';
 import { Collection } from '../collection';
 import { Locator } from './locator';
 export declare class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> {
-    private readonly searchContext;
+    private readonly collection;
     private readonly index;
-    constructor(index: number, searchContext: Collection);
+    constructor(index: number, collection: Collection);
     find(): Promise<WebElement>;
     toString(): string;
 }
