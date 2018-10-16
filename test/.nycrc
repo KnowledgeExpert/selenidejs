@@ -1,9 +1,9 @@
 {
     "check-coverage": true,
-    "lines": 85,
-    "statements": 85,
-    "functions": 75,
-    "branches": 75,
+    "lines": 90,
+    "statements": 90,
+    "functions": 90,
+    "branches": 85,
     "include": [
       "./built/lib/**/*.js"
     ],

@@ -12,30 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Describe, It } from 'jasmine-cookies';
-import { With } from '../../lib/index';
+import { With } from '../../lib/with';
 
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-Describe('With', () => {
+describe('With', () => {
 
-    It('type should build valid locator object', async () => {
+    it('type should build valid locator object', async () => {
         expect(With.type('test').toString()).toBe('By(xpath, //*[@type = "test"])');
     });
 
-    It('value should build valid locator object', async () => {
+    it('value should build valid locator object', async () => {
         expect(With.value('test').toString()).toBe('By(xpath, //*[@value = "test"])');
     });
 
-    It('partialId should build valid locator object', async () => {
+    it('partialId should build valid locator object', async () => {
         expect(With.partialId('test').toString()).toBe('By(xpath, //*[contains(@id, "test")])');
         expect(With.partialId('first', 'second').toString()).toBe(
             'By(xpath, //*[contains(@id, "first") and contains(@id, "second")])'
         );
     });
 
-    It('text should build valid locator object', async () => {
+    it('text should build valid locator object', async () => {
         expect(With.text('test').toString()).toBe(
             'By(xpath, //*/text()[contains(' +
             'normalize-space(translate(string(.), "\t\n\r\u00a0", "    "))' +
@@ -43,7 +42,7 @@ Describe('With', () => {
         );
     });
 
-    It('exactText should build valid locator object', async () => {
+    it('exactText should build valid locator object', async () => {
         expect(With.exactText('test').toString()).toBe(
             'By(xpath, //*/text()[' +
             'normalize-space(translate(string(.), "\t\n\r\u00a0", "    "))' +
@@ -51,31 +50,31 @@ Describe('With', () => {
         );
     });
 
-    It('id should build valid locator object', async () => {
+    it('id should build valid locator object', async () => {
         expect(With.id('test').toString()).toBe('By(css selector, *[id="test"])');
     });
 
-    It('name should build valid locator object', async () => {
+    it('name should build valid locator object', async () => {
         expect(With.name('test').toString()).toBe('By(css selector, *[name="test"])');
     });
 
-    It('className should build valid locator object', async () => {
+    it('className should build valid locator object', async () => {
         expect(With.className('test').toString()).toBe('By(css selector, .test)');
     });
 
-    It('xpath should build valid locator object', async () => {
+    it('xpath should build valid locator object', async () => {
         expect(With.xpath('//*[@attr = "val"]').toString()).toBe('By(xpath, //*[@attr = "val"])');
     });
 
-    It('css should build valid locator object', async () => {
+    it('css should build valid locator object', async () => {
         expect(With.css('.test').toString()).toBe('By(css selector, .test)');
     });
 
-    It('attribute should build valid locator object', async () => {
+    it('attribute should build valid locator object', async () => {
         expect(With.attribute('key', 'val').toString()).toBe('By(xpath, .//*[contains(@key, "val")])');
     });
 
-    It('exact attribute should build valid locator object', async () => {
+    it('exact attribute should build valid locator object', async () => {
         expect(With.exactAttribute('key', 'val').toString()).toBe('By(xpath, .//*[@key = "val"])');
     });
 

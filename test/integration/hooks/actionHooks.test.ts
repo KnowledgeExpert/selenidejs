@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Describe, It } from 'jasmine-cookies';
-import { Browser } from '../../../lib/baseEntities/browser';
-import { Element } from '../../../lib/baseEntities/element';
+import { Browser } from '../../../lib/browser';
+import { Element } from '../../../lib/element';
 import { Given } from '../../utils/given';
 import { When } from '../../utils/when';
 import '../base';
@@ -22,7 +21,7 @@ import '../base';
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-Describe('Element Before Action Hook', () => {
+describe('Element Before Action Hook', () => {
 
     const hook = {
         before: async (element: Element, actionName: string) => {
@@ -32,16 +31,12 @@ Describe('Element Before Action Hook', () => {
         }
     };
 
-    beforeAll(async () => {
-        Browser.configuration.timeout = 0.1;
-    });
-
     beforeEach(async () => {
         spyOn(hook, 'before');
         spyOn(hook, 'brokenBefore');
     });
 
-    It('should be called on success action', async () => {
+    it('should be called on success action', async () => {
         Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPageWithBody('<h1>Test</h1>');
 
@@ -49,7 +44,7 @@ Describe('Element Before Action Hook', () => {
         expect(hook.before).toHaveBeenCalled();
     });
 
-    It('should be called on success with correct arguments', async () => {
+    it('should be called on success with correct arguments', async () => {
         Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPageWithBody('<h1>Test</h1>');
         const element = Browser.element('h1');
@@ -58,7 +53,7 @@ Describe('Element Before Action Hook', () => {
         expect(hook.before).toHaveBeenCalledWith(element, 'click');
     });
 
-    It('should not interrupt flow if hook is broken', async () => {
+    it('should not interrupt flow if hook is broken', async () => {
         Browser.configuration.beforeElementActionHooks = [hook.brokenBefore];
         await Given.openedEmptyPage();
 
@@ -67,7 +62,7 @@ Describe('Element Before Action Hook', () => {
         expect(hook.brokenBefore).toHaveBeenCalled();
     });
 
-    It('should be called on failed action', async () => {
+    it('should be called on failed action', async () => {
         Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPage();
 
@@ -76,7 +71,7 @@ Describe('Element Before Action Hook', () => {
         expect(hook.before).toHaveBeenCalled();
     });
 
-    It('should be called on failed action with correct arguments', async () => {
+    it('should be called on failed action with correct arguments', async () => {
         Browser.configuration.beforeElementActionHooks = [hook.before];
         await Given.openedEmptyPage();
         const element = Browser.element('#non-existing-element');
@@ -87,7 +82,7 @@ Describe('Element Before Action Hook', () => {
     });
 });
 
-Describe('Element After Action Hook', () => {
+describe('Element After Action Hook', () => {
 
     const hook = {
         after: async (actionError: Error, element: Element, actionName: string) => {
@@ -106,7 +101,7 @@ Describe('Element After Action Hook', () => {
         spyOn(hook, 'brokenAfter');
     });
 
-    It('should be called on success action', async () => {
+    it('should be called on success action', async () => {
         Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
         await When.withBody('<h1 id=\'test\'>Test</h1>');
@@ -115,7 +110,7 @@ Describe('Element After Action Hook', () => {
         expect(hook.after).toHaveBeenCalled();
     });
 
-    It('should be called on success with correct arguments', async () => {
+    it('should be called on success with correct arguments', async () => {
         Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
         await When.withBody('<h1 id=\'test\'>Test</h1>');
@@ -125,7 +120,7 @@ Describe('Element After Action Hook', () => {
         expect(hook.after).toHaveBeenCalledWith(null, element, 'click');
     });
 
-    It('should be called on failed action', async () => {
+    it('should be called on failed action', async () => {
         Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
 
@@ -134,7 +129,7 @@ Describe('Element After Action Hook', () => {
         expect(hook.after).toHaveBeenCalled();
     });
 
-    It('should not interrupt flow if hook is broken', async () => {
+    it('should not interrupt flow if hook is broken', async () => {
         Browser.configuration.afterElementActionHooks = [hook.brokenAfter];
         await Given.openedEmptyPage();
 
@@ -143,7 +138,7 @@ Describe('Element After Action Hook', () => {
         expect(hook.brokenAfter).toHaveBeenCalled();
     });
 
-    It('should be called on failed action with correct arguments', async () => {
+    it('should be called on failed action with correct arguments', async () => {
         Browser.configuration.afterElementActionHooks = [hook.after];
         await Given.openedEmptyPage();
         const element = Browser.element('#non-existing-element');
@@ -153,7 +148,7 @@ Describe('Element After Action Hook', () => {
 
         expect(hook.after).toHaveBeenCalledWith(
             new Error(
-                'browser.find(By(css selector, #non-existing-element)) should be visible. Wait timed out after 0.1ms'
+                'browser.find(By(css selector, #non-existing-element)) should be visible. Wait timed out after 1ms.'
             ),
             element,
             'click'

@@ -14,7 +14,7 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs-extra");
-const with_1 = require("./locators/with");
+const with_1 = require("./with");
 var Utils;
 (function (Utils) {
     async function savePageSource(selenideDriver, filePath) {
@@ -43,5 +43,12 @@ var Utils;
             : cssOrXpathOrBy;
     }
     Utils.toBy = toBy;
+    function getDriver(entity) {
+        /* tslint:disable:no-string-literal */
+        const driver = entity['driver'];
+        /* tslint:enable:no-string-literal */
+        return driver;
+    }
+    Utils.getDriver = getDriver;
 })(Utils = exports.Utils || (exports.Utils = {}));
 //# sourceMappingURL=utils.js.map

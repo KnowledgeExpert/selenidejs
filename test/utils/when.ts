@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Browser } from '../../lib/index';
 
+import { Browser } from '../../lib/browser';
 
 export namespace When {
 

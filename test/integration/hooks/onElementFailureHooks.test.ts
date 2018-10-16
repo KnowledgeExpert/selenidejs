@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Describe, It } from 'jasmine-cookies';
-import { Browser, Collection, Driver, Element, have } from '../../../lib/index';
+import { Browser } from '../../../lib/browser';
+import { Driver } from '../../../lib/driver';
+import { Element } from '../../../lib/element';
 import { Given } from '../../utils/given';
 import '../base';
 
@@ -21,7 +22,7 @@ import '../base';
 /* tslint:disable:no-magic-numbers */
 
 
-Describe('On Element Failure Hook', () => {
+describe('On Element Failure Hook', () => {
 
     const hook = {
         brokenOnElementFailure: (error: Error, driver: Driver, element: Element) => {
@@ -31,11 +32,7 @@ Describe('On Element Failure Hook', () => {
         }
     };
 
-    beforeAll(async () => {
-        Browser.configuration.timeout = 1;
-    });
-
-    It('should not be called on success', async () => {
+    it('should not be called on success', async () => {
         spyOn(hook, 'onElementFailure');
         Browser.configuration.onElementFailureHooks = [hook.onElementFailure];
         await Given.openedEmptyPageWithBody('<h1 id="test">Test</h1>');
@@ -44,7 +41,7 @@ Describe('On Element Failure Hook', () => {
         expect(hook.onElementFailure).not.toHaveBeenCalled();
     });
 
-    It('should not interrupt flow if hook is broken', async () => {
+    it('should not interrupt flow if hook is broken', async () => {
         spyOn(hook, 'brokenOnElementFailure');
         Browser.configuration.onElementFailureHooks = [hook.brokenOnElementFailure];
         await Given.openedEmptyPage();
@@ -56,7 +53,7 @@ Describe('On Element Failure Hook', () => {
             );
     });
 
-    It('should be called on failed Element command', async () => {
+    it('should be called on failed Element command', async () => {
         spyOn(hook, 'onElementFailure');
         Browser.configuration.onElementFailureHooks = [hook.onElementFailure];
         await Given.openedEmptyPage();
@@ -67,7 +64,7 @@ Describe('On Element Failure Hook', () => {
         );
     });
 
-    It('should be called on failed Element command with correct arguments', async () => {
+    it('should be called on failed Element command with correct arguments', async () => {
         spyOn(hook, 'onElementFailure');
         Browser.configuration.onElementFailureHooks = [hook.onElementFailure];
         await Given.openedEmptyPageWithBody('<h1 id="test">Test</h1>');
@@ -77,13 +74,13 @@ Describe('On Element Failure Hook', () => {
             () => fail('Invalid action should fail'),
             error => expect(hook.onElementFailure).toHaveBeenCalledWith(
                 jasmine.any(Error),
-                Browser.selenideDriver,
+                Browser.driver,
                 element
             )
         );
     });
 
-    It('should be called on failed Element assert', async () => {
+    it('should be called on failed Element assert', async () => {
         spyOn(hook, 'onElementFailure');
         Browser.configuration.onElementFailureHooks = [hook.onElementFailure];
         await Given.openedEmptyPage();
@@ -94,7 +91,7 @@ Describe('On Element Failure Hook', () => {
         );
     });
 
-    It('should be called on failed Element assert with correct arguments', async () => {
+    it('should be called on failed Element assert with correct arguments', async () => {
         spyOn(hook, 'onElementFailure');
         Browser.configuration.onElementFailureHooks = [hook.onElementFailure];
         await Given.openedEmptyPage();
@@ -104,9 +101,9 @@ Describe('On Element Failure Hook', () => {
             () => fail('Action should fail when clicking on non existing element'),
             error => expect(hook.onElementFailure).toHaveBeenCalledWith(
                 new Error(
-                    'browser.find(By(css selector, #non-existing-element)) should be visible. Wait timed out after 1ms'
+                    'browser.find(By(css selector, #non-existing-element)) should be visible. Wait timed out after 1ms.'
                 ),
-                Browser.selenideDriver,
+                Browser.driver,
                 element
             )
         );

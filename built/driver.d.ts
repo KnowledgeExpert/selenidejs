@@ -1,0 +1,41 @@
+/// <reference types="node" />
+import { ActionSequence, By, WebElement } from 'selenium-webdriver';
+import { Collection } from './collection';
+import { Condition } from './condition';
+import { Configuration } from './configuration';
+import { Element } from './element';
+import { SearchContext } from './locators/searchContext';
+import { Wait } from './wait';
+export declare class Driver implements SearchContext {
+    readonly configuration: Configuration;
+    readonly wait: Wait<Driver>;
+    constructor(customConfiguration: Configuration);
+    open(url: string): Promise<any>;
+    resizeWindow(width?: number, height?: number): Promise<any>;
+    close(): Promise<any>;
+    quit(): Promise<any>;
+    refresh(): Promise<any>;
+    acceptAlert(): Promise<any>;
+    url(): Promise<string>;
+    title(): Promise<string>;
+    pageSource(): Promise<string>;
+    executeScript(script: string | Function, ...args: any[]): Promise<any>;
+    getTabs(): Promise<any>;
+    nextTab(): Promise<any>;
+    previousTab(): Promise<any>;
+    switchToTab(tabId: string): Promise<any>;
+    switchToFrame(frameElement: Element): Promise<any>;
+    switchToDefaultFrame(): Promise<any>;
+    clearCacheAndCookies(): Promise<any>;
+    screenshot(): Promise<Buffer>;
+    actions(): ActionSequence;
+    element(cssOrXpathOrBy: string | By): Element;
+    all(cssOrXpathOrBy: string | By): Collection;
+    should(condition: Condition<Driver>, timeout?: number): Promise<Driver>;
+    shouldNot(condition: Condition<Driver>, timeout?: number): Promise<Driver>;
+    is(condition: Condition<Driver>, timeout?: number): Promise<boolean>;
+    isNot(condition: Condition<Driver>, timeout?: number): Promise<boolean>;
+    findElements(locator: By): Promise<WebElement[]>;
+    findElement(locator: By): Promise<WebElement>;
+    toString(): string;
+}

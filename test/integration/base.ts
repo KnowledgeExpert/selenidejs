@@ -15,7 +15,7 @@
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-import { Browser } from '../../lib/baseEntities/browser';
+import { Browser } from '../../lib/browser';
 import { TestUtils } from '../utils/testUtils';
 
 beforeAll(async () => {
@@ -28,4 +28,8 @@ beforeAll(async () => {
 afterAll(async () => {
     await Browser.quit();
     TestUtils.shutdownServer();
+});
+
+beforeEach(() => {
+    Browser.configuration.timeout = 1;
 });

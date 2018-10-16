@@ -13,7 +13,7 @@
 // limitations under the License.
 
 export class ConditionDoesNotMatchError extends Error {
-    constructor(message: string) {
+    constructor(message?: string) {
         super(message);
     }
 }

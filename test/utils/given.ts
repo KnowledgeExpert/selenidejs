@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Browser } from '../../lib/index';
+import { Browser } from '../../lib/browser';
 import { TestUtils } from './testUtils';
 import { When } from './when';
 
@@ -20,7 +20,7 @@ import { When } from './when';
 export namespace Given {
 
     export async function openedEmptyPage() {
-        await Browser.get(TestUtils.resourcesUrl() + 'empty.html');
+        await Browser.open(TestUtils.resourcesUrl() + 'empty.html');
     }
 
     export async function openedEmptyPageWithJquery() {

@@ -12,15 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Describe, It } from 'jasmine-cookies';
-import { Browser, Collection, Driver, Element, have } from '../../../lib/index';
+import { Browser } from '../../../lib/browser';
+import { Collection } from '../../../lib/collection';
+import { Driver } from '../../../lib/driver';
+import { have } from '../../../lib/helpers/have';
 import { Given } from '../../utils/given';
 import '../base';
 
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-Describe('On Collection Failure Hook', () => {
+describe('On Collection Failure Hook', () => {
 
     const hook = {
         brokenOnCollectionFailure: (error: Error, driver: Driver, collection: Collection) => {
@@ -30,11 +32,7 @@ Describe('On Collection Failure Hook', () => {
         }
     };
 
-    beforeAll(async () => {
-        Browser.configuration.timeout = 1;
-    });
-
-    It('should not interrupt flow if hook is broken', async () => {
+    it('should not interrupt flow if hook is broken', async () => {
         spyOn(hook, 'brokenOnCollectionFailure');
         Browser.configuration.onCollectionFailureHooks = [hook.brokenOnCollectionFailure];
         await Given.openedEmptyPage();
@@ -46,7 +44,7 @@ Describe('On Collection Failure Hook', () => {
             );
     });
 
-    It('should be called on failed Collection assert', async () => {
+    it('should be called on failed Collection assert', async () => {
         spyOn(hook, 'onCollectionFailure');
         Browser.configuration.onCollectionFailureHooks = [hook.onCollectionFailure];
         await Given.openedEmptyPage();
@@ -57,7 +55,7 @@ Describe('On Collection Failure Hook', () => {
         );
     });
 
-    It('should be called on failed Collection assert with correct arguments', async () => {
+    it('should be called on failed Collection assert with correct arguments', async () => {
         spyOn(hook, 'onCollectionFailure');
         Browser.configuration.onCollectionFailureHooks = [hook.onCollectionFailure];
         await Given.openedEmptyPage();
@@ -67,9 +65,9 @@ Describe('On Collection Failure Hook', () => {
             () => fail('Action should fail when assert fails'),
             error => expect(hook.onCollectionFailure).toHaveBeenCalledWith(
                 new Error(
-                    "browser.all(By(css selector, #non-existing-element)) should have size '10', but was '0'. Wait timed out after 1ms"
+                    "browser.all(By(css selector, #non-existing-element)) should have size '10', but was '0'. Wait timed out after 1ms."
                 ),
-                Browser.selenideDriver,
+                Browser.driver,
                 collection
             )
         );
