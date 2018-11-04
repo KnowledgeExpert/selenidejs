@@ -19,6 +19,7 @@
 * [element](browser.md#element)
 * [executeScript](browser.md#executescript)
 * [getTabs](browser.md#gettabs)
+* [initWith](browser.md#initwith)
 * [is](browser.md#is)
 * [isNot](browser.md#isnot)
 * [nextTab](browser.md#nexttab)
@@ -29,7 +30,6 @@
 * [refresh](browser.md#refresh)
 * [resizeWindow](browser.md#resizewindow)
 * [screenshot](browser.md#screenshot)
-* [setDriver](browser.md#setdriver)
 * [should](browser.md#should)
 * [shouldNot](browser.md#shouldnot)
 * [switchToDefaultFrame](browser.md#switchtodefaultframe)
@@ -170,6 +170,23 @@ ___
 **Returns:** `Promise`<`any`>
 
 ___
+<a id="initwith"></a>
+
+###  initWith
+
+▸ **initWith**(customConfiguration: *[Configuration](../classes/configuration.md)*): `void`
+
+*Defined in [browser.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L28)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| customConfiguration | [Configuration](../classes/configuration.md) |
+
+**Returns:** `void`
+
+___
 <a id="is"></a>
 
 ###  is
@@ -305,23 +322,6 @@ ___
 *Defined in [browser.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L65)*
 
 **Returns:** `Promise`<`Buffer`>
-
-___
-<a id="setdriver"></a>
-
-###  setDriver
-
-▸ **setDriver**(customConfiguration: *[Configuration](../classes/configuration.md)*): `void`
-
-*Defined in [browser.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L28)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| customConfiguration | [Configuration](../classes/configuration.md) |
-
-**Returns:** `void`
 
 ___
 <a id="should"></a>

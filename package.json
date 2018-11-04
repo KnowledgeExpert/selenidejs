@@ -2,7 +2,7 @@
   "name": "selenidejs",
   "description": "Decorator for Selenium Webdriver",
   "homepage": "https://github.com/KnowledgeExpert/selenidejs",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {
@@ -22,16 +22,20 @@
     "tslint": "5.11.0",
     "nyc": "12.0.2",
     "typedoc": "0.12.0",
-    "typedoc-plugin-markdown": "1.1.15"
+    "typedoc-plugin-markdown": "1.1.15",
+    "webdriver-manager": "12.1.0"
   },
   "scripts": {
     "clean": "rm -rf ./built && rm -f package-lock.json",
     "compile-test": "tsc --skipLibCheck --project test",
     "compile": "tsc --skipLibCheck --project lib",
     "startserver": "http-server ./resources -p 4445",
+    "wmupdate": "webdriver-manager update",
+    "wmstart": "webdriver-manager start --detach",
+    "wmstop": "webdriver-manager shutdown",
     "pretest": "npm run clean && npm run compile-test",
     "lint": "tslint --project lib",
-    "test": "nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json",
+    "test": "npm run wmupdate && npm run wmstart && nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json && npm run wmstop",
     "build": "npm run lint && npm run test && npm run clean && npm run compile && npm run generateDocs",
     "generateDocs": "typedoc --theme markdown --mode file --readme none --tsconfig lib/tsconfig.json --out docs --gitRevision master lib"
   },

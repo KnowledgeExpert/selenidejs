@@ -8,7 +8,7 @@ import { Element } from './element';
 export declare namespace Browser {
     let driver: Driver;
     let configuration: Configuration;
-    function setDriver(customConfiguration: Configuration): void;
+    function initWith(customConfiguration: Configuration): void;
     function open(url: string): Promise<any>;
     function close(): Promise<any>;
     function quit(): Promise<any>;

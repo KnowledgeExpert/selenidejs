@@ -236,20 +236,24 @@ describe('Action', () => {
     it('url', async () => {
         await Given.openedEmptyPage();
 
-        expect(await Browser.url()).toBe('http://localhost:4444/empty.html');
+        expect(await Browser.url()).toBe('http://localhost:4445/empty.html');
     });
 
     it('title', async () => {
         await Given.openedEmptyPage();
 
-        expect(await Browser.title()).toBe('');
+        expect(await Browser.title()).toBe('Empty Page');
     });
 
     it('pageSource', async () => {
         await Given.openedEmptyPageWithBody('<h1>Test</h1>');
 
-        expect(await Browser.pageSource()).toBe(
-            '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body><h1>Test</h1></body></html>'
+        expect(await Browser.pageSource().then(source => source.replace(/\s{2,}/g, ''))).toBe(
+            '<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>' +
+            '<meta charset="UTF-8" />' +
+            '<title>Empty Page</title>\n' +
+            '</head>\n' +
+            '<body><h1>Test</h1></body></html>'
         );
     });
 
@@ -308,6 +312,7 @@ describe('Action', () => {
     });
 
     it('should be able to take fullpage screenshot', async () => {
+        pending('floating bug, need to investigate');
         Browser.configuration.fullpageScreenshot = true;
         await Given.openedEmptyPage();
 

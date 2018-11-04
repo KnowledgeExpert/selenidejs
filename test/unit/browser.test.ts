@@ -73,8 +73,8 @@ describe('Browser', () => {
         Browser.configuration = configuration;
     });
 
-    it('setDriver should init configuration with default one', async () => {
-        Browser.setDriver({});
+    it('initWith should init configuration with default one', async () => {
+        Browser.initWith({});
         expect(Browser.configuration.afterElementActionHooks).toBe(Configuration.DEFAULT.afterElementActionHooks);
         expect(Browser.configuration.beforeElementActionHooks).toBe(Configuration.DEFAULT.beforeElementActionHooks);
         expect(Browser.configuration.clickByJs).toBe(Configuration.DEFAULT.clickByJs);
@@ -86,8 +86,8 @@ describe('Browser', () => {
         expect(Browser.configuration.windowWidth).toBe(Configuration.DEFAULT.windowWidth);
     });
 
-    it('setDriver should override default configuration', async () => {
-        Browser.setDriver({
+    it('initWith should override default configuration', async () => {
+        Browser.initWith({
             afterElementActionHooks: 'test' as any,
             beforeElementActionHooks: 'test' as any,
             clickByJs: 'test' as any,

@@ -25,7 +25,8 @@ Set your webdriver instance:
 
 ```
 import { Browser } from "selenidejs";
-Browser.setDriver({webdriver: myWebdriverInstance});
+const webDriverInstance = ...
+Browser.initWith({webdriver: webDriverInstance});
 ```
 
 And you are ready to go!
@@ -35,7 +36,7 @@ And you are ready to go!
 Run unit and integration tests:
 
 ```
-export SELENIDEJS_REMOTE_URL="YOUR_REMOTE_WEBDRIVER_URL" && npm test
+npm test
 ```
 
 ### Run code style test

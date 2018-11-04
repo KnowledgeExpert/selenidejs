@@ -18,11 +18,10 @@ import { Builder, WebDriver } from 'selenium-webdriver';
 
 export namespace TestUtils {
 
-    const serverPort = 4445;
     let server: child_process.ChildProcess;
 
     export function startServer() {
-        server = child_process.spawn(`npm run startserver -- --p ${serverPort}`, [], {shell: true});
+        server = child_process.spawn('npm run startserver', [], {shell: true});
     }
 
     export function shutdownServer() {
@@ -30,14 +29,13 @@ export namespace TestUtils {
     }
 
     export function resourcesUrl(): string {
-        return 'http://localhost:4444/';
+        return 'http://localhost:4445/';
     }
 
-    export function buildWebDriver(browserName = 'chrome',
-                                   remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
+    export function buildWebDriver(): WebDriver {
         return new Builder()
-            .withCapabilities({enableVNC: true, browserName: 'chrome'})
-            .usingServer(remoteUrl)
+            .withCapabilities({browserName: 'chrome'})
+            .usingServer('http://localhost:4444/wd/hub')
             .build();
     }
 

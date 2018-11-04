@@ -73,7 +73,7 @@ describe('On Failure Hook', () => {
             () => fail('Action should fail when assert fails'),
             error => expect(hook.onFailure).toHaveBeenCalledWith(
                 new Error(
-                    "browser should have url 'invalid', but was 'http://localhost:4444/empty.html'. Wait timed out after 1ms."
+                    "browser should have url 'invalid', but was 'http://localhost:4445/empty.html'. Wait timed out after 1ms."
                 ),
                 Browser.driver
             )

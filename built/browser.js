@@ -18,11 +18,11 @@ var Browser;
 (function (Browser) {
     Browser.driver = new driver_1.Driver({});
     Browser.configuration = Browser.driver.configuration;
-    function setDriver(customConfiguration) {
+    function initWith(customConfiguration) {
         Browser.driver = new driver_1.Driver(customConfiguration);
         Browser.configuration = Browser.driver.configuration;
     }
-    Browser.setDriver = setDriver;
+    Browser.initWith = initWith;
     async function open(url) {
         return Browser.driver.open(url);
     }

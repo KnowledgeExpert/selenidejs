@@ -73,7 +73,7 @@ describe('should', () => {
         await Browser.should(have.urlPart('invalid')).then(
             () => fail('Expected should to be failed'),
             error => expect(error.message).toBe(
-                "browser should have url part 'invalid', but was 'http://localhost:4444/empty.html'. " +
+                "browser should have url part 'invalid', but was 'http://localhost:4445/empty.html'. " +
                 'Wait timed out after 1ms.'
             )
         );

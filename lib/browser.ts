@@ -25,7 +25,7 @@ export namespace Browser {
     export let driver = new Driver({});
     export let configuration = driver.configuration;
 
-    export function setDriver(customConfiguration: Configuration) {
+    export function initWith(customConfiguration: Configuration) {
         driver = new Driver(customConfiguration);
         configuration = driver.configuration;
     }

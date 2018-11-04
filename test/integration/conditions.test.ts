@@ -203,7 +203,7 @@ describe('Condition', () => {
     it('should have url', async () => {
         await Given.openedEmptyPage();
 
-        expect(await Browser.is(have.url('http://localhost:4444/empty.html'))).toBeTruthy();
+        expect(await Browser.is(have.url('http://localhost:4445/empty.html'))).toBeTruthy();
         expect(await Browser.is(have.url('http://invalid'))).toBeFalsy();
     });
 
