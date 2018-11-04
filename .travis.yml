@@ -2,15 +2,14 @@ git:
   depth: 1
 
 language: node_js
-addons:
-  chrome: stable
 cache: node_modules
 node_js:
   - "8"
 
 install: npm install
 
-script: npm run build
+#script: npm run build
+script: npm run compile && npm run generateDocs
 
-after_script:
-  - "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls"
+#after_script:
+#  - "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls"
