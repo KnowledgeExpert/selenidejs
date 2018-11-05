@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import * as child_process from 'child_process';
-import { Builder, WebDriver } from 'selenium-webdriver';
+import { Builder, Capabilities, WebDriver } from 'selenium-webdriver';
 
 
 export namespace TestUtils {
@@ -33,9 +33,7 @@ export namespace TestUtils {
     }
 
     export function buildWebDriver(): WebDriver {
-        return new Builder()
-            .withCapabilities({browserName: 'chrome'})
-            .usingServer('http://localhost:4444/wd/hub')
+        return new Builder().withCapabilities(Capabilities.chrome())
             .build();
     }
 

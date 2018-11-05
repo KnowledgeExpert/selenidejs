@@ -23,19 +23,16 @@
     "nyc": "12.0.2",
     "typedoc": "0.12.0",
     "typedoc-plugin-markdown": "1.1.15",
-    "webdriver-manager": "12.1.0"
+    "chromedriver": "^2.43.1"
   },
   "scripts": {
     "clean": "rm -rf ./built && rm -f package-lock.json",
     "compile-test": "tsc --skipLibCheck --project test",
     "compile": "tsc --skipLibCheck --project lib",
     "startserver": "http-server ./resources -p 4445",
-    "wmupdate": "webdriver-manager update",
-    "wmstart": "webdriver-manager start --detach",
-    "wmstop": "webdriver-manager shutdown",
-    "pretest": "npm run clean && npm run compile-test",
     "lint": "tslint --project lib",
-    "test": "npm run wmupdate && npm run wmstart && nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json && npm run wmstop",
+    "pretest": "npm run clean && npm run compile-test",
+    "test": "nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json",
     "build": "npm run lint && npm run test && npm run clean && npm run compile && npm run generateDocs",
     "generateDocs": "typedoc --theme markdown --mode file --readme none --tsconfig lib/tsconfig.json --out docs --gitRevision master lib"
   },

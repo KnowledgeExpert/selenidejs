@@ -32,6 +32,8 @@ Browser.initWith({webdriver: webDriverInstance});
 And you are ready to go!
 
 ## Running the tests
+### Prerequisites
+- Google Chrome is installed locally
 
 Run unit and integration tests:
 
