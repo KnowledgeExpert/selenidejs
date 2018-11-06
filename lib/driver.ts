@@ -28,7 +28,7 @@ export class Driver implements SearchContext {
     readonly configuration: Configuration;
     readonly wait: Wait<Driver>;
 
-    constructor(customConfiguration: Configuration) {
+    constructor(customConfiguration?: Configuration) {
         this.configuration = new Configuration(customConfiguration);
         const hookExecutor = new HookExecutor<Driver>(this, this);
         this.wait = new Wait<Driver>(this, this.configuration, hookExecutor);

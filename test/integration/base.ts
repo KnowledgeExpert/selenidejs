@@ -19,7 +19,7 @@ import { Browser } from '../../lib/browser';
 import { TestUtils } from '../utils/testUtils';
 
 beforeAll(async () => {
-    Browser.initWith({webdriver: TestUtils.buildWebDriver()});
+    Browser.configuration.webdriver = TestUtils.buildWebDriver();
     Browser.configuration.onFailureHooks = [];
     TestUtils.startServer();
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;

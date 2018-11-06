@@ -9,7 +9,7 @@ export declare class Configuration {
     static readonly DEFAULT_HTML_PATH: string;
     static readonly DEFAULT_SCREENSHOT_PATH: string;
     static readonly DEFAULT_ON_FAILURE_HOOKS: ((error: Error, driver: Driver) => Promise<void>)[];
-    static readonly DEFAULT: Configuration;
+    private static readonly DEFAULT;
     afterElementActionHooks?: AfterElementActionHook[];
     beforeElementActionHooks?: BeforeElementActionHook[];
     clickByJs?: boolean;
@@ -24,5 +24,5 @@ export declare class Configuration {
     webdriver?: WebDriver;
     windowHeight?: number;
     windowWidth?: number;
-    constructor(customConfiguration: any);
+    constructor(customConfiguration?: any);
 }

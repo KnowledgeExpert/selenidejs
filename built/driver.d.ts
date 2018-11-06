@@ -9,7 +9,7 @@ import { Wait } from './wait';
 export declare class Driver implements SearchContext {
     readonly configuration: Configuration;
     readonly wait: Wait<Driver>;
-    constructor(customConfiguration: Configuration);
+    constructor(customConfiguration?: Configuration);
     open(url: string): Promise<any>;
     resizeWindow(width?: number, height?: number): Promise<any>;
     close(): Promise<any>;

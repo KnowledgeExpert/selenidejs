@@ -42,7 +42,7 @@ export class Configuration {
         }
     ];
 
-    static readonly DEFAULT: Configuration = {
+    private static readonly DEFAULT = {
         afterElementActionHooks: [],
         beforeElementActionHooks: [],
         clickByJs: false,
@@ -74,7 +74,7 @@ export class Configuration {
     windowHeight?: number;
     windowWidth?: number;
 
-    constructor(customConfiguration: any) {
+    constructor(customConfiguration?: any) {
         Object.assign(this, Configuration.DEFAULT);
         Object.assign(this, customConfiguration);
     }

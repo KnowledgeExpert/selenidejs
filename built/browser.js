@@ -16,13 +16,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const driver_1 = require("./driver");
 var Browser;
 (function (Browser) {
-    Browser.driver = new driver_1.Driver({});
+    Browser.driver = new driver_1.Driver();
     Browser.configuration = Browser.driver.configuration;
-    function initWith(customConfiguration) {
-        Browser.driver = new driver_1.Driver(customConfiguration);
-        Browser.configuration = Browser.driver.configuration;
-    }
-    Browser.initWith = initWith;
     async function open(url) {
         return Browser.driver.open(url);
     }

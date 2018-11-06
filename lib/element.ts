@@ -26,6 +26,7 @@ import { Wait } from './wait';
 
 export class Element implements SearchContext {
 
+    // @ts-ignore
     private readonly driver: Driver;
     private readonly locator: Locator<Promise<WebElement>>;
     private readonly wait: Wait<Element>;
@@ -33,7 +34,7 @@ export class Element implements SearchContext {
     constructor(locator: Locator<Promise<WebElement>>, driver: Driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new Wait<Element>(this, this.driver.configuration, new HookExecutor<Element>(driver, this));
+        this.wait = new Wait<Element>(this, driver.configuration, new HookExecutor<Element>(driver, this));
     }
 
     @ElementActionHooks

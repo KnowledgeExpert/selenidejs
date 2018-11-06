@@ -29,7 +29,7 @@ class Element {
     constructor(locator, driver) {
         this.locator = locator;
         this.driver = driver;
-        this.wait = new wait_1.Wait(this, this.driver.configuration, new hookExecutor_1.HookExecutor(driver, this));
+        this.wait = new wait_1.Wait(this, driver.configuration, new hookExecutor_1.HookExecutor(driver, this));
     }
     async click() {
         return actions_1.Actions.click(this);

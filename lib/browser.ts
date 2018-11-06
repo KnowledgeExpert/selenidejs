@@ -22,13 +22,8 @@ import { Element } from './element';
 
 export namespace Browser {
 
-    export let driver = new Driver({});
-    export let configuration = driver.configuration;
-
-    export function initWith(customConfiguration: Configuration) {
-        driver = new Driver(customConfiguration);
-        configuration = driver.configuration;
-    }
+    export const driver = new Driver();
+    export const configuration = driver.configuration;
 
     export async function open(url: string) {
         return driver.open(url);

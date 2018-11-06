@@ -60,7 +60,7 @@
 
 ###  constructor
 
-⊕ **new Driver**(customConfiguration: *[Configuration](configuration.md)*): [Driver](driver.md)
+⊕ **new Driver**(customConfiguration?: *[Configuration](configuration.md)*): [Driver](driver.md)
 
 *Defined in [driver.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L29)*
 
@@ -68,7 +68,7 @@
 
 | Param | Type |
 | ------ | ------ |
-| customConfiguration | [Configuration](configuration.md) |
+| `Optional` customConfiguration | [Configuration](configuration.md) |
 
 **Returns:** [Driver](driver.md)
 

@@ -25,8 +25,8 @@ Set your webdriver instance:
 
 ```
 import { Browser } from "selenidejs";
-const webDriverInstance = ...
-Browser.initWith({webdriver: webDriverInstance});
+const webDriverInstance = ...;
+Browser.configuration.webdriver = webDriverInstance;
 ```
 
 And you are ready to go!

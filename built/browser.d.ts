@@ -6,9 +6,8 @@ import { Configuration } from './configuration';
 import { Driver } from './driver';
 import { Element } from './element';
 export declare namespace Browser {
-    let driver: Driver;
-    let configuration: Configuration;
-    function initWith(customConfiguration: Configuration): void;
+    const driver: Driver;
+    const configuration: Configuration;
     function open(url: string): Promise<any>;
     function close(): Promise<any>;
     function quit(): Promise<any>;

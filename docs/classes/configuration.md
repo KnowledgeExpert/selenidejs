@@ -44,7 +44,7 @@
 
 ###  constructor
 
-⊕ **new Configuration**(customConfiguration: *`any`*): [Configuration](configuration.md)
+⊕ **new Configuration**(customConfiguration?: *`any`*): [Configuration](configuration.md)
 
 *Defined in [configuration.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L75)*
 
@@ -52,7 +52,7 @@
 
 | Param | Type |
 | ------ | ------ |
-| customConfiguration | `any` |
+| `Optional` customConfiguration | `any` |
 
 **Returns:** [Configuration](configuration.md)
 
@@ -231,7 +231,7 @@ ___
 
 <a id="default"></a>
 
-### `<Static>` DEFAULT
+### `<Static>``<Private>` DEFAULT
 
 **DEFAULT**: *`object`*
 
@@ -259,7 +259,7 @@ ___
 
 ####  clickByJs
 
-**● clickByJs**: *`false`* = false
+**● clickByJs**: *`boolean`* = false
 
 *Defined in [configuration.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L48)*
 
@@ -268,7 +268,7 @@ ___
 
 ####  fullpageScreenshot
 
-**● fullpageScreenshot**: *`false`* = false
+**● fullpageScreenshot**: *`boolean`* = false
 
 *Defined in [configuration.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L49)*
 
@@ -322,7 +322,7 @@ ___
 
 ####  setValueByJs
 
-**● setValueByJs**: *`false`* = false
+**● setValueByJs**: *`boolean`* = false
 
 *Defined in [configuration.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L55)*
 

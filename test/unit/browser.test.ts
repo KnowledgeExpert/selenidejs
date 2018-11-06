@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { By } from 'selenium-webdriver';
+import { hasOwnProperty } from 'tslint/lib/utils';
 import { Browser } from '../../lib/browser';
 import { Condition } from '../../lib/condition';
 import { Configuration } from '../../lib/configuration';
@@ -23,6 +24,7 @@ import { have } from '../../lib/helpers/have';
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 /* tslint:disable:ban-types */
+/* tslint:disable:no-string-literal */
 
 describe('Browser', () => {
 
@@ -63,53 +65,31 @@ describe('Browser', () => {
     let selenideDriver;
     let configuration;
 
-    beforeEach(() => {
+    beforeAll(() => {
         selenideDriver = Browser.driver;
         configuration = Browser.configuration;
     });
 
-    afterEach(() => {
+    afterAll(() => {
+        // @ts-ignore
         Browser.driver = selenideDriver;
+        // @ts-ignore
         Browser.configuration = configuration;
     });
 
-    it('initWith should init configuration with default one', async () => {
-        Browser.initWith({});
-        expect(Browser.configuration.afterElementActionHooks).toBe(Configuration.DEFAULT.afterElementActionHooks);
-        expect(Browser.configuration.beforeElementActionHooks).toBe(Configuration.DEFAULT.beforeElementActionHooks);
-        expect(Browser.configuration.clickByJs).toBe(Configuration.DEFAULT.clickByJs);
-        expect(Browser.configuration.onCollectionFailureHooks).toBe(Configuration.DEFAULT.onCollectionFailureHooks);
-        expect(Browser.configuration.screenshotPath).toBe(Configuration.DEFAULT.screenshotPath);
-        expect(Browser.configuration.setValueByJs).toBe(Configuration.DEFAULT.setValueByJs);
-        expect(Browser.configuration.timeout).toBe(Configuration.DEFAULT.timeout);
-        expect(Browser.configuration.webdriver).toBe(Configuration.DEFAULT.webdriver);
-        expect(Browser.configuration.windowWidth).toBe(Configuration.DEFAULT.windowWidth);
-    });
-
-    it('initWith should override default configuration', async () => {
-        Browser.initWith({
-            afterElementActionHooks: 'test' as any,
-            beforeElementActionHooks: 'test' as any,
-            clickByJs: 'test' as any,
-            fullpageScreenshot: 'test' as any,
-            htmlPath: 'test' as any,
-            onCollectionFailureHooks: 'test' as any,
-            onElementFailureHooks: 'test' as any,
-            onFailureHooks: 'test' as any,
-            screenshotPath: 'test' as any,
-            setValueByJs: 'test' as any,
-            timeout: 'test' as any,
-            webdriver: 'test' as any,
-            windowHeight: 'test' as any,
-            windowWidth: 'test' as any
-        });
-        Object.keys(Browser.configuration)
-            .forEach(key => expect(Browser.configuration[key]).toBe('test'));
+    it('should have correct default config', async () => {
+        const driver = new Driver();
+        for (const propname in driver.configuration) {
+            if (hasOwnProperty(driver, propname)) {
+                expect(driver.configuration[propname]).toBe(Configuration['DEFAULT'][propname]);
+            }
+        }
     });
 
     it('open should call driver.open with correct arguments', async () => {
         spyOn(driverMock, 'open').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.open('test');
 
         expect(result).toBe(driverExampleObject);
@@ -119,7 +99,8 @@ describe('Browser', () => {
 
     it('close should call driver.close', async () => {
         spyOn(driverMock, 'close').and.callThrough();
-        Browser.driver = driverMock as any as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.close();
 
         expect(result).toBe(driverExampleObject as any);
@@ -128,7 +109,8 @@ describe('Browser', () => {
 
     it('quit should call driver.quit', async () => {
         spyOn(driverMock, 'quit').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         await Browser.quit();
 
         expect(driverMock.quit).toHaveBeenCalled();
@@ -136,7 +118,8 @@ describe('Browser', () => {
 
     it('refresh should call driver.refresh', async () => {
         spyOn(driverMock, 'refresh').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.refresh();
 
         expect(result).toBe(driverExampleObject);
@@ -145,7 +128,8 @@ describe('Browser', () => {
 
     it('acceptAlert should call driver.acceptAlert', async () => {
         spyOn(driverMock, 'acceptAlert').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.acceptAlert();
 
         expect(result).toBe(driverExampleObject);
@@ -154,7 +138,8 @@ describe('Browser', () => {
 
     it('url should return driver.url', async () => {
         spyOn(driverMock, 'url').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const url = await Browser.url();
 
         expect(url).toBe('test');
@@ -163,7 +148,8 @@ describe('Browser', () => {
 
     it('title should return driver.title', async () => {
         spyOn(driverMock, 'title').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const title = await Browser.title();
 
         expect(title).toBe('test');
@@ -172,7 +158,8 @@ describe('Browser', () => {
 
     it('pageSource should return driver.pageSource', async () => {
         spyOn(driverMock, 'pageSource').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const pageSource = await Browser.pageSource();
 
         expect(pageSource).toBe('test');
@@ -181,7 +168,8 @@ describe('Browser', () => {
 
     it('screenshot should return driver.screenshot', async () => {
         spyOn(driverMock, 'screenshot').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const screenshot = await Browser.screenshot();
 
         expect(screenshot.toString()).toBe(Buffer.from('test').toString());
@@ -190,7 +178,8 @@ describe('Browser', () => {
 
     it('resizeWindow should return driver.resizeWindow', async () => {
         spyOn(driverMock, 'resizeWindow').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.resizeWindow(1, 2);
 
         expect(result).toBe(driverExampleObject);
@@ -199,7 +188,8 @@ describe('Browser', () => {
 
     it('actions should return driver.actions', async () => {
         spyOn(driverMock, 'actions').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = Browser.actions();
 
         expect(result).toBe(actionsExampleObject as any);
@@ -208,7 +198,8 @@ describe('Browser', () => {
 
     it('element should return driver.element', async () => {
         spyOn(driverMock, 'element').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = Browser.element('test');
 
         expect(result).toBe(elementExampleObject as any);
@@ -217,7 +208,8 @@ describe('Browser', () => {
 
     it('all should return driver.all', async () => {
         spyOn(driverMock, 'all').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = Browser.all('test');
 
         expect(result).toBe(collectionExampleObject as any);
@@ -226,7 +218,8 @@ describe('Browser', () => {
 
     it('"should" should return driver.should', async () => {
         spyOn(driverMock, 'should').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const condition = have.url('test');
         const result = await Browser.should(condition);
 
@@ -236,7 +229,8 @@ describe('Browser', () => {
 
     it('"shouldNot" should return driver.shouldNot', async () => {
         spyOn(driverMock, 'shouldNot').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const condition = have.url('test');
         const result = await Browser.shouldNot(condition);
 
@@ -246,7 +240,8 @@ describe('Browser', () => {
 
     it('"is" should return driver.is', async () => {
         spyOn(driverMock, 'is').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const condition = have.url('test');
         const result = await Browser.is(condition);
 
@@ -256,7 +251,8 @@ describe('Browser', () => {
 
     it('"isNot" should return driver.isNot', async () => {
         spyOn(driverMock, 'isNot').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const condition = have.url('test');
         const result = await Browser.isNot(condition);
 
@@ -266,7 +262,8 @@ describe('Browser', () => {
 
     it('executeScript should return driver.executeScript', async () => {
         spyOn(driverMock, 'executeScript').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.executeScript('test');
 
         expect(result).toBe(executeScriptResultExampleObject);
@@ -275,7 +272,8 @@ describe('Browser', () => {
 
     it('getTabs should return driver.getTabs', async () => {
         spyOn(driverMock, 'getTabs').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const tabs = await Browser.getTabs();
 
         expect(tabs.length).toBe(1);
@@ -285,7 +283,8 @@ describe('Browser', () => {
 
     it('nextTab should return driver.nextTab', async () => {
         spyOn(driverMock, 'nextTab').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.nextTab();
 
         expect(result).toBe(driverExampleObject);
@@ -294,7 +293,8 @@ describe('Browser', () => {
 
     it('previousTab should return driver.previousTab', async () => {
         spyOn(driverMock, 'previousTab').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.previousTab();
 
         expect(result).toBe(driverExampleObject);
@@ -303,7 +303,8 @@ describe('Browser', () => {
 
     it('switchToTab should return driver.switchToTab', async () => {
         spyOn(driverMock, 'switchToTab').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.switchToTab('test');
 
         expect(result).toBe(driverExampleObject);
@@ -312,7 +313,8 @@ describe('Browser', () => {
 
     it('switchToFrame should return driver.switchToFrame', async () => {
         spyOn(driverMock, 'switchToFrame').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.switchToFrame('test' as any);
 
         expect(result).toBe(driverExampleObject);
@@ -321,7 +323,8 @@ describe('Browser', () => {
 
     it('switchToDefaultFrame should return driver.switchToDefaultFrame', async () => {
         spyOn(driverMock, 'switchToDefaultFrame').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.switchToDefaultFrame();
 
         expect(result).toBe(driverExampleObject);
@@ -330,7 +333,8 @@ describe('Browser', () => {
 
     it('clearCacheAndCookies should return driver.clearCacheAndCookies', async () => {
         spyOn(driverMock, 'clearCacheAndCookies').and.callThrough();
-        Browser.driver = driverMock as any;
+        // @ts-ignore
+        Browser['driver'] = driverMock as any;
         const result = await Browser.clearCacheAndCookies();
 
         expect(result).toBe(driverExampleObject);
