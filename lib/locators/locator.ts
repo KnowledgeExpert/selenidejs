@@ -13,5 +13,5 @@
 // limitations under the License.
 
 export interface Locator<T> {
-    find(): T;
+    find(): T | Promise<T>;
 }

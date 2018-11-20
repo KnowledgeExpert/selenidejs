@@ -23,28 +23,9 @@ export namespace Given {
         await Browser.open(TestUtils.resourcesUrl() + 'empty.html');
     }
 
-    export async function openedEmptyPageWithJquery() {
-        await openedEmptyPage();
-        await addJquery();
-    }
-
     export async function openedEmptyPageWithBody(html: string) {
         await openedEmptyPage();
         await When.withBody(html);
-    }
-
-    export async function openedEmptyPageWithJqueryAndBody(html: string) {
-        await openedEmptyPageWithJquery();
-        await When.withBody(html);
-    }
-
-    async function addJquery() {
-        await Browser.executeScript(`
-            var script = document.createElement('script');
-            script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js";
-            document.getElementsByTagName('head')[0].appendChild(script);
-        `);
-        await TestUtils.sleep(500);
     }
 
 }

@@ -79,7 +79,7 @@ describe('Action', () => {
     });
 
     it('doubleClick', async () => {
-        await Given.openedEmptyPageWithJqueryAndBody('<span id="test">Before Double Click</span>');
+        await Given.openedEmptyPageWithBody('<span id="test">Before Double Click</span>');
         await Browser.executeScript(`
             $('#test').dblclick(function(e) {
                 $('#test').text('After Double Click');
@@ -91,7 +91,7 @@ describe('Action', () => {
     });
 
     it('hover', async () => {
-        await Given.openedEmptyPageWithJqueryAndBody(
+        await Given.openedEmptyPageWithBody(
             `<div
                 id="hoverable"
                 onmouseover="$(this).text('Its hover');"
@@ -110,7 +110,7 @@ describe('Action', () => {
     });
 
     it('pressKey', async () => {
-        await Given.openedEmptyPageWithJqueryAndBody('<span id="test">Before Press Enter</span>');
+        await Given.openedEmptyPageWithBody('<span id="test">Before Press Enter</span>');
         await Browser.executeScript(`
             $('html').keypress(function(e) {
                 if (e.which == 13) document.getElementById('test').innerHTML = 'After Press Enter';
@@ -122,7 +122,7 @@ describe('Action', () => {
     });
 
     it('pressEnter', async () => {
-        await Given.openedEmptyPageWithJqueryAndBody('<span id="test">Before Press Enter</span>');
+        await Given.openedEmptyPageWithBody('<span id="test">Before Press Enter</span>');
         await Browser.executeScript(`
             $('html').keypress(function(e) {
                 if (e.which == 13) document.getElementById('test').innerHTML = 'After Press Enter';
@@ -250,6 +250,7 @@ describe('Action', () => {
 
         expect(await Browser.pageSource().then(source => source.replace(/\s{2,}/g, ''))).toBe(
             '<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>' +
+            '<script src="./jquery_2.2.0_min.js"></script>' +
             '<meta charset="UTF-8" />' +
             '<title>Empty Page</title>\n' +
             '</head>\n' +

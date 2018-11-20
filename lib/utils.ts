@@ -24,7 +24,7 @@ export namespace Utils {
 
     export async function savePageSource(selenideDriver: Driver, filePath: string): Promise<string> {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
+        const dateTime = new Date().toLocaleString().replace(/\W+/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
         const pageSource = await selenideDriver.pageSource();
@@ -34,7 +34,7 @@ export namespace Utils {
 
     export async function saveScreenshot(selenideDriver: Driver, filePath: string): Promise<string> {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
+        const dateTime = new Date().toLocaleString().replace(/\W+/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
         const screenshot = await selenideDriver.screenshot();

@@ -14,20 +14,15 @@
 
 import jimp = require('jimp');
 import * as mergeImg from 'merge-img';
-import { Button, By, Key, WebDriver, WebElement } from 'selenium-webdriver';
+import { Button, Key, WebDriver, WebElement } from 'selenium-webdriver';
 import { Collection } from './collection';
-import { Condition } from './condition';
 import { Driver } from './driver';
 import { Element } from './element';
 import { ActionError } from './errors/actionError';
+import { ConditionDoesNotMatchError } from './errors/conditionDoesNotMatchError';
 import { be } from './helpers/be';
 import { HookExecutor } from './hooks/hookExecutor';
-import { ByFilteredWebElementsLocator } from './locators/byFilteredWebElementsLocator';
-import { ByIndexedWebElementLocator } from './locators/byIndexedWebElementLocator';
-import { ByWebElementLocator } from './locators/byWebElementLocator';
-import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Utils } from './utils';
-import { With } from './with';
 
 
 export namespace Actions {
@@ -36,46 +31,39 @@ export namespace Actions {
     /* tslint:disable:space-before-function-paren */
 
     export const click = async (element: Element): Promise<Element> => {
-        return Utils.getDriver(element).configuration.clickByJs
-            ? clickByJs(element)
-            : commonClick(element);
+        return createElementOnVisibleCommand(element, async function click(element: Element, driver: Driver) {
+            driver.configuration.clickByJs ? await clickByJs(element, driver) : await commonClick(element);
+        });
     };
 
     async function commonClick(element: Element) {
-        return createElementOnVisibleAction(element, async function click(element: Element) {
-            const webelement = await element.getWebElement();
-            await webelement.click();
-        });
+        const webelement = await element.getWebElement();
+        await webelement.click();
     }
 
-    async function clickByJs(element: Element) {
-        return createElementOnVisibleAction(element, async function clickByJs(element: Element) {
-            const getClickOnElementWithOffsetScript = (offsetX: number, offsetY: number) => {
-                return `arguments[0].dispatchEvent(new MouseEvent('click', {
+    async function clickByJs(element: Element, driver: Driver) {
+        const getClickOnElementWithOffsetScript = (offsetX: number, offsetY: number) => {
+            return `arguments[0].dispatchEvent(new MouseEvent('click', {
                     'view': window,
                     'bubbles': true,
                     'cancelable': true,
                     'clientX': arguments[0].getClientRects()[0].left + ${offsetX},
                     'clientY': arguments[0].getClientRects()[0].top + ${offsetY}
                 }))`;
-            };
-            const driver = Utils.getDriver(element);
-            const webelement = await element.getWebElement();
-            await driver.executeScript(getClickOnElementWithOffsetScript(0, 0), webelement);
-        });
+        };
+        const webelement = await element.getWebElement();
+        await driver.executeScript(getClickOnElementWithOffsetScript(0, 0), webelement);
     }
 
     export const contextClick = async (element: Element): Promise<Element> => {
-        return createElementOnVisibleAction(element, async function contextClick(element: Element) {
-            const driver = Utils.getDriver(element);
+        return createElementOnVisibleCommand(element, async function contextClick(element: Element, driver: Driver) {
             const webelement = await element.getWebElement();
             await driver.actions().click(webelement, String(Button.RIGHT)).perform();
         });
     };
 
     export async function doubleClick(element: Element): Promise<Element> {
-        return createElementOnVisibleAction(element, async function doubleClick(element: Element) {
-            const driver = Utils.getDriver(element);
+        return createElementOnVisibleCommand(element, async function doubleClick(element: Element, driver: Driver) {
             const webelement = await element.getWebElement();
             await driver.actions().mouseMove(webelement).perform();
             await driver.actions().doubleClick().perform();
@@ -83,8 +71,7 @@ export namespace Actions {
     }
 
     export async function hover(element: Element): Promise<Element> {
-        return createElementOnVisibleAction(element, async function hover(element: Element) {
-            const driver = Utils.getDriver(element);
+        return createElementOnVisibleCommand(element, async function hover(element: Element, driver: Driver) {
             const webelement = await element.getWebElement();
             await driver.actions().mouseMove(webelement).perform();
         });
@@ -92,7 +79,7 @@ export namespace Actions {
 
     export function pressKey(key: string) {
         return (element: Element) => {
-            return createElementOnVisibleAction(element, async function pressKey(element: Element) {
+            return createElementOnVisibleCommand(element, async function pressKey(element: Element) {
                 const webelement = await element.getWebElement();
                 await webelement.sendKeys(key);
             });
@@ -106,8 +93,7 @@ export namespace Actions {
     export const pressTab = pressKey(Key.TAB);
 
     export async function scrollTo(element: Element): Promise<Element> {
-        return createElementOnVisibleAction(element, async function scrollTo(element: Element) {
-            const driver = Utils.getDriver(element);
+        return createElementOnVisibleCommand(element, async function scrollTo(element: Element, driver: Driver) {
             const webelement = await element.getWebElement();
             await driver.executeScript('arguments[0].scrollIntoView(true);', webelement);
         });
@@ -115,7 +101,7 @@ export namespace Actions {
 
     export function sendKeys(value: string | number) {
         return (element: Element) => {
-            return createElementOnVisibleAction(element, async function sendKeys(element: Element) {
+            return createElementOnVisibleCommand(element, async function sendKeys(element: Element) {
                 const webelement = await element.getWebElement();
                 await webelement.sendKeys(value);
             });
@@ -123,25 +109,25 @@ export namespace Actions {
     }
 
     export function setValue(value: string | number) {
-        return (element: Element) => Utils.getDriver(element).configuration.setValueByJs
-            ? commonSetValue(element, value)
-            : setValueByJs(element, value);
+        return (element: Element) => {
+            return createElementOnVisibleCommand(element, async function setValue(element: Element, driver: Driver) {
+                return driver.configuration.setValueByJs
+                    ? setValueByJs(element, driver, value)
+                    : commonSetValue(element, value);
+            });
+        };
     }
 
-    function commonSetValue(element: Element, value: string | number) {
-        return createElementOnVisibleAction(element, async function setValue(element: Element) {
-            const webelement = await element.getWebElement();
-            await webelement.clear();
-            await webelement.sendKeys(String(value));
-        });
+    async function commonSetValue(element: Element, value: string | number) {
+        const webelement = await element.getWebElement();
+        await webelement.clear();
+        await webelement.sendKeys(String(value));
     }
 
-    function setValueByJs(element: Element, value: string | number) {
-        return createElementOnVisibleAction(element, async function setValueByJs(element: Element) {
-            const webelement = await element.getWebElement();
-            const driver = Utils.getDriver(element);
-            const script =
-                `return (function(webelement, text) {
+    async function setValueByJs(element: Element, driver: Driver, value: string | number) {
+        const webelement = await element.getWebElement();
+        const script =
+            `return (function(webelement, text) {
                         var maxlength = webelement.getAttribute('maxlength') === null
                             ? -1
                             : parseInt(webelement.getAttribute('maxlength'));
@@ -152,73 +138,43 @@ export namespace Actions {
                         return null;
                     })(arguments[0], arguments[1]);`;
 
-            await webelement.clear();
-            await driver.executeScript(script, webelement, String(value));
-        });
+        await webelement.clear();
+        await driver.executeScript(script, webelement, String(value));
     }
 
     export const visibility = (element: Element): Promise<boolean> => {
-        return createElementAction(element, async function visibility(element: Element) {
+        return createElementQuery(element, async function visibility(element: Element) {
             return element.getWebElement().then(webelement => webelement.isDisplayed());
         });
     };
 
     export const presence = (element: Element): Promise<boolean> => {
-        return createElementAction(element, async function presence(element: Element) {
+        return createElementQuery(element, async function presence(element: Element) {
             return element.getWebElement().then(result => true, err => false);
         });
     };
 
+    export const focused = (element: Element): Promise<boolean> => {
+        return createElementQuery(element, async function presence(element: Element, driver: Driver) {
+            const script = 'return document.activeElement';
+            const focusedElement = await driver.executeScript(script) as WebElement;
+            if (!focusedElement) {
+                throw new ConditionDoesNotMatchError();
+            }
+            return element.equals(focusedElement);
+        });
+    };
+
     export const text = (element: Element) => {
-        return createElementAction(element, async function text(element: Element) {
+        return createElementQuery(element, async function text(element: Element) {
             return element.getWebElement().then(webelement => webelement.getText());
         });
     };
 
     export function attribute(attributeName: string) {
-        return (element) => createElementAction(element, async function attribute(element: Element) {
+        return (element) => createElementQuery(element, async function attribute(element: Element) {
             return element.getWebElement().then(webelement => webelement.getAttribute(attributeName));
         });
-    }
-
-    export const parent = (element: Element) => {
-        return element.element(With.xpath('./..'));
-    };
-
-    export function followingSibling(predicate: string = '') {
-        return (element: Element) => {
-            return element.element(With.xpath('./following-sibling::*' + predicate));
-        };
-    }
-
-    export function element(cssOrXpathOrBy: string | By) {
-        return (searchContext: Element | Driver) => {
-            const driver = searchContext instanceof Driver ? searchContext : Utils.getDriver(searchContext);
-            const by = Utils.toBy(cssOrXpathOrBy);
-            const locator = new ByWebElementLocator(by, searchContext);
-            return new Element(locator, driver);
-        };
-    }
-
-    export function all(cssOrXpathOrBy: string | By) {
-        return (searchContext: Element | Driver) => {
-            const driver = searchContext instanceof Driver ? searchContext : Utils.getDriver(searchContext);
-            const by = Utils.toBy(cssOrXpathOrBy);
-            const locator = new ByWebElementsLocator(by, searchContext);
-            return new Collection(locator, driver);
-        };
-    }
-
-    export function filtered(condition: Condition<Element>) {
-        return (collection: Collection) => {
-            return new Collection(new ByFilteredWebElementsLocator(condition, collection), Utils.getDriver(collection));
-        };
-    }
-
-    export function nth(index: number) {
-        return (collection: Collection) => {
-            return new Element(new ByIndexedWebElementLocator(index, collection), Utils.getDriver(collection));
-        };
     }
 
     export const size = async (collection: Collection) => {
@@ -226,16 +182,9 @@ export namespace Actions {
         return webelements.length;
     };
 
-    export function find(condition: Condition<Element>) {
-        return (collection: Collection) => {
-            return new Collection(new ByFilteredWebElementsLocator(condition, collection), Utils.getDriver(collection))
-                .get(0);
-        };
-    }
-
     export function open(url: string) {
         return (driver: Driver) => {
-            return createDriverAction(driver, async function open(driver: Driver) {
+            return createDriverCommand(driver, async function open(driver: Driver) {
                 await driver.configuration.webdriver.get(url);
             });
         };
@@ -243,39 +192,39 @@ export namespace Actions {
 
     export function resizeWindow(width: number, height: number) {
         return (driver: Driver) => {
-            return createDriverAction(driver, async function resizeWindow(driver: Driver) {
+            return createDriverCommand(driver, async function resizeWindow(driver: Driver) {
                 await driver.configuration.webdriver.manage().window().setSize(width, height);
             });
         };
     }
 
     export const refresh = (driver: Driver) => {
-        return createDriverAction(driver, async function refresh(driver: Driver) {
+        return createDriverCommand(driver, async function refresh(driver: Driver) {
             await driver.configuration.webdriver.navigate().refresh();
             await driver.configuration.webdriver.navigate().refresh();
         });
     };
 
     export const acceptAlert = (driver: Driver) => {
-        return createDriverAction(driver, async function acceptAlert(driver: Driver) {
+        return createDriverCommand(driver, async function acceptAlert(driver: Driver) {
             await driver.configuration.webdriver.switchTo().alert().accept();
         });
     };
 
     export const url = (driver: Driver) => {
-        return createDriverAction(driver, async function url(driver: Driver) {
+        return createDriverQuery(driver, async function url(driver: Driver) {
             return driver.configuration.webdriver.getCurrentUrl();
         });
     };
 
     export const title = (driver: Driver) => {
-        return createDriverAction(driver, async function title(driver: Driver) {
+        return createDriverQuery(driver, async function title(driver: Driver) {
             return driver.configuration.webdriver.getTitle();
         });
     };
 
     export const pageSource = (driver: Driver) => {
-        return createDriverAction(driver, async function pageSource(driver: Driver) {
+        return createDriverQuery(driver, async function pageSource(driver: Driver) {
             return driver.configuration.webdriver.getPageSource();
         });
     };
@@ -283,7 +232,7 @@ export namespace Actions {
     /* tslint:disable:ban-types */
     export function executeScript(script: string | Function, ...args: any[]) {
         return (driver: Driver) => {
-            return createDriverAction(driver, async function pageSource(driver: Driver) {
+            return createDriverQuery(driver, async function pageSource(driver: Driver) {
                 return driver.configuration.webdriver.executeScript(script, ...args);
             });
         };
@@ -292,13 +241,13 @@ export namespace Actions {
     /* tslint:enable:ban-types */
 
     export const tabs = (driver: Driver) => {
-        return createDriverAction(driver, async function getTabs(driver: Driver) {
+        return createDriverQuery(driver, async function getTabs(driver: Driver) {
             return driver.configuration.webdriver.getAllWindowHandles();
         });
     };
 
     export const nextTab = (driver: Driver) => {
-        return createDriverAction(driver, async function nextTab(driver: Driver) {
+        return createDriverCommand(driver, async function nextTab(driver: Driver) {
             const currentTab = await driver.configuration.webdriver.getWindowHandle();
             const allTabs = await driver.configuration.webdriver.getAllWindowHandles();
             const currentTabIndex = allTabs.indexOf(currentTab);
@@ -309,7 +258,7 @@ export namespace Actions {
     };
 
     export const previousTab = (driver: Driver) => {
-        return createDriverAction(driver, async function previousTab(driver: Driver) {
+        return createDriverCommand(driver, async function previousTab(driver: Driver) {
             const currentTab = await driver.configuration.webdriver.getWindowHandle();
             const allTabs = await driver.configuration.webdriver.getAllWindowHandles();
             const currentTabIndex = allTabs.indexOf(currentTab);
@@ -320,7 +269,7 @@ export namespace Actions {
 
     export function switchToTab(tabId: string) {
         return (driver: Driver) => {
-            return createDriverAction(driver, async function switchToTab(driver: Driver) {
+            return createDriverCommand(driver, async function switchToTab(driver: Driver) {
                 await driver.configuration.webdriver.switchTo().window(tabId);
             });
         };
@@ -328,7 +277,7 @@ export namespace Actions {
 
     export function switchToFrame(frameElement: Element) {
         return (driver: Driver) => {
-            return createDriverAction(driver, async function switchToTab(driver: Driver) {
+            return createDriverCommand(driver, async function switchToTab(driver: Driver) {
                 await frameElement.should(be.visible);
                 const webelement = await frameElement.getWebElement();
                 await driver.configuration.webdriver.switchTo().frame(webelement);
@@ -337,13 +286,13 @@ export namespace Actions {
     }
 
     export const switchToDefaultFrame = (driver: Driver) => {
-        return createDriverAction(driver, async function switchToTab(driver: Driver) {
+        return createDriverCommand(driver, async function switchToTab(driver: Driver) {
             await driver.configuration.webdriver.switchTo().defaultContent();
         });
     };
 
     export const clearCacheAndCookies = (driver: Driver) => {
-        return createDriverAction(driver, async function switchToTab(driver: Driver) {
+        return createDriverCommand(driver, async function switchToTab(driver: Driver) {
             await driver.configuration.webdriver.executeScript('window.localStorage.clear();')
                 .catch(ignored => {
                 });
@@ -357,13 +306,13 @@ export namespace Actions {
     };
 
     export async function close(driver: Driver) {
-        return createDriverAction(driver, async function switchToTab(driver: Driver) {
+        return createDriverCommand(driver, async function switchToTab(driver: Driver) {
             await driver.configuration.webdriver.close();
         });
     }
 
     export async function quit(driver: Driver) {
-        return createDriverAction(driver, async function switchToTab(driver: Driver) {
+        return createDriverCommand(driver, async function switchToTab(driver: Driver) {
             await driver.configuration.webdriver.quit();
         });
     }
@@ -375,7 +324,7 @@ export namespace Actions {
     }
 
     async function viewportScreenshot(driver: Driver) {
-        return createDriverAction(driver, async function screenshot(driver: Driver) {
+        return createDriverQuery(driver, async function screenshot(driver: Driver) {
             return Buffer.from(await driver.configuration.webdriver.takeScreenshot(), 'base64');
         });
     }
@@ -390,7 +339,7 @@ export namespace Actions {
     };
 
     async function fullpageScreenshot(driver: Driver): Promise<any> {
-        return createDriverAction(driver, async function viewportScreenshot(driver: Driver) {
+        return createDriverQuery(driver, async function viewportScreenshot(driver: Driver) {
             const webdriver = driver.configuration.webdriver;
             const screens = [];
 
@@ -487,64 +436,67 @@ export namespace Actions {
         return croppedImg.getBufferAsync(jimp.MIME_PNG);
     }
 
-    type ElementAction = (element: Element) => Promise<any>;
-    type DriverAction = (driver: Driver) => Promise<any>;
+    type ElementCommand = (element: Element, driver: Driver) => Promise<void>;
+    type ElementQuery = (element: Element, driver: Driver) => Promise<any>;
+    type DriverCommand = (driver: Driver) => Promise<void>;
+    type DriverQuery = (driver: Driver) => Promise<any>;
 
-    async function createElementOnVisibleAction(element: Element, action: ElementAction): Promise<any> {
-        const result = await performActionOnVisible(element, action)
+    async function createElementOnVisibleCommand(element: Element, command: ElementCommand): Promise<Element> {
+        const driver = Utils.getDriver(element);
+        await performCommandOnVisible(element, driver, command)
             .catch(async (error) => {
-                await executeHooksOnElementFailure(element, error);
+                if (error instanceof ActionError) {
+                    await executeHooksOnElementFailure(element, driver, error);
+                }
                 throw error;
             });
-        return (undefined === result) ? element : result;
+        return element;
     }
 
-    async function createElementAction(element: Element, action: ElementAction): Promise<any> {
-        const result = await action(element).catch(async (error) => {
-            await executeHooksOnElementFailure(element, error);
-            throw error;
-        });
-        return (undefined === result) ? element : result;
+    async function createElementQuery(element: Element, query: ElementQuery): Promise<any> {
+        const driver = Utils.getDriver(element);
+        return query(element, driver);
     }
 
-    async function createDriverAction(driver: Driver, action: DriverAction): Promise<any> {
-        const result = await action(driver).then(
+    async function createDriverCommand(driver: Driver, command: DriverCommand): Promise<Driver> {
+        await command(driver).then(
             result => result,
             async (error) => {
                 await executeHooksOnDriverFailure(driver, error);
                 throw error;
             });
-        return (undefined === result) ? driver : result;
+        return driver;
     }
 
-    async function performActionOnVisible(element: Element, action: ElementAction): Promise<any> {
+    async function createDriverQuery(driver: Driver, query: DriverQuery): Promise<any> {
+        return query(driver);
+    }
+
+    async function performCommandOnVisible(element: Element, driver: Driver, command: ElementCommand): Promise<any> {
         try {
-            await action(element);
+            await command(element, driver);
             return;
         } catch (ignored) {
             await element.should(be.visible);
             try {
-                await action(element);
+                await command(element, driver);
                 return;
             } catch (error) {
                 throw new ActionError(
-                    `For ${element.toString()}: cannot perform ${action.name}.\n\tReason: ${error.message}`
+                    `For ${element.toString()}: cannot perform ${command.name}.\n\tReason: ${error.message}`
                 );
             }
         }
     }
 
-    async function executeHooksOnElementFailure(element: Element, error: Error) {
-        const driver: Driver = Utils.getDriver(element);
+    async function executeHooksOnElementFailure(element: Element, driver: Driver, error: Error) {
         const hooksExecutor = new HookExecutor<Element>(driver, element);
         await hooksExecutor.executeOnFailureHooks(error);
-        throw error;
     }
 
     async function executeHooksOnDriverFailure(driver: Driver, error: Error) {
         const hooksExecutor = new HookExecutor<Driver>(driver, driver);
         await hooksExecutor.executeOnFailureHooks(error);
-        throw error;
     }
 
 }

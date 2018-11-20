@@ -52,7 +52,7 @@ describe('Is not', () => {
         expect(await Browser.isNot(have.urlPart('localhost'))).toBeFalsy();
     });
 
-    it('for element should return false if failed', async () => {
+    it('for driver should return false if failed', async () => {
         await Given.openedEmptyPage();
 
         expect(await Browser.isNot(have.urlPart('invalid'))).toBeTruthy();

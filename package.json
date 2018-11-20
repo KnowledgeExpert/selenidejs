@@ -1,6 +1,6 @@
 {
   "name": "selenidejs",
-  "description": "Decorator for Selenium Webdriver",
+  "description": "Wrapper for Selenium Webdriver",
   "homepage": "https://github.com/KnowledgeExpert/selenidejs",
   "version": "0.2.6",
   "main": "built/index.js",
@@ -34,7 +34,7 @@
     "pretest": "npm run clean && npm run compile-test",
     "test": "nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json",
     "build": "npm run lint && npm run test && npm run clean && npm run compile && npm run generateDocs",
-    "generateDocs": "typedoc --theme markdown --mode file --readme none --tsconfig lib/tsconfig.json --out docs --gitRevision master lib"
+    "generateDocs": "typedoc --theme markdown --mode file --readme none --tsconfig lib/tsconfig.json --out tsdocs --gitRevision master lib"
   },
   "repository": {
     "type": "git",

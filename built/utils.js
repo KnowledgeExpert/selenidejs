@@ -19,7 +19,7 @@ var Utils;
 (function (Utils) {
     async function savePageSource(selenideDriver, filePath) {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
+        const dateTime = new Date().toLocaleString().replace(/\W+/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
         const pageSource = await selenideDriver.pageSource();
@@ -29,7 +29,7 @@ var Utils;
     Utils.savePageSource = savePageSource;
     async function saveScreenshot(selenideDriver, filePath) {
         const pageTitle = await selenideDriver.title();
-        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
+        const dateTime = new Date().toLocaleString().replace(/\W+/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
         const screenshot = await selenideDriver.screenshot();

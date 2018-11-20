@@ -49,7 +49,12 @@ Configuration.DEFAULT = {
     screenshotPath: Configuration.DEFAULT_SCREENSHOT_PATH,
     setValueByJs: false,
     timeout: 4000,
-    webdriver: null,
+    webdriver: new Proxy({}, {
+        get(target, name) {
+            throw new Error('You need initialize configuration.webdriver before calling some methods on it...'
+                + `'webdriver.${name}' called.`);
+        }
+    }),
     windowHeight: 480,
     windowWidth: 640
 };

@@ -51,6 +51,8 @@
 * [title](driver.md#title)
 * [toString](driver.md#tostring)
 * [url](driver.md#url)
+* [wrapAll](driver.md#wrapall)
+* [wrapElement](driver.md#wrapelement)
 
 ---
 
@@ -62,7 +64,7 @@
 
 ⊕ **new Driver**(customConfiguration?: *[Configuration](configuration.md)*): [Driver](driver.md)
 
-*Defined in [driver.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L29)*
+*Defined in [driver.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L30)*
 
 **Parameters:**
 
@@ -82,7 +84,7 @@ ___
 
 **● configuration**: *[Configuration](configuration.md)*
 
-*Defined in [driver.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L28)*
+*Defined in [driver.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L29)*
 
 ___
 <a id="wait"></a>
@@ -91,7 +93,7 @@ ___
 
 **● wait**: *[Wait](wait.md)<[Driver](driver.md)>*
 
-*Defined in [driver.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L29)*
+*Defined in [driver.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L30)*
 
 ___
 
@@ -101,11 +103,11 @@ ___
 
 ###  acceptAlert
 
-▸ **acceptAlert**(): `Promise`<`any`>
+▸ **acceptAlert**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L57)*
+*Defined in [driver.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L58)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="actions"></a>
@@ -114,7 +116,7 @@ ___
 
 ▸ **actions**(): `ActionSequence`
 
-*Defined in [driver.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L111)*
+*Defined in [driver.ts:112](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L112)*
 
 **Returns:** `ActionSequence`
 
@@ -125,7 +127,7 @@ ___
 
 ▸ **all**(cssOrXpathOrBy: * `string` &#124; `By`*): [Collection](collection.md)
 
-*Defined in [driver.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L119)*
+*Defined in [driver.ts:120](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L120)*
 
 **Parameters:**
 
@@ -140,22 +142,22 @@ ___
 
 ###  clearCacheAndCookies
 
-▸ **clearCacheAndCookies**(): `Promise`<`any`>
+▸ **clearCacheAndCookies**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:103](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L103)*
+*Defined in [driver.ts:104](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L104)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="close"></a>
 
 ###  close
 
-▸ **close**(): `Promise`<`any`>
+▸ **close**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L45)*
+*Defined in [driver.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L46)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="element"></a>
@@ -164,7 +166,7 @@ ___
 
 ▸ **element**(cssOrXpathOrBy: * `string` &#124; `By`*): [Element](element.md)
 
-*Defined in [driver.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L115)*
+*Defined in [driver.ts:116](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L116)*
 
 **Parameters:**
 
@@ -181,7 +183,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `Promise`<`any`>
 
-*Defined in [driver.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L74)*
+*Defined in [driver.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L75)*
 
 **Parameters:**
 
@@ -201,7 +203,7 @@ ___
 
 *Implementation of [SearchContext](../interfaces/searchcontext.md).[findElement](../interfaces/searchcontext.md#findelement)*
 
-*Defined in [driver.ts:143](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L143)*
+*Defined in [driver.ts:152](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L152)*
 
 **Parameters:**
 
@@ -220,7 +222,7 @@ ___
 
 *Implementation of [SearchContext](../interfaces/searchcontext.md).[findElements](../interfaces/searchcontext.md#findelements)*
 
-*Defined in [driver.ts:139](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L139)*
+*Defined in [driver.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L148)*
 
 **Parameters:**
 
@@ -237,7 +239,7 @@ ___
 
 ▸ **getTabs**(): `Promise`<`any`>
 
-*Defined in [driver.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L79)*
+*Defined in [driver.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L80)*
 
 **Returns:** `Promise`<`any`>
 
@@ -248,7 +250,7 @@ ___
 
 ▸ **is**(condition: *[Condition](condition.md)<[Driver](driver.md)>*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [driver.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L131)*
+*Defined in [driver.ts:140](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L140)*
 
 **Parameters:**
 
@@ -266,7 +268,7 @@ ___
 
 ▸ **isNot**(condition: *[Condition](condition.md)<[Driver](driver.md)>*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [driver.ts:135](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L135)*
+*Defined in [driver.ts:144](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L144)*
 
 **Parameters:**
 
@@ -282,20 +284,20 @@ ___
 
 ###  nextTab
 
-▸ **nextTab**(): `Promise`<`any`>
+▸ **nextTab**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L83)*
+*Defined in [driver.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L84)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="open"></a>
 
 ###  open
 
-▸ **open**(url: *`string`*): `Promise`<`any`>
+▸ **open**(url: *`string`*): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L37)*
+*Defined in [driver.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L38)*
 
 **Parameters:**
 
@@ -303,7 +305,7 @@ ___
 | ------ | ------ |
 | url | `string` |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="pagesource"></a>
@@ -312,7 +314,7 @@ ___
 
 ▸ **pageSource**(): `Promise`<`string`>
 
-*Defined in [driver.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L69)*
+*Defined in [driver.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L70)*
 
 **Returns:** `Promise`<`string`>
 
@@ -321,42 +323,42 @@ ___
 
 ###  previousTab
 
-▸ **previousTab**(): `Promise`<`any`>
+▸ **previousTab**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L87)*
+*Defined in [driver.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L88)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="quit"></a>
 
 ###  quit
 
-▸ **quit**(): `Promise`<`any`>
+▸ **quit**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L49)*
+*Defined in [driver.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L50)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="refresh"></a>
 
 ###  refresh
 
-▸ **refresh**(): `Promise`<`any`>
+▸ **refresh**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L53)*
+*Defined in [driver.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L54)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="resizewindow"></a>
 
 ###  resizeWindow
 
-▸ **resizeWindow**(width?: *`number`*, height?: *`number`*): `Promise`<`any`>
+▸ **resizeWindow**(width?: *`number`*, height?: *`number`*): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L41)*
+*Defined in [driver.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L42)*
 
 **Parameters:**
 
@@ -365,7 +367,7 @@ ___
 | `Default value` width | `number` |  this.configuration.windowWidth |
 | `Default value` height | `number` |  this.configuration.windowHeight |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="screenshot"></a>
@@ -374,7 +376,7 @@ ___
 
 ▸ **screenshot**(): `Promise`<`Buffer`>
 
-*Defined in [driver.ts:107](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L107)*
+*Defined in [driver.ts:108](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L108)*
 
 **Returns:** `Promise`<`Buffer`>
 
@@ -385,7 +387,7 @@ ___
 
 ▸ **should**(condition: *[Condition](condition.md)<[Driver](driver.md)>*, timeout?: *`number`*): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:123](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L123)*
+*Defined in [driver.ts:132](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L132)*
 
 **Parameters:**
 
@@ -403,7 +405,7 @@ ___
 
 ▸ **shouldNot**(condition: *[Condition](condition.md)<[Driver](driver.md)>*, timeout?: *`number`*): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:127](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L127)*
+*Defined in [driver.ts:136](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L136)*
 
 **Parameters:**
 
@@ -419,20 +421,20 @@ ___
 
 ###  switchToDefaultFrame
 
-▸ **switchToDefaultFrame**(): `Promise`<`any`>
+▸ **switchToDefaultFrame**(): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:99](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L99)*
+*Defined in [driver.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L100)*
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="switchtoframe"></a>
 
 ###  switchToFrame
 
-▸ **switchToFrame**(frameElement: *[Element](element.md)*): `Promise`<`any`>
+▸ **switchToFrame**(frameElement: *[Element](element.md)*): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L95)*
+*Defined in [driver.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L96)*
 
 **Parameters:**
 
@@ -440,16 +442,16 @@ ___
 | ------ | ------ |
 | frameElement | [Element](element.md) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="switchtotab"></a>
 
 ###  switchToTab
 
-▸ **switchToTab**(tabId: *`string`*): `Promise`<`any`>
+▸ **switchToTab**(tabId: *`string`*): `Promise`<[Driver](driver.md)>
 
-*Defined in [driver.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L91)*
+*Defined in [driver.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L92)*
 
 **Parameters:**
 
@@ -457,7 +459,7 @@ ___
 | ------ | ------ |
 | tabId | `string` |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](driver.md)>
 
 ___
 <a id="title"></a>
@@ -466,7 +468,7 @@ ___
 
 ▸ **title**(): `Promise`<`string`>
 
-*Defined in [driver.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L65)*
+*Defined in [driver.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L66)*
 
 **Returns:** `Promise`<`string`>
 
@@ -477,7 +479,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [driver.ts:147](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L147)*
+*Defined in [driver.ts:156](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L156)*
 
 **Returns:** `string`
 
@@ -488,9 +490,43 @@ ___
 
 ▸ **url**(): `Promise`<`string`>
 
-*Defined in [driver.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L61)*
+*Defined in [driver.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L62)*
 
 **Returns:** `Promise`<`string`>
+
+___
+<a id="wrapall"></a>
+
+###  wrapAll
+
+▸ **wrapAll**(webelements: *`WebElement`[]*): [Collection](collection.md)
+
+*Defined in [driver.ts:128](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L128)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| webelements | `WebElement`[] |
+
+**Returns:** [Collection](collection.md)
+
+___
+<a id="wrapelement"></a>
+
+###  wrapElement
+
+▸ **wrapElement**(webelement: *`WebElement`*): [Element](element.md)
+
+*Defined in [driver.ts:124](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/driver.ts#L124)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| webelement | `WebElement` |
+
+**Returns:** [Element](element.md)
 
 ___
 

@@ -17,7 +17,7 @@ import { Locator } from './locator';
 import { SearchContext } from './searchContext';
 
 
-export class ByWebElementsLocator implements Locator<Promise<WebElement[]>> {
+export class ByWebElementsLocator implements Locator<WebElement[]> {
 
     private readonly by: By;
     private readonly context: SearchContext;

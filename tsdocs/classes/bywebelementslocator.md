@@ -8,7 +8,7 @@
 
 ## Implements
 
-* [Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>
+* [Locator](../interfaces/locator.md)<`WebElement`[]>
 
 ## Index
 

@@ -12,7 +12,6 @@
 * [close](perform.md#close)
 * [contextClick](perform.md#contextclick)
 * [doubleClick](perform.md#doubleclick)
-* [executeScript](perform.md#executescript)
 * [hover](perform.md#hover)
 * [nextTab](perform.md#nexttab)
 * [open](perform.md#open)
@@ -50,7 +49,7 @@ ___
 
 **● clearCacheAndCookies**: *[clearCacheAndCookies]()* =  Actions.clearCacheAndCookies
 
-*Defined in [helpers/perform.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L64)*
+*Defined in [helpers/perform.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L62)*
 
 ___
 <a id="click"></a>
@@ -89,15 +88,6 @@ ___
 *Defined in [helpers/perform.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L22)*
 
 ___
-<a id="executescript"></a>
-
-### `<Const>` executeScript
-
-**● executeScript**: *[executeScript](actions.md#executescript)* =  Actions.executeScript
-
-*Defined in [helpers/perform.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L52)*
-
-___
 <a id="hover"></a>
 
 ### `<Const>` hover
@@ -113,7 +103,7 @@ ___
 
 **● nextTab**: *[nextTab]()* =  Actions.nextTab
 
-*Defined in [helpers/perform.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L54)*
+*Defined in [helpers/perform.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L52)*
 
 ___
 <a id="open"></a>
@@ -167,7 +157,7 @@ ___
 
 **● previousTab**: *[previousTab]()* =  Actions.previousTab
 
-*Defined in [helpers/perform.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L56)*
+*Defined in [helpers/perform.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L54)*
 
 ___
 <a id="quit"></a>
@@ -230,7 +220,7 @@ ___
 
 **● switchToDefaultFrame**: *[switchToDefaultFrame]()* =  Actions.switchToDefaultFrame
 
-*Defined in [helpers/perform.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L62)*
+*Defined in [helpers/perform.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L60)*
 
 ___
 <a id="switchtoframe"></a>
@@ -239,7 +229,7 @@ ___
 
 **● switchToFrame**: *[switchToFrame](actions.md#switchtoframe)* =  Actions.switchToFrame
 
-*Defined in [helpers/perform.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L60)*
+*Defined in [helpers/perform.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L58)*
 
 ___
 <a id="switchtotab"></a>
@@ -248,7 +238,7 @@ ___
 
 **● switchToTab**: *[switchToTab](actions.md#switchtotab)* =  Actions.switchToTab
 
-*Defined in [helpers/perform.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L58)*
+*Defined in [helpers/perform.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/perform.ts#L56)*
 
 ___
 

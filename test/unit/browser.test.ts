@@ -29,7 +29,7 @@ import { have } from '../../lib/helpers/have';
 describe('Browser', () => {
 
     const executeScriptResultExampleObject = {};
-    const driverExampleObject = {};
+    const driverExampleObject = {} as Driver;
     const elementExampleObject = {};
     const collectionExampleObject = {};
     const actionsExampleObject = {};

@@ -8,6 +8,7 @@
 * [Actions](modules/actions.md)
 * [Browser](modules/browser.md)
 * [Conditions](modules/conditions.md)
+* [ElementsBuilder](modules/elementsbuilder.md)
 * [Utils](modules/utils.md)
 * [With](modules/with.md)
 * [be](modules/be.md)
@@ -32,6 +33,8 @@
 * [HookExecutor](classes/hookexecutor.md)
 * [TimeoutError](classes/timeouterror.md)
 * [Wait](classes/wait.md)
+* [WebElementLocator](classes/webelementlocator.md)
+* [WebElementsLocator](classes/webelementslocator.md)
 
 ### Interfaces
 

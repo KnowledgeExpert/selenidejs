@@ -46,7 +46,7 @@
 
 ⊕ **new Configuration**(customConfiguration?: *`any`*): [Configuration](configuration.md)
 
-*Defined in [configuration.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L75)*
+*Defined in [configuration.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L82)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 **● afterElementActionHooks**: *[AfterElementActionHook](../#afterelementactionhook)[]*
 
-*Defined in [configuration.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L62)*
+*Defined in [configuration.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L69)*
 
 ___
 <a id="beforeelementactionhooks"></a>
@@ -75,7 +75,7 @@ ___
 
 **● beforeElementActionHooks**: *[BeforeElementActionHook](../#beforeelementactionhook)[]*
 
-*Defined in [configuration.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L63)*
+*Defined in [configuration.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L70)*
 
 ___
 <a id="clickbyjs"></a>
@@ -84,7 +84,7 @@ ___
 
 **● clickByJs**: *`boolean`*
 
-*Defined in [configuration.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L64)*
+*Defined in [configuration.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L71)*
 
 ___
 <a id="fullpagescreenshot"></a>
@@ -93,7 +93,7 @@ ___
 
 **● fullpageScreenshot**: *`boolean`*
 
-*Defined in [configuration.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L65)*
+*Defined in [configuration.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L72)*
 
 ___
 <a id="htmlpath"></a>
@@ -102,7 +102,7 @@ ___
 
 **● htmlPath**: *`string`*
 
-*Defined in [configuration.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L66)*
+*Defined in [configuration.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L73)*
 
 ___
 <a id="oncollectionfailurehooks"></a>
@@ -111,7 +111,7 @@ ___
 
 **● onCollectionFailureHooks**: *[OnCollectionFailureHook](../#oncollectionfailurehook)[]*
 
-*Defined in [configuration.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L67)*
+*Defined in [configuration.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L74)*
 
 ___
 <a id="onelementfailurehooks"></a>
@@ -120,7 +120,7 @@ ___
 
 **● onElementFailureHooks**: *[OnElementFailureHook](../#onelementfailurehook)[]*
 
-*Defined in [configuration.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L68)*
+*Defined in [configuration.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L75)*
 
 ___
 <a id="onfailurehooks"></a>
@@ -129,7 +129,7 @@ ___
 
 **● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]*
 
-*Defined in [configuration.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L69)*
+*Defined in [configuration.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L76)*
 
 ___
 <a id="screenshotpath"></a>
@@ -138,7 +138,7 @@ ___
 
 **● screenshotPath**: *`string`*
 
-*Defined in [configuration.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L70)*
+*Defined in [configuration.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L77)*
 
 ___
 <a id="setvaluebyjs"></a>
@@ -147,7 +147,7 @@ ___
 
 **● setValueByJs**: *`boolean`*
 
-*Defined in [configuration.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L71)*
+*Defined in [configuration.ts:78](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L78)*
 
 ___
 <a id="timeout"></a>
@@ -156,7 +156,7 @@ ___
 
 **● timeout**: *`number`*
 
-*Defined in [configuration.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L72)*
+*Defined in [configuration.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L79)*
 
 ___
 <a id="webdriver"></a>
@@ -165,7 +165,7 @@ ___
 
 **● webdriver**: *`WebDriver`*
 
-*Defined in [configuration.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L73)*
+*Defined in [configuration.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L80)*
 
 ___
 <a id="windowheight"></a>
@@ -174,7 +174,7 @@ ___
 
 **● windowHeight**: *`number`*
 
-*Defined in [configuration.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L74)*
+*Defined in [configuration.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L81)*
 
 ___
 <a id="windowwidth"></a>
@@ -183,7 +183,7 @@ ___
 
 **● windowWidth**: *`number`*
 
-*Defined in [configuration.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L75)*
+*Defined in [configuration.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L82)*
 
 ___
 <a id="default_html_path"></a>
@@ -340,7 +340,14 @@ ___
 
 ####  webdriver
 
-**● webdriver**: *`null`* =  null
+**● webdriver**: *`any`* =  new Proxy({}, {
+            get(target: any, name: string) {
+                throw new Error(
+                    'You need initialize configuration.webdriver before calling some methods on it...'
+                    + `'webdriver.${name}' called.`
+                );
+            }
+        })
 
 *Defined in [configuration.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L57)*
 
@@ -351,7 +358,7 @@ ___
 
 **● windowHeight**: *`number`* = 480
 
-*Defined in [configuration.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L58)*
+*Defined in [configuration.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L65)*
 
 ___
 <a id="default.windowwidth-1"></a>
@@ -360,7 +367,7 @@ ___
 
 **● windowWidth**: *`number`* = 640
 
-*Defined in [configuration.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L59)*
+*Defined in [configuration.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L66)*
 
 ___
 

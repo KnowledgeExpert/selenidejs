@@ -31,6 +31,17 @@ Browser.configuration.webdriver = webDriverInstance;
 
 And you are ready to go!
 
+## Tutorial
+
+
+You can start with Typescript or Javascript tutorial to get familiar with basic and some advance features of Selenidejs.
+ Using Typescript is recommended when writing tests (it will enable IDE's autocompletion features, compile-time checks,
+etc. since Selenidejs itself written in Typescript), but you still can use Javascript.
+
+Typescript tutorial can be found [here](./docs/TUTORIAL_TS.md).
+
+Javascript tutorial can be found [here](./docs/TUTORIAL_TS.md).
+
 ## Running the tests
 ### Prerequisites
 - Google Chrome is installed locally
@@ -49,13 +60,14 @@ Run ts linter:
 npm run lint
 ```
 
-## Documentation
+## API Documentation
 
-Generated API documentation can be found [here](docs/README.md).
+Generated API documentation can be found [here](./tsdocs/README.md).
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to
+Please read [CONTRIBUTING](./docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting
+ pull requests to
  us.
 
 ## Versioning
@@ -71,4 +83,4 @@ See also the list of [contributors](https://github.com/KnowledgeExpert/selenidej
 
 ## License
 
-This project is licensed under the Apache-2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE.md) file for details

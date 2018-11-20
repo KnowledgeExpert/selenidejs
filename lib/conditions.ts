@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { WebElement } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Condition } from './condition';
 import { Driver } from './driver';
 import { Element } from './element';
 import { ConditionDoesNotMatchError } from './errors/conditionDoesNotMatchError';
-import { Utils } from './utils';
 
 
 /* tslint:disable:space-before-function-paren */
@@ -39,16 +37,9 @@ export namespace Conditions {
     });
 
     export const focused: Condition<Element> = Condition.create('be focused', async (element: Element) => {
-        const driver = Utils.getDriver(element);
-        const script = 'return document.activeElement';
-        const currentElement = await element.getWebElement();
-        const focusedElement = await driver.executeScript(script) as WebElement;
-        if (!focusedElement) {
-            throw new ConditionDoesNotMatchError();
-        }
-        if (!WebElement.equals(focusedElement, currentElement)) {
-            throw new ConditionDoesNotMatchError();
-        }
+        await element.isFocused().then(focused => {
+            if (!focused) throw new ConditionDoesNotMatchError();
+        });
     });
 
     export const visible: Condition<Element> = Condition.create('be visible', async (element: Element) => {
@@ -90,14 +81,14 @@ export namespace Conditions {
         });
     }
 
-    export const selected = Condition.create('be selected', async (element: Element) => {
+    export const selected: Condition<Element> = Condition.create('be selected', async (element: Element) => {
         const attribute = await element.attribute('selected');
         if (attribute === null) {
             throw new ConditionDoesNotMatchError();
         }
     });
 
-    export function atributeWithValue(attributeName: string, attributeValue: string | number) {
+    export function atributeWithValue(attributeName: string, attributeValue: string | number): Condition<Element> {
         return Condition.create(
             `have attribute '${attributeName}' with value '${attributeValue}'`,
             async (element: Element) => {
@@ -108,7 +99,7 @@ export namespace Conditions {
             });
     }
 
-    export function attributeWithExactValue(attributeName: string, attributeValue: string | number) {
+    export function attributeWithExactValue(attributeName: string, attributeValue: string | number): Condition<Element> {
         return Condition.create(
             `have attribute '${attributeName}' with exact value '${attributeValue}'`,
             async (element: Element) => {
@@ -128,7 +119,7 @@ export namespace Conditions {
         });
     }
 
-    export function size(size: number) {
+    export function size(size: number): Condition<Collection> {
         return Condition.create(`have size '${size}'`, async (collection: Collection) => {
             const actualCollectionSize = await collection.size();
             if (size !== actualCollectionSize) {
@@ -137,7 +128,7 @@ export namespace Conditions {
         });
     }
 
-    export function sizeGreaterThan(size: number) {
+    export function sizeGreaterThan(size: number): Condition<Collection> {
         return Condition.create(`have size more than '${size}'`, async (collection: Collection) => {
             const actualCollectionSize = await collection.size();
             if (size >= actualCollectionSize) {
@@ -146,7 +137,7 @@ export namespace Conditions {
         });
     }
 
-    export function texts(...texts: Array<string | number>) {
+    export function texts(...texts: Array<string | number>): Condition<Collection> {
         return Condition.create(`have exact texts '${texts}'`, async (collection: Collection) => {
             const actualTexts: string[] = [];
             let success = false;
@@ -174,7 +165,7 @@ export namespace Conditions {
         });
     }
 
-    export function exactTexts(...texts: Array<string | number>) {
+    export function exactTexts(...texts: Array<string | number>): Condition<Collection> {
         return Condition.create(`have exact texts '${texts}'`, async (collection: Collection) => {
             const actualTexts: string[] = [];
             let success;
@@ -202,7 +193,16 @@ export namespace Conditions {
         });
     }
 
-    export function urlPart(urlPart: string) {
+    export function title(title: string): Condition<Driver> {
+        return Condition.create(`have title '${title}'`, async (driver: Driver) => {
+            const actualTitle = await driver.configuration.webdriver.getTitle();
+            if (!actualTitle.includes(title)) {
+                throw new ConditionDoesNotMatchError(`but was '${title}'`);
+            }
+        });
+    }
+
+    export function urlPart(urlPart: string): Condition<Driver> {
         return Condition.create(`have url part '${urlPart}'`, async (driver: Driver) => {
             const actualUrl = await driver.configuration.webdriver.getCurrentUrl();
             if (!actualUrl.includes(urlPart)) {
@@ -211,7 +211,7 @@ export namespace Conditions {
         });
     }
 
-    export function url(url: string) {
+    export function url(url: string): Condition<Driver> {
         return Condition.create(`have url '${url}'`, async (driver: Driver) => {
             const actualUrl = await driver.configuration.webdriver.getCurrentUrl();
             if (actualUrl !== url) {
@@ -220,7 +220,7 @@ export namespace Conditions {
         });
     }
 
-    export function tabsSize(size: number) {
+    export function tabsSize(size: number): Condition<Driver> {
         return Condition.create(`have tabs size '${size}'`, async (driver: Driver) => {
             const tabs = await driver.configuration.webdriver.getAllWindowHandles();
             if (tabs.length !== size) {
@@ -229,7 +229,7 @@ export namespace Conditions {
         });
     }
 
-    export function tabsSizeGreaterThan(size: number) {
+    export function tabsSizeGreaterThan(size: number): Condition<Driver> {
         return Condition.create(`have tabs size greater than '${size}'`, async (driver: Driver) => {
             const tabs = await driver.configuration.webdriver.getAllWindowHandles();
             if (tabs.length <= size) {

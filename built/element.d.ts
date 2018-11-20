@@ -8,7 +8,7 @@ export declare class Element implements SearchContext {
     private readonly driver;
     private readonly locator;
     private readonly wait;
-    constructor(locator: Locator<Promise<WebElement>>, driver: Driver);
+    constructor(locator: Locator<Promise<WebElement>> | Locator<WebElement>, driver: Driver);
     click(): Promise<Element>;
     setValue(value: string | number): Promise<Element>;
     sendKeys(value: string | number): Promise<Element>;
@@ -26,6 +26,7 @@ export declare class Element implements SearchContext {
     isNot(condition: Condition<Element>): Promise<boolean>;
     isVisible(): Promise<boolean>;
     isPresent(): Promise<boolean>;
+    isFocused(): Promise<boolean>;
     text(): Promise<string>;
     hasAttribute(attributeName: string): Promise<boolean>;
     attribute(attributeName: string): Promise<string>;
@@ -37,7 +38,7 @@ export declare class Element implements SearchContext {
     followingSibling(predicate?: string): Element;
     element(cssOrXpathOrBy: string | By): Element;
     all(cssOrXpathOrBy: string | By): Collection;
-    equals(element: Element): Promise<boolean>;
+    equals(element: Element | WebElement): Promise<boolean>;
     findElements(locator: By): Promise<WebElement[]>;
     findElement(locator: By): Promise<WebElement>;
     toString(): string;

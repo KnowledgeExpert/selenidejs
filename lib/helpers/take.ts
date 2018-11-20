@@ -14,6 +14,7 @@
 
 
 import { Actions } from '../actions';
+import { ElementsBuilder } from '../elementsBuilder';
 
 export namespace take {
     export const visibility = Actions.visibility;
@@ -30,10 +31,6 @@ export namespace take {
 
     export const value = Actions.attribute('value');
 
-    export const parent = Actions.parent;
-
-    export const followingSibling = Actions.followingSibling;
-
     export const screenshot = Actions.screenshot;
 
     export const url = Actions.url;
@@ -44,19 +41,25 @@ export namespace take {
 
     export const tabs = Actions.tabs;
 
-    export const element = Actions.element;
-
-    export const all = Actions.all;
-
-    export const filtered = Actions.filtered;
-
-    export const filteredBy = Actions.filtered;
-
-    export const find = Actions.find;
-
-    export const findBy = Actions.find;
-
     export const size = Actions.size;
 
-    export const nth = Actions.nth;
+    export const element = ElementsBuilder.element;
+
+    export const parent = ElementsBuilder.parent;
+
+    export const followingSibling = ElementsBuilder.followingSibling;
+
+    export const all = ElementsBuilder.all;
+
+    export const filtered = ElementsBuilder.filtered;
+
+    export const filteredBy = ElementsBuilder.filtered;
+
+    export const find = ElementsBuilder.find;
+
+    export const findBy = ElementsBuilder.find;
+
+    export const nth = ElementsBuilder.nth;
+
+    export const executeScript = Actions.executeScript;
 }

@@ -12,18 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { Condition } from '../condition';
 import { Conditions } from '../conditions';
+import { Element } from '../element';
 
 export namespace be {
-    export const selected = Conditions.selected;
+    export const selected: Condition<Element> = Conditions.selected;
 
-    export const absent = Conditions.absent;
+    export const absent: Condition<Element> = Conditions.absent;
 
-    export const present = Conditions.present;
+    export const present: Condition<Element> = Conditions.present;
 
-    export const visible = Conditions.visible;
+    export const visible: Condition<Element> = Conditions.visible;
 
-    export const hidden = Conditions.hidden;
+    export const hidden: Condition<Element> = Conditions.hidden;
 
-    export const focused = Conditions.focused;
+    export const focused: Condition<Element> = Conditions.focused;
 }

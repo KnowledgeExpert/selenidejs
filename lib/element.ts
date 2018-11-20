@@ -17,6 +17,7 @@ import { Actions } from './actions';
 import { Collection } from './collection';
 import { Condition } from './condition';
 import { Driver } from './driver';
+import { ElementsBuilder } from './elementsBuilder';
 import { ElementActionHooks } from './hooks/elementActionHooks';
 import { HookExecutor } from './hooks/hookExecutor';
 import { Locator } from './locators/locator';
@@ -28,10 +29,10 @@ export class Element implements SearchContext {
 
     // @ts-ignore
     private readonly driver: Driver;
-    private readonly locator: Locator<Promise<WebElement>>;
+    private readonly locator: Locator<Promise<WebElement>> | Locator<WebElement>;
     private readonly wait: Wait<Element>;
 
-    constructor(locator: Locator<Promise<WebElement>>, driver: Driver) {
+    constructor(locator: Locator<Promise<WebElement>> | Locator<WebElement>, driver: Driver) {
         this.locator = locator;
         this.driver = driver;
         this.wait = new Wait<Element>(this, driver.configuration, new HookExecutor<Element>(driver, this));
@@ -116,6 +117,10 @@ export class Element implements SearchContext {
         return Actions.presence(this);
     }
 
+    async isFocused(): Promise<boolean> {
+        return Actions.focused(this);
+    }
+
     async text(): Promise<string> {
         return Actions.text(this);
     }
@@ -145,23 +150,26 @@ export class Element implements SearchContext {
     }
 
     parent(): Element {
-        return Actions.parent(this);
+        return ElementsBuilder.parent(this);
     }
 
     followingSibling(predicate: string = ''): Element {
-        return Actions.followingSibling(predicate)(this);
+        return ElementsBuilder.followingSibling(predicate)(this);
     }
 
     element(cssOrXpathOrBy: string | By): Element {
-        return Actions.element(cssOrXpathOrBy)(this);
+        return ElementsBuilder.element(cssOrXpathOrBy)(this);
     }
 
     all(cssOrXpathOrBy: string | By): Collection {
-        return Actions.all(cssOrXpathOrBy)(this);
+        return ElementsBuilder.all(cssOrXpathOrBy)(this);
     }
 
-    async equals(element: Element) {
-        return WebElement.equals(await this.getWebElement(), await element.getWebElement());
+    async equals(element: Element | WebElement) {
+        return WebElement.equals(
+            await this.getWebElement(),
+            element instanceof WebElement ? element : await element.getWebElement()
+        );
     }
 
     async findElements(locator: By): Promise<WebElement[]> {
