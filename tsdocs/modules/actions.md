@@ -7,8 +7,10 @@
 ### Type aliases
 
 * [BrowserData](actions.md#browserdata)
-* [DriverAction](actions.md#driveraction)
-* [ElementAction](actions.md#elementaction)
+* [DriverCommand](actions.md#drivercommand)
+* [DriverQuery](actions.md#driverquery)
+* [ElementCommand](actions.md#elementcommand)
+* [ElementQuery](actions.md#elementquery)
 
 ### Variables
 
@@ -19,7 +21,6 @@
 ### Functions
 
 * [acceptAlert](actions.md#acceptalert)
-* [all](actions.md#all)
 * [attribute](actions.md#attribute)
 * [clearCacheAndCookies](actions.md#clearcacheandcookies)
 * [click](actions.md#click)
@@ -28,29 +29,25 @@
 * [commonClick](actions.md#commonclick)
 * [commonSetValue](actions.md#commonsetvalue)
 * [contextClick](actions.md#contextclick)
-* [createDriverAction](actions.md#createdriveraction)
-* [createElementAction](actions.md#createelementaction)
-* [createElementOnVisibleAction](actions.md#createelementonvisibleaction)
+* [createDriverCommand](actions.md#createdrivercommand)
+* [createDriverQuery](actions.md#createdriverquery)
+* [createElementOnVisibleCommand](actions.md#createelementonvisiblecommand)
+* [createElementQuery](actions.md#createelementquery)
 * [crop](actions.md#crop)
 * [doubleClick](actions.md#doubleclick)
-* [element](actions.md#element)
 * [executeHooksOnDriverFailure](actions.md#executehooksondriverfailure)
 * [executeHooksOnElementFailure](actions.md#executehooksonelementfailure)
 * [executeScript](actions.md#executescript)
-* [filtered](actions.md#filtered)
-* [find](actions.md#find)
-* [followingSibling](actions.md#followingsibling)
+* [focused](actions.md#focused)
 * [fullpageScreenshot](actions.md#fullpagescreenshot)
 * [getBrowserData](actions.md#getbrowserdata)
 * [getCurrentFrameWebElement](actions.md#getcurrentframewebelement)
 * [hideScrollbars](actions.md#hidescrollbars)
 * [hover](actions.md#hover)
 * [nextTab](actions.md#nexttab)
-* [nth](actions.md#nth)
 * [open](actions.md#open)
 * [pageSource](actions.md#pagesource)
-* [parent](actions.md#parent)
-* [performActionOnVisible](actions.md#performactiononvisible)
+* [performCommandOnVisible](actions.md#performcommandonvisible)
 * [presence](actions.md#presence)
 * [pressKey](actions.md#presskey)
 * [previousTab](actions.md#previoustab)
@@ -87,7 +84,7 @@
 
 **Ƭ BrowserData**: *`object`*
 
-*Defined in [actions.ts:383](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L383)*
+*Defined in [actions.ts:332](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L332)*
 
 #### Type declaration
 
@@ -104,13 +101,33 @@
  width: `number`
 
 ___
-<a id="driveraction"></a>
+<a id="drivercommand"></a>
 
-###  DriverAction
+###  DriverCommand
 
-**Ƭ DriverAction**: *`function`*
+**Ƭ DriverCommand**: *`function`*
 
-*Defined in [actions.ts:491](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L491)*
+*Defined in [actions.ts:441](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L441)*
+
+#### Type declaration
+▸(driver: *[Driver](../classes/driver.md)*): `Promise`<`void`>
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| driver | [Driver](../classes/driver.md) |
+
+**Returns:** `Promise`<`void`>
+
+___
+<a id="driverquery"></a>
+
+###  DriverQuery
+
+**Ƭ DriverQuery**: *`function`*
+
+*Defined in [actions.ts:442](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L442)*
 
 #### Type declaration
 ▸(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
@@ -124,22 +141,44 @@ ___
 **Returns:** `Promise`<`any`>
 
 ___
-<a id="elementaction"></a>
+<a id="elementcommand"></a>
 
-###  ElementAction
+###  ElementCommand
 
-**Ƭ ElementAction**: *`function`*
+**Ƭ ElementCommand**: *`function`*
 
-*Defined in [actions.ts:490](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L490)*
+*Defined in [actions.ts:439](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L439)*
 
 #### Type declaration
-▸(element: *[Element](../classes/element.md)*): `Promise`<`any`>
+▸(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*): `Promise`<`void`>
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
+| driver | [Driver](../classes/driver.md) |
+
+**Returns:** `Promise`<`void`>
+
+___
+<a id="elementquery"></a>
+
+###  ElementQuery
+
+**Ƭ ElementQuery**: *`function`*
+
+*Defined in [actions.ts:440](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L440)*
+
+#### Type declaration
+▸(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+| driver | [Driver](../classes/driver.md) |
 
 **Returns:** `Promise`<`any`>
 
@@ -153,7 +192,7 @@ ___
 
 **● pressEnter**: *`(Anonymous function)`* =  pressKey(Key.ENTER)
 
-*Defined in [actions.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L102)*
+*Defined in [actions.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L89)*
 
 ___
 <a id="pressescape"></a>
@@ -162,7 +201,7 @@ ___
 
 **● pressEscape**: *`(Anonymous function)`* =  pressKey(Key.ESCAPE)
 
-*Defined in [actions.ts:104](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L104)*
+*Defined in [actions.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L91)*
 
 ___
 <a id="presstab"></a>
@@ -171,7 +210,7 @@ ___
 
 **● pressTab**: *`(Anonymous function)`* =  pressKey(Key.TAB)
 
-*Defined in [actions.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L106)*
+*Defined in [actions.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L93)*
 
 ___
 
@@ -181,9 +220,9 @@ ___
 
 ### `<Const>` acceptAlert
 
-▸ **acceptAlert**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+▸ **acceptAlert**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:259](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L259)*
+*Defined in [actions.ts:208](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L208)*
 
 **Parameters:**
 
@@ -191,24 +230,7 @@ ___
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
-
-___
-<a id="all"></a>
-
-###  all
-
-▸ **all**(cssOrXpathOrBy: * `string` &#124; `By`*): `(Anonymous function)`
-
-*Defined in [actions.ts:203](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L203)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
-
-**Returns:** `(Anonymous function)`
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
 
 ___
 <a id="attribute"></a>
@@ -217,7 +239,7 @@ ___
 
 ▸ **attribute**(attributeName: *`string`*): `(Anonymous function)`
 
-*Defined in [actions.ts:178](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L178)*
+*Defined in [actions.ts:174](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L174)*
 
 **Parameters:**
 
@@ -232,9 +254,9 @@ ___
 
 ### `<Const>` clearCacheAndCookies
 
-▸ **clearCacheAndCookies**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+▸ **clearCacheAndCookies**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:345](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L345)*
+*Defined in [actions.ts:294](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L294)*
 
 **Parameters:**
 
@@ -242,7 +264,7 @@ ___
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
 
 ___
 <a id="click"></a>
@@ -251,7 +273,7 @@ ___
 
 ▸ **click**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L38)*
+*Defined in [actions.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L33)*
 
 **Parameters:**
 
@@ -266,41 +288,7 @@ ___
 
 ###  clickByJs
 
-▸ **clickByJs**(element: *[Element](../classes/element.md)*): `Promise`<`any`>
-
-*Defined in [actions.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L51)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
-
-**Returns:** `Promise`<`any`>
-
-___
-<a id="close"></a>
-
-###  close
-
-▸ **close**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
-
-*Defined in [actions.ts:359](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L359)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| driver | [Driver](../classes/driver.md) |
-
-**Returns:** `Promise`<`any`>
-
-___
-<a id="commonclick"></a>
-
-###  commonClick
-
-▸ **commonClick**(element: *[Element](../classes/element.md)*): `Promise`<`any`>
+▸ **clickByJs**(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*): `Promise`<`void`>
 
 *Defined in [actions.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L44)*
 
@@ -309,17 +297,52 @@ ___
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
+| driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<`void`>
+
+___
+<a id="close"></a>
+
+###  close
+
+▸ **close**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
+
+*Defined in [actions.ts:308](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L308)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| driver | [Driver](../classes/driver.md) |
+
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
+
+___
+<a id="commonclick"></a>
+
+###  commonClick
+
+▸ **commonClick**(element: *[Element](../classes/element.md)*): `Promise`<`void`>
+
+*Defined in [actions.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L39)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<`void`>
 
 ___
 <a id="commonsetvalue"></a>
 
 ###  commonSetValue
 
-▸ **commonSetValue**(element: *[Element](../classes/element.md)*, value: * `string` &#124; `number`*): `Promise`<`any`>
+▸ **commonSetValue**(element: *[Element](../classes/element.md)*, value: * `string` &#124; `number`*): `Promise`<`void`>
 
-*Defined in [actions.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L131)*
+*Defined in [actions.ts:121](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L121)*
 
 **Parameters:**
 
@@ -328,7 +351,7 @@ ___
 | element | [Element](../classes/element.md) |
 | value |  `string` &#124; `number`|
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<`void`>
 
 ___
 <a id="contextclick"></a>
@@ -337,7 +360,7 @@ ___
 
 ▸ **contextClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L68)*
+*Defined in [actions.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L58)*
 
 **Parameters:**
 
@@ -348,56 +371,74 @@ ___
 **Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
-<a id="createdriveraction"></a>
+<a id="createdrivercommand"></a>
 
-###  createDriverAction
+###  createDriverCommand
 
-▸ **createDriverAction**(driver: *[Driver](../classes/driver.md)*, action: *[DriverAction](actions.md#driveraction)*): `Promise`<`any`>
+▸ **createDriverCommand**(driver: *[Driver](../classes/driver.md)*, command: *[DriverCommand](actions.md#drivercommand)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:510](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L510)*
+*Defined in [actions.ts:461](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L461)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
-| action | [DriverAction](actions.md#driveraction) |
+| command | [DriverCommand](actions.md#drivercommand) |
+
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
+
+___
+<a id="createdriverquery"></a>
+
+###  createDriverQuery
+
+▸ **createDriverQuery**(driver: *[Driver](../classes/driver.md)*, query: *[DriverQuery](actions.md#driverquery)*): `Promise`<`any`>
+
+*Defined in [actions.ts:471](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L471)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| driver | [Driver](../classes/driver.md) |
+| query | [DriverQuery](actions.md#driverquery) |
 
 **Returns:** `Promise`<`any`>
 
 ___
-<a id="createelementaction"></a>
+<a id="createelementonvisiblecommand"></a>
 
-###  createElementAction
+###  createElementOnVisibleCommand
 
-▸ **createElementAction**(element: *[Element](../classes/element.md)*, action: *[ElementAction](actions.md#elementaction)*): `Promise`<`any`>
+▸ **createElementOnVisibleCommand**(element: *[Element](../classes/element.md)*, command: *[ElementCommand](actions.md#elementcommand)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:502](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L502)*
+*Defined in [actions.ts:444](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L444)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
-| action | [ElementAction](actions.md#elementaction) |
+| command | [ElementCommand](actions.md#elementcommand) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
-<a id="createelementonvisibleaction"></a>
+<a id="createelementquery"></a>
 
-###  createElementOnVisibleAction
+###  createElementQuery
 
-▸ **createElementOnVisibleAction**(element: *[Element](../classes/element.md)*, action: *[ElementAction](actions.md#elementaction)*): `Promise`<`any`>
+▸ **createElementQuery**(element: *[Element](../classes/element.md)*, query: *[ElementQuery](actions.md#elementquery)*): `Promise`<`any`>
 
-*Defined in [actions.ts:493](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L493)*
+*Defined in [actions.ts:456](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L456)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
-| action | [ElementAction](actions.md#elementaction) |
+| query | [ElementQuery](actions.md#elementquery) |
 
 **Returns:** `Promise`<`any`>
 
@@ -408,7 +449,7 @@ ___
 
 ▸ **crop**(screenBuffer: *`Buffer`*, delta: *`number`*): `Promise`<`Buffer`>
 
-*Defined in [actions.ts:482](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L482)*
+*Defined in [actions.ts:431](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L431)*
 
 **Parameters:**
 
@@ -426,7 +467,7 @@ ___
 
 ▸ **doubleClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L76)*
+*Defined in [actions.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L65)*
 
 **Parameters:**
 
@@ -437,30 +478,13 @@ ___
 **Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
-<a id="element"></a>
-
-###  element
-
-▸ **element**(cssOrXpathOrBy: * `string` &#124; `By`*): `(Anonymous function)`
-
-*Defined in [actions.ts:194](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L194)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
-
-**Returns:** `(Anonymous function)`
-
-___
 <a id="executehooksondriverfailure"></a>
 
 ###  executeHooksOnDriverFailure
 
 ▸ **executeHooksOnDriverFailure**(driver: *[Driver](../classes/driver.md)*, error: *`Error`*): `Promise`<`void`>
 
-*Defined in [actions.ts:544](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L544)*
+*Defined in [actions.ts:497](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L497)*
 
 **Parameters:**
 
@@ -476,15 +500,16 @@ ___
 
 ###  executeHooksOnElementFailure
 
-▸ **executeHooksOnElementFailure**(element: *[Element](../classes/element.md)*, error: *`Error`*): `Promise`<`void`>
+▸ **executeHooksOnElementFailure**(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*, error: *`Error`*): `Promise`<`void`>
 
-*Defined in [actions.ts:537](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L537)*
+*Defined in [actions.ts:492](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L492)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
+| driver | [Driver](../classes/driver.md) |
 | error | `Error` |
 
 **Returns:** `Promise`<`void`>
@@ -496,7 +521,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
 
-*Defined in [actions.ts:284](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L284)*
+*Defined in [actions.ts:233](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L233)*
 
 **Parameters:**
 
@@ -508,55 +533,21 @@ ___
 **Returns:** `(Anonymous function)`
 
 ___
-<a id="filtered"></a>
+<a id="focused"></a>
 
-###  filtered
+### `<Const>` focused
 
-▸ **filtered**(condition: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>*): `(Anonymous function)`
+▸ **focused**(element: *[Element](../classes/element.md)*): `Promise`<`boolean`>
 
-*Defined in [actions.ts:212](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L212)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](../classes/condition.md)<[Element](../classes/element.md)> |
-
-**Returns:** `(Anonymous function)`
-
-___
-<a id="find"></a>
-
-###  find
-
-▸ **find**(condition: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>*): `(Anonymous function)`
-
-*Defined in [actions.ts:229](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L229)*
+*Defined in [actions.ts:157](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L157)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [Condition](../classes/condition.md)<[Element](../classes/element.md)> |
+| element | [Element](../classes/element.md) |
 
-**Returns:** `(Anonymous function)`
-
-___
-<a id="followingsibling"></a>
-
-###  followingSibling
-
-▸ **followingSibling**(predicate?: *`string`*): `(Anonymous function)`
-
-*Defined in [actions.ts:188](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L188)*
-
-**Parameters:**
-
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| `Default value` predicate | `string` | &quot;&quot; |
-
-**Returns:** `(Anonymous function)`
+**Returns:** `Promise`<`boolean`>
 
 ___
 <a id="fullpagescreenshot"></a>
@@ -565,7 +556,7 @@ ___
 
 ▸ **fullpageScreenshot**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
 
-*Defined in [actions.ts:392](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L392)*
+*Defined in [actions.ts:341](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L341)*
 
 **Parameters:**
 
@@ -582,7 +573,7 @@ ___
 
 ▸ **getBrowserData**(webdriver: *`WebDriver`*): `Promise`<[BrowserData](actions.md#browserdata)>
 
-*Defined in [actions.ts:458](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L458)*
+*Defined in [actions.ts:407](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L407)*
 
 **Parameters:**
 
@@ -599,7 +590,7 @@ ___
 
 ▸ **getCurrentFrameWebElement**(webdriver: *`WebDriver`*): `Promise`<`WebElement`>
 
-*Defined in [actions.ts:435](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L435)*
+*Defined in [actions.ts:384](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L384)*
 
 **Parameters:**
 
@@ -616,7 +607,7 @@ ___
 
 ▸ **hideScrollbars**(webdriver: *`WebDriver`*): `Promise`<`void`>
 
-*Defined in [actions.ts:440](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L440)*
+*Defined in [actions.ts:389](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L389)*
 
 **Parameters:**
 
@@ -633,7 +624,7 @@ ___
 
 ▸ **hover**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L85)*
+*Defined in [actions.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L73)*
 
 **Parameters:**
 
@@ -648,9 +639,9 @@ ___
 
 ### `<Const>` nextTab
 
-▸ **nextTab**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+▸ **nextTab**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:300](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L300)*
+*Defined in [actions.ts:249](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L249)*
 
 **Parameters:**
 
@@ -658,24 +649,7 @@ ___
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
-
-___
-<a id="nth"></a>
-
-###  nth
-
-▸ **nth**(index: *`number`*): `(Anonymous function)`
-
-*Defined in [actions.ts:218](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L218)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| index | `number` |
-
-**Returns:** `(Anonymous function)`
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
 
 ___
 <a id="open"></a>
@@ -684,7 +658,7 @@ ___
 
 ▸ **open**(url: *`string`*): `(Anonymous function)`
 
-*Defined in [actions.ts:236](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L236)*
+*Defined in [actions.ts:185](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L185)*
 
 **Parameters:**
 
@@ -701,7 +675,7 @@ ___
 
 ▸ **pageSource**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
 
-*Defined in [actions.ts:277](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L277)*
+*Defined in [actions.ts:226](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L226)*
 
 **Parameters:**
 
@@ -712,37 +686,21 @@ ___
 **Returns:** `Promise`<`any`>
 
 ___
-<a id="parent"></a>
+<a id="performcommandonvisible"></a>
 
-### `<Const>` parent
+###  performCommandOnVisible
 
-▸ **parent**(element: *[Element](../classes/element.md)*): [Element](../classes/element.md)
+▸ **performCommandOnVisible**(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*, command: *[ElementCommand](actions.md#elementcommand)*): `Promise`<`any`>
 
-*Defined in [actions.ts:184](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L184)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
-
-**Returns:** [Element](../classes/element.md)
-
-___
-<a id="performactiononvisible"></a>
-
-###  performActionOnVisible
-
-▸ **performActionOnVisible**(element: *[Element](../classes/element.md)*, action: *[ElementAction](actions.md#elementaction)*): `Promise`<`any`>
-
-*Defined in [actions.ts:520](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L520)*
+*Defined in [actions.ts:475](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L475)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
-| action | [ElementAction](actions.md#elementaction) |
+| driver | [Driver](../classes/driver.md) |
+| command | [ElementCommand](actions.md#elementcommand) |
 
 **Returns:** `Promise`<`any`>
 
@@ -753,7 +711,7 @@ ___
 
 ▸ **presence**(element: *[Element](../classes/element.md)*): `Promise`<`boolean`>
 
-*Defined in [actions.ts:166](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L166)*
+*Defined in [actions.ts:151](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L151)*
 
 **Parameters:**
 
@@ -770,7 +728,7 @@ ___
 
 ▸ **pressKey**(key: *`string`*): `(Anonymous function)`
 
-*Defined in [actions.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L93)*
+*Defined in [actions.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L80)*
 
 **Parameters:**
 
@@ -785,9 +743,9 @@ ___
 
 ### `<Const>` previousTab
 
-▸ **previousTab**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+▸ **previousTab**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:311](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L311)*
+*Defined in [actions.ts:260](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L260)*
 
 **Parameters:**
 
@@ -795,16 +753,16 @@ ___
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
 
 ___
 <a id="quit"></a>
 
 ###  quit
 
-▸ **quit**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+▸ **quit**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:365](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L365)*
+*Defined in [actions.ts:314](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L314)*
 
 **Parameters:**
 
@@ -812,16 +770,16 @@ ___
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
 
 ___
 <a id="refresh"></a>
 
 ### `<Const>` refresh
 
-▸ **refresh**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+▸ **refresh**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:252](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L252)*
+*Defined in [actions.ts:201](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L201)*
 
 **Parameters:**
 
@@ -829,7 +787,7 @@ ___
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
 
 ___
 <a id="resizewindow"></a>
@@ -838,7 +796,7 @@ ___
 
 ▸ **resizeWindow**(width: *`number`*, height: *`number`*): `(Anonymous function)`
 
-*Defined in [actions.ts:244](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L244)*
+*Defined in [actions.ts:193](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L193)*
 
 **Parameters:**
 
@@ -856,7 +814,7 @@ ___
 
 ▸ **screenshot**(driver: *[Driver](../classes/driver.md)*): `Promise`<`Buffer`>
 
-*Defined in [actions.ts:371](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L371)*
+*Defined in [actions.ts:320](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L320)*
 
 **Parameters:**
 
@@ -873,7 +831,7 @@ ___
 
 ▸ **scrollTo**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:108](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L108)*
+*Defined in [actions.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L95)*
 
 **Parameters:**
 
@@ -890,7 +848,7 @@ ___
 
 ▸ **scrollToNthScreen**(webdriver: *`WebDriver`*, browserData: *`any`*, index: *`number`*): `Promise`<`void`>
 
-*Defined in [actions.ts:471](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L471)*
+*Defined in [actions.ts:420](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L420)*
 
 **Parameters:**
 
@@ -909,7 +867,7 @@ ___
 
 ▸ **sendKeys**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [actions.ts:116](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L116)*
+*Defined in [actions.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L102)*
 
 **Parameters:**
 
@@ -926,7 +884,7 @@ ___
 
 ▸ **setDocumentOverflow**(webdriver: *`WebDriver`*, overflowValue?: *`string`*): `Promise`<`string`>
 
-*Defined in [actions.ts:444](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L444)*
+*Defined in [actions.ts:393](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L393)*
 
 **Parameters:**
 
@@ -944,7 +902,7 @@ ___
 
 ▸ **setOverflow**(webdriver: *`WebDriver`*, element: *`string`*, overflowValue: *`string`*): `Promise`<`string`>
 
-*Defined in [actions.ts:448](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L448)*
+*Defined in [actions.ts:397](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L397)*
 
 **Parameters:**
 
@@ -963,7 +921,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [actions.ts:125](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L125)*
+*Defined in [actions.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L111)*
 
 **Parameters:**
 
@@ -978,18 +936,19 @@ ___
 
 ###  setValueByJs
 
-▸ **setValueByJs**(element: *[Element](../classes/element.md)*, value: * `string` &#124; `number`*): `Promise`<`any`>
+▸ **setValueByJs**(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*, value: * `string` &#124; `number`*): `Promise`<`void`>
 
-*Defined in [actions.ts:139](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L139)*
+*Defined in [actions.ts:127](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L127)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
+| driver | [Driver](../classes/driver.md) |
 | value |  `string` &#124; `number`|
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<`void`>
 
 ___
 <a id="size"></a>
@@ -998,7 +957,7 @@ ___
 
 ▸ **size**(collection: *[Collection](../classes/collection.md)*): `Promise`<`number`>
 
-*Defined in [actions.ts:224](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L224)*
+*Defined in [actions.ts:180](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L180)*
 
 **Parameters:**
 
@@ -1013,9 +972,9 @@ ___
 
 ### `<Const>` switchToDefaultFrame
 
-▸ **switchToDefaultFrame**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
+▸ **switchToDefaultFrame**(driver: *[Driver](../classes/driver.md)*): `Promise`<[Driver](../classes/driver.md)>
 
-*Defined in [actions.ts:339](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L339)*
+*Defined in [actions.ts:288](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L288)*
 
 **Parameters:**
 
@@ -1023,7 +982,7 @@ ___
 | ------ | ------ |
 | driver | [Driver](../classes/driver.md) |
 
-**Returns:** `Promise`<`any`>
+**Returns:** `Promise`<[Driver](../classes/driver.md)>
 
 ___
 <a id="switchtoframe"></a>
@@ -1032,7 +991,7 @@ ___
 
 ▸ **switchToFrame**(frameElement: *[Element](../classes/element.md)*): `(Anonymous function)`
 
-*Defined in [actions.ts:329](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L329)*
+*Defined in [actions.ts:278](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L278)*
 
 **Parameters:**
 
@@ -1049,7 +1008,7 @@ ___
 
 ▸ **switchToTab**(tabId: *`string`*): `(Anonymous function)`
 
-*Defined in [actions.ts:321](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L321)*
+*Defined in [actions.ts:270](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L270)*
 
 **Parameters:**
 
@@ -1066,7 +1025,7 @@ ___
 
 ▸ **tabs**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
 
-*Defined in [actions.ts:294](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L294)*
+*Defined in [actions.ts:243](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L243)*
 
 **Parameters:**
 
@@ -1083,7 +1042,7 @@ ___
 
 ▸ **takeScreenshotWithWait**(webdriver: *`WebDriver`*): `Promise`<`Buffer`>
 
-*Defined in [actions.ts:476](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L476)*
+*Defined in [actions.ts:425](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L425)*
 
 **Parameters:**
 
@@ -1100,7 +1059,7 @@ ___
 
 ▸ **text**(element: *[Element](../classes/element.md)*): `Promise`<`any`>
 
-*Defined in [actions.ts:172](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L172)*
+*Defined in [actions.ts:168](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L168)*
 
 **Parameters:**
 
@@ -1117,7 +1076,7 @@ ___
 
 ▸ **title**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
 
-*Defined in [actions.ts:271](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L271)*
+*Defined in [actions.ts:220](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L220)*
 
 **Parameters:**
 
@@ -1134,7 +1093,7 @@ ___
 
 ▸ **url**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
 
-*Defined in [actions.ts:265](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L265)*
+*Defined in [actions.ts:214](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L214)*
 
 **Parameters:**
 
@@ -1151,7 +1110,7 @@ ___
 
 ▸ **viewportScreenshot**(driver: *[Driver](../classes/driver.md)*): `Promise`<`any`>
 
-*Defined in [actions.ts:377](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L377)*
+*Defined in [actions.ts:326](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L326)*
 
 **Parameters:**
 
@@ -1168,7 +1127,7 @@ ___
 
 ▸ **visibility**(element: *[Element](../classes/element.md)*): `Promise`<`boolean`>
 
-*Defined in [actions.ts:160](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L160)*
+*Defined in [actions.ts:145](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L145)*
 
 **Parameters:**
 

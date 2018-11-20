@@ -33,7 +33,6 @@ var perform;
     perform.resizeWindow = actions_1.Actions.resizeWindow;
     perform.refresh = actions_1.Actions.refresh;
     perform.acceptAlert = actions_1.Actions.acceptAlert;
-    perform.executeScript = actions_1.Actions.executeScript;
     perform.nextTab = actions_1.Actions.nextTab;
     perform.previousTab = actions_1.Actions.previousTab;
     perform.switchToTab = actions_1.Actions.switchToTab;

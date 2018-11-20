@@ -17,6 +17,7 @@ import { Actions } from './actions';
 import { Condition } from './condition';
 import { Driver } from './driver';
 import { Element } from './element';
+import { ElementsBuilder } from './elementsBuilder';
 import { HookExecutor } from './hooks/hookExecutor';
 import { Locator } from './locators/locator';
 import { Wait } from './wait';
@@ -25,10 +26,10 @@ import { Wait } from './wait';
 export class Collection {
 
     private readonly driver: Driver;
-    private readonly locator: Locator<Promise<WebElement[]>>;
+    private readonly locator: Locator<Promise<WebElement[]>> | Locator<WebElement[]>;
     private readonly wait: Wait<Collection>;
 
-    constructor(locator: Locator<Promise<WebElement[]>>, driver: Driver) {
+    constructor(locator: Locator<Promise<WebElement[]>> | Locator<WebElement[]>, driver: Driver) {
         this.locator = locator;
         this.driver = driver;
         this.wait = new Wait(this, this.driver.configuration, new HookExecutor<Collection>(driver, this));
@@ -51,7 +52,7 @@ export class Collection {
     }
 
     get(index: number): Element {
-        return Actions.nth(index)(this);
+        return ElementsBuilder.nth(index)(this);
     }
 
     first(): Element {
@@ -59,7 +60,7 @@ export class Collection {
     }
 
     filter(condition: Condition<Element>): Collection {
-        return Actions.filtered(condition)(this);
+        return ElementsBuilder.filtered(condition)(this);
     }
 
     filterBy(condition: Condition<Element>): Collection {
@@ -67,7 +68,7 @@ export class Collection {
     }
 
     findBy(condition: Condition<Element>): Element {
-        return Actions.find(condition)(this);
+        return ElementsBuilder.find(condition)(this);
     }
 
     async size(): Promise<number> {

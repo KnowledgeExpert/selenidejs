@@ -27,6 +27,7 @@
 * [tabsSizeGreaterThan](conditions.md#tabssizegreaterthan)
 * [text](conditions.md#text)
 * [texts](conditions.md#texts)
+* [title](conditions.md#title)
 * [url](conditions.md#url)
 * [urlPart](conditions.md#urlpart)
 
@@ -47,7 +48,7 @@
         );
     })
 
-*Defined in [conditions.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L32)*
+*Defined in [conditions.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L30)*
 
 ___
 <a id="focused"></a>
@@ -55,19 +56,12 @@ ___
 ### `<Const>` focused
 
 **● focused**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Condition.create('be focused', async (element: Element) => {
-        const driver = Utils.getDriver(element);
-        const script = 'return document.activeElement';
-        const currentElement = await element.getWebElement();
-        const focusedElement = await driver.executeScript(script) as WebElement;
-        if (!focusedElement) {
-            throw new ConditionDoesNotMatchError();
-        }
-        if (!WebElement.equals(focusedElement, currentElement)) {
-            throw new ConditionDoesNotMatchError();
-        }
+        await element.isFocused().then(focused => {
+            if (!focused) throw new ConditionDoesNotMatchError();
+        });
     })
 
-*Defined in [conditions.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L41)*
+*Defined in [conditions.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L39)*
 
 ___
 <a id="hidden"></a>
@@ -80,7 +74,7 @@ ___
         });
     })
 
-*Defined in [conditions.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L60)*
+*Defined in [conditions.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L51)*
 
 ___
 <a id="present"></a>
@@ -91,21 +85,21 @@ ___
         await element.getWebElement();
     })
 
-*Defined in [conditions.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L28)*
+*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
 
 ___
 <a id="selected"></a>
 
 ### `<Const>` selected
 
-**● selected**: *[Condition](../classes/condition.md)<`Object`>* =  Condition.create('be selected', async (element: Element) => {
+**● selected**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Condition.create('be selected', async (element: Element) => {
         const attribute = await element.attribute('selected');
         if (attribute === null) {
             throw new ConditionDoesNotMatchError();
         }
     })
 
-*Defined in [conditions.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L93)*
+*Defined in [conditions.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L84)*
 
 ___
 <a id="visible"></a>
@@ -118,7 +112,7 @@ ___
         });
     })
 
-*Defined in [conditions.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L54)*
+*Defined in [conditions.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L45)*
 
 ___
 
@@ -128,9 +122,9 @@ ___
 
 ###  atributeWithValue
 
-▸ **atributeWithValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [Condition](../classes/condition.md)<`Object`>
+▸ **atributeWithValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L100)*
+*Defined in [conditions.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L91)*
 
 **Parameters:**
 
@@ -139,7 +133,7 @@ ___
 | attributeName | `string` |
 | attributeValue |  `string` &#124; `number`|
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
 ___
 <a id="attribute"></a>
@@ -148,7 +142,7 @@ ___
 
 ▸ **attribute**(attributeName: *`string`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L84)*
+*Defined in [conditions.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L75)*
 
 **Parameters:**
 
@@ -163,9 +157,9 @@ ___
 
 ###  attributeWithExactValue
 
-▸ **attributeWithExactValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [Condition](../classes/condition.md)<`Object`>
+▸ **attributeWithExactValue**(attributeName: *`string`*, attributeValue: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L111)*
+*Defined in [conditions.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L102)*
 
 **Parameters:**
 
@@ -174,7 +168,7 @@ ___
 | attributeName | `string` |
 | attributeValue |  `string` &#124; `number`|
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
 ___
 <a id="cssclass"></a>
@@ -183,7 +177,7 @@ ___
 
 ▸ **cssClass**(cssClass: *`string`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions.ts:122](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L122)*
+*Defined in [conditions.ts:113](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L113)*
 
 **Parameters:**
 
@@ -200,7 +194,7 @@ ___
 
 ▸ **exactText**(text: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L75)*
+*Defined in [conditions.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L66)*
 
 **Parameters:**
 
@@ -215,9 +209,9 @@ ___
 
 ###  exactTexts
 
-▸ **exactTexts**(...texts: *`Array`< `string` &#124; `number`>*): [Condition](../classes/condition.md)<`Object`>
+▸ **exactTexts**(...texts: *`Array`< `string` &#124; `number`>*): [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
 
-*Defined in [conditions.ts:177](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L177)*
+*Defined in [conditions.ts:168](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L168)*
 
 **Parameters:**
 
@@ -225,14 +219,31 @@ ___
 | ------ | ------ |
 | `Rest` texts | `Array`< `string` &#124; `number`> |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
 
 ___
 <a id="size"></a>
 
 ###  size
 
-▸ **size**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
+▸ **size**(size: *`number`*): [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
+
+*Defined in [conditions.ts:122](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L122)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
+
+___
+<a id="sizegreaterthan"></a>
+
+###  sizeGreaterThan
+
+▸ **sizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
 
 *Defined in [conditions.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L131)*
 
@@ -242,31 +253,14 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
-
-___
-<a id="sizegreaterthan"></a>
-
-###  sizeGreaterThan
-
-▸ **sizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
-
-*Defined in [conditions.ts:140](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L140)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| size | `number` |
-
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
 
 ___
 <a id="tabssize"></a>
 
 ###  tabsSize
 
-▸ **tabsSize**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
+▸ **tabsSize**(size: *`number`*): [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 *Defined in [conditions.ts:223](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L223)*
 
@@ -276,14 +270,14 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 ___
 <a id="tabssizegreaterthan"></a>
 
 ###  tabsSizeGreaterThan
 
-▸ **tabsSizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<`Object`>
+▸ **tabsSizeGreaterThan**(size: *`number`*): [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 *Defined in [conditions.ts:232](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L232)*
 
@@ -293,7 +287,7 @@ ___
 | ------ | ------ |
 | size | `number` |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 ___
 <a id="text"></a>
@@ -302,7 +296,7 @@ ___
 
 ▸ **text**(text: * `string` &#124; `number`*): [Condition](../classes/condition.md)<[Element](../classes/element.md)>
 
-*Defined in [conditions.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L66)*
+*Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
 
 **Parameters:**
 
@@ -317,9 +311,9 @@ ___
 
 ###  texts
 
-▸ **texts**(...texts: *`Array`< `string` &#124; `number`>*): [Condition](../classes/condition.md)<`Object`>
+▸ **texts**(...texts: *`Array`< `string` &#124; `number`>*): [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
 
-*Defined in [conditions.ts:149](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L149)*
+*Defined in [conditions.ts:140](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L140)*
 
 **Parameters:**
 
@@ -327,14 +321,31 @@ ___
 | ------ | ------ |
 | `Rest` texts | `Array`< `string` &#124; `number`> |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Collection](../classes/collection.md)>
+
+___
+<a id="title"></a>
+
+###  title
+
+▸ **title**(title: *`string`*): [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
+
+*Defined in [conditions.ts:196](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L196)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| title | `string` |
+
+**Returns:** [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 ___
 <a id="url"></a>
 
 ###  url
 
-▸ **url**(url: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **url**(url: *`string`*): [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 *Defined in [conditions.ts:214](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L214)*
 
@@ -344,14 +355,14 @@ ___
 | ------ | ------ |
 | url | `string` |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 ___
 <a id="urlpart"></a>
 
 ###  urlPart
 
-▸ **urlPart**(urlPart: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **urlPart**(urlPart: *`string`*): [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 *Defined in [conditions.ts:205](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L205)*
 
@@ -361,7 +372,7 @@ ___
 | ------ | ------ |
 | urlPart | `string` |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** [Condition](../classes/condition.md)<[Driver](../classes/driver.md)>
 
 ___
 

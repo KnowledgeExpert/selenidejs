@@ -23,7 +23,7 @@
 
 **● absent**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.absent
 
-*Defined in [helpers/be.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L20)*
+*Defined in [helpers/be.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L22)*
 
 ___
 <a id="focused"></a>
@@ -32,7 +32,7 @@ ___
 
 **● focused**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.focused
 
-*Defined in [helpers/be.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L28)*
+*Defined in [helpers/be.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L30)*
 
 ___
 <a id="hidden"></a>
@@ -41,7 +41,7 @@ ___
 
 **● hidden**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.hidden
 
-*Defined in [helpers/be.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L26)*
+*Defined in [helpers/be.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L28)*
 
 ___
 <a id="present"></a>
@@ -50,16 +50,16 @@ ___
 
 **● present**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.present
 
-*Defined in [helpers/be.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L22)*
+*Defined in [helpers/be.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L24)*
 
 ___
 <a id="selected"></a>
 
 ### `<Const>` selected
 
-**● selected**: *[Condition](../classes/condition.md)<`Object`>* =  Conditions.selected
+**● selected**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.selected
 
-*Defined in [helpers/be.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L18)*
+*Defined in [helpers/be.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L20)*
 
 ___
 <a id="visible"></a>
@@ -68,7 +68,7 @@ ___
 
 **● visible**: *[Condition](../classes/condition.md)<[Element](../classes/element.md)>* =  Conditions.visible
 
-*Defined in [helpers/be.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L24)*
+*Defined in [helpers/be.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/be.ts#L26)*
 
 ___
 

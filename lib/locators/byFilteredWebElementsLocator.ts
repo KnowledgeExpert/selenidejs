@@ -19,7 +19,7 @@ import { Element } from '../element';
 import { Locator } from './locator';
 
 
-export class ByFilteredWebElementsLocator implements Locator<Promise<WebElement[]>> {
+export class ByFilteredWebElementsLocator implements Locator<WebElement[]> {
 
     private readonly elementCondition: Condition<Element>;
     private readonly collection: Collection;

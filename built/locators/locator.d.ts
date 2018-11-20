@@ -1,3 +1,3 @@
 export interface Locator<T> {
-    find(): T;
+    find(): T | Promise<T>;
 }

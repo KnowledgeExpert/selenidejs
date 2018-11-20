@@ -32,6 +32,7 @@ var have;
     have.sizeGreaterThan = (size) => conditions_1.Conditions.sizeGreaterThan(size);
     have.texts = (...texts) => conditions_1.Conditions.texts(...texts);
     have.exactTexts = (...texts) => conditions_1.Conditions.exactTexts(...texts);
+    have.title = (title) => conditions_1.Conditions.title(title);
     have.url = (urlPart) => conditions_1.Conditions.url(urlPart);
     have.urlPart = (urlPart) => conditions_1.Conditions.urlPart(urlPart);
     have.tabsSize = (size) => conditions_1.Conditions.tabsSize(size);

@@ -18,7 +18,7 @@ import { ElementNotFoundError } from '../errors/elementNotFoundError';
 import { Locator } from './locator';
 
 
-export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> {
+export class ByIndexedWebElementLocator implements Locator<WebElement> {
 
     private readonly collection: Collection;
     private readonly index: number;

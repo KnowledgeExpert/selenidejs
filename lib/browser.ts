@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ActionSequence, By } from 'selenium-webdriver';
+import { ActionSequence, By, WebElement } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Condition } from './condition';
-import { Configuration } from './configuration';
 import { Driver } from './driver';
 import { Element } from './element';
 
@@ -75,6 +74,14 @@ export namespace Browser {
 
     export function all(cssOrXpathOrBy: string | By): Collection {
         return driver.all(cssOrXpathOrBy);
+    }
+
+    export function wrapElement(webelement: WebElement): Element {
+        return driver.wrapElement(webelement);
+    }
+
+    export function wrapAll(webelements: WebElement[]): Collection {
+        return driver.wrapAll(webelements);
     }
 
     export async function should(condition: Condition<Driver>, timeout?: number): Promise<Driver> {

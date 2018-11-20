@@ -200,6 +200,13 @@ describe('Condition', () => {
         expect(await Browser.all('#list').is(have.exactTexts('Second'))).toBeFalsy();
     });
 
+    it('should have title', async () => {
+        await Given.openedEmptyPage();
+
+        expect(await Browser.is(have.title('Empty Page'))).toBeTruthy();
+        expect(await Browser.is(have.title('inalid'))).toBeFalsy();
+    });
+
     it('should have url', async () => {
         await Given.openedEmptyPage();
 

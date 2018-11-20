@@ -7,7 +7,7 @@ export declare class Collection {
     private readonly driver;
     private readonly locator;
     private readonly wait;
-    constructor(locator: Locator<Promise<WebElement[]>>, driver: Driver);
+    constructor(locator: Locator<Promise<WebElement[]>> | Locator<WebElement[]>, driver: Driver);
     should(condition: Condition<Collection>, timeout?: number): Promise<Collection>;
     shouldNot(condition: Condition<Collection>, timeout?: number): Promise<Collection>;
     is(condition: Condition<Collection>, timeout?: number): Promise<boolean>;

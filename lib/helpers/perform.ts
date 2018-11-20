@@ -49,8 +49,6 @@ export namespace perform {
 
     export const acceptAlert = Actions.acceptAlert;
 
-    export const executeScript = Actions.executeScript;
-
     export const nextTab = Actions.nextTab;
 
     export const previousTab = Actions.previousTab;

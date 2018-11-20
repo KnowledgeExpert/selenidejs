@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const actions_1 = require("./actions");
 const condition_1 = require("./condition");
 const configuration_1 = require("./configuration");
+const elementsBuilder_1 = require("./elementsBuilder");
 const hookExecutor_1 = require("./hooks/hookExecutor");
 const wait_1 = require("./wait");
 class Driver {
@@ -84,10 +85,16 @@ class Driver {
         return this.configuration.webdriver.actions();
     }
     element(cssOrXpathOrBy) {
-        return actions_1.Actions.element(cssOrXpathOrBy)(this);
+        return elementsBuilder_1.ElementsBuilder.element(cssOrXpathOrBy)(this);
     }
     all(cssOrXpathOrBy) {
-        return actions_1.Actions.all(cssOrXpathOrBy)(this);
+        return elementsBuilder_1.ElementsBuilder.all(cssOrXpathOrBy)(this);
+    }
+    wrapElement(webelement) {
+        return elementsBuilder_1.ElementsBuilder.wrapElement(webelement)(this);
+    }
+    wrapAll(webelements) {
+        return elementsBuilder_1.ElementsBuilder.wrapAll(webelements)(this);
     }
     async should(condition, timeout) {
         return this.wait.shouldMatch(condition, timeout);

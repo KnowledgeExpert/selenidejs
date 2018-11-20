@@ -18,6 +18,7 @@ import { Collection } from './collection';
 import { Condition } from './condition';
 import { Configuration } from './configuration';
 import { Element } from './element';
+import { ElementsBuilder } from './elementsBuilder';
 import { HookExecutor } from './hooks/hookExecutor';
 import { SearchContext } from './locators/searchContext';
 import { Wait } from './wait';
@@ -113,11 +114,19 @@ export class Driver implements SearchContext {
     }
 
     element(cssOrXpathOrBy: string | By): Element {
-        return Actions.element(cssOrXpathOrBy)(this);
+        return ElementsBuilder.element(cssOrXpathOrBy)(this);
     }
 
     all(cssOrXpathOrBy: string | By): Collection {
-        return Actions.all(cssOrXpathOrBy)(this);
+        return ElementsBuilder.all(cssOrXpathOrBy)(this);
+    }
+
+    wrapElement(webelement: WebElement): Element {
+        return ElementsBuilder.wrapElement(webelement)(this);
+    }
+
+    wrapAll(webelements: WebElement[]): Collection {
+        return ElementsBuilder.wrapAll(webelements)(this);
     }
 
     async should(condition: Condition<Driver>, timeout?: number): Promise<Driver> {

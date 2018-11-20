@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { WebElement } from 'selenium-webdriver';
+import { With } from '../../lib';
 import { Browser } from '../../lib/browser';
 import { have } from '../../lib/helpers/have';
 import { Given } from '../utils/given';
@@ -73,6 +75,35 @@ describe('Find', () => {
         await Given.openedEmptyPage();
 
         expect(Browser.all('h1').get(0).toString()).toBe('browser.all(By(css selector, h1)).get(0)');
+    });
+
+    it('web element should return correct element', async () => {
+        await Given.openedEmptyPageWithBody('<h1>Test</h1>');
+        const webelement = await Browser.configuration.webdriver.findElement(With.css('h1'));
+        expect(await WebElement.equals(await Browser.wrapElement(webelement).getWebElement(), webelement)).toBe(true);
+    });
+
+    it('web element should have correct toString', async () => {
+        await Given.openedEmptyPageWithBody('<h1>Test</h1>');
+        const webelement = await Browser.configuration.webdriver.findElement(With.css('h1'));
+        expect(Browser.wrapElement(webelement).toString()).toBe('WebElement');
+    });
+
+    it('web elements should return correct element', async () => {
+        await Given.openedEmptyPageWithBody('<h1>Test</h1><h1>Test2</h1>');
+        const webelements = await Browser.configuration.webdriver.findElements(With.css('h1'));
+        const elements = Browser.wrapAll(webelements);
+
+        expect(webelements.length).toBe(await elements.size());
+        for (let i = 0; i < webelements.length; i++) {
+            expect(await elements.get(i).equals(webelements[i]));
+        }
+    });
+
+    it('web elements should have correct toString', async () => {
+        await Given.openedEmptyPageWithBody('<h1>Test</h1><h1>Test2</h1>');
+        const webelements = await Browser.configuration.webdriver.findElements(With.css('h1'));
+        expect(Browser.wrapAll(webelements).toString()).toBe('WebElements');
     });
 
     it('by web element should return correct element', async () => {

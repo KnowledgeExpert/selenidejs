@@ -70,6 +70,14 @@ var Browser;
         return Browser.driver.all(cssOrXpathOrBy);
     }
     Browser.all = all;
+    function wrapElement(webelement) {
+        return Browser.driver.wrapElement(webelement);
+    }
+    Browser.wrapElement = wrapElement;
+    function wrapAll(webelements) {
+        return Browser.driver.wrapAll(webelements);
+    }
+    Browser.wrapAll = wrapAll;
     async function should(condition, timeout) {
         return Browser.driver.should(condition, timeout);
     }

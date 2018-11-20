@@ -15,6 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_1 = require("./actions");
 const condition_1 = require("./condition");
+const elementsBuilder_1 = require("./elementsBuilder");
 const hookExecutor_1 = require("./hooks/hookExecutor");
 const wait_1 = require("./wait");
 class Collection {
@@ -36,19 +37,19 @@ class Collection {
         return this.is(condition_1.Condition.not(condition), timeout);
     }
     get(index) {
-        return actions_1.Actions.nth(index)(this);
+        return elementsBuilder_1.ElementsBuilder.nth(index)(this);
     }
     first() {
         return this.get(0);
     }
     filter(condition) {
-        return actions_1.Actions.filtered(condition)(this);
+        return elementsBuilder_1.ElementsBuilder.filtered(condition)(this);
     }
     filterBy(condition) {
         return this.filter(condition);
     }
     findBy(condition) {
-        return actions_1.Actions.find(condition)(this);
+        return elementsBuilder_1.ElementsBuilder.find(condition)(this);
     }
     async size() {
         return actions_1.Actions.size(this);

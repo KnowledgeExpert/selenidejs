@@ -22,6 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const actions_1 = require("./actions");
 const condition_1 = require("./condition");
+const elementsBuilder_1 = require("./elementsBuilder");
 const elementActionHooks_1 = require("./hooks/elementActionHooks");
 const hookExecutor_1 = require("./hooks/hookExecutor");
 const wait_1 = require("./wait");
@@ -82,6 +83,9 @@ class Element {
     async isPresent() {
         return actions_1.Actions.presence(this);
     }
+    async isFocused() {
+        return actions_1.Actions.focused(this);
+    }
     async text() {
         return actions_1.Actions.text(this);
     }
@@ -104,19 +108,19 @@ class Element {
         return this.locator.find();
     }
     parent() {
-        return actions_1.Actions.parent(this);
+        return elementsBuilder_1.ElementsBuilder.parent(this);
     }
     followingSibling(predicate = '') {
-        return actions_1.Actions.followingSibling(predicate)(this);
+        return elementsBuilder_1.ElementsBuilder.followingSibling(predicate)(this);
     }
     element(cssOrXpathOrBy) {
-        return actions_1.Actions.element(cssOrXpathOrBy)(this);
+        return elementsBuilder_1.ElementsBuilder.element(cssOrXpathOrBy)(this);
     }
     all(cssOrXpathOrBy) {
-        return actions_1.Actions.all(cssOrXpathOrBy)(this);
+        return elementsBuilder_1.ElementsBuilder.all(cssOrXpathOrBy)(this);
     }
     async equals(element) {
-        return selenium_webdriver_1.WebElement.equals(await this.getWebElement(), await element.getWebElement());
+        return selenium_webdriver_1.WebElement.equals(await this.getWebElement(), element instanceof selenium_webdriver_1.WebElement ? element : await element.getWebElement());
     }
     async findElements(locator) {
         return this.getWebElement().then(root => root.findElements(locator));

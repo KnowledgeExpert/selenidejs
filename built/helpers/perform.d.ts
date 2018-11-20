@@ -5,9 +5,9 @@ export declare namespace perform {
     const doubleClick: typeof Actions.doubleClick;
     const hover: typeof Actions.hover;
     const pressKey: typeof Actions.pressKey;
-    const pressEnter: (element: import("../element").Element) => Promise<any>;
-    const pressEscape: (element: import("../element").Element) => Promise<any>;
-    const pressTab: (element: import("../element").Element) => Promise<any>;
+    const pressEnter: (element: import("../element").Element) => Promise<import("../element").Element>;
+    const pressEscape: (element: import("../element").Element) => Promise<import("../element").Element>;
+    const pressTab: (element: import("../element").Element) => Promise<import("../element").Element>;
     const scrollTo: typeof Actions.scrollTo;
     const sendKeys: typeof Actions.sendKeys;
     const setValue: typeof Actions.setValue;
@@ -15,13 +15,12 @@ export declare namespace perform {
     const close: typeof Actions.close;
     const quit: typeof Actions.quit;
     const resizeWindow: typeof Actions.resizeWindow;
-    const refresh: (driver: import("../driver").Driver) => Promise<any>;
-    const acceptAlert: (driver: import("../driver").Driver) => Promise<any>;
-    const executeScript: typeof Actions.executeScript;
-    const nextTab: (driver: import("../driver").Driver) => Promise<any>;
-    const previousTab: (driver: import("../driver").Driver) => Promise<any>;
+    const refresh: (driver: import("../driver").Driver) => Promise<import("../driver").Driver>;
+    const acceptAlert: (driver: import("../driver").Driver) => Promise<import("../driver").Driver>;
+    const nextTab: (driver: import("../driver").Driver) => Promise<import("../driver").Driver>;
+    const previousTab: (driver: import("../driver").Driver) => Promise<import("../driver").Driver>;
     const switchToTab: typeof Actions.switchToTab;
     const switchToFrame: typeof Actions.switchToFrame;
-    const switchToDefaultFrame: (driver: import("../driver").Driver) => Promise<any>;
-    const clearCacheAndCookies: (driver: import("../driver").Driver) => Promise<any>;
+    const switchToDefaultFrame: (driver: import("../driver").Driver) => Promise<import("../driver").Driver>;
+    const clearCacheAndCookies: (driver: import("../driver").Driver) => Promise<import("../driver").Driver>;
 }

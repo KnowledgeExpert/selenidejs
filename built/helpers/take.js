@@ -14,6 +14,7 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const actions_1 = require("../actions");
+const elementsBuilder_1 = require("../elementsBuilder");
 var take;
 (function (take) {
     take.visibility = actions_1.Actions.visibility;
@@ -23,20 +24,21 @@ var take;
     take.innerHtml = actions_1.Actions.attribute('innerHTML');
     take.outerHtml = actions_1.Actions.attribute('outerHTML');
     take.value = actions_1.Actions.attribute('value');
-    take.parent = actions_1.Actions.parent;
-    take.followingSibling = actions_1.Actions.followingSibling;
     take.screenshot = actions_1.Actions.screenshot;
     take.url = actions_1.Actions.url;
     take.title = actions_1.Actions.title;
     take.pageSource = actions_1.Actions.pageSource;
     take.tabs = actions_1.Actions.tabs;
-    take.element = actions_1.Actions.element;
-    take.all = actions_1.Actions.all;
-    take.filtered = actions_1.Actions.filtered;
-    take.filteredBy = actions_1.Actions.filtered;
-    take.find = actions_1.Actions.find;
-    take.findBy = actions_1.Actions.find;
     take.size = actions_1.Actions.size;
-    take.nth = actions_1.Actions.nth;
+    take.element = elementsBuilder_1.ElementsBuilder.element;
+    take.parent = elementsBuilder_1.ElementsBuilder.parent;
+    take.followingSibling = elementsBuilder_1.ElementsBuilder.followingSibling;
+    take.all = elementsBuilder_1.ElementsBuilder.all;
+    take.filtered = elementsBuilder_1.ElementsBuilder.filtered;
+    take.filteredBy = elementsBuilder_1.ElementsBuilder.filtered;
+    take.find = elementsBuilder_1.ElementsBuilder.find;
+    take.findBy = elementsBuilder_1.ElementsBuilder.find;
+    take.nth = elementsBuilder_1.ElementsBuilder.nth;
+    take.executeScript = actions_1.Actions.executeScript;
 })(take = exports.take || (exports.take = {}));
 //# sourceMappingURL=take.js.map

@@ -14,6 +14,8 @@
 * [ByIndexedWebElementLocator](../classes/byindexedwebelementlocator.md)
 * [ByWebElementLocator](../classes/bywebelementlocator.md)
 * [ByWebElementsLocator](../classes/bywebelementslocator.md)
+* [WebElementLocator](../classes/webelementlocator.md)
+* [WebElementsLocator](../classes/webelementslocator.md)
 
 ## Index
 
@@ -29,11 +31,11 @@
 
 ###  find
 
-▸ **find**(): `T`
+▸ **find**():  `T` &#124; `Promise`<`T`>
 
 *Defined in [locators/locator.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/locator.ts#L16)*
 
-**Returns:** `T`
+**Returns:**  `T` &#124; `Promise`<`T`>
 
 ___
 

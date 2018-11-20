@@ -13,10 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const selenium_webdriver_1 = require("selenium-webdriver");
 const condition_1 = require("./condition");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
-const utils_1 = require("./utils");
 /* tslint:disable:space-before-function-paren */
 var Conditions;
 (function (Conditions) {
@@ -29,16 +27,10 @@ var Conditions;
         }, ignored => { });
     });
     Conditions.focused = condition_1.Condition.create('be focused', async (element) => {
-        const driver = utils_1.Utils.getDriver(element);
-        const script = 'return document.activeElement';
-        const currentElement = await element.getWebElement();
-        const focusedElement = await driver.executeScript(script);
-        if (!focusedElement) {
-            throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError();
-        }
-        if (!selenium_webdriver_1.WebElement.equals(focusedElement, currentElement)) {
-            throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError();
-        }
+        await element.isFocused().then(focused => {
+            if (!focused)
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError();
+        });
     });
     Conditions.visible = condition_1.Condition.create('be visible', async (element) => {
         await element.isVisible().then(visible => {
@@ -184,6 +176,15 @@ var Conditions;
         });
     }
     Conditions.exactTexts = exactTexts;
+    function title(title) {
+        return condition_1.Condition.create(`have title '${title}'`, async (driver) => {
+            const actualTitle = await driver.configuration.webdriver.getTitle();
+            if (!actualTitle.includes(title)) {
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`but was '${title}'`);
+            }
+        });
+    }
+    Conditions.title = title;
     function urlPart(urlPart) {
         return condition_1.Condition.create(`have url part '${urlPart}'`, async (driver) => {
             const actualUrl = await driver.configuration.webdriver.getCurrentUrl();
