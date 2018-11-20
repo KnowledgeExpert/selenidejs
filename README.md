@@ -40,7 +40,7 @@ etc. since Selenidejs itself written in Typescript), but you still can use Javas
 
 Typescript tutorial can be found [here](./docs/TUTORIAL_TS.md).
 
-Javascript tutorial can be found [here](./docs/TUTORIAL_TS.md).
+Javascript tutorial can be found [here](./docs/TUTORIAL_JS.md).
 
 ## Running the tests
 ### Prerequisites

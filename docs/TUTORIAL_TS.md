@@ -33,7 +33,7 @@ Add three new files in project root:
     "typescript": "^3.1.6",
     "jasmine": "^3.3.0",
     "@types/jasmine": "^2.6.0",
-    "selenidejs": "^0.2.6",
+    "selenidejs": "^0.2.8",
     "chromedriver": "^2.43.1"
   }
 }

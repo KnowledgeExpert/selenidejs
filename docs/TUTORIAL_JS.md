@@ -12,7 +12,7 @@ Prerequisites
 
 This tutorial will set up a test using local Google Chrome browser.
 
-Typescript tutorial
+Javascript tutorial
 -------------------
 
 Setup
@@ -30,7 +30,7 @@ Add three new files in project root:
   },
   "dependencies": {
     "jasmine": "^3.3.0",
-    "selenidejs": "^0.2.6",
+    "selenidejs": "^0.2.8",
     "chromedriver": "^2.43.1"
   }
 }
