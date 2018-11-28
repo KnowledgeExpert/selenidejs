@@ -121,6 +121,18 @@ export class Element implements SearchContext {
         return Actions.focused(this);
     }
 
+    async executeScript(script: string, ...args: any[]) {
+        const wrappedScript =
+            `
+            var element = arguments[0];
+            return (function(arguments) {
+                ${script}
+            })(arguments);
+            `;
+        const webelement = await this.getWebElement();
+        return this.driver.executeScript(wrappedScript, webelement, ...args);
+    }
+
     async text(): Promise<string> {
         return Actions.text(this);
     }

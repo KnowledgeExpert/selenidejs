@@ -27,25 +27,24 @@ var Actions;
     /* tslint:disable:space-before-function-paren */
     Actions.click = async (element) => {
         return createElementOnVisibleCommand(element, async function click(element, driver) {
-            driver.configuration.clickByJs ? await clickByJs(element, driver) : await commonClick(element);
+            driver.configuration.clickByJs ? await clickByJs(element) : await commonClick(element);
         });
     };
     async function commonClick(element) {
         const webelement = await element.getWebElement();
         await webelement.click();
     }
-    async function clickByJs(element, driver) {
+    async function clickByJs(element) {
         const getClickOnElementWithOffsetScript = (offsetX, offsetY) => {
-            return `arguments[0].dispatchEvent(new MouseEvent('click', {
+            return `element.dispatchEvent(new MouseEvent('click', {
                     'view': window,
                     'bubbles': true,
                     'cancelable': true,
-                    'clientX': arguments[0].getClientRects()[0].left + ${offsetX},
-                    'clientY': arguments[0].getClientRects()[0].top + ${offsetY}
+                    'clientX': element.getClientRects()[0].left + ${offsetX},
+                    'clientY': element.getClientRects()[0].top + ${offsetY}
                 }))`;
         };
-        const webelement = await element.getWebElement();
-        await driver.executeScript(getClickOnElementWithOffsetScript(0, 0), webelement);
+        await element.executeScript(getClickOnElementWithOffsetScript(0, 0));
     }
     Actions.contextClick = async (element) => {
         return createElementOnVisibleCommand(element, async function contextClick(element, driver) {
@@ -81,9 +80,8 @@ var Actions;
     Actions.pressEscape = pressKey(selenium_webdriver_1.Key.ESCAPE);
     Actions.pressTab = pressKey(selenium_webdriver_1.Key.TAB);
     async function scrollTo(element) {
-        return createElementOnVisibleCommand(element, async function scrollTo(element, driver) {
-            const webelement = await element.getWebElement();
-            await driver.executeScript('arguments[0].scrollIntoView(true);', webelement);
+        return createElementOnVisibleCommand(element, async function scrollTo(element) {
+            await element.executeScript('element.scrollIntoView(true);');
         });
     }
     Actions.scrollTo = scrollTo;
@@ -100,7 +98,7 @@ var Actions;
         return (element) => {
             return createElementOnVisibleCommand(element, async function setValue(element, driver) {
                 return driver.configuration.setValueByJs
-                    ? setValueByJs(element, driver, value)
+                    ? setValueByJs(element, value)
                     : commonSetValue(element, value);
             });
         };
@@ -111,20 +109,22 @@ var Actions;
         await webelement.clear();
         await webelement.sendKeys(String(value));
     }
-    async function setValueByJs(element, driver, value) {
+    async function setValueByJs(element, value) {
+        const script = `
+            var text = arguments[1];
+            var maxlength = element.getAttribute('maxlength') === null
+                ? -1
+                : parseInt(element.getAttribute('maxlength'));
+            element.value = maxlength === -1
+                ? text
+                : text.length <= maxlength
+                    ? text
+                    : text.substring(0, maxlength);
+            return null;
+            `;
         const webelement = await element.getWebElement();
-        const script = `return (function(webelement, text) {
-                        var maxlength = webelement.getAttribute('maxlength') === null
-                            ? -1
-                            : parseInt(webelement.getAttribute('maxlength'));
-                        webelement.value = maxlength === -1
-                            ? text
-                            : text.length <= maxlength ? text
-                                : text.substring(0, maxlength);
-                        return null;
-                    })(arguments[0], arguments[1]);`;
         await webelement.clear();
-        await driver.executeScript(script, webelement, String(value));
+        await element.executeScript(script, String(value));
     }
     Actions.visibility = (element) => {
         return createElementQuery(element, async function visibility(element) {
@@ -137,9 +137,9 @@ var Actions;
         });
     };
     Actions.focused = (element) => {
-        return createElementQuery(element, async function presence(element, driver) {
+        return createElementQuery(element, async function presence(element) {
             const script = 'return document.activeElement';
-            const focusedElement = await driver.executeScript(script);
+            const focusedElement = await element.executeScript(script);
             if (!focusedElement) {
                 throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError();
             }
@@ -206,7 +206,7 @@ var Actions;
     /* tslint:disable:ban-types */
     function executeScript(script, ...args) {
         return (driver) => {
-            return createDriverQuery(driver, async function pageSource(driver) {
+            return createDriverQuery(driver, async function executeScript(driver) {
                 return driver.configuration.webdriver.executeScript(script, ...args);
             });
         };
@@ -214,7 +214,7 @@ var Actions;
     Actions.executeScript = executeScript;
     /* tslint:enable:ban-types */
     Actions.tabs = (driver) => {
-        return createDriverQuery(driver, async function getTabs(driver) {
+        return createDriverQuery(driver, async function tabs(driver) {
             return driver.configuration.webdriver.getAllWindowHandles();
         });
     };

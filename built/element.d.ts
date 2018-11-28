@@ -27,6 +27,7 @@ export declare class Element implements SearchContext {
     isVisible(): Promise<boolean>;
     isPresent(): Promise<boolean>;
     isFocused(): Promise<boolean>;
+    executeScript(script: string, ...args: any[]): Promise<any>;
     text(): Promise<string>;
     hasAttribute(attributeName: string): Promise<boolean>;
     attribute(attributeName: string): Promise<string>;

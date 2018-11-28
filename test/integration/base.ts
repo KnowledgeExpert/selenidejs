@@ -18,11 +18,20 @@
 import { Browser } from '../../lib/browser';
 import { TestUtils } from '../utils/testUtils';
 
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
+// jasmine.getEnv().addReporter({
+//     specStarted: result => {
+//         console.log(result.fullName, new Date().toUTCString());
+//     },
+//     specDone: result => {
+//         console.log(result.fullName, new Date().toUTCString());
+//     }
+// })
+
 beforeAll(async () => {
     Browser.configuration.webdriver = TestUtils.buildWebDriver();
     Browser.configuration.onFailureHooks = [];
     TestUtils.startServer();
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 });
 
 afterAll(async () => {

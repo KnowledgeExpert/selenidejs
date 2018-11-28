@@ -86,6 +86,16 @@ class Element {
     async isFocused() {
         return actions_1.Actions.focused(this);
     }
+    async executeScript(script, ...args) {
+        const wrappedScript = `
+            var element = arguments[0];
+            return (function(arguments) {
+                ${script}
+            })(arguments);
+            `;
+        const webelement = await this.getWebElement();
+        return this.driver.executeScript(wrappedScript, webelement, ...args);
+    }
     async text() {
         return actions_1.Actions.text(this);
     }

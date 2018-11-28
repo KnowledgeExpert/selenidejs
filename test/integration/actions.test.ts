@@ -170,7 +170,7 @@ describe('Action', () => {
     });
 
     it('setValue by js', async () => {
-        await Given.openedEmptyPageWithBody('<input id="test" />');
+        await Given.openedEmptyPageWithBody('<input type="text" id="test" />');
 
         Browser.configuration.setValueByJs = true;
         await Browser.element('#test').setValue('Test');
@@ -258,10 +258,17 @@ describe('Action', () => {
         );
     });
 
-    it('executeScript', async () => {
+    it('driver.executeScript', async () => {
         await Given.openedEmptyPage();
 
         expect(await Browser.executeScript('return "test"')).toBe('test');
+    });
+
+    it('element.executeScript', async () => {
+        await Given.openedEmptyPageWithBody('<h1>Test</h1>');
+
+        expect(await Browser.element('h1').executeScript('return "test"')).toBe('test');
+        expect(await Browser.element('h1').executeScript('return element.innerHTML')).toBe('Test');
     });
 
     it('tabs', async () => {
@@ -336,7 +343,7 @@ describe('Action', () => {
     it('should be able to take fullpage screenshot with large screen', async () => {
         Browser.configuration.fullpageScreenshot = true;
         await Given.openedEmptyPageWithBody('<div id="test"></div>');
-        await Browser.executeScript('document.getElementById("test").style.height = "5000px"');
+        await Browser.executeScript('document.getElementById("test").style.height = "1500px"');
         const fullpageScreenshot = await Browser.screenshot();
 
         expect(fullpageScreenshot instanceof Buffer).toBeTruthy();

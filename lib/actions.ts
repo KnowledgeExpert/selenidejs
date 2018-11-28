@@ -32,7 +32,7 @@ export namespace Actions {
 
     export const click = async (element: Element): Promise<Element> => {
         return createElementOnVisibleCommand(element, async function click(element: Element, driver: Driver) {
-            driver.configuration.clickByJs ? await clickByJs(element, driver) : await commonClick(element);
+            driver.configuration.clickByJs ? await clickByJs(element) : await commonClick(element);
         });
     };
 
@@ -41,18 +41,17 @@ export namespace Actions {
         await webelement.click();
     }
 
-    async function clickByJs(element: Element, driver: Driver) {
+    async function clickByJs(element: Element) {
         const getClickOnElementWithOffsetScript = (offsetX: number, offsetY: number) => {
-            return `arguments[0].dispatchEvent(new MouseEvent('click', {
+            return `element.dispatchEvent(new MouseEvent('click', {
                     'view': window,
                     'bubbles': true,
                     'cancelable': true,
-                    'clientX': arguments[0].getClientRects()[0].left + ${offsetX},
-                    'clientY': arguments[0].getClientRects()[0].top + ${offsetY}
+                    'clientX': element.getClientRects()[0].left + ${offsetX},
+                    'clientY': element.getClientRects()[0].top + ${offsetY}
                 }))`;
         };
-        const webelement = await element.getWebElement();
-        await driver.executeScript(getClickOnElementWithOffsetScript(0, 0), webelement);
+        await element.executeScript(getClickOnElementWithOffsetScript(0, 0));
     }
 
     export const contextClick = async (element: Element): Promise<Element> => {
@@ -93,9 +92,8 @@ export namespace Actions {
     export const pressTab = pressKey(Key.TAB);
 
     export async function scrollTo(element: Element): Promise<Element> {
-        return createElementOnVisibleCommand(element, async function scrollTo(element: Element, driver: Driver) {
-            const webelement = await element.getWebElement();
-            await driver.executeScript('arguments[0].scrollIntoView(true);', webelement);
+        return createElementOnVisibleCommand(element, async function scrollTo(element: Element) {
+            await element.executeScript('element.scrollIntoView(true);');
         });
     }
 
@@ -112,7 +110,7 @@ export namespace Actions {
         return (element: Element) => {
             return createElementOnVisibleCommand(element, async function setValue(element: Element, driver: Driver) {
                 return driver.configuration.setValueByJs
-                    ? setValueByJs(element, driver, value)
+                    ? setValueByJs(element, value)
                     : commonSetValue(element, value);
             });
         };
@@ -124,22 +122,24 @@ export namespace Actions {
         await webelement.sendKeys(String(value));
     }
 
-    async function setValueByJs(element: Element, driver: Driver, value: string | number) {
-        const webelement = await element.getWebElement();
+    async function setValueByJs(element: Element, value: string | number) {
         const script =
-            `return (function(webelement, text) {
-                        var maxlength = webelement.getAttribute('maxlength') === null
-                            ? -1
-                            : parseInt(webelement.getAttribute('maxlength'));
-                        webelement.value = maxlength === -1
-                            ? text
-                            : text.length <= maxlength ? text
-                                : text.substring(0, maxlength);
-                        return null;
-                    })(arguments[0], arguments[1]);`;
+            `
+            var text = arguments[1];
+            var maxlength = element.getAttribute('maxlength') === null
+                ? -1
+                : parseInt(element.getAttribute('maxlength'));
+            element.value = maxlength === -1
+                ? text
+                : text.length <= maxlength
+                    ? text
+                    : text.substring(0, maxlength);
+            return null;
+            `;
 
+        const webelement = await element.getWebElement();
         await webelement.clear();
-        await driver.executeScript(script, webelement, String(value));
+        await element.executeScript(script, String(value));
     }
 
     export const visibility = (element: Element): Promise<boolean> => {
@@ -155,9 +155,9 @@ export namespace Actions {
     };
 
     export const focused = (element: Element): Promise<boolean> => {
-        return createElementQuery(element, async function presence(element: Element, driver: Driver) {
+        return createElementQuery(element, async function presence(element: Element) {
             const script = 'return document.activeElement';
-            const focusedElement = await driver.executeScript(script) as WebElement;
+            const focusedElement = await element.executeScript(script) as WebElement;
             if (!focusedElement) {
                 throw new ConditionDoesNotMatchError();
             }
@@ -232,7 +232,7 @@ export namespace Actions {
     /* tslint:disable:ban-types */
     export function executeScript(script: string | Function, ...args: any[]) {
         return (driver: Driver) => {
-            return createDriverQuery(driver, async function pageSource(driver: Driver) {
+            return createDriverQuery(driver, async function executeScript(driver: Driver) {
                 return driver.configuration.webdriver.executeScript(script, ...args);
             });
         };
@@ -241,7 +241,7 @@ export namespace Actions {
     /* tslint:enable:ban-types */
 
     export const tabs = (driver: Driver) => {
-        return createDriverQuery(driver, async function getTabs(driver: Driver) {
+        return createDriverQuery(driver, async function tabs(driver: Driver) {
             return driver.configuration.webdriver.getAllWindowHandles();
         });
     };

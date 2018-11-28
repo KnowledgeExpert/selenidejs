@@ -192,7 +192,7 @@ ___
 
 **● pressEnter**: *`(Anonymous function)`* =  pressKey(Key.ENTER)
 
-*Defined in [actions.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L89)*
+*Defined in [actions.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L88)*
 
 ___
 <a id="pressescape"></a>
@@ -201,7 +201,7 @@ ___
 
 **● pressEscape**: *`(Anonymous function)`* =  pressKey(Key.ESCAPE)
 
-*Defined in [actions.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L91)*
+*Defined in [actions.ts:90](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L90)*
 
 ___
 <a id="presstab"></a>
@@ -210,7 +210,7 @@ ___
 
 **● pressTab**: *`(Anonymous function)`* =  pressKey(Key.TAB)
 
-*Defined in [actions.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L93)*
+*Defined in [actions.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L92)*
 
 ___
 
@@ -288,7 +288,7 @@ ___
 
 ###  clickByJs
 
-▸ **clickByJs**(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*): `Promise`<`void`>
+▸ **clickByJs**(element: *[Element](../classes/element.md)*): `Promise`<`void`>
 
 *Defined in [actions.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L44)*
 
@@ -297,7 +297,6 @@ ___
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
-| driver | [Driver](../classes/driver.md) |
 
 **Returns:** `Promise`<`void`>
 
@@ -342,7 +341,7 @@ ___
 
 ▸ **commonSetValue**(element: *[Element](../classes/element.md)*, value: * `string` &#124; `number`*): `Promise`<`void`>
 
-*Defined in [actions.ts:121](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L121)*
+*Defined in [actions.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L119)*
 
 **Parameters:**
 
@@ -360,7 +359,7 @@ ___
 
 ▸ **contextClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L58)*
+*Defined in [actions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L57)*
 
 **Parameters:**
 
@@ -467,7 +466,7 @@ ___
 
 ▸ **doubleClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L65)*
+*Defined in [actions.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L64)*
 
 **Parameters:**
 
@@ -624,7 +623,7 @@ ___
 
 ▸ **hover**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L73)*
+*Defined in [actions.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L72)*
 
 **Parameters:**
 
@@ -728,7 +727,7 @@ ___
 
 ▸ **pressKey**(key: *`string`*): `(Anonymous function)`
 
-*Defined in [actions.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L80)*
+*Defined in [actions.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L79)*
 
 **Parameters:**
 
@@ -831,7 +830,7 @@ ___
 
 ▸ **scrollTo**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [actions.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L95)*
+*Defined in [actions.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L94)*
 
 **Parameters:**
 
@@ -867,7 +866,7 @@ ___
 
 ▸ **sendKeys**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [actions.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L102)*
+*Defined in [actions.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L100)*
 
 **Parameters:**
 
@@ -921,7 +920,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [actions.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L111)*
+*Defined in [actions.ts:109](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L109)*
 
 **Parameters:**
 
@@ -936,16 +935,15 @@ ___
 
 ###  setValueByJs
 
-▸ **setValueByJs**(element: *[Element](../classes/element.md)*, driver: *[Driver](../classes/driver.md)*, value: * `string` &#124; `number`*): `Promise`<`void`>
+▸ **setValueByJs**(element: *[Element](../classes/element.md)*, value: * `string` &#124; `number`*): `Promise`<`void`>
 
-*Defined in [actions.ts:127](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L127)*
+*Defined in [actions.ts:125](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/actions.ts#L125)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | element | [Element](../classes/element.md) |
-| driver | [Driver](../classes/driver.md) |
 | value |  `string` &#124; `number`|
 
 **Returns:** `Promise`<`void`>
