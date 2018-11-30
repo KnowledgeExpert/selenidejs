@@ -13,14 +13,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-var collection_1 = require("./collection");
-exports.Collection = collection_1.Collection;
+const element_1 = require("./element");
+const PublicElement = element_1.Element;
+exports.Element = PublicElement;
+const collection_1 = require("./collection");
+const PublicCollection = collection_1.Collection;
+exports.Collection = PublicCollection;
 var configuration_1 = require("./configuration");
 exports.Configuration = configuration_1.Configuration;
 var driver_1 = require("./driver");
 exports.Driver = driver_1.Driver;
-var element_1 = require("./element");
-exports.Element = element_1.Element;
 var condition_1 = require("./condition");
 exports.Condition = condition_1.Condition;
 var browser_1 = require("./browser");

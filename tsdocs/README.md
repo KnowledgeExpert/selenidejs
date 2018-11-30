@@ -45,9 +45,15 @@
 
 * [AfterElementActionHook](#afterelementactionhook)
 * [BeforeElementActionHook](#beforeelementactionhook)
+* [OmitKey](#omitkey)
 * [OnCollectionFailureHook](#oncollectionfailurehook)
 * [OnElementFailureHook](#onelementfailurehook)
 * [OnFailureHook](#onfailurehook)
+
+### Variables
+
+* [PublicCollection](#publiccollection)
+* [PublicElement](#publicelement)
 
 ### Functions
 
@@ -101,6 +107,15 @@ ___
 | actionName | `string` |
 
 **Returns:**  `void` &#124; `Promise`<`void`>
+
+___
+<a id="omitkey"></a>
+
+###  OmitKey
+
+**Ƭ OmitKey**: *`Pick`<`T`, `Exclude`<`keyof T`, `K`>>*
+
+*Defined in [index.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/index.ts#L17)*
 
 ___
 <a id="oncollectionfailurehook"></a>
@@ -166,6 +181,45 @@ ___
 | driver | [Driver](classes/driver.md) |
 
 **Returns:**  `void` &#124; `Promise`<`void`>
+
+___
+
+## Variables
+
+<a id="publiccollection"></a>
+
+### `<Const>` PublicCollection
+
+**● PublicCollection**: *`object`* =  Collection as any as {new (): OmitKey<Collection, 'driver'>;}
+
+*Defined in [index.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/index.ts#L24)*
+
+#### Type declaration
+
+ constructor : function
+⊕ **new __type**(): [OmitKey](#omitkey)<[Collection](classes/collection.md), "driver">
+
+*Defined in [index.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/index.ts#L24)*
+
+**Returns:** [OmitKey](#omitkey)<[Collection](classes/collection.md), "driver">
+
+___
+<a id="publicelement"></a>
+
+### `<Const>` PublicElement
+
+**● PublicElement**: *`object`* =  Element as any as {new (): OmitKey<Element, 'driver'>;}
+
+*Defined in [index.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/index.ts#L20)*
+
+#### Type declaration
+
+ constructor : function
+⊕ **new __type**(): [OmitKey](#omitkey)<[Element](classes/element.md), "driver">
+
+*Defined in [index.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/index.ts#L20)*
+
+**Returns:** [OmitKey](#omitkey)<[Element](classes/element.md), "driver">
 
 ___
 

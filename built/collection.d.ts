@@ -4,7 +4,7 @@ import { Driver } from './driver';
 import { Element } from './element';
 import { Locator } from './locators/locator';
 export declare class Collection {
-    private readonly driver;
+    readonly driver: Driver;
     private readonly locator;
     private readonly wait;
     constructor(locator: Locator<Promise<WebElement[]>> | Locator<WebElement[]>, driver: Driver);

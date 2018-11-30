@@ -5,7 +5,7 @@ import { Driver } from './driver';
 import { Locator } from './locators/locator';
 import { SearchContext } from './locators/searchContext';
 export declare class Element implements SearchContext {
-    private readonly driver;
+    readonly driver: Driver;
     private readonly locator;
     private readonly wait;
     constructor(locator: Locator<Promise<WebElement>> | Locator<WebElement>, driver: Driver);

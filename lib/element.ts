@@ -27,8 +27,7 @@ import { Wait } from './wait';
 
 export class Element implements SearchContext {
 
-    // @ts-ignore
-    private readonly driver: Driver;
+    readonly driver: Driver;
     private readonly locator: Locator<Promise<WebElement>> | Locator<WebElement>;
     private readonly wait: Wait<Element>;
 

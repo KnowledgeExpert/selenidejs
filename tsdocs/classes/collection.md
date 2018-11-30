@@ -60,7 +60,7 @@ ___
 
 <a id="driver"></a>
 
-### `<Private>` driver
+###  driver
 
 **● driver**: *[Driver](driver.md)*
 

@@ -12,10 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { Collection } from './collection';
+/* tslint:disable */
+
+type OmitKey<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
+import { Element } from './element';
+const PublicElement = Element as any as {new (): OmitKey<Element, 'driver'>;};
+export { PublicElement as Element };
+
+import { Collection } from './collection';
+const PublicCollection = Collection as any as {new (): OmitKey<Collection, 'driver'>;};
+export { PublicCollection as Collection };
+
 export { Configuration } from './configuration';
 export { Driver } from './driver';
-export { Element } from './element';
 export { Condition } from './condition';
 export { Browser } from './browser';
 export { Wait } from './wait';

@@ -1,7 +1,11 @@
-export { Collection } from './collection';
+import { Element } from './element';
+declare const PublicElement: new () => Pick<Element, "click" | "setValue" | "sendKeys" | "doubleClick" | "hover" | "contextClick" | "pressEnter" | "pressEscape" | "pressTab" | "pressKey" | "scrollTo" | "innerHtml" | "outerHtml" | "value" | "should" | "shouldNot" | "is" | "isNot" | "isVisible" | "isPresent" | "isFocused" | "executeScript" | "text" | "hasAttribute" | "attribute" | "getWebElement" | "parent" | "followingSibling" | "element" | "all" | "equals" | "findElements" | "findElement" | "toString">;
+export { PublicElement as Element };
+import { Collection } from './collection';
+declare const PublicCollection: new () => Pick<Collection, "should" | "shouldNot" | "is" | "isNot" | "toString" | "get" | "first" | "filter" | "filterBy" | "findBy" | "size" | "getWebElements">;
+export { PublicCollection as Collection };
 export { Configuration } from './configuration';
 export { Driver } from './driver';
-export { Element } from './element';
 export { Condition } from './condition';
 export { Browser } from './browser';
 export { Wait } from './wait';
