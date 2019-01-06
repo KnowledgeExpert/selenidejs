@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Browser } from '../../lib/index';
+import { Selenide } from '../../lib/index';
 import { TestUtils } from './testUtils';
 import { When } from './when';
 
@@ -20,7 +20,7 @@ import { When } from './when';
 export namespace Given {
 
     export async function openedEmptyPage() {
-        await Browser.get(TestUtils.resourcesUrl() + 'empty.html');
+        await Selenide.get(TestUtils.resourcesUrl() + 'empty.html');
     }
 
     export async function openedEmptyPageWithJquery() {
@@ -39,11 +39,12 @@ export namespace Given {
     }
 
     async function addJquery() {
-        await Browser.executeScript(`
+        await Selenide.executeScript(`
             var script = document.createElement('script');
             script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js";
             document.getElementsByTagName('head')[0].appendChild(script);
         `);
+        // noinspection TsLint
         await TestUtils.sleep(500);
     }
 

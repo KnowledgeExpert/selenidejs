@@ -17,3 +17,12 @@ export class ConditionDoesNotMatchError extends Error {
         super(message);
     }
 }
+
+export class FailedToMatchConditionWithReasonError extends ConditionDoesNotMatchError {
+    constructor(expected: string, reason: Error) {
+        super(`
+            Failed to match: ${expected}
+            Reason: ${reason}`
+        );
+    }
+}

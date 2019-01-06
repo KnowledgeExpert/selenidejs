@@ -34,7 +34,8 @@ export namespace TestUtils {
     }
 
     export function buildWebDriver(browserName = 'chrome',
-                                   remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
+                                   remoteUrl = 'http://217.73.84.220:4444/wd/hub'): WebDriver {
+                                   // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
         return new Builder()
             .withCapabilities({enableVNC: true, browserName: 'chrome'})
             .usingServer(remoteUrl)

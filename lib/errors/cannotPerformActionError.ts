@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// todo: use or not to use? :)
 export class CannotPerformActionError extends Error {
     constructor(message: string) {
         super(message);

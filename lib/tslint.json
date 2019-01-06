@@ -6,6 +6,9 @@
     ]
   },
   "rules": {
+    "no-trailing-whitespace": false,
+    "ordered-imports": false,
+    "max-classes-per-file": false,
     "adjacent-overload-signatures": true,
     "member-access": [
       true,
@@ -141,7 +144,7 @@
     ],
     "space-before-function-paren": [
       true,
-      "never"
+      {"anonymous": "always", "named": "never", "asyncArrow": "always"}
     ],
     "space-within-parens": true,
     "switch-final-break": [

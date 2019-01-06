@@ -15,17 +15,17 @@
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-import { Browser } from '../../lib/baseEntities/browser';
+import { Selenide } from '../../lib';
 import { TestUtils } from '../utils/testUtils';
 
 beforeAll(async () => {
-    Browser.setDriver(TestUtils.buildWebDriver());
-    Browser.config.onFailureHooks = [];
+    Selenide.setDriver(TestUtils.buildWebDriver());
+    Selenide.configuration.onFailureHooks = [];
     TestUtils.startServer();
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 });
 
 afterAll(async () => {
-    await Browser.quit();
+    await Selenide.quit();
     TestUtils.shutdownServer();
 });

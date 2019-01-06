@@ -12,20 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { Browser } from './baseEntities/browser';
-export { Collection } from './baseEntities/collection';
-export { Configuration } from './baseEntities/configuration';
-export { Driver } from './baseEntities/driver';
-export { Element } from './baseEntities/element';
-export { Wait } from './baseEntities/wait';
+export { Selenide } from './selenide';
+export { Collection } from './collection';
+export { Configuration } from './configuration';
+export { Browser } from './browser';
+export { Element } from './element';
+export { Wait, Condition } from './wait';
 
-export { Condition } from './conditions/condition';
-export { CollectionCondition } from './conditions/collectionCondition';
-export { DriverCondition } from './conditions/driverCondition';
-export { ElementCondition } from './conditions/elementCondition';
-export { be } from './conditions/helpers/be';
-export { have } from './conditions/helpers/have';
+export { CollectionCondition } from './conditions';
+export { BrowserCondition } from './conditions';
+export { ElementCondition } from './conditions';
+export { be } from './support/conditions/be';
+export { have } from './support/conditions/have';
 
-export { With } from './locators/with';
-
-export { By, WebElement, WebElementPromise } from 'selenium-webdriver';
+export { With } from './support/selectors/with';

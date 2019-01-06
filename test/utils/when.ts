@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Browser } from '../../lib/index';
+import { Selenide } from '../../lib/index';
 
 
 export namespace When {
 
     export async function withBody(html: string) {
-        await Browser.executeScript(`document.getElementsByTagName("body")[0].innerHTML=\`${html.replace('\n', '')}\`;`);
+        await Selenide.executeScript(`document.getElementsByTagName("body")[0].innerHTML=\`${html.replace('\n', '')}\`;`);
     }
 
     export async function withBodyTimedOut(html: string, timeout: number) {
