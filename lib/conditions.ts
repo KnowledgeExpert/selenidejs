@@ -105,6 +105,12 @@ export namespace Conditions { // todo: change to ElementCondition ?
         export const isSelected: ElementCondition =
             hasAttribute('elementIsSelected');
 
+        export const isEnabled: ElementCondition =
+            described('is enabled', query.element.isEnabled);
+
+        export const isDisabled: ElementCondition =
+            Condition.not(isEnabled, 'is disabled');
+
         export const isPresent: ElementCondition =
             described('is present', async (element: Element) =>
                 !!(await element.getWebElement())

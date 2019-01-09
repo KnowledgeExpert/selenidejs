@@ -20,6 +20,11 @@ export type Query<T, R> = (entity: T) => Promise<R>;
 export type Command<T> = Query<T, void>;
 
 export type Condition<T> = Query<T, boolean>;
+/*
+ * todo: here, condition is just a predicate... i.e. (entity: T) => Promise<boolean>
+ *     but in fact, we mean under condition - (entity: T) => Promise<boolean | throws>
+ *     should we refactor it to at least be as (entity: T) => Promise<boolean | Error> ?
+ */
 
 export namespace Condition {
     export const not = <T>(condition: Condition<T>, description?: string) => {

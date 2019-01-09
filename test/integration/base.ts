@@ -18,17 +18,24 @@
 import { Browser, Configuration } from '../../lib';
 import { TestUtils } from '../utils/testUtils';
 import { Gherkin } from '../utils/gherkin';
+import { By, WebDriver } from 'selenium-webdriver';
 
 export let browser: Browser;
+export let driver: WebDriver;
 // export const GIVEN = new Gherkin(browser);
 // export const WHEN = GIVEN;
 export let GIVEN: Gherkin;
 export let WHEN: Gherkin;
 
 export namespace data.timeouts {
-    export const smallerThanDefault = 500;
-    export const byDefault = 750;
-    export const biggerThanDefault = 1000;
+    export const byDefault = 2000;
+    export const step = 1000;
+    export const smallerThanDefault = byDefault - step;
+    export const biggerThanDefault = byDefault + step;
+}
+
+export function webelement(cssSelector: string) {
+    return driver.findElement(By.css(cssSelector));
 }
 
 beforeAll(async () => {
@@ -36,6 +43,7 @@ beforeAll(async () => {
         driver: TestUtils.buildWebDriver(),
         timeout: data.timeouts.byDefault
     }));
+    driver = browser.configuration.driver;
     GIVEN = new Gherkin(browser);
     WHEN = GIVEN;
     TestUtils.startServer();

@@ -96,18 +96,19 @@ class Element {
      *          - but maybe not:) maybe wait.* should fail on false... but maybe not:) depends)
      */
     async should(condition, timeout = this.configuration.timeout) {
-        this.wait.until(condition, timeout);
+        // await this.wait.until(condition, timeout);
+        await this.wait.query(condition, timeout);
         return this;
     }
     async shouldNot(condition, timeout) {
-        this.should(wait_1.Condition.not(condition), timeout);
+        await this.should(wait_1.Condition.not(condition), timeout);
         return this;
     }
     async waitUntil(condition, timeout = this.configuration.timeout) {
         return this.wait.until(condition, timeout);
     }
     async waitUntilNot(condition, timeout = this.configuration.timeout) {
-        return this.wait.until(wait_1.Condition.not(condition), timeout);
+        return this.waitUntil(wait_1.Condition.not(condition), timeout);
     }
     /*
      * todo: problem with this is we originally have Promise<true | false>, then make it Promise<true | throws Error>,

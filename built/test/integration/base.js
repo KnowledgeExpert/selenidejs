@@ -18,20 +18,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const lib_1 = require("../../lib");
 const testUtils_1 = require("../utils/testUtils");
 const gherkin_1 = require("../utils/gherkin");
+const selenium_webdriver_1 = require("selenium-webdriver");
 var data;
 (function (data) {
     var timeouts;
     (function (timeouts) {
-        timeouts.smallerThanDefault = 500;
-        timeouts.byDefault = 750;
-        timeouts.biggerThanDefault = 1000;
+        timeouts.byDefault = 2000;
+        timeouts.step = 1000;
+        timeouts.smallerThanDefault = timeouts.byDefault - timeouts.step;
+        timeouts.biggerThanDefault = timeouts.byDefault + timeouts.step;
     })(timeouts = data.timeouts || (data.timeouts = {}));
 })(data = exports.data || (exports.data = {}));
+function webelement(cssSelector) {
+    return exports.driver.findElement(selenium_webdriver_1.By.css(cssSelector));
+}
+exports.webelement = webelement;
 beforeAll(async () => {
     exports.browser = new lib_1.Browser(new lib_1.Configuration({
         driver: testUtils_1.TestUtils.buildWebDriver(),
         timeout: data.timeouts.byDefault
     }));
+    exports.driver = exports.browser.configuration.driver;
     exports.GIVEN = new gherkin_1.Gherkin(exports.browser);
     exports.WHEN = exports.GIVEN;
     testUtils_1.TestUtils.startServer();

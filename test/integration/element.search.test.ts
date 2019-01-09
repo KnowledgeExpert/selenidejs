@@ -14,9 +14,6 @@
 
 import { browser, GIVEN, data, WHEN } from './base';
 import { be } from '../../lib';
-import { By } from 'selenium-webdriver';
-
-/* tslint:disable:no-magic-numbers */
 
 describe('Element search', () => {
 

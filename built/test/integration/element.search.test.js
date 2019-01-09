@@ -15,7 +15,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./base");
 const lib_1 = require("../../lib");
-/* tslint:disable:no-magic-numbers */
 describe('Element search', () => {
     it('should not perform actual search on creation', async () => {
         const element = base_1.browser.element('#not-existing-element');
@@ -55,4 +54,4 @@ describe('Element search', () => {
             .catch(async (error) => expect(await base_1.browser.url()).not.toContain('second'));
     });
 });
-//# sourceMappingURL=elementSearch.test.js.map
+//# sourceMappingURL=element.search.test.js.map

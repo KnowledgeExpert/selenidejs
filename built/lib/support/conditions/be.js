@@ -23,5 +23,7 @@ var be;
     be.visible = conditions_1.Conditions.element.isVisible;
     be.hidden = conditions_1.Conditions.element.isHidden;
     be.focused = conditions_1.Conditions.element.isFocused;
+    be.enabled = conditions_1.Conditions.element.isEnabled;
+    be.disabled = conditions_1.Conditions.element.isDisabled;
 })(be = exports.be || (exports.be = {}));
 //# sourceMappingURL=be.js.map

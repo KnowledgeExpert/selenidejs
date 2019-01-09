@@ -22,10 +22,14 @@ var query;
     // and leave this code here just for example
     let element;
     (function (element_1) {
-        function isVisible(element) {
-            return element.getWebElement().then(it => it.isDisplayed());
+        async function isVisible(element) {
+            return (await element.getWebElement()).isDisplayed();
         }
         element_1.isVisible = isVisible;
+        async function isEnabled(element) {
+            return (await element.getWebElement()).isEnabled();
+        }
+        element_1.isEnabled = isEnabled;
         async function text(element) {
             return (await element.getWebElement()).getText();
         }

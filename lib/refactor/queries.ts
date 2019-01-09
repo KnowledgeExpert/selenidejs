@@ -26,8 +26,12 @@ export namespace query { // todo: do we really need this separation?
 // maybe we can decide on this later...
 // and leave this code here just for example
     export namespace element {
-        export function isVisible(element: Element) {
-            return element.getWebElement().then(it => it.isDisplayed());
+        export async function isVisible(element: Element) {
+            return (await element.getWebElement()).isDisplayed();
+        }
+
+        export async function isEnabled(element: Element) {
+            return (await element.getWebElement()).isEnabled();
         }
 
         export async function text(element: Element) {

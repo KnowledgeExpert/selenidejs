@@ -120,12 +120,13 @@ export class Element implements SearchContext {
      */
 
     async should(condition: ElementCondition, timeout: number = this.configuration.timeout): Promise<Element> {
-        this.wait.until(condition, timeout);
+        // await this.wait.until(condition, timeout);
+        await this.wait.query(condition, timeout);
         return this;
     }
 
     async shouldNot(condition: ElementCondition, timeout?: number): Promise<Element> {
-        this.should(Condition.not(condition), timeout);
+        await this.should(Condition.not(condition), timeout);
         return this;
     }
 
@@ -134,7 +135,7 @@ export class Element implements SearchContext {
     }
 
     async waitUntilNot(condition: ElementCondition, timeout: number = this.configuration.timeout): Promise<boolean> {
-        return this.wait.until(Condition.not(condition), timeout);
+        return this.waitUntil(Condition.not(condition), timeout);
     }
 
     /*

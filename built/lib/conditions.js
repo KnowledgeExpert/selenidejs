@@ -86,6 +86,8 @@ var Conditions;
         }
         element_1.hasVisibleElement = hasVisibleElement;
         element_1.isSelected = hasAttribute('elementIsSelected');
+        element_1.isEnabled = described('is enabled', queries_1.query.element.isEnabled);
+        element_1.isDisabled = wait_1.Condition.not(element_1.isEnabled, 'is disabled');
         element_1.isPresent = described('is present', async (element) => !!(await element.getWebElement()));
         element_1.isAbsent = wait_1.Condition.not(element_1.isPresent, 'is absent');
         element_1.isFocused = described('is focused', async (element) => selenium_webdriver_1.WebElement.equals(await element.executeScript('return document.activeElement'), await element.getWebElement()));

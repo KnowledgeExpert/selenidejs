@@ -27,4 +27,8 @@ export namespace be {
     export const hidden: ElementCondition = Conditions.element.isHidden;
 
     export const focused: ElementCondition = Conditions.element.isFocused;
+
+    export const enabled: ElementCondition = Conditions.element.isEnabled;
+
+    export const disabled: ElementCondition = Conditions.element.isDisabled;
 }

@@ -12,6 +12,8 @@ export declare namespace Conditions {
         const isHidden: ElementCondition;
         function hasVisibleElement(by: By): ElementCondition;
         const isSelected: ElementCondition;
+        const isEnabled: ElementCondition;
+        const isDisabled: ElementCondition;
         const isPresent: ElementCondition;
         const isAbsent: ElementCondition;
         const isFocused: ElementCondition;

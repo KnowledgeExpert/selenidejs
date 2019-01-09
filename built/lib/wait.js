@@ -14,6 +14,11 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const timeoutError_1 = require("./errors/timeoutError");
+/*
+ * todo: here, condition is just a predicate... i.e. (entity: T) => Promise<boolean>
+ *     but in fact, we mean under condition - (entity: T) => Promise<boolean | throws>
+ *     should we refactor it to at least be as (entity: T) => Promise<boolean | Error> ?
+ */
 var Condition;
 (function (Condition) {
     Condition.not = (condition, description) => {
