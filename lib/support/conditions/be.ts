@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Conditions } from '../../conditions'; // DO NOT DELETE THIS LINE!
-import { ElementCondition } from '../../conditions'; // DO NOT DELETE THIS LINE! // todo: consider delete
+// todo: consider delete
+import { Conditions, ElementCondition } from '../../conditions'; // DO NOT DELETE THIS LINE!
 
 export namespace be {
     export const selected: ElementCondition = Conditions.element.isSelected;

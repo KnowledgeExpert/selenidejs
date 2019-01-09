@@ -1,4 +1,3 @@
-export { Selenide } from './selenide';
 export { Collection } from './collection';
 export { Configuration } from './configuration';
 export { Browser } from './browser';

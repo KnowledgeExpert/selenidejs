@@ -68,7 +68,7 @@ class Browser {
         return this.wait.until(wait_1.Condition.not(condition), timeout);
     }
     async matches(condition) {
-        return wait_1.Condition.toBoolean(condition).call(this);
+        return wait_1.Condition.toBoolean(condition)(this);
     }
     async matchesNot(condition) {
         return this.matches(wait_1.Condition.not(condition));

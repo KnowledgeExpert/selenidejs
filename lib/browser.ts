@@ -93,7 +93,7 @@ export class Browser implements SearchContext {
     }
 
     async matches(condition: BrowserCondition): Promise<boolean> {
-        return Condition.toBoolean(condition).call(this);
+        return Condition.toBoolean(condition)(this);
     }
 
     async matchesNot(condition: BrowserCondition): Promise<boolean> {

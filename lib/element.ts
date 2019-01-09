@@ -53,7 +53,8 @@ export class Element implements SearchContext {
     }
 
     async getWebElement(): Promise<WebElement> {
-        return this.locator.find();
+        const res = await this.locator.find();
+        return res;
     }
 
     /* SearchContext */
@@ -137,8 +138,12 @@ export class Element implements SearchContext {
         return this.wait.until(Condition.not(condition), timeout);
     }
 
+    /*
+     * todo: problem with this is we originally have Promise<true | false>, then make it Promise<true | throws Error>,
+     * and then again Promise<true | false>
+     */
     async matches(condition: ElementCondition): Promise<boolean> {
-        return Condition.toBoolean(condition).call(this);
+        return Condition.toBoolean(condition)(this);
     }
 
     async matchesNot(condition: ElementCondition): Promise<boolean> {
@@ -156,8 +161,14 @@ export class Element implements SearchContext {
 
     @ElementActionHooks
     async click() {
-        this.wait.command(element =>
-            element.getWebElement().then(it => it.click()));
+        await this.wait.command(async element => {
+
+            /* tslint:disable:no-console */
+            console.log('\nclick...');
+
+            await (await element.getWebElement()).click();
+            // return element.getWebElement().then(it => it.click());
+        });
         return this;
         /*
             todo: see comments in wait.ts impl.

@@ -17,14 +17,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* tslint:disable:no-magic-numbers */
 const lib_1 = require("../../lib");
 const testUtils_1 = require("../utils/testUtils");
+const gherkin_1 = require("../utils/gherkin");
 beforeAll(async () => {
-    lib_1.Selenide.setDriver(testUtils_1.TestUtils.buildWebDriver());
-    lib_1.Selenide.configuration.onFailureHooks = [];
+    exports.browser = new lib_1.Browser(new lib_1.Configuration({
+        driver: testUtils_1.TestUtils.buildWebDriver(),
+        timeout: 500
+    }));
+    exports.GIVEN = new gherkin_1.Gherkin(exports.browser);
+    exports.WHEN = exports.GIVEN;
     testUtils_1.TestUtils.startServer();
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 });
 afterAll(async () => {
-    await lib_1.Selenide.quit();
+    exports.browser.quit();
     testUtils_1.TestUtils.shutdownServer();
 });
 //# sourceMappingURL=base.js.map

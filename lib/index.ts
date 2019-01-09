@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { Selenide } from './selenide';
 export { Collection } from './collection';
 export { Configuration } from './configuration';
 export { Browser } from './browser';

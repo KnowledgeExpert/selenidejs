@@ -46,9 +46,18 @@ var Conditions;
         predicate.equalsByContainsToArray = predicate.arrayCompareBy(predicate.includes);
     })(predicate || (predicate = {}));
     function described(description, predicate) {
-        const condition = (entity) => predicate(entity).catch(error => {
-            throw new conditionDoesNotMatchError_1.FailedToMatchConditionWithReasonError(description, error);
-        });
+        const condition = async (entity) => {
+            try {
+                const value = await predicate(entity);
+                if (!value) {
+                    throw new Error('false');
+                }
+                return value;
+            }
+            catch (error) {
+                throw new conditionDoesNotMatchError_1.FailedToMatchConditionWithReasonError(description, error);
+            }
+        };
         condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
         return condition;
     }
@@ -79,15 +88,15 @@ var Conditions;
         }
         element_1.hasExactText = hasExactText;
         function hasAttributeWithValue(name, value) {
-            return described(`has attribute '${name}' with value '${value}'`, async (element) => queries_1.query.element.attribute(name).call(element).then(throwIfNot('actual value', predicate.equals(value))));
+            return described(`has attribute '${name}' with value '${value}'`, async (element) => queries_1.query.element.attribute(name)(element).then(throwIfNot('actual value', predicate.equals(value))));
         }
         element_1.hasAttributeWithValue = hasAttributeWithValue;
         function hasAttributeWithValueContaining(name, partialValue) {
-            return described(`has attribute '${name}' with value '${partialValue}'`, async (element) => queries_1.query.element.attribute(name).call(element).then(throwIfNot('actual value', predicate.includes(partialValue))));
+            return described(`has attribute '${name}' with value '${partialValue}'`, async (element) => queries_1.query.element.attribute(name)(element).then(throwIfNot('actual value', predicate.includes(partialValue))));
         }
         element_1.hasAttributeWithValueContaining = hasAttributeWithValueContaining;
         function hasCssClass(cssClass) {
-            return described(`has css class '${cssClass}'`, async (element) => queries_1.query.element.attribute('class').call(element).then(throwIfNot('actual class attribute value', predicate.includesWord(cssClass))));
+            return described(`has css class '${cssClass}'`, async (element) => queries_1.query.element.attribute('class')(element).then(throwIfNot('actual class attribute value', predicate.includesWord(cssClass))));
         }
         element_1.hasCssClass = hasCssClass;
     })(element = Conditions.element || (Conditions.element = {}));

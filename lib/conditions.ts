@@ -56,9 +56,17 @@ export namespace Conditions { // todo: change to ElementCondition ?
     }
 
     function described<E>(description: string, predicate: Condition<E>) {
-        const condition = (entity: E) => predicate(entity).catch(error => {
+        const condition = async (entity: E) => {
+            try {
+                const value = await predicate(entity);
+                if (!value) {
+                    throw new Error('false');
+                }
+                return value;
+            } catch (error) {
                 throw new FailedToMatchConditionWithReasonError(description, error);
-        });
+            }
+        };
         condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
         return condition;
     }
@@ -122,7 +130,7 @@ export namespace Conditions { // todo: change to ElementCondition ?
 
         export function hasAttributeWithValue(name: string, value: string): ElementCondition {
             return described(`has attribute '${name}' with value '${value}'`, async (element: Element) =>
-                query.element.attribute(name).call(element).then(
+                query.element.attribute(name)(element).then(
                     throwIfNot('actual value', predicate.equals(value))
                 )
             );
@@ -130,7 +138,7 @@ export namespace Conditions { // todo: change to ElementCondition ?
 
         export function hasAttributeWithValueContaining(name: string, partialValue: string): ElementCondition {
             return described(`has attribute '${name}' with value '${partialValue}'`, async (element: Element) =>
-                query.element.attribute(name).call(element).then(
+                query.element.attribute(name)(element).then(
                     throwIfNot('actual value', predicate.includes(partialValue))
                 )
             );
@@ -138,7 +146,7 @@ export namespace Conditions { // todo: change to ElementCondition ?
 
         export function hasCssClass(cssClass: string): ElementCondition {
             return described(`has css class '${cssClass}'`, async (element: Element) =>
-                query.element.attribute('class').call(element).then(
+                query.element.attribute('class')(element).then(
                     throwIfNot('actual class attribute value', predicate.includesWord(cssClass))
                 )
             );

@@ -33,9 +33,12 @@ export namespace TestUtils {
         return 'http://localhost:4444/';
     }
 
-    export function buildWebDriver(browserName = 'chrome',
-                                   remoteUrl = 'http://217.73.84.220:4444/wd/hub'): WebDriver {
-                                   // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
+    export function buildWebDriver(
+        browserName = 'chrome',
+        // remoteUrl = 'http://217.73.84.220:4444/wd/hub'): WebDriver {
+        // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
+        remoteUrl = 'http://ggrname:ggrpassword@li239-162.members.linode.com:4444/wd/hub'
+    ): WebDriver {
         return new Builder()
             .withCapabilities({enableVNC: true, browserName: 'chrome'})
             .usingServer(remoteUrl)

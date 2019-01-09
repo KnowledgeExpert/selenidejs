@@ -15,17 +15,28 @@
 /* tslint:disable:space-before-function-paren */
 /* tslint:disable:no-magic-numbers */
 
-import { Selenide } from '../../lib';
+import { Browser, Configuration } from '../../lib';
 import { TestUtils } from '../utils/testUtils';
+import { Gherkin } from '../utils/gherkin';
+
+export let browser: Browser;
+// export const GIVEN = new Gherkin(browser);
+// export const WHEN = GIVEN;
+export let GIVEN: Gherkin;
+export let WHEN: Gherkin;
 
 beforeAll(async () => {
-    Selenide.setDriver(TestUtils.buildWebDriver());
-    Selenide.configuration.onFailureHooks = [];
+    browser = new Browser(new Configuration({
+        driver: TestUtils.buildWebDriver(),
+        timeout: 500
+    }));
+    GIVEN = new Gherkin(browser);
+    WHEN = GIVEN;
     TestUtils.startServer();
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 });
 
 afterAll(async () => {
-    await Selenide.quit();
+    browser.quit();
     TestUtils.shutdownServer();
 });

@@ -61,11 +61,17 @@ export class Wait<T> {
 
         while (true) {
             try {
-                return await fn(this.entity);
+
+                /* tslint:disable:no-console */
+                console.log('\ntrying to...');
+                const res = await fn(this.entity);
+                return res;
             } catch (error) {
                 if (new Date().getTime() > finishTime) {
-                    throw new TimeoutError(
-                        `Timed out after ${timeout}ms, 
+                    /* tslint:disable:no-console */
+                    console.log('\ntimeout is over');
+                    throw new TimeoutError(`
+                        Timed out after ${timeout}ms, 
                         while waiting for ${this.entity.toString()},
                         reason: ${error.message}`
                         /*

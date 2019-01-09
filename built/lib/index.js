@@ -13,8 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-var selenide_1 = require("./selenide");
-exports.Selenide = selenide_1.Selenide;
 var collection_1 = require("./collection");
 exports.Collection = collection_1.Collection;
 var configuration_1 = require("./configuration");

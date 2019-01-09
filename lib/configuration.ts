@@ -20,6 +20,15 @@ import { OnFailureHook } from './refactor/onFailureHook';
 // todo: should we break it down into separate configurations - for element, browser, collection?
 export class Configuration {
     static shared: Configuration = new Configuration();
+    // todo: consider adding configuration builder, for something like:
+    /*
+     * browser = new Browser(Configuration.with().driver(driver).timeout(5000).build())
+     * or
+     * browser = new Browser(Configuration.withDriver(driver).timeout(5000).build())
+     * since without driver, configuration is useless...
+     * maybe even this should be the only way to do it...
+     * then driver - can be made readonly...
+     */
 
     // todo: should we make them readonly?
     timeout: number                 = 4000;

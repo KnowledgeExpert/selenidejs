@@ -62,7 +62,7 @@ export class Collection {
     }
 
     async matches(condition: CollectionCondition): Promise<boolean> {
-        return Condition.toBoolean(condition).call(this);
+        return Condition.toBoolean(condition)(this);
     }
 
     async matchesNot(condition: CollectionCondition): Promise<boolean> {

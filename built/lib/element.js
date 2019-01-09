@@ -41,7 +41,8 @@ class Element {
         return this.locator.toString();
     }
     async getWebElement() {
-        return this.locator.find();
+        const res = await this.locator.find();
+        return res;
     }
     /* SearchContext */
     async findWebElement(by) {
@@ -109,8 +110,12 @@ class Element {
     async waitUntilNot(condition, timeout = this.configuration.timeout) {
         return this.wait.until(wait_1.Condition.not(condition), timeout);
     }
+    /*
+     * todo: problem with this is we originally have Promise<true | false>, then make it Promise<true | throws Error>,
+     * and then again Promise<true | false>
+     */
     async matches(condition) {
-        return wait_1.Condition.toBoolean(condition).call(this);
+        return wait_1.Condition.toBoolean(condition)(this);
     }
     async matchesNot(condition) {
         return this.matches(wait_1.Condition.not(condition));
@@ -120,7 +125,12 @@ class Element {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async click() {
-        this.wait.command(element => element.getWebElement().then(it => it.click()));
+        await this.wait.command(async (element) => {
+            /* tslint:disable:no-console */
+            console.log('\nclick...');
+            await (await element.getWebElement()).click();
+            // return element.getWebElement().then(it => it.click());
+        });
         return this;
         /*
             todo: see comments in wait.ts impl.
