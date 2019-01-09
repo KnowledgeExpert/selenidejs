@@ -43,6 +43,6 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-    browser.quit();
+    await browser.quit();
     TestUtils.shutdownServer();
 });

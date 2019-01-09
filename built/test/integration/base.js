@@ -38,7 +38,7 @@ beforeAll(async () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 });
 afterAll(async () => {
-    exports.browser.quit();
+    await exports.browser.quit();
     testUtils_1.TestUtils.shutdownServer();
 });
 //# sourceMappingURL=base.js.map

@@ -13,16 +13,15 @@
 // limitations under the License.
 
 import * as child_process from 'child_process';
-import { Builder, WebDriver } from 'selenium-webdriver';
+import { Builder, Capabilities, WebDriver } from 'selenium-webdriver';
 
 
 export namespace TestUtils {
 
-    const serverPort = 4445;
     let server: child_process.ChildProcess;
 
     export function startServer() {
-        server = child_process.spawn(`npm run startserver -- --p ${serverPort}`, [], {shell: true});
+        server = child_process.spawn('npm run startserver', [], {shell: true});
     }
 
     export function shutdownServer() {
@@ -30,19 +29,11 @@ export namespace TestUtils {
     }
 
     export function resourcesUrl(): string {
-        return 'http://localhost:4444/';
+        return 'http://localhost:4445/';
     }
 
-    export function buildWebDriver(
-        browserName = 'chrome',
-        // remoteUrl = 'http://217.73.84.220:4444/wd/hub'): WebDriver {
-        // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
-        remoteUrl = 'http://ggrname:ggrpassword@li239-162.members.linode.com:4444/wd/hub'
-    ): WebDriver {
-        return new Builder()
-            .withCapabilities({enableVNC: true, browserName: 'chrome'})
-            .usingServer(remoteUrl)
-            .build();
+    export function buildWebDriver(): WebDriver {
+        return new Builder().withCapabilities(Capabilities.chrome()).build();
     }
 
     export async function sleep(ms: number) {

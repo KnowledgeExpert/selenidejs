@@ -17,10 +17,9 @@ const child_process = require("child_process");
 const selenium_webdriver_1 = require("selenium-webdriver");
 var TestUtils;
 (function (TestUtils) {
-    const serverPort = 4445;
     let server;
     function startServer() {
-        server = child_process.spawn(`npm run startserver -- --p ${serverPort}`, [], { shell: true });
+        server = child_process.spawn('npm run startserver', [], { shell: true });
     }
     TestUtils.startServer = startServer;
     function shutdownServer() {
@@ -28,17 +27,11 @@ var TestUtils;
     }
     TestUtils.shutdownServer = shutdownServer;
     function resourcesUrl() {
-        return 'http://localhost:4444/';
+        return 'http://localhost:4445/';
     }
     TestUtils.resourcesUrl = resourcesUrl;
-    function buildWebDriver(browserName = 'chrome', 
-    // remoteUrl = 'http://217.73.84.220:4444/wd/hub'): WebDriver {
-    // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
-    remoteUrl = 'http://ggrname:ggrpassword@li239-162.members.linode.com:4444/wd/hub') {
-        return new selenium_webdriver_1.Builder()
-            .withCapabilities({ enableVNC: true, browserName: 'chrome' })
-            .usingServer(remoteUrl)
-            .build();
+    function buildWebDriver() {
+        return new selenium_webdriver_1.Builder().withCapabilities(selenium_webdriver_1.Capabilities.chrome()).build();
     }
     TestUtils.buildWebDriver = buildWebDriver;
     async function sleep(ms) {
