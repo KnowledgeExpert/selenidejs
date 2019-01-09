@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, WHEN } from './base';
+import { browser, GIVEN, data, WHEN } from './base';
 import { be } from '../../lib';
+import { By } from 'selenium-webdriver';
 
 /* tslint:disable:no-magic-numbers */
 
@@ -51,25 +52,33 @@ describe('Element search', () => {
         expect(await element.matches(be.visible)).toBe(false);
     });
 
-    it('should fail on timeout during waiting for visibility on actions', async () => {
+    it('should wait for element visibility on actions like click', async () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
         `);
         await GIVEN.executeScriptWithTimeout(
             'document.getElementsByTagName("a")[0].style = "display:block";',
-            5000
+            data.timeouts.smallerThanDefault
         );
 
-        // throw new Error('KUKU Error!!!');
+        await browser.element('a').click();
+        expect(await browser.url()).toContain('second');
+    });
 
-        // await browser.element('a').click();
-        await browser.element('#not-exist').click();
+    it('should fail on timeout during waiting for visibility on actions like click, if element invisible', async () => {
+        await GIVEN.openedEmptyPageWithBody(`
+                <a href='#second' style='display:none'>go to Heading 2</a>
+                <h2 id='second'>Heading 2</h2>
+        `);
+        await GIVEN.executeScriptWithTimeout(
+            'document.getElementsByTagName("a")[0].style = "display:block";',
+            data.timeouts.biggerThanDefault
+        );
 
-        // await browser.element('a').click().then(
-        //     () => fail('should fail on timeout before can be clicked'),
-        //     async error => expect(await browser.url()).not.toContain('second')
-        // );
+        await browser.element('a').click()
+            .then(ifNoError => fail('should fail on timeout before can be clicked'))
+            .catch(async error => expect(await browser.url()).not.toContain('second'));
     });
 
 });

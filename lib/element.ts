@@ -53,8 +53,7 @@ export class Element implements SearchContext {
     }
 
     async getWebElement(): Promise<WebElement> {
-        const res = await this.locator.find();
-        return res;
+        return this.locator.find();
     }
 
     /* SearchContext */
@@ -161,14 +160,9 @@ export class Element implements SearchContext {
 
     @ElementActionHooks
     async click() {
-        await this.wait.command(async element => {
-
-            /* tslint:disable:no-console */
-            console.log('\nclick...');
-
-            await (await element.getWebElement()).click();
-            // return element.getWebElement().then(it => it.click());
-        });
+        await this.wait.command(async element =>
+            element.getWebElement().then(it => it.click())
+        );
         return this;
         /*
             todo: see comments in wait.ts impl.
@@ -181,7 +175,7 @@ export class Element implements SearchContext {
     @ElementActionHooks
     async clickByJs(xOffset: number = 0, yOffset: number = 0) {  // todo: what about element.js.click() instead?
         // todo: should we wrap it into this.wait.command ?
-        this.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
+        await this.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
             'view': window,
             'bubbles': true,
             'cancelable': true,
@@ -194,7 +188,7 @@ export class Element implements SearchContext {
     @ElementActionHooks
     async setValue(value: string | number) {  // todo: should we rename it just to set?
                                               // kind of more readable and reflects user context
-        this.wait.command(async element => {
+        await this.wait.command(async element => {
             const webelement = await element.getWebElement();
             await webelement.clear();
             await webelement.sendKeys(String(value));
@@ -205,7 +199,7 @@ export class Element implements SearchContext {
     @ElementActionHooks
     async setValueByJs(value: string | number) {
         // todo: should we here ensure visibility or not?
-        this.executeScript(`return (function(webelement, text) {
+        await this.executeScript(`return (function(webelement, text) {
                     var maxlength = webelement.getAttribute('maxlength') == null
                         ? -1
                         : parseInt(webelement.getAttribute('maxlength'));
@@ -219,7 +213,7 @@ export class Element implements SearchContext {
 
     @ElementActionHooks
     async sendKeys(value: string | number) { // todo: should we rename it (or create alias) to "enter" or "type"?
-        this.wait.command(async element =>
+        await this.wait.command(async element =>
             element.getWebElement().then(it => it.sendKeys(String(value))));
         return this;
     }
@@ -227,7 +221,7 @@ export class Element implements SearchContext {
     @ElementActionHooks
     async doubleClick() {
         const driver = this.configuration.driver;
-        this.wait.command(async element =>
+        await this.wait.command(async element =>
             driver.actions().doubleClick(await element.getWebElement()).perform());
         return this;
     }
@@ -235,7 +229,7 @@ export class Element implements SearchContext {
     @ElementActionHooks
     async hover() {
         const driver = this.configuration.driver;
-        this.wait.command(async element =>
+        await this.wait.command(async element =>
             driver.actions().mouseMove(await element.getWebElement()).perform());
         return this;
     }
@@ -243,7 +237,7 @@ export class Element implements SearchContext {
     @ElementActionHooks
     async contextClick() {
         const driver = this.configuration.driver;
-        this.wait.command(async element =>
+        await this.wait.command(async element =>
             driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform());
         return this;
     }
@@ -265,8 +259,7 @@ export class Element implements SearchContext {
 
     @ElementActionHooks
     async scrollIntoView() {  // todo: do we need here byJs ?
-        const driver = this.configuration.driver;
-        this.wait.query(async element =>
+        await this.wait.query(async element =>
             element.executeScript('arguments[0].scrollIntoView(true);')  // todo: is ensuring visibility covered here?
         );
         return this;

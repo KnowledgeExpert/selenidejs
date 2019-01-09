@@ -18,10 +18,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const lib_1 = require("../../lib");
 const testUtils_1 = require("../utils/testUtils");
 const gherkin_1 = require("../utils/gherkin");
+var data;
+(function (data) {
+    var timeouts;
+    (function (timeouts) {
+        timeouts.smallerThanDefault = 500;
+        timeouts.byDefault = 750;
+        timeouts.biggerThanDefault = 1000;
+    })(timeouts = data.timeouts || (data.timeouts = {}));
+})(data = exports.data || (exports.data = {}));
 beforeAll(async () => {
     exports.browser = new lib_1.Browser(new lib_1.Configuration({
         driver: testUtils_1.TestUtils.buildWebDriver(),
-        timeout: 500
+        timeout: data.timeouts.byDefault
     }));
     exports.GIVEN = new gherkin_1.Gherkin(exports.browser);
     exports.WHEN = exports.GIVEN;

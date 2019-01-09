@@ -53,68 +53,45 @@ export class Wait<T> {
     }
 
     async command(fn: Command<T>, timeout: number = this.timeout) {
-        this.query(fn, timeout);
+        await this.query(fn, timeout);
     }
 
     async query<R>(fn: Query<T, R>, timeout: number = this.timeout): Promise<R> {
         const finishTime = new Date().getTime() + timeout;
+        let lastError: TimeoutError;
 
-        while (true) {
+        while (new Date().getTime() < finishTime) {
             try {
-
-                /* tslint:disable:no-console */
-                console.log('\ntrying to...');
-                const res = await fn(this.entity);
-                return res;
+                return await fn(this.entity);
             } catch (error) {
-                if (new Date().getTime() > finishTime) {
-                    /* tslint:disable:no-console */
-                    console.log('\ntimeout is over');
-                    throw new TimeoutError(`
-                        Timed out after ${timeout}ms, 
-                        while waiting for ${this.entity.toString()},
-                        reason: ${error.message}`
-                        /*
-                            todo: consider adding custom "action" description
-                            right now we say:
-                            1. there was a wait... with timeout
-                            2. wait for entity... with this description of entity
-                            3. there was a fail, and here is the reason
-
-                            but we don't say explicitly what the action was?
-                            for predefined "queries" (queries/commands/conditions)
-                            such information is included into "reason"
-                            and that's ok
-                            but when we pass just raw functions/lambdas - probably
-                            there should be a way to provide a custom description of action,
-                            and if it is provided, - include it into message of TimeoutError somehow...
-                            see FailedToMatchConditionWithReasonError implementation
-                            for some consistent implementation...
-                                probably it should be some "wrapper" style...
-                                with own implementation for command and own for query...
-                         */
-                    );
-                }
+                lastError = error;
             }
         }
 
-        // todo: remove when refactored to DRY onFailureHooks mechanism
-        // lastError.message =
-        // `${this.entity.toString()} should ${lastError.message}. Wait timed out after ${timeout}ms`;
-        //
-        // for (const func of this.onFailureHooks) {
-        //     try {
-        //         await func(lastError, this.entity, condition);
-        //     } catch (error) {
-        //         /* tslint:disable:no-console */
-        //         console.warn(
-        //             `Cannot perform hook '${func.toString()}' function cause of:
-        //                     Error message: ${error.message}
-        //                     Error stacktrace: ${error.stackTrace}`
-        //         );
-        //         /* tslint:enable:no-console */
-        //     }
-        // }
-        // throw lastError;
+        throw new TimeoutError(`
+        Timed out after ${timeout}ms, 
+        while waiting for ${this.entity.toString()},
+        reason: ${lastError.message}`
+        );
+
+        /*
+            todo: consider adding custom "action" description in the error message above
+            right now we say:
+            1. there was a wait... with timeout
+            2. wait for entity... with this description of entity
+            3. there was a fail, and here is the reason
+
+            but we don't say explicitly what the action was?
+            for predefined "queries" (queries/commands/conditions)
+            such information is included into "reason"
+            and that's ok
+            but when we pass just raw functions/lambdas - probably
+            there should be a way to provide a custom description of action,
+            and if it is provided, - include it into message of TimeoutError somehow...
+            see FailedToMatchConditionWithReasonError implementation
+            for some consistent implementation...
+                probably it should be some "wrapper" style...
+                with own implementation for command and own for query...
+         */
     }
 }

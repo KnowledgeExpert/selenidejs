@@ -61,6 +61,21 @@ var Conditions;
         condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
         return condition;
     }
+    /* todo: check the following style of implementation:
+
+    function described<E>(description: string, predicate: Condition<E>) {
+        const condition = (entity: E) => predicate(entity)
+                .then(value => {
+                    if (!value) {
+                        throw new Error('false');
+                    }
+                    return value;
+                })
+                .catch(error => { throw new FailedToMatchConditionWithReasonError(description, error); });
+        condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
+        return condition;
+    }
+     */
     let element;
     (function (element_1) {
         // todo: isVisible vs visible, etc.

@@ -36,7 +36,24 @@ class Configuration {
         this.htmlPath = path.resolve('./htmls');
         this.screenshotPath = path.resolve('./screenshots');
         this.fullPageScreenshot = true;
-        this.onFailureHooks = [];
+        this.onFailureHooks = [
+        /*
+        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
+            const driver = Utils.getDriver(entity);
+            if (driver.config.screenshotPath) {
+                const screenshotPath = await Utils.saveScreenshot(driver, Browser.config.screenshotPath);
+                lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
+            }
+        },
+        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
+            const driver = Utils.getDriver(entity);
+            if (driver.config.htmlPath) {
+                const htmlPath = await Utils.savePageSource(driver, Browser.config.htmlPath);
+                lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
+            }
+        }
+        */
+        ];
         this.driver = null; // todo: driver is not set by default... is it ok?
         Object.assign(this, init);
     }

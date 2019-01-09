@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const fullpageScreenshot_1 = require("./refactor/fullpageScreenshot");
 const utils_1 = require("./utils");
 const collection_1 = require("./collection");
 const configuration_1 = require("./configuration");
@@ -87,7 +86,7 @@ class Browser {
     }
     async screenshot() {
         return this.configuration.fullPageScreenshot
-            ? new fullpageScreenshot_1.FullpageScreenshot().perform(this)
+            ? Buffer.from(await this.driver.takeScreenshot(), 'base64') // todo: change to fullPageScreenshot(driver);
             : Buffer.from(await this.driver.takeScreenshot(), 'base64');
     }
     /* tslint:disable:ban-types */

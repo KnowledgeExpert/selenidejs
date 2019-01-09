@@ -10,5 +10,5 @@ export declare class Gherkin {
     openedEmptyPageWithJquery(): Promise<void>;
     openedEmptyPageWithBody(html: string): Promise<void>;
     openedEmptyPageWithJqueryAndBody(html: string): Promise<void>;
-    private addJquery();
+    private addJquery;
 }

@@ -47,10 +47,10 @@ export namespace Conditions { // todo: change to ElementCondition ?
         export const includes = (expected: any) => (actual: any) => actual.includes(expected);
         export const includesWord =
             (expected: string) => (actual: string) => actual.split(' ').includes(expected);
-        export const arrayCompareBy = (f) => ([x, ...xs]) => ([y, ...ys]) =>
+        export const arrayCompareBy = (f) => ([x, ...xs]: any[]) => ([y, ...ys]: any[]) =>
             x === undefined && y === undefined
                 ? true
-                : Boolean (f (x) (y)) && arrayCompareBy (f) (xs) (ys);
+                : Boolean(f(x)(y)) && arrayCompareBy(f)(xs)(ys);
         export const equalsToArray = arrayCompareBy(equals);
         export const equalsByContainsToArray = arrayCompareBy(includes);
     }
@@ -70,6 +70,22 @@ export namespace Conditions { // todo: change to ElementCondition ?
         condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
         return condition;
     }
+
+    /* todo: check the following style of implementation:
+
+    function described<E>(description: string, predicate: Condition<E>) {
+        const condition = (entity: E) => predicate(entity)
+                .then(value => {
+                    if (!value) {
+                        throw new Error('false');
+                    }
+                    return value;
+                })
+                .catch(error => { throw new FailedToMatchConditionWithReasonError(description, error); });
+        condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
+        return condition;
+    }
+     */
 
     export namespace element {
 

@@ -21,17 +21,12 @@ class ByWebElementLocator {
         this.context = context;
     }
     async find() {
-        let res;
-        try {
-            res = await this.context.findWebElement(this.by);
-        }
-        catch (error) {
+        return this.context.findWebElement(this.by).catch(error => {
             throw new Error(`
             No elements found using ${this.toString()}
             Reason: ${error}
             `);
-        }
-        return res;
+        });
     }
     toString() {
         return `${this.context.toString()}.find(${this.by})`;

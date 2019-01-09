@@ -32,9 +32,9 @@ var TestUtils;
     }
     TestUtils.resourcesUrl = resourcesUrl;
     function buildWebDriver(browserName = 'chrome', 
-        // remoteUrl = 'http://217.73.84.220:4444/wd/hub'): WebDriver {
-        // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
-        remoteUrl = 'http://ggrname:ggrpassword@li239-162.members.linode.com:4444/wd/hub') {
+    // remoteUrl = 'http://217.73.84.220:4444/wd/hub'): WebDriver {
+    // remoteUrl = process.env.SELENIDEJS_REMOTE_URL): WebDriver {
+    remoteUrl = 'http://ggrname:ggrpassword@li239-162.members.linode.com:4444/wd/hub') {
         return new selenium_webdriver_1.Builder()
             .withCapabilities({ enableVNC: true, browserName: 'chrome' })
             .usingServer(remoteUrl)

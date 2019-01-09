@@ -25,10 +25,16 @@ export let browser: Browser;
 export let GIVEN: Gherkin;
 export let WHEN: Gherkin;
 
+export namespace data.timeouts {
+    export const smallerThanDefault = 500;
+    export const byDefault = 750;
+    export const biggerThanDefault = 1000;
+}
+
 beforeAll(async () => {
     browser = new Browser(new Configuration({
         driver: TestUtils.buildWebDriver(),
-        timeout: 500
+        timeout: data.timeouts.byDefault
     }));
     GIVEN = new Gherkin(browser);
     WHEN = GIVEN;

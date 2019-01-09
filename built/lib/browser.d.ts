@@ -37,5 +37,5 @@ export declare class Browser implements SearchContext {
     switchToFrame(frameElement: Element): Promise<void>;
     switchToDefaultFrame(): Promise<void>;
     clearCacheAndCookies(): Promise<void>;
-    private getAllWindowHandles();
+    private getAllWindowHandles;
 }

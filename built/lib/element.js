@@ -41,8 +41,7 @@ class Element {
         return this.locator.toString();
     }
     async getWebElement() {
-        const res = await this.locator.find();
-        return res;
+        return this.locator.find();
     }
     /* SearchContext */
     async findWebElement(by) {
@@ -125,12 +124,7 @@ class Element {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async click() {
-        await this.wait.command(async (element) => {
-            /* tslint:disable:no-console */
-            console.log('\nclick...');
-            await (await element.getWebElement()).click();
-            // return element.getWebElement().then(it => it.click());
-        });
+        await this.wait.command(async (element) => element.getWebElement().then(it => it.click()));
         return this;
         /*
             todo: see comments in wait.ts impl.
@@ -141,7 +135,7 @@ class Element {
     }
     async clickByJs(xOffset = 0, yOffset = 0) {
         // todo: should we wrap it into this.wait.command ?
-        this.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
+        await this.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
             'view': window,
             'bubbles': true,
             'cancelable': true,
@@ -152,7 +146,7 @@ class Element {
     }
     async setValue(value) {
         // kind of more readable and reflects user context
-        this.wait.command(async (element) => {
+        await this.wait.command(async (element) => {
             const webelement = await element.getWebElement();
             await webelement.clear();
             await webelement.sendKeys(String(value));
@@ -161,7 +155,7 @@ class Element {
     }
     async setValueByJs(value) {
         // todo: should we here ensure visibility or not?
-        this.executeScript(`return (function(webelement, text) {
+        await this.executeScript(`return (function(webelement, text) {
                     var maxlength = webelement.getAttribute('maxlength') == null
                         ? -1
                         : parseInt(webelement.getAttribute('maxlength'));
@@ -173,22 +167,22 @@ class Element {
         return this;
     }
     async sendKeys(value) {
-        this.wait.command(async (element) => element.getWebElement().then(it => it.sendKeys(String(value))));
+        await this.wait.command(async (element) => element.getWebElement().then(it => it.sendKeys(String(value))));
         return this;
     }
     async doubleClick() {
         const driver = this.configuration.driver;
-        this.wait.command(async (element) => driver.actions().doubleClick(await element.getWebElement()).perform());
+        await this.wait.command(async (element) => driver.actions().doubleClick(await element.getWebElement()).perform());
         return this;
     }
     async hover() {
         const driver = this.configuration.driver;
-        this.wait.command(async (element) => driver.actions().mouseMove(await element.getWebElement()).perform());
+        await this.wait.command(async (element) => driver.actions().mouseMove(await element.getWebElement()).perform());
         return this;
     }
     async contextClick() {
         const driver = this.configuration.driver;
-        this.wait.command(async (element) => driver.actions().click(await element.getWebElement(), String(selenium_webdriver_1.Button.RIGHT)).perform());
+        await this.wait.command(async (element) => driver.actions().click(await element.getWebElement(), String(selenium_webdriver_1.Button.RIGHT)).perform());
         return this;
     }
     async pressEnter() {
@@ -201,8 +195,7 @@ class Element {
         return this.sendKeys(selenium_webdriver_1.Key.TAB);
     }
     async scrollIntoView() {
-        const driver = this.configuration.driver;
-        this.wait.query(async (element) => element.executeScript('arguments[0].scrollIntoView(true);') // todo: is ensuring visibility covered here?
+        await this.wait.query(async (element) => element.executeScript('arguments[0].scrollIntoView(true);') // todo: is ensuring visibility covered here?
         );
         return this;
     }

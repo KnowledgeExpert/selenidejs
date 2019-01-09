@@ -29,16 +29,12 @@ export class ByWebElementLocator implements Locator<Promise<WebElement>> {
     }
 
     async find(): Promise<WebElement> {
-        let res;
-        try {
-            res = await this.context.findWebElement(this.by);
-        } catch (error) {
+        return this.context.findWebElement(this.by).catch(error => {
             throw new Error(`
             No elements found using ${this.toString()}
             Reason: ${error}
             `);
-        }
-        return res;
+        });
     }
 
     toString(): string {  // todo: do we really need this toString()?

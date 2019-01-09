@@ -12,10 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ActionSequence, By, WebDriver, WebElement } from 'selenium-webdriver';
+import { By, WebDriver, WebElement } from 'selenium-webdriver';
 import { BrowserCondition } from './conditions';
-import { be } from './support/conditions/be';
-import { FullpageScreenshot } from './refactor/fullpageScreenshot';
 import { Utils } from './utils';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
@@ -119,7 +117,7 @@ export class Browser implements SearchContext {
 
     async screenshot(): Promise<Buffer> {
         return this.configuration.fullPageScreenshot
-            ? new FullpageScreenshot().perform(this)
+            ? Buffer.from(await this.driver.takeScreenshot(), 'base64')  // todo: change to fullPageScreenshot(driver);
             : Buffer.from(await this.driver.takeScreenshot(), 'base64');
     }
 
