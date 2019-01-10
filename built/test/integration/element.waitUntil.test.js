@@ -19,43 +19,32 @@ const lib_1 = require("../../lib");
  * driver = common well known Selenium WebDriver
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
-describe('Element.should', () => {
-    it('waits for element condition (like be.visible) to be matched', async () => {
+describe('Element.waitUntil as "waiting predicate"', () => {
+    fit('waits for element condition (like be.visible) to be matched and returns true', async () => {
         await base_1.GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
         await base_1.GIVEN.executeScriptWithTimeout('document.getElementsByTagName("button")[0].style = "display:block";', base_1.data.timeouts.smallerThanDefault);
         expect(await (await base_1.webelement('button')).isDisplayed())
             .toBe(false);
-        await base_1.browser.element('button').should(lib_1.be.visible);
+        expect(await base_1.browser.element('button').waitUntil(lib_1.be.visible)).toBe(true);
         expect(await (await base_1.webelement('button')).isDisplayed())
             .toBe(true);
     });
-    it('fails on timeout during waiting for element condition (like be.visible) if yet not matched', async () => {
+    fit('on timeout, if element condition (like be.visible) was not matched, returns false', async () => {
         await base_1.GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
         await base_1.GIVEN.executeScriptWithTimeout('document.getElementsByTagName("button")[0].style = "display:block";', base_1.data.timeouts.biggerThanDefault);
         expect(await (await base_1.webelement('button')).isDisplayed())
             .toBe(false);
-        await base_1.browser.element('button').should(lib_1.be.visible)
-            .then(ifNoError => fail('should fail on timeout before element becomes visible'))
-            .catch(async (error) => expect(await (await base_1.webelement('button')).isDisplayed())
-            .toBe(false));
-    });
-    fit('returns same element for chainable calls', async () => {
-        await base_1.GIVEN.openedEmptyPageWithBody(`
-                <button style='display:none' disabled>click me if you see me;)</button>
-        `);
-        await base_1.GIVEN.executeScriptWithTimeout('document.getElementsByTagName("button")[0].style = "display:block";', base_1.data.timeouts.smallerThanDefault);
-        await base_1.GIVEN.executeScriptWithTimeout('document.getElementsByTagName("button")[0].disabled = false;', base_1.data.timeouts.byDefault);
-        expect(await (await base_1.webelement('button')).isDisplayed())
-            .toBe(false);
-        await (await base_1.browser.element('button').should(lib_1.be.visible)).should(lib_1.be.enabled);
-        expect(await (await base_1.webelement('button')).isDisplayed())
-            .toBe(true);
-        expect(await (await base_1.webelement('button')).isEnabled())
-            .toBe(true);
+        await base_1.browser.element('button').waitUntil(lib_1.be.visible)
+            .then(async (resIfNoError) => {
+            expect(resIfNoError).toBe(false);
+            expect(await (await base_1.webelement('button')).isDisplayed())
+                .toBe(false);
+        })
+            .catch(async (error) => fail('should not fail on timeout before element becomes visible'));
     });
 });
-//# sourceMappingURL=element.should.test.js.map
+//# sourceMappingURL=element.waitUntil.test.js.map
