@@ -28,10 +28,18 @@ export type Condition<T> = Query<T, boolean>;
 
 export namespace Condition {
     export const not = <T>(condition: Condition<T>, description?: string) => {
+        const desc = description || `not ${condition}`;
         const fn = async (entity: T): Promise<boolean> => {
-            return !(await condition(entity));
+            try {
+                if (!(await condition(entity))) {
+                    return true;
+                }
+            } catch (error) {
+                return true;
+            }
+            throw new FailedToMatchConditionWithReasonError(desc, new Error('false'));
         };
-        fn.toString = () => description || `not ${condition}`;
+        fn.toString = () => desc;
         return fn;
     };
 

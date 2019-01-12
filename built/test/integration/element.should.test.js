@@ -15,7 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./base");
 const lib_1 = require("../../lib");
-/* short reminder ;)
+/* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
@@ -43,7 +43,7 @@ describe('Element.should', () => {
             .catch(async (error) => expect(await (await base_1.webelement('button')).isDisplayed())
             .toBe(false));
     });
-    fit('returns same element for chainable calls', async () => {
+    it('returns same element for chainable calls', async () => {
         await base_1.GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none' disabled>click me if you see me;)</button>
         `);

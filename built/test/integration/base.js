@@ -23,7 +23,7 @@ var data;
 (function (data) {
     var timeouts;
     (function (timeouts) {
-        timeouts.byDefault = 2000;
+        timeouts.byDefault = 3000;
         timeouts.step = 1000;
         timeouts.smallerThanDefault = timeouts.byDefault - timeouts.step;
         timeouts.biggerThanDefault = timeouts.byDefault + timeouts.step;

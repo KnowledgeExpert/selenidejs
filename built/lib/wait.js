@@ -14,6 +14,7 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const timeoutError_1 = require("./errors/timeoutError");
+const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
 /*
  * todo: here, condition is just a predicate... i.e. (entity: T) => Promise<boolean>
  *     but in fact, we mean under condition - (entity: T) => Promise<boolean | throws>
@@ -22,10 +23,19 @@ const timeoutError_1 = require("./errors/timeoutError");
 var Condition;
 (function (Condition) {
     Condition.not = (condition, description) => {
+        const desc = description || `not ${condition}`;
         const fn = async (entity) => {
-            return !(await condition(entity));
+            try {
+                if (!(await condition(entity))) {
+                    return true;
+                }
+            }
+            catch (error) {
+                return true;
+            }
+            throw new conditionDoesNotMatchError_1.FailedToMatchConditionWithReasonError(desc, new Error('false'));
         };
-        fn.toString = () => description || `not ${condition}`;
+        fn.toString = () => desc;
         return fn;
     };
     Condition.toBoolean = (condition) => (entity) => condition(entity).then(res => true, err => false);

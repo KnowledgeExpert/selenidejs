@@ -28,7 +28,7 @@ export let GIVEN: Gherkin;
 export let WHEN: Gherkin;
 
 export namespace data.timeouts {
-    export const byDefault = 2000;
+    export const byDefault = 3000;
     export const step = 1000;
     export const smallerThanDefault = byDefault - step;
     export const biggerThanDefault = byDefault + step;

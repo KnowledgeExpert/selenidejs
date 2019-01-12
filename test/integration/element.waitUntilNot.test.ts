@@ -20,41 +20,41 @@ import { be } from '../../lib';
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 
-describe('Element.waitUntil as "waiting predicate"', () => {
+describe('Element.waitUntilNot as "waiting predicate"', () => {
 
-    it('waits for element condition (like be.visible) to be matched and returns true', async () => {
+    it('waits for element condition (like be.visible) to be not matched and returns true', async () => {
         await GIVEN.openedEmptyPageWithBody(`
-                <button style='display:none'>click me if you see me;)</button>
+                <button>click me if you see me;)</button>
         `);
         await GIVEN.executeScriptWithTimeout(
-            'document.getElementsByTagName("button")[0].style = "display:block";',
+            'document.getElementsByTagName("button")[0].style = "display:none";',
             data.timeouts.smallerThanDefault
         );
         expect(await (await webelement('button')).isDisplayed())
-            .toBe(false);
-
-        expect(await browser.element('button').waitUntil(be.visible)).toBe(true);
-        expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
+
+        expect(await browser.element('button').waitUntilNot(be.visible)).toBe(true);
+        expect(await (await webelement('button')).isDisplayed())
+            .toBe(false);
     });
 
-    it('on timeout, if element condition (like be.visible) was not matched, returns false', async () => {
+    it('on timeout, if element condition (like be.visible) was matched, returns false', async () => {
         await GIVEN.openedEmptyPageWithBody(`
-                <button style='display:none'>click me if you see me;)</button>
+                <button>click me if you see me;)</button>
         `);
         await GIVEN.executeScriptWithTimeout(
-            'document.getElementsByTagName("button")[0].style = "display:block";',
+            'document.getElementsByTagName("button")[0].style = "display:none";',
             data.timeouts.biggerThanDefault
         );
         expect(await (await webelement('button')).isDisplayed())
-            .toBe(false);
+            .toBe(true);
 
-        await browser.element('button').waitUntil(be.visible)
+        await browser.element('button').waitUntilNot(be.visible)
             .then(async resIfNoError => {
                 expect(resIfNoError).toBe(false);
                 expect(await (await webelement('button')).isDisplayed())
-                    .toBe(false);
+                    .toBe(true);
             })
-            .catch(async error => fail('should not fail on timeout before element becomes visible'));
+            .catch(async error => fail('should not fail on timeout before element becomes not visible'));
     });
 });
