@@ -5,7 +5,7 @@ import { Browser } from '../browser';
 export declare type ElementQuery<R> = Query<Element, R>;
 export declare namespace query {
     namespace element {
-        function isVisible(element: Element): Promise<boolean>;
+        const isVisible: any;
         function isEnabled(element: Element): Promise<boolean>;
         function text(element: Element): Promise<string>;
         function hasText(text: string): (element: Element) => Promise<boolean>;

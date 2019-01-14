@@ -21,6 +21,7 @@ const lib_1 = require("../../lib");
  */
 describe('Element.waitUntil as "waiting predicate"', () => {
     it('waits for element condition (like be.visible) to be matched and returns true', async () => {
+        const started = new Date().getTime();
         await base_1.GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -28,10 +29,13 @@ describe('Element.waitUntil as "waiting predicate"', () => {
         expect(await (await base_1.webelement('button')).isDisplayed())
             .toBe(false);
         expect(await base_1.browser.element('button').waitUntil(lib_1.be.visible)).toBe(true);
+        expect(new Date().getTime() - started)
+            .toBeGreaterThanOrEqual(base_1.data.timeouts.smallerThanDefault);
         expect(await (await base_1.webelement('button')).isDisplayed())
             .toBe(true);
     });
     it('on timeout, if element condition (like be.visible) was not matched, returns false', async () => {
+        const started = new Date().getTime();
         await base_1.GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -43,6 +47,8 @@ describe('Element.waitUntil as "waiting predicate"', () => {
             expect(resIfNoError).toBe(false);
             expect(await (await base_1.webelement('button')).isDisplayed())
                 .toBe(false);
+            expect(new Date().getTime() - started)
+                .toBeGreaterThanOrEqual(base_1.data.timeouts.byDefault);
         })
             .catch(async (error) => fail('should not fail on timeout before element becomes visible'));
     });

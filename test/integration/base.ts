@@ -28,14 +28,20 @@ export let GIVEN: Gherkin;
 export let WHEN: Gherkin;
 
 export namespace data.timeouts {
-    export const byDefault = 3000;
-    export const step = 1000;
+    // export const byDefault = 750;
+    export const byDefault = 1500;
+    export const step = 250;
+    export const smallest = step;
     export const smallerThanDefault = byDefault - step;
     export const biggerThanDefault = byDefault + step;
 }
 
 export function webelement(cssSelector: string) {
     return driver.findElement(By.css(cssSelector));
+}
+
+export function webelements(cssSelector: string) {
+    return driver.findElements(By.css(cssSelector));
 }
 
 beforeAll(async () => {

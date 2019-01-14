@@ -26,7 +26,8 @@ import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
-import { Condition, Wait } from './wait';
+import { Condition, Query, Wait } from './wait';
+import lambda = Utils.lambda;
 
 
 export class Element implements SearchContext {
@@ -150,6 +151,14 @@ export class Element implements SearchContext {
         return this.matches(Condition.not(condition));
     }
 
+    /* interaction with actual webelement (commands or queries) */
+
+    // todo: do we need it? element('#submit').do(command.element.click);
+    //                      element('#submit').do(query.element.isEnabled);
+    do<R>(queryOrCommand: Query<Element, R>) {
+        return queryOrCommand(this);
+    }
+
     /* commands */
 
     @ElementActionHooks
@@ -161,16 +170,10 @@ export class Element implements SearchContext {
 
     @ElementActionHooks
     async click() {
-        await this.wait.command(async element =>
+        await this.wait.command(lambda('click', async element =>
             element.getWebElement().then(it => it.click())
-        );
+        ));
         return this;
-        /*
-            todo: see comments in wait.ts impl.
-            consider changing current impl. to something like
-            this.wait.command(element =>
-                element.getWebElement().then(it => it.click()), 'click');
-         */
     }
 
     @ElementActionHooks

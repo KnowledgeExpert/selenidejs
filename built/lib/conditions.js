@@ -46,19 +46,15 @@ var Conditions;
         predicate.equalsByContainsToArray = predicate.arrayCompareBy(predicate.includes);
     })(predicate || (predicate = {}));
     function described(description, predicate) {
+        const desc = `shouldMatch(${description || predicate.toString()})`;
         const condition = async (entity) => {
-            try {
-                const value = await predicate(entity);
-                if (!value) {
-                    throw new Error('false');
-                }
-                return value;
+            const value = await predicate(entity);
+            if (!value) {
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${predicate.toString()}? = ${value}`);
             }
-            catch (error) {
-                throw new conditionDoesNotMatchError_1.FailedToMatchConditionWithReasonError(description, error);
-            }
+            return value;
         };
-        condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
+        condition.toString = () => desc; // todo: `Entity ${entity} ${description}` ?
         return condition;
     }
     /* todo: check the following style of implementation:
@@ -79,7 +75,7 @@ var Conditions;
     let element;
     (function (element_1) {
         // todo: isVisible vs visible, etc.
-        element_1.isVisible = described('is visible', queries_1.query.element.isVisible);
+        element_1.isVisible = described(undefined, queries_1.query.element.isVisible);
         element_1.isHidden = wait_1.Condition.not(element_1.isVisible, 'is hidden');
         function hasVisibleElement(by) {
             return described(`has visible element located by ${by}`, async (element) => element.element(by).matches(element_1.isVisible));

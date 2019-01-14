@@ -6,4 +6,5 @@ export declare namespace Utils {
     function saveScreenshot(selenideDriver: Browser, filePath: string): Promise<string>;
     function isDriver(entity: Browser | Element): boolean;
     function toBy(cssOrXpathOrBy: string | By): By;
+    function lambda(toString: string, fn: any): any;
 }

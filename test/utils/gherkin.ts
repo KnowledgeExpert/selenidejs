@@ -33,7 +33,10 @@ export class Gherkin {
     }
 
     async withBodyTimedOut(html: string, timeout: number) {
-        await this.withBody(`setTimeout(_ => {${this.withBody(html)}}, ${timeout})`);
+        await this.executeScriptWithTimeout(
+            `document.getElementsByTagName("body")[0].innerHTML=\`${html.replace('\n', '')}\`;`,
+            timeout
+        );
     }
 
     async executeScript(script: string) {
@@ -54,6 +57,16 @@ export class Gherkin {
     async openedEmptyPageWithBody(html: string) {
         await this.openedEmptyPage();
         await this.withBody(html);
+    }
+
+    async openedEmptyPageWithBodyTimedOut(html: string, timeout: number) {
+        await this.openedEmptyPage();
+        await this.withBodyTimedOut(html, timeout);
+    }
+
+    async openedEmptyPageWithBodyAfter(timeout: number, html: string) {
+        await this.openedEmptyPage();
+        await this.withBodyTimedOut(html, timeout);
     }
 
     async openedEmptyPageWithJqueryAndBody(html: string) {

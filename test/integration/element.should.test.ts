@@ -23,6 +23,7 @@ import { be } from '../../lib';
 describe('Element.should', () => {
 
     it('waits for element condition (like be.visible) to be matched', async () => {
+        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -34,11 +35,14 @@ describe('Element.should', () => {
             .toBe(false);
 
         await browser.element('button').should(be.visible);
+        expect(new Date().getTime() - started)
+            .toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
     });
 
     it('fails on timeout during waiting for element condition (like be.visible) if yet not matched', async () => {
+        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -51,9 +55,12 @@ describe('Element.should', () => {
 
         await browser.element('button').should(be.visible)
             .then(ifNoError => fail('should fail on timeout before element becomes visible'))
-            .catch(async error =>
+            .catch(async error => {
+                expect(new Date().getTime() - started)
+                    .toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(await (await webelement('button')).isDisplayed())
-                    .toBe(false));
+                    .toBe(false);
+            });
     });
 
     it('returns same element for chainable calls', async () => {

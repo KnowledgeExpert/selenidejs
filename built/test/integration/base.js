@@ -23,8 +23,10 @@ var data;
 (function (data) {
     var timeouts;
     (function (timeouts) {
-        timeouts.byDefault = 3000;
-        timeouts.step = 1000;
+        // export const byDefault = 750;
+        timeouts.byDefault = 1500;
+        timeouts.step = 250;
+        timeouts.smallest = timeouts.step;
         timeouts.smallerThanDefault = timeouts.byDefault - timeouts.step;
         timeouts.biggerThanDefault = timeouts.byDefault + timeouts.step;
     })(timeouts = data.timeouts || (data.timeouts = {}));
@@ -33,6 +35,10 @@ function webelement(cssSelector) {
     return exports.driver.findElement(selenium_webdriver_1.By.css(cssSelector));
 }
 exports.webelement = webelement;
+function webelements(cssSelector) {
+    return exports.driver.findElements(selenium_webdriver_1.By.css(cssSelector));
+}
+exports.webelements = webelements;
 beforeAll(async () => {
     exports.browser = new lib_1.Browser(new lib_1.Configuration({
         driver: testUtils_1.TestUtils.buildWebDriver(),

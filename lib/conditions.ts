@@ -16,7 +16,7 @@ import { By, WebElement } from 'selenium-webdriver';
 import { Browser } from './browser';
 import { Collection } from './collection';
 import { Element } from './element';
-import { FailedToMatchConditionWithReasonError } from './errors/conditionDoesNotMatchError';
+import { ConditionDoesNotMatchError, FailedToMatchConditionWithReasonError } from './errors/conditionDoesNotMatchError';
 import { Condition } from './wait';
 import { query } from './refactor/queries';
 
@@ -55,19 +55,16 @@ export namespace Conditions { // todo: change to ElementCondition ?
         export const equalsByContainsToArray = arrayCompareBy(includes);
     }
 
-    function described<E>(description: string, predicate: Condition<E>) {
+    function described<E>(description: string, predicate: Condition<E>) {  // todo: make description a 2nd param
+        const desc = `shouldMatch(${description || predicate.toString()})`;
         const condition = async (entity: E) => {
-            try {
-                const value = await predicate(entity);
-                if (!value) {
-                    throw new Error('false');
-                }
-                return value;
-            } catch (error) {
-                throw new FailedToMatchConditionWithReasonError(description, error);
+            const value = await predicate(entity);
+            if (!value) {
+                throw new ConditionDoesNotMatchError(`${predicate.toString()}? = ${value}`);
             }
+            return value;
         };
-        condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
+        condition.toString = () => desc; // todo: `Entity ${entity} ${description}` ?
         return condition;
     }
 
@@ -91,7 +88,7 @@ export namespace Conditions { // todo: change to ElementCondition ?
 
         // todo: isVisible vs visible, etc.
         export const isVisible: ElementCondition =
-            described('is visible', query.element.isVisible);
+            described(undefined, query.element.isVisible);
 
         export const isHidden: ElementCondition =
             Condition.not(isVisible, 'is hidden');

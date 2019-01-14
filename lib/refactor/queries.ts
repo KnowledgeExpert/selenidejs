@@ -16,6 +16,7 @@ import { Query } from '../wait';
 import { Element } from '../element';
 import { Collection } from '../collection';
 import { Browser } from '../browser';
+import { Utils } from '../utils';
 
 export type ElementQuery<R> = Query<Element, R>;
 
@@ -26,9 +27,9 @@ export namespace query { // todo: do we really need this separation?
 // maybe we can decide on this later...
 // and leave this code here just for example
     export namespace element {
-        export async function isVisible(element: Element) {
-            return (await element.getWebElement()).isDisplayed();
-        }
+        import lambda = Utils.lambda;
+        export const isVisible = lambda('is visible', async (element: Element) =>
+            (await element.getWebElement()).isDisplayed());
 
         export async function isEnabled(element: Element) {
             return (await element.getWebElement()).isEnabled();

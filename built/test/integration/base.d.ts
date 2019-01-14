@@ -6,9 +6,11 @@ export declare let driver: WebDriver;
 export declare let GIVEN: Gherkin;
 export declare let WHEN: Gherkin;
 export declare namespace data.timeouts {
-    const byDefault = 3000;
-    const step = 1000;
+    const byDefault = 1500;
+    const step = 250;
+    const smallest = 250;
     const smallerThanDefault: number;
     const biggerThanDefault: number;
 }
 export declare function webelement(cssSelector: string): import("selenium-webdriver").WebElementPromise;
+export declare function webelements(cssSelector: string): import("selenium-webdriver").promise.Promise<import("selenium-webdriver").WebElement[]>;

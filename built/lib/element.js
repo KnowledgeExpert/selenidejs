@@ -28,6 +28,7 @@ const elementActionHooks_1 = require("./refactor/elementActionHooks");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const wait_1 = require("./wait");
+var lambda = utils_1.Utils.lambda;
 class Element {
     // todo: why not have private readonly driver property?
     constructor(locator, configuration) {
@@ -120,19 +121,19 @@ class Element {
     async matchesNot(condition) {
         return this.matches(wait_1.Condition.not(condition));
     }
+    /* interaction with actual webelement (commands or queries) */
+    // todo: do we need it? element('#submit').do(command.element.click);
+    //                      element('#submit').do(query.element.isEnabled);
+    do(queryOrCommand) {
+        return queryOrCommand(this);
+    }
     /* commands */
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async click() {
-        await this.wait.command(async (element) => element.getWebElement().then(it => it.click()));
+        await this.wait.command(lambda('click', async (element) => element.getWebElement().then(it => it.click())));
         return this;
-        /*
-            todo: see comments in wait.ts impl.
-            consider changing current impl. to something like
-            this.wait.command(element =>
-                element.getWebElement().then(it => it.click()), 'click');
-         */
     }
     async clickByJs(xOffset = 0, yOffset = 0) {
         // todo: should we wrap it into this.wait.command ?

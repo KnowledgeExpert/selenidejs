@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = require("../utils");
 var query;
 (function (query) {
     // it's kind of needed only for cases like:
@@ -22,10 +23,8 @@ var query;
     // and leave this code here just for example
     let element;
     (function (element_1) {
-        async function isVisible(element) {
-            return (await element.getWebElement()).isDisplayed();
-        }
-        element_1.isVisible = isVisible;
+        var lambda = utils_1.Utils.lambda;
+        element_1.isVisible = lambda('is visible', async (element) => (await element.getWebElement()).isDisplayed());
         async function isEnabled(element) {
             return (await element.getWebElement()).isEnabled();
         }

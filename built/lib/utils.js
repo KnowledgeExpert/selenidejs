@@ -49,5 +49,10 @@ var Utils;
             : cssOrXpathOrBy;
     }
     Utils.toBy = toBy;
+    function lambda(toString, fn) {
+        fn.toString = () => toString;
+        return fn;
+    }
+    Utils.lambda = lambda;
 })(Utils = exports.Utils || (exports.Utils = {}));
 //# sourceMappingURL=utils.js.map

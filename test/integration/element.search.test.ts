@@ -17,13 +17,13 @@ import { be } from '../../lib';
 
 describe('Element search', () => {
 
-    it('should not perform actual search on creation', async () => {
+    it('does not perform actual search on creation', async () => {
         const element = browser.element('#not-existing-element');
 
         expect(element.toString()).toBeTruthy();
     });
 
-    it('should be postponed until asking actual element data like visibility', async () => {
+    it('is postponed until asking actual element data like visibility', async () => {
         await GIVEN.openedEmptyPage();
         const element = browser.element('#will-be-existing-element');
 
@@ -34,7 +34,7 @@ describe('Element search', () => {
         expect(await element.matches(be.visible)).toBe(true);
     });
     
-    it('should be performed on each subsequent "ask"', async () => {
+    it('is performed on each subsequent "ask"', async () => {
         await GIVEN.openedEmptyPage();
         const element = browser.element('#will-be-existing-element');
 
@@ -49,7 +49,8 @@ describe('Element search', () => {
         expect(await element.matches(be.visible)).toBe(false);
     });
 
-    it('should wait for element visibility on actions like click', async () => {
+    it('waits for element command like click to be possible', async () => {
+        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
@@ -60,10 +61,12 @@ describe('Element search', () => {
         );
 
         await browser.element('a').click();
+        expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
         expect(await browser.url()).toContain('second');
     });
 
-    it('should fail on timeout during waiting for visibility on actions like click, if element invisible', async () => {
+    it('fails on timeout during waiting for action like click to be possible, if element invisible', async () => {
+        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
@@ -75,7 +78,10 @@ describe('Element search', () => {
 
         await browser.element('a').click()
             .then(ifNoError => fail('should fail on timeout before can be clicked'))
-            .catch(async error => expect(await browser.url()).not.toContain('second'));
+            .catch(async error => {
+                expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
+                expect(await browser.url()).not.toContain('second');
+            });
     });
 
 });

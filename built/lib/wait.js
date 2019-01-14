@@ -61,38 +61,21 @@ class Wait {
     }
     async query(fn, timeout = this.timeout) {
         const finishTime = new Date().getTime() + timeout;
-        let lastError;
-        while (new Date().getTime() < finishTime) {
+        while (true) {
             try {
                 return await fn(this.entity);
             }
             catch (error) {
-                lastError = error;
+                if (new Date().getTime() > finishTime) {
+                    throw new timeoutError_1.TimeoutError(// todo: should we move this error formatting to the Error class definition?
+                    '\n' +
+                        `\tTimed out after ${timeout}ms, while waiting for:\n` +
+                        `\t${this.entity.toString()}.${fn.toString()}\n` +
+                        'Reason:\n' +
+                        `\t${error.message}`);
+                }
             }
         }
-        throw new timeoutError_1.TimeoutError(`
-        Timed out after ${timeout}ms, 
-        while waiting for ${this.entity.toString()},
-        reason: ${lastError.message}`);
-        /*
-            todo: consider adding custom "action" description in the error message above
-            right now we say:
-            1. there was a wait... with timeout
-            2. wait for entity... with this description of entity
-            3. there was a fail, and here is the reason
-
-            but we don't say explicitly what the action was?
-            for predefined "queries" (queries/commands/conditions)
-            such information is included into "reason"
-            and that's ok
-            but when we pass just raw functions/lambdas - probably
-            there should be a way to provide a custom description of action,
-            and if it is provided, - include it into message of TimeoutError somehow...
-            see FailedToMatchConditionWithReasonError implementation
-            for some consistent implementation...
-                probably it should be some "wrapper" style...
-                with own implementation for command and own for query...
-         */
     }
 }
 exports.Wait = Wait;

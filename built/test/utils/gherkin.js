@@ -26,7 +26,7 @@ class Gherkin {
         await this.browser.executeScript(`document.getElementsByTagName("body")[0].innerHTML=\`${html.replace('\n', '')}\`;`);
     }
     async withBodyTimedOut(html, timeout) {
-        await this.withBody(`setTimeout(_ => {${this.withBody(html)}}, ${timeout})`);
+        await this.executeScriptWithTimeout(`document.getElementsByTagName("body")[0].innerHTML=\`${html.replace('\n', '')}\`;`, timeout);
     }
     async executeScript(script) {
         return this.browser.executeScript(script);
@@ -41,6 +41,14 @@ class Gherkin {
     async openedEmptyPageWithBody(html) {
         await this.openedEmptyPage();
         await this.withBody(html);
+    }
+    async openedEmptyPageWithBodyTimedOut(html, timeout) {
+        await this.openedEmptyPage();
+        await this.withBodyTimedOut(html, timeout);
+    }
+    async openedEmptyPageWithBodyAfter(timeout, html) {
+        await this.openedEmptyPage();
+        await this.withBodyTimedOut(html, timeout);
     }
     async openedEmptyPageWithJqueryAndBody(html) {
         await this.openedEmptyPageWithJquery();

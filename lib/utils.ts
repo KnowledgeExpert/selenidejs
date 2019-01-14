@@ -53,4 +53,9 @@ export namespace Utils {
             ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
+
+    export function lambda(toString: string, fn) {
+        fn.toString = () => toString;
+        return fn;
+    }
 }

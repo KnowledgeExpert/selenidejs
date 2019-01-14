@@ -19,7 +19,7 @@ const lib_1 = require("../../lib");
  * driver = common well known Selenium WebDriver
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
-fdescribe('Element.matchesNot as negated condition based "predicate"', () => {
+describe('Element.matchesNot as negated condition based "predicate"', () => {
     it('on element condition (like be.visible) that is not matched, returns true (no waiting)', async () => {
         await base_1.GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
