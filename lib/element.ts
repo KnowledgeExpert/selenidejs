@@ -293,18 +293,4 @@ export class Element implements SearchContext {
         return this.attribute('value');
     }
 
-    // todo: should it be based on condition? or condition should be based on it?
-    // todo: do we really need it? or better browser.element("#id").matches(be.visible)?
-    private async isVisible(): Promise<boolean> {
-        return this.matches(be.visible);
-    }
-
-    private async isPresent(): Promise<boolean> {
-        return this.matches(be.present);
-    }
-
-    private async isAbsent(): Promise<boolean> {
-        return this.matches(be.absent);
-    }
-
 }
