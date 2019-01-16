@@ -22,6 +22,18 @@ import { be } from '../../lib';
 
 describe('Element.waitUntil as "waiting predicate"', () => {
 
+    it('asserts element condition (like be.visible) instantly for correspondingly matched element', async () => {
+        const started = new Date().getTime();
+        await GIVEN.openedEmptyPageWithBody(`
+                <button>click me if u see me</button>
+        `);
+
+        await browser.element('button').waitUntil(be.visible);
+        expect(new Date().getTime() - started)
+            .toBeLessThan(data.timeouts.smallest);
+        expect(await (await webelement('button')).isDisplayed()).toBe(true);
+    });
+
     it('waits for element condition (like be.visible) to be matched and returns true', async () => {
         const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`

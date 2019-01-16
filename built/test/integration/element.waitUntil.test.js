@@ -20,6 +20,16 @@ const lib_1 = require("../../lib");
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 describe('Element.waitUntil as "waiting predicate"', () => {
+    it('asserts element condition (like be.visible) instantly for correspondingly matched element', async () => {
+        const started = new Date().getTime();
+        await base_1.GIVEN.openedEmptyPageWithBody(`
+                <button>click me if u see me</button>
+        `);
+        await base_1.browser.element('button').waitUntil(lib_1.be.visible);
+        expect(new Date().getTime() - started)
+            .toBeLessThan(base_1.data.timeouts.smallest);
+        expect(await (await base_1.webelement('button')).isDisplayed()).toBe(true);
+    });
     it('waits for element condition (like be.visible) to be matched and returns true', async () => {
         const started = new Date().getTime();
         await base_1.GIVEN.openedEmptyPageWithBody(`

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, webelement } from './base';
+import { browser, GIVEN, data, webelement, webelements } from './base';
 import { be } from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
@@ -21,6 +21,28 @@ import { be } from '../../lib';
  */
 
 describe('Element.shouldNot', () => {
+
+    it('instantly checks element condition (like be.visible) as not matched (reason: false)', async () => {
+        const started = new Date().getTime();
+        await GIVEN.openedEmptyPageWithBody(`
+                <button style="display:none">click me if u see me</button>
+        `);
+
+        await browser.element('button').shouldNot(be.visible);
+        expect(new Date().getTime() - started)
+            .toBeLessThan(data.timeouts.smallest);
+        expect(await (await webelement('button')).isDisplayed()).toBe(false);
+    });
+
+    it('instantly checks element condition (like be.visible) as not matched (reason: error)', async () => {
+        const started = new Date().getTime();
+        await GIVEN.openedEmptyPage();
+
+        await browser.element('button').shouldNot(be.visible);
+        expect(new Date().getTime() - started)
+            .toBeLessThan(data.timeouts.smallest);
+        expect(await (await webelements('button')).length).toBe(0);
+    });
 
     it('waits for element condition (like be.visible) to be NOT matched', async () => {
         const started = new Date().getTime();

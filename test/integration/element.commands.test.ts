@@ -36,7 +36,7 @@ describe('Element.* commands', () => {
         expect(await driver.getCurrentUrl()).toContain('second');
     });
 
-    fit('fails to click with error on not present in DOM element (after timeout)', async () => {
+    it('fails to click with error on not present in DOM element (after timeout)', async () => {
         await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.biggerThanDefault, `
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
@@ -55,7 +55,7 @@ Reason:
             });
     });
 
-    fit('fails to click with error on not visible element (after timeout)', async () => {
+    it('fails to click with error on not visible element (after timeout)', async () => {
         await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.smallerThanDefault, `
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>

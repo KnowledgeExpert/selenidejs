@@ -14,7 +14,7 @@
 
 import { OnFailureHook } from './refactor/onFailureHook';
 import { TimeoutError } from './errors/timeoutError';
-import { FailedToMatchConditionWithReasonError } from './errors/conditionDoesNotMatchError';
+import { ConditionDoesNotMatchError, FailedToMatchConditionWithReasonError } from './errors/conditionDoesNotMatchError';
 
 /* tslint:disable:prefer-template */
 
@@ -31,7 +31,7 @@ export type Condition<T> = Query<T, boolean>;
 export namespace Condition {
     export const not = <T>(condition: Condition<T>, description?: string) => {
         const desc = description || `not ${condition}`;
-        const fn = async (entity: T): Promise<boolean> => {
+        const notCondition = async (entity: T): Promise<boolean> => {
             try {
                 if (!(await condition(entity))) {
                     return true;
@@ -39,10 +39,10 @@ export namespace Condition {
             } catch (error) {
                 return true;
             }
-            throw new FailedToMatchConditionWithReasonError(desc, new Error('false'));
+            throw new ConditionDoesNotMatchError(`${desc}? = false`);
         };
-        fn.toString = () => desc;
-        return fn;
+        notCondition.toString = () => desc;
+        return notCondition;
     };
 
     export const toBoolean = <T>(condition: Condition<T>) =>

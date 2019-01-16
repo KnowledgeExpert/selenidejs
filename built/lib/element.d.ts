@@ -48,7 +48,4 @@ export declare class Element implements SearchContext {
     innerHtml(): Promise<string>;
     outerHtml(): Promise<string>;
     value(): Promise<string>;
-    private isVisible;
-    private isPresent;
-    private isAbsent;
 }

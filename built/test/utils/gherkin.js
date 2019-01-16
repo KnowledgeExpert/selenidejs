@@ -34,6 +34,9 @@ class Gherkin {
     async executeScriptWithTimeout(script, timeout) {
         return this.browser.executeScript(`setTimeout(_ => { ${script} }, ${timeout});`);
     }
+    async executeScriptAfter(timeout, script) {
+        return this.executeScriptWithTimeout(script, timeout);
+    }
     async openedEmptyPageWithJquery() {
         await this.openedEmptyPage();
         await this.addJquery();

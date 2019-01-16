@@ -24,7 +24,7 @@ var Condition;
 (function (Condition) {
     Condition.not = (condition, description) => {
         const desc = description || `not ${condition}`;
-        const fn = async (entity) => {
+        const notCondition = async (entity) => {
             try {
                 if (!(await condition(entity))) {
                     return true;
@@ -33,10 +33,10 @@ var Condition;
             catch (error) {
                 return true;
             }
-            throw new conditionDoesNotMatchError_1.FailedToMatchConditionWithReasonError(desc, new Error('false'));
+            throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${desc}? = false`);
         };
-        fn.toString = () => desc;
-        return fn;
+        notCondition.toString = () => desc;
+        return notCondition;
     };
     Condition.toBoolean = (condition) => (entity) => condition(entity).then(res => true, err => false);
 })(Condition = exports.Condition || (exports.Condition = {}));

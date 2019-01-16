@@ -20,6 +20,13 @@ const lib_1 = require("../../lib");
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 describe('Conditions.element.isVisible (via should)', () => {
+    it('is matched instantly for element that is visible', async () => {
+        await base_1.GIVEN.openedEmptyPageWithBody(`
+                <button>click me if u see me</button>
+        `);
+        await base_1.browser.element('button').should(lib_1.be.visible);
+        expect(await (await base_1.webelement('button')).isDisplayed()).toBe(true);
+    });
     it('is matched after waiting till timeout for element that becomes present, then visible', async () => {
         await base_1.GIVEN.openedEmptyPageWithBodyAfter(base_1.data.timeouts.smallest, `
                 <button style='display:none'>click me if u see me</button>
@@ -38,7 +45,7 @@ describe('Conditions.element.isVisible (via should)', () => {
             expect(await (await base_1.webelements('button')).length).toBe(0);
             expect(error.message).toContain(`
 \tTimed out after ${base_1.data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.element(By(css selector, button)).shouldMatch(is visible)
+\tbrowser.element(By(css selector, button)).is visible
 Reason:
 \tno such element: Unable to locate element: {"method":"css selector","selector":"button"}`);
         });
@@ -54,7 +61,7 @@ Reason:
             expect(await (await base_1.webelement('button')).isDisplayed()).toBe(false);
             expect(error.message).toContain(`
 \tTimed out after ${base_1.data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.element(By(css selector, button)).shouldMatch(is visible)
+\tbrowser.element(By(css selector, button)).is visible
 Reason:
 \tis visible? = false`);
         });

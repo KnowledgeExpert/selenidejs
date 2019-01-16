@@ -7,6 +7,7 @@ export declare class Gherkin {
     withBodyTimedOut(html: string, timeout: number): Promise<void>;
     executeScript(script: string): Promise<{}>;
     executeScriptWithTimeout(script: string, timeout: number): Promise<{}>;
+    executeScriptAfter(timeout: number, script: string): Promise<{}>;
     openedEmptyPageWithJquery(): Promise<void>;
     openedEmptyPageWithBody(html: string): Promise<void>;
     openedEmptyPageWithBodyTimedOut(html: string, timeout: number): Promise<void>;

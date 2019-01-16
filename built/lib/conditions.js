@@ -46,15 +46,15 @@ var Conditions;
         predicate.equalsByContainsToArray = predicate.arrayCompareBy(predicate.includes);
     })(predicate || (predicate = {}));
     function described(description, predicate) {
-        const desc = `shouldMatch(${description || predicate.toString()})`;
+        const desc = `${description || predicate}`;
         const condition = async (entity) => {
             const value = await predicate(entity);
             if (!value) {
-                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${predicate.toString()}? = ${value}`);
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${desc}? = ${value}`);
             }
             return value;
         };
-        condition.toString = () => desc; // todo: `Entity ${entity} ${description}` ?
+        condition.toString = () => desc;
         return condition;
     }
     /* todo: check the following style of implementation:

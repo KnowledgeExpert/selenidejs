@@ -109,10 +109,10 @@ export class Element implements SearchContext {
      *  Where:
      *  - should = wait for condition and on success return this for "fluent" style else fail
      *    - just problem is that fluent style in async js is not relevant much :D
-     *  - waitUntil = wait for condition and onn success return true else fail
      *  - matches = apply condition (without waiting) and return its result (true or false)
+     *  - waitUntil = wait for condition and on success return true else false (i.e. = waitingMatch)
      *  TODO:
-     *    - do we need a "waiting match" ?
+     *    - do we need a version that on success returns true else fails?
      *      - should we just make "waitUntil" = "waiting match"?
      *        i.e. not fail on notMatched after timeout but return false
      *        - yet, on the level of Wait it's seems natural to have both:
@@ -121,10 +121,18 @@ export class Element implements SearchContext {
      */
 
     async should(condition: ElementCondition, timeout: number = this.configuration.timeout): Promise<Element> {
-        // await this.wait.until(condition, timeout);
         await this.wait.query(condition, timeout);
         return this;
     }
+
+    /*
+     * todo: consider assert or shouldMatch aliases for should
+     * should is good for
+     *   should(be.visible) style
+     * but assert or shouldMatch is good for the "raw" condition case:
+     *   assert(condition.element.isVisible)
+     *   shouldMatch(condition.element.isVisible)
+     */
 
     async shouldNot(condition: ElementCondition, timeout?: number): Promise<Element> {
         await this.should(Condition.not(condition), timeout);

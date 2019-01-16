@@ -24,7 +24,7 @@ export type ElementCondition = Condition<Element>;
 export type CollectionCondition = Condition<Collection>;
 export type BrowserCondition = Condition<Browser>;
 
-export namespace Conditions { // todo: change to ElementCondition ?
+export namespace Conditions { // todo: rename to condition? for style like element.should(condition.element.isVisible)
 
     /* tslint:disable:object-literal-shorthand */
     /* tslint:disable:no-invalid-this */
@@ -56,15 +56,15 @@ export namespace Conditions { // todo: change to ElementCondition ?
     }
 
     function described<E>(description: string, predicate: Condition<E>) {  // todo: make description a 2nd param
-        const desc = `shouldMatch(${description || predicate.toString()})`;
+        const desc = `${description || predicate}`;
         const condition = async (entity: E) => {
             const value = await predicate(entity);
             if (!value) {
-                throw new ConditionDoesNotMatchError(`${predicate.toString()}? = ${value}`);
+                throw new ConditionDoesNotMatchError(`${desc}? = ${value}`);
             }
             return value;
         };
-        condition.toString = () => desc; // todo: `Entity ${entity} ${description}` ?
+        condition.toString = () => desc;
         return condition;
     }
 

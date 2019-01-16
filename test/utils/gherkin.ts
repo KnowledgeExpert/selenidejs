@@ -49,6 +49,10 @@ export class Gherkin {
         );
     }
 
+    async executeScriptAfter(timeout: number, script: string) {
+        return this.executeScriptWithTimeout(script, timeout);
+    }
+
     async openedEmptyPageWithJquery() {
         await this.openedEmptyPage();
         await this.addJquery();

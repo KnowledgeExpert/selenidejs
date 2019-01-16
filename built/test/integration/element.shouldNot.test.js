@@ -20,6 +20,24 @@ const lib_1 = require("../../lib");
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 describe('Element.shouldNot', () => {
+    it('instantly checks element condition (like be.visible) as not matched (reason: false)', async () => {
+        const started = new Date().getTime();
+        await base_1.GIVEN.openedEmptyPageWithBody(`
+                <button style="display:none">click me if u see me</button>
+        `);
+        await base_1.browser.element('button').shouldNot(lib_1.be.visible);
+        expect(new Date().getTime() - started)
+            .toBeLessThan(base_1.data.timeouts.smallest);
+        expect(await (await base_1.webelement('button')).isDisplayed()).toBe(false);
+    });
+    it('instantly checks element condition (like be.visible) as not matched (reason: error)', async () => {
+        const started = new Date().getTime();
+        await base_1.GIVEN.openedEmptyPage();
+        await base_1.browser.element('button').shouldNot(lib_1.be.visible);
+        expect(new Date().getTime() - started)
+            .toBeLessThan(base_1.data.timeouts.smallest);
+        expect(await (await base_1.webelements('button')).length).toBe(0);
+    });
     it('waits for element condition (like be.visible) to be NOT matched', async () => {
         const started = new Date().getTime();
         await base_1.GIVEN.openedEmptyPageWithBody(`

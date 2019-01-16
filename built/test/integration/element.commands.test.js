@@ -28,7 +28,7 @@ describe('Element.* commands', () => {
         await base_1.browser.element('a').click();
         expect(await base_1.driver.getCurrentUrl()).toContain('second');
     });
-    fit('fails to click with error on not present in DOM element (after timeout)', async () => {
+    it('fails to click with error on not present in DOM element (after timeout)', async () => {
         await base_1.GIVEN.openedEmptyPageWithBodyAfter(base_1.data.timeouts.biggerThanDefault, `
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
@@ -44,7 +44,7 @@ Reason:
 \tno such element: Unable to locate element: {"method":"css selector","selector":"a"}`);
         });
     });
-    fit('fails to click with error on not visible element (after timeout)', async () => {
+    it('fails to click with error on not visible element (after timeout)', async () => {
         await base_1.GIVEN.openedEmptyPageWithBodyAfter(base_1.data.timeouts.smallerThanDefault, `
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
