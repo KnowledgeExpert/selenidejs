@@ -7,10 +7,6 @@
     "declaration": true,
     "removeComments": false,
     "noImplicitAny": false,
-    "experimentalDecorators": true,
-    "outDir": "../built/",
-    "types": [
-      "jasmine"
-    ]
+    "experimentalDecorators": true
   }
 }

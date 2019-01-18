@@ -5,12 +5,17 @@ language: node_js
 node_js:
   - "8"
 
+addons:
+  chrome: stable
+
+cache: ./node_modules
 install: npm install
 
-env:
-  - SELENIDEJS_REMOTE_URL="http://217.73.84.220:4444/wd/hub"
-
-script: npm run build
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 5
+script: npm test
 
 after_script:
-  - "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+  - "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls"
