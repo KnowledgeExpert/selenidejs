@@ -23,10 +23,10 @@ import { be } from '../../lib';
 describe('Element.waitUntil as "waiting predicate"', () => {
 
     it('asserts element condition (like be.visible) instantly for correspondingly matched element', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button>click me if u see me</button>
         `);
+        const started = new Date().getTime();
 
         await browser.element('button').waitUntil(be.visible);
         expect(new Date().getTime() - started)
@@ -35,7 +35,6 @@ describe('Element.waitUntil as "waiting predicate"', () => {
     });
 
     it('waits for element condition (like be.visible) to be matched and returns true', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -43,6 +42,7 @@ describe('Element.waitUntil as "waiting predicate"', () => {
             'document.getElementsByTagName("button")[0].style = "display:block";',
             data.timeouts.smallerThanDefault
         );
+        const started = new Date().getTime();
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
 
@@ -54,7 +54,6 @@ describe('Element.waitUntil as "waiting predicate"', () => {
     });
 
     it('on timeout, if element condition (like be.visible) was not matched, returns false', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -62,6 +61,7 @@ describe('Element.waitUntil as "waiting predicate"', () => {
             'document.getElementsByTagName("button")[0].style = "display:block";',
             data.timeouts.biggerThanDefault
         );
+        const started = new Date().getTime();
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
 

@@ -18,6 +18,7 @@ export class ConditionDoesNotMatchError extends Error {
     }
 }
 
+// todo: consider deleting
 export class FailedToMatchConditionWithReasonError extends ConditionDoesNotMatchError {
     constructor(expected: string, reason: Error) {
         super(`

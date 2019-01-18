@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By, WebDriver, WebElement } from 'selenium-webdriver';
+import { Builder, By, Capabilities, WebDriver, WebElement } from 'selenium-webdriver';
 import { BrowserCondition } from './conditions';
 import { Utils } from './utils';
 import { Collection } from './collection';
-import { Configuration } from './configuration';
+import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
@@ -27,14 +27,32 @@ import { Condition, Wait } from './wait';
 // query thing should be a getter if no params and noun as a name, action should be verb and method
 export class Browser implements SearchContext {
 
+    static configuredWith(): Customized {
+        return Customized.browser();
+    }
+
+    static drivedBy(driver: WebDriver): Customized {
+        return Browser.configuredWith().driver(driver);
+    }
+
+    static chromeWith(): Customized {
+        return Browser
+            .drivedBy(new Builder().withCapabilities(Capabilities.chrome()).build())
+            .build();
+    }
+
+    static chrome(): Browser {
+        return Browser.chromeWith().build();
+    }
+
     // todo: make hooks for browser commands & asserts (for queries file a ticket) too
 
     readonly configuration: Configuration;
 
     private readonly wait: Wait<Browser>;
 
-    constructor(configuration = Configuration.shared) {
-        this.configuration = configuration;
+    constructor(configuration: Partial<Configuration> = {}) {
+        this.configuration = new Configuration(configuration);
         this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
 

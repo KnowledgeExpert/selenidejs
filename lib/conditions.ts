@@ -16,7 +16,7 @@ import { By, WebElement } from 'selenium-webdriver';
 import { Browser } from './browser';
 import { Collection } from './collection';
 import { Element } from './element';
-import { ConditionDoesNotMatchError, FailedToMatchConditionWithReasonError } from './errors/conditionDoesNotMatchError';
+import { ConditionDoesNotMatchError } from './errors/conditionDoesNotMatchError';
 import { Condition } from './wait';
 import { query } from './refactor/queries';
 

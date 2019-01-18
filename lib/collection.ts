@@ -12,10 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { WebDriver, WebElement } from 'selenium-webdriver';
-import { CollectionCondition } from './conditions';
-import { ElementCondition } from './conditions';
-import { Browser } from './browser';
+import { WebElement } from 'selenium-webdriver';
+import { CollectionCondition, ElementCondition } from './conditions';
 import { Configuration } from './configuration';
 import { Element } from './element';
 import { ByIndexedWebElementLocator } from './locators/byIndexedWebElementLocator';

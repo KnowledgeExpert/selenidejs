@@ -23,10 +23,10 @@ import { be } from '../../lib';
 describe('Element.shouldNot', () => {
 
     it('instantly checks element condition (like be.visible) as not matched (reason: false)', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button style="display:none">click me if u see me</button>
         `);
+        const started = new Date().getTime();
 
         await browser.element('button').shouldNot(be.visible);
         expect(new Date().getTime() - started)
@@ -35,8 +35,8 @@ describe('Element.shouldNot', () => {
     });
 
     it('instantly checks element condition (like be.visible) as not matched (reason: error)', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPage();
+        const started = new Date().getTime();
 
         await browser.element('button').shouldNot(be.visible);
         expect(new Date().getTime() - started)
@@ -45,7 +45,6 @@ describe('Element.shouldNot', () => {
     });
 
     it('waits for element condition (like be.visible) to be NOT matched', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button>click me if you see me;)</button>
         `);
@@ -53,6 +52,7 @@ describe('Element.shouldNot', () => {
             'document.getElementsByTagName("button")[0].style = "display:none";',
             data.timeouts.smallerThanDefault
         );
+        const started = new Date().getTime();
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 
@@ -64,7 +64,6 @@ describe('Element.shouldNot', () => {
     });
 
     it('fails on timeout during waiting for negated element condition (like be.visible) if yet matched', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button>click me if you see me;)</button>
         `);
@@ -72,6 +71,7 @@ describe('Element.shouldNot', () => {
             'document.getElementsByTagName("button")[0].style = "display:none";',
             data.timeouts.biggerThanDefault
         );
+        const started = new Date().getTime();
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 

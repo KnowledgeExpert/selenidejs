@@ -21,9 +21,6 @@ import { Gherkin } from '../utils/gherkin';
 import { By, WebDriver } from 'selenium-webdriver';
 
 export let browser: Browser;
-export let driver: WebDriver;
-// export const GIVEN = new Gherkin(browser);
-// export const WHEN = GIVEN;
 export let GIVEN: Gherkin;
 export let WHEN: Gherkin;
 
@@ -36,6 +33,8 @@ export namespace data.timeouts {
     export const biggerThanDefault = byDefault + step;
 }
 
+export let driver: WebDriver;
+
 export function webelement(cssSelector: string) {
     return driver.findElement(By.css(cssSelector));
 }
@@ -45,14 +44,18 @@ export function webelements(cssSelector: string) {
 }
 
 beforeAll(async () => {
-    browser = new Browser(new Configuration({
-        driver: TestUtils.buildWebDriver(),
-        timeout: data.timeouts.byDefault
-    }));
-    driver = browser.configuration.driver;
+    driver = TestUtils.buildWebDriver();
+
+    browser = Browser
+        .drivedBy(driver)
+        .timeout(data.timeouts.byDefault)
+        .build();
+
     GIVEN = new Gherkin(browser);
     WHEN = GIVEN;
+
     TestUtils.startServer();
+
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 });
 

@@ -50,7 +50,6 @@ describe('Element search', () => {
     });
 
     it('waits for element command like click to be possible', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
@@ -59,6 +58,7 @@ describe('Element search', () => {
             'document.getElementsByTagName("a")[0].style = "display:block";',
             data.timeouts.smallerThanDefault
         );
+        const started = new Date().getTime();
 
         await browser.element('a').click();
         expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
@@ -66,7 +66,6 @@ describe('Element search', () => {
     });
 
     it('fails on timeout during waiting for action like click to be possible, if element invisible', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
@@ -75,6 +74,7 @@ describe('Element search', () => {
             'document.getElementsByTagName("a")[0].style = "display:block";',
             data.timeouts.biggerThanDefault
         );
+        const started = new Date().getTime();
 
         await browser.element('a').click()
             .then(ifNoError => fail('should fail on timeout before can be clicked'))

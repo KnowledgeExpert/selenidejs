@@ -13,10 +13,7 @@
 // limitations under the License.
 
 import { By } from 'selenium-webdriver';
-import { CollectionCondition } from '../../conditions';
-import { Conditions } from '../../conditions';
-import { BrowserCondition } from '../../conditions';
-import { ElementCondition } from '../../conditions';
+import { CollectionCondition, Conditions, BrowserCondition, ElementCondition } from '../../conditions';
 
 
 export namespace have {

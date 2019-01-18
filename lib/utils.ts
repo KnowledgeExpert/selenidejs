@@ -14,9 +14,7 @@
 
 import * as fs from 'fs-extra';
 import { By } from 'selenium-webdriver';
-import { Collection } from './collection';
 import { Browser } from './browser';
-import { Element } from './element';
 import { With } from './support/selectors/with';
 
 
@@ -40,12 +38,6 @@ export namespace Utils {
         const screenshot = await selenideDriver.screenshot();
         fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
-    }
-
-    export function isDriver(entity: Browser | Element): boolean {
-        /* tslint:disable:no-string-literal */
-        return entity['quit'];
-        /* tslint:enable:no-string-literal */
     }
 
     export function toBy(cssOrXpathOrBy: string | By): By {  // todo: probably we need to enhance xpath identification

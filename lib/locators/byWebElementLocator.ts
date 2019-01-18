@@ -13,9 +13,6 @@
 // limitations under the License.
 
 import { By, WebElement } from 'selenium-webdriver';
-import { Utils } from '../utils';
-import { Browser } from '../browser';
-import { Element } from '../element';
 import { Locator } from './locator';
 import { SearchContext } from '../searchContext';
 

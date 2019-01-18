@@ -23,10 +23,10 @@ import { be } from '../../lib';
 describe('Element.should', () => {
 
     it('asserts element condition (like be.visible) instantly for correspondingly matched element', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button>click me if u see me</button>
         `);
+        const started = new Date().getTime();
 
         await browser.element('button').should(be.visible);
         expect(new Date().getTime() - started)
@@ -35,7 +35,6 @@ describe('Element.should', () => {
     });
 
     it('waits for element condition (like be.visible) to be matched', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -43,6 +42,7 @@ describe('Element.should', () => {
             'document.getElementsByTagName("button")[0].style = "display:block";',
             data.timeouts.smallerThanDefault
         );
+        const started = new Date().getTime();
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
 
@@ -54,7 +54,6 @@ describe('Element.should', () => {
     });
 
     it('fails on timeout during waiting for element condition (like be.visible) if yet not matched', async () => {
-        const started = new Date().getTime();
         await GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -62,6 +61,7 @@ describe('Element.should', () => {
             'document.getElementsByTagName("button")[0].style = "display:block";',
             data.timeouts.biggerThanDefault
         );
+        const started = new Date().getTime();
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
 

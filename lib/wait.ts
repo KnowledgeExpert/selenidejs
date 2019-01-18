@@ -14,7 +14,7 @@
 
 import { OnFailureHook } from './refactor/onFailureHook';
 import { TimeoutError } from './errors/timeoutError';
-import { ConditionDoesNotMatchError, FailedToMatchConditionWithReasonError } from './errors/conditionDoesNotMatchError';
+import { ConditionDoesNotMatchError } from './errors/conditionDoesNotMatchError';
 
 /* tslint:disable:prefer-template */
 
