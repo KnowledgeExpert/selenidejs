@@ -8,4 +8,5 @@ export { BrowserCondition } from './conditions';
 export { ElementCondition } from './conditions';
 export { be } from './support/conditions/be';
 export { have } from './support/conditions/have';
+export { perform } from './support/commands/perform';
 export { With } from './support/selectors/with';

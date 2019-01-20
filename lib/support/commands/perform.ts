@@ -12,17 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { Collection } from './collection';
-export { Configuration } from './configuration';
-export { Browser } from './browser';
-export { Element } from './element';
-export { Wait, Condition } from './wait';
+import { command } from '../../commands';
 
-export { CollectionCondition } from './conditions';
-export { BrowserCondition } from './conditions';
-export { ElementCondition } from './conditions';
-export { be } from './support/conditions/be';
-export { have } from './support/conditions/have';
-export { perform } from './support/commands/perform';
 
-export { With } from './support/selectors/with';
+export namespace perform {
+    export const pressEnter = command.element.pressEnter;
+}

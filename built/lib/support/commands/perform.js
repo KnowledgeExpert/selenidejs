@@ -1,3 +1,4 @@
+"use strict";
 // Copyright 2018 Knowledge Expert SA
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,18 +12,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-export { Collection } from './collection';
-export { Configuration } from './configuration';
-export { Browser } from './browser';
-export { Element } from './element';
-export { Wait, Condition } from './wait';
-
-export { CollectionCondition } from './conditions';
-export { BrowserCondition } from './conditions';
-export { ElementCondition } from './conditions';
-export { be } from './support/conditions/be';
-export { have } from './support/conditions/have';
-export { perform } from './support/commands/perform';
-
-export { With } from './support/selectors/with';
+Object.defineProperty(exports, "__esModule", { value: true });
+const commands_1 = require("../../commands");
+var perform;
+(function (perform) {
+    perform.pressEnter = commands_1.command.element.pressEnter;
+})(perform = exports.perform || (exports.perform = {}));
+//# sourceMappingURL=perform.js.map
