@@ -162,7 +162,7 @@ export class Browser implements SearchContext {
     // instead of making user write await customBrowserCommand(browser);
 
     // todo: should we rename it to open ? or load? (open in new tab, load in current tab)...
-    async get(url: string) {
+    async open(url: string) {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(
                 parseInt(this.configuration.windowWidth),

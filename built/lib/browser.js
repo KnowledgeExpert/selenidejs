@@ -122,7 +122,7 @@ class Browser {
     // await browser.perform(customCommand); ?
     // instead of making user write await customBrowserCommand(browser);
     // todo: should we rename it to open ? or load? (open in new tab, load in current tab)...
-    async get(url) {
+    async open(url) {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(parseInt(this.configuration.windowWidth), parseInt(this.configuration.windowHeight));
         }

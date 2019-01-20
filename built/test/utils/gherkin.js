@@ -20,7 +20,7 @@ class Gherkin {
         this.browser = browser;
     }
     async openedEmptyPage() {
-        await this.browser.get(testUtils_1.TestUtils.resourcesUrl() + 'empty.html');
+        await this.browser.open(testUtils_1.TestUtils.resourcesUrl() + 'empty.html');
     }
     async withBody(html) {
         await this.browser.executeScript(`document.getElementsByTagName("body")[0].innerHTML=\`${html.replace('\n', '')}\`;`);

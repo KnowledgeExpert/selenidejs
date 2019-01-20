@@ -32,7 +32,7 @@ export declare class Browser implements SearchContext {
     executeScript(script: string | Function, ...args: any[]): Promise<{}>;
     readonly tabs: Promise<string[]>;
     readonly tabsNumber: Promise<number>;
-    get(url: string): Promise<void>;
+    open(url: string): Promise<void>;
     resizeWindow(width: number, height: number): Promise<void>;
     closeCurrentTab(): Promise<void>;
     quit(): Promise<void>;
