@@ -135,6 +135,11 @@ class Element {
         return queryOrCommand(this);
     }
     /* commands */
+    async perform(command, timeout = this.configuration.timeout) {
+        await this.wait.command(command, timeout);
+        return this;
+    }
+    // todo: do we need to wrap it into this.wait. ... ?
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
@@ -208,7 +213,11 @@ class Element {
         );
         return this;
     }
-    /* Queries */
+    /* Queries */ // todo: do we need @ElementQueryHooks?
+    // todo: should we rename it to take?
+    async get(query, timeout = this.configuration.timeout) {
+        return this.wait.query(query, timeout);
+    }
     async text() {
         return this.wait.query(element => element.getWebElement().then(it => it.getText()));
     }
@@ -229,6 +238,10 @@ Element.beforeActionHooks = []; // todo: should we move it to Configuration?
 Element.afterActionHooks = []; // we should...
 __decorate([
     elementActionHooks_1.ElementActionHooks
+], Element.prototype, "perform", null);
+__decorate([
+    elementActionHooks_1.ElementActionHooks
+    // todo: do we need to wrap it into this.wait. ... ?
 ], Element.prototype, "executeScript", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks

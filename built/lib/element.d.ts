@@ -6,7 +6,7 @@ import { Collection } from './collection';
 import { Configuration } from './configuration';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
-import { Query } from './wait';
+import { Command, Query } from './wait';
 export declare class Element implements SearchContext {
     private readonly locator;
     private readonly configuration;
@@ -30,6 +30,7 @@ export declare class Element implements SearchContext {
     matches(condition: ElementCondition): Promise<boolean>;
     matchesNot(condition: ElementCondition): Promise<boolean>;
     do<R>(queryOrCommand: Query<Element, R>): Promise<R>;
+    perform(command: Command<Element>, timeout?: number): Promise<Element>;
     executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]): Promise<{}>;
     click(): Promise<this>;
     clickByJs(xOffset?: number, yOffset?: number): Promise<this>;
@@ -43,6 +44,7 @@ export declare class Element implements SearchContext {
     pressEscape(): Promise<this>;
     pressTab(): Promise<this>;
     scrollIntoView(): Promise<this>;
+    get<R>(query: Query<Element, R>, timeout?: number): Promise<R>;
     text(): Promise<string>;
     attribute(name: string): Promise<string>;
     innerHtml(): Promise<string>;

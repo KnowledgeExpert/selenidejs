@@ -26,7 +26,7 @@ import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
-import { Condition, Query, Wait } from './wait';
+import { Command, Condition, Query, Wait } from './wait';
 import lambda = Utils.lambda;
 
 
@@ -170,6 +170,13 @@ export class Element implements SearchContext {
     /* commands */
 
     @ElementActionHooks
+    async perform(command: Command<Element>, timeout: number = this.configuration.timeout): Promise<Element> {
+        await this.wait.command(command, timeout);
+        return this;
+    }
+
+    @ElementActionHooks
+    // todo: do we need to wrap it into this.wait. ... ?
     async executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]) {
         return this.configuration.driver.executeScript(
             scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
@@ -277,7 +284,12 @@ export class Element implements SearchContext {
         return this;
     }
 
-    /* Queries */
+    /* Queries */ // todo: do we need @ElementQueryHooks?
+
+    // todo: should we rename it to take?
+    async get<R>(query: Query<Element, R>, timeout: number = this.configuration.timeout): Promise<R> {
+        return this.wait.query(query, timeout);
+    }
 
     async text(): Promise<string> {
         return this.wait.query(element =>
