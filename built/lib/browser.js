@@ -32,8 +32,7 @@ class Browser {
     }
     static chromeWith() {
         return Browser
-            .drivedBy(new selenium_webdriver_1.Builder().withCapabilities(selenium_webdriver_1.Capabilities.chrome()).build())
-            .build();
+            .drivedBy(new selenium_webdriver_1.Builder().withCapabilities(selenium_webdriver_1.Capabilities.chrome()).build());
     }
     static chrome() {
         return Browser.chromeWith().build();

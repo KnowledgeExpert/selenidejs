@@ -1,8 +1,9 @@
 import { WebDriver } from 'selenium-webdriver';
 import { OnFailureHook } from './refactor/onFailureHook';
+import { Browser } from './browser';
 export declare class Configuration {
-    static with(): Customized;
-    static withDriver(driver: WebDriver): Customized;
+    static with(): Customized<Configuration>;
+    static withDriver(driver: WebDriver): Customized<Configuration>;
     readonly driver: WebDriver;
     readonly timeout: number;
     readonly windowWidth: string;
@@ -13,13 +14,13 @@ export declare class Configuration {
     readonly onFailureHooks: OnFailureHook[];
     constructor(init?: Partial<Configuration>);
 }
-export declare class Customized {
+export declare class Customized<T> {
     private readonly customizedType;
-    static browser(): Customized;
-    static configuration(): Customized;
+    static browser(): Customized<Browser>;
+    static configuration(): Customized<Configuration>;
     private configuration;
     private constructor();
-    build(): any;
+    build(): T;
     driver(webdriver: WebDriver): this;
     timeout(milliseconds: number): this;
     windowWidth(value: string): this;

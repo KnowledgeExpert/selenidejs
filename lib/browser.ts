@@ -27,18 +27,17 @@ import { Condition, Wait } from './wait';
 // query thing should be a getter if no params and noun as a name, action should be verb and method
 export class Browser implements SearchContext {
 
-    static configuredWith(): Customized {
+    static configuredWith(): Customized<Browser> {
         return Customized.browser();
     }
 
-    static drivedBy(driver: WebDriver): Customized {
+    static drivedBy(driver: WebDriver): Customized<Browser> {
         return Browser.configuredWith().driver(driver);
     }
 
-    static chromeWith(): Customized {
+    static chromeWith(): Customized<Browser> {
         return Browser
-            .drivedBy(new Builder().withCapabilities(Capabilities.chrome()).build())
-            .build();
+            .drivedBy(new Builder().withCapabilities(Capabilities.chrome()).build());
     }
 
     static chrome(): Browser {

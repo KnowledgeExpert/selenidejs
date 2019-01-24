@@ -6,9 +6,9 @@ import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { SearchContext } from './searchContext';
 export declare class Browser implements SearchContext {
-    static configuredWith(): Customized;
-    static drivedBy(driver: WebDriver): Customized;
-    static chromeWith(): Customized;
+    static configuredWith(): Customized<Browser>;
+    static drivedBy(driver: WebDriver): Customized<Browser>;
+    static chromeWith(): Customized<Browser>;
     static chrome(): Browser;
     readonly configuration: Configuration;
     private readonly wait;

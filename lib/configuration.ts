@@ -22,11 +22,11 @@ import { Browser } from './browser';
 
 export class Configuration {
 
-    static with(): Customized {
+    static with(): Customized<Configuration> {
         return Customized.configuration();
     }
 
-    static withDriver(driver: WebDriver): Customized {
+    static withDriver(driver: WebDriver): Customized<Configuration> {
         return Configuration.with().driver(driver);
     }
 
@@ -70,12 +70,12 @@ export class Configuration {
  *   Customizing.browser().driver(driver).timeout(1000).build()
  *    Customized.browser().driver(driver).timeout(1000).build()
  */
-export class Customized {  // todo: add generic? Customized<T> ... constructor(...T...) ... build():T
-    static browser() {
+export class Customized<T> {  // todo: add generic? Customized<T> ... constructor(...T...) ... build():T
+    static browser(): Customized<Browser> {
         return new Customized(Browser);
     }
 
-    static configuration() {
+    static configuration(): Customized<Configuration> {
         return new Customized(Configuration);
     }
 
@@ -87,7 +87,7 @@ export class Customized {  // todo: add generic? Customized<T> ... constructor(.
         this.configuration = {};
     }
 
-    build() {
+    build(): T {
         return new this.customizedType(this.configuration);
     }
 
