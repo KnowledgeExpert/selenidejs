@@ -17,7 +17,7 @@ import { Collection } from '../collection';
 import { Locator } from './locator';
 
 
-export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> {
+export class ByIndexWebElementLocator implements Locator<Promise<WebElement>> {
 
     constructor(private readonly index: number,
                 private readonly collection: Collection) {
@@ -36,7 +36,7 @@ export class ByIndexedWebElementLocator implements Locator<Promise<WebElement>> 
     }
 
     toString(): string {
-        return `${this.collection.toString()}.get(${this.index})`;
+        return `${this.collection.toString()}[${this.index}]`;
     }
 
 }

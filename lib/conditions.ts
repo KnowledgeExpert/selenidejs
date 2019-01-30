@@ -19,6 +19,7 @@ import { Element } from './element';
 import { ConditionDoesNotMatchError } from './errors/conditionDoesNotMatchError';
 import { Condition } from './wait';
 import { query } from './refactor/queries';
+import { Utils } from './utils';
 
 export type ElementCondition = Condition<Element>;
 export type CollectionCondition = Condition<Collection>;
@@ -87,6 +88,7 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
     export namespace element {
 
         // todo: isVisible vs visible, etc.
+        import lambda = Utils.lambda;
         export const isVisible: ElementCondition =
             described(undefined, query.element.isVisible);
 
@@ -132,15 +134,15 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
 
         // todo: condition... should it be Promise<boolean> or as currently Promise<boolean | throws } ?
         export function hasText(text: string): ElementCondition { // todo: do we need string | number
-            return described(`has text ${text}`, async (element: Element) =>
+            return described(undefined, lambda(`has text: ${text}`, async (element: Element) =>
                 query.element.text(element).then(
                     throwIfNot('actual text', predicate.includes(text))
                 )
-            );
+            ));
         }
 
-        export function hasExactText(text: string): ElementCondition { // todo: do we need string | number
-            return described(`has text ${text}`, async (element: Element) =>
+        export function hasExactText(text: string): ElementCondition { // todo: do we need string | number ?
+            return described(`has exact text: ${text}`, async (element: Element) =>
                 query.element.text(element).then(
                     throwIfNot('actual text', predicate.equals(text))
                 )

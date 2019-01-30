@@ -39,6 +39,10 @@ export class Gherkin {
         );
     }
 
+    async withBodyAfter(timeout: number, html: string) {
+        return this.withBodyTimedOut(html, timeout);
+    }
+
     async executeScript(script: string) {
         return this.browser.executeScript(script);
     }

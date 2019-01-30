@@ -20,7 +20,7 @@ import { be } from '../../lib';
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 
-describe('Element.* commands', () => {
+describe('Element.* commands: click', () => {
 
     it('clicks on element once it is present in DOM and visible', async () => {
         await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.smallest, `
@@ -38,7 +38,7 @@ describe('Element.* commands', () => {
 
     it('fails to click with error on not present in DOM element (after timeout)', async () => {
         await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.biggerThanDefault, `
-                <a href='#second' style='display:none'>go to Heading 2</a>
+                <a href='#second'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
         `);
 

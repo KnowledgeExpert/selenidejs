@@ -16,7 +16,7 @@ import { WebElement } from 'selenium-webdriver';
 import { CollectionCondition, ElementCondition } from './conditions';
 import { Configuration } from './configuration';
 import { Element } from './element';
-import { ByIndexedWebElementLocator } from './locators/byIndexedWebElementLocator';
+import { ByIndexWebElementLocator } from './locators/byIndexWebElementLocator';
 import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
@@ -29,6 +29,7 @@ export class Collection {
     constructor(private readonly locator: Locator<Promise<WebElement[]>>,
                 private readonly configuration: Configuration) {
         this.locator = locator;
+        this.configuration = configuration;
         this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
 
@@ -69,8 +70,9 @@ export class Collection {
 
     /* Others... */
 
+    // todo: think on get(i+1) @s @li@s to [i]
     get(index: number): Element {  // todo refactor to [index: number]
-        return new Element(new ByIndexedWebElementLocator(index, this), this.configuration);
+        return new Element(new ByIndexWebElementLocator(index, this), this.configuration);
     }
 
     first(): Element {

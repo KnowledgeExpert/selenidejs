@@ -28,6 +28,9 @@ class Gherkin {
     async withBodyTimedOut(html, timeout) {
         await this.executeScriptWithTimeout(`document.getElementsByTagName("body")[0].innerHTML=\`${html.replace('\n', '')}\`;`, timeout);
     }
+    async withBodyAfter(timeout, html) {
+        return this.withBodyTimedOut(html, timeout);
+    }
     async executeScript(script) {
         return this.browser.executeScript(script);
     }

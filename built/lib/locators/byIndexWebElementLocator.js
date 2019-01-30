@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-class ByIndexedWebElementLocator {
+class ByIndexWebElementLocator {
     constructor(index, collection) {
         this.index = index;
         this.collection = collection;
@@ -28,8 +28,8 @@ class ByIndexedWebElementLocator {
         return elements[this.index];
     }
     toString() {
-        return `${this.collection.toString()}.get(${this.index})`;
+        return `${this.collection.toString()}[${this.index}]`;
     }
 }
-exports.ByIndexedWebElementLocator = ByIndexedWebElementLocator;
-//# sourceMappingURL=byIndexedWebElementLocator.js.map
+exports.ByIndexWebElementLocator = ByIndexWebElementLocator;
+//# sourceMappingURL=byIndexWebElementLocator.js.map

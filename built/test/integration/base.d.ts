@@ -6,8 +6,8 @@ export declare let GIVEN: Gherkin;
 export declare let WHEN: Gherkin;
 export declare namespace data.timeouts {
     const byDefault = 1500;
-    const step = 250;
-    const smallest = 250;
+    const step = 400;
+    const smallest = 400;
     const smallerThanDefault: number;
     const biggerThanDefault: number;
 }

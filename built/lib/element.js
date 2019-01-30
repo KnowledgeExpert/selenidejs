@@ -139,12 +139,13 @@ class Element {
         await this.wait.command(command, timeout);
         return this;
     }
-    // todo: do we need to wrap it into this.wait. ... ?
+    // todo: do we need to wrap it into this.wait. ?
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async click() {
-        await this.wait.command(lambda('click', async (element) => element.getWebElement().then(it => it.click())));
+        await this.wait.command(lambda('click', async (element) => // todo: add describing lambdas to other commands
+         element.getWebElement().then(it => it.click())));
         return this;
     }
     async clickByJs(xOffset = 0, yOffset = 0) {
@@ -218,11 +219,23 @@ class Element {
     async get(query, timeout = this.configuration.timeout) {
         return this.wait.query(query, timeout);
     }
+    // todo: do we need visibleText() in addition? (because text() does not fail for invisible element...)
+    /*
+     * todo: define proper behavior...
+     * selenium has separated: search (that can fail on no element) and text - that if not visible returns ''
+     * what should we do?
+     * for search we wait...
+     * but since '' means no visible text... the same applies for "no element"
+     * for no element should we return '' without waiting then?
+     * or should we wait then return '' if present or real text when also visible? (this is current behavior)
+     * or should we wait till visible and then return full text?
+     */
     async text() {
-        return this.wait.query(element => element.getWebElement().then(it => it.getText()));
+        return this.wait.query(lambda('text', async (element) => element.getWebElement().then(it => it.getText())));
     }
+    // todo: cover with tests
     async attribute(name) {
-        return this.wait.query(element => element.getWebElement().then(it => it.getAttribute(name)));
+        return this.wait.query(lambda(`attribute: ${name}`, async (element) => element.getWebElement().then(it => it.getAttribute(name))));
     }
     async innerHtml() {
         return this.attribute('innerHTML');
@@ -237,11 +250,11 @@ class Element {
 Element.beforeActionHooks = []; // todo: should we move it to Configuration?
 Element.afterActionHooks = []; // we should...
 __decorate([
-    elementActionHooks_1.ElementActionHooks
+    elementActionHooks_1.ElementActionHooks // todo: cover with tests
 ], Element.prototype, "perform", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
-    // todo: do we need to wrap it into this.wait. ... ?
+    // todo: do we need to wrap it into this.wait. ?
 ], Element.prototype, "executeScript", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks

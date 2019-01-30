@@ -14,7 +14,7 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const element_1 = require("./element");
-const byIndexedWebElementLocator_1 = require("./locators/byIndexedWebElementLocator");
+const byIndexWebElementLocator_1 = require("./locators/byIndexWebElementLocator");
 const cashedWebElementLocator_1 = require("./locators/cashedWebElementLocator");
 const filteredByConditionWebElementsLocator_1 = require("./locators/filteredByConditionWebElementsLocator");
 const wait_1 = require("./wait");
@@ -23,6 +23,7 @@ class Collection {
         this.locator = locator;
         this.configuration = configuration;
         this.locator = locator;
+        this.configuration = configuration;
         this.wait = new wait_1.Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
     async getAsCashedArray() {
@@ -51,8 +52,9 @@ class Collection {
         return this.matches(wait_1.Condition.not(condition));
     }
     /* Others... */
+    // todo: think on get(i+1) @s @li@s to [i]
     get(index) {
-        return new element_1.Element(new byIndexedWebElementLocator_1.ByIndexedWebElementLocator(index, this), this.configuration);
+        return new element_1.Element(new byIndexWebElementLocator_1.ByIndexWebElementLocator(index, this), this.configuration);
     }
     first() {
         return this.get(0);

@@ -20,7 +20,7 @@ const lib_1 = require("../../lib");
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 describe('Element.matches as condition based "predicate"', () => {
-    it('on element condition (like be.visible) that is not matched, returns false (no waiting)', async () => {
+    it('on element condition (like be.visible) that is not matched (false), returns false (no waiting)', async () => {
         await base_1.GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -30,6 +30,19 @@ describe('Element.matches as condition based "predicate"', () => {
         expect(await base_1.browser.element('button').matches(lib_1.be.visible)).toBe(false);
         expect(await (await base_1.webelement('button')).isDisplayed())
             .toBe(false);
+    });
+    it('on element condition (like be.visible) that is not matched (error), returns false (no waiting)', async () => {
+        await base_1.GIVEN.openedEmptyPage();
+        await base_1.GIVEN.executeScriptWithTimeout('document.getElementsByTagName("button")[0].style = "display:block";', base_1.data.timeouts.smallerThanDefault);
+        expect(await base_1.browser.element('button').matches(lib_1.be.visible)).toBe(false);
+        try {
+            await base_1.webelement('button');
+            // ifNoError
+            fail('raw webdriver should fail');
+        }
+        catch (error) {
+            expect(error.message).toContain('no such element: Unable to locate element: {"method":"css selector","selector":"button"}');
+        }
     });
     it('on element condition (like be.visible) that is matched, returns true (no waiting)', async () => {
         await base_1.GIVEN.openedEmptyPageWithBody(`

@@ -22,7 +22,7 @@ import { be } from '../../lib';
 
 describe('Element.matchesNot as negated condition based "predicate"', () => {
 
-    it('on element condition (like be.visible) that is not matched, returns true (no waiting)', async () => {
+    it('on element condition (like be.visible) that is not matched (false), returns true (no waiting)', async () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <button style='display:none'>click me if you see me;)</button>
         `);
@@ -36,6 +36,26 @@ describe('Element.matchesNot as negated condition based "predicate"', () => {
         expect(await browser.element('button').matchesNot(be.visible)).toBe(true);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
+    });
+
+    it('on element condition (like be.visible) that is not matched (error), returns true (no waiting)', async () => {
+        await GIVEN.openedEmptyPage();
+
+        await GIVEN.executeScriptWithTimeout(
+            'document.getElementsByTagName("button")[0].style = "display:block";',
+            data.timeouts.smallerThanDefault
+        );
+
+        expect(await browser.element('button').matchesNot(be.visible)).toBe(true);
+        try {
+            await webelement('button');
+            // ifNoError
+            fail('raw webdriver should fail');
+        } catch (error) {
+            expect(error.message).toContain(
+                'no such element: Unable to locate element: {"method":"css selector","selector":"button"}'
+            );
+        }
     });
 
     it('on element condition (like be.visible) that is matched, returns false (no waiting)', async () => {

@@ -25,7 +25,7 @@ var data;
     (function (timeouts) {
         // export const byDefault = 750;
         timeouts.byDefault = 1500;
-        timeouts.step = 250;
+        timeouts.step = 400;
         timeouts.smallest = timeouts.step;
         timeouts.smallerThanDefault = timeouts.byDefault - timeouts.step;
         timeouts.biggerThanDefault = timeouts.byDefault + timeouts.step;

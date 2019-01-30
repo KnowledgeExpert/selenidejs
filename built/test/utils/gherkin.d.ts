@@ -5,6 +5,7 @@ export declare class Gherkin {
     openedEmptyPage(): Promise<void>;
     withBody(html: string): Promise<void>;
     withBodyTimedOut(html: string, timeout: number): Promise<void>;
+    withBodyAfter(timeout: number, html: string): Promise<void>;
     executeScript(script: string): Promise<{}>;
     executeScriptWithTimeout(script: string, timeout: number): Promise<{}>;
     executeScriptAfter(timeout: number, script: string): Promise<{}>;

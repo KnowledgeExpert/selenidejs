@@ -169,14 +169,14 @@ export class Element implements SearchContext {
 
     /* commands */
 
-    @ElementActionHooks
+    @ElementActionHooks  // todo: cover with tests
     async perform(command: Command<Element>, timeout: number = this.configuration.timeout): Promise<Element> {
         await this.wait.command(command, timeout);
         return this;
     }
 
     @ElementActionHooks
-    // todo: do we need to wrap it into this.wait. ... ?
+    // todo: do we need to wrap it into this.wait. ?
     async executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]) {
         return this.configuration.driver.executeScript(
             scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
@@ -185,7 +185,7 @@ export class Element implements SearchContext {
 
     @ElementActionHooks
     async click() {
-        await this.wait.command(lambda('click', async element =>
+        await this.wait.command(lambda('click', async element =>  // todo: add describing lambdas to other commands
             element.getWebElement().then(it => it.click())
         ));
         return this;
@@ -291,14 +291,28 @@ export class Element implements SearchContext {
         return this.wait.query(query, timeout);
     }
 
+    // todo: do we need visibleText() in addition? (because text() does not fail for invisible element...)
+    /*
+     * todo: define proper behavior...
+     * selenium has separated: search (that can fail on no element) and text - that if not visible returns ''
+     * what should we do?
+     * for search we wait...
+     * but since '' means no visible text... the same applies for "no element"
+     * for no element should we return '' without waiting then?
+     * or should we wait then return '' if present or real text when also visible? (this is current behavior)
+     * or should we wait till visible and then return full text?
+     */
     async text(): Promise<string> {
-        return this.wait.query(element =>
-            element.getWebElement().then(it => it.getText()));
+        return this.wait.query(lambda('text', async element =>
+            element.getWebElement().then(it => it.getText())
+        ));
     }
 
+    // todo: cover with tests
     async attribute(name: string): Promise<string> {
-        return this.wait.query(element =>
-            element.getWebElement().then(it => it.getAttribute(name)));
+        return this.wait.query(lambda(`attribute: ${name}`, async element =>
+            element.getWebElement().then(it => it.getAttribute(name))
+        ));
     }
 
     async innerHtml(): Promise<string> {

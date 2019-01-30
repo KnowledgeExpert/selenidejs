@@ -46,7 +46,7 @@ export namespace Utils {
             : cssOrXpathOrBy;
     }
 
-    export function lambda(toString: string, fn) {
+    export function lambda<F>(toString: string, fn: F): F {
         fn.toString = () => toString;
         return fn;
     }

@@ -18,7 +18,7 @@ const base_1 = require("./base");
  * driver = common well known Selenium WebDriver
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
-describe('Element.* commands', () => {
+describe('Element.* commands: click', () => {
     it('clicks on element once it is present in DOM and visible', async () => {
         await base_1.GIVEN.openedEmptyPageWithBodyAfter(base_1.data.timeouts.smallest, `
                 <a href='#second' style='display:none'>go to Heading 2</a>
@@ -30,7 +30,7 @@ describe('Element.* commands', () => {
     });
     it('fails to click with error on not present in DOM element (after timeout)', async () => {
         await base_1.GIVEN.openedEmptyPageWithBodyAfter(base_1.data.timeouts.biggerThanDefault, `
-                <a href='#second' style='display:none'>go to Heading 2</a>
+                <a href='#second'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
         `);
         await base_1.browser.element('a').click()
@@ -61,4 +61,4 @@ Reason:
         });
     });
 });
-//# sourceMappingURL=element.commands.test.js.map
+//# sourceMappingURL=element.commands.click.test.js.map

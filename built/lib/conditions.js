@@ -17,6 +17,7 @@ const selenium_webdriver_1 = require("selenium-webdriver");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
 const wait_1 = require("./wait");
 const queries_1 = require("./refactor/queries");
+const utils_1 = require("./utils");
 var Conditions;
 (function (Conditions) {
     /* tslint:disable:object-literal-shorthand */
@@ -75,6 +76,7 @@ var Conditions;
     let element;
     (function (element_1) {
         // todo: isVisible vs visible, etc.
+        var lambda = utils_1.Utils.lambda;
         element_1.isVisible = described(undefined, queries_1.query.element.isVisible);
         element_1.isHidden = wait_1.Condition.not(element_1.isVisible, 'is hidden');
         function hasVisibleElement(by) {
@@ -93,11 +95,11 @@ var Conditions;
         element_1.hasAttribute = hasAttribute;
         // todo: condition... should it be Promise<boolean> or as currently Promise<boolean | throws } ?
         function hasText(text) {
-            return described(`has text ${text}`, async (element) => queries_1.query.element.text(element).then(throwIfNot('actual text', predicate.includes(text))));
+            return described(undefined, lambda(`has text: ${text}`, async (element) => queries_1.query.element.text(element).then(throwIfNot('actual text', predicate.includes(text)))));
         }
         element_1.hasText = hasText;
         function hasExactText(text) {
-            return described(`has text ${text}`, async (element) => queries_1.query.element.text(element).then(throwIfNot('actual text', predicate.equals(text))));
+            return described(`has exact text: ${text}`, async (element) => queries_1.query.element.text(element).then(throwIfNot('actual text', predicate.equals(text))));
         }
         element_1.hasExactText = hasExactText;
         function hasAttributeWithValue(name, value) {
