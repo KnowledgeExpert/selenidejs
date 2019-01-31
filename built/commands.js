@@ -36,18 +36,18 @@ var command;
     let element;
     (function (element_1) {
         element_1.executeScript = (scriptOnThisWebElement, ...additionalArgs) => (element) => element.executeScript(scriptOnThisWebElement, additionalArgs);
-        element_1.click = () => (element) => element.click();
+        element_1.click = (element) => element.click();
         element_1.clickByJs = (xOffset = 0, yOffset = 0) => (element) => element.clickByJs(xOffset, yOffset);
-        element_1.doubleClick = () => (element) => element.doubleClick();
-        element_1.contextClick = () => (element) => element.contextClick();
-        element_1.hover = () => (element) => element.hover();
-        element_1.scrollIntoView = () => (element) => element.scrollIntoView();
+        element_1.doubleClick = (element) => element.doubleClick();
+        element_1.contextClick = (element) => element.contextClick();
+        element_1.hover = (element) => element.hover();
+        element_1.scrollIntoView = (element) => element.scrollIntoView();
         element_1.sendKeys = (value) => (element) => element.sendKeys(value);
         element_1.setValue = (value) => (element) => element.setValue(value);
         element_1.setValueByJs = (value) => (element) => element.setValueByJs(value);
-        element_1.pressEnter = () => (element) => element.pressEnter();
-        element_1.pressTab = () => (element) => element.pressTab();
-        element_1.pressEscape = () => (element) => element.pressEscape();
+        element_1.pressEnter = (element) => element.pressEnter();
+        element_1.pressTab = (element) => element.pressTab();
+        element_1.pressEscape = (element) => element.pressEscape();
     })(element = command.element || (command.element = {}));
 })(command = exports.command || (exports.command = {}));
 //# sourceMappingURL=commands.js.map

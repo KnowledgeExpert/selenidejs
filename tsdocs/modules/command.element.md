@@ -28,11 +28,17 @@
 
 ### `<Const>` click
 
-▸ **click**(): `(Anonymous function)`
+▸ **click**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L41)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="clickbyjs"></a>
@@ -57,22 +63,34 @@ ___
 
 ### `<Const>` contextClick
 
-▸ **contextClick**(): `(Anonymous function)`
+▸ **contextClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L45)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="doubleclick"></a>
 
 ### `<Const>` doubleClick
 
-▸ **doubleClick**(): `(Anonymous function)`
+▸ **doubleClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L44)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="executescript"></a>
@@ -97,55 +115,85 @@ ___
 
 ### `<Const>` hover
 
-▸ **hover**(): `(Anonymous function)`
+▸ **hover**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L46)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="pressenter"></a>
 
 ### `<Const>` pressEnter
 
-▸ **pressEnter**(): `(Anonymous function)`
+▸ **pressEnter**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L53)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="pressescape"></a>
 
 ### `<Const>` pressEscape
 
-▸ **pressEscape**(): `(Anonymous function)`
+▸ **pressEscape**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L55)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="presstab"></a>
 
 ### `<Const>` pressTab
 
-▸ **pressTab**(): `(Anonymous function)`
+▸ **pressTab**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L54)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="scrollintoview"></a>
 
 ### `<Const>` scrollIntoView
 
-▸ **scrollIntoView**(): `(Anonymous function)`
+▸ **scrollIntoView**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
 *Defined in [commands.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L47)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="sendkeys"></a>

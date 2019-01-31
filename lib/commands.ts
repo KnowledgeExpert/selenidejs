@@ -38,20 +38,20 @@ export namespace command {
         export const executeScript = (scriptOnThisWebElement: string, ...additionalArgs: any[]) =>
             (element: Element) => element.executeScript(scriptOnThisWebElement, additionalArgs);
 
-        export const click = () => (element: Element) => element.click();
+        export const click = (element: Element) => element.click();
         export const clickByJs = (xOffset: number = 0, yOffset: number = 0) => (element: Element) =>
             element.clickByJs(xOffset, yOffset);
-        export const doubleClick = () => (element: Element) => element.doubleClick();
-        export const contextClick = () => (element: Element) => element.contextClick();
-        export const hover = () => (element: Element) => element.hover();
-        export const scrollIntoView = () => (element: Element) => element.scrollIntoView();
+        export const doubleClick = (element: Element) => element.doubleClick();
+        export const contextClick = (element: Element) => element.contextClick();
+        export const hover = (element: Element) => element.hover();
+        export const scrollIntoView = (element: Element) => element.scrollIntoView();
 
         export const sendKeys = (value: string | number) => (element: Element) => element.sendKeys(value);
         export const setValue = (value: string | number) => (element: Element) => element.setValue(value);
         export const setValueByJs = (value: string | number) => (element: Element) => element.setValueByJs(value);
 
-        export const pressEnter = () => (element: Element) => element.pressEnter();
-        export const pressTab = () => (element: Element) => element.pressTab();
-        export const pressEscape = () => (element: Element) => element.pressEscape();
+        export const pressEnter = (element: Element) => element.pressEnter();
+        export const pressTab = (element: Element) => element.pressTab();
+        export const pressEscape = (element: Element) => element.pressEscape();
     }
 }
