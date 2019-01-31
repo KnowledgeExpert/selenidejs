@@ -31,11 +31,11 @@ export namespace query { // todo: do we really need this separation?
         export const isVisible = lambda('is visible', async (element: Element) =>
             (await element.getWebElement()).isDisplayed());
 
-        export async function isEnabled(element: Element) {
-            return (await element.getWebElement()).isEnabled();
-        }
+        export const isEnabled = lambda('is enabled', async (element: Element) =>
+            (await element.getWebElement()).isEnabled());
 
         export async function text(element: Element) {
+            /* tslint:disable:no-console */
             return (await element.getWebElement()).getText();
         }
 

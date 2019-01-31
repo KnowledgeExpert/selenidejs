@@ -21,11 +21,11 @@ class ByIndexWebElementLocator {
         this.collection = collection;
     }
     async find() {
-        const elements = await this.collection.getWebElements();
-        if (elements.length < this.index) {
-            throw new Error(`Cannot get ${this.index} element from webelements collection with length ${elements.length}`);
+        const webelements = await this.collection.getWebElements();
+        if (webelements.length <= this.index) {
+            throw new Error(`Cannot get element with index ${this.index} from webelements collection with length ${webelements.length}`);
         }
-        return elements[this.index];
+        return webelements[this.index];
     }
     toString() {
         return `${this.collection.toString()}[${this.index}]`;

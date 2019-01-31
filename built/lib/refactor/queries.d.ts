@@ -6,7 +6,7 @@ export declare type ElementQuery<R> = Query<Element, R>;
 export declare namespace query {
     namespace element {
         const isVisible: (element: Element) => Promise<boolean>;
-        function isEnabled(element: Element): Promise<boolean>;
+        const isEnabled: (element: Element) => Promise<boolean>;
         function text(element: Element): Promise<string>;
         function hasText(text: string): (element: Element) => Promise<boolean>;
         const attribute: (name: string) => (element: Element) => Promise<string>;

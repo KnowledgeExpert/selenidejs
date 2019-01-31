@@ -104,7 +104,7 @@ Reason:
             });
     });
 
-    xit('fails on timeout with error during waiting for condition like text, if no element', async () => {
+    it('fails on timeout with error during waiting for condition like text, if no element', async () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <ul>Hello to:
                     <li class='will-exist'>Bob</li>
@@ -119,11 +119,10 @@ Reason:
                 expect(await browser.url()).not.toContain('second');
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.all(By(css selector, a))[1].has text: Kate
+\tbrowser.all(By(css selector, li))[1].has text: Kate
 Reason:
-\tTODO`
+\tCannot get element with index 1 from webelements collection with length 1`
                 );
             });
     });
-
 });

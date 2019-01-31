@@ -70,7 +70,7 @@ export class Collection {
 
     /* Others... */
 
-    // todo: think on get(i+1) @s @li@s to [i]
+    // todo: think on get(i+1) @s @li@s to [i] (is it even possible?)
     get(index: number): Element {  // todo refactor to [index: number]
         return new Element(new ByIndexWebElementLocator(index, this), this.configuration);
     }

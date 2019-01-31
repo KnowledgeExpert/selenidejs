@@ -52,7 +52,7 @@ class Collection {
         return this.matches(wait_1.Condition.not(condition));
     }
     /* Others... */
-    // todo: think on get(i+1) @s @li@s to [i]
+    // todo: think on get(i+1) @s @li@s to [i] (is it even possible?)
     get(index) {
         return new element_1.Element(new byIndexWebElementLocator_1.ByIndexWebElementLocator(index, this), this.configuration);
     }

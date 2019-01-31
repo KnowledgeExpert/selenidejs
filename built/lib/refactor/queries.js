@@ -25,11 +25,9 @@ var query;
     (function (element_1) {
         var lambda = utils_1.Utils.lambda;
         element_1.isVisible = lambda('is visible', async (element) => (await element.getWebElement()).isDisplayed());
-        async function isEnabled(element) {
-            return (await element.getWebElement()).isEnabled();
-        }
-        element_1.isEnabled = isEnabled;
+        element_1.isEnabled = lambda('is enabled', async (element) => (await element.getWebElement()).isEnabled());
         async function text(element) {
+            /* tslint:disable:no-console */
             return (await element.getWebElement()).getText();
         }
         element_1.text = text;
