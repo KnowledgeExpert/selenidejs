@@ -22,7 +22,7 @@
 
 ▸ **hasTabsNumber**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:230](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L230)*
+*Defined in [conditions.ts:220](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L220)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **hasTabsNumberLessThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:246](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L246)*
+*Defined in [conditions.ts:236](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L236)*
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **hasTabsNumberMoreThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:238](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L238)*
+*Defined in [conditions.ts:228](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L228)*
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **hasUrl**(url: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:222](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L222)*
+*Defined in [conditions.ts:212](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L212)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **hasUrlContaining**(partialUrl: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:214](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L214)*
+*Defined in [conditions.ts:204](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L204)*
 
 **Parameters:**
 

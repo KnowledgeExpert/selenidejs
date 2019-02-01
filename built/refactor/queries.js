@@ -14,6 +14,8 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("../utils");
+var lambda = utils_1.Utils.lambda;
+const selenium_webdriver_1 = require("selenium-webdriver");
 var query;
 (function (query) {
     // it's kind of needed only for cases like:
@@ -23,9 +25,11 @@ var query;
     // and leave this code here just for example
     let element;
     (function (element_1) {
-        var lambda = utils_1.Utils.lambda;
         element_1.isVisible = lambda('is visible', async (element) => (await element.getWebElement()).isDisplayed());
         element_1.isEnabled = lambda('is enabled', async (element) => (await element.getWebElement()).isEnabled());
+        element_1.isPresent = lambda('is present', async (element) => !!(await element.getWebElement()));
+        element_1.isFocused = lambda('is focused', async (element) => selenium_webdriver_1.WebElement.equals(await element.executeScript('return document.activeElement'), await element.getWebElement()));
+        element_1.hasAttribute = (name) => lambda(`has attribute with name ${name}`, async (element) => !!(await element.attribute(name)));
         async function text(element) {
             /* tslint:disable:no-console */
             return (await element.getWebElement()).getText();
@@ -39,10 +43,8 @@ var query;
     })(element = query.element || (query.element = {}));
     let collection;
     (function (collection_1) {
-        async function size(collection) {
-            return (await collection.getWebElements()).length;
-        }
-        collection_1.size = size;
+        collection_1.size = lambda('size', async (collection) => (await collection.getWebElements()).length);
+        collection_1.hasSize = (length) => lambda(`has size ${length}`, async (collection) => (await collection_1.size(collection)) === length);
         async function texts(collection) {
             const elements = await collection.getWebElements();
             return Promise.all(elements.map(webElement => webElement.getText()));

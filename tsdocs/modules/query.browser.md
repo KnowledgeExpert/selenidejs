@@ -19,7 +19,7 @@
 
 ▸ **tabsNumber**(browser: *[Browser](../classes/browser.md)*): `Promise`<`number`>
 
-*Defined in [refactor/queries.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L66)*
+*Defined in [refactor/queries.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L85)*
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **url**(browser: *[Browser](../classes/browser.md)*): `Promise`<`string`>
 
-*Defined in [refactor/queries.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L62)*
+*Defined in [refactor/queries.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L81)*
 
 **Parameters:**
 

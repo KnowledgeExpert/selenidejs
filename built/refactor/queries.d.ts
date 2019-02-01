@@ -7,12 +7,16 @@ export declare namespace query {
     namespace element {
         const isVisible: (element: Element) => Promise<boolean>;
         const isEnabled: (element: Element) => Promise<boolean>;
+        const isPresent: (element: Element) => Promise<boolean>;
+        const isFocused: (element: Element) => Promise<boolean>;
+        const hasAttribute: (name: string) => (element: Element) => Promise<boolean>;
         function text(element: Element): Promise<string>;
         function hasText(text: string): (element: Element) => Promise<boolean>;
         const attribute: (name: string) => (element: Element) => Promise<string>;
     }
     namespace collection {
-        function size(collection: Collection): Promise<number>;
+        const size: (collection: Collection) => Promise<number>;
+        const hasSize: (length: number) => (collection: Collection) => Promise<boolean>;
         function texts(collection: Collection): Promise<string[]>;
     }
     namespace browser {

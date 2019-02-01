@@ -24,9 +24,9 @@
 
 ###  described
 
-▸ **described**<`E`>(description: *`string`*, predicate: *[Condition](condition.md)<`E`>*): `condition`
+▸ **described**<`E`>(predicate: *[Condition](condition.md)<`E`>*): `condition`
 
-*Defined in [conditions.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L59)*
+*Defined in [conditions.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L60)*
 
 **Type parameters:**
 
@@ -35,7 +35,6 @@
 
 | Param | Type |
 | ------ | ------ |
-| description | `string` |
 | predicate | [Condition](condition.md)<`E`> |
 
 **Returns:** `condition`
@@ -47,7 +46,7 @@ ___
 
 ▸ **throwIfNot**<`A`>(reason: *`string`*, predicate: *`function`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L34)*
+*Defined in [conditions.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L35)*
 
 **Type parameters:**
 

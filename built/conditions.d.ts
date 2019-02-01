@@ -10,14 +10,14 @@ export declare namespace Conditions {
     namespace element {
         const isVisible: ElementCondition;
         const isHidden: ElementCondition;
-        function hasVisibleElement(by: By): ElementCondition;
+        const hasVisibleElement: (by: By) => import("./wait").Query<Element, boolean>;
+        const hasAttribute: (name: string) => import("./wait").Query<Element, boolean>;
         const isSelected: ElementCondition;
         const isEnabled: ElementCondition;
         const isDisabled: ElementCondition;
         const isPresent: ElementCondition;
         const isAbsent: ElementCondition;
         const isFocused: ElementCondition;
-        function hasAttribute(name: string): ElementCondition;
         function hasText(text: string): ElementCondition;
         function hasExactText(text: string): ElementCondition;
         function hasAttributeWithValue(name: string, value: string): ElementCondition;

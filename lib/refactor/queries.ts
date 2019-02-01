@@ -17,6 +17,8 @@ import { Element } from '../element';
 import { Collection } from '../collection';
 import { Browser } from '../browser';
 import { Utils } from '../utils';
+import lambda = Utils.lambda;
+import { WebElement } from 'selenium-webdriver';
 
 export type ElementQuery<R> = Query<Element, R>;
 
@@ -27,12 +29,25 @@ export namespace query { // todo: do we really need this separation?
 // maybe we can decide on this later...
 // and leave this code here just for example
     export namespace element {
-        import lambda = Utils.lambda;
         export const isVisible = lambda('is visible', async (element: Element) =>
             (await element.getWebElement()).isDisplayed());
 
         export const isEnabled = lambda('is enabled', async (element: Element) =>
             (await element.getWebElement()).isEnabled());
+
+        export const isPresent = lambda('is present', async (element: Element) =>
+            !!(await element.getWebElement()));
+
+        export const isFocused = lambda('is focused', async (element: Element) =>
+            WebElement.equals(
+                await element.executeScript('return document.activeElement') as WebElement,
+                await element.getWebElement()
+            ));
+
+        export const hasAttribute = (name: string) =>
+            lambda(`has attribute with name ${name}`, async (element: Element) =>
+                !!(await element.attribute(name))
+            );
 
         export async function text(element: Element) {
             /* tslint:disable:no-console */
@@ -48,9 +63,13 @@ export namespace query { // todo: do we really need this separation?
     }
 
     export namespace collection {
-        export async function size(collection: Collection) {
-            return (await collection.getWebElements()).length;
-        }
+        export const size = lambda('size', async (collection: Collection) =>
+            (await collection.getWebElements()).length);
+
+        export const hasSize = (length: number) =>
+            lambda(`has size ${length}`, async (collection: Collection) =>
+                (await size(collection)) === length
+            );
 
         export async function texts(collection: Collection) {
             const elements = await collection.getWebElements();

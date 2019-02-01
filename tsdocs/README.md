@@ -110,7 +110,7 @@ ___
 
 **Ƭ BrowserCondition**: *[Condition](modules/condition.md)<[Browser](classes/browser.md)>*
 
-*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
+*Defined in [conditions.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L27)*
 
 ___
 <a id="collectioncondition"></a>
@@ -119,7 +119,7 @@ ___
 
 **Ƭ CollectionCondition**: *[Condition](modules/condition.md)<[Collection](classes/collection.md)>*
 
-*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
+*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
 
 ___
 <a id="command"></a>
@@ -137,7 +137,7 @@ ___
 
 **Ƭ ElementCondition**: *[Condition](modules/condition.md)<[Element](classes/element.md)>*
 
-*Defined in [conditions.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L24)*
+*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
 
 ___
 <a id="elementquery"></a>
@@ -146,7 +146,7 @@ ___
 
 **Ƭ ElementQuery**: *[Query](#query)<[Element](classes/element.md), `R`>*
 
-*Defined in [refactor/queries.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L21)*
+*Defined in [refactor/queries.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L23)*
 
 ___
 <a id="onfailurehook"></a>
