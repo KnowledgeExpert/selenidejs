@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By, WebElement } from 'selenium-webdriver';
+import { By } from 'selenium-webdriver';
 import { Browser } from './browser';
 import { Collection } from './collection';
 import { Element } from './element';
-import { ConditionDoesNotMatchError } from './errors/conditionDoesNotMatchError';
 import { Condition } from './wait';
 import { query } from './refactor/queries';
 import { Utils } from './utils';
@@ -34,34 +33,32 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
 
     function conditionFromAsyncQuery<E>(aPredicate: (entity: E) => Promise<boolean>): Condition<E> {
         return lambda(aPredicate.toString(), async (entity: E) => {
-            if (await aPredicate(entity)) {
-                return true;
-            } else {
+            if (! await aPredicate(entity)) {
                 throw new Error(`${aPredicate}? = false`);
             }
         });
     }
 
-    // like conditionFromAsyncQuery but non-async version
-    function throwIfNot<A>(reason: string, predicate: (actual: A) => boolean) /*: Either<True, throws Error> */ {
+    /**
+     * like conditionFromAsyncQuery but non-async version
+     */
+    function throwIfNot<A>(reason: string, predicate: (actual: A) => boolean) {
         return (actual: A) => {
-            if (predicate(actual)) {
-                return true;
-            } else {
+            if (!predicate(actual)) {
                 throw new Error(`${reason}: ${actual}`);
             }
         };
     }
 
-    // throwIfNotActual(element, query.element.text, predicate.equals(text))
+    /**
+     * throwIfNotActual(query.element.text, predicate.equals(text))
+     */
     function throwIfNotActual<E, A>(
         query: (entity: E) => Promise<A>, predicate: (actual: A) => boolean
     ): Condition<E> {
         return async (entity: E) => {
             const actual = await query(entity);
-            if (predicate(actual)) {
-                return true;
-            } else {
+            if (!predicate(actual)) {
                 throw new Error(`actual ${query}: ${actual}`);
             }
         };

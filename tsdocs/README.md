@@ -110,7 +110,7 @@ ___
 
 **Ƭ BrowserCondition**: *[Condition](modules/condition.md)<[Browser](classes/browser.md)>*
 
-*Defined in [conditions.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L27)*
+*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
 
 ___
 <a id="collectioncondition"></a>
@@ -119,7 +119,7 @@ ___
 
 **Ƭ CollectionCondition**: *[Condition](modules/condition.md)<[Collection](classes/collection.md)>*
 
-*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
+*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
 
 ___
 <a id="command"></a>
@@ -128,7 +128,9 @@ ___
 
 **Ƭ Command**: *[Query](#query)<`T`, `void`>*
 
-*Defined in [wait.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L22)*
+*Defined in [wait.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L34)*
+
+Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T. Command can pass or fail with Error correspondingly.
 
 ___
 <a id="elementcondition"></a>
@@ -137,7 +139,7 @@ ___
 
 **Ƭ ElementCondition**: *[Condition](modules/condition.md)<[Element](classes/element.md)>*
 
-*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
+*Defined in [conditions.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L24)*
 
 ___
 <a id="elementquery"></a>
@@ -180,8 +182,10 @@ ___
 
 **Ƭ Query**: *`function`*
 
-*Defined in [wait.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L21)*
+*Defined in [wait.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L28)*
 *Defined in [refactor/query.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/query.ts#L19)*
+
+We use queries to perform an async query on entity of type T, i.e. get something from entity. So a query can pass and return something of type R or failed with Error correspondingly.
 
 #### Type declaration
 ▸(entity: *`T`*): `Promise`<`R`>

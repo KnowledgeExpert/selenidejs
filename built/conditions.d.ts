@@ -10,22 +10,22 @@ export declare namespace Conditions {
     namespace element {
         const isVisible: ElementCondition;
         const isHidden: ElementCondition;
-        const hasVisibleElement: (by: By) => import("./wait").Query<Element, boolean>;
-        const hasAttribute: (name: string) => import("./wait").Query<Element, boolean>;
+        const hasVisibleElement: (by: By) => import("./wait").Query<Element, void>;
+        const hasAttribute: (name: string) => import("./wait").Query<Element, void>;
         const isSelected: ElementCondition;
         const isEnabled: ElementCondition;
         const isDisabled: ElementCondition;
         const isPresent: ElementCondition;
         const isAbsent: ElementCondition;
         const isFocused: ElementCondition;
-        const hasText: (expected: string) => import("./wait").Query<Element, boolean>;
-        const hasExactText: (expected: string) => import("./wait").Query<Element, boolean>;
-        const hasAttributeWithValue: (name: string, value: string) => import("./wait").Query<Element, boolean>;
+        const hasText: (expected: string) => import("./wait").Query<Element, void>;
+        const hasExactText: (expected: string) => import("./wait").Query<Element, void>;
+        const hasAttributeWithValue: (name: string, value: string) => import("./wait").Query<Element, void>;
         function hasAttributeWithValueContaining(name: string, partialValue: string): ElementCondition;
         function hasCssClass(cssClass: string): ElementCondition;
     }
     namespace collection {
-        const hasSize: (expected: number) => import("./wait").Query<Collection, boolean>;
+        const hasSize: (expected: number) => import("./wait").Query<Collection, void>;
         function hasSizeMoreThan(size: number): CollectionCondition;
         function hasSizeLessThan(size: number): CollectionCondition;
         function hasTexts(texts: string[]): CollectionCondition;

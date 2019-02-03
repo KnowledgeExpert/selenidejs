@@ -152,7 +152,7 @@ export class Element implements SearchContext {
      * and then again Promise<true | false>
      */
     async matches(condition: ElementCondition): Promise<boolean> {
-        return Condition.toBoolean(condition)(this);
+        return Condition.asPredicate(condition)(this);
     }
 
     async matchesNot(condition: ElementCondition): Promise<boolean> {

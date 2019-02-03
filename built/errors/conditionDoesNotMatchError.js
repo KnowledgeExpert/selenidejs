@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+// todo: so far we don't use this Error in all "condition failed" cases... handle it somehow...
 class ConditionDoesNotMatchError extends Error {
     constructor(message) {
         super(message);

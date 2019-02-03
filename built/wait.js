@@ -15,30 +15,30 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const timeoutError_1 = require("./errors/timeoutError");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
-/*
- * todo: here, condition is just a predicate... i.e. (entity: T) => Promise<boolean>
- *     but in fact, we mean under condition - (entity: T) => Promise<boolean | throws>
- *     should we refactor it to at least be as (entity: T) => Promise<boolean | Error> ?
- */
+const utils_1 = require("./utils");
+var lambda = utils_1.Utils.lambda;
 var Condition;
 (function (Condition) {
-    Condition.not = (condition, description) => {
+    function not(condition, description) {
         const desc = description || `not ${condition}`;
-        const notCondition = async (entity) => {
+        return lambda(desc, async (entity) => {
             try {
-                if (!(await condition(entity))) {
-                    return true;
-                }
+                await condition(entity);
             }
             catch (error) {
-                return true;
+                return;
             }
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${desc}? = false`);
-        };
-        notCondition.toString = () => desc;
-        return notCondition;
-    };
-    Condition.toBoolean = (condition) => (entity) => condition(entity).then(res => true, err => false);
+        });
+    }
+    Condition.not = not;
+    /**
+     * Transforms Condition (returning (passed | Error))
+     * to async Predicate (returning (true | false))
+     * @param {Condition<T>} condition
+     * @returns {(entity: T) => Promise<boolean>}
+     */
+    Condition.asPredicate = (condition) => (entity) => condition(entity).then(res => true, err => false);
 })(Condition = exports.Condition || (exports.Condition = {}));
 class Wait {
     constructor(entity, timeout, onFailureHooks) {
@@ -50,10 +50,6 @@ class Wait {
         this.onFailureHooks = onFailureHooks;
     }
     async until(fn, timeout = this.timeout) {
-        // const query = (entity: T) => {
-        //     fn(entity).
-        // };
-        // todo: Condition<T> is in fact Query<T, R | Exception>, how to deal exception?
         return this.query(fn, timeout).then(res => true, err => false);
     }
     async command(fn, timeout = this.timeout) {
@@ -70,7 +66,8 @@ class Wait {
                     throw new timeoutError_1.TimeoutError(// todo: should we move this error formatting to the Error class definition?
                     '\n' +
                         `\tTimed out after ${timeout}ms, while waiting for:\n` +
-                        `\t${this.entity.toString()}.${fn.toString()}\n` +
+                        `\t${this.entity.toString()}.${fn.toString()}\n` + // todo: if string has trailing
+                        // and leading spaces it will not be readable
                         'Reason:\n' +
                         `\t${error.message}`);
                 }

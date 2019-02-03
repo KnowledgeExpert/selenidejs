@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// todo: so far we don't use this Error in all "condition failed" cases... handle it somehow...
 export class ConditionDoesNotMatchError extends Error {
     constructor(message: string) {
         super(message);

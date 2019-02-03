@@ -22,7 +22,7 @@
 
 ▸ **hasExactTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:174](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L174)*
+*Defined in [conditions.ts:171](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L171)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **hasSize**(expected: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:151](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L151)*
+*Defined in [conditions.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L148)*
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **hasSizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:161](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L161)*
+*Defined in [conditions.ts:158](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L158)*
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **hasSizeMoreThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L154)*
+*Defined in [conditions.ts:151](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L151)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **hasTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:167](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L167)*
+*Defined in [conditions.ts:164](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L164)*
 
 **Parameters:**
 

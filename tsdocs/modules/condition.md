@@ -2,26 +2,52 @@
 
 # Module: Condition
 
+Like Command, i.e. can pass or fail with Error. It is defined as separate type alias to differentiate the usage scenarios. Conditions we use in context of matching condition on entity. Condition is like a predicate but instead of (true | false) you get (passed | throws Error)
+
+Read "void" in Query<T, void> as "matched", or "passed".
+
 ## Type parameters
 #### T 
 ## Index
 
 ### Functions
 
+* [asPredicate](condition.md#aspredicate)
 * [not](condition.md#not)
-* [toBoolean](condition.md#toboolean)
 
 ---
 
 ## Functions
 
+<a id="aspredicate"></a>
+
+### `<Const>` asPredicate
+
+▸ **asPredicate**<`T`>(condition: *[Condition](condition.md)<`T`>*): `(Anonymous function)`
+
+*Defined in [wait.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L65)*
+
+Transforms Condition (returning (passed | Error)) to async Predicate (returning (true | false))
+
+**Type parameters:**
+
+#### T 
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| condition | [Condition](condition.md)<`T`> |  - |
+
+**Returns:** `(Anonymous function)`
+
+___
 <a id="not"></a>
 
-### `<Const>` not
+###  not
 
-▸ **not**<`T`>(condition: *[Condition](condition.md)<`T`>*, description?: *`string`*): `notCondition`
+▸ **not**<`T`>(condition: *[Condition](condition.md)<`T`>*, description?: *`string`*): [Condition](condition.md)<`T`>
 
-*Defined in [wait.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L32)*
+*Defined in [wait.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L47)*
 
 **Type parameters:**
 
@@ -33,27 +59,7 @@
 | condition | [Condition](condition.md)<`T`> |
 | `Optional` description | `string` |
 
-**Returns:** `notCondition`
-
-___
-<a id="toboolean"></a>
-
-### `<Const>` toBoolean
-
-▸ **toBoolean**<`T`>(condition: *[Condition](condition.md)<`T`>*): `(Anonymous function)`
-
-*Defined in [wait.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L48)*
-
-**Type parameters:**
-
-#### T 
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](condition.md)<`T`> |
-
-**Returns:** `(Anonymous function)`
+**Returns:** [Condition](condition.md)<`T`>
 
 ___
 

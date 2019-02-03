@@ -123,7 +123,7 @@ class Element {
      * and then again Promise<true | false>
      */
     async matches(condition) {
-        return wait_1.Condition.toBoolean(condition)(this);
+        return wait_1.Condition.asPredicate(condition)(this);
     }
     async matchesNot(condition) {
         return this.matches(wait_1.Condition.not(condition));

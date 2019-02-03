@@ -29,7 +29,7 @@ export class FilteredByConditionWebElementsLocator implements Locator<Promise<We
 
     async find(): Promise<WebElement[]> {
         const arrayOfCachedElements = await this.collection.getAsCashedArray();
-        const filtered = arrayOfCachedElements.filter(async element => Condition.toBoolean(this.condition)(element));
+        const filtered = arrayOfCachedElements.filter(async element => Condition.asPredicate(this.condition)(element));
         return Promise.all(filtered.map(async element => element.getWebElement()));
     }
 

@@ -24,33 +24,28 @@ var Conditions;
     /* tslint:disable:only-arrow-functions */
     function conditionFromAsyncQuery(aPredicate) {
         return lambda(aPredicate.toString(), async (entity) => {
-            if (await aPredicate(entity)) {
-                return true;
-            }
-            else {
+            if (!await aPredicate(entity)) {
                 throw new Error(`${aPredicate}? = false`);
             }
         });
     }
-    // like conditionFromAsyncQuery but non-async version
+    /**
+     * like conditionFromAsyncQuery but non-async version
+     */
     function throwIfNot(reason, predicate) {
         return (actual) => {
-            if (predicate(actual)) {
-                return true;
-            }
-            else {
+            if (!predicate(actual)) {
                 throw new Error(`${reason}: ${actual}`);
             }
         };
     }
-    // throwIfNotActual(element, query.element.text, predicate.equals(text))
+    /**
+     * throwIfNotActual(query.element.text, predicate.equals(text))
+     */
     function throwIfNotActual(query, predicate) {
         return async (entity) => {
             const actual = await query(entity);
-            if (predicate(actual)) {
-                return true;
-            }
-            else {
+            if (!predicate(actual)) {
                 throw new Error(`actual ${query}: ${actual}`);
             }
         };

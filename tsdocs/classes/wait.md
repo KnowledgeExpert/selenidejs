@@ -36,7 +36,7 @@
 
 ⊕ **new Wait**(entity: *`T`*, timeout: *`number`*, onFailureHooks: *[OnFailureHook](../#onfailurehook)[]*): [Wait](wait.md)
 
-*Defined in [wait.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L52)*
+*Defined in [wait.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L69)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 **● entity**: *`T`*
 
-*Defined in [wait.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L54)*
+*Defined in [wait.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L71)*
 
 ___
 <a id="onfailurehooks"></a>
@@ -67,7 +67,7 @@ ___
 
 **● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]*
 
-*Defined in [wait.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L56)*
+*Defined in [wait.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L73)*
 
 ___
 <a id="timeout"></a>
@@ -76,7 +76,7 @@ ___
 
 **● timeout**: *`number`*
 
-*Defined in [wait.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L55)*
+*Defined in [wait.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L72)*
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 ▸ **command**(fn: *[Command](../#command)<`T`>*, timeout?: *`number`*): `Promise`<`void`>
 
-*Defined in [wait.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L70)*
+*Defined in [wait.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L83)*
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **query**<`R`>(fn: *[Query](../#query)<`T`, `R`>*, timeout?: *`number`*): `Promise`<`R`>
 
-*Defined in [wait.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L74)*
+*Defined in [wait.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L87)*
 
 **Type parameters:**
 
@@ -127,7 +127,7 @@ ___
 
 ▸ **until**(fn: *[Condition](../modules/condition.md)<`T`>*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [wait.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L62)*
+*Defined in [wait.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L79)*
 
 **Parameters:**
 

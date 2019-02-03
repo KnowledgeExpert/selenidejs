@@ -32,7 +32,7 @@
 
 *Overrides [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md).[constructor](conditiondoesnotmatcherror.md#constructor)*
 
-*Defined in [errors/conditionDoesNotMatchError.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L22)*
+*Defined in [errors/conditionDoesNotMatchError.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L23)*
 
 **Parameters:**
 

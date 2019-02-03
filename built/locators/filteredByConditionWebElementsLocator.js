@@ -23,7 +23,7 @@ class FilteredByConditionWebElementsLocator {
     }
     async find() {
         const arrayOfCachedElements = await this.collection.getAsCashedArray();
-        const filtered = arrayOfCachedElements.filter(async (element) => wait_1.Condition.toBoolean(this.condition)(element));
+        const filtered = arrayOfCachedElements.filter(async (element) => wait_1.Condition.asPredicate(this.condition)(element));
         return Promise.all(filtered.map(async (element) => element.getWebElement()));
     }
     toString() {

@@ -33,7 +33,7 @@
 
 ⊕ **new ConditionDoesNotMatchError**(message: *`string`*): [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md)
 
-*Defined in [errors/conditionDoesNotMatchError.ts:15](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L15)*
+*Defined in [errors/conditionDoesNotMatchError.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L16)*
 
 **Parameters:**
 
