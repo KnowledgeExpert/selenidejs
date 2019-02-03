@@ -26,17 +26,14 @@ var query;
     let element;
     (function (element_1) {
         element_1.isVisible = lambda('is visible', async (element) => (await element.getWebElement()).isDisplayed());
+        element_1.hasVisibleElement = (by) => lambda(`has visible element located by ${by}`, async (element) => element_1.isVisible(element.element(by)));
         element_1.isEnabled = lambda('is enabled', async (element) => (await element.getWebElement()).isEnabled());
         element_1.isPresent = lambda('is present', async (element) => !!(await element.getWebElement()));
         element_1.isFocused = lambda('is focused', async (element) => selenium_webdriver_1.WebElement.equals(await element.executeScript('return document.activeElement'), await element.getWebElement()));
         element_1.hasAttribute = (name) => lambda(`has attribute with name ${name}`, async (element) => !!(await element.attribute(name)));
-        async function text(element) {
-            /* tslint:disable:no-console */
-            return (await element.getWebElement()).getText();
-        }
-        element_1.text = text;
+        element_1.text = lambda('text', async (element) => (await element.getWebElement()).getText()); // todo: should we reuse element.text() or backwards?
         function hasText(text) {
-            return async (element) => (await (await element.getWebElement()).getText()).includes(text);
+            return async (element) => (await element.text()).includes(text);
         }
         element_1.hasText = hasText;
         element_1.attribute = (name) => (element) => element.attribute(name);

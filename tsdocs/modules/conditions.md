@@ -13,20 +13,21 @@
 
 ### Functions
 
-* [described](conditions.md#described)
+* [conditionFromAsyncQuery](conditions.md#conditionfromasyncquery)
 * [throwIfNot](conditions.md#throwifnot)
+* [throwIfNotActual](conditions.md#throwifnotactual)
 
 ---
 
 ## Functions
 
-<a id="described"></a>
+<a id="conditionfromasyncquery"></a>
 
-###  described
+###  conditionFromAsyncQuery
 
-▸ **described**<`E`>(predicate: *[Condition](condition.md)<`E`>*): `condition`
+▸ **conditionFromAsyncQuery**<`E`>(aPredicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L60)*
+*Defined in [conditions.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L35)*
 
 **Type parameters:**
 
@@ -35,9 +36,9 @@
 
 | Param | Type |
 | ------ | ------ |
-| predicate | [Condition](condition.md)<`E`> |
+| aPredicate | `function` |
 
-**Returns:** `condition`
+**Returns:** [Condition](condition.md)<`E`>
 
 ___
 <a id="throwifnot"></a>
@@ -46,7 +47,7 @@ ___
 
 ▸ **throwIfNot**<`A`>(reason: *`string`*, predicate: *`function`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L35)*
+*Defined in [conditions.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L46)*
 
 **Type parameters:**
 
@@ -59,6 +60,28 @@ ___
 | predicate | `function` |
 
 **Returns:** `(Anonymous function)`
+
+___
+<a id="throwifnotactual"></a>
+
+###  throwIfNotActual
+
+▸ **throwIfNotActual**<`E`,`A`>(query: *`function`*, predicate: *`function`*): [Condition](condition.md)<`E`>
+
+*Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
+
+**Type parameters:**
+
+#### E 
+#### A 
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| query | `function` |
+| predicate | `function` |
+
+**Returns:** [Condition](condition.md)<`E`>
 
 ___
 

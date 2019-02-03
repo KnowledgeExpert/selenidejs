@@ -32,12 +32,37 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
     /* tslint:disable:no-invalid-this */
     /* tslint:disable:only-arrow-functions */
 
-    function throwIfNot<A>(reason: string, predicate: (actual: A) => boolean) {
+    function conditionFromAsyncQuery<E>(aPredicate: (entity: E) => Promise<boolean>): Condition<E> {
+        return lambda(aPredicate.toString(), async (entity: E) => {
+            if (await aPredicate(entity)) {
+                return true;
+            } else {
+                throw new Error(`${aPredicate}? = false`);
+            }
+        });
+    }
+
+    // like conditionFromAsyncQuery but non-async version
+    function throwIfNot<A>(reason: string, predicate: (actual: A) => boolean) /*: Either<True, throws Error> */ {
         return (actual: A) => {
             if (predicate(actual)) {
                 return true;
             } else {
                 throw new Error(`${reason}: ${actual}`);
+            }
+        };
+    }
+
+    // throwIfNotActual(element, query.element.text, predicate.equals(text))
+    function throwIfNotActual<E, A>(
+        query: (entity: E) => Promise<A>, predicate: (actual: A) => boolean
+    ): Condition<E> {
+        return async (entity: E) => {
+            const actual = await query(entity);
+            if (predicate(actual)) {
+                return true;
+            } else {
+                throw new Error(`actual ${query}: ${actual}`);
             }
         };
     }
@@ -57,188 +82,142 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
         export const equalsByContainsToArray = arrayCompareBy(includes);
     }
 
-    function described<E>(predicate: Condition<E>) {  // todo: make description a 2nd param
-        const condition = async (entity: E) => {
-            const value = await predicate(entity);
-            if (!value) {
-                throw new ConditionDoesNotMatchError(`${predicate}? = ${value}`);
-            }
-            return value;
-        };
-        condition.toString = () => predicate.toString();
-        return condition;
-    }
-
-    /* todo: check the following style of implementation:
-
-    function described<E>(description: string, predicate: Condition<E>) {
-        const condition = (entity: E) => predicate(entity)
-                .then(value => {
-                    if (!value) {
-                        throw new Error('false');
-                    }
-                    return value;
-                })
-                .catch(error => { throw new FailedToMatchConditionWithReasonError(description, error); });
-        condition.toString = () => description; // todo: `Entity ${entity} ${description}` ?
-        return condition;
-    }
-     */
-
     export namespace element {
 
         // todo: isVisible vs visible, etc.
         export const isVisible: ElementCondition =
-            described(query.element.isVisible);
+            conditionFromAsyncQuery(query.element.isVisible);
 
         export const isHidden: ElementCondition =
             Condition.not(isVisible, 'is hidden');
 
         export const hasVisibleElement = (by: By): ElementCondition =>
-            described(lambda(`has visible element located by ${by}`, async (element: Element) =>
-                element.element(by).matches(isVisible)  // todo: should we move it to query.element.here?
-            ));
+            conditionFromAsyncQuery(query.element.hasVisibleElement(by));
 
         export const hasAttribute = (name: string): ElementCondition =>
-            described(query.element.hasAttribute(name));
+            conditionFromAsyncQuery(query.element.hasAttribute(name));
 
         export const isSelected: ElementCondition =
             hasAttribute('elementIsSelected');
 
         export const isEnabled: ElementCondition =
-            described(query.element.isEnabled);
+            conditionFromAsyncQuery(query.element.isEnabled);
 
         export const isDisabled: ElementCondition =
             Condition.not(isEnabled, 'is disabled');
 
         export const isPresent: ElementCondition =
-            described(query.element.isPresent);
+            conditionFromAsyncQuery(query.element.isPresent);
 
         export const isAbsent: ElementCondition =
             Condition.not(isPresent, 'is absent');
 
         export const isFocused: ElementCondition =
-            described(query.element.isFocused);
-
+            conditionFromAsyncQuery(query.element.isFocused);
 
         // todo: condition... should it be Promise<boolean> or as currently Promise<boolean | throws } ?
-        export function hasText(text: string): ElementCondition { // todo: do we need string | number
-            return described(lambda(`has text: ${text}`, async (element: Element) =>
-                query.element.text(element).then(
-                    throwIfNot('actual text', predicate.includes(text))  // todo: is it possible to refactor
-                                                                         // to same style as query.element.includesText?
-                )
-            ));
-        }
+        export const hasText = (expected: string): ElementCondition => // todo: do we need string | number
+            lambda(`has text: ${expected}`, throwIfNotActual(query.element.text, predicate.includes(expected)));
 
-        export function hasExactText(text: string): ElementCondition { // todo: do we need string | number ?
-            return described(lambda(`has exact text: ${text}`, async (element: Element) =>
-                query.element.text(element).then(
-                    throwIfNot('actual text', predicate.equals(text))
-                )
-            ));
-        }
+        export const hasExactText = (expected: string): ElementCondition => // todo: do we need string | number ?
+            lambda(`has exact text: ${expected}`, throwIfNotActual(query.element.text, predicate.equals(expected)));
 
-        export function hasAttributeWithValue(name: string, value: string): ElementCondition {
-            return described(lambda(`has attribute '${name}' with value '${value}'`, async (element: Element) =>
+        export const hasAttributeWithValue = (name: string, value: string): ElementCondition =>
+            lambda(`has attribute '${name}' with value '${value}'`, async (element: Element) =>
                 query.element.attribute(name)(element).then(
                     throwIfNot('actual value', predicate.equals(value))
                 )
-            ));
-        }
+            );
+
 
         export function hasAttributeWithValueContaining(name: string, partialValue: string): ElementCondition {
-            return described(lambda(`has attribute '${name}' with value '${partialValue}'`, async (element: Element) =>
+            return lambda(`has attribute '${name}' with value '${partialValue}'`, async (element: Element) =>
                 query.element.attribute(name)(element).then(
                     throwIfNot('actual value', predicate.includes(partialValue))
                 )
-            ));
+            );
         }
 
         export function hasCssClass(cssClass: string): ElementCondition {
-            return described(lambda(`has css class '${cssClass}'`, async (element: Element) =>
+            return lambda(`has css class '${cssClass}'`, async (element: Element) =>
                 query.element.attribute('class')(element).then(
                     throwIfNot('actual class attribute value', predicate.includesWord(cssClass))
                 )
-            ));
+            );
         }
     }
 
     export namespace collection { // todo: collection vs Collection in collection.ts ?
-        export function hasSize(size: number): CollectionCondition {
-            return described(lambda(`has size ${size}`, async (collection: Collection) =>
-                collection.size().then(
-                    throwIfNot('actual size', predicate.equals(size)))
-            ));
-        }
+        export const hasSize = (expected: number): CollectionCondition =>
+            lambda(`has size ${expected}`, throwIfNotActual(query.collection.size, predicate.equals(expected)));
 
         export function hasSizeMoreThan(size: number): CollectionCondition {
-            return described(lambda(`has size more than ${size}`, async (collection: Collection) =>
+            return lambda(`has size more than ${size}`, async (collection: Collection) =>
                 collection.size().then(
                     throwIfNot('actual size', predicate.isMoreThan(size)))
-            ));
+            );
         }
 
         export function hasSizeLessThan(size: number): CollectionCondition {
-            return described(lambda(`has size less than ${size}`, async (collection: Collection) =>
+            return lambda(`has size less than ${size}`, async (collection: Collection) =>
                 collection.size().then(throwIfNot('actual size', predicate.isLessThan(size)))
-            ));
+            );
         }
 
         export function hasTexts(texts: string[]): CollectionCondition {
-            return described(lambda(`has texts ${texts}`, async (collection: Collection) =>
+            return lambda(`has texts ${texts}`, async (collection: Collection) =>
                 query.collection.texts(collection).then(
                     throwIfNot('actual texts', predicate.equalsByContainsToArray(texts)))
-            ));
+            );
         }
 
         export function hasExactTexts(texts: string[]): CollectionCondition {
-            return described(lambda(`has exact texts ${texts}`, async (collection: Collection) =>
+            return lambda(`has exact texts ${texts}`, async (collection: Collection) =>
                 query.collection.texts(collection).then(
                     throwIfNot('actual texts', predicate.equalsByContainsToArray(texts)))
-            ));
+            );
         }
     }
 
     export namespace browser {
         export function hasUrlContaining(partialUrl: string): BrowserCondition { // todo: do we need string | number
-            return described(lambda(`has url containing ${partialUrl}`, async (browser: Browser) =>
+            return lambda(`has url containing ${partialUrl}`, async (browser: Browser) =>
                 query.browser.url(browser).then(
                     throwIfNot('actual url', predicate.includes(partialUrl))
                 )
-            ));
+            );
         }
 
         export function hasUrl(url: string): BrowserCondition {
-            return described(lambda(`has url ${url}`, async (browser: Browser) =>
+            return lambda(`has url ${url}`, async (browser: Browser) =>
                 query.browser.url(browser).then(
                     throwIfNot('actual url', predicate.equals(url))
                 )
-            ));
+            );
         }
 
         export function hasTabsNumber(num: number): BrowserCondition {
-            return described(lambda(`has tabs number ${num}`, async (browser: Browser) =>
+            return lambda(`has tabs number ${num}`, async (browser: Browser) =>
                 query.browser.tabsNumber(browser).then(
                     throwIfNot('actual tabs number', predicate.equals(num))
                 )
-            ));
+            );
         }
 
         export function hasTabsNumberMoreThan(num: number): BrowserCondition {
-            return described(lambda(`has tabs number more than ${num}`, async (browser: Browser) =>
+            return lambda(`has tabs number more than ${num}`, async (browser: Browser) =>
                 query.browser.tabsNumber(browser).then(
                     throwIfNot('actual tabs number', predicate.isMoreThan(num))
                 )
-            ));
+            );
         }
 
         export function hasTabsNumberLessThan(num: number): BrowserCondition {
-            return described(lambda(`has tabs number less than ${num}`, async (browser: Browser) =>
+            return lambda(`has tabs number less than ${num}`, async (browser: Browser) =>
                 query.browser.tabsNumber(browser).then(
                     throwIfNot('actual tabs number', predicate.isLessThan(num))
                 )
-            ));
+            );
         }
     }
 }

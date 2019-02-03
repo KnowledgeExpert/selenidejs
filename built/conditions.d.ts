@@ -18,14 +18,14 @@ export declare namespace Conditions {
         const isPresent: ElementCondition;
         const isAbsent: ElementCondition;
         const isFocused: ElementCondition;
-        function hasText(text: string): ElementCondition;
-        function hasExactText(text: string): ElementCondition;
-        function hasAttributeWithValue(name: string, value: string): ElementCondition;
+        const hasText: (expected: string) => import("./wait").Query<Element, boolean>;
+        const hasExactText: (expected: string) => import("./wait").Query<Element, boolean>;
+        const hasAttributeWithValue: (name: string, value: string) => import("./wait").Query<Element, boolean>;
         function hasAttributeWithValueContaining(name: string, partialValue: string): ElementCondition;
         function hasCssClass(cssClass: string): ElementCondition;
     }
     namespace collection {
-        function hasSize(size: number): CollectionCondition;
+        const hasSize: (expected: number) => import("./wait").Query<Collection, boolean>;
         function hasSizeMoreThan(size: number): CollectionCondition;
         function hasSizeLessThan(size: number): CollectionCondition;
         function hasTexts(texts: string[]): CollectionCondition;

@@ -10,13 +10,14 @@
 * [isFocused](query.element.md#isfocused)
 * [isPresent](query.element.md#ispresent)
 * [isVisible](query.element.md#isvisible)
+* [text](query.element.md#text)
 
 ### Functions
 
 * [attribute](query.element.md#attribute)
 * [hasAttribute](query.element.md#hasattribute)
 * [hasText](query.element.md#hastext)
-* [text](query.element.md#text)
+* [hasVisibleElement](query.element.md#hasvisibleelement)
 
 ---
 
@@ -29,7 +30,7 @@
 **● isEnabled**: *`(Anonymous function)`* =  lambda('is enabled', async (element: Element) =>
             (await element.getWebElement()).isEnabled())
 
-*Defined in [refactor/queries.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L35)*
+*Defined in [refactor/queries.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L40)*
 
 ___
 <a id="isfocused"></a>
@@ -42,7 +43,7 @@ ___
                 await element.getWebElement()
             ))
 
-*Defined in [refactor/queries.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L41)*
+*Defined in [refactor/queries.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L46)*
 
 ___
 <a id="ispresent"></a>
@@ -52,7 +53,7 @@ ___
 **● isPresent**: *`(Anonymous function)`* =  lambda('is present', async (element: Element) =>
             !!(await element.getWebElement()))
 
-*Defined in [refactor/queries.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L38)*
+*Defined in [refactor/queries.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L43)*
 
 ___
 <a id="isvisible"></a>
@@ -65,6 +66,16 @@ ___
 *Defined in [refactor/queries.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L32)*
 
 ___
+<a id="text"></a>
+
+### `<Const>` text
+
+**● text**: *`(Anonymous function)`* =  lambda('text', async (element: Element) =>
+            (await element.getWebElement()).getText())
+
+*Defined in [refactor/queries.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L57)*
+
+___
 
 ## Functions
 
@@ -74,7 +85,7 @@ ___
 
 ▸ **attribute**(name: *`string`*): `(Anonymous function)`
 
-*Defined in [refactor/queries.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L62)*
+*Defined in [refactor/queries.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L65)*
 
 **Parameters:**
 
@@ -91,7 +102,7 @@ ___
 
 ▸ **hasAttribute**(name: *`string`*): `(Anonymous function)`
 
-*Defined in [refactor/queries.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L47)*
+*Defined in [refactor/queries.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L52)*
 
 **Parameters:**
 
@@ -108,7 +119,7 @@ ___
 
 ▸ **hasText**(text: *`string`*): `(Anonymous function)`
 
-*Defined in [refactor/queries.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L57)*
+*Defined in [refactor/queries.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L60)*
 
 **Parameters:**
 
@@ -119,21 +130,21 @@ ___
 **Returns:** `(Anonymous function)`
 
 ___
-<a id="text"></a>
+<a id="hasvisibleelement"></a>
 
-###  text
+### `<Const>` hasVisibleElement
 
-▸ **text**(element: *[Element](../classes/element.md)*): `Promise`<`string`>
+▸ **hasVisibleElement**(by: *`By`*): `(Anonymous function)`
 
-*Defined in [refactor/queries.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L52)*
+*Defined in [refactor/queries.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L35)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| element | [Element](../classes/element.md) |
+| by | `By` |
 
-**Returns:** `Promise`<`string`>
+**Returns:** `(Anonymous function)`
 
 ___
 

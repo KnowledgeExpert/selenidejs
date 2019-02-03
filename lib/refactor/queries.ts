@@ -18,7 +18,7 @@ import { Collection } from '../collection';
 import { Browser } from '../browser';
 import { Utils } from '../utils';
 import lambda = Utils.lambda;
-import { WebElement } from 'selenium-webdriver';
+import { By, WebElement } from 'selenium-webdriver';
 
 export type ElementQuery<R> = Query<Element, R>;
 
@@ -31,6 +31,11 @@ export namespace query { // todo: do we really need this separation?
     export namespace element {
         export const isVisible = lambda('is visible', async (element: Element) =>
             (await element.getWebElement()).isDisplayed());
+
+        export const hasVisibleElement = (by: By) =>
+            lambda(`has visible element located by ${by}`, async (element: Element) =>
+                isVisible(element.element(by))
+            );
 
         export const isEnabled = lambda('is enabled', async (element: Element) =>
             (await element.getWebElement()).isEnabled());
@@ -49,14 +54,12 @@ export namespace query { // todo: do we really need this separation?
                 !!(await element.attribute(name))
             );
 
-        export async function text(element: Element) {
-            /* tslint:disable:no-console */
-            return (await element.getWebElement()).getText();
-        }
+        export const text = lambda('text', async (element: Element) =>
+            (await element.getWebElement()).getText());  // todo: should we reuse element.text() or backwards?
 
         export function hasText(text: string) {
             return async (element: Element) =>
-                (await (await element.getWebElement()).getText()).includes(text);
+                (await element.text()).includes(text);
         }
 
         export const attribute = (name: string) => (element: Element) => element.attribute(name);

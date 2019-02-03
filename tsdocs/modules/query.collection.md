@@ -24,7 +24,7 @@
 **● size**: *`(Anonymous function)`* =  lambda('size', async (collection: Collection) =>
             (await collection.getWebElements()).length)
 
-*Defined in [refactor/queries.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L66)*
+*Defined in [refactor/queries.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L69)*
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **hasSize**(length: *`number`*): `(Anonymous function)`
 
-*Defined in [refactor/queries.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L69)*
+*Defined in [refactor/queries.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L72)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **texts**(collection: *[Collection](../classes/collection.md)*): `Promise`<`string`[]>
 
-*Defined in [refactor/queries.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L74)*
+*Defined in [refactor/queries.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L77)*
 
 **Parameters:**
 

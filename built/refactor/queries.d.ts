@@ -2,15 +2,17 @@ import { Query } from '../wait';
 import { Element } from '../element';
 import { Collection } from '../collection';
 import { Browser } from '../browser';
+import { By } from 'selenium-webdriver';
 export declare type ElementQuery<R> = Query<Element, R>;
 export declare namespace query {
     namespace element {
         const isVisible: (element: Element) => Promise<boolean>;
+        const hasVisibleElement: (by: By) => (element: Element) => Promise<boolean>;
         const isEnabled: (element: Element) => Promise<boolean>;
         const isPresent: (element: Element) => Promise<boolean>;
         const isFocused: (element: Element) => Promise<boolean>;
         const hasAttribute: (name: string) => (element: Element) => Promise<boolean>;
-        function text(element: Element): Promise<string>;
+        const text: (element: Element) => Promise<string>;
         function hasText(text: string): (element: Element) => Promise<boolean>;
         const attribute: (name: string) => (element: Element) => Promise<string>;
     }

@@ -22,7 +22,7 @@
 
 ▸ **hasExactTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:195](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L195)*
+*Defined in [conditions.ts:174](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L174)*
 
 **Parameters:**
 
@@ -35,17 +35,17 @@
 ___
 <a id="hassize"></a>
 
-###  hasSize
+### `<Const>` hasSize
 
-▸ **hasSize**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSize**(expected: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:168](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L168)*
+*Defined in [conditions.ts:151](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L151)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| size | `number` |
+| expected | `number` |
 
 **Returns:** [CollectionCondition](../#collectioncondition)
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **hasSizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:182](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L182)*
+*Defined in [conditions.ts:161](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L161)*
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **hasSizeMoreThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:175](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L175)*
+*Defined in [conditions.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L154)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **hasTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:188](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L188)*
+*Defined in [conditions.ts:167](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L167)*
 
 **Parameters:**
 
