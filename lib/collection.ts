@@ -21,6 +21,7 @@ import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
 import { Condition, Wait } from './wait';
+import { query } from './refactor/queries';
 
 export class Collection {
 
@@ -92,9 +93,11 @@ export class Collection {
     /*
      * e.g. emails.size() sounds much more weird than emails.count() or emails.number()
      */
-    async size(): Promise<number> {
-        return (await this.getWebElements()).length;
+    async size(): Promise<number> { // todo: do we need this query built in here at all?
+        return query.collection.size(this);
     }
+
+    // todo: do we need same get as element.get here for collection?
 
     async getWebElements(): Promise<WebElement[]> {
         return this.locator.find();

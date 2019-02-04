@@ -20,22 +20,33 @@ import { Utils } from '../utils';
 import lambda = Utils.lambda;
 import { By, WebElement } from 'selenium-webdriver';
 
-export type ElementQuery<R> = Query<Element, R>;
+export type ElementQuery<R> = Query<Element, R>; // todo: do we need it? o_O
 
-export namespace query { // todo: do we really need this separation?
-// it's kind of needed only for cases like:
-//     await browser.element('#new-todo').setValue('foo').then(pressEnter);
-// are there really a lot of such cases?
-// maybe we can decide on this later...
-// and leave this code here just for example
+/**
+ * raw queries on actual element's webelement
+ * raw means - without any waiting...
+ *
+ * all are implemented through element.getWebElement()
+ * e.g. element.getWebElement().getText over element.text()
+ * because element.text() already has waiting built in.
+ * this is needed, because these queries are used not only to build corresponding element methods
+ * with waiting built in
+ * but also for conditions...
+ *
+ * hence, these functions are not supposed to be used in "perform/get" context:
+ *   `element.click().then(query.element.text)`
+ * this query may fail if element was absent after click for some milliseconds...
+ * use the following alternative instead:
+ *   `element.click().then(get.text)`
+ */
+export namespace query {
     export namespace element {
         export const isVisible = lambda('is visible', async (element: Element) =>
             (await element.getWebElement()).isDisplayed());
 
         export const hasVisibleElement = (by: By) =>
             lambda(`has visible element located by ${by}`, async (element: Element) =>
-                isVisible(element.element(by))
-            );
+                isVisible(element.element(by)));
 
         export const isEnabled = lambda('is enabled', async (element: Element) =>
             (await element.getWebElement()).isEnabled());
@@ -49,20 +60,26 @@ export namespace query { // todo: do we really need this separation?
                 await element.getWebElement()
             ));
 
+        export const text = lambda('text', async (element: Element) =>
+            (await element.getWebElement()).getText());
+
+        export const hasText = (text: string) =>
+            lambda(`has text ${text}`, async (element: Element) =>
+                (await query.element.text(element)).includes(text));
+
+        export const attribute = (name: string) =>
+            lambda(`attribute ${name}`, async (element: Element) =>
+                (await element.getWebElement()).getAttribute(name));
+
         export const hasAttribute = (name: string) =>
             lambda(`has attribute with name ${name}`, async (element: Element) =>
-                !!(await element.attribute(name))
-            );
+                !!(await query.element.attribute(name)(element)));
 
-        export const text = lambda('text', async (element: Element) =>
-            (await element.getWebElement()).getText());  // todo: should we reuse element.text() or backwards?
+        export const innerHtml = attribute('innerHTML');
 
-        export function hasText(text: string) {
-            return async (element: Element) =>
-                (await element.text()).includes(text);
-        }
+        export const outerHtml = attribute('outerHTML');
 
-        export const attribute = (name: string) => (element: Element) => element.attribute(name);
+        export const value = attribute('value');
     }
 
     export namespace collection {
@@ -74,19 +91,17 @@ export namespace query { // todo: do we really need this separation?
                 (await size(collection)) === length
             );
 
-        export async function texts(collection: Collection) {
-            const elements = await collection.getWebElements();
-            return Promise.all(elements.map(webElement => webElement.getText()));
-        }
+        export const texts = lambda('texts', async (collection: Collection) => {
+            const webelements = await collection.getWebElements();
+            return Promise.all(webelements.map(webElement => webElement.getText()));
+        });
     }
 
     export namespace browser {
-        export async function url(browser: Browser) {
-            return browser.driver.getCurrentUrl();  // todo: browser.driver?
-        }
+        export const url = lambda('url', async (browser: Browser) =>
+            browser.driver.getCurrentUrl());
 
-        export async function tabsNumber(browser: Browser) {
-            return (await browser.driver.getAllWindowHandles()).length;
-        }
+        export const tabsNumber = lambda('tabs number', async (browser: Browser) =>
+            (await browser.driver.getAllWindowHandles()).length);
     }
 }

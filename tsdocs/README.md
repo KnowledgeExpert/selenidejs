@@ -11,6 +11,7 @@
 * [With](modules/with.md)
 * [be](modules/be.md)
 * [command](modules/command.md)
+* [get](modules/get.md)
 * [have](modules/have.md)
 * [perform](modules/perform.md)
 * [query](modules/query.md)

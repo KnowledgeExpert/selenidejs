@@ -4,47 +4,33 @@
 
 ## Index
 
-### Functions
+### Variables
 
 * [tabsNumber](query.browser.md#tabsnumber)
 * [url](query.browser.md#url)
 
 ---
 
-## Functions
+## Variables
 
 <a id="tabsnumber"></a>
 
-###  tabsNumber
+### `<Const>` tabsNumber
 
-▸ **tabsNumber**(browser: *[Browser](../classes/browser.md)*): `Promise`<`number`>
+**● tabsNumber**: *`(Anonymous function)`* =  lambda('tabs number', async (browser: Browser) =>
+            (await browser.driver.getAllWindowHandles()).length)
 
-*Defined in [refactor/queries.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L88)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
-
-**Returns:** `Promise`<`number`>
+*Defined in [refactor/queries.ts:104](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L104)*
 
 ___
 <a id="url"></a>
 
-###  url
+### `<Const>` url
 
-▸ **url**(browser: *[Browser](../classes/browser.md)*): `Promise`<`string`>
+**● url**: *`(Anonymous function)`* =  lambda('url', async (browser: Browser) =>
+            browser.driver.getCurrentUrl())
 
-*Defined in [refactor/queries.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L84)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
-
-**Returns:** `Promise`<`string`>
+*Defined in [refactor/queries.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L101)*
 
 ___
 

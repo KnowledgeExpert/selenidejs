@@ -29,6 +29,7 @@ const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const wait_1 = require("./wait");
 var lambda = utils_1.Utils.lambda;
+const queries_1 = require("./refactor/queries");
 class Element {
     // todo: why not have private readonly driver property?
     constructor(locator, configuration) {
@@ -219,6 +220,19 @@ class Element {
     async get(query, timeout = this.configuration.timeout) {
         return this.wait.query(query, timeout);
     }
+    /*
+     * todo: do we really need all following built in methods?
+     * isn't it enough to have only:
+     *   `element.get(its.text)`
+     *
+     *   - and even this will be too much... usually the user will need something like:
+     *     `if (await element.matches(has.text('foo'))) { ... }
+     *
+     * here is why:
+     * - these queries are not needed in tests. In real tests we need only commands and asserts (should(*))
+     *   - only in workarounds, where get(its.text) should be enough
+     * - and so in autocomplete they will not "bother readers eye";)
+     */
     // todo: do we need visibleText() in addition? (because text() does not fail for invisible element...)
     /*
      * todo: define proper behavior...
@@ -231,11 +245,11 @@ class Element {
      * or should we wait till visible and then return full text?
      */
     async text() {
-        return this.wait.query(lambda('text', async (element) => element.getWebElement().then(it => it.getText())));
+        return this.get(queries_1.query.element.text);
     }
     // todo: cover with tests
     async attribute(name) {
-        return this.wait.query(lambda(`attribute: ${name}`, async (element) => element.getWebElement().then(it => it.getAttribute(name))));
+        return this.get(queries_1.query.element.attribute(name));
     }
     async innerHtml() {
         return this.attribute('innerHTML');

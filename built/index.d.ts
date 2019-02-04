@@ -10,3 +10,5 @@ export { be } from './support/conditions/be';
 export { have } from './support/conditions/have';
 export { perform } from './support/commands/perform';
 export { With } from './support/selectors/with';
+export { get } from './support/queries/get';
+export { get as its } from './support/queries/get';

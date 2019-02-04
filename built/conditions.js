@@ -66,6 +66,18 @@ var Conditions;
         element.isPresent = conditionFromAsyncQuery(queries_1.query.element.isPresent);
         element.isAbsent = wait_1.Condition.not(element.isPresent, 'is absent');
         element.isFocused = conditionFromAsyncQuery(queries_1.query.element.isFocused);
+        /* todo: should we move all following built inline predicates to query namespace
+         * and so here use just conditionFromAsyncQuery style?
+         *
+         * is it even possible? including the fact that we need throwIfNotActual
+         * to build proper Error...
+         *
+         * or should we, hence, keep all them here, and in queries just use it
+         * as e.g. Condition.asPredicate(condition.element.hasText) ?
+         *
+         * should we keep all predicates in a separate namespace? separately from query.*.* ?
+         * just to keep all eggs in their baskets...
+         */
         element.hasText = (expected) => // todo: do we need string | number
          lambda(`has text: ${expected}`, throwIfNotActual(queries_1.query.element.text, predicate.includes(expected)));
         element.hasExactText = (expected) => // todo: do we need string | number ?

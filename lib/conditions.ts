@@ -100,6 +100,19 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
         export const isFocused: ElementCondition =
             conditionFromAsyncQuery(query.element.isFocused);
 
+        /* todo: should we move all following built inline predicates to query namespace
+         * and so here use just conditionFromAsyncQuery style?
+         *
+         * is it even possible? including the fact that we need throwIfNotActual
+         * to build proper Error...
+         *
+         * or should we, hence, keep all them here, and in queries just use it
+         * as e.g. Condition.asPredicate(condition.element.hasText) ?
+         *
+         * should we keep all predicates in a separate namespace? separately from query.*.* ?
+         * just to keep all eggs in their baskets...
+         */
+
         export const hasText = (expected: string): ElementCondition => // todo: do we need string | number
             lambda(`has text: ${expected}`,
                    throwIfNotActual(query.element.text, predicate.includes(expected)));

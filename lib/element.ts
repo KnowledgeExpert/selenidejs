@@ -28,6 +28,7 @@ import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
 import lambda = Utils.lambda;
+import { query } from './refactor/queries';
 
 
 export class Element implements SearchContext {
@@ -291,6 +292,20 @@ export class Element implements SearchContext {
         return this.wait.query(query, timeout);
     }
 
+    /*
+     * todo: do we really need all following built in methods?
+     * isn't it enough to have only:
+     *   `element.get(its.text)`
+     *
+     *   - and even this will be too much... usually the user will need something like:
+     *     `if (await element.matches(has.text('foo'))) { ... }
+     *
+     * here is why:
+     * - these queries are not needed in tests. In real tests we need only commands and asserts (should(*))
+     *   - only in workarounds, where get(its.text) should be enough
+     * - and so in autocomplete they will not "bother readers eye";)
+     */
+
     // todo: do we need visibleText() in addition? (because text() does not fail for invisible element...)
     /*
      * todo: define proper behavior...
@@ -303,16 +318,12 @@ export class Element implements SearchContext {
      * or should we wait till visible and then return full text?
      */
     async text(): Promise<string> {
-        return this.wait.query(lambda('text', async element =>
-            element.getWebElement().then(it => it.getText())
-        ));
+        return this.get(query.element.text);
     }
 
     // todo: cover with tests
     async attribute(name: string): Promise<string> {
-        return this.wait.query(lambda(`attribute: ${name}`, async element =>
-            element.getWebElement().then(it => it.getAttribute(name))
-        ));
+        return this.get(query.element.attribute(name));
     }
 
     async innerHtml(): Promise<string> {

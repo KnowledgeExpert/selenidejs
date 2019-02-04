@@ -18,6 +18,7 @@ const byIndexWebElementLocator_1 = require("./locators/byIndexWebElementLocator"
 const cashedWebElementLocator_1 = require("./locators/cashedWebElementLocator");
 const filteredByConditionWebElementsLocator_1 = require("./locators/filteredByConditionWebElementsLocator");
 const wait_1 = require("./wait");
+const queries_1 = require("./refactor/queries");
 class Collection {
     constructor(locator, configuration) {
         this.locator = locator;
@@ -71,8 +72,9 @@ class Collection {
      * e.g. emails.size() sounds much more weird than emails.count() or emails.number()
      */
     async size() {
-        return (await this.getWebElements()).length;
+        return queries_1.query.collection.size(this);
     }
+    // todo: do we need same get as element.get here for collection?
     async getWebElements() {
         return this.locator.find();
     }
