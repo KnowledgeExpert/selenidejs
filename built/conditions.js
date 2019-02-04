@@ -17,6 +17,7 @@ const wait_1 = require("./wait");
 const queries_1 = require("./refactor/queries");
 const utils_1 = require("./utils");
 var lambda = utils_1.Utils.lambda;
+const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
 var Conditions;
 (function (Conditions) {
     /* tslint:disable:object-literal-shorthand */
@@ -25,7 +26,7 @@ var Conditions;
     function conditionFromAsyncQuery(aPredicate) {
         return lambda(aPredicate.toString(), async (entity) => {
             if (!await aPredicate(entity)) {
-                throw new Error(`${aPredicate}? = false`);
+                throw new conditionDoesNotMatchError_1.ConditionNotMatchedError();
             }
         });
     }

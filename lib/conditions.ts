@@ -20,6 +20,7 @@ import { Condition } from './wait';
 import { query } from './refactor/queries';
 import { Utils } from './utils';
 import lambda = Utils.lambda;
+import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
 
 export type ElementCondition = Condition<Element>;
 export type CollectionCondition = Condition<Collection>;
@@ -34,7 +35,7 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
     function conditionFromAsyncQuery<E>(aPredicate: (entity: E) => Promise<boolean>): Condition<E> {
         return lambda(aPredicate.toString(), async (entity: E) => {
             if (! await aPredicate(entity)) {
-                throw new Error(`${aPredicate}? = false`);
+                throw new ConditionNotMatchedError();
             }
         });
     }

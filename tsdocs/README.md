@@ -24,7 +24,7 @@
 * [CannotPerformActionError](classes/cannotperformactionerror.md)
 * [CashedWebElementLocator](classes/cashedwebelementlocator.md)
 * [Collection](classes/collection.md)
-* [ConditionDoesNotMatchError](classes/conditiondoesnotmatcherror.md)
+* [ConditionNotMatchedError](classes/conditionnotmatchederror.md)
 * [Configuration](classes/configuration.md)
 * [Customized](classes/customized.md)
 * [Element](classes/element.md)
@@ -110,7 +110,7 @@ ___
 
 **Ƭ BrowserCondition**: *[Condition](modules/condition.md)<[Browser](classes/browser.md)>*
 
-*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
+*Defined in [conditions.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L27)*
 
 ___
 <a id="collectioncondition"></a>
@@ -119,7 +119,7 @@ ___
 
 **Ƭ CollectionCondition**: *[Condition](modules/condition.md)<[Collection](classes/collection.md)>*
 
-*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
+*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
 
 ___
 <a id="command"></a>
@@ -139,7 +139,7 @@ ___
 
 **Ƭ ElementCondition**: *[Condition](modules/condition.md)<[Element](classes/element.md)>*
 
-*Defined in [conditions.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L24)*
+*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
 
 ___
 <a id="elementquery"></a>

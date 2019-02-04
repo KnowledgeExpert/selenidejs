@@ -14,7 +14,7 @@
 
 import { OnFailureHook } from './refactor/onFailureHook';
 import { TimeoutError } from './errors/timeoutError';
-import { ConditionDoesNotMatchError } from './errors/conditionDoesNotMatchError';
+import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
 import { Utils } from './utils';
 import lambda = Utils.lambda;
 
@@ -44,17 +44,15 @@ export type Command<T> = Query<T, void>;
 export type Condition<T> = Query<T, void>;
 
 export namespace Condition {
-    export function not<T>(condition: Condition<T>, description?: string): Condition<T> {
-        const desc = description || `not ${condition}`;
-        return lambda(desc, async (entity: T) => {
+    export const not = <T>(condition: Condition<T>, description?: string): Condition<T> =>
+        lambda(description || `not ${condition}`, async (entity: T) => {
             try {
                 await condition(entity);
             } catch (error) {
                 return;
             }
-            throw new ConditionDoesNotMatchError(`${desc}? = false`);
+            throw new ConditionNotMatchedError();
         });
-    }
 
     /**
      * Transforms Condition (returning (passed | Error))

@@ -36,7 +36,7 @@
 **● isAbsent**: *[ElementCondition](../#elementcondition)* = 
             Condition.not(isPresent, 'is absent')
 
-*Defined in [conditions.ts:109](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L109)*
+*Defined in [conditions.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L110)*
 
 ___
 <a id="isdisabled"></a>
@@ -46,7 +46,7 @@ ___
 **● isDisabled**: *[ElementCondition](../#elementcondition)* = 
             Condition.not(isEnabled, 'is disabled')
 
-*Defined in [conditions.ts:103](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L103)*
+*Defined in [conditions.ts:104](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L104)*
 
 ___
 <a id="isenabled"></a>
@@ -56,7 +56,7 @@ ___
 **● isEnabled**: *[ElementCondition](../#elementcondition)* = 
             conditionFromAsyncQuery(query.element.isEnabled)
 
-*Defined in [conditions.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L100)*
+*Defined in [conditions.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L101)*
 
 ___
 <a id="isfocused"></a>
@@ -66,7 +66,7 @@ ___
 **● isFocused**: *[ElementCondition](../#elementcondition)* = 
             conditionFromAsyncQuery(query.element.isFocused)
 
-*Defined in [conditions.ts:112](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L112)*
+*Defined in [conditions.ts:113](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L113)*
 
 ___
 <a id="ishidden"></a>
@@ -76,7 +76,7 @@ ___
 **● isHidden**: *[ElementCondition](../#elementcondition)* = 
             Condition.not(isVisible, 'is hidden')
 
-*Defined in [conditions.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L88)*
+*Defined in [conditions.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L89)*
 
 ___
 <a id="ispresent"></a>
@@ -86,7 +86,7 @@ ___
 **● isPresent**: *[ElementCondition](../#elementcondition)* = 
             conditionFromAsyncQuery(query.element.isPresent)
 
-*Defined in [conditions.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L106)*
+*Defined in [conditions.ts:107](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L107)*
 
 ___
 <a id="isselected"></a>
@@ -96,7 +96,7 @@ ___
 **● isSelected**: *[ElementCondition](../#elementcondition)* = 
             hasAttribute('elementIsSelected')
 
-*Defined in [conditions.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L97)*
+*Defined in [conditions.ts:98](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L98)*
 
 ___
 <a id="isvisible"></a>
@@ -106,7 +106,7 @@ ___
 **● isVisible**: *[ElementCondition](../#elementcondition)* = 
             conditionFromAsyncQuery(query.element.isVisible)
 
-*Defined in [conditions.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L85)*
+*Defined in [conditions.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L86)*
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 ▸ **hasAttribute**(name: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [conditions.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L94)*
+*Defined in [conditions.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L95)*
 
 **Parameters:**
 
@@ -135,7 +135,7 @@ ___
 
 ▸ **hasAttributeWithValue**(name: *`string`*, value: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [conditions.ts:122](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L122)*
+*Defined in [conditions.ts:123](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L123)*
 
 **Parameters:**
 
@@ -153,7 +153,7 @@ ___
 
 ▸ **hasAttributeWithValueContaining**(name: *`string`*, partialValue: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [conditions.ts:130](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L130)*
+*Defined in [conditions.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L131)*
 
 **Parameters:**
 
@@ -171,7 +171,7 @@ ___
 
 ▸ **hasCssClass**(cssClass: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [conditions.ts:138](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L138)*
+*Defined in [conditions.ts:139](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L139)*
 
 **Parameters:**
 
@@ -188,7 +188,7 @@ ___
 
 ▸ **hasExactText**(expected: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [conditions.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L119)*
+*Defined in [conditions.ts:120](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L120)*
 
 **Parameters:**
 
@@ -205,7 +205,7 @@ ___
 
 ▸ **hasText**(expected: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [conditions.ts:116](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L116)*
+*Defined in [conditions.ts:117](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L117)*
 
 **Parameters:**
 
@@ -222,7 +222,7 @@ ___
 
 ▸ **hasVisibleElement**(by: *`By`*): [ElementCondition](../#elementcondition)
 
-*Defined in [conditions.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L91)*
+*Defined in [conditions.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L92)*
 
 **Parameters:**
 

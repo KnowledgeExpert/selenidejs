@@ -1,12 +1,12 @@
-[selenidejs](../README.md) > [ConditionDoesNotMatchError](../classes/conditiondoesnotmatcherror.md)
+[selenidejs](../README.md) > [ConditionNotMatchedError](../classes/conditionnotmatchederror.md)
 
-# Class: ConditionDoesNotMatchError
+# Class: ConditionNotMatchedError
 
 ## Hierarchy
 
  `Error`
 
-**↳ ConditionDoesNotMatchError**
+**↳ ConditionNotMatchedError**
 
 ↳  [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
 
@@ -14,14 +14,14 @@
 
 ### Constructors
 
-* [constructor](conditiondoesnotmatcherror.md#constructor)
+* [constructor](conditionnotmatchederror.md#constructor)
 
 ### Properties
 
-* [message](conditiondoesnotmatcherror.md#message)
-* [name](conditiondoesnotmatcherror.md#name)
-* [stack](conditiondoesnotmatcherror.md#stack)
-* [Error](conditiondoesnotmatcherror.md#error)
+* [message](conditionnotmatchederror.md#message)
+* [name](conditionnotmatchederror.md#name)
+* [stack](conditionnotmatchederror.md#stack)
+* [Error](conditionnotmatchederror.md#error)
 
 ---
 
@@ -31,17 +31,17 @@
 
 ###  constructor
 
-⊕ **new ConditionDoesNotMatchError**(message: *`string`*): [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md)
+⊕ **new ConditionNotMatchedError**(message?: *`string`*): [ConditionNotMatchedError](conditionnotmatchederror.md)
 
 *Defined in [errors/conditionDoesNotMatchError.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L16)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| message | `string` |
+| Param | Type | Default value |
+| ------ | ------ | ------ |
+| `Default value` message | `string` | &quot;condition not matched&quot; |
 
-**Returns:** [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md)
+**Returns:** [ConditionNotMatchedError](conditionnotmatchederror.md)
 
 ___
 

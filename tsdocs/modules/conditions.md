@@ -27,7 +27,7 @@
 
 ▸ **conditionFromAsyncQuery**<`E`>(aPredicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L34)*
+*Defined in [conditions.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L35)*
 
 **Type parameters:**
 
@@ -47,7 +47,7 @@ ___
 
 ▸ **throwIfNot**<`A`>(reason: *`string`*, predicate: *`function`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L45)*
+*Defined in [conditions.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L46)*
 
 like conditionFromAsyncQuery but non-async version
 
@@ -70,7 +70,7 @@ ___
 
 ▸ **throwIfNotActual**<`E`,`A`>(query: *`function`*, predicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L56)*
+*Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
 
 throwIfNotActual(query.element.text, predicate.equals(text))
 

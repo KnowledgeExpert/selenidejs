@@ -19,19 +19,15 @@ const utils_1 = require("./utils");
 var lambda = utils_1.Utils.lambda;
 var Condition;
 (function (Condition) {
-    function not(condition, description) {
-        const desc = description || `not ${condition}`;
-        return lambda(desc, async (entity) => {
-            try {
-                await condition(entity);
-            }
-            catch (error) {
-                return;
-            }
-            throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${desc}? = false`);
-        });
-    }
-    Condition.not = not;
+    Condition.not = (condition, description) => lambda(description || `not ${condition}`, async (entity) => {
+        try {
+            await condition(entity);
+        }
+        catch (error) {
+            return;
+        }
+        throw new conditionDoesNotMatchError_1.ConditionNotMatchedError();
+    });
     /**
      * Transforms Condition (returning (passed | Error))
      * to async Predicate (returning (true | false))

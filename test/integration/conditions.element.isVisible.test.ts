@@ -76,7 +76,7 @@ Reason:
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
 \tbrowser.element(By(css selector, button)).is visible
 Reason:
-\tis visible? = false`
+\tcondition not matched`
                 );
             });
     });

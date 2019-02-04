@@ -13,14 +13,14 @@
 // limitations under the License.
 
 // todo: so far we don't use this Error in all "condition failed" cases... handle it somehow...
-export class ConditionDoesNotMatchError extends Error {
-    constructor(message: string) {
+export class ConditionNotMatchedError extends Error {
+    constructor(message = 'condition not matched') {
         super(message);
     }
 }
 
 // todo: consider deleting
-export class FailedToMatchConditionWithReasonError extends ConditionDoesNotMatchError {
+export class FailedToMatchConditionWithReasonError extends ConditionNotMatchedError {
     constructor(expected: string, reason: Error) {
         super(`
             Failed to match: ${expected}

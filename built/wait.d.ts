@@ -19,7 +19,7 @@ export declare type Command<T> = Query<T, void>;
  */
 export declare type Condition<T> = Query<T, void>;
 export declare namespace Condition {
-    function not<T>(condition: Condition<T>, description?: string): Condition<T>;
+    const not: <T>(condition: Query<T, void>, description?: string) => Query<T, void>;
     /**
      * Transforms Condition (returning (passed | Error))
      * to async Predicate (returning (true | false))

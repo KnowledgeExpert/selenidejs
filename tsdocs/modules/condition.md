@@ -25,7 +25,7 @@ Read "void" in Query<T, void> as "matched", or "passed".
 
 ▸ **asPredicate**<`T`>(condition: *[Condition](condition.md)<`T`>*): `(Anonymous function)`
 
-*Defined in [wait.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L65)*
+*Defined in [wait.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L63)*
 
 Transforms Condition (returning (passed | Error)) to async Predicate (returning (true | false))
 
@@ -43,7 +43,7 @@ Transforms Condition (returning (passed | Error)) to async Predicate (returning 
 ___
 <a id="not"></a>
 
-###  not
+### `<Const>` not
 
 ▸ **not**<`T`>(condition: *[Condition](condition.md)<`T`>*, description?: *`string`*): [Condition](condition.md)<`T`>
 

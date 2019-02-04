@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-↳  [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md)
+↳  [ConditionNotMatchedError](conditionnotmatchederror.md)
 
 **↳ FailedToMatchConditionWithReasonError**
 
@@ -30,7 +30,7 @@
 
 ⊕ **new FailedToMatchConditionWithReasonError**(expected: *`string`*, reason: *`Error`*): [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
 
-*Overrides [ConditionDoesNotMatchError](conditiondoesnotmatcherror.md).[constructor](conditiondoesnotmatcherror.md#constructor)*
+*Overrides [ConditionNotMatchedError](conditionnotmatchederror.md).[constructor](conditionnotmatchederror.md#constructor)*
 
 *Defined in [errors/conditionDoesNotMatchError.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L23)*
 

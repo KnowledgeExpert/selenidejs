@@ -73,7 +73,7 @@ describe('Conditions.element.isHidden (via should)', () => {
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
 \tbrowser.element(By(css selector, button)).is hidden
 Reason:
-\tis hidden? = false`
+\tcondition not matched`
                 );
             });
     });

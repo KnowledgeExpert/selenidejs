@@ -14,14 +14,14 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 // todo: so far we don't use this Error in all "condition failed" cases... handle it somehow...
-class ConditionDoesNotMatchError extends Error {
-    constructor(message) {
+class ConditionNotMatchedError extends Error {
+    constructor(message = 'condition not matched') {
         super(message);
     }
 }
-exports.ConditionDoesNotMatchError = ConditionDoesNotMatchError;
+exports.ConditionNotMatchedError = ConditionNotMatchedError;
 // todo: consider deleting
-class FailedToMatchConditionWithReasonError extends ConditionDoesNotMatchError {
+class FailedToMatchConditionWithReasonError extends ConditionNotMatchedError {
     constructor(expected, reason) {
         super(`
             Failed to match: ${expected}
