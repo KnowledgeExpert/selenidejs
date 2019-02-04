@@ -21,21 +21,21 @@ export declare namespace Conditions {
         const hasText: (expected: string) => import("./wait").Query<Element, void>;
         const hasExactText: (expected: string) => import("./wait").Query<Element, void>;
         const hasAttributeWithValue: (name: string, value: string) => import("./wait").Query<Element, void>;
-        function hasAttributeWithValueContaining(name: string, partialValue: string): ElementCondition;
-        function hasCssClass(cssClass: string): ElementCondition;
+        const hasAttributeWithValueContaining: (name: string, partialValue: string) => import("./wait").Query<Element, void>;
+        const hasCssClass: (cssClass: string) => import("./wait").Query<Element, void>;
     }
     namespace collection {
         const hasSize: (expected: number) => import("./wait").Query<Collection, void>;
-        function hasSizeMoreThan(size: number): CollectionCondition;
-        function hasSizeLessThan(size: number): CollectionCondition;
-        function hasTexts(texts: string[]): CollectionCondition;
-        function hasExactTexts(texts: string[]): CollectionCondition;
+        const hasSizeMoreThan: (size: number) => import("./wait").Query<Collection, void>;
+        const hasSizeLessThan: (size: number) => import("./wait").Query<Collection, void>;
+        const hasTexts: (texts: string[]) => import("./wait").Query<Collection, void>;
+        const hasExactTexts: (texts: string[]) => import("./wait").Query<Collection, void>;
     }
     namespace browser {
-        function hasUrlContaining(partialUrl: string): BrowserCondition;
-        function hasUrl(url: string): BrowserCondition;
-        function hasTabsNumber(num: number): BrowserCondition;
-        function hasTabsNumberMoreThan(num: number): BrowserCondition;
-        function hasTabsNumberLessThan(num: number): BrowserCondition;
+        const hasUrlContaining: (partialUrl: string) => import("./wait").Query<Browser, void>;
+        const hasUrl: (url: string) => import("./wait").Query<Browser, void>;
+        const hasTabsNumber: (num: number) => import("./wait").Query<Browser, void>;
+        const hasTabsNumberMoreThan: (num: number) => import("./wait").Query<Browser, void>;
+        const hasTabsNumberLessThan: (num: number) => import("./wait").Query<Browser, void>;
     }
 }

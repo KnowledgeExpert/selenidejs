@@ -18,11 +18,11 @@
 
 <a id="hastabsnumber"></a>
 
-###  hasTabsNumber
+### `<Const>` hasTabsNumber
 
 ▸ **hasTabsNumber**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:197](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L197)*
+*Defined in [conditions.ts:156](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L156)*
 
 **Parameters:**
 
@@ -35,11 +35,11 @@
 ___
 <a id="hastabsnumberlessthan"></a>
 
-###  hasTabsNumberLessThan
+### `<Const>` hasTabsNumberLessThan
 
 ▸ **hasTabsNumberLessThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:213](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L213)*
+*Defined in [conditions.ts:164](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L164)*
 
 **Parameters:**
 
@@ -52,11 +52,11 @@ ___
 ___
 <a id="hastabsnumbermorethan"></a>
 
-###  hasTabsNumberMoreThan
+### `<Const>` hasTabsNumberMoreThan
 
 ▸ **hasTabsNumberMoreThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:205](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L205)*
+*Defined in [conditions.ts:160](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L160)*
 
 **Parameters:**
 
@@ -69,11 +69,11 @@ ___
 ___
 <a id="hasurl"></a>
 
-###  hasUrl
+### `<Const>` hasUrl
 
 ▸ **hasUrl**(url: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:189](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L189)*
+*Defined in [conditions.ts:152](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L152)*
 
 **Parameters:**
 
@@ -86,11 +86,11 @@ ___
 ___
 <a id="hasurlcontaining"></a>
 
-###  hasUrlContaining
+### `<Const>` hasUrlContaining
 
 ▸ **hasUrlContaining**(partialUrl: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:181](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L181)*
+*Defined in [conditions.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L148)*
 
 **Parameters:**
 

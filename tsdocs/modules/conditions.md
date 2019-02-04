@@ -14,7 +14,6 @@
 ### Functions
 
 * [conditionFromAsyncQuery](conditions.md#conditionfromasyncquery)
-* [throwIfNot](conditions.md#throwifnot)
 * [throwIfNotActual](conditions.md#throwifnotactual)
 
 ---
@@ -27,7 +26,7 @@
 
 ▸ **conditionFromAsyncQuery**<`E`>(aPredicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L35)*
+*Defined in [conditions.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L31)*
 
 **Type parameters:**
 
@@ -41,38 +40,15 @@
 **Returns:** [Condition](condition.md)<`E`>
 
 ___
-<a id="throwifnot"></a>
-
-###  throwIfNot
-
-▸ **throwIfNot**<`A`>(reason: *`string`*, predicate: *`function`*): `(Anonymous function)`
-
-*Defined in [conditions.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L46)*
-
-like conditionFromAsyncQuery but non-async version
-
-**Type parameters:**
-
-#### A 
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| reason | `string` |
-| predicate | `function` |
-
-**Returns:** `(Anonymous function)`
-
-___
 <a id="throwifnotactual"></a>
 
 ###  throwIfNotActual
 
 ▸ **throwIfNotActual**<`E`,`A`>(query: *`function`*, predicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
+*Defined in [conditions.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L43)*
 
-throwIfNotActual(query.element.text, predicate.equals(text))
+Transforms an entity query compared through predicate - to Condition Example: throwIfNotActual(query.element.text, predicate.equals(text))
 
 **Type parameters:**
 

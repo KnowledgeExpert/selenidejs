@@ -18,11 +18,11 @@
 
 <a id="hasexacttexts"></a>
 
-###  hasExactTexts
+### `<Const>` hasExactTexts
 
 ▸ **hasExactTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:172](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L172)*
+*Defined in [conditions.ts:142](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L142)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **hasSize**(expected: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:149](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L149)*
+*Defined in [conditions.ts:126](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L126)*
 
 **Parameters:**
 
@@ -52,11 +52,11 @@ ___
 ___
 <a id="hassizelessthan"></a>
 
-###  hasSizeLessThan
+### `<Const>` hasSizeLessThan
 
 ▸ **hasSizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:159](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L159)*
+*Defined in [conditions.ts:134](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L134)*
 
 **Parameters:**
 
@@ -69,11 +69,11 @@ ___
 ___
 <a id="hassizemorethan"></a>
 
-###  hasSizeMoreThan
+### `<Const>` hasSizeMoreThan
 
 ▸ **hasSizeMoreThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:152](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L152)*
+*Defined in [conditions.ts:130](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L130)*
 
 **Parameters:**
 
@@ -86,11 +86,11 @@ ___
 ___
 <a id="hastexts"></a>
 
-###  hasTexts
+### `<Const>` hasTexts
 
 ▸ **hasTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:165](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L165)*
+*Defined in [conditions.ts:138](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L138)*
 
 **Parameters:**
 

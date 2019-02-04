@@ -28,7 +28,7 @@
 
 **● equalsByContainsToArray**: *`(Anonymous function)`* =  arrayCompareBy(includes)
 
-*Defined in [conditions.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L80)*
+*Defined in [conditions.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L67)*
 
 ___
 <a id="equalstoarray"></a>
@@ -37,7 +37,7 @@ ___
 
 **● equalsToArray**: *`(Anonymous function)`* =  arrayCompareBy(equals)
 
-*Defined in [conditions.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L79)*
+*Defined in [conditions.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L66)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **arrayCompareBy**(f: *`any`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L75)*
+*Defined in [conditions.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L62)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 ▸ **equals**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L69)*
+*Defined in [conditions.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L56)*
 
 **Type parameters:**
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **includes**(expected: *`any`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L72)*
+*Defined in [conditions.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L59)*
 
 **Parameters:**
 
@@ -103,7 +103,7 @@ ___
 
 ▸ **includesWord**(expected: *`string`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L73)*
+*Defined in [conditions.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L60)*
 
 **Parameters:**
 
@@ -120,7 +120,7 @@ ___
 
 ▸ **isLessThan**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L71)*
+*Defined in [conditions.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L58)*
 
 **Type parameters:**
 
@@ -140,7 +140,7 @@ ___
 
 ▸ **isMoreThan**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L70)*
+*Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
 
 **Type parameters:**
 
