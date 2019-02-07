@@ -23,7 +23,7 @@
 
 ### `<Const>` absent
 
-**● absent**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isAbsent
+**● absent**: *[ElementCondition](../#elementcondition)* =  condition.element.isAbsent
 
 *Defined in [support/conditions/be.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L21)*
 
@@ -32,7 +32,7 @@ ___
 
 ### `<Const>` disabled
 
-**● disabled**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isDisabled
+**● disabled**: *[ElementCondition](../#elementcondition)* =  condition.element.isDisabled
 
 *Defined in [support/conditions/be.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L33)*
 
@@ -41,7 +41,7 @@ ___
 
 ### `<Const>` enabled
 
-**● enabled**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isEnabled
+**● enabled**: *[ElementCondition](../#elementcondition)* =  condition.element.isEnabled
 
 *Defined in [support/conditions/be.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L31)*
 
@@ -50,7 +50,7 @@ ___
 
 ### `<Const>` focused
 
-**● focused**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isFocused
+**● focused**: *[ElementCondition](../#elementcondition)* =  condition.element.isFocused
 
 *Defined in [support/conditions/be.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L29)*
 
@@ -59,7 +59,7 @@ ___
 
 ### `<Const>` hidden
 
-**● hidden**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isHidden
+**● hidden**: *[ElementCondition](../#elementcondition)* =  condition.element.isHidden
 
 *Defined in [support/conditions/be.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L27)*
 
@@ -68,7 +68,7 @@ ___
 
 ### `<Const>` present
 
-**● present**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isPresent
+**● present**: *[ElementCondition](../#elementcondition)* =  condition.element.isPresent
 
 *Defined in [support/conditions/be.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L23)*
 
@@ -77,7 +77,7 @@ ___
 
 ### `<Const>` selected
 
-**● selected**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isSelected
+**● selected**: *[ElementCondition](../#elementcondition)* =  condition.element.isSelected
 
 *Defined in [support/conditions/be.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L19)*
 
@@ -86,7 +86,7 @@ ___
 
 ### `<Const>` visible
 
-**● visible**: *[ElementCondition](../#elementcondition)* =  Conditions.element.isVisible
+**● visible**: *[ElementCondition](../#elementcondition)* =  condition.element.isVisible
 
 *Defined in [support/conditions/be.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L25)*
 

@@ -3,6 +3,7 @@ import { CollectionCondition, ElementCondition } from './conditions';
 import { Configuration } from './configuration';
 import { Element } from './element';
 import { Locator } from './locators/locator';
+import { Query } from './wait';
 export declare class Collection {
     private readonly locator;
     private readonly configuration;
@@ -15,11 +16,11 @@ export declare class Collection {
     waitUntilNot(condition: CollectionCondition, timeout?: number): Promise<boolean>;
     matches(condition: CollectionCondition): Promise<boolean>;
     matchesNot(condition: CollectionCondition): Promise<boolean>;
-    get(index: number): Element;
+    elementAt(index: number): Element;
     first(): Element;
-    filterBy(condition: ElementCondition): Collection;
-    findBy(condition: ElementCondition): Element;
-    size(): Promise<number>;
+    filteredBy(condition: ElementCondition): Collection;
+    elementBy(condition: ElementCondition): Element;
+    get<R>(query: Query<Collection, R>, timeout?: number): Promise<R>;
     getWebElements(): Promise<WebElement[]>;
     toString(): string;
 }

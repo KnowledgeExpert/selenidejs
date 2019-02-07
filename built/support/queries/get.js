@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const queries_1 = require("../../refactor/queries");
+const queries_1 = require("../../queries");
 /**
  * to be used in the following context:
  *   `element.click().then(get.text)`

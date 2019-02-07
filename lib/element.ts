@@ -16,7 +16,7 @@ import { Button, By, Key, WebElement } from 'selenium-webdriver';
 import { ElementCondition } from './conditions';
 import { be } from './support/conditions/be';
 import { With } from './support/selectors/with';
-import { Utils } from './utils';
+import { Utils } from './helpers/utils';
 import { AfterElementActionHook } from './refactor/afterElementActionHook';
 import { BeforeElementActionHook } from './refactor/beforeElementActionHook';
 import { Collection } from './collection';
@@ -27,8 +27,7 @@ import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
-import lambda = Utils.lambda;
-import { query } from './refactor/queries';
+import { lambda } from './helpers';
 
 
 export class Element implements SearchContext {
@@ -96,7 +95,7 @@ export class Element implements SearchContext {
     // won't it be better to leave workarounds less shiny ans so kind of highlighted in a code?
     // or should the name be more precise, like firstVisibleElement? (this probably is too much though...)
     visibleElement(cssOrXpathOrBy: string | By): Element {
-        return this.all(cssOrXpathOrBy).findBy(be.visible);
+        return this.all(cssOrXpathOrBy).elementBy(be.visible);
     }
 
     all(cssOrXpathOrBy: string | By): Collection {
@@ -133,6 +132,12 @@ export class Element implements SearchContext {
      * but assert or shouldMatch is good for the "raw" condition case:
      *   assert(condition.element.isVisible)
      *   shouldMatch(condition.element.isVisible)
+     * maybe someone will find this style better than be.* and have.*
+     * the advantage is in having only one entry point to all conditions - condition.*
+     * where it has conditions sorted by type - element, collection, browser -
+     * so it might be easier to find the needed one...
+     * while be.* and have.* are kind of bulk of mixed type conditions - all in one heap,
+     * even two mixed heaps:)));
      */
 
     async shouldNot(condition: ElementCondition, timeout?: number): Promise<Element> {
@@ -164,7 +169,7 @@ export class Element implements SearchContext {
 
     // todo: do we need it? element('#submit').do(command.element.click);
     //                      element('#submit').do(query.element.isEnabled);
-    do<R>(queryOrCommand: Query<Element, R>) {
+    do<R>(queryOrCommand: Query<Element, R>) { // todo: is not perform enough?
         return queryOrCommand(this);
     }
 
@@ -290,52 +295,6 @@ export class Element implements SearchContext {
     // todo: should we rename it to take?
     async get<R>(query: Query<Element, R>, timeout: number = this.configuration.timeout): Promise<R> {
         return this.wait.query(query, timeout);
-    }
-
-    /*
-     * todo: do we really need all following built in methods?
-     * isn't it enough to have only:
-     *   `element.get(its.text)`
-     *
-     *   - and even this will be too much... usually the user will need something like:
-     *     `if (await element.matches(has.text('foo'))) { ... }
-     *
-     * here is why:
-     * - these queries are not needed in tests. In real tests we need only commands and asserts (should(*))
-     *   - only in workarounds, where get(its.text) should be enough
-     * - and so in autocomplete they will not "bother readers eye";)
-     */
-
-    // todo: do we need visibleText() in addition? (because text() does not fail for invisible element...)
-    /*
-     * todo: define proper behavior...
-     * selenium has separated: search (that can fail on no element) and text - that if not visible returns ''
-     * what should we do?
-     * for search we wait...
-     * but since '' means no visible text... the same applies for "no element"
-     * for no element should we return '' without waiting then?
-     * or should we wait then return '' if present or real text when also visible? (this is current behavior)
-     * or should we wait till visible and then return full text?
-     */
-    async text(): Promise<string> {
-        return this.get(query.element.text);
-    }
-
-    // todo: cover with tests
-    async attribute(name: string): Promise<string> {
-        return this.get(query.element.attribute(name));
-    }
-
-    async innerHtml(): Promise<string> {
-        return this.attribute('innerHTML');
-    }
-
-    async outerHtml(): Promise<string> {
-        return this.attribute('outerHTML');
-    }
-
-    async value(): Promise<string> {
-        return this.attribute('value');
     }
 
 }

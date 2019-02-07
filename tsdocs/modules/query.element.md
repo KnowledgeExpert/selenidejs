@@ -7,20 +7,14 @@
 ### Variables
 
 * [innerHtml](query.element.md#innerhtml)
-* [isEnabled](query.element.md#isenabled)
-* [isFocused](query.element.md#isfocused)
-* [isPresent](query.element.md#ispresent)
-* [isVisible](query.element.md#isvisible)
 * [outerHtml](query.element.md#outerhtml)
+* [someText](query.element.md#sometext)
 * [text](query.element.md#text)
 * [value](query.element.md#value)
 
 ### Functions
 
 * [attribute](query.element.md#attribute)
-* [hasAttribute](query.element.md#hasattribute)
-* [hasText](query.element.md#hastext)
-* [hasVisibleElement](query.element.md#hasvisibleelement)
 
 ---
 
@@ -32,50 +26,7 @@
 
 **● innerHtml**: *`(Anonymous function)`* =  attribute('innerHTML')
 
-*Defined in [refactor/queries.ts:78](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L78)*
-
-___
-<a id="isenabled"></a>
-
-### `<Const>` isEnabled
-
-**● isEnabled**: *`(Anonymous function)`* =  lambda('is enabled', async (element: Element) =>
-            (await element.getWebElement()).isEnabled())
-
-*Defined in [refactor/queries.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L51)*
-
-___
-<a id="isfocused"></a>
-
-### `<Const>` isFocused
-
-**● isFocused**: *`(Anonymous function)`* =  lambda('is focused', async (element: Element) =>
-            WebElement.equals(
-                await element.executeScript('return document.activeElement') as WebElement,
-                await element.getWebElement()
-            ))
-
-*Defined in [refactor/queries.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L57)*
-
-___
-<a id="ispresent"></a>
-
-### `<Const>` isPresent
-
-**● isPresent**: *`(Anonymous function)`* =  lambda('is present', async (element: Element) =>
-            !!(await element.getWebElement()))
-
-*Defined in [refactor/queries.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L54)*
-
-___
-<a id="isvisible"></a>
-
-### `<Const>` isVisible
-
-**● isVisible**: *`(Anonymous function)`* =  lambda('is visible', async (element: Element) =>
-            (await element.getWebElement()).isDisplayed())
-
-*Defined in [refactor/queries.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L44)*
+*Defined in [queries.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L66)*
 
 ___
 <a id="outerhtml"></a>
@@ -84,7 +35,22 @@ ___
 
 **● outerHtml**: *`(Anonymous function)`* =  attribute('outerHTML')
 
-*Defined in [refactor/queries.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L80)*
+*Defined in [queries.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L68)*
+
+___
+<a id="sometext"></a>
+
+### `<Const>` someText
+
+**● someText**: *`(Anonymous function)`* =  lambda('some nonempty visible text', async (element: Element) => {
+            const text = await (await element.getWebElement()).getText();
+            if (!text) {
+                throw new Error('there is no visible nonempty text');
+            }
+            return text;
+        })
+
+*Defined in [queries.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L54)*
 
 ___
 <a id="text"></a>
@@ -94,7 +60,7 @@ ___
 **● text**: *`(Anonymous function)`* =  lambda('text', async (element: Element) =>
             (await element.getWebElement()).getText())
 
-*Defined in [refactor/queries.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L63)*
+*Defined in [queries.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L51)*
 
 ___
 <a id="value"></a>
@@ -103,7 +69,7 @@ ___
 
 **● value**: *`(Anonymous function)`* =  attribute('value')
 
-*Defined in [refactor/queries.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L82)*
+*Defined in [queries.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L70)*
 
 ___
 
@@ -115,64 +81,13 @@ ___
 
 ▸ **attribute**(name: *`string`*): `(Anonymous function)`
 
-*Defined in [refactor/queries.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L70)*
+*Defined in [queries.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L62)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | name | `string` |
-
-**Returns:** `(Anonymous function)`
-
-___
-<a id="hasattribute"></a>
-
-### `<Const>` hasAttribute
-
-▸ **hasAttribute**(name: *`string`*): `(Anonymous function)`
-
-*Defined in [refactor/queries.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L74)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
-
-**Returns:** `(Anonymous function)`
-
-___
-<a id="hastext"></a>
-
-### `<Const>` hasText
-
-▸ **hasText**(text: *`string`*): `(Anonymous function)`
-
-*Defined in [refactor/queries.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L66)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| text | `string` |
-
-**Returns:** `(Anonymous function)`
-
-___
-<a id="hasvisibleelement"></a>
-
-### `<Const>` hasVisibleElement
-
-▸ **hasVisibleElement**(by: *`By`*): `(Anonymous function)`
-
-*Defined in [refactor/queries.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L47)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| by | `By` |
 
 **Returns:** `(Anonymous function)`
 

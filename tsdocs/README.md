@@ -6,14 +6,15 @@
 ### Modules
 
 * [Condition](modules/condition.md)
-* [Conditions](modules/conditions.md)
 * [Utils](modules/utils.md)
 * [With](modules/with.md)
 * [be](modules/be.md)
 * [command](modules/command.md)
+* [condition](modules/condition.md)
 * [get](modules/get.md)
 * [have](modules/have.md)
 * [perform](modules/perform.md)
+* [predicate](modules/predicate.md)
 * [query](modules/query.md)
 
 ### Classes
@@ -54,6 +55,7 @@
 ### Functions
 
 * [ElementActionHooks](#elementactionhooks)
+* [lambda](#lambda)
 * [logFailedHook](#logfailedhook)
 * [runAfterHooks](#runafterhooks)
 * [runBeforeHooks](#runbeforehooks)
@@ -149,7 +151,7 @@ ___
 
 **Ƭ ElementQuery**: *[Query](#query)<[Element](classes/element.md), `R`>*
 
-*Defined in [refactor/queries.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L23)*
+*Defined in [queries.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L21)*
 
 ___
 <a id="onfailurehook"></a>
@@ -184,7 +186,6 @@ ___
 **Ƭ Query**: *`function`*
 
 *Defined in [wait.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L28)*
-*Defined in [refactor/query.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/query.ts#L19)*
 
 We use queries to perform an async query on entity of type T, i.e. get something from entity. So a query can pass and return something of type R or failed with Error correspondingly.
 
@@ -198,25 +199,6 @@ We use queries to perform an async query on entity of type T, i.e. get something
 | entity | `T` |
 
 **Returns:** `Promise`<`R`>
-
-<a id="query.perform"></a>
-
-###  perform
-
-▸ **perform**(entity: *`T`*, ...args: *`any`[]*):  `any` &#124; `Promise`<`any`>
-
-*Defined in [refactor/query.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/query.ts#L20)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
-| `Rest` args | `any`[] |
-
-**Returns:**  `any` &#124; `Promise`<`any`>
-
-___
 
 ___
 
@@ -239,6 +221,27 @@ ___
 | descriptor | `PropertyDescriptor` |
 
 **Returns:** `void`
+
+___
+<a id="lambda"></a>
+
+###  lambda
+
+▸ **lambda**<`F`>(toString: *`string`*, fn: *`F`*): `F`
+
+*Defined in [helpers/index.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/index.ts#L16)*
+
+**Type parameters:**
+
+#### F 
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| toString | `string` |
+| fn | `F` |
+
+**Returns:** `F`
 
 ___
 <a id="logfailedhook"></a>

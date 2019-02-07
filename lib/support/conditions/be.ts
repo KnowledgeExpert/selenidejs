@@ -13,22 +13,22 @@
 // limitations under the License.
 
 // todo: consider delete
-import { Conditions, ElementCondition } from '../../conditions'; // DO NOT DELETE THIS LINE!
+import { condition, ElementCondition } from '../../conditions';
 
 export namespace be {
-    export const selected: ElementCondition = Conditions.element.isSelected;
+    export const selected: ElementCondition = condition.element.isSelected;
 
-    export const absent: ElementCondition = Conditions.element.isAbsent;
+    export const absent: ElementCondition = condition.element.isAbsent;
 
-    export const present: ElementCondition = Conditions.element.isPresent;
+    export const present: ElementCondition = condition.element.isPresent;
 
-    export const visible: ElementCondition = Conditions.element.isVisible;
+    export const visible: ElementCondition = condition.element.isVisible;
 
-    export const hidden: ElementCondition = Conditions.element.isHidden;
+    export const hidden: ElementCondition = condition.element.isHidden;
 
-    export const focused: ElementCondition = Conditions.element.isFocused;
+    export const focused: ElementCondition = condition.element.isFocused;
 
-    export const enabled: ElementCondition = Conditions.element.isEnabled;
+    export const enabled: ElementCondition = condition.element.isEnabled;
 
-    export const disabled: ElementCondition = Conditions.element.isDisabled;
+    export const disabled: ElementCondition = condition.element.isDisabled;
 }

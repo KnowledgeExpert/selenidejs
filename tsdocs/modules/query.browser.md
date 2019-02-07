@@ -20,7 +20,7 @@
 **● tabsNumber**: *`(Anonymous function)`* =  lambda('tabs number', async (browser: Browser) =>
             (await browser.driver.getAllWindowHandles()).length)
 
-*Defined in [refactor/queries.ts:104](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L104)*
+*Defined in [queries.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L89)*
 
 ___
 <a id="url"></a>
@@ -30,7 +30,7 @@ ___
 **● url**: *`(Anonymous function)`* =  lambda('url', async (browser: Browser) =>
             browser.driver.getCurrentUrl())
 
-*Defined in [refactor/queries.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L101)*
+*Defined in [queries.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L86)*
 
 ___
 

@@ -14,8 +14,8 @@
 
 import * as fs from 'fs-extra';
 import { By } from 'selenium-webdriver';
-import { Browser } from './browser';
-import { With } from './support/selectors/with';
+import { Browser } from '../browser';
+import { With } from '../support/selectors/with';
 
 
 export namespace Utils {

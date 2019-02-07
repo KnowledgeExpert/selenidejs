@@ -1,12 +1,12 @@
-import { By } from 'selenium-webdriver';
 import { Browser } from './browser';
 import { Collection } from './collection';
 import { Element } from './element';
 import { Condition } from './wait';
+import { By } from 'selenium-webdriver';
 export declare type ElementCondition = Condition<Element>;
 export declare type CollectionCondition = Condition<Collection>;
 export declare type BrowserCondition = Condition<Browser>;
-export declare namespace Conditions {
+export declare namespace condition {
     namespace element {
         const isVisible: ElementCondition;
         const isHidden: ElementCondition;

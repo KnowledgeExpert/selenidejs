@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { Element } from '../../element';
-import { query } from '../../refactor/queries';
+import { query } from '../../queries';
 
 /**
  * to be used in the following context:

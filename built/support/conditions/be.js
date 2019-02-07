@@ -14,16 +14,16 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 // todo: consider delete
-const conditions_1 = require("../../conditions"); // DO NOT DELETE THIS LINE!
+const conditions_1 = require("../../conditions");
 var be;
 (function (be) {
-    be.selected = conditions_1.Conditions.element.isSelected;
-    be.absent = conditions_1.Conditions.element.isAbsent;
-    be.present = conditions_1.Conditions.element.isPresent;
-    be.visible = conditions_1.Conditions.element.isVisible;
-    be.hidden = conditions_1.Conditions.element.isHidden;
-    be.focused = conditions_1.Conditions.element.isFocused;
-    be.enabled = conditions_1.Conditions.element.isEnabled;
-    be.disabled = conditions_1.Conditions.element.isDisabled;
+    be.selected = conditions_1.condition.element.isSelected;
+    be.absent = conditions_1.condition.element.isAbsent;
+    be.present = conditions_1.condition.element.isPresent;
+    be.visible = conditions_1.condition.element.isVisible;
+    be.hidden = conditions_1.condition.element.isHidden;
+    be.focused = conditions_1.condition.element.isFocused;
+    be.enabled = conditions_1.condition.element.isEnabled;
+    be.disabled = conditions_1.condition.element.isDisabled;
 })(be = exports.be || (exports.be = {}));
 //# sourceMappingURL=be.js.map

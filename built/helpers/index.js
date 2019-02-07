@@ -1,3 +1,4 @@
+"use strict";
 // Copyright 2018 Knowledge Expert SA
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,11 +12,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-import { Browser } from '../browser';
-import { Element } from '../element';
-
-
-export interface Query<T extends Browser | Element> {
-    perform(entity: T, ...args: any[]): any | Promise<any>;
+Object.defineProperty(exports, "__esModule", { value: true });
+function lambda(toString, fn) {
+    fn.toString = () => toString;
+    return fn;
 }
+exports.lambda = lambda;
+//# sourceMappingURL=index.js.map

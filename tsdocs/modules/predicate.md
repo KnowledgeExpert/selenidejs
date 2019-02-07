@@ -1,4 +1,4 @@
-[selenidejs](../README.md) > [Conditions](../modules/conditions.md) > [predicate](../modules/conditions.predicate.md)
+[selenidejs](../README.md) > [predicate](../modules/predicate.md)
 
 # Module: predicate
 
@@ -6,17 +6,18 @@
 
 ### Variables
 
-* [equalsByContainsToArray](conditions.predicate.md#equalsbycontainstoarray)
-* [equalsToArray](conditions.predicate.md#equalstoarray)
+* [equalsByContainsToArray](predicate.md#equalsbycontainstoarray)
+* [equalsToArray](predicate.md#equalstoarray)
 
 ### Functions
 
-* [arrayCompareBy](conditions.predicate.md#arraycompareby)
-* [equals](conditions.predicate.md#equals)
-* [includes](conditions.predicate.md#includes)
-* [includesWord](conditions.predicate.md#includesword)
-* [isLessThan](conditions.predicate.md#islessthan)
-* [isMoreThan](conditions.predicate.md#ismorethan)
+* [arrayCompareBy](predicate.md#arraycompareby)
+* [equals](predicate.md#equals)
+* [includes](predicate.md#includes)
+* [includesWord](predicate.md#includesword)
+* [isLessThan](predicate.md#islessthan)
+* [isMoreThan](predicate.md#ismorethan)
+* [isTruthy](predicate.md#istruthy)
 
 ---
 
@@ -28,7 +29,7 @@
 
 **● equalsByContainsToArray**: *`(Anonymous function)`* =  arrayCompareBy(includes)
 
-*Defined in [conditions.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L67)*
+*Defined in [helpers/predicates.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L29)*
 
 ___
 <a id="equalstoarray"></a>
@@ -37,7 +38,7 @@ ___
 
 **● equalsToArray**: *`(Anonymous function)`* =  arrayCompareBy(equals)
 
-*Defined in [conditions.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L66)*
+*Defined in [helpers/predicates.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L28)*
 
 ___
 
@@ -49,7 +50,7 @@ ___
 
 ▸ **arrayCompareBy**(f: *`any`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L62)*
+*Defined in [helpers/predicates.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L24)*
 
 **Parameters:**
 
@@ -66,7 +67,7 @@ ___
 
 ▸ **equals**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L56)*
+*Defined in [helpers/predicates.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L18)*
 
 **Type parameters:**
 
@@ -86,7 +87,7 @@ ___
 
 ▸ **includes**(expected: *`any`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L59)*
+*Defined in [helpers/predicates.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L21)*
 
 **Parameters:**
 
@@ -103,7 +104,7 @@ ___
 
 ▸ **includesWord**(expected: *`string`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L60)*
+*Defined in [helpers/predicates.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L22)*
 
 **Parameters:**
 
@@ -120,7 +121,7 @@ ___
 
 ▸ **isLessThan**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L58)*
+*Defined in [helpers/predicates.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L20)*
 
 **Type parameters:**
 
@@ -140,7 +141,7 @@ ___
 
 ▸ **isMoreThan**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
+*Defined in [helpers/predicates.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L19)*
 
 **Type parameters:**
 
@@ -152,6 +153,26 @@ ___
 | expected | `V` |
 
 **Returns:** `(Anonymous function)`
+
+___
+<a id="istruthy"></a>
+
+### `<Const>` isTruthy
+
+▸ **isTruthy**<`V`>(actual: *`V`*): `boolean`
+
+*Defined in [helpers/predicates.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L17)*
+
+**Type parameters:**
+
+#### V 
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| actual | `V` |
+
+**Returns:** `boolean`
 
 ___
 

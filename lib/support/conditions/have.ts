@@ -13,21 +13,21 @@
 // limitations under the License.
 
 import { By } from 'selenium-webdriver';
-import { CollectionCondition, Conditions, BrowserCondition, ElementCondition } from '../../conditions';
+import { CollectionCondition, BrowserCondition, ElementCondition, condition } from '../../conditions';
 
 
 export namespace have {
 
     export function visibleElement(locator: By): ElementCondition {
-        return Conditions.element.hasVisibleElement(locator);
+        return condition.element.hasVisibleElement(locator);
     }
 
     export function exactText(value: string/* | number*/): ElementCondition {
-        return Conditions.element.hasExactText(value);
+        return condition.element.hasExactText(value);
     }
 
     export function text(value: string/* | number*/): ElementCondition {
-        return Conditions.element.hasText(value);
+        return condition.element.hasText(value);
     }
 
     // todo: do we really need this "optionality" of attributeValue, i.e. one super condition instead of two?
@@ -48,16 +48,16 @@ export namespace have {
      * and keep things simple...
      **/
     export function attribute(name: string): ElementCondition {
-        return Conditions.element.hasAttribute(name);
+        return condition.element.hasAttribute(name);
     }
 
     export function attributeWithValue(attributeName: string, attributeValue: string/* | number*/): ElementCondition {
-        return Conditions.element.hasAttributeWithValue(attributeName, attributeValue);
+        return condition.element.hasAttributeWithValue(attributeName, attributeValue);
     }
 
     export function attributeWithValueContaining(attributeName: string, attributeValue: string/* | number*/)
     : ElementCondition {
-        return Conditions.element.hasAttributeWithValueContaining(attributeName, attributeValue);
+        return condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
     }
 
     export function value(value: string/* | number*/): ElementCondition {
@@ -65,19 +65,19 @@ export namespace have {
     }
 
     export function cssClass(cssClass: string): ElementCondition {
-        return Conditions.element.hasCssClass(cssClass);
+        return condition.element.hasCssClass(cssClass);
     }
 
     export function size(size: number): CollectionCondition {
-        return Conditions.collection.hasSize(size);
+        return condition.collection.hasSize(size);
     }
 
     export function texts(...texts: string[]): CollectionCondition {
-        return Conditions.collection.hasExactTexts(texts);
+        return condition.collection.hasExactTexts(texts);
     }
 
     export function url(urlPart: string): BrowserCondition {
-        return Conditions.browser.hasUrl(urlPart);
+        return condition.browser.hasUrl(urlPart);
     }
 
     // todo: what about inUrl?
@@ -90,22 +90,22 @@ export namespace have {
      * browser.should(have.textInUrl('main-page'));
      */
     export function urlContaining(urlPart: string): BrowserCondition {
-        return Conditions.browser.hasUrlContaining(urlPart);
+        return condition.browser.hasUrlContaining(urlPart);
     }
 
     export function exactTexts(...texts: string[]): CollectionCondition {
-        return Conditions.collection.hasExactTexts(texts);
+        return condition.collection.hasExactTexts(texts);
     }
 
     export function tabsNumber(num: number): BrowserCondition {
-        return Conditions.browser.hasTabsNumber(num);
+        return condition.browser.hasTabsNumber(num);
     }
 
     export function tabsNumberLessThan(num: number): BrowserCondition {
-        return Conditions.browser.hasTabsNumberLessThan(num);
+        return condition.browser.hasTabsNumberLessThan(num);
     }
 
     export function tabsNumberMoreThan(num: number): BrowserCondition {
-        return Conditions.browser.hasTabsNumberMoreThan(num);
+        return condition.browser.hasTabsNumberMoreThan(num);
     }
 }

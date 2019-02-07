@@ -15,7 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const timeoutError_1 = require("./errors/timeoutError");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
-const utils_1 = require("./utils");
+const utils_1 = require("./helpers/utils");
 var lambda = utils_1.Utils.lambda;
 var Condition;
 (function (Condition) {

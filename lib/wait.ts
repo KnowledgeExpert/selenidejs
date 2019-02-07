@@ -15,7 +15,7 @@
 import { OnFailureHook } from './refactor/onFailureHook';
 import { TimeoutError } from './errors/timeoutError';
 import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
-import { Utils } from './utils';
+import { Utils } from './helpers/utils';
 import lambda = Utils.lambda;
 
 /* tslint:disable:prefer-template */

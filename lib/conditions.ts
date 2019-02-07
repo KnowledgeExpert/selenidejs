@@ -12,25 +12,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By } from 'selenium-webdriver';
 import { Browser } from './browser';
 import { Collection } from './collection';
 import { Element } from './element';
 import { Condition } from './wait';
-import { query } from './refactor/queries';
-import { Utils } from './utils';
-import lambda = Utils.lambda;
+import { By, WebElement } from 'selenium-webdriver';
+import { query } from './queries';
 import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
+import { lambda } from './helpers';
+import { predicate } from './helpers/predicates';
 
 export type ElementCondition = Condition<Element>;
 export type CollectionCondition = Condition<Collection>;
 export type BrowserCondition = Condition<Browser>;
 
-export namespace Conditions { // todo: rename to condition? for style like element.should(condition.element.isVisible)
+export namespace condition {
 
-    function conditionFromAsyncQuery<E>(aPredicate: (entity: E) => Promise<boolean>): Condition<E> {
-        return lambda(aPredicate.toString(), async (entity: E) => {
-            if (! await aPredicate(entity)) {
+    function conditionFromAsyncQuery<E>(describedPredicate: (entity: E) => Promise<boolean>): Condition<E> {
+        return lambda(describedPredicate.toString(), async (entity: E) => {
+            if (!await describedPredicate(entity)) {
+                throw new ConditionNotMatchedError();
+            }
+        });
+    }
+
+    /**
+     * like conditionFromAsyncQuery but with custom description
+     * @param {string} description
+     * @param {(entity: E) => Promise<boolean>} predicate
+     * @returns {Condition<E>}
+     */
+    function throwIfNot<E>(description: string, predicate: (entity: E) => Promise<boolean>): Condition<E> {
+        return lambda(description, async (entity: E) => {
+            if (!await predicate(entity)) {
                 throw new ConditionNotMatchedError();
             }
         });
@@ -40,9 +54,7 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
      * Transforms an entity query compared through predicate - to Condition
      * Example: throwIfNotActual(query.element.text, predicate.equals(text))
      */
-    function throwIfNotActual<E, A>(
-        query: (entity: E) => Promise<A>, predicate: (actual: A) => boolean
-    ): Condition<E> {
+    function throwIfNotActual<E, A>(query: (entity: E) => Promise<A>, predicate: (actual: A) => boolean): Condition<E> {
         return async (entity: E) => {
             const actual = await query(entity);
             if (!predicate(actual)) {
@@ -51,67 +63,46 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
         };
     }
 
-    // todo: move somewhere to utils/helpers?
-    namespace predicate {
-        export const equals = <V>(expected: V) => (actual: V) => actual === expected;
-        export const isMoreThan = <V>(expected: V) => (actual: V) => actual > expected;
-        export const isLessThan = <V>(expected: V) => (actual: V) => actual < expected;
-        export const includes = (expected: any) => (actual: any) => actual.includes(expected);
-        export const includesWord =
-            (expected: string) => (actual: string) => actual.split(' ').includes(expected);
-        export const arrayCompareBy = (f) => ([x, ...xs]: any[]) => ([y, ...ys]: any[]) =>
-            x === undefined && y === undefined
-                ? true
-                : Boolean(f(x)(y)) && arrayCompareBy(f)(xs)(ys);
-        export const equalsToArray = arrayCompareBy(equals);
-        export const equalsByContainsToArray = arrayCompareBy(includes);
-    }
-
     export namespace element {
 
-        // todo: isVisible vs visible, etc.
         export const isVisible: ElementCondition =
-            conditionFromAsyncQuery(query.element.isVisible);
+            throwIfNot('is visible', async (element: Element) =>
+                (await element.getWebElement()).isDisplayed());
 
         export const isHidden: ElementCondition =
             Condition.not(isVisible, 'is hidden');
 
         export const hasVisibleElement = (by: By): ElementCondition =>
-            conditionFromAsyncQuery(query.element.hasVisibleElement(by));
+            throwIfNot(`has visible element located by ${by}`, async (element: Element) =>
+                (await element.element(by).getWebElement()).isDisplayed());
 
         export const hasAttribute = (name: string): ElementCondition =>
-            conditionFromAsyncQuery(query.element.hasAttribute(name));
+            lambda(`has attribute '${name}'`,
+                   throwIfNotActual(query.element.attribute(name), predicate.isTruthy));
 
         export const isSelected: ElementCondition =
             hasAttribute('elementIsSelected');
 
         export const isEnabled: ElementCondition =
-            conditionFromAsyncQuery(query.element.isEnabled);
+            throwIfNot('is enabled', async (element: Element) =>
+                (await element.getWebElement()).isEnabled());
 
         export const isDisabled: ElementCondition =
             Condition.not(isEnabled, 'is disabled');
 
         export const isPresent: ElementCondition =
-            conditionFromAsyncQuery(query.element.isPresent);
+            throwIfNot('is present', async (element: Element) =>
+                !!(await element.getWebElement()));
 
         export const isAbsent: ElementCondition =
             Condition.not(isPresent, 'is absent');
 
         export const isFocused: ElementCondition =
-            conditionFromAsyncQuery(query.element.isFocused);
-
-        /* todo: should we move all following built inline predicates to query namespace
-         * and so here use just conditionFromAsyncQuery style?
-         *
-         * is it even possible? including the fact that we need throwIfNotActual
-         * to build proper Error...
-         *
-         * or should we, hence, keep all them here, and in queries just use it
-         * as e.g. Condition.asPredicate(condition.element.hasText) ?
-         *
-         * should we keep all predicates in a separate namespace? separately from query.*.* ?
-         * just to keep all eggs in their baskets...
-         */
+            throwIfNot('is focused', async (element: Element) =>
+                WebElement.equals(
+                    await element.executeScript('return document.activeElement') as WebElement,
+                    await element.getWebElement()
+                ));
 
         export const hasText = (expected: string): ElementCondition => // todo: do we need string | number
             lambda(`has text: ${expected}`,
@@ -148,6 +139,7 @@ export namespace Conditions { // todo: rename to condition? for style like eleme
             lambda(`has size less than ${size}`,
                    throwIfNotActual(query.collection.size, predicate.isLessThan(size)));
 
+        // todo: should we filter collection for visibility before applying this condition?
         export const hasTexts = (texts: string[]): CollectionCondition =>
             lambda(`has texts ${texts}`,
                    throwIfNotActual(query.collection.texts, predicate.equalsByContainsToArray(texts)));

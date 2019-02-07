@@ -14,7 +14,7 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
-const utils_1 = require("./utils");
+const utils_1 = require("./helpers/utils");
 const collection_1 = require("./collection");
 const configuration_1 = require("./configuration");
 const element_1 = require("./element");

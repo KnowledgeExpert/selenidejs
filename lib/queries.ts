@@ -12,68 +12,56 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Query } from '../wait';
-import { Element } from '../element';
-import { Collection } from '../collection';
-import { Browser } from '../browser';
-import { Utils } from '../utils';
-import lambda = Utils.lambda;
-import { By, WebElement } from 'selenium-webdriver';
+import { Query } from './wait';
+import { Element } from './element';
+import { Collection } from './collection';
+import { Browser } from './browser';
+import { lambda } from './helpers';
 
 export type ElementQuery<R> = Query<Element, R>; // todo: do we need it? o_O
 
 /**
- * raw queries on actual element's webelement
- * raw means - without any waiting...
+ * Raw queries on actual element's webelement
+ * 'Raw' means - without any waiting...
  *
- * all are implemented through element.getWebElement()
+ * All are implemented through element.getWebElement()
  * e.g. element.getWebElement().getText over element.text()
  * because element.text() already has waiting built in.
  * this is needed, because these queries are used not only to build corresponding element methods
  * with waiting built in
  * but also for conditions...
  *
- * hence, these functions are not supposed to be used in "perform/get" context:
+ * Hence, these functions are not supposed to be used in "perform/get" context:
  *   `element.click().then(query.element.text)`
  * this query may fail if element was absent after click for some milliseconds...
  * use the following alternative instead:
  *   `element.click().then(get.text)`
+ *
+ * Here, queries do not contain has* and is* queries, like hasText, or isVisible.
+ * User can use has* and is* conditions instead. Example:
+ *   `if (element.matches(has.text('foo'))) { ... }
+ * We really don't need such has* or is* queries both here and built in the entity itself
+ * (like element.isVisible), because their use case is very rare. The user will mainly use
+ * steps (entity commands, like click) and assertions (entity should(condition)) in tests.
+ * And SelenideJs is a tests tool, not something else.
  */
 export namespace query {
     export namespace element {
-        export const isVisible = lambda('is visible', async (element: Element) =>
-            (await element.getWebElement()).isDisplayed());
-
-        export const hasVisibleElement = (by: By) =>
-            lambda(`has visible element located by ${by}`, async (element: Element) =>
-                isVisible(element.element(by)));
-
-        export const isEnabled = lambda('is enabled', async (element: Element) =>
-            (await element.getWebElement()).isEnabled());
-
-        export const isPresent = lambda('is present', async (element: Element) =>
-            !!(await element.getWebElement()));
-
-        export const isFocused = lambda('is focused', async (element: Element) =>
-            WebElement.equals(
-                await element.executeScript('return document.activeElement') as WebElement,
-                await element.getWebElement()
-            ));
 
         export const text = lambda('text', async (element: Element) =>
             (await element.getWebElement()).getText());
 
-        export const hasText = (text: string) =>
-            lambda(`has text ${text}`, async (element: Element) =>
-                (await query.element.text(element)).includes(text));
+        export const someText = lambda('some nonempty visible text', async (element: Element) => {
+            const text = await (await element.getWebElement()).getText();
+            if (!text) {
+                throw new Error('there is no visible nonempty text');
+            }
+            return text;
+        });
 
         export const attribute = (name: string) =>
             lambda(`attribute ${name}`, async (element: Element) =>
                 (await element.getWebElement()).getAttribute(name));
-
-        export const hasAttribute = (name: string) =>
-            lambda(`has attribute with name ${name}`, async (element: Element) =>
-                !!(await query.element.attribute(name)(element)));
 
         export const innerHtml = attribute('innerHTML');
 
@@ -83,13 +71,10 @@ export namespace query {
     }
 
     export namespace collection {
+
+        // todo: do we need a count or number alias for size? or even count instead of size?
         export const size = lambda('size', async (collection: Collection) =>
             (await collection.getWebElements()).length);
-
-        export const hasSize = (length: number) =>
-            lambda(`has size ${length}`, async (collection: Collection) =>
-                (await size(collection)) === length
-            );
 
         export const texts = lambda('texts', async (collection: Collection) => {
             const webelements = await collection.getWebElements();

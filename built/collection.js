@@ -18,7 +18,6 @@ const byIndexWebElementLocator_1 = require("./locators/byIndexWebElementLocator"
 const cashedWebElementLocator_1 = require("./locators/cashedWebElementLocator");
 const filteredByConditionWebElementsLocator_1 = require("./locators/filteredByConditionWebElementsLocator");
 const wait_1 = require("./wait");
-const queries_1 = require("./refactor/queries");
 class Collection {
     constructor(locator, configuration) {
         this.locator = locator;
@@ -53,28 +52,22 @@ class Collection {
         return this.matches(wait_1.Condition.not(condition));
     }
     /* Others... */
-    // todo: think on get(i+1) @s @li@s to [i] (is it even possible?)
-    get(index) {
+    elementAt(index) {
         return new element_1.Element(new byIndexWebElementLocator_1.ByIndexWebElementLocator(index, this), this.configuration);
     }
     first() {
-        return this.get(0);
+        return this.elementAt(0);
     }
-    filterBy(condition) {
+    filteredBy(condition) {
         return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(condition, this), this.configuration);
     }
-    findBy(condition) {
+    elementBy(condition) {
         return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(condition, this), this.configuration)
-            .get(0); // todo: implement through separate ByFind...Locator
+            .elementAt(0); // todo: implement through separate ByFind...Locator
     }
-    // todo: do we need a count alias for size? or even count instead of size?
-    /*
-     * e.g. emails.size() sounds much more weird than emails.count() or emails.number()
-     */
-    async size() {
-        return queries_1.query.collection.size(this);
+    async get(query, timeout = this.configuration.timeout) {
+        return this.wait.query(query, timeout);
     }
-    // todo: do we need same get as element.get here for collection?
     async getWebElements() {
         return this.locator.find();
     }

@@ -14,7 +14,7 @@
 
 import { Builder, By, Capabilities, WebDriver, WebElement } from 'selenium-webdriver';
 import { BrowserCondition } from './conditions';
-import { Utils } from './utils';
+import { Utils } from './helpers/utils';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';

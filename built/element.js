@@ -22,14 +22,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const be_1 = require("./support/conditions/be");
 const with_1 = require("./support/selectors/with");
-const utils_1 = require("./utils");
+const utils_1 = require("./helpers/utils");
 const collection_1 = require("./collection");
 const elementActionHooks_1 = require("./refactor/elementActionHooks");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const wait_1 = require("./wait");
-var lambda = utils_1.Utils.lambda;
-const queries_1 = require("./refactor/queries");
+const helpers_1 = require("./helpers");
 class Element {
     // todo: why not have private readonly driver property?
     constructor(locator, configuration) {
@@ -75,7 +74,7 @@ class Element {
     // won't it be better to leave workarounds less shiny ans so kind of highlighted in a code?
     // or should the name be more precise, like firstVisibleElement? (this probably is too much though...)
     visibleElement(cssOrXpathOrBy) {
-        return this.all(cssOrXpathOrBy).findBy(be_1.be.visible);
+        return this.all(cssOrXpathOrBy).elementBy(be_1.be.visible);
     }
     all(cssOrXpathOrBy) {
         const by = utils_1.Utils.toBy(cssOrXpathOrBy);
@@ -108,6 +107,12 @@ class Element {
      * but assert or shouldMatch is good for the "raw" condition case:
      *   assert(condition.element.isVisible)
      *   shouldMatch(condition.element.isVisible)
+     * maybe someone will find this style better than be.* and have.*
+     * the advantage is in having only one entry point to all conditions - condition.*
+     * where it has conditions sorted by type - element, collection, browser -
+     * so it might be easier to find the needed one...
+     * while be.* and have.* are kind of bulk of mixed type conditions - all in one heap,
+     * even two mixed heaps:)));
      */
     async shouldNot(condition, timeout) {
         await this.should(wait_1.Condition.not(condition), timeout);
@@ -145,7 +150,7 @@ class Element {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async click() {
-        await this.wait.command(lambda('click', async (element) => // todo: add describing lambdas to other commands
+        await this.wait.command(helpers_1.lambda('click', async (element) => // todo: add describing lambdas to other commands
          element.getWebElement().then(it => it.click())));
         return this;
     }
@@ -219,46 +224,6 @@ class Element {
     // todo: should we rename it to take?
     async get(query, timeout = this.configuration.timeout) {
         return this.wait.query(query, timeout);
-    }
-    /*
-     * todo: do we really need all following built in methods?
-     * isn't it enough to have only:
-     *   `element.get(its.text)`
-     *
-     *   - and even this will be too much... usually the user will need something like:
-     *     `if (await element.matches(has.text('foo'))) { ... }
-     *
-     * here is why:
-     * - these queries are not needed in tests. In real tests we need only commands and asserts (should(*))
-     *   - only in workarounds, where get(its.text) should be enough
-     * - and so in autocomplete they will not "bother readers eye";)
-     */
-    // todo: do we need visibleText() in addition? (because text() does not fail for invisible element...)
-    /*
-     * todo: define proper behavior...
-     * selenium has separated: search (that can fail on no element) and text - that if not visible returns ''
-     * what should we do?
-     * for search we wait...
-     * but since '' means no visible text... the same applies for "no element"
-     * for no element should we return '' without waiting then?
-     * or should we wait then return '' if present or real text when also visible? (this is current behavior)
-     * or should we wait till visible and then return full text?
-     */
-    async text() {
-        return this.get(queries_1.query.element.text);
-    }
-    // todo: cover with tests
-    async attribute(name) {
-        return this.get(queries_1.query.element.attribute(name));
-    }
-    async innerHtml() {
-        return this.attribute('innerHTML');
-    }
-    async outerHtml() {
-        return this.attribute('outerHTML');
-    }
-    async value() {
-        return this.attribute('value');
     }
 }
 Element.beforeActionHooks = []; // todo: should we move it to Configuration?

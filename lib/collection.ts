@@ -20,8 +20,7 @@ import { ByIndexWebElementLocator } from './locators/byIndexWebElementLocator';
 import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
-import { Condition, Wait } from './wait';
-import { query } from './refactor/queries';
+import { Condition, Query, Wait } from './wait';
 
 export class Collection {
 
@@ -71,33 +70,26 @@ export class Collection {
 
     /* Others... */
 
-    // todo: think on get(i+1) @s @li@s to [i] (is it even possible?)
-    get(index: number): Element {  // todo refactor to [index: number]
+    elementAt(index: number): Element {
         return new Element(new ByIndexWebElementLocator(index, this), this.configuration);
     }
 
     first(): Element {
-        return this.get(0);
+        return this.elementAt(0);
     }
 
-    filterBy(condition: ElementCondition): Collection {
+    filteredBy(condition: ElementCondition): Collection { // todo: think on renaming to filteredBy
         return new Collection(new FilteredByConditionWebElementsLocator(condition, this), this.configuration);
     }
 
-    findBy(condition: ElementCondition): Element {
+    elementBy(condition: ElementCondition): Element {
         return new Collection(new FilteredByConditionWebElementsLocator(condition, this), this.configuration)
-            .get(0);  // todo: implement through separate ByFind...Locator
+            .elementAt(0);  // todo: implement through separate ByFind...Locator
     }
 
-    // todo: do we need a count alias for size? or even count instead of size?
-    /*
-     * e.g. emails.size() sounds much more weird than emails.count() or emails.number()
-     */
-    async size(): Promise<number> { // todo: do we need this query built in here at all?
-        return query.collection.size(this);
+    async get<R>(query: Query<Collection, R>, timeout: number = this.configuration.timeout): Promise<R> {
+        return this.wait.query(query, timeout);
     }
-
-    // todo: do we need same get as element.get here for collection?
 
     async getWebElements(): Promise<WebElement[]> {
         return this.locator.find();

@@ -1,4 +1,4 @@
-[selenidejs](../README.md) > [Conditions](../modules/conditions.md) > [collection](../modules/conditions.collection.md)
+[selenidejs](../README.md) > [condition](../modules/condition.md) > [collection](../modules/condition.collection.md)
 
 # Module: collection
 
@@ -6,11 +6,11 @@
 
 ### Functions
 
-* [hasExactTexts](conditions.collection.md#hasexacttexts)
-* [hasSize](conditions.collection.md#hassize)
-* [hasSizeLessThan](conditions.collection.md#hassizelessthan)
-* [hasSizeMoreThan](conditions.collection.md#hassizemorethan)
-* [hasTexts](conditions.collection.md#hastexts)
+* [hasExactTexts](condition.collection.md#hasexacttexts)
+* [hasSize](condition.collection.md#hassize)
+* [hasSizeLessThan](condition.collection.md#hassizelessthan)
+* [hasSizeMoreThan](condition.collection.md#hassizemorethan)
+* [hasTexts](condition.collection.md#hastexts)
 
 ---
 
@@ -22,7 +22,7 @@
 
 ▸ **hasExactTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:155](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L155)*
+*Defined in [conditions.ts:147](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L147)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **hasSize**(expected: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:139](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L139)*
+*Defined in [conditions.ts:130](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L130)*
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **hasSizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:147](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L147)*
+*Defined in [conditions.ts:138](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L138)*
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **hasSizeMoreThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:143](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L143)*
+*Defined in [conditions.ts:134](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L134)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **hasTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:151](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L151)*
+*Defined in [conditions.ts:143](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L143)*
 
 **Parameters:**
 

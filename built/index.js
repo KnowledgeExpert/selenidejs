@@ -36,4 +36,6 @@ var get_1 = require("./support/queries/get");
 exports.get = get_1.get;
 var get_2 = require("./support/queries/get"); // todo: do we really need it?
 exports.its = get_2.get;
+var queries_1 = require("./queries");
+exports.query = queries_1.query;
 //# sourceMappingURL=index.js.map

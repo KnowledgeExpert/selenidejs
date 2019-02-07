@@ -18,14 +18,14 @@ import { be, have } from '../../lib';
 describe('Collection get by index Element', () => {
 
     it('should not be found on creation', async () => {
-        const element = browser.all('.not-existing').get(1);
+        const element = browser.all('.not-existing').elementAt(1);
 
         expect(element.toString()).toBeTruthy();
     });
 
     it('search is postponed until asking actual element data like "has specific text?"', async () => {
         await GIVEN.openedEmptyPage();
-        const element = browser.all('.will-exist').get(1);
+        const element = browser.all('.will-exist').elementAt(1);
 
         await WHEN.withBody(`
                 <ul>Hello to:
@@ -39,7 +39,7 @@ describe('Collection get by index Element', () => {
     
     it('is performed on each subsequent "ask"', async () => {
         await GIVEN.openedEmptyPage();
-        const element = browser.all('.will-exist').get(1);
+        const element = browser.all('.will-exist').elementAt(1);
 
         await WHEN.withBody(`
                 <ul>Hello to:
@@ -72,7 +72,7 @@ describe('Collection get by index Element', () => {
         );
         const started = new Date().getTime();
 
-        await browser.all('a').get(1).click();
+        await browser.all('a').elementAt(1).click();
         expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
         expect(await browser.url()).toContain('second');
     });
@@ -90,7 +90,7 @@ describe('Collection get by index Element', () => {
         );
         const started = new Date().getTime();
 
-        await browser.all('a').get(1).click()
+        await browser.all('a').elementAt(1).click()
             .then(ifNoError => fail('should fail on timeout before can be clicked'))
             .catch(async error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
@@ -112,7 +112,7 @@ Reason:
         `);
         const started = new Date().getTime();
 
-        await browser.all('li').get(1).should(have.text('Kate'))
+        await browser.all('li').elementAt(1).should(have.text('Kate'))
             .then(ifNoError => fail('should fail on timeout'))
             .catch(async error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);

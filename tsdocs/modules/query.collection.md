@@ -9,10 +9,6 @@
 * [size](query.collection.md#size)
 * [texts](query.collection.md#texts)
 
-### Functions
-
-* [hasSize](query.collection.md#hassize)
-
 ---
 
 ## Variables
@@ -24,7 +20,7 @@
 **● size**: *`(Anonymous function)`* =  lambda('size', async (collection: Collection) =>
             (await collection.getWebElements()).length)
 
-*Defined in [refactor/queries.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L86)*
+*Defined in [queries.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L76)*
 
 ___
 <a id="texts"></a>
@@ -36,27 +32,7 @@ ___
             return Promise.all(webelements.map(webElement => webElement.getText()));
         })
 
-*Defined in [refactor/queries.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L94)*
-
-___
-
-## Functions
-
-<a id="hassize"></a>
-
-### `<Const>` hasSize
-
-▸ **hasSize**(length: *`number`*): `(Anonymous function)`
-
-*Defined in [refactor/queries.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/queries.ts#L89)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| length | `number` |
-
-**Returns:** `(Anonymous function)`
+*Defined in [queries.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L79)*
 
 ___
 

@@ -45,9 +45,4 @@ export declare class Element implements SearchContext {
     pressTab(): Promise<this>;
     scrollIntoView(): Promise<this>;
     get<R>(query: Query<Element, R>, timeout?: number): Promise<R>;
-    text(): Promise<string>;
-    attribute(name: string): Promise<string>;
-    innerHtml(): Promise<string>;
-    outerHtml(): Promise<string>;
-    value(): Promise<string>;
 }

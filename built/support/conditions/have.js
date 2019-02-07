@@ -17,15 +17,15 @@ const conditions_1 = require("../../conditions");
 var have;
 (function (have) {
     function visibleElement(locator) {
-        return conditions_1.Conditions.element.hasVisibleElement(locator);
+        return conditions_1.condition.element.hasVisibleElement(locator);
     }
     have.visibleElement = visibleElement;
     function exactText(value /* | number*/) {
-        return conditions_1.Conditions.element.hasExactText(value);
+        return conditions_1.condition.element.hasExactText(value);
     }
     have.exactText = exactText;
     function text(value /* | number*/) {
-        return conditions_1.Conditions.element.hasText(value);
+        return conditions_1.condition.element.hasText(value);
     }
     have.text = text;
     // todo: do we really need this "optionality" of attributeValue, i.e. one super condition instead of two?
@@ -46,15 +46,15 @@ var have;
      * and keep things simple...
      **/
     function attribute(name) {
-        return conditions_1.Conditions.element.hasAttribute(name);
+        return conditions_1.condition.element.hasAttribute(name);
     }
     have.attribute = attribute;
     function attributeWithValue(attributeName, attributeValue /* | number*/) {
-        return conditions_1.Conditions.element.hasAttributeWithValue(attributeName, attributeValue);
+        return conditions_1.condition.element.hasAttributeWithValue(attributeName, attributeValue);
     }
     have.attributeWithValue = attributeWithValue;
     function attributeWithValueContaining(attributeName, attributeValue /* | number*/) {
-        return conditions_1.Conditions.element.hasAttributeWithValueContaining(attributeName, attributeValue);
+        return conditions_1.condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
     }
     have.attributeWithValueContaining = attributeWithValueContaining;
     function value(value /* | number*/) {
@@ -62,19 +62,19 @@ var have;
     }
     have.value = value;
     function cssClass(cssClass) {
-        return conditions_1.Conditions.element.hasCssClass(cssClass);
+        return conditions_1.condition.element.hasCssClass(cssClass);
     }
     have.cssClass = cssClass;
     function size(size) {
-        return conditions_1.Conditions.collection.hasSize(size);
+        return conditions_1.condition.collection.hasSize(size);
     }
     have.size = size;
     function texts(...texts) {
-        return conditions_1.Conditions.collection.hasExactTexts(texts);
+        return conditions_1.condition.collection.hasExactTexts(texts);
     }
     have.texts = texts;
     function url(urlPart) {
-        return conditions_1.Conditions.browser.hasUrl(urlPart);
+        return conditions_1.condition.browser.hasUrl(urlPart);
     }
     have.url = url;
     // todo: what about inUrl?
@@ -87,23 +87,23 @@ var have;
      * browser.should(have.textInUrl('main-page'));
      */
     function urlContaining(urlPart) {
-        return conditions_1.Conditions.browser.hasUrlContaining(urlPart);
+        return conditions_1.condition.browser.hasUrlContaining(urlPart);
     }
     have.urlContaining = urlContaining;
     function exactTexts(...texts) {
-        return conditions_1.Conditions.collection.hasExactTexts(texts);
+        return conditions_1.condition.collection.hasExactTexts(texts);
     }
     have.exactTexts = exactTexts;
     function tabsNumber(num) {
-        return conditions_1.Conditions.browser.hasTabsNumber(num);
+        return conditions_1.condition.browser.hasTabsNumber(num);
     }
     have.tabsNumber = tabsNumber;
     function tabsNumberLessThan(num) {
-        return conditions_1.Conditions.browser.hasTabsNumberLessThan(num);
+        return conditions_1.condition.browser.hasTabsNumberLessThan(num);
     }
     have.tabsNumberLessThan = tabsNumberLessThan;
     function tabsNumberMoreThan(num) {
-        return conditions_1.Conditions.browser.hasTabsNumberMoreThan(num);
+        return conditions_1.condition.browser.hasTabsNumberMoreThan(num);
     }
     have.tabsNumberMoreThan = tabsNumberMoreThan;
 })(have = exports.have || (exports.have = {}));
