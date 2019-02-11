@@ -15,7 +15,7 @@ export declare type ElementQuery<R> = Query<Element, R>;
  * but also for conditions...
  *
  * Hence, these functions are not supposed to be used in "perform/get" context:
- *   `element.click().then(query.element.text)`
+ *   `element.click().then(query.text)`
  * this query may fail if element was absent after click for some milliseconds...
  * use the following alternative instead:
  *   `element.click().then(get.text)`
@@ -29,23 +29,17 @@ export declare type ElementQuery<R> = Query<Element, R>;
  * And SelenideJs is a tests tool, not something else.
  */
 export declare namespace query {
-    namespace element {
-        const text: (element: Element) => Promise<string>;
-        const someText: (element: Element) => Promise<string>;
-        const attribute: (name: string) => (element: Element) => Promise<string>;
-        const innerHtml: (element: Element) => Promise<string>;
-        const outerHtml: (element: Element) => Promise<string>;
-        const value: (element: Element) => Promise<string>;
-    }
-    namespace collection {
-        const size: (collection: Collection) => Promise<number>;
-        const texts: (collection: Collection) => Promise<string[]>;
-    }
-    namespace browser {
-        const url: (browser: Browser) => Promise<string>;
-        const title: (browser: Browser) => Promise<string>;
-        const tabs: (browser: Browser) => Promise<string[]>;
-        const tabsNumber: (browser: Browser) => Promise<number>;
-        const pageSource: (browser: Browser) => Promise<string>;
-    }
+    const text: (element: Element) => Promise<string>;
+    const someText: (element: Element) => Promise<string>;
+    const attribute: (name: string) => (element: Element) => Promise<string>;
+    const innerHtml: (element: Element) => Promise<string>;
+    const outerHtml: (element: Element) => Promise<string>;
+    const value: (element: Element) => Promise<string>;
+    const size: (collection: Collection) => Promise<number>;
+    const texts: (collection: Collection) => Promise<string[]>;
+    const url: (browser: Browser) => Promise<string>;
+    const title: (browser: Browser) => Promise<string>;
+    const tabs: (browser: Browser) => Promise<string[]>;
+    const tabsNumber: (browser: Browser) => Promise<number>;
+    const pageSource: (browser: Browser) => Promise<string>;
 }

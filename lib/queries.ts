@@ -32,7 +32,7 @@ export type ElementQuery<R> = Query<Element, R>; // todo: do we need it? o_O
  * but also for conditions...
  *
  * Hence, these functions are not supposed to be used in "perform/get" context:
- *   `element.click().then(query.element.text)`
+ *   `element.click().then(query.text)`
  * this query may fail if element was absent after click for some milliseconds...
  * use the following alternative instead:
  *   `element.click().then(get.text)`
@@ -46,56 +46,55 @@ export type ElementQuery<R> = Query<Element, R>; // todo: do we need it? o_O
  * And SelenideJs is a tests tool, not something else.
  */
 export namespace query {
-    export namespace element {
 
-        export const text = lambda('text', async (element: Element) =>
-            (await element.getWebElement()).getText());
+    /* Element queries */
 
-        export const someText = lambda('some nonempty visible text', async (element: Element) => {
-            const text = await (await element.getWebElement()).getText();
-            if (!text) {
-                throw new Error('there is no visible nonempty text');
-            }
-            return text;
-        });
+    export const text = lambda('text', async (element: Element) =>
+        (await element.getWebElement()).getText());
 
-        export const attribute = (name: string) =>
-            lambda(`attribute ${name}`, async (element: Element) =>
-                (await element.getWebElement()).getAttribute(name));
+    export const someText = lambda('some nonempty visible text', async (element: Element) => {
+        const text = await (await element.getWebElement()).getText();
+        if (!text) {
+            throw new Error('there is no visible nonempty text');
+        }
+        return text;
+    });
 
-        export const innerHtml = attribute('innerHTML');
+    export const attribute = (name: string) =>
+        lambda(`attribute ${name}`, async (element: Element) =>
+            (await element.getWebElement()).getAttribute(name));
 
-        export const outerHtml = attribute('outerHTML');
+    export const innerHtml = attribute('innerHTML');
 
-        export const value = attribute('value');
-    }
+    export const outerHtml = attribute('outerHTML');
 
-    export namespace collection {
+    export const value = attribute('value');
 
-        // todo: do we need a count or number alias for size? or even count instead of size?
-        export const size = lambda('size', async (collection: Collection) =>
-            (await collection.getWebElements()).length);
+    /* Collection queries */
 
-        export const texts = lambda('texts', async (collection: Collection) => {
-            const webelements = await collection.getWebElements();
-            return Promise.all(webelements.map(webElement => webElement.getText()));
-        });
-    }
+    // todo: do we need a count or number alias for size? or even count instead of size?
+    export const size = lambda('size', async (collection: Collection) =>
+        (await collection.getWebElements()).length);
 
-    export namespace browser {
-        export const url = lambda('url', async (browser: Browser) =>
-            browser.driver.getCurrentUrl());
+    export const texts = lambda('texts', async (collection: Collection) => {
+        const webelements = await collection.getWebElements();
+        return Promise.all(webelements.map(webElement => webElement.getText()));
+    });
 
-        export const title = lambda('title', async (browser: Browser) =>
-            browser.driver.getTitle());
+    /* Browser queries */
 
-        export const tabs = lambda('tabs (all window handles)', async (browser: Browser) =>
-            browser.driver.getAllWindowHandles());
+    export const url = lambda('url', async (browser: Browser) =>
+        browser.driver.getCurrentUrl());
 
-        export const tabsNumber = lambda('tabs number', async (browser: Browser) =>
-            (await browser.driver.getAllWindowHandles()).length);
+    export const title = lambda('title', async (browser: Browser) =>
+        browser.driver.getTitle());
 
-        export const pageSource = lambda('page source', async (browser: Browser) =>
-            browser.driver.getPageSource());
-    }
+    export const tabs = lambda('tabs (all window handles)', async (browser: Browser) =>
+        browser.driver.getAllWindowHandles());
+
+    export const tabsNumber = lambda('tabs number', async (browser: Browser) =>
+        (await browser.driver.getAllWindowHandles()).length);
+
+    export const pageSource = lambda('page source', async (browser: Browser) =>
+       browser.driver.getPageSource());
 }

@@ -229,7 +229,7 @@ ___
 
 ▸ **lambda**<`F`>(toString: *`string`*, fn: *`F`*): `F`
 
-*Defined in [helpers/index.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/index.ts#L16)*
+*Defined in [helpers/index.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/index.ts#L17)*
 
 **Type parameters:**
 

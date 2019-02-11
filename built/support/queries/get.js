@@ -20,7 +20,7 @@ const queries_1 = require("../../queries");
  */
 var get;
 (function (get) {
-    get.text = async (element) => element.get(queries_1.query.element.text);
+    get.text = async (element) => element.get(queries_1.query.text);
     // todo: add others...
 })(get = exports.get || (exports.get = {}));
 //# sourceMappingURL=get.js.map

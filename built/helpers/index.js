@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+// todo: rename to describe or described?
 function lambda(toString, fn) {
     fn.toString = () => toString;
     return fn;

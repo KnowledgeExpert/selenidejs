@@ -71,7 +71,7 @@ ___
 
 *Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
 
-Transforms an entity query compared through predicate - to Condition Example: throwIfNotActual(query.element.text, predicate.equals(text))
+Transforms an entity query compared through predicate - to Condition Example: throwIfNotActual(query.text, predicate.equals(text))
 
 **Type parameters:**
 

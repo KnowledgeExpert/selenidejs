@@ -13,6 +13,7 @@
 // limitations under the License.
 
 
+// todo: rename to describe or described?
 export function lambda<F>(toString: string, fn: F): F {
     fn.toString = () => toString;
     return fn;

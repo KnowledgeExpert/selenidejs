@@ -33,6 +33,7 @@ export class Collection {
         this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
 
+    // todo: should not we move it to queries?, or rename to asCashedArray() ?
     async getAsCashedArray(): Promise<Element[]> {
         return (await this.getWebElements())
             .map((it, index) => new Element(
@@ -74,6 +75,15 @@ export class Collection {
         return new Element(new ByIndexWebElementLocator(index, this), this.configuration);
     }
 
+    /*
+     * todo: should we implement collection.first() as getter? i.e. collection.first ?
+     * here we should think, because in future we might want to implement method to return
+     * a collection subset, i.e. "first n elements"...
+     * then we might need first(count: number?)...
+     * yet we can name it as take(count: number)
+     * then no problem with first as getter... need to think... but probably define it before
+     * release 1.0
+     */
     first(): Element {
         return this.elementAt(0);
     }

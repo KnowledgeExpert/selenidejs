@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { browser, GIVEN, data, webelement, WHEN, driver, webelements } from './base';
-import { query } from '../../lib';
+import { its } from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
@@ -37,7 +37,7 @@ describe('Element.* queries: text (as built in query with waiting for no error)'
             );
         }
 
-        expect(await browser.element('button').get(query.element.text)).toBe('click me if you see me;)');
+        expect(await browser.element('button').get(its.text)).toBe('click me if you see me;)');
         expect(await (await webelement('button')).getText()).toBe('click me if you see me;)');
     });
 
@@ -50,7 +50,7 @@ describe('Element.* queries: text (as built in query with waiting for no error)'
             data.timeouts.smallest
         );
 
-        expect(await browser.element('button').get(query.element.text)).toBe('');
+        expect(await browser.element('button').get(its.text)).toBe('');
         expect(await (await webelement('button')).getText()).toBe('');
     });
 
@@ -59,7 +59,7 @@ describe('Element.* queries: text (as built in query with waiting for no error)'
                 <button>click me if you see me;)</button>
         `);
 
-        await browser.element('button').get(query.element.text)
+        await browser.element('button').get(its.text)
             .then(ifNoError => fail('should fail on timeout'))
             .catch(async error => {
                 expect (await (await webelements('button')).length).toBe(0);
@@ -80,7 +80,7 @@ Reason:
 
         /!* tslint:disable:no-console *!/
         console.log(`text='${await browser.element('button').text()}'`);
-        await browser.element('button').get(query.element.text)
+        await browser.element('button').get(its.text)
             .then(ifNoError => fail('should fail on timeout'))
             .catch(async error => {
                 expect (await (await webelements('button')).length).toBe(0);

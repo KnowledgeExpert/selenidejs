@@ -26,7 +26,7 @@ const helpers_1 = require("./helpers");
  * but also for conditions...
  *
  * Hence, these functions are not supposed to be used in "perform/get" context:
- *   `element.click().then(query.element.text)`
+ *   `element.click().then(query.text)`
  * this query may fail if element was absent after click for some milliseconds...
  * use the following alternative instead:
  *   `element.click().then(get.text)`
@@ -41,37 +41,31 @@ const helpers_1 = require("./helpers");
  */
 var query;
 (function (query) {
-    let element;
-    (function (element_1) {
-        element_1.text = helpers_1.lambda('text', async (element) => (await element.getWebElement()).getText());
-        element_1.someText = helpers_1.lambda('some nonempty visible text', async (element) => {
-            const text = await (await element.getWebElement()).getText();
-            if (!text) {
-                throw new Error('there is no visible nonempty text');
-            }
-            return text;
-        });
-        element_1.attribute = (name) => helpers_1.lambda(`attribute ${name}`, async (element) => (await element.getWebElement()).getAttribute(name));
-        element_1.innerHtml = element_1.attribute('innerHTML');
-        element_1.outerHtml = element_1.attribute('outerHTML');
-        element_1.value = element_1.attribute('value');
-    })(element = query.element || (query.element = {}));
-    let collection;
-    (function (collection_1) {
-        // todo: do we need a count or number alias for size? or even count instead of size?
-        collection_1.size = helpers_1.lambda('size', async (collection) => (await collection.getWebElements()).length);
-        collection_1.texts = helpers_1.lambda('texts', async (collection) => {
-            const webelements = await collection.getWebElements();
-            return Promise.all(webelements.map(webElement => webElement.getText()));
-        });
-    })(collection = query.collection || (query.collection = {}));
-    let browser;
-    (function (browser_1) {
-        browser_1.url = helpers_1.lambda('url', async (browser) => browser.driver.getCurrentUrl());
-        browser_1.title = helpers_1.lambda('title', async (browser) => browser.driver.getTitle());
-        browser_1.tabs = helpers_1.lambda('tabs (all window handles)', async (browser) => browser.driver.getAllWindowHandles());
-        browser_1.tabsNumber = helpers_1.lambda('tabs number', async (browser) => (await browser.driver.getAllWindowHandles()).length);
-        browser_1.pageSource = helpers_1.lambda('page source', async (browser) => browser.driver.getPageSource());
-    })(browser = query.browser || (query.browser = {}));
+    /* Element queries */
+    query.text = helpers_1.lambda('text', async (element) => (await element.getWebElement()).getText());
+    query.someText = helpers_1.lambda('some nonempty visible text', async (element) => {
+        const text = await (await element.getWebElement()).getText();
+        if (!text) {
+            throw new Error('there is no visible nonempty text');
+        }
+        return text;
+    });
+    query.attribute = (name) => helpers_1.lambda(`attribute ${name}`, async (element) => (await element.getWebElement()).getAttribute(name));
+    query.innerHtml = query.attribute('innerHTML');
+    query.outerHtml = query.attribute('outerHTML');
+    query.value = query.attribute('value');
+    /* Collection queries */
+    // todo: do we need a count or number alias for size? or even count instead of size?
+    query.size = helpers_1.lambda('size', async (collection) => (await collection.getWebElements()).length);
+    query.texts = helpers_1.lambda('texts', async (collection) => {
+        const webelements = await collection.getWebElements();
+        return Promise.all(webelements.map(webElement => webElement.getText()));
+    });
+    /* Browser queries */
+    query.url = helpers_1.lambda('url', async (browser) => browser.driver.getCurrentUrl());
+    query.title = helpers_1.lambda('title', async (browser) => browser.driver.getTitle());
+    query.tabs = helpers_1.lambda('tabs (all window handles)', async (browser) => browser.driver.getAllWindowHandles());
+    query.tabsNumber = helpers_1.lambda('tabs number', async (browser) => (await browser.driver.getAllWindowHandles()).length);
+    query.pageSource = helpers_1.lambda('page source', async (browser) => browser.driver.getPageSource());
 })(query = exports.query || (exports.query = {}));
 //# sourceMappingURL=queries.js.map

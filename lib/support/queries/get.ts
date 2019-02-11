@@ -21,7 +21,7 @@ import { query } from '../../queries';
  */
 export namespace get {
 
-    export const text = async (element: Element) => element.get(query.element.text);
+    export const text = async (element: Element) => element.get(query.text);
 
     // todo: add others...
 }

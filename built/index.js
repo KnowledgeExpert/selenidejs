@@ -13,14 +13,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-var collection_1 = require("./collection");
-exports.Collection = collection_1.Collection;
 var configuration_1 = require("./configuration");
 exports.Configuration = configuration_1.Configuration;
 var browser_1 = require("./browser");
 exports.Browser = browser_1.Browser;
 var element_1 = require("./element");
 exports.Element = element_1.Element;
+var collection_1 = require("./collection");
+exports.Collection = collection_1.Collection;
+var with_1 = require("./support/selectors/with");
+exports.With = with_1.With;
 var wait_1 = require("./wait");
 exports.Wait = wait_1.Wait;
 exports.Condition = wait_1.Condition;
@@ -30,12 +32,10 @@ var have_1 = require("./support/conditions/have");
 exports.have = have_1.have;
 var perform_1 = require("./support/commands/perform");
 exports.perform = perform_1.perform;
-var with_1 = require("./support/selectors/with");
-exports.With = with_1.With;
 var get_1 = require("./support/queries/get");
 exports.get = get_1.get;
-var get_2 = require("./support/queries/get"); // todo: do we really need it?
-exports.its = get_2.get;
 var queries_1 = require("./queries");
-exports.query = queries_1.query;
+exports.its = queries_1.query;
+var queries_2 = require("./queries");
+exports.their = queries_2.query;
 //# sourceMappingURL=index.js.map

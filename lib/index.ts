@@ -12,21 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { Collection } from './collection';
 export { Configuration } from './configuration';
 export { Browser } from './browser';
 export { Element } from './element';
-export { Wait, Condition } from './wait';
+export { Collection } from './collection';
 
+export { With } from './support/selectors/with';
+
+export { Wait, Condition } from './wait';
 export { CollectionCondition } from './conditions';
 export { BrowserCondition } from './conditions';
 export { ElementCondition } from './conditions';
+
 export { be } from './support/conditions/be';
 export { have } from './support/conditions/have';
+
 export { perform } from './support/commands/perform';
 
-export { With } from './support/selectors/with';
 export { get } from './support/queries/get';
-export { get as its } from './support/queries/get'; // todo: do we really need it?
 
-export { query } from './queries';
+export { query as its } from './queries';
+export { query as their } from './queries';

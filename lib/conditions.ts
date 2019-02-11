@@ -52,7 +52,7 @@ export namespace condition {
 
     /**
      * Transforms an entity query compared through predicate - to Condition
-     * Example: throwIfNotActual(query.element.text, predicate.equals(text))
+     * Example: throwIfNotActual(query.text, predicate.equals(text))
      */
     function throwIfNotActual<E, A>(query: (entity: E) => Promise<A>, predicate: (actual: A) => boolean): Condition<E> {
         return async (entity: E) => {
@@ -78,7 +78,7 @@ export namespace condition {
 
         export const hasAttribute = (name: string): ElementCondition =>
             lambda(`has attribute '${name}'`,
-                   throwIfNotActual(query.element.attribute(name), predicate.isTruthy));
+                   throwIfNotActual(query.attribute(name), predicate.isTruthy));
 
         export const isSelected: ElementCondition =
             hasAttribute('elementIsSelected');
@@ -106,68 +106,68 @@ export namespace condition {
 
         export const hasText = (expected: string): ElementCondition => // todo: do we need string | number
             lambda(`has text: ${expected}`,
-                   throwIfNotActual(query.element.text, predicate.includes(expected)));
+                   throwIfNotActual(query.text, predicate.includes(expected)));
 
         export const hasExactText = (expected: string): ElementCondition => // todo: do we need string | number ?
             lambda(`has exact text: ${expected}`,
-                   throwIfNotActual(query.element.text, predicate.equals(expected)));
+                   throwIfNotActual(query.text, predicate.equals(expected)));
 
         export const hasAttributeWithValue = (name: string, value: string): ElementCondition =>
             lambda(`has attribute '${name}' with value '${value}'`,
-                   throwIfNotActual(query.element.attribute(name), predicate.equals(value)));
+                   throwIfNotActual(query.attribute(name), predicate.equals(value)));
 
 
         export const hasAttributeWithValueContaining = (name: string, partialValue: string): ElementCondition =>
             lambda(`has attribute '${name}' with value '${partialValue}'`,
-                   throwIfNotActual(query.element.attribute(name), predicate.includes(partialValue)));
+                   throwIfNotActual(query.attribute(name), predicate.includes(partialValue)));
 
         export const hasCssClass = (cssClass: string): ElementCondition =>
             lambda(`has css class '${cssClass}'`,
-                   throwIfNotActual(query.element.attribute('class'), predicate.includesWord(cssClass)));
+                   throwIfNotActual(query.attribute('class'), predicate.includesWord(cssClass)));
     }
 
     export namespace collection { // todo: collection vs Collection in collection.ts ?
         export const hasSize = (expected: number): CollectionCondition =>
             lambda(`has size ${expected}`,
-                   throwIfNotActual(query.collection.size, predicate.equals(expected)));
+                   throwIfNotActual(query.size, predicate.equals(expected)));
 
         export const hasSizeMoreThan = (size: number): CollectionCondition =>
             lambda(`has size more than ${size}`,
-                   throwIfNotActual(query.collection.size, predicate.isMoreThan(size)));
+                   throwIfNotActual(query.size, predicate.isMoreThan(size)));
 
         export const hasSizeLessThan = (size: number): CollectionCondition =>
             lambda(`has size less than ${size}`,
-                   throwIfNotActual(query.collection.size, predicate.isLessThan(size)));
+                   throwIfNotActual(query.size, predicate.isLessThan(size)));
 
         // todo: should we filter collection for visibility before applying this condition?
         export const hasTexts = (texts: string[]): CollectionCondition =>
             lambda(`has texts ${texts}`,
-                   throwIfNotActual(query.collection.texts, predicate.equalsByContainsToArray(texts)));
+                   throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts)));
 
         export const hasExactTexts = (texts: string[]): CollectionCondition =>
             lambda(`has exact texts ${texts}`,
-                   throwIfNotActual(query.collection.texts, predicate.equalsByContainsToArray(texts)));
+                   throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts)));
     }
 
     export namespace browser {
         export const hasUrlContaining = (partialUrl: string): BrowserCondition => // todo: do we need string | number
             lambda(`has url containing ${partialUrl}`,
-                   throwIfNotActual(query.browser.url, predicate.includes(partialUrl)));
+                   throwIfNotActual(query.url, predicate.includes(partialUrl)));
 
         export const hasUrl = (url: string): BrowserCondition =>
             lambda(`has url ${url}`,
-                   throwIfNotActual(query.browser.url, predicate.equals(url)));
+                   throwIfNotActual(query.url, predicate.equals(url)));
 
         export const hasTabsNumber = (num: number): BrowserCondition =>
             lambda(`has tabs number ${num}`,
-                   throwIfNotActual(query.browser.tabsNumber, predicate.equals(num)));
+                   throwIfNotActual(query.tabsNumber, predicate.equals(num)));
 
         export const hasTabsNumberMoreThan = (num: number): BrowserCondition =>
             lambda(`has tabs number more than ${num}`,
-                   throwIfNotActual(query.browser.tabsNumber, predicate.isMoreThan(num)));
+                   throwIfNotActual(query.tabsNumber, predicate.isMoreThan(num)));
 
         export const hasTabsNumberLessThan = (num: number): BrowserCondition =>
             lambda(`has tabs number less than ${num}`,
-                   throwIfNotActual(query.browser.tabsNumber, predicate.isLessThan(num)));
+                   throwIfNotActual(query.tabsNumber, predicate.isLessThan(num)));
     }
 }

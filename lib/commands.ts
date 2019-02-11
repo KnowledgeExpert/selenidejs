@@ -21,7 +21,7 @@ import { Element } from './element';
  * await browser.element('#submit').should(be.enabled).then(Element.command.click);
  * await browser.element('#submit').should(be.enabled).then(command.element.click);
  * await browser.element('#submit').should(be.enabled).then(perform.element.click);
- * await browser.element('#textfield').should(be.enabled).then(query.element.value);
+ * await browser.element('#textfield').should(be.enabled).then(query.value);
  *
  * shorter is kind of more concise, but more magic like, more "too much of things in one"
  * longer is more verbose, KISS, less magic in implementation, yet bulky, but won't it be used
