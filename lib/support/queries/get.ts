@@ -14,6 +14,9 @@
 
 import { Element } from '../../element';
 import { query } from '../../queries';
+import { Query } from '../../wait';
+import { Collection } from '../../collection';
+import { Browser } from '../../browser';
 
 /**
  * to be used in the following context:
@@ -21,7 +24,35 @@ import { query } from '../../queries';
  */
 export namespace get {
 
-    export const text = async (element: Element) => element.get(query.text);
+    /* Element waiting queries */
 
-    // todo: add others...
+    const waitingForEntity = <R>(query: Query<Element, R>) =>
+        async (element: Element) => element.get(query);
+
+    export const text = waitingForEntity(query.text);
+    export const someText = waitingForEntity(query.someText);
+    export const attribute = (name: string) => waitingForEntity(query.attribute(name));
+    export const innerHtml = waitingForEntity(query.innerHtml);
+    export const outerHtml = waitingForEntity(query.outerHtml);
+    export const value = waitingForEntity(query.value);
+
+    /* Collection waiting queries */
+
+    const waitingForCollection = <R>(query: Query<Collection, R>) =>
+        async (collection: Collection) => collection.get(query);
+
+    export const size = waitingForCollection(query.size);
+    export const texts = waitingForCollection(query.texts);
+
+    /* Browser waiting queries */
+
+    const waitingForBrowser = <R>(query: Query<Browser, R>) =>
+        async (browser: Browser) => browser.get(query);
+
+    export const url = waitingForBrowser(query.url);
+    export const title = waitingForBrowser(query.title);
+    export const tabs = waitingForBrowser(query.tabs);
+    export const tabsNumber = waitingForBrowser(query.tabsNumber);
+    export const pageSource = waitingForBrowser(query.pageSource);
+
 }

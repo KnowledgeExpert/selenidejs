@@ -20,7 +20,24 @@ const queries_1 = require("../../queries");
  */
 var get;
 (function (get) {
-    get.text = async (element) => element.get(queries_1.query.text);
-    // todo: add others...
+    /* Element waiting queries */
+    const waitingForEntity = (query) => async (element) => element.get(query);
+    get.text = waitingForEntity(queries_1.query.text);
+    get.someText = waitingForEntity(queries_1.query.someText);
+    get.attribute = (name) => waitingForEntity(queries_1.query.attribute(name));
+    get.innerHtml = waitingForEntity(queries_1.query.innerHtml);
+    get.outerHtml = waitingForEntity(queries_1.query.outerHtml);
+    get.value = waitingForEntity(queries_1.query.value);
+    /* Collection waiting queries */
+    const waitingForCollection = (query) => async (collection) => collection.get(query);
+    get.size = waitingForCollection(queries_1.query.size);
+    get.texts = waitingForCollection(queries_1.query.texts);
+    /* Browser waiting queries */
+    const waitingForBrowser = (query) => async (browser) => browser.get(query);
+    get.url = waitingForBrowser(queries_1.query.url);
+    get.title = waitingForBrowser(queries_1.query.title);
+    get.tabs = waitingForBrowser(queries_1.query.tabs);
+    get.tabsNumber = waitingForBrowser(queries_1.query.tabsNumber);
+    get.pageSource = waitingForBrowser(queries_1.query.pageSource);
 })(get = exports.get || (exports.get = {}));
 //# sourceMappingURL=get.js.map
