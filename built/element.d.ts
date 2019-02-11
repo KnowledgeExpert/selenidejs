@@ -29,7 +29,6 @@ export declare class Element implements SearchContext {
     waitUntilNot(condition: ElementCondition, timeout?: number): Promise<boolean>;
     matches(condition: ElementCondition): Promise<boolean>;
     matchesNot(condition: ElementCondition): Promise<boolean>;
-    do<R>(queryOrCommand: Query<Element, R>): Promise<R>;
     perform(command: Command<Element>, timeout?: number): Promise<Element>;
     executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]): Promise<{}>;
     click(): Promise<this>;

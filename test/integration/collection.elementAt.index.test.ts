@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, WHEN } from './base';
+import { browser, GIVEN, data, WHEN, driver } from './base';
 import { be, have } from '../../lib';
 
 describe('Collection get by index Element', () => {
@@ -74,7 +74,7 @@ describe('Collection get by index Element', () => {
 
         await browser.all('a').elementAt(1).click();
         expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
-        expect(await browser.url()).toContain('second');
+        expect(await driver.getCurrentUrl()).toContain('second');
     });
 
     it('fails on timeout with error during waiting for action like click, if element invisible', async () => {
@@ -94,7 +94,7 @@ describe('Collection get by index Element', () => {
             .then(ifNoError => fail('should fail on timeout before can be clicked'))
             .catch(async error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
-                expect(await browser.url()).not.toContain('second');
+                expect(await await driver.getCurrentUrl()).not.toContain('second');
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
 \tbrowser.all(By(css selector, a))[1].click
@@ -116,7 +116,7 @@ Reason:
             .then(ifNoError => fail('should fail on timeout'))
             .catch(async error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
-                expect(await browser.url()).not.toContain('second');
+                expect(await await driver.getCurrentUrl()).not.toContain('second');
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
 \tbrowser.all(By(css selector, li))[1].has text: Kate

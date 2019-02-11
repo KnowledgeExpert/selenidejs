@@ -12,6 +12,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const utils_1 = require("./helpers/utils");
@@ -21,9 +27,12 @@ const element_1 = require("./element");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const wait_1 = require("./wait");
-// todo: align here and everywhere names...
-// query thing should be a getter if no params and noun as a name, action should be verb and method
+const elementActionHooks_1 = require("./refactor/elementActionHooks");
 class Browser {
+    constructor(configuration = {}) {
+        this.configuration = new configuration_1.Configuration(configuration);
+        this.wait = new wait_1.Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
+    }
     static configuredWith() {
         return configuration_1.Customized.browser();
     }
@@ -36,10 +45,6 @@ class Browser {
     }
     static chrome() {
         return Browser.chromeWith().build();
-    }
-    constructor(configuration = {}) {
-        this.configuration = new configuration_1.Configuration(configuration);
-        this.wait = new wait_1.Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
     get driver() {
         return this.configuration.driver;
@@ -65,7 +70,7 @@ class Browser {
         const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
         return new collection_1.Collection(locator, this.configuration);
     }
-    /* With conditions */ // todo: extract interface? provide base abstract class implementation?
+    /* With conditions */ // todo: extract interface? provide base abstract class implementation with generics?
     async should(condition, timeout = this.configuration.timeout) {
         this.wait.until(condition, timeout);
         return this;
@@ -86,41 +91,17 @@ class Browser {
     async matchesNot(condition) {
         return this.matches(wait_1.Condition.not(condition));
     }
-    /* Queries */
-    // todo: do we need syntax: await browser.query(customQuery); ?
-    // instead of making user write await customBrowserQuery(browser);
-    async url() {
-        return this.driver.getCurrentUrl();
+    /* Commands */
+    async perform(command, timeout = this.configuration.timeout) {
+        await this.wait.command(command, timeout);
+        return this;
     }
-    async title() {
-        return this.driver.getTitle();
-    }
-    async pageSource() {
-        return this.driver.getPageSource();
-    }
-    async screenshot() {
-        return this.configuration.fullPageScreenshot
-            ? Buffer.from(await this.driver.takeScreenshot(), 'base64') // todo: change to fullPageScreenshot(driver);
-            : Buffer.from(await this.driver.takeScreenshot(), 'base64');
-    }
+    // todo: should we implement all following commands through calling perform method from above?
     /* tslint:disable:ban-types */
     async executeScript(script, ...args) {
         return this.driver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
-    // todo: do we need it as getter? for that we had to workaround with this.getAllWindowHandles...:(
-    get tabs() {
-        return this.getAllWindowHandles();
-    }
-    get tabsNumber() {
-        return this.tabs.then(it => it.length);
-    }
-    /* Commands */
-    // todo: do we need syntax: await browser.perform(load('http://google.com'), close, quit);
-    // or for such a case:
-    // await browser.perform(customCommand); ?
-    // instead of making user write await customBrowserCommand(browser);
-    // todo: should we rename it to open ? or load? (open in new tab, load in current tab)...
     async open(url) {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(parseInt(this.configuration.windowWidth), parseInt(this.configuration.windowHeight));
@@ -129,6 +110,11 @@ class Browser {
     }
     async resizeWindow(width, height) {
         await this.driver.manage().window().setSize(width, height);
+    }
+    async screenshot() {
+        return this.configuration.fullPageScreenshot
+            ? Buffer.from(await this.driver.takeScreenshot(), 'base64') // todo: change to fullPageScreenshot(driver);
+            : Buffer.from(await this.driver.takeScreenshot(), 'base64');
     }
     async closeCurrentTab() {
         await this.driver.close();
@@ -169,10 +155,13 @@ class Browser {
         await this.driver.manage().deleteAllCookies().catch(ignored => {
         });
     }
-    /* private helpers */
-    async getAllWindowHandles() {
-        return this.driver.getAllWindowHandles();
+    /* Queries */
+    async get(query, timeout = this.configuration.timeout) {
+        return this.wait.query(query, timeout);
     }
 }
+__decorate([
+    elementActionHooks_1.ElementActionHooks
+], Browser.prototype, "perform", null);
 exports.Browser = Browser;
 //# sourceMappingURL=browser.js.map

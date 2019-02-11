@@ -134,13 +134,7 @@ class Element {
     async matchesNot(condition) {
         return this.matches(wait_1.Condition.not(condition));
     }
-    /* interaction with actual webelement (commands or queries) */
-    // todo: do we need it? element('#submit').do(command.element.click);
-    //                      element('#submit').do(query.element.isEnabled);
-    do(queryOrCommand) {
-        return queryOrCommand(this);
-    }
-    /* commands */
+    /* Commands */
     async perform(command, timeout = this.configuration.timeout) {
         await this.wait.command(command, timeout);
         return this;
@@ -221,7 +215,6 @@ class Element {
         return this;
     }
     /* Queries */ // todo: do we need @ElementQueryHooks?
-    // todo: should we rename it to take?
     async get(query, timeout = this.configuration.timeout) {
         return this.wait.query(query, timeout);
     }

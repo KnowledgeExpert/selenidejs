@@ -17,22 +17,22 @@ const fs = require("fs-extra");
 const with_1 = require("../support/selectors/with");
 var Utils;
 (function (Utils) {
-    async function savePageSource(selenideDriver, filePath) {
-        const pageTitle = await selenideDriver.title();
+    async function savePageSource(browser, filePath) {
+        const pageTitle = await browser.driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const pageSource = await selenideDriver.pageSource();
+        const pageSource = await browser.driver.getPageSource();
         fs.outputFileSync(completeFilePath, pageSource);
         return completeFilePath;
     }
     Utils.savePageSource = savePageSource;
-    async function saveScreenshot(selenideDriver, filePath) {
-        const pageTitle = await selenideDriver.title();
+    async function saveScreenshot(browser, filePath) {
+        const pageTitle = await browser.driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const screenshot = await selenideDriver.screenshot();
+        const screenshot = await browser.screenshot();
         fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
     }
@@ -43,10 +43,5 @@ var Utils;
             : cssOrXpathOrBy;
     }
     Utils.toBy = toBy;
-    function lambda(toString, fn) {
-        fn.toString = () => toString;
-        return fn;
-    }
-    Utils.lambda = lambda;
 })(Utils = exports.Utils || (exports.Utils = {}));
 //# sourceMappingURL=utils.js.map

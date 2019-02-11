@@ -5,6 +5,7 @@ import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { SearchContext } from './searchContext';
+import { Command, Query } from './wait';
 export declare class Browser implements SearchContext {
     static configuredWith(): Customized<Browser>;
     static drivedBy(driver: WebDriver): Customized<Browser>;
@@ -25,15 +26,11 @@ export declare class Browser implements SearchContext {
     waitUntilNot(condition: BrowserCondition, timeout?: number): Promise<boolean>;
     matches(condition: BrowserCondition): Promise<boolean>;
     matchesNot(condition: BrowserCondition): Promise<boolean>;
-    url(): Promise<string>;
-    title(): Promise<string>;
-    pageSource(): Promise<string>;
-    screenshot(): Promise<Buffer>;
+    perform(command: Command<Browser>, timeout?: number): Promise<Browser>;
     executeScript(script: string | Function, ...args: any[]): Promise<{}>;
-    readonly tabs: Promise<string[]>;
-    readonly tabsNumber: Promise<number>;
     open(url: string): Promise<void>;
     resizeWindow(width: number, height: number): Promise<void>;
+    screenshot(): Promise<Buffer>;
     closeCurrentTab(): Promise<void>;
     quit(): Promise<void>;
     nextTab(): Promise<void>;
@@ -41,5 +38,5 @@ export declare class Browser implements SearchContext {
     switchToFrame(frameElement: Element): Promise<void>;
     switchToDefaultFrame(): Promise<void>;
     clearCacheAndCookies(): Promise<void>;
-    private getAllWindowHandles;
+    get<R>(query: Query<Browser, R>, timeout?: number): Promise<R>;
 }

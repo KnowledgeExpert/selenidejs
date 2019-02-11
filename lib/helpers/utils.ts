@@ -20,22 +20,22 @@ import { With } from '../support/selectors/with';
 
 export namespace Utils {
 
-    export async function savePageSource(selenideDriver: Browser, filePath: string): Promise<string> {
-        const pageTitle = await selenideDriver.title();
+    export async function savePageSource(browser: Browser, filePath: string): Promise<string> {
+        const pageTitle = await browser.driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const pageSource = await selenideDriver.pageSource();
+        const pageSource = await browser.driver.getPageSource();
         fs.outputFileSync(completeFilePath, pageSource);
         return completeFilePath;
     }
 
-    export async function saveScreenshot(selenideDriver: Browser, filePath: string): Promise<string> {
-        const pageTitle = await selenideDriver.title();
+    export async function saveScreenshot(browser: Browser, filePath: string): Promise<string> {
+        const pageTitle = await browser.driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const screenshot = await selenideDriver.screenshot();
+        const screenshot = await browser.screenshot();
         fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
     }
@@ -44,10 +44,5 @@ export namespace Utils {
         return (typeof cssOrXpathOrBy === 'string')
             ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
-    }
-
-    export function lambda<F>(toString: string, fn: F): F {
-        fn.toString = () => toString;
-        return fn;
     }
 }

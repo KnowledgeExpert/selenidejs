@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, WHEN } from './base';
+import { browser, GIVEN, data, WHEN, driver } from './base';
 import { be } from '../../lib';
 
 describe('Element search', () => {
@@ -62,7 +62,7 @@ describe('Element search', () => {
 
         await browser.element('a').click();
         expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
-        expect(await browser.url()).toContain('second');
+        expect(await driver.getCurrentUrl()).toContain('second');
     });
 
     it('fails on timeout during waiting for action like click to be possible, if element invisible', async () => {
@@ -80,7 +80,7 @@ describe('Element search', () => {
             .then(ifNoError => fail('should fail on timeout before can be clicked'))
             .catch(async error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
-                expect(await browser.url()).not.toContain('second');
+                expect(await driver.getCurrentUrl()).not.toContain('second');
             });
     });
 

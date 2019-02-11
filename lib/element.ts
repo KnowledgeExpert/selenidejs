@@ -165,15 +165,7 @@ export class Element implements SearchContext {
         return this.matches(Condition.not(condition));
     }
 
-    /* interaction with actual webelement (commands or queries) */
-
-    // todo: do we need it? element('#submit').do(command.element.click);
-    //                      element('#submit').do(query.element.isEnabled);
-    do<R>(queryOrCommand: Query<Element, R>) { // todo: is not perform enough?
-        return queryOrCommand(this);
-    }
-
-    /* commands */
+    /* Commands */
 
     @ElementActionHooks  // todo: cover with tests
     async perform(command: Command<Element>, timeout: number = this.configuration.timeout): Promise<Element> {
@@ -292,7 +284,6 @@ export class Element implements SearchContext {
 
     /* Queries */ // todo: do we need @ElementQueryHooks?
 
-    // todo: should we rename it to take?
     async get<R>(query: Query<Element, R>, timeout: number = this.configuration.timeout): Promise<R> {
         return this.wait.query(query, timeout);
     }

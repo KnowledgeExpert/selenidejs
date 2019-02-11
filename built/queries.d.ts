@@ -43,6 +43,9 @@ export declare namespace query {
     }
     namespace browser {
         const url: (browser: Browser) => Promise<string>;
+        const title: (browser: Browser) => Promise<string>;
+        const tabs: (browser: Browser) => Promise<string[]>;
         const tabsNumber: (browser: Browser) => Promise<number>;
+        const pageSource: (browser: Browser) => Promise<string>;
     }
 }

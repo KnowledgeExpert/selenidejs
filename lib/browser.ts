@@ -21,10 +21,9 @@ import { Element } from './element';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { SearchContext } from './searchContext';
-import { Condition, Wait } from './wait';
+import { Command, Condition, Query, Wait } from './wait';
+import { ElementActionHooks } from './refactor/elementActionHooks';
 
-// todo: align here and everywhere names...
-// query thing should be a getter if no params and noun as a name, action should be verb and method
 export class Browser implements SearchContext {
 
     static configuredWith(): Customized<Browser> {
@@ -87,7 +86,7 @@ export class Browser implements SearchContext {
         return new Collection(locator, this.configuration);
     }
 
-    /* With conditions */ // todo: extract interface? provide base abstract class implementation?
+    /* With conditions */ // todo: extract interface? provide base abstract class implementation with generics?
 
     async should(condition: BrowserCondition, timeout: number = this.configuration.timeout): Promise<Browser> {
         this.wait.until(condition, timeout);
@@ -115,28 +114,15 @@ export class Browser implements SearchContext {
         return this.matches(Condition.not(condition));
     }
 
-    /* Queries */
+    /* Commands */
 
-    // todo: do we need syntax: await browser.query(customQuery); ?
-    // instead of making user write await customBrowserQuery(browser);
-
-    async url(): Promise<string> {
-        return this.driver.getCurrentUrl();
+    @ElementActionHooks
+    async perform(command: Command<Browser>, timeout: number = this.configuration.timeout): Promise<Browser> {
+        await this.wait.command(command, timeout);
+        return this;
     }
 
-    async title(): Promise<string> {
-        return this.driver.getTitle();
-    }
-
-    async pageSource(): Promise<string> {
-        return this.driver.getPageSource();
-    }
-
-    async screenshot(): Promise<Buffer> {
-        return this.configuration.fullPageScreenshot
-            ? Buffer.from(await this.driver.takeScreenshot(), 'base64')  // todo: change to fullPageScreenshot(driver);
-            : Buffer.from(await this.driver.takeScreenshot(), 'base64');
-    }
+    // todo: should we implement all following commands through calling perform method from above?
 
     /* tslint:disable:ban-types */
     async executeScript(script: string | Function, ...args: any[]) {
@@ -144,23 +130,6 @@ export class Browser implements SearchContext {
     }
     /* tslint:enable:ban-types */
 
-    // todo: do we need it as getter? for that we had to workaround with this.getAllWindowHandles...:(
-    get tabs(): Promise<string[]> {
-        return this.getAllWindowHandles();
-    }
-
-    get tabsNumber(): Promise<number> {
-        return this.tabs.then(it => it.length);
-    }
-
-    /* Commands */
-
-    // todo: do we need syntax: await browser.perform(load('http://google.com'), close, quit);
-    // or for such a case:
-    // await browser.perform(customCommand); ?
-    // instead of making user write await customBrowserCommand(browser);
-
-    // todo: should we rename it to open ? or load? (open in new tab, load in current tab)...
     async open(url: string) {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(
@@ -173,6 +142,12 @@ export class Browser implements SearchContext {
 
     async resizeWindow(width: number, height: number) {
         await this.driver.manage().window().setSize(width, height);
+    }
+
+    async screenshot(): Promise<Buffer> {
+        return this.configuration.fullPageScreenshot
+            ? Buffer.from(await this.driver.takeScreenshot(), 'base64')  // todo: change to fullPageScreenshot(driver);
+            : Buffer.from(await this.driver.takeScreenshot(), 'base64');
     }
 
     async closeCurrentTab() {
@@ -221,9 +196,9 @@ export class Browser implements SearchContext {
         });
     }
 
-    /* private helpers */
+    /* Queries */
 
-    private async getAllWindowHandles(): Promise<string[]> {
-        return this.driver.getAllWindowHandles();
+    async get<R>(query: Query<Browser, R>, timeout: number = this.configuration.timeout): Promise<R> {
+        return this.wait.query(query, timeout);
     }
 }

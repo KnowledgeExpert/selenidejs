@@ -68,7 +68,10 @@ var query;
     let browser;
     (function (browser_1) {
         browser_1.url = helpers_1.lambda('url', async (browser) => browser.driver.getCurrentUrl());
+        browser_1.title = helpers_1.lambda('title', async (browser) => browser.driver.getTitle());
+        browser_1.tabs = helpers_1.lambda('tabs (all window handles)', async (browser) => browser.driver.getAllWindowHandles());
         browser_1.tabsNumber = helpers_1.lambda('tabs number', async (browser) => (await browser.driver.getAllWindowHandles()).length);
+        browser_1.pageSource = helpers_1.lambda('page source', async (browser) => browser.driver.getPageSource());
     })(browser = query.browser || (query.browser = {}));
 })(query = exports.query || (exports.query = {}));
 //# sourceMappingURL=queries.js.map

@@ -131,7 +131,7 @@ ___
 
 **Ƭ Command**: *[Query](#query)<`T`, `void`>*
 
-*Defined in [wait.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L34)*
+*Defined in [wait.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L33)*
 
 Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T. Command can pass or fail with Error correspondingly.
 
@@ -185,7 +185,7 @@ ___
 
 **Ƭ Query**: *`function`*
 
-*Defined in [wait.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L28)*
+*Defined in [wait.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L27)*
 
 We use queries to perform an async query on entity of type T, i.e. get something from entity. So a query can pass and return something of type R or failed with Error correspondingly.
 

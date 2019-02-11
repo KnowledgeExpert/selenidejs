@@ -15,11 +15,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const timeoutError_1 = require("./errors/timeoutError");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
-const utils_1 = require("./helpers/utils");
-var lambda = utils_1.Utils.lambda;
+const helpers_1 = require("./helpers");
 var Condition;
 (function (Condition) {
-    Condition.not = (condition, description) => lambda(description || `not ${condition}`, async (entity) => {
+    Condition.not = (condition, description) => helpers_1.lambda(description || `not ${condition}`, async (entity) => {
         try {
             await condition(entity);
         }

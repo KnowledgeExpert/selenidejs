@@ -86,7 +86,16 @@ export namespace query {
         export const url = lambda('url', async (browser: Browser) =>
             browser.driver.getCurrentUrl());
 
+        export const title = lambda('title', async (browser: Browser) =>
+            browser.driver.getTitle());
+
+        export const tabs = lambda('tabs (all window handles)', async (browser: Browser) =>
+            browser.driver.getAllWindowHandles());
+
         export const tabsNumber = lambda('tabs number', async (browser: Browser) =>
             (await browser.driver.getAllWindowHandles()).length);
+
+        export const pageSource = lambda('page source', async (browser: Browser) =>
+            browser.driver.getPageSource());
     }
 }
