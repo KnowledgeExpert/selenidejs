@@ -9,7 +9,6 @@
 * [Utils](modules/utils.md)
 * [With](modules/with.md)
 * [be](modules/be.md)
-* [command](modules/command.md)
 * [condition](modules/condition.md)
 * [get](modules/get.md)
 * [have](modules/have.md)

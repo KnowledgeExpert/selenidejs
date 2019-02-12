@@ -15,6 +15,7 @@
 import { By } from 'selenium-webdriver';
 
 
+// todo: why not use css selectors below, where it is enough?
 export namespace With {
 
     const NORMALIZE_SPACE_XPATH = "normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))";
