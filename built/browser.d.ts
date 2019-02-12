@@ -6,7 +6,8 @@ import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { SearchContext } from './searchContext';
 import { Command, Query } from './wait';
-export declare class Browser implements SearchContext {
+import { Assertable } from './entity';
+export declare class Browser implements SearchContext, Assertable<Browser> {
     static configuredWith(): Customized<Browser>;
     static drivedBy(driver: WebDriver): Customized<Browser>;
     static chromeWith(): Customized<Browser>;

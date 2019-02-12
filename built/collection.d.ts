@@ -4,7 +4,8 @@ import { Configuration } from './configuration';
 import { Element } from './element';
 import { Locator } from './locators/locator';
 import { Query } from './wait';
-export declare class Collection {
+import { Assertable } from './entity';
+export declare class Collection implements Assertable<Collection> {
     private readonly locator;
     private readonly configuration;
     private readonly wait;

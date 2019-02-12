@@ -40,7 +40,7 @@
 
 ▸ **clearCacheAndCookies**(): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L67)*
+*Defined in [support/commands/perform.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L71)*
 
 **Returns:** `(Anonymous function)`
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **closeCurrentTab**(): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L60)*
+*Defined in [support/commands/perform.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L64)*
 
 **Returns:** `(Anonymous function)`
 
@@ -131,7 +131,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L70)*
+*Defined in [support/commands/perform.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L74)*
 
 **Parameters:**
 
@@ -166,7 +166,7 @@ ___
 
 ▸ **nextTab**(): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L62)*
+*Defined in [support/commands/perform.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L66)*
 
 **Returns:** `(Anonymous function)`
 
@@ -177,7 +177,7 @@ ___
 
 ▸ **open**(url: *`string`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L56)*
+*Defined in [support/commands/perform.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L60)*
 
 **Parameters:**
 
@@ -245,7 +245,7 @@ ___
 
 ▸ **previousTab**(): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L63)*
+*Defined in [support/commands/perform.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L67)*
 
 **Returns:** `(Anonymous function)`
 
@@ -256,7 +256,7 @@ ___
 
 ▸ **quit**(): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L61)*
+*Defined in [support/commands/perform.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L65)*
 
 **Returns:** `(Anonymous function)`
 
@@ -267,7 +267,7 @@ ___
 
 ▸ **resizeWindow**(width: *`number`*, height: *`number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L57)*
+*Defined in [support/commands/perform.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L61)*
 
 **Parameters:**
 
@@ -285,7 +285,7 @@ ___
 
 ▸ **screenshot**(): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L59)*
+*Defined in [support/commands/perform.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L63)*
 
 **Returns:** `(Anonymous function)`
 
@@ -364,7 +364,7 @@ ___
 
 ▸ **switchToDefaultFrame**(): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L66)*
+*Defined in [support/commands/perform.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L70)*
 
 **Returns:** `(Anonymous function)`
 
@@ -375,7 +375,7 @@ ___
 
 ▸ **switchToFrame**(frameElement: *[Element](../classes/element.md)*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L64)*
+*Defined in [support/commands/perform.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L68)*
 
 **Parameters:**
 

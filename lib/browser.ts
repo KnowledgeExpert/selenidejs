@@ -23,8 +23,9 @@ import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
 import { ElementActionHooks } from './refactor/elementActionHooks';
+import { Assertable } from './entity';
 
-export class Browser implements SearchContext {
+export class Browser implements SearchContext, Assertable<Browser> {
 
     static configuredWith(): Customized<Browser> {
         return Customized.browser();

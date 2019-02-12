@@ -46,6 +46,7 @@ class Collection {
     async waitUntilNot(condition, timeout = this.configuration.timeout) {
         return this.wait.until(wait_1.Condition.not(condition), timeout);
     }
+    // todo: matches or match? collection.matches... but browser.all.match ... which to choose? :(
     async matches(condition) {
         return wait_1.Condition.asPredicate(condition)(this);
     }

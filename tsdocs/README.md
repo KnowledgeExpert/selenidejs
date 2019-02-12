@@ -10,11 +10,13 @@
 * [With](modules/with.md)
 * [be](modules/be.md)
 * [condition](modules/condition.md)
+* [find](modules/find.md)
 * [get](modules/get.md)
 * [have](modules/have.md)
 * [perform](modules/perform.md)
 * [predicate](modules/predicate.md)
 * [query](modules/query.md)
+* [should](modules/should.md)
 
 ### Classes
 
@@ -36,6 +38,7 @@
 
 ### Interfaces
 
+* [Assertable](interfaces/assertable.md)
 * [Locator](interfaces/locator.md)
 * [SearchContext](interfaces/searchcontext.md)
 

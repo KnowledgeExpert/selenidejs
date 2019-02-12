@@ -7,7 +7,8 @@ import { Configuration } from './configuration';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { Command, Query } from './wait';
-export declare class Element implements SearchContext {
+import { Assertable } from './entity';
+export declare class Element implements SearchContext, Assertable<Element> {
     private readonly locator;
     private readonly configuration;
     static beforeActionHooks: BeforeElementActionHook[];

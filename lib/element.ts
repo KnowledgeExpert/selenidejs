@@ -28,9 +28,10 @@ import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
 import { lambda } from './helpers';
+import { Assertable } from './entity';
 
 
-export class Element implements SearchContext {
+export class Element implements SearchContext, Assertable<Element> {
 
     static beforeActionHooks: BeforeElementActionHook[] = []; // todo: should we move it to Configuration?
     static afterActionHooks: AfterElementActionHook[] = []; // we should...

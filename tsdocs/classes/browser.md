@@ -9,6 +9,7 @@
 ## Implements
 
 * [SearchContext](../interfaces/searchcontext.md)
+* [Assertable](../interfaces/assertable.md)<[Browser](browser.md)>
 
 ## Index
 
@@ -66,7 +67,7 @@
 
 ⊕ **new Browser**(configuration?: *`Partial`<[Configuration](configuration.md)>*): [Browser](browser.md)
 
-*Defined in [browser.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L50)*
+*Defined in [browser.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L51)*
 
 **Parameters:**
 
@@ -86,7 +87,7 @@ ___
 
 **● configuration**: *[Configuration](configuration.md)*
 
-*Defined in [browser.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L48)*
+*Defined in [browser.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L49)*
 
 ___
 <a id="wait"></a>
@@ -95,7 +96,7 @@ ___
 
 **● wait**: *[Wait](wait.md)<[Browser](browser.md)>*
 
-*Defined in [browser.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L50)*
+*Defined in [browser.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L51)*
 
 ___
 
@@ -107,7 +108,7 @@ ___
 
 getdriver(): `WebDriver`
 
-*Defined in [browser.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L57)*
+*Defined in [browser.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L58)*
 
 **Returns:** `WebDriver`
 
@@ -121,7 +122,7 @@ ___
 
 ▸ **all**(cssOrXpathOrBy: * `string` &#124; `By`*): [Collection](collection.md)
 
-*Defined in [browser.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L83)*
+*Defined in [browser.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L84)*
 
 **Parameters:**
 
@@ -138,7 +139,7 @@ ___
 
 ▸ **clearCacheAndCookies**(): `Promise`<`void`>
 
-*Defined in [browser.ts:190](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L190)*
+*Defined in [browser.ts:191](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L191)*
 
 **Returns:** `Promise`<`void`>
 
@@ -149,7 +150,7 @@ ___
 
 ▸ **closeCurrentTab**(): `Promise`<`void`>
 
-*Defined in [browser.ts:153](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L153)*
+*Defined in [browser.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L154)*
 
 **Returns:** `Promise`<`void`>
 
@@ -160,7 +161,7 @@ ___
 
 ▸ **element**(cssOrXpathOrBy: * `string` &#124; `By`*): [Element](element.md)
 
-*Defined in [browser.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L77)*
+*Defined in [browser.ts:78](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L78)*
 
 **Parameters:**
 
@@ -177,7 +178,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `Promise`<`Object`>
 
-*Defined in [browser.ts:128](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L128)*
+*Defined in [browser.ts:129](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L129)*
 
 **Parameters:**
 
@@ -197,7 +198,7 @@ ___
 
 *Implementation of [SearchContext](../interfaces/searchcontext.md).[findWebElement](../interfaces/searchcontext.md#findwebelement)*
 
-*Defined in [browser.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L67)*
+*Defined in [browser.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L68)*
 
 **Parameters:**
 
@@ -216,7 +217,7 @@ ___
 
 *Implementation of [SearchContext](../interfaces/searchcontext.md).[findWebElements](../interfaces/searchcontext.md#findwebelements)*
 
-*Defined in [browser.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L71)*
+*Defined in [browser.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L72)*
 
 **Parameters:**
 
@@ -233,7 +234,7 @@ ___
 
 ▸ **get**<`R`>(query: *[Query](../#query)<[Browser](browser.md), `R`>*, timeout?: *`number`*): `Promise`<`R`>
 
-*Defined in [browser.ts:201](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L201)*
+*Defined in [browser.ts:202](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L202)*
 
 **Type parameters:**
 
@@ -254,7 +255,7 @@ ___
 
 ▸ **matches**(condition: *[BrowserCondition](../#browsercondition)*): `Promise`<`boolean`>
 
-*Defined in [browser.ts:109](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L109)*
+*Defined in [browser.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L110)*
 
 **Parameters:**
 
@@ -271,7 +272,7 @@ ___
 
 ▸ **matchesNot**(condition: *[BrowserCondition](../#browsercondition)*): `Promise`<`boolean`>
 
-*Defined in [browser.ts:113](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L113)*
+*Defined in [browser.ts:114](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L114)*
 
 **Parameters:**
 
@@ -288,7 +289,7 @@ ___
 
 ▸ **nextTab**(): `Promise`<`void`>
 
-*Defined in [browser.ts:162](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L162)*
+*Defined in [browser.ts:163](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L163)*
 
 **Returns:** `Promise`<`void`>
 
@@ -299,7 +300,7 @@ ___
 
 ▸ **open**(url: *`string`*): `Promise`<`void`>
 
-*Defined in [browser.ts:133](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L133)*
+*Defined in [browser.ts:134](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L134)*
 
 **Parameters:**
 
@@ -316,7 +317,7 @@ ___
 
 ▸ **perform**(command: *[Command](../#command)<[Browser](browser.md)>*, timeout?: *`number`*): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:120](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L120)*
+*Defined in [browser.ts:121](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L121)*
 
 **Parameters:**
 
@@ -334,7 +335,7 @@ ___
 
 ▸ **previousTab**(): `Promise`<`void`>
 
-*Defined in [browser.ts:171](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L171)*
+*Defined in [browser.ts:172](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L172)*
 
 **Returns:** `Promise`<`void`>
 
@@ -345,7 +346,7 @@ ___
 
 ▸ **quit**(): `Promise`<`void`>
 
-*Defined in [browser.ts:157](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L157)*
+*Defined in [browser.ts:158](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L158)*
 
 **Returns:** `Promise`<`void`>
 
@@ -356,7 +357,7 @@ ___
 
 ▸ **resizeWindow**(width: *`number`*, height: *`number`*): `Promise`<`void`>
 
-*Defined in [browser.ts:143](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L143)*
+*Defined in [browser.ts:144](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L144)*
 
 **Parameters:**
 
@@ -374,7 +375,7 @@ ___
 
 ▸ **screenshot**(): `Promise`<`Buffer`>
 
-*Defined in [browser.ts:147](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L147)*
+*Defined in [browser.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L148)*
 
 **Returns:** `Promise`<`Buffer`>
 
@@ -385,7 +386,9 @@ ___
 
 ▸ **should**(condition: *[BrowserCondition](../#browsercondition)*, timeout?: *`number`*): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L91)*
+*Implementation of [Assertable](../interfaces/assertable.md).[should](../interfaces/assertable.md#should)*
+
+*Defined in [browser.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L92)*
 
 **Parameters:**
 
@@ -403,7 +406,9 @@ ___
 
 ▸ **shouldNot**(condition: *[BrowserCondition](../#browsercondition)*, timeout?: *`number`*): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L96)*
+*Implementation of [Assertable](../interfaces/assertable.md).[shouldNot](../interfaces/assertable.md#shouldnot)*
+
+*Defined in [browser.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L97)*
 
 **Parameters:**
 
@@ -421,7 +426,7 @@ ___
 
 ▸ **switchToDefaultFrame**(): `Promise`<`void`>
 
-*Defined in [browser.ts:186](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L186)*
+*Defined in [browser.ts:187](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L187)*
 
 **Returns:** `Promise`<`void`>
 
@@ -432,7 +437,7 @@ ___
 
 ▸ **switchToFrame**(frameElement: *[Element](element.md)*): `Promise`<`void`>
 
-*Defined in [browser.ts:180](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L180)*
+*Defined in [browser.ts:181](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L181)*
 
 **Parameters:**
 
@@ -449,7 +454,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [browser.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L61)*
+*Defined in [browser.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L62)*
 
 **Returns:** `string`
 
@@ -460,7 +465,7 @@ ___
 
 ▸ **waitUntil**(condition: *[BrowserCondition](../#browsercondition)*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [browser.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L101)*
+*Defined in [browser.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L102)*
 
 **Parameters:**
 
@@ -478,7 +483,7 @@ ___
 
 ▸ **waitUntilNot**(condition: *[BrowserCondition](../#browsercondition)*, timeout?: *`number`*): `Promise`<`boolean`>
 
-*Defined in [browser.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L105)*
+*Defined in [browser.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L106)*
 
 **Parameters:**
 
@@ -496,7 +501,7 @@ ___
 
 ▸ **chrome**(): [Browser](browser.md)
 
-*Defined in [browser.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L42)*
+*Defined in [browser.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L43)*
 
 **Returns:** [Browser](browser.md)
 
@@ -507,7 +512,7 @@ ___
 
 ▸ **chromeWith**(): [Customized](customized.md)<[Browser](browser.md)>
 
-*Defined in [browser.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L37)*
+*Defined in [browser.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L38)*
 
 **Returns:** [Customized](customized.md)<[Browser](browser.md)>
 
@@ -518,7 +523,7 @@ ___
 
 ▸ **configuredWith**(): [Customized](customized.md)<[Browser](browser.md)>
 
-*Defined in [browser.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L29)*
+*Defined in [browser.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L30)*
 
 **Returns:** [Customized](customized.md)<[Browser](browser.md)>
 
@@ -529,7 +534,7 @@ ___
 
 ▸ **drivedBy**(driver: *`WebDriver`*): [Customized](customized.md)<[Browser](browser.md)>
 
-*Defined in [browser.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L33)*
+*Defined in [browser.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L34)*
 
 **Parameters:**
 

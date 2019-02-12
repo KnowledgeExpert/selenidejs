@@ -43,6 +43,10 @@ export namespace perform {
 
 /*  // had to comment it, to resolve conflict with browser.executeScript :(
 
+    // todo: consider making it as accepting funnc:
+    // element.executeScript(function (element) { return element.innerHTML; })
+    // then it will be possible to combine with browser.executeScript in one method here...
+
     export const executeScript = (scriptOnThisWebElement: string, ...additionalArgs: any[]) =>
         (element: Element) => element.executeScript(scriptOnThisWebElement, additionalArgs);
 */

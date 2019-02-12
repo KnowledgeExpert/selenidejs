@@ -21,8 +21,9 @@ import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
 import { Condition, Query, Wait } from './wait';
+import { Assertable } from './entity';
 
-export class Collection {
+export class Collection implements Assertable<Collection> {
 
     private readonly wait: Wait<Collection>;
 
@@ -61,6 +62,7 @@ export class Collection {
         return this.wait.until(Condition.not(condition), timeout);
     }
 
+    // todo: matches or match? collection.matches... but browser.all.match ... which to choose? :(
     async matches(condition: CollectionCondition): Promise<boolean> {
         return Condition.asPredicate(condition)(this);
     }
