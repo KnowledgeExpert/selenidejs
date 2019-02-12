@@ -13,7 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-/* Basic API */
+/*************
+ * Basic API *
+ *************/
 /**
  * GIVEN:
  * ```
@@ -73,7 +75,7 @@ exports.be = be_1.be;
  *     import { have } from 'selenidejs';
  *
  *     await results.should(have.size(10));
- *     await results.first().should(have.text('tools to automate web browsers'));
+ *     await results.first().should(have.text('Selenium automates browsers'));
  * ```
  */
 var have_1 = require("./support/conditions/have");
@@ -84,7 +86,9 @@ exports.have = have_1.have;
  *     await browser.quit();
  * ```
  */
-/* Advanced helpers */ // todo: consider moving to lib/experimental/index.ts
+/********************
+ * Advanced Helpers *
+ ********************/ // todo: consider moving to lib/experimental/index.ts
 /**
  * ```
  *     // OR just in case you are crazy a bit:
@@ -93,7 +97,7 @@ exports.have = have_1.have;
  *
  *     await browser.all('.srg .g').should(have.size(10))
  *         .then(find.first)
- *         .then(should.match(have.text('tools to automate web browsers')));
+ *         .then(should.match(have.text('Selenium automates browsers')));
  * ```
  */
 var find_1 = require("./support/elements/find");
@@ -103,6 +107,8 @@ exports.should = should_1.should;
 /**
  * ```
  *     // OR:
+ *     import { perform } from 'selenidejs';
+ *
  *     await browser.element(With.name('q')).setValue('selenium').then(perform.pressEnter);
  *
  *     // instead of
@@ -116,8 +122,10 @@ exports.perform = perform_1.perform;
 /**
  * Not sure when you will need it, but just in case:) ...
  * ```
- *    const iWillRememberYou =
- *        await browser.element('#i-change-my-text-on-hover').hover().then(get.someText)
+ *     import { get } from 'selenidejs';
+ *
+ *     const iWillRememberYou =
+ *         await browser.element('#i-change-my-text-on-hover').hover().then(get.someText)
  * ```
  */
 var get_1 = require("./support/queries/get");
@@ -125,6 +133,8 @@ exports.get = get_1.get;
 /**
  * You might think you need something like...
  * ```
+ *     import { its } from 'selenidejs';
+ *
  *     if (await browser.element('#i-might-say-yes-or-no').get(its.text) === 'yes') {
  *         // do something...
  *     }
@@ -135,6 +145,8 @@ exports.its = queries_1.query;
 /**
  * Or:
  * ```
+ *     import { their } from 'selenidejs';
+ *
  *     if (await browser.all('.option').get(their.size) >= 2) {
  *         // do something...
  *     }
@@ -164,7 +176,6 @@ exports.their = queries_2.query;
  *     }
  * ```
  */
-/* Another way to customize (lower level) */
 /**
  * In case you want to be different) ...
  * ```
@@ -173,7 +184,9 @@ exports.their = queries_2.query;
  */
 var configuration_1 = require("./configuration");
 exports.Configuration = configuration_1.Configuration;
-/* Just Types:) */
+/****************
+ * Just Types:) *
+ ****************/
 var element_1 = require("./element");
 exports.Element = element_1.Element;
 var collection_1 = require("./collection");

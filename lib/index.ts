@@ -13,7 +13,9 @@
 // limitations under the License.
 
 
-/* Basic API */
+/*************
+ * Basic API *
+ *************/
 
 /**
  * GIVEN:
@@ -74,7 +76,7 @@ export { be } from './support/conditions/be';
  *     import { have } from 'selenidejs';
  *
  *     await results.should(have.size(10));
- *     await results.first().should(have.text('tools to automate web browsers'));
+ *     await results.first().should(have.text('Selenium automates browsers'));
  * ```
  */
 export { have } from './support/conditions/have';
@@ -86,7 +88,9 @@ export { have } from './support/conditions/have';
  * ```
  */
 
-/* Advanced helpers */ // todo: consider moving to lib/experimental/index.ts
+/********************
+ * Advanced Helpers *
+ ********************/ // todo: consider moving to lib/experimental/index.ts
 
 /**
  * ```
@@ -96,7 +100,7 @@ export { have } from './support/conditions/have';
  *
  *     await browser.all('.srg .g').should(have.size(10))
  *         .then(find.first)
- *         .then(should.match(have.text('tools to automate web browsers')));
+ *         .then(should.match(have.text('Selenium automates browsers')));
  * ```
  */
 export { find } from './support/elements/find';
@@ -105,6 +109,8 @@ export { should } from './support/asserts/should';
 /**
  * ```
  *     // OR:
+ *     import { perform } from 'selenidejs';
+ *
  *     await browser.element(With.name('q')).setValue('selenium').then(perform.pressEnter);
  *
  *     // instead of
@@ -118,8 +124,10 @@ export { perform } from './support/commands/perform';
 /**
  * Not sure when you will need it, but just in case:) ...
  * ```
- *    const iWillRememberYou =
- *        await browser.element('#i-change-my-text-on-hover').hover().then(get.someText)
+ *     import { get } from 'selenidejs';
+ *
+ *     const iWillRememberYou =
+ *         await browser.element('#i-change-my-text-on-hover').hover().then(get.someText)
  * ```
  */
 export { get } from './support/queries/get';
@@ -127,6 +135,8 @@ export { get } from './support/queries/get';
 /**
  * You might think you need something like...
  * ```
+ *     import { its } from 'selenidejs';
+ *
  *     if (await browser.element('#i-might-say-yes-or-no').get(its.text) === 'yes') {
  *         // do something...
  *     }
@@ -137,6 +147,8 @@ export { query as its } from './queries';
 /**
  * Or:
  * ```
+ *     import { their } from 'selenidejs';
+ *
  *     if (await browser.all('.option').get(their.size) >= 2) {
  *         // do something...
  *     }
@@ -166,8 +178,6 @@ export { query as their } from './queries';
  *     }
  * ```
  */
-
-/* Another way to customize (lower level) */
 /**
  * In case you want to be different) ...
  * ```
@@ -176,7 +186,9 @@ export { query as their } from './queries';
  */
 export { Configuration } from './configuration';
 
-/* Just Types:) */
+/****************
+ * Just Types:) *
+ ****************/
 
 export { Element } from './element';
 export { Collection } from './collection';
