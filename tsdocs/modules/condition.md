@@ -2,6 +2,85 @@
 
 # Module: condition
 
+The list of predefined conditions for all type of entities:
+
+*   condition.element.*
+*   condition.collection.*
+*   condition.browser.*
+
+Can be used in the following way:
+
+```
+await browser.all('.google-result').should(condition.collection.have.size(10))
+```
+
+Yet there are more handy aliases in be.* and have.* namespaces:
+
+```
+await browser.all('.google-result').should(have.size(10))
+```
+
+All conditions (Condition) are just predicate-like functions on entity of corresponding type (T), with:
+
+*   descriptive custom toString implementation
+*   just passing (returning void) in case when the "predicate" version would return true
+*   throwing Error in case when the "predicate" version would return false
+
+The following example shows how a condition can be implemented:
+
+```ts
+export function hasText(expected: string): ElementCondition {
+        const description = `has text: ${expected}`
+        const condition = (element: Element) => {
+            const actual = await element.getWebElement().then(it => it.getText());
+            if (!actual.includes(expected)) {
+                throw new Error(`actual text: ${actual}`);
+            }
+        }
+        condition.toString = () => description;
+        return condition;
+    }
+```
+
+The code above can be simply refactored, by utilizing some function (let's call it lambda) that will automatically "describe" a passed function with provided description:
+
+```ts
+export function hasText(expected: string): ElementCondition {
+        return lambda(`has text: ${expected}`, (element: Element) => {
+            const actual = await element.getWebElement().then(it => it.getText());
+            if (!actual.includes(expected)) {
+                throw new Error(`actual text: ${actual}`);
+            }
+        });
+    }
+```
+
+Or more concise by using arrow functions:
+
+```ts
+export const hasText = (expected: string): ElementCondition =>
+        lambda(`has text: ${expected}`, (element: Element) => {
+            const actual = await element.getWebElement().then(it => it.getText());
+            if (!actual.includes(expected)) {
+                throw new Error(`actual text: ${actual}`);
+            }
+        });
+```
+
+We can refactor the code above even more, if notice, that the actual condition reflects a simple rule:
+
+*   throw error if actual value (returned from some query on element like "getting its text") does not satisfy the predicate (like includes expected text) If we abstract this "throw error if not predicate(actual)" into some function like throwIfNotActual, The code will become very concise and declarative:
+    ```ts
+    export const hasText = (expected: string): ElementCondition =>
+          lambda(`has text: ${expected}`,
+                 throwIfNotActual(query.text, predicate.includes(expected)));
+    ```
+    
+
+This is how predefined in selenidejs conditions are implemented below.
+
+Have fun;)
+
 ## Index
 
 ### Modules
@@ -26,7 +105,7 @@
 
 ▸ **conditionFromAsyncQuery**<`E`>(describedPredicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L31)*
+*Defined in [conditions.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L131)*
 
 **Type parameters:**
 
@@ -46,7 +125,7 @@ ___
 
 ▸ **throwIfNot**<`E`>(description: *`string`*, predicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L45)*
+*Defined in [conditions.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L110)*
 
 like conditionFromAsyncQuery but with custom description
 
@@ -69,7 +148,7 @@ ___
 
 ▸ **throwIfNotActual**<`E`,`A`>(query: *`function`*, predicate: *`function`*): [Condition](condition.md)<`E`>
 
-*Defined in [conditions.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L57)*
+*Defined in [conditions.ts:122](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L122)*
 
 Transforms an entity query compared through predicate - to Condition Example: throwIfNotActual(query.text, predicate.equals(text))
 

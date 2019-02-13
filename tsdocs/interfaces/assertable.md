@@ -31,7 +31,7 @@
 
 ▸ **should**(condition: *[Condition](../modules/condition.md)<`T`>*, timeout?: *`number`*): `Promise`<`T`>
 
-*Defined in [entity.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L18)*
+*Defined in [entity.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L21)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **shouldNot**(condition: *[Condition](../modules/condition.md)<`T`>*, timeout?: *`number`*): `Promise`<`T`>
 
-*Defined in [entity.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L19)*
+*Defined in [entity.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L22)*
 
 **Parameters:**
 
