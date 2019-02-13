@@ -128,6 +128,11 @@ var condition;
     }
     let element;
     (function (element_1) {
+        /*
+         * todo: consider adding condition.element.isBlank
+
+
+         */
         element_1.isVisible = throwIfNot('is visible', async (element) => (await element.getWebElement()).isDisplayed());
         element_1.isHidden = wait_1.Condition.not(element_1.isVisible, 'is hidden');
         element_1.hasVisibleElement = (by) => throwIfNot(`has visible element located by ${by}`, async (element) => (await element.element(by).getWebElement()).isDisplayed());
@@ -145,6 +150,9 @@ var condition;
         element_1.hasAttributeWithValue = (name, value) => helpers_1.lambda(`has attribute '${name}' with value '${value}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.equals(value)));
         element_1.hasAttributeWithValueContaining = (name, partialValue) => helpers_1.lambda(`has attribute '${name}' with value '${partialValue}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.includes(partialValue)));
         element_1.hasCssClass = (cssClass) => helpers_1.lambda(`has css class '${cssClass}'`, throwIfNotActual(queries_1.query.attribute('class'), predicates_1.predicate.includesWord(cssClass)));
+        element_1.hasValue = (expected) => element_1.hasAttributeWithValue('value', expected);
+        element_1.hasValueContaining = (expected) => element_1.hasAttributeWithValueContaining('value', expected);
+        element_1.isBlank = wait_1.Condition.and(element_1.hasExactText(''), element_1.hasValue(''));
     })(element = condition.element || (condition.element = {}));
     let collection;
     (function (collection) {

@@ -96,6 +96,9 @@ export declare namespace condition {
         const hasAttributeWithValue: (name: string, value: string) => import("./wait").Query<Element, void>;
         const hasAttributeWithValueContaining: (name: string, partialValue: string) => import("./wait").Query<Element, void>;
         const hasCssClass: (cssClass: string) => import("./wait").Query<Element, void>;
+        const hasValue: (expected: string) => import("./wait").Query<Element, void>;
+        const hasValueContaining: (expected: string) => import("./wait").Query<Element, void>;
+        const isBlank: import("./wait").Query<Element, void>;
     }
     namespace collection {
         const hasSize: (expected: number) => import("./wait").Query<Collection, void>;

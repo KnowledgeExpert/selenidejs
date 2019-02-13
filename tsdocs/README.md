@@ -61,6 +61,7 @@
 * [logFailedHook](#logfailedhook)
 * [runAfterHooks](#runafterhooks)
 * [runBeforeHooks](#runbeforehooks)
+* [toString](#tostring)
 
 ---
 
@@ -301,6 +302,26 @@ ___
 | actionName | `any` |
 
 **Returns:** `Promise`<`void`>
+
+___
+<a id="tostring"></a>
+
+### `<Const>` toString
+
+▸ **toString**<`O`>(obj: *`O`*): `string`
+
+*Defined in [helpers/index.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/index.ts#L22)*
+
+**Type parameters:**
+
+#### O 
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| obj | `O` |
+
+**Returns:** `string`
 
 ___
 

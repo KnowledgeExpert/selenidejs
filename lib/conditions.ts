@@ -137,6 +137,11 @@ export namespace condition {
     }
 
     export namespace element {
+        /*
+         * todo: consider adding condition.element.isBlank
+
+
+         */
 
         export const isVisible: ElementCondition =
             throwIfNot('is visible', async (element: Element) =>
@@ -197,6 +202,14 @@ export namespace condition {
         export const hasCssClass = (cssClass: string): ElementCondition =>
             lambda(`has css class '${cssClass}'`,
                    throwIfNotActual(query.attribute('class'), predicate.includesWord(cssClass)));
+
+        export const hasValue = (expected: string): ElementCondition =>
+            hasAttributeWithValue('value', expected);
+
+        export const hasValueContaining = (expected: string): ElementCondition =>
+            hasAttributeWithValueContaining('value', expected);
+
+        export const isBlank = Condition.and(hasExactText(''), hasValue(''));
     }
 
     export namespace collection { // todo: collection vs Collection in collection.ts ?

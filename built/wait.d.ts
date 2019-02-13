@@ -1,4 +1,5 @@
 import { OnFailureHook } from './refactor/onFailureHook';
+import { lambda } from './helpers';
 /**
  * We use queries to perform an async query on entity of type T, i.e. get something from entity.
  * So a query can pass and return something of type R or failed with Error correspondingly.
@@ -19,10 +20,41 @@ export declare type Command<T> = Query<T, void>;
  */
 export declare type Condition<T> = Query<T, void>;
 export declare namespace Condition {
+    /**
+     * Negates condition. Making the negated condition to:
+     * - pass (return void) in case original condition would throw Error
+     * - throw Error in case original condition would pass (return void)
+     *
+     * @param {Condition<T>} condition - original condition to be negated
+     * @param {string} description - custom description if "not <original description>" version is not enough
+     * @returns {Condition<T>}
+     */
     const not: <T>(condition: Query<T, void>, description?: string) => Query<T, void>;
     /**
-     * Transforms Condition (returning (passed | Error))
-     * to async Predicate (returning (true | false))
+     * Combines conditions by logical AND
+     *
+     * @param {Condition<T>} conditions
+     * @returns {Condition<T>}
+     */
+    const and: <T>(...conditions: Query<T, void>[]) => Query<T, void>;
+    /**
+     * Combines conditions by logical OR
+     * @param {Condition<T>} conditions
+     * @returns {Condition<T>}
+     */
+    const or: <T>(...conditions: Query<T, void>[]) => Query<T, void>;
+    /**
+     * Changes condition's description to the new provided one.
+     * Example:
+     * ```
+     *   const isBlank = Condition.named('is blank', Condition.and(has.exactText(''), has.value('')))
+     * ```
+     * @type {<F>(toString: string, fn: F) => F}
+     */
+    const named: typeof lambda;
+    /**
+     * Transforms Condition (returning (void | throws Error))
+     * to async Predicate   (returning (true | false))
      * @param {Condition<T>} condition
      * @returns {(entity: T) => Promise<boolean>}
      */

@@ -17,18 +17,16 @@ import { CollectionCondition, BrowserCondition, ElementCondition, condition } fr
 
 
 export namespace have {
+    // todo: refactor to arrow const versions
 
-    export function visibleElement(locator: By): ElementCondition {
-        return condition.element.hasVisibleElement(locator);
-    }
+    export const visibleElement = (locator: By): ElementCondition =>
+        condition.element.hasVisibleElement(locator);
 
-    export function exactText(value: string/* | number*/): ElementCondition {
-        return condition.element.hasExactText(value);
-    }
+    export const exactText = (value: string/* | number*/): ElementCondition =>
+        condition.element.hasExactText(value);
 
-    export function text(value: string/* | number*/): ElementCondition {
-        return condition.element.hasText(value);
-    }
+    export const text = (value: string/* | number*/): ElementCondition =>
+        condition.element.hasText(value);
 
     // todo: do we really need this "optionality" of attributeValue, i.e. one super condition instead of two?
     /* ... - no, we do not
@@ -47,38 +45,33 @@ export namespace have {
      * This why, if we want to keep things "naturally readable and understandable", we have to separate...
      * and keep things simple...
      **/
-    export function attribute(name: string): ElementCondition {
-        return condition.element.hasAttribute(name);
-    }
+    export const attribute = (name: string): ElementCondition =>
+        condition.element.hasAttribute(name);
 
-    export function attributeWithValue(attributeName: string, attributeValue: string/* | number*/): ElementCondition {
-        return condition.element.hasAttributeWithValue(attributeName, attributeValue);
-    }
+    export const attributeWithValue = (attributeName: string, attributeValue: string/* | number*/): ElementCondition =>
+        condition.element.hasAttributeWithValue(attributeName, attributeValue);
 
-    export function attributeWithValueContaining(attributeName: string, attributeValue: string/* | number*/)
-    : ElementCondition {
-        return condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
-    }
+    export const attributeWithValueContaining = (attributeName: string, attributeValue: string/* | number*/)
+    : ElementCondition =>
+        condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
 
-    export function value(value: string/* | number*/): ElementCondition {
-        return attributeWithValue('value', value);
-    }
+    export const value = (value: string/* | number*/): ElementCondition =>
+        condition.element.hasValue(value);
 
-    export function cssClass(cssClass: string): ElementCondition {
-        return condition.element.hasCssClass(cssClass);
-    }
+    export const valueContaining = (expected: string/* | number*/): ElementCondition =>
+        condition.element.hasValueContaining(expected);
 
-    export function size(size: number): CollectionCondition {
-        return condition.collection.hasSize(size);
-    }
+    export const cssClass = (cssClass: string): ElementCondition =>
+        condition.element.hasCssClass(cssClass);
 
-    export function texts(...texts: string[]): CollectionCondition {
-        return condition.collection.hasExactTexts(texts);
-    }
+    export const size = (size: number): CollectionCondition =>
+        condition.collection.hasSize(size);
 
-    export function url(urlPart: string): BrowserCondition {
-        return condition.browser.hasUrl(urlPart);
-    }
+    export const texts = (...texts: string[]): CollectionCondition =>
+        condition.collection.hasExactTexts(texts);
+
+    export const url = (urlPart: string): BrowserCondition =>
+        condition.browser.hasUrl(urlPart);
 
     // todo: what about inUrl?
     /*
@@ -89,23 +82,18 @@ export namespace have {
      * or...
      * browser.should(have.textInUrl('main-page'));
      */
-    export function urlContaining(urlPart: string): BrowserCondition {
-        return condition.browser.hasUrlContaining(urlPart);
-    }
+    export const urlContaining = (urlPart: string): BrowserCondition =>
+        condition.browser.hasUrlContaining(urlPart);
 
-    export function exactTexts(...texts: string[]): CollectionCondition {
-        return condition.collection.hasExactTexts(texts);
-    }
+    export const exactTexts = (...texts: string[]): CollectionCondition =>
+        condition.collection.hasExactTexts(texts);
 
-    export function tabsNumber(num: number): BrowserCondition {
-        return condition.browser.hasTabsNumber(num);
-    }
+    export const tabsNumber = (num: number): BrowserCondition =>
+        condition.browser.hasTabsNumber(num);
 
-    export function tabsNumberLessThan(num: number): BrowserCondition {
-        return condition.browser.hasTabsNumberLessThan(num);
-    }
+    export const tabsNumberLessThan = (num: number): BrowserCondition =>
+        condition.browser.hasTabsNumberLessThan(num);
 
-    export function tabsNumberMoreThan(num: number): BrowserCondition {
-        return condition.browser.hasTabsNumberMoreThan(num);
-    }
+    export const tabsNumberMoreThan = (num: number): BrowserCondition =>
+        condition.browser.hasTabsNumberMoreThan(num);
 }

@@ -25,5 +25,6 @@ var be;
     be.focused = conditions_1.condition.element.isFocused;
     be.enabled = conditions_1.condition.element.isEnabled;
     be.disabled = conditions_1.condition.element.isDisabled;
+    be.blank = conditions_1.condition.element.isBlank;
 })(be = exports.be || (exports.be = {}));
 //# sourceMappingURL=be.js.map

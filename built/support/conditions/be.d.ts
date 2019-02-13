@@ -8,4 +8,5 @@ export declare namespace be {
     const focused: ElementCondition;
     const enabled: ElementCondition;
     const disabled: ElementCondition;
+    const blank: ElementCondition;
 }

@@ -35,7 +35,7 @@ var perform;
     perform.pressEscape = (element) => element.pressEscape();
     /*  // had to comment it, to resolve conflict with browser.executeScript :(
     
-        // todo: consider making it as accepting funnc:
+        // todo: consider making it as accepting func:
         // element.executeScript(function (element) { return element.innerHTML; })
         // then it will be possible to combine with browser.executeScript in one method here...
     

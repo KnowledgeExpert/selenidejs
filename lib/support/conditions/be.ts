@@ -31,4 +31,6 @@ export namespace be {
     export const enabled: ElementCondition = condition.element.isEnabled;
 
     export const disabled: ElementCondition = condition.element.isDisabled;
+
+    export const blank: ElementCondition = condition.element.isBlank;
 }

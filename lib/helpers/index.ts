@@ -18,3 +18,5 @@ export function lambda<F>(toString: string, fn: F): F {
     fn.toString = () => toString;
     return fn;
 }
+
+export const toString = <O>(obj: O) => obj.toString();

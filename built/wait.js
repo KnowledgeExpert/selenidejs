@@ -18,6 +18,15 @@ const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchErro
 const helpers_1 = require("./helpers");
 var Condition;
 (function (Condition) {
+    /**
+     * Negates condition. Making the negated condition to:
+     * - pass (return void) in case original condition would throw Error
+     * - throw Error in case original condition would pass (return void)
+     *
+     * @param {Condition<T>} condition - original condition to be negated
+     * @param {string} description - custom description if "not <original description>" version is not enough
+     * @returns {Condition<T>}
+     */
     Condition.not = (condition, description) => helpers_1.lambda(description || `not ${condition}`, async (entity) => {
         try {
             await condition(entity);
@@ -28,8 +37,46 @@ var Condition;
         throw new conditionDoesNotMatchError_1.ConditionNotMatchedError();
     });
     /**
-     * Transforms Condition (returning (passed | Error))
-     * to async Predicate (returning (true | false))
+     * Combines conditions by logical AND
+     *
+     * @param {Condition<T>} conditions
+     * @returns {Condition<T>}
+     */
+    Condition.and = (...conditions) => helpers_1.lambda(conditions.map(helpers_1.toString).join(' and '), async (entity) => {
+        for (const condition of conditions) {
+            await condition(entity);
+        }
+    });
+    /**
+     * Combines conditions by logical OR
+     * @param {Condition<T>} conditions
+     * @returns {Condition<T>}
+     */
+    Condition.or = (...conditions) => helpers_1.lambda(conditions.map(helpers_1.toString).join(' or '), async (entity) => {
+        const errors = [];
+        for (const condition of conditions) {
+            try {
+                await condition(entity);
+                return;
+            }
+            catch (error) {
+                errors.push(error);
+            }
+        }
+        throw new Error(errors.map(helpers_1.toString).join('; '));
+    });
+    /**
+     * Changes condition's description to the new provided one.
+     * Example:
+     * ```
+     *   const isBlank = Condition.named('is blank', Condition.and(has.exactText(''), has.value('')))
+     * ```
+     * @type {<F>(toString: string, fn: F) => F}
+     */
+    Condition.named = helpers_1.lambda; // todo: consider renaming to Condition.as ...
+    /**
+     * Transforms Condition (returning (void | throws Error))
+     * to async Predicate   (returning (true | false))
      * @param {Condition<T>} condition
      * @returns {(entity: T) => Promise<boolean>}
      */

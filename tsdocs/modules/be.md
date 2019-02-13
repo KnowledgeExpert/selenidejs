@@ -7,6 +7,7 @@
 ### Variables
 
 * [absent](be.md#absent)
+* [blank](be.md#blank)
 * [disabled](be.md#disabled)
 * [enabled](be.md#enabled)
 * [focused](be.md#focused)
@@ -26,6 +27,15 @@
 **● absent**: *[ElementCondition](../#elementcondition)* =  condition.element.isAbsent
 
 *Defined in [support/conditions/be.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L21)*
+
+___
+<a id="blank"></a>
+
+### `<Const>` blank
+
+**● blank**: *[ElementCondition](../#elementcondition)* =  condition.element.isBlank
+
+*Defined in [support/conditions/be.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L35)*
 
 ___
 <a id="disabled"></a>

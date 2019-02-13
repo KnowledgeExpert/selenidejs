@@ -15,7 +15,7 @@
 import { OnFailureHook } from './refactor/onFailureHook';
 import { TimeoutError } from './errors/timeoutError';
 import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
-import { lambda } from './helpers';
+import { lambda, toString } from './helpers';
 
 /* tslint:disable:prefer-template */
 
@@ -43,6 +43,15 @@ export type Command<T> = Query<T, void>;
 export type Condition<T> = Query<T, void>;
 
 export namespace Condition {
+    /**
+     * Negates condition. Making the negated condition to:
+     * - pass (return void) in case original condition would throw Error
+     * - throw Error in case original condition would pass (return void)
+     *
+     * @param {Condition<T>} condition - original condition to be negated
+     * @param {string} description - custom description if "not <original description>" version is not enough
+     * @returns {Condition<T>}
+     */
     export const not = <T>(condition: Condition<T>, description?: string): Condition<T> =>
         lambda(description || `not ${condition}`, async (entity: T) => {
             try {
@@ -54,8 +63,50 @@ export namespace Condition {
         });
 
     /**
-     * Transforms Condition (returning (passed | Error))
-     * to async Predicate (returning (true | false))
+     * Combines conditions by logical AND
+     *
+     * @param {Condition<T>} conditions
+     * @returns {Condition<T>}
+     */
+    export const and = <T>(...conditions: Array<Condition<T>>): Condition<T> =>
+        lambda(conditions.map(toString).join(' and '), async (entity: T) => {
+            for (const condition of conditions) {
+                await condition(entity);
+            }
+        });
+
+    /**
+     * Combines conditions by logical OR
+     * @param {Condition<T>} conditions
+     * @returns {Condition<T>}
+     */
+    export const or = <T>(...conditions: Array<Condition<T>>): Condition<T> =>
+        lambda(conditions.map(toString).join(' or '), async (entity: T) => {
+            const errors: Error[] = [];
+            for (const condition of conditions) {
+                try {
+                    await condition(entity);
+                    return;
+                } catch (error) {
+                    errors.push(error);
+                }
+            }
+            throw new Error(errors.map(toString).join('; '));
+        });
+
+    /**
+     * Changes condition's description to the new provided one.
+     * Example:
+     * ```
+     *   const isBlank = Condition.named('is blank', Condition.and(has.exactText(''), has.value('')))
+     * ```
+     * @type {<F>(toString: string, fn: F) => F}
+     */
+    export const named = lambda;  // todo: consider renaming to Condition.as ...
+
+    /**
+     * Transforms Condition (returning (void | throws Error))
+     * to async Predicate   (returning (true | false))
      * @param {Condition<T>} condition
      * @returns {(entity: T) => Promise<boolean>}
      */

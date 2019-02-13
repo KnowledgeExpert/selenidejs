@@ -19,4 +19,5 @@ function lambda(toString, fn) {
     return fn;
 }
 exports.lambda = lambda;
+exports.toString = (obj) => obj.toString();
 //# sourceMappingURL=index.js.map

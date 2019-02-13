@@ -16,18 +16,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const conditions_1 = require("../../conditions");
 var have;
 (function (have) {
-    function visibleElement(locator) {
-        return conditions_1.condition.element.hasVisibleElement(locator);
-    }
-    have.visibleElement = visibleElement;
-    function exactText(value /* | number*/) {
-        return conditions_1.condition.element.hasExactText(value);
-    }
-    have.exactText = exactText;
-    function text(value /* | number*/) {
-        return conditions_1.condition.element.hasText(value);
-    }
-    have.text = text;
+    // todo: refactor to arrow const versions
+    have.visibleElement = (locator) => conditions_1.condition.element.hasVisibleElement(locator);
+    have.exactText = (value /* | number*/) => conditions_1.condition.element.hasExactText(value);
+    have.text = (value /* | number*/) => conditions_1.condition.element.hasText(value);
     // todo: do we really need this "optionality" of attributeValue, i.e. one super condition instead of two?
     /* ... - no, we do not
      * here is why... look at this example:
@@ -45,38 +37,15 @@ var have;
      * This why, if we want to keep things "naturally readable and understandable", we have to separate...
      * and keep things simple...
      **/
-    function attribute(name) {
-        return conditions_1.condition.element.hasAttribute(name);
-    }
-    have.attribute = attribute;
-    function attributeWithValue(attributeName, attributeValue /* | number*/) {
-        return conditions_1.condition.element.hasAttributeWithValue(attributeName, attributeValue);
-    }
-    have.attributeWithValue = attributeWithValue;
-    function attributeWithValueContaining(attributeName, attributeValue /* | number*/) {
-        return conditions_1.condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
-    }
-    have.attributeWithValueContaining = attributeWithValueContaining;
-    function value(value /* | number*/) {
-        return attributeWithValue('value', value);
-    }
-    have.value = value;
-    function cssClass(cssClass) {
-        return conditions_1.condition.element.hasCssClass(cssClass);
-    }
-    have.cssClass = cssClass;
-    function size(size) {
-        return conditions_1.condition.collection.hasSize(size);
-    }
-    have.size = size;
-    function texts(...texts) {
-        return conditions_1.condition.collection.hasExactTexts(texts);
-    }
-    have.texts = texts;
-    function url(urlPart) {
-        return conditions_1.condition.browser.hasUrl(urlPart);
-    }
-    have.url = url;
+    have.attribute = (name) => conditions_1.condition.element.hasAttribute(name);
+    have.attributeWithValue = (attributeName, attributeValue /* | number*/) => conditions_1.condition.element.hasAttributeWithValue(attributeName, attributeValue);
+    have.attributeWithValueContaining = (attributeName, attributeValue /* | number*/) => conditions_1.condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
+    have.value = (value /* | number*/) => conditions_1.condition.element.hasValue(value);
+    have.valueContaining = (expected /* | number*/) => conditions_1.condition.element.hasValueContaining(expected);
+    have.cssClass = (cssClass) => conditions_1.condition.element.hasCssClass(cssClass);
+    have.size = (size) => conditions_1.condition.collection.hasSize(size);
+    have.texts = (...texts) => conditions_1.condition.collection.hasExactTexts(texts);
+    have.url = (urlPart) => conditions_1.condition.browser.hasUrl(urlPart);
     // todo: what about inUrl?
     /*
      * compare:
@@ -86,25 +55,10 @@ var have;
      * or...
      * browser.should(have.textInUrl('main-page'));
      */
-    function urlContaining(urlPart) {
-        return conditions_1.condition.browser.hasUrlContaining(urlPart);
-    }
-    have.urlContaining = urlContaining;
-    function exactTexts(...texts) {
-        return conditions_1.condition.collection.hasExactTexts(texts);
-    }
-    have.exactTexts = exactTexts;
-    function tabsNumber(num) {
-        return conditions_1.condition.browser.hasTabsNumber(num);
-    }
-    have.tabsNumber = tabsNumber;
-    function tabsNumberLessThan(num) {
-        return conditions_1.condition.browser.hasTabsNumberLessThan(num);
-    }
-    have.tabsNumberLessThan = tabsNumberLessThan;
-    function tabsNumberMoreThan(num) {
-        return conditions_1.condition.browser.hasTabsNumberMoreThan(num);
-    }
-    have.tabsNumberMoreThan = tabsNumberMoreThan;
+    have.urlContaining = (urlPart) => conditions_1.condition.browser.hasUrlContaining(urlPart);
+    have.exactTexts = (...texts) => conditions_1.condition.collection.hasExactTexts(texts);
+    have.tabsNumber = (num) => conditions_1.condition.browser.hasTabsNumber(num);
+    have.tabsNumberLessThan = (num) => conditions_1.condition.browser.hasTabsNumberLessThan(num);
+    have.tabsNumberMoreThan = (num) => conditions_1.condition.browser.hasTabsNumberMoreThan(num);
 })(have = exports.have || (exports.have = {}));
 //# sourceMappingURL=have.js.map
