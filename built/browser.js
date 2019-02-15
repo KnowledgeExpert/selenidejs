@@ -20,7 +20,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
-const utils_1 = require("./helpers/utils");
+const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
 const configuration_1 = require("./configuration");
 const element_1 = require("./element");
@@ -61,12 +61,12 @@ class Browser {
     }
     /* Elements */
     element(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
+        const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
         return new element_1.Element(locator, this.configuration);
     }
     all(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
+        const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
         return new collection_1.Collection(locator, this.configuration);
     }

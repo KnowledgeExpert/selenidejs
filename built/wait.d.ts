@@ -1,5 +1,5 @@
 import { OnFailureHook } from './refactor/onFailureHook';
-import { lambda } from './helpers';
+import { lambda } from './utils';
 /**
  * We use queries to perform an async query on entity of type T, i.e. get something from entity.
  * So a query can pass and return something of type R or failed with Error correspondingly.

@@ -19,8 +19,8 @@ import { Condition } from './wait';
 import { By, WebElement } from 'selenium-webdriver';
 import { query } from './queries';
 import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
-import { lambda } from './helpers';
-import { predicate } from './helpers/predicates';
+import { lambda } from './utils';
+import { predicate } from './utils/predicates';
 
 export type ElementCondition = Condition<Element>;
 export type CollectionCondition = Condition<Collection>;

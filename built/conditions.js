@@ -17,8 +17,8 @@ const wait_1 = require("./wait");
 const selenium_webdriver_1 = require("selenium-webdriver");
 const queries_1 = require("./queries");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
-const helpers_1 = require("./helpers");
-const predicates_1 = require("./helpers/predicates");
+const utils_1 = require("./utils");
+const predicates_1 = require("./utils/predicates");
 /**
  * The list of predefined conditions for all type of entities:
  * - condition.element.*
@@ -101,7 +101,7 @@ var condition;
      * @returns {Condition<E>}
      */
     function throwIfNot(description, predicate) {
-        return helpers_1.lambda(description, async (entity) => {
+        return utils_1.lambda(description, async (entity) => {
             if (!await predicate(entity)) {
                 throw new conditionDoesNotMatchError_1.ConditionNotMatchedError();
             }
@@ -120,7 +120,7 @@ var condition;
         };
     }
     function conditionFromAsyncQuery(describedPredicate) {
-        return helpers_1.lambda(describedPredicate.toString(), async (entity) => {
+        return utils_1.lambda(describedPredicate.toString(), async (entity) => {
             if (!await describedPredicate(entity)) {
                 throw new conditionDoesNotMatchError_1.ConditionNotMatchedError();
             }
@@ -136,7 +136,7 @@ var condition;
         element_1.isVisible = throwIfNot('is visible', async (element) => (await element.getWebElement()).isDisplayed());
         element_1.isHidden = wait_1.Condition.not(element_1.isVisible, 'is hidden');
         element_1.hasVisibleElement = (by) => throwIfNot(`has visible element located by ${by}`, async (element) => (await element.element(by).getWebElement()).isDisplayed());
-        element_1.hasAttribute = (name) => helpers_1.lambda(`has attribute '${name}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.isTruthy));
+        element_1.hasAttribute = (name) => utils_1.lambda(`has attribute '${name}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.isTruthy));
         element_1.isSelected = element_1.hasAttribute('elementIsSelected');
         element_1.isEnabled = throwIfNot('is enabled', async (element) => (await element.getWebElement()).isEnabled());
         element_1.isDisabled = wait_1.Condition.not(element_1.isEnabled, 'is disabled');
@@ -144,33 +144,33 @@ var condition;
         element_1.isAbsent = wait_1.Condition.not(element_1.isPresent, 'is absent');
         element_1.isFocused = throwIfNot('is focused', async (element) => selenium_webdriver_1.WebElement.equals(await element.executeScript('return document.activeElement'), await element.getWebElement()));
         element_1.hasText = (expected) => // todo: do we need string | number
-         helpers_1.lambda(`has text: ${expected}`, throwIfNotActual(queries_1.query.text, predicates_1.predicate.includes(expected)));
+         utils_1.lambda(`has text: ${expected}`, throwIfNotActual(queries_1.query.text, predicates_1.predicate.includes(expected)));
         element_1.hasExactText = (expected) => // todo: do we need string | number ?
-         helpers_1.lambda(`has exact text: ${expected}`, throwIfNotActual(queries_1.query.text, predicates_1.predicate.equals(expected)));
-        element_1.hasAttributeWithValue = (name, value) => helpers_1.lambda(`has attribute '${name}' with value '${value}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.equals(value)));
-        element_1.hasAttributeWithValueContaining = (name, partialValue) => helpers_1.lambda(`has attribute '${name}' with value '${partialValue}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.includes(partialValue)));
-        element_1.hasCssClass = (cssClass) => helpers_1.lambda(`has css class '${cssClass}'`, throwIfNotActual(queries_1.query.attribute('class'), predicates_1.predicate.includesWord(cssClass)));
+         utils_1.lambda(`has exact text: ${expected}`, throwIfNotActual(queries_1.query.text, predicates_1.predicate.equals(expected)));
+        element_1.hasAttributeWithValue = (name, value) => utils_1.lambda(`has attribute '${name}' with value '${value}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.equals(value)));
+        element_1.hasAttributeWithValueContaining = (name, partialValue) => utils_1.lambda(`has attribute '${name}' with value '${partialValue}'`, throwIfNotActual(queries_1.query.attribute(name), predicates_1.predicate.includes(partialValue)));
+        element_1.hasCssClass = (cssClass) => utils_1.lambda(`has css class '${cssClass}'`, throwIfNotActual(queries_1.query.attribute('class'), predicates_1.predicate.includesWord(cssClass)));
         element_1.hasValue = (expected) => element_1.hasAttributeWithValue('value', expected);
         element_1.hasValueContaining = (expected) => element_1.hasAttributeWithValueContaining('value', expected);
         element_1.isBlank = wait_1.Condition.and(element_1.hasExactText(''), element_1.hasValue(''));
     })(element = condition.element || (condition.element = {}));
     let collection;
     (function (collection) {
-        collection.hasSize = (expected) => helpers_1.lambda(`has size ${expected}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.equals(expected)));
-        collection.hasSizeMoreThan = (size) => helpers_1.lambda(`has size more than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isMoreThan(size)));
-        collection.hasSizeLessThan = (size) => helpers_1.lambda(`has size less than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isLessThan(size)));
+        collection.hasSize = (expected) => utils_1.lambda(`has size ${expected}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.equals(expected)));
+        collection.hasSizeMoreThan = (size) => utils_1.lambda(`has size more than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isMoreThan(size)));
+        collection.hasSizeLessThan = (size) => utils_1.lambda(`has size less than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isLessThan(size)));
         // todo: should we filter collection for visibility before applying this condition?
-        collection.hasTexts = (texts) => helpers_1.lambda(`has texts ${texts}`, throwIfNotActual(queries_1.query.texts, predicates_1.predicate.equalsByContainsToArray(texts)));
-        collection.hasExactTexts = (texts) => helpers_1.lambda(`has exact texts ${texts}`, throwIfNotActual(queries_1.query.texts, predicates_1.predicate.equalsByContainsToArray(texts)));
+        collection.hasTexts = (texts) => utils_1.lambda(`has texts ${texts}`, throwIfNotActual(queries_1.query.texts, predicates_1.predicate.equalsByContainsToArray(texts)));
+        collection.hasExactTexts = (texts) => utils_1.lambda(`has exact texts ${texts}`, throwIfNotActual(queries_1.query.texts, predicates_1.predicate.equalsByContainsToArray(texts)));
     })(collection = condition.collection || (condition.collection = {}));
     let browser;
     (function (browser) {
         browser.hasUrlContaining = (partialUrl) => // todo: do we need string | number
-         helpers_1.lambda(`has url containing ${partialUrl}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.includes(partialUrl)));
-        browser.hasUrl = (url) => helpers_1.lambda(`has url ${url}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.equals(url)));
-        browser.hasTabsNumber = (num) => helpers_1.lambda(`has tabs number ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.equals(num)));
-        browser.hasTabsNumberMoreThan = (num) => helpers_1.lambda(`has tabs number more than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isMoreThan(num)));
-        browser.hasTabsNumberLessThan = (num) => helpers_1.lambda(`has tabs number less than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isLessThan(num)));
+         utils_1.lambda(`has url containing ${partialUrl}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.includes(partialUrl)));
+        browser.hasUrl = (url) => utils_1.lambda(`has url ${url}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.equals(url)));
+        browser.hasTabsNumber = (num) => utils_1.lambda(`has tabs number ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.equals(num)));
+        browser.hasTabsNumberMoreThan = (num) => utils_1.lambda(`has tabs number more than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isMoreThan(num)));
+        browser.hasTabsNumberLessThan = (num) => utils_1.lambda(`has tabs number less than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isLessThan(num)));
     })(browser = condition.browser || (condition.browser = {}));
 })(condition = exports.condition || (exports.condition = {}));
 //# sourceMappingURL=conditions.js.map

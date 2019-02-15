@@ -22,13 +22,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const be_1 = require("./support/conditions/be");
 const with_1 = require("./support/selectors/with");
-const utils_1 = require("./helpers/utils");
+const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
 const elementActionHooks_1 = require("./refactor/elementActionHooks");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const wait_1 = require("./wait");
-const helpers_1 = require("./helpers");
+const utils_1 = require("./utils");
 class Element {
     // todo: why not have private readonly driver property?
     constructor(locator, configuration) {
@@ -53,7 +53,7 @@ class Element {
     }
     /* Relative search */
     element(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
+        const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
         return new Element(locator, this.configuration);
     }
@@ -77,7 +77,7 @@ class Element {
         return this.all(cssOrXpathOrBy).elementBy(be_1.be.visible);
     }
     all(cssOrXpathOrBy) {
-        const by = utils_1.Utils.toBy(cssOrXpathOrBy);
+        const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
         return new collection_1.Collection(locator, this.configuration);
     }
@@ -144,7 +144,7 @@ class Element {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async click() {
-        await this.wait.command(helpers_1.lambda('click', async (element) => // todo: add describing lambdas to other commands
+        await this.wait.command(utils_1.lambda('click', async (element) => // todo: add describing lambdas to other commands
          element.getWebElement().then(it => it.click())));
         return this;
     }

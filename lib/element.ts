@@ -16,7 +16,7 @@ import { Button, By, Key, WebElement } from 'selenium-webdriver';
 import { ElementCondition } from './conditions';
 import { be } from './support/conditions/be';
 import { With } from './support/selectors/with';
-import { Utils } from './helpers/utils';
+import { Extensions } from './utils/extensions';
 import { AfterElementActionHook } from './refactor/afterElementActionHook';
 import { BeforeElementActionHook } from './refactor/beforeElementActionHook';
 import { Collection } from './collection';
@@ -27,7 +27,7 @@ import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
-import { lambda } from './helpers';
+import { lambda } from './utils';
 import { Assertable } from './entity';
 
 
@@ -71,7 +71,7 @@ export class Element implements SearchContext, Assertable<Element> {
     /* Relative search */
 
     element(cssOrXpathOrBy: string | By): Element { // todo: think on refactoring string | By to a new type
-        const by = Utils.toBy(cssOrXpathOrBy);
+        const by = Extensions.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementLocator(by, this);
         return new Element(locator, this.configuration);
     }
@@ -100,7 +100,7 @@ export class Element implements SearchContext, Assertable<Element> {
     }
 
     all(cssOrXpathOrBy: string | By): Collection {
-        const by = Utils.toBy(cssOrXpathOrBy);
+        const by = Extensions.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementsLocator(by, this);
         return new Collection(locator, this.configuration);
     }

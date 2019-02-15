@@ -14,7 +14,7 @@
 
 import { Builder, By, Capabilities, WebDriver, WebElement } from 'selenium-webdriver';
 import { BrowserCondition } from './conditions';
-import { Utils } from './helpers/utils';
+import { Extensions } from './utils/extensions';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
@@ -76,13 +76,13 @@ export class Browser implements SearchContext, Assertable<Browser> {
     /* Elements */
 
     element(cssOrXpathOrBy: string | By): Element {
-        const by = Utils.toBy(cssOrXpathOrBy);
+        const by = Extensions.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementLocator(by, this);
         return new Element(locator, this.configuration);
     }
 
     all(cssOrXpathOrBy: string | By): Collection {
-        const by = Utils.toBy(cssOrXpathOrBy);
+        const by = Extensions.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementsLocator(by, this);
         return new Collection(locator, this.configuration);
     }

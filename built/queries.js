@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("./helpers");
+const utils_1 = require("./utils");
 /**
  * Raw queries on actual element's webelement
  * 'Raw' means - without any waiting...
@@ -42,30 +42,30 @@ const helpers_1 = require("./helpers");
 var query;
 (function (query) {
     /* Element queries */
-    query.text = helpers_1.lambda('text', async (element) => (await element.getWebElement()).getText());
-    query.someText = helpers_1.lambda('some nonempty visible text', async (element) => {
+    query.text = utils_1.lambda('text', async (element) => (await element.getWebElement()).getText());
+    query.someText = utils_1.lambda('some nonempty visible text', async (element) => {
         const text = await (await element.getWebElement()).getText();
         if (!text) {
             throw new Error('there is no visible nonempty text');
         }
         return text;
     });
-    query.attribute = (name) => helpers_1.lambda(`attribute ${name}`, async (element) => (await element.getWebElement()).getAttribute(name));
+    query.attribute = (name) => utils_1.lambda(`attribute ${name}`, async (element) => (await element.getWebElement()).getAttribute(name));
     query.innerHtml = query.attribute('innerHTML');
     query.outerHtml = query.attribute('outerHTML');
     query.value = query.attribute('value');
     /* Collection queries */
     // todo: do we need a count or number alias for size? or even count instead of size?
-    query.size = helpers_1.lambda('size', async (collection) => (await collection.getWebElements()).length);
-    query.texts = helpers_1.lambda('texts', async (collection) => {
+    query.size = utils_1.lambda('size', async (collection) => (await collection.getWebElements()).length);
+    query.texts = utils_1.lambda('texts', async (collection) => {
         const webelements = await collection.getWebElements();
         return Promise.all(webelements.map(webElement => webElement.getText()));
     });
     /* Browser queries */
-    query.url = helpers_1.lambda('url', async (browser) => browser.driver.getCurrentUrl());
-    query.title = helpers_1.lambda('title', async (browser) => browser.driver.getTitle());
-    query.tabs = helpers_1.lambda('tabs (all window handles)', async (browser) => browser.driver.getAllWindowHandles());
-    query.tabsNumber = helpers_1.lambda('tabs number', async (browser) => (await browser.driver.getAllWindowHandles()).length);
-    query.pageSource = helpers_1.lambda('page source', async (browser) => browser.driver.getPageSource());
+    query.url = utils_1.lambda('url', async (browser) => browser.driver.getCurrentUrl());
+    query.title = utils_1.lambda('title', async (browser) => browser.driver.getTitle());
+    query.tabs = utils_1.lambda('tabs (all window handles)', async (browser) => browser.driver.getAllWindowHandles());
+    query.tabsNumber = utils_1.lambda('tabs number', async (browser) => (await browser.driver.getAllWindowHandles()).length);
+    query.pageSource = utils_1.lambda('page source', async (browser) => browser.driver.getPageSource());
 })(query = exports.query || (exports.query = {}));
 //# sourceMappingURL=queries.js.map

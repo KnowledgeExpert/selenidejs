@@ -18,8 +18,9 @@ import { Browser } from '../browser';
 import { With } from '../support/selectors/with';
 
 
-export namespace Utils {
+export namespace Extensions {
 
+    // todo: Why not to move it Browser
     export async function savePageSource(browser: Browser, filePath: string): Promise<string> {
         const pageTitle = await browser.driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');

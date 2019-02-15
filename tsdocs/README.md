@@ -6,7 +6,7 @@
 ### Modules
 
 * [Condition](modules/condition.md)
-* [Utils](modules/utils.md)
+* [Extensions](modules/extensions.md)
 * [With](modules/with.md)
 * [be](modules/be.md)
 * [condition](modules/condition.md)
@@ -232,7 +232,7 @@ ___
 
 ▸ **lambda**<`F`>(toString: *`string`*, fn: *`F`*): `F`
 
-*Defined in [helpers/index.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/index.ts#L17)*
+*Defined in [utils/index.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/index.ts#L17)*
 
 **Type parameters:**
 
@@ -310,7 +310,7 @@ ___
 
 ▸ **toString**<`O`>(obj: *`O`*): `string`
 
-*Defined in [helpers/index.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/index.ts#L22)*
+*Defined in [utils/index.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/index.ts#L22)*
 
 **Type parameters:**
 

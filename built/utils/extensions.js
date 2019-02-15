@@ -15,8 +15,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs-extra");
 const with_1 = require("../support/selectors/with");
-var Utils;
-(function (Utils) {
+var Extensions;
+(function (Extensions) {
+    // todo: Why not to move it Browser
     async function savePageSource(browser, filePath) {
         const pageTitle = await browser.driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
@@ -26,7 +27,7 @@ var Utils;
         fs.outputFileSync(completeFilePath, pageSource);
         return completeFilePath;
     }
-    Utils.savePageSource = savePageSource;
+    Extensions.savePageSource = savePageSource;
     async function saveScreenshot(browser, filePath) {
         const pageTitle = await browser.driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
@@ -36,12 +37,12 @@ var Utils;
         fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
     }
-    Utils.saveScreenshot = saveScreenshot;
+    Extensions.saveScreenshot = saveScreenshot;
     function toBy(cssOrXpathOrBy) {
         return (typeof cssOrXpathOrBy === 'string')
             ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
-    Utils.toBy = toBy;
-})(Utils = exports.Utils || (exports.Utils = {}));
-//# sourceMappingURL=utils.js.map
+    Extensions.toBy = toBy;
+})(Extensions = exports.Extensions || (exports.Extensions = {}));
+//# sourceMappingURL=extensions.js.map

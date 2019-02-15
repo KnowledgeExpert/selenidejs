@@ -16,7 +16,7 @@ import { Query } from './wait';
 import { Element } from './element';
 import { Collection } from './collection';
 import { Browser } from './browser';
-import { lambda } from './helpers';
+import { lambda } from './utils';
 
 export type ElementQuery<R> = Query<Element, R>; // todo: do we need it? o_O
 

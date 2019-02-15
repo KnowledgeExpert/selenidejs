@@ -1,14 +1,14 @@
-[selenidejs](../README.md) > [Utils](../modules/utils.md)
+[selenidejs](../README.md) > [Extensions](../modules/extensions.md)
 
-# Module: Utils
+# Module: Extensions
 
 ## Index
 
 ### Functions
 
-* [savePageSource](utils.md#savepagesource)
-* [saveScreenshot](utils.md#savescreenshot)
-* [toBy](utils.md#toby)
+* [savePageSource](extensions.md#savepagesource)
+* [saveScreenshot](extensions.md#savescreenshot)
+* [toBy](extensions.md#toby)
 
 ---
 
@@ -20,7 +20,7 @@
 
 ▸ **savePageSource**(browser: *[Browser](../classes/browser.md)*, filePath: *`string`*): `Promise`<`string`>
 
-*Defined in [helpers/utils.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/utils.ts#L23)*
+*Defined in [utils/extensions.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L24)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 ▸ **saveScreenshot**(browser: *[Browser](../classes/browser.md)*, filePath: *`string`*): `Promise`<`string`>
 
-*Defined in [helpers/utils.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/utils.ts#L33)*
+*Defined in [utils/extensions.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L34)*
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **toBy**(cssOrXpathOrBy: * `string` &#124; `By`*): `By`
 
-*Defined in [helpers/utils.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/utils.ts#L43)*
+*Defined in [utils/extensions.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L44)*
 
 **Parameters:**
 

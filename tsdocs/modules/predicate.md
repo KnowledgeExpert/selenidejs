@@ -29,7 +29,7 @@
 
 **● equalsByContainsToArray**: *`(Anonymous function)`* =  arrayCompareBy(includes)
 
-*Defined in [helpers/predicates.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L29)*
+*Defined in [utils/predicates.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L29)*
 
 ___
 <a id="equalstoarray"></a>
@@ -38,7 +38,7 @@ ___
 
 **● equalsToArray**: *`(Anonymous function)`* =  arrayCompareBy(equals)
 
-*Defined in [helpers/predicates.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L28)*
+*Defined in [utils/predicates.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L28)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **arrayCompareBy**(f: *`any`*): `(Anonymous function)`
 
-*Defined in [helpers/predicates.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L24)*
+*Defined in [utils/predicates.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L24)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **equals**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [helpers/predicates.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L18)*
+*Defined in [utils/predicates.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L18)*
 
 **Type parameters:**
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **includes**(expected: *`any`*): `(Anonymous function)`
 
-*Defined in [helpers/predicates.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L21)*
+*Defined in [utils/predicates.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L21)*
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **includesWord**(expected: *`string`*): `(Anonymous function)`
 
-*Defined in [helpers/predicates.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L22)*
+*Defined in [utils/predicates.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L22)*
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **isLessThan**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [helpers/predicates.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L20)*
+*Defined in [utils/predicates.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L20)*
 
 **Type parameters:**
 
@@ -141,7 +141,7 @@ ___
 
 ▸ **isMoreThan**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [helpers/predicates.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L19)*
+*Defined in [utils/predicates.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L19)*
 
 **Type parameters:**
 
@@ -161,7 +161,7 @@ ___
 
 ▸ **isTruthy**<`V`>(actual: *`V`*): `boolean`
 
-*Defined in [helpers/predicates.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/helpers/predicates.ts#L17)*
+*Defined in [utils/predicates.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L17)*
 
 **Type parameters:**
 
