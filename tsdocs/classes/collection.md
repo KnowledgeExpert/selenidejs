@@ -4,11 +4,16 @@
 
 ## Hierarchy
 
-**Collection**
+ [Entity](entity.md)
+
+**↳ Collection**
 
 ## Implements
 
-* [Assertable](../interfaces/assertable.md)<[Collection](collection.md)>
+* [Assertable](../interfaces/assertable.md)
+* [Matchable](../interfaces/matchable.md)
+* [Assertable](../interfaces/assertable.md)
+* [Matchable](../interfaces/matchable.md)
 
 ## Index
 
@@ -24,6 +29,7 @@
 
 ### Methods
 
+* [configuredWith](collection.md#configuredwith)
 * [elementAt](collection.md#elementat)
 * [elementBy](collection.md#elementby)
 * [filteredBy](collection.md#filteredby)
@@ -31,8 +37,9 @@
 * [get](collection.md#get)
 * [getAsCashedArray](collection.md#getascashedarray)
 * [getWebElements](collection.md#getwebelements)
-* [matches](collection.md#matches)
-* [matchesNot](collection.md#matchesnot)
+* [matching](collection.md#matching)
+* [matchingNot](collection.md#matchingnot)
+* [perform](collection.md#perform)
 * [should](collection.md#should)
 * [shouldNot](collection.md#shouldnot)
 * [toString](collection.md#tostring)
@@ -49,7 +56,9 @@
 
 ⊕ **new Collection**(locator: *[Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>*, configuration: *[Configuration](configuration.md)*): [Collection](collection.md)
 
-*Defined in [collection.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L28)*
+*Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
+
+*Defined in [collection.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L26)*
 
 **Parameters:**
 
@@ -84,23 +93,42 @@ ___
 ___
 <a id="wait"></a>
 
-### `<Private>` wait
+### `<Protected>` wait
 
-**● wait**: *[Wait](wait.md)<[Collection](collection.md)>*
+**● wait**: *[Wait](wait.md)<`this`>*
 
-*Defined in [collection.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L28)*
+*Inherited from [Entity](entity.md).[wait](entity.md#wait)*
+
+*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 ___
 
 ## Methods
 
+<a id="configuredwith"></a>
+
+###  configuredWith
+
+▸ **configuredWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
+
+*Defined in [collection.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L38)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| custom | `Partial`<[Configuration](configuration.md)> |
+
+**Returns:** [Collection](collection.md)
+
+___
 <a id="elementat"></a>
 
 ###  elementAt
 
 ▸ **elementAt**(index: *`number`*): [Element](element.md)
 
-*Defined in [collection.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L76)*
+*Defined in [collection.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L50)*
 
 **Parameters:**
 
@@ -115,15 +143,15 @@ ___
 
 ###  elementBy
 
-▸ **elementBy**(condition: *[ElementCondition](../#elementcondition)*): [Element](element.md)
+▸ **elementBy**(...conditions: *[ElementCondition](../#elementcondition)[]*): [Element](element.md)
 
-*Defined in [collection.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L97)*
+*Defined in [collection.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L77)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [ElementCondition](../#elementcondition) |
+| `Rest` conditions | [ElementCondition](../#elementcondition)[] |
 
 **Returns:** [Element](element.md)
 
@@ -132,15 +160,15 @@ ___
 
 ###  filteredBy
 
-▸ **filteredBy**(condition: *[ElementCondition](../#elementcondition)*): [Collection](collection.md)
+▸ **filteredBy**(...conditions: *[ElementCondition](../#elementcondition)[]*): [Collection](collection.md)
 
-*Defined in [collection.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L93)*
+*Defined in [collection.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L67)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [ElementCondition](../#elementcondition) |
+| `Rest` conditions | [ElementCondition](../#elementcondition)[] |
 
 **Returns:** [Collection](collection.md)
 
@@ -151,7 +179,7 @@ ___
 
 ▸ **first**(): [Element](element.md)
 
-*Defined in [collection.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L89)*
+*Defined in [collection.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L63)*
 
 **Returns:** [Element](element.md)
 
@@ -160,19 +188,20 @@ ___
 
 ###  get
 
-▸ **get**<`R`>(query: *[Query](../#query)<[Collection](collection.md), `R`>*, timeout?: *`number`*): `Promise`<`R`>
+▸ **get**<`R`>(query: *[Query](../#query)<`this`, `R`>*): `Promise`<`R`>
 
-*Defined in [collection.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L102)*
+*Inherited from [Entity](entity.md).[get](entity.md#get)*
+
+*Defined in [entity.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L119)*
 
 **Type parameters:**
 
 #### R 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| query | [Query](../#query)<[Collection](collection.md), `R`> | - |
-| `Default value` timeout | `number` |  this.configuration.timeout |
+| Param | Type |
+| ------ | ------ |
+| query | [Query](../#query)<`this`, `R`> |
 
 **Returns:** `Promise`<`R`>
 
@@ -183,7 +212,7 @@ ___
 
 ▸ **getAsCashedArray**(): `Promise`<[Element](element.md)[]>
 
-*Defined in [collection.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L38)*
+*Defined in [collection.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L43)*
 
 **Returns:** `Promise`<[Element](element.md)[]>
 
@@ -194,83 +223,104 @@ ___
 
 ▸ **getWebElements**(): `Promise`<`WebElement`[]>
 
-*Defined in [collection.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L106)*
+*Defined in [collection.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L88)*
 
 **Returns:** `Promise`<`WebElement`[]>
 
 ___
-<a id="matches"></a>
+<a id="matching"></a>
 
-###  matches
+###  matching
 
-▸ **matches**(condition: *[CollectionCondition](../#collectioncondition)*): `Promise`<`boolean`>
+▸ **matching**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [collection.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L66)*
+*Inherited from [Entity](entity.md).[matching](entity.md#matching)*
+
+*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [CollectionCondition](../#collectioncondition) |
+| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 
 ___
-<a id="matchesnot"></a>
+<a id="matchingnot"></a>
 
-###  matchesNot
+###  matchingNot
 
-▸ **matchesNot**(condition: *[CollectionCondition](../#collectioncondition)*): `Promise`<`boolean`>
+▸ **matchingNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [collection.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L70)*
+*Inherited from [Entity](entity.md).[matchingNot](entity.md#matchingnot)*
+
+*Defined in [entity.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L105)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [CollectionCondition](../#collectioncondition) |
+| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
+
+___
+<a id="perform"></a>
+
+###  perform
+
+▸ **perform**(command: *[Command](../#command)<`this`>*): `Promise`<`this`>
+
+*Inherited from [Entity](entity.md).[perform](entity.md#perform)*
+
+*Defined in [entity.ts:112](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L112)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| command | [Command](../#command)<`this`> |
+
+**Returns:** `Promise`<`this`>
 
 ___
 <a id="should"></a>
 
 ###  should
 
-▸ **should**(condition: *[CollectionCondition](../#collectioncondition)*, timeout?: *`number`*): `Promise`<[Collection](collection.md)>
+▸ **should**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
 
-*Implementation of [Assertable](../interfaces/assertable.md).[should](../interfaces/assertable.md#should)*
+*Inherited from [Entity](entity.md).[should](entity.md#should)*
 
-*Defined in [collection.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L47)*
+*Defined in [entity.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L76)*
 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| condition | [CollectionCondition](../#collectioncondition) | - |
-| `Default value` timeout | `number` |  this.configuration.timeout |
+| Param | Type |
+| ------ | ------ |
+| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
-**Returns:** `Promise`<[Collection](collection.md)>
+**Returns:** `Promise`<`this`>
 
 ___
 <a id="shouldnot"></a>
 
 ###  shouldNot
 
-▸ **shouldNot**(condition: *[CollectionCondition](../#collectioncondition)*, timeout?: *`number`*): `Promise`<[Collection](collection.md)>
+▸ **shouldNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
 
-*Implementation of [Assertable](../interfaces/assertable.md).[shouldNot](../interfaces/assertable.md#shouldnot)*
+*Inherited from [Entity](entity.md).[shouldNot](entity.md#shouldnot)*
 
-*Defined in [collection.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L52)*
+*Defined in [entity.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L81)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [CollectionCondition](../#collectioncondition) |
-| `Optional` timeout | `number` |
+| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
-**Returns:** `Promise`<[Collection](collection.md)>
+**Returns:** `Promise`<`this`>
 
 ___
 <a id="tostring"></a>
@@ -279,7 +329,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [collection.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L110)*
+*Defined in [collection.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L92)*
 
 **Returns:** `string`
 
@@ -288,16 +338,19 @@ ___
 
 ###  waitUntil
 
-▸ **waitUntil**(condition: *[CollectionCondition](../#collectioncondition)*, timeout?: *`number`*): `Promise`<`boolean`>
+▸ **waitUntil**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [collection.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L57)*
+*Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
+
+*Inherited from [Entity](entity.md).[waitUntil](entity.md#waituntil)*
+
+*Defined in [entity.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L88)*
 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| condition | [CollectionCondition](../#collectioncondition) | - |
-| `Default value` timeout | `number` |  this.configuration.timeout |
+| Param | Type |
+| ------ | ------ |
+| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 
@@ -306,16 +359,19 @@ ___
 
 ###  waitUntilNot
 
-▸ **waitUntilNot**(condition: *[CollectionCondition](../#collectioncondition)*, timeout?: *`number`*): `Promise`<`boolean`>
+▸ **waitUntilNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [collection.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L61)*
+*Implementation of [Matchable](../interfaces/matchable.md).[waitUntilNot](../interfaces/matchable.md#waituntilnot)*
+
+*Inherited from [Entity](entity.md).[waitUntilNot](entity.md#waituntilnot)*
+
+*Defined in [entity.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L92)*
 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| condition | [CollectionCondition](../#collectioncondition) | - |
-| `Default value` timeout | `number` |  this.configuration.timeout |
+| Param | Type |
+| ------ | ------ |
+| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 

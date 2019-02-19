@@ -47,14 +47,14 @@ var perform;
     /* Browser commands */
     perform.open = (url) => (browser) => browser.open(url);
     perform.resizeWindow = (width, height) => (browser) => browser.resizeWindow(width, height);
-    perform.screenshot = () => (browser) => browser.screenshot();
-    perform.closeCurrentTab = () => (browser) => browser.closeCurrentTab();
-    perform.quit = () => (browser) => browser.quit();
-    perform.nextTab = () => (browser) => browser.nextTab();
-    perform.previousTab = () => (browser) => browser.previousTab();
+    perform.screenshot = (browser) => browser.screenshot();
+    perform.closeCurrentTab = (browser) => browser.closeCurrentTab();
+    perform.quit = (browser) => browser.quit();
+    perform.nextTab = (browser) => browser.nextTab();
+    perform.previousTab = (browser) => browser.previousTab();
     perform.switchToFrame = (frameElement) => (browser) => browser.switchToFrame(frameElement);
-    perform.switchToDefaultFrame = () => (browser) => browser.switchToDefaultFrame();
-    perform.clearCacheAndCookies = () => (browser) => browser.clearCacheAndCookies();
+    perform.switchToDefaultFrame = (browser) => browser.switchToDefaultFrame();
+    perform.clearCacheAndCookies = (browser) => browser.clearCacheAndCookies();
     /* tslint:disable:ban-types */
     perform.executeScript = (script, ...args) => (browser) => browser.executeScript(script, ...args);
     /* tslint:enable:ban-types */

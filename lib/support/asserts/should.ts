@@ -17,9 +17,9 @@ import { Assertable } from '../../entity';
 
 export namespace should {
 
-    export const match = <T>(condition: Condition<T>) =>
-        (entity: Assertable<T>) => entity.should(condition);
+    export const match = <T extends Assertable>(condition: Condition<T>) =>
+        (entity: T) => entity.should(condition);
 
-    export const notMatch = <T>(condition: Condition<T>) =>
-        (entity: Assertable<T>) => entity.shouldNot(condition);
+    export const notMatch = <T extends Assertable>(condition: Condition<T>) =>
+        (entity: T) => entity.shouldNot(condition);
 }

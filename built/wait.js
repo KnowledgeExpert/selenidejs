@@ -16,6 +16,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const timeoutError_1 = require("./errors/timeoutError");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
 const utils_1 = require("./utils");
+/*
+ * todo: do we need Condition as class? so we can do have.text('foo').or(have.value('foo'))?
+ * or is Condition.or(have.text('foo'), have.value('foo')) enough?
+ */
 var Condition;
 (function (Condition) {
     /**
@@ -74,13 +78,41 @@ var Condition;
      * @type {<F>(toString: string, fn: F) => F}
      */
     Condition.named = utils_1.lambda; // todo: consider renaming to Condition.as ...
+    // todo: consider renaming to Condition.fromAll ...
     /**
-     * Transforms Condition (returning (void | throws Error))
+     * Transforms conditions array provided as varargs to condition by applying Condition.and
+     * @param {Array<Condition<T>>} conditions
+     * @returns {Condition<T>}
+     */
+    Condition.all = (...conditions) => {
+        if (conditions.length === 0) {
+            throw new Error('at least one condition should be provided as argument to Condition.all');
+        }
+        return conditions.length > 1 ?
+            Condition.and(...conditions) :
+            conditions[0];
+    };
+    /**
+     * Transforms conditions array provided as varargs to condition by applying Condition.and
+     * @param {Array<Condition<T>>} conditions
+     * @returns {Condition<T>}
+     */
+    Condition.allNot = (...conditions) => {
+        if (conditions.length === 0) {
+            throw new Error('at least one condition should be provided as argument to Condition.all');
+        }
+        const negated = conditions.map(c => Condition.not(c));
+        return conditions.length > 1 ?
+            Condition.and(...negated) :
+            negated[0];
+    };
+    /**
+     * Transforms Conditions (returning (void | throws Error)), combined by AND if more than one,
      * to async Predicate   (returning (true | false))
-     * @param {Condition<T>} condition
+     * @param {Array<Condition<T>>} conditions
      * @returns {(entity: T) => Promise<boolean>}
      */
-    Condition.asPredicate = (condition) => (entity) => condition(entity).then(res => true, err => false);
+    Condition.asPredicate = (...conditions) => (entity) => Condition.all(...conditions)(entity).then(res => true, err => false);
 })(Condition = exports.Condition || (exports.Condition = {}));
 class Wait {
     constructor(entity, timeout, onFailureHooks) {
@@ -91,14 +123,18 @@ class Wait {
         this.timeout = timeout;
         this.onFailureHooks = onFailureHooks;
     }
-    async until(fn, timeout = this.timeout) {
-        return this.query(fn, timeout).then(res => true, err => false);
+    async until(...conditions) {
+        return this.query(Condition.all(...conditions)).then(res => true, err => false);
     }
-    async command(fn, timeout = this.timeout) {
-        await this.query(fn, timeout);
+    async untilNot(...conditions) {
+        return this.query(Condition.allNot(...conditions)).then(res => true, err => false);
     }
-    async query(fn, timeout = this.timeout) {
-        const finishTime = new Date().getTime() + timeout;
+    // todo: consider accepting ...fn: Array<Command<T>>
+    async command(fn) {
+        await this.query(fn);
+    }
+    async query(fn) {
+        const finishTime = new Date().getTime() + this.timeout;
         while (true) {
             try {
                 return await fn(this.entity);
@@ -107,7 +143,7 @@ class Wait {
                 if (new Date().getTime() > finishTime) {
                     throw new timeoutError_1.TimeoutError(// todo: should we move this error formatting to the Error class definition?
                     '\n' +
-                        `\tTimed out after ${timeout}ms, while waiting for:\n` +
+                        `\tTimed out after ${this.timeout}ms, while waiting for:\n` +
                         `\t${this.entity.toString()}.${fn.toString()}\n` + // todo: if string has trailing
                         // and leading spaces it will not be readable
                         'Reason:\n' +

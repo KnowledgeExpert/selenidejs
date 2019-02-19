@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { browser, GIVEN, data, webelement } from './base';
-import { be } from '../../lib';
+import { be, have, perform, should } from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver

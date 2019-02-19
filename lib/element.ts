@@ -28,26 +28,21 @@ import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
 import { lambda } from './utils';
-import { Assertable } from './entity';
+import { Assertable, Entity, Matchable } from './entity';
 
 
-export class Element implements SearchContext, Assertable<Element> {
+export class Element  extends Entity implements SearchContext, Assertable, Matchable {
 
     static beforeActionHooks: BeforeElementActionHook[] = []; // todo: should we move it to Configuration?
     static afterActionHooks: AfterElementActionHook[] = []; // we should...
 
-    private readonly wait: Wait<Element>;
     // todo: why not have private readonly driver property?
 
     constructor(private readonly locator: Locator<Promise<WebElement>>,
                 private readonly configuration: Configuration) {
+        super(configuration.timeout, configuration.onFailureHooks);
         this.locator = locator;
         this.configuration = configuration;
-        this.wait = new Wait(
-            this,
-            this.configuration.timeout,
-            this.configuration.onFailureHooks
-        );
     }
 
     toString(): string {
@@ -69,6 +64,10 @@ export class Element implements SearchContext, Assertable<Element> {
     }
 
     /* Relative search */
+
+    configuredWith(custom: Partial<Configuration>): Element {
+        return new Element(this.locator, new Configuration({ ...this.configuration, ...custom }));
+    }
 
     element(cssOrXpathOrBy: string | By): Element { // todo: think on refactoring string | By to a new type
         const by = Extensions.toBy(cssOrXpathOrBy);
@@ -104,75 +103,8 @@ export class Element implements SearchContext, Assertable<Element> {
         const locator = new ByWebElementsLocator(by, this);
         return new Collection(locator, this.configuration);
     }
-    
-    /* With Conditions
-     *
-     *  Where:
-     *  - should = wait for condition and on success return this for "fluent" style else fail
-     *    - just problem is that fluent style in async js is not relevant much :D
-     *  - matches = apply condition (without waiting) and return its result (true or false)
-     *  - waitUntil = wait for condition and on success return true else false (i.e. = waitingMatch)
-     *  TODO:
-     *    - do we need a version that on success returns true else fails?
-     *      - should we just make "waitUntil" = "waiting match"?
-     *        i.e. not fail on notMatched after timeout but return false
-     *        - yet, on the level of Wait it's seems natural to have both:
-     *          wait.until, wait.match
-     *          - but maybe not:) maybe wait.* should fail on false... but maybe not:) depends)
-     */
-
-    async should(condition: ElementCondition, timeout: number = this.configuration.timeout): Promise<Element> {
-        await this.wait.query(condition, timeout);
-        return this;
-    }
-
-    /*
-     * todo: consider assert or shouldMatch aliases for should
-     * should is good for
-     *   should(be.visible) style
-     * but assert or shouldMatch is good for the "raw" condition case:
-     *   assert(condition.element.isVisible)
-     *   shouldMatch(condition.element.isVisible)
-     * maybe someone will find this style better than be.* and have.*
-     * the advantage is in having only one entry point to all conditions - condition.*
-     * where it has conditions sorted by type - element, collection, browser -
-     * so it might be easier to find the needed one...
-     * while be.* and have.* are kind of bulk of mixed type conditions - all in one heap,
-     * even two mixed heaps:)));
-     */
-
-    async shouldNot(condition: ElementCondition, timeout?: number): Promise<Element> {
-        await this.should(Condition.not(condition), timeout);
-        return this;
-    }
-
-    async waitUntil(condition: ElementCondition, timeout: number = this.configuration.timeout): Promise<boolean> {
-        return this.wait.until(condition, timeout);
-    }
-
-    async waitUntilNot(condition: ElementCondition, timeout: number = this.configuration.timeout): Promise<boolean> {
-        return this.waitUntil(Condition.not(condition), timeout);
-    }
-
-    /*
-     * todo: problem with this is we originally have Promise<true | false>, then make it Promise<true | throws Error>,
-     * and then again Promise<true | false>
-     */
-    async matches(condition: ElementCondition): Promise<boolean> {
-        return Condition.asPredicate(condition)(this);
-    }
-
-    async matchesNot(condition: ElementCondition): Promise<boolean> {
-        return this.matches(Condition.not(condition));
-    }
 
     /* Commands */
-
-    @ElementActionHooks  // todo: cover with tests
-    async perform(command: Command<Element>, timeout: number = this.configuration.timeout): Promise<Element> {
-        await this.wait.command(command, timeout);
-        return this;
-    }
 
     @ElementActionHooks
     // todo: do we need to wrap it into this.wait. ?
@@ -281,12 +213,6 @@ export class Element implements SearchContext, Assertable<Element> {
             element.executeScript('arguments[0].scrollIntoView(true);')  // todo: is ensuring visibility covered here?
         );
         return this;
-    }
-
-    /* Queries */ // todo: do we need @ElementQueryHooks?
-
-    async get<R>(query: Query<Element, R>, timeout: number = this.configuration.timeout): Promise<R> {
-        return this.wait.query(query, timeout);
     }
 
 }

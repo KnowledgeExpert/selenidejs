@@ -1,43 +1,33 @@
 /// <reference types="node" />
 import { By, WebDriver, WebElement } from 'selenium-webdriver';
-import { BrowserCondition } from './conditions';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { SearchContext } from './searchContext';
-import { Command, Query } from './wait';
-import { Assertable } from './entity';
-export declare class Browser implements SearchContext, Assertable<Browser> {
+import { Assertable, Entity, Matchable } from './entity';
+export declare class Browser extends Entity implements SearchContext, Assertable, Matchable {
     static configuredWith(): Customized<Browser>;
     static drivedBy(driver: WebDriver): Customized<Browser>;
     static chromeWith(): Customized<Browser>;
     static chrome(): Browser;
     readonly configuration: Configuration;
-    private readonly wait;
     constructor(configuration?: Partial<Configuration>);
+    with(custom: Partial<Configuration>): Browser;
     readonly driver: WebDriver;
     toString(): string;
     findWebElement(by: By): Promise<WebElement>;
     findWebElements(by: By): Promise<WebElement[]>;
-    element(cssOrXpathOrBy: string | By): Element;
-    all(cssOrXpathOrBy: string | By): Collection;
-    should(condition: BrowserCondition, timeout?: number): Promise<Browser>;
-    shouldNot(condition: BrowserCondition, timeout?: number): Promise<Browser>;
-    waitUntil(condition: BrowserCondition, timeout?: number): Promise<boolean>;
-    waitUntilNot(condition: BrowserCondition, timeout?: number): Promise<boolean>;
-    matches(condition: BrowserCondition): Promise<boolean>;
-    matchesNot(condition: BrowserCondition): Promise<boolean>;
-    perform(command: Command<Browser>, timeout?: number): Promise<Browser>;
+    element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element;
+    all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection;
     executeScript(script: string | Function, ...args: any[]): Promise<{}>;
-    open(url: string): Promise<void>;
-    resizeWindow(width: number, height: number): Promise<void>;
+    open(url: string): Promise<Browser>;
+    resizeWindow(width: number, height: number): Promise<Browser>;
     screenshot(): Promise<Buffer>;
-    closeCurrentTab(): Promise<void>;
+    closeCurrentTab(): Promise<Browser>;
     quit(): Promise<void>;
-    nextTab(): Promise<void>;
-    previousTab(): Promise<void>;
-    switchToFrame(frameElement: Element): Promise<void>;
-    switchToDefaultFrame(): Promise<void>;
-    clearCacheAndCookies(): Promise<void>;
-    get<R>(query: Query<Browser, R>, timeout?: number): Promise<R>;
+    nextTab(): Promise<Browser>;
+    previousTab(): Promise<Browser>;
+    switchToFrame(frameElement: Element): Promise<Browser>;
+    switchToDefaultFrame(): Promise<Browser>;
+    clearCacheAndCookies(): Promise<Browser>;
 }

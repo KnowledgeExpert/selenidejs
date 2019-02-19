@@ -33,7 +33,7 @@ describe('Element.matches as condition based "predicate"', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
 
-        expect(await browser.element('button').matches(be.visible)).toBe(false);
+        expect(await browser.element('button').matching(be.visible)).toBe(false);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
     });
@@ -46,7 +46,7 @@ describe('Element.matches as condition based "predicate"', () => {
             data.timeouts.smallerThanDefault
         );
 
-        expect(await browser.element('button').matches(be.visible)).toBe(false);
+        expect(await browser.element('button').matching(be.visible)).toBe(false);
         try {
             await webelement('button');
             // ifNoError
@@ -69,7 +69,7 @@ describe('Element.matches as condition based "predicate"', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 
-        expect(await browser.element('button').matches(be.visible)).toBe(true);
+        expect(await browser.element('button').matching(be.visible)).toBe(true);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
     });

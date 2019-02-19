@@ -42,6 +42,10 @@ export type Command<T> = Query<T, void>;
  */
 export type Condition<T> = Query<T, void>;
 
+/*
+ * todo: do we need Condition as class? so we can do have.text('foo').or(have.value('foo'))?
+ * or is Condition.or(have.text('foo'), have.value('foo')) enough?
+ */
 export namespace Condition {
     /**
      * Negates condition. Making the negated condition to:
@@ -104,14 +108,47 @@ export namespace Condition {
      */
     export const named = lambda;  // todo: consider renaming to Condition.as ...
 
+    // todo: consider renaming to Condition.fromAll ...
     /**
-     * Transforms Condition (returning (void | throws Error))
+     * Transforms conditions array provided as varargs to condition by applying Condition.and
+     * @param {Array<Condition<T>>} conditions
+     * @returns {Condition<T>}
+     */
+    export const all = <T>(...conditions: Array<Condition<T>>): Condition<T> => {
+        if (conditions.length === 0) {
+            throw new Error('at least one condition should be provided as argument to Condition.all');
+        }
+
+        return conditions.length > 1 ?
+            Condition.and(...conditions) :
+            conditions[0];
+    };
+
+    /**
+     * Transforms conditions array provided as varargs to condition by applying Condition.and
+     * @param {Array<Condition<T>>} conditions
+     * @returns {Condition<T>}
+     */
+    export const allNot = <T>(...conditions: Array<Condition<T>>): Condition<T> => {
+        if (conditions.length === 0) {
+            throw new Error('at least one condition should be provided as argument to Condition.all');
+        }
+        const negated = conditions.map(c => Condition.not(c));
+
+        return conditions.length > 1 ?
+            Condition.and(...negated) :
+            negated[0];
+    };
+
+    /**
+     * Transforms Conditions (returning (void | throws Error)), combined by AND if more than one,
      * to async Predicate   (returning (true | false))
-     * @param {Condition<T>} condition
+     * @param {Array<Condition<T>>} conditions
      * @returns {(entity: T) => Promise<boolean>}
      */
-    export const asPredicate = <T>(condition: Condition<T>) =>
-        (entity: T): Promise<boolean> => condition(entity).then(res => true, err => false);
+    export const asPredicate = <T>(...conditions: Array<Condition<T>>) =>
+        (entity: T): Promise<boolean> =>
+            Condition.all(...conditions)(entity).then(res => true, err => false);
 }
 
 export class Wait<T> {
@@ -124,16 +161,21 @@ export class Wait<T> {
         this.onFailureHooks = onFailureHooks;
     }
 
-    async until(fn: Condition<T>, timeout: number = this.timeout): Promise<boolean> {
-        return this.query(fn, timeout).then(res => true, err => false);
+    async until(...conditions: Array<Condition<T>>): Promise<boolean> {
+        return this.query(Condition.all(...conditions)).then(res => true, err => false);
     }
 
-    async command(fn: Command<T>, timeout: number = this.timeout) {
-        await this.query(fn, timeout);
+    async untilNot(...conditions: Array<Condition<T>>): Promise<boolean> {
+        return this.query(Condition.allNot(...conditions)).then(res => true, err => false);
     }
 
-    async query<R>(fn: Query<T, R>, timeout: number = this.timeout): Promise<R> {
-        const finishTime = new Date().getTime() + timeout;
+    // todo: consider accepting ...fn: Array<Command<T>>
+    async command(fn: Command<T>): Promise<void> {
+        await this.query(fn);
+    }
+
+    async query<R>(fn: Query<T, R>): Promise<R> {
+        const finishTime = new Date().getTime() + this.timeout;
 
         while (true) {
             try {
@@ -142,7 +184,7 @@ export class Wait<T> {
                 if (new Date().getTime() > finishTime) {
                     throw new TimeoutError(// todo: should we move this error formatting to the Error class definition?
                         '\n' +
-                        `\tTimed out after ${timeout}ms, while waiting for:\n` +
+                        `\tTimed out after ${this.timeout}ms, while waiting for:\n` +
                         `\t${this.entity.toString()}.${fn.toString()}\n` + // todo: if string has trailing
                                                                            // and leading spaces it will not be readable
                         'Reason:\n' +

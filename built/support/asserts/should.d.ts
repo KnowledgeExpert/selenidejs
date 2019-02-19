@@ -1,5 +1,5 @@
 import { Assertable } from '../../entity';
 export declare namespace should {
-    const match: <T>(condition: import("../../wait").Query<T, void>) => (entity: Assertable<T>) => Promise<T>;
-    const notMatch: <T>(condition: import("../../wait").Query<T, void>) => (entity: Assertable<T>) => Promise<T>;
+    const match: <T extends Assertable>(condition: import("../../wait").Query<T, void>) => (entity: T) => Promise<T>;
+    const notMatch: <T extends Assertable>(condition: import("../../wait").Query<T, void>) => (entity: T) => Promise<T>;
 }

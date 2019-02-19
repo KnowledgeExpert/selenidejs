@@ -38,11 +38,17 @@
 
 ### `<Const>` clearCacheAndCookies
 
-▸ **clearCacheAndCookies**(): `(Anonymous function)`
+▸ **clearCacheAndCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
 *Defined in [support/commands/perform.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L71)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="click"></a>
@@ -84,11 +90,17 @@ ___
 
 ### `<Const>` closeCurrentTab
 
-▸ **closeCurrentTab**(): `(Anonymous function)`
+▸ **closeCurrentTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
 *Defined in [support/commands/perform.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L64)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="contextclick"></a>
@@ -164,11 +176,17 @@ ___
 
 ### `<Const>` nextTab
 
-▸ **nextTab**(): `(Anonymous function)`
+▸ **nextTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
 *Defined in [support/commands/perform.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L66)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="open"></a>
@@ -243,22 +261,34 @@ ___
 
 ### `<Const>` previousTab
 
-▸ **previousTab**(): `(Anonymous function)`
+▸ **previousTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
 *Defined in [support/commands/perform.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L67)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="quit"></a>
 
 ### `<Const>` quit
 
-▸ **quit**(): `(Anonymous function)`
+▸ **quit**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
 
 *Defined in [support/commands/perform.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L65)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<`void`>
 
 ___
 <a id="resizewindow"></a>
@@ -283,11 +313,17 @@ ___
 
 ### `<Const>` screenshot
 
-▸ **screenshot**(): `(Anonymous function)`
+▸ **screenshot**(browser: *[Browser](../classes/browser.md)*): `Promise`<`Buffer`>
 
 *Defined in [support/commands/perform.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L63)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<`Buffer`>
 
 ___
 <a id="scrollintoview"></a>
@@ -362,11 +398,17 @@ ___
 
 ### `<Const>` switchToDefaultFrame
 
-▸ **switchToDefaultFrame**(): `(Anonymous function)`
+▸ **switchToDefaultFrame**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
 *Defined in [support/commands/perform.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L70)*
 
-**Returns:** `(Anonymous function)`
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="switchtoframe"></a>

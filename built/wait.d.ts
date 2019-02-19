@@ -53,19 +53,32 @@ export declare namespace Condition {
      */
     const named: typeof lambda;
     /**
-     * Transforms Condition (returning (void | throws Error))
+     * Transforms conditions array provided as varargs to condition by applying Condition.and
+     * @param {Array<Condition<T>>} conditions
+     * @returns {Condition<T>}
+     */
+    const all: <T>(...conditions: Query<T, void>[]) => Query<T, void>;
+    /**
+     * Transforms conditions array provided as varargs to condition by applying Condition.and
+     * @param {Array<Condition<T>>} conditions
+     * @returns {Condition<T>}
+     */
+    const allNot: <T>(...conditions: Query<T, void>[]) => Query<T, void>;
+    /**
+     * Transforms Conditions (returning (void | throws Error)), combined by AND if more than one,
      * to async Predicate   (returning (true | false))
-     * @param {Condition<T>} condition
+     * @param {Array<Condition<T>>} conditions
      * @returns {(entity: T) => Promise<boolean>}
      */
-    const asPredicate: <T>(condition: Query<T, void>) => (entity: T) => Promise<boolean>;
+    const asPredicate: <T>(...conditions: Query<T, void>[]) => (entity: T) => Promise<boolean>;
 }
 export declare class Wait<T> {
     private readonly entity;
     private readonly timeout;
     private readonly onFailureHooks;
     constructor(entity: T, timeout: number, onFailureHooks: OnFailureHook[]);
-    until(fn: Condition<T>, timeout?: number): Promise<boolean>;
-    command(fn: Command<T>, timeout?: number): Promise<void>;
-    query<R>(fn: Query<T, R>, timeout?: number): Promise<R>;
+    until(...conditions: Array<Condition<T>>): Promise<boolean>;
+    untilNot(...conditions: Array<Condition<T>>): Promise<boolean>;
+    command(fn: Command<T>): Promise<void>;
+    query<R>(fn: Query<T, R>): Promise<R>;
 }

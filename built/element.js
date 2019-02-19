@@ -24,19 +24,20 @@ const be_1 = require("./support/conditions/be");
 const with_1 = require("./support/selectors/with");
 const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
+const configuration_1 = require("./configuration");
 const elementActionHooks_1 = require("./refactor/elementActionHooks");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
-const wait_1 = require("./wait");
 const utils_1 = require("./utils");
-class Element {
+const entity_1 = require("./entity");
+class Element extends entity_1.Entity {
     // todo: why not have private readonly driver property?
     constructor(locator, configuration) {
+        super(configuration.timeout, configuration.onFailureHooks);
         this.locator = locator;
         this.configuration = configuration;
         this.locator = locator;
         this.configuration = configuration;
-        this.wait = new wait_1.Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
     toString() {
         return this.locator.toString();
@@ -52,6 +53,9 @@ class Element {
         return (await this.getWebElement()).findElements(by);
     }
     /* Relative search */
+    configuredWith(custom) {
+        return new Element(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
+    }
     element(cssOrXpathOrBy) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
@@ -81,64 +85,7 @@ class Element {
         const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
         return new collection_1.Collection(locator, this.configuration);
     }
-    /* With Conditions
-     *
-     *  Where:
-     *  - should = wait for condition and on success return this for "fluent" style else fail
-     *    - just problem is that fluent style in async js is not relevant much :D
-     *  - matches = apply condition (without waiting) and return its result (true or false)
-     *  - waitUntil = wait for condition and on success return true else false (i.e. = waitingMatch)
-     *  TODO:
-     *    - do we need a version that on success returns true else fails?
-     *      - should we just make "waitUntil" = "waiting match"?
-     *        i.e. not fail on notMatched after timeout but return false
-     *        - yet, on the level of Wait it's seems natural to have both:
-     *          wait.until, wait.match
-     *          - but maybe not:) maybe wait.* should fail on false... but maybe not:) depends)
-     */
-    async should(condition, timeout = this.configuration.timeout) {
-        await this.wait.query(condition, timeout);
-        return this;
-    }
-    /*
-     * todo: consider assert or shouldMatch aliases for should
-     * should is good for
-     *   should(be.visible) style
-     * but assert or shouldMatch is good for the "raw" condition case:
-     *   assert(condition.element.isVisible)
-     *   shouldMatch(condition.element.isVisible)
-     * maybe someone will find this style better than be.* and have.*
-     * the advantage is in having only one entry point to all conditions - condition.*
-     * where it has conditions sorted by type - element, collection, browser -
-     * so it might be easier to find the needed one...
-     * while be.* and have.* are kind of bulk of mixed type conditions - all in one heap,
-     * even two mixed heaps:)));
-     */
-    async shouldNot(condition, timeout) {
-        await this.should(wait_1.Condition.not(condition), timeout);
-        return this;
-    }
-    async waitUntil(condition, timeout = this.configuration.timeout) {
-        return this.wait.until(condition, timeout);
-    }
-    async waitUntilNot(condition, timeout = this.configuration.timeout) {
-        return this.waitUntil(wait_1.Condition.not(condition), timeout);
-    }
-    /*
-     * todo: problem with this is we originally have Promise<true | false>, then make it Promise<true | throws Error>,
-     * and then again Promise<true | false>
-     */
-    async matches(condition) {
-        return wait_1.Condition.asPredicate(condition)(this);
-    }
-    async matchesNot(condition) {
-        return this.matches(wait_1.Condition.not(condition));
-    }
     /* Commands */
-    async perform(command, timeout = this.configuration.timeout) {
-        await this.wait.command(command, timeout);
-        return this;
-    }
     // todo: do we need to wrap it into this.wait. ?
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
@@ -214,16 +161,9 @@ class Element {
         );
         return this;
     }
-    /* Queries */ // todo: do we need @ElementQueryHooks?
-    async get(query, timeout = this.configuration.timeout) {
-        return this.wait.query(query, timeout);
-    }
 }
 Element.beforeActionHooks = []; // todo: should we move it to Configuration?
 Element.afterActionHooks = []; // we should...
-__decorate([
-    elementActionHooks_1.ElementActionHooks // todo: cover with tests
-], Element.prototype, "perform", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
     // todo: do we need to wrap it into this.wait. ?

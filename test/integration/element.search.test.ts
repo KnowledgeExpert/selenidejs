@@ -31,7 +31,7 @@ describe('Element search', () => {
             '<h1 id="will-be-existing-element">Hello kitty:*</h1>'
         );
 
-        expect(await element.matches(be.visible)).toBe(true);
+        expect(await element.matching(be.visible)).toBe(true);
     });
     
     it('is performed on each subsequent "ask"', async () => {
@@ -41,12 +41,12 @@ describe('Element search', () => {
         await WHEN.withBody(
             '<h1 id="will-be-existing-element">Hello kitty:*</h1>'
         );
-        expect(await element.matches(be.visible)).toBe(true);
+        expect(await element.matching(be.visible)).toBe(true);
 
         await WHEN.withBody(
             '<h1 id="will-be-existing-element" style="display:none">Hello kitty:*</h1>'
         );
-        expect(await element.matches(be.visible)).toBe(false);
+        expect(await element.matching(be.visible)).toBe(false);
     });
 
     it('waits for element command like click to be possible', async () => {

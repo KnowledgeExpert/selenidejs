@@ -2,8 +2,6 @@
 
 # Interface: Assertable
 
-## Type parameters
-#### T 
 ## Hierarchy
 
 **Assertable**
@@ -11,8 +9,12 @@
 ## Implemented by
 
 * [Browser](../classes/browser.md)
+* [Browser](../classes/browser.md)
+* [Collection](../classes/collection.md)
 * [Collection](../classes/collection.md)
 * [Element](../classes/element.md)
+* [Element](../classes/element.md)
+* [Entity](../classes/entity.md)
 
 ## Index
 
@@ -29,36 +31,34 @@
 
 ###  should
 
-▸ **should**(condition: *[Condition](../modules/condition.md)<`T`>*, timeout?: *`number`*): `Promise`<`T`>
+▸ **should**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L21)*
+*Defined in [entity.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L39)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [Condition](../modules/condition.md)<`T`> |
-| `Optional` timeout | `number` |
+| condition | [Condition](../modules/condition.md)<`this`> |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`this`>
 
 ___
 <a id="shouldnot"></a>
 
 ###  shouldNot
 
-▸ **shouldNot**(condition: *[Condition](../modules/condition.md)<`T`>*, timeout?: *`number`*): `Promise`<`T`>
+▸ **shouldNot**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L22)*
+*Defined in [entity.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L40)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [Condition](../modules/condition.md)<`T`> |
-| `Optional` timeout | `number` |
+| condition | [Condition](../modules/condition.md)<`this`> |
 
-**Returns:** `Promise`<`T`>
+**Returns:** `Promise`<`this`>
 
 ___
 

@@ -14,15 +14,15 @@ export declare namespace perform {
     const pressEnter: (element: Element) => Promise<Element>;
     const pressTab: (element: Element) => Promise<Element>;
     const pressEscape: (element: Element) => Promise<Element>;
-    const open: (url: string) => (browser: Browser) => Promise<void>;
-    const resizeWindow: (width: number, height: number) => (browser: Browser) => Promise<void>;
-    const screenshot: () => (browser: Browser) => Promise<Buffer>;
-    const closeCurrentTab: () => (browser: Browser) => Promise<void>;
-    const quit: () => (browser: Browser) => Promise<void>;
-    const nextTab: () => (browser: Browser) => Promise<void>;
-    const previousTab: () => (browser: Browser) => Promise<void>;
-    const switchToFrame: (frameElement: Element) => (browser: Browser) => Promise<void>;
-    const switchToDefaultFrame: () => (browser: Browser) => Promise<void>;
-    const clearCacheAndCookies: () => (browser: Browser) => Promise<void>;
+    const open: (url: string) => (browser: Browser) => Promise<Browser>;
+    const resizeWindow: (width: number, height: number) => (browser: Browser) => Promise<Browser>;
+    const screenshot: (browser: Browser) => Promise<Buffer>;
+    const closeCurrentTab: (browser: Browser) => Promise<Browser>;
+    const quit: (browser: Browser) => Promise<void>;
+    const nextTab: (browser: Browser) => Promise<Browser>;
+    const previousTab: (browser: Browser) => Promise<Browser>;
+    const switchToFrame: (frameElement: Element) => (browser: Browser) => Promise<Browser>;
+    const switchToDefaultFrame: (browser: Browser) => Promise<Browser>;
+    const clearCacheAndCookies: (browser: Browser) => Promise<Browser>;
     const executeScript: (script: string | Function, ...args: any[]) => (browser: Browser) => Promise<{}>;
 }

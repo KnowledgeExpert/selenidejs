@@ -16,7 +16,7 @@ import { By } from 'selenium-webdriver';
 
 
 // todo: why not use css selectors below, where it is enough?
-export namespace With {
+export namespace With { // todo: consider renaming to by (with.xpath vs by.xpath)
 
     const NORMALIZE_SPACE_XPATH = "normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))";
 

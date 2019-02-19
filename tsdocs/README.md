@@ -31,6 +31,7 @@
 * [Configuration](classes/configuration.md)
 * [Customized](classes/customized.md)
 * [Element](classes/element.md)
+* [Entity](classes/entity.md)
 * [FailedToMatchConditionWithReasonError](classes/failedtomatchconditionwithreasonerror.md)
 * [FilteredByConditionWebElementsLocator](classes/filteredbyconditionwebelementslocator.md)
 * [TimeoutError](classes/timeouterror.md)
@@ -40,6 +41,7 @@
 
 * [Assertable](interfaces/assertable.md)
 * [Locator](interfaces/locator.md)
+* [Matchable](interfaces/matchable.md)
 * [SearchContext](interfaces/searchcontext.md)
 
 ### Type aliases

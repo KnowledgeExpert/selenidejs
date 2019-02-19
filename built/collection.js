@@ -13,47 +13,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const configuration_1 = require("./configuration");
 const element_1 = require("./element");
 const byIndexWebElementLocator_1 = require("./locators/byIndexWebElementLocator");
 const cashedWebElementLocator_1 = require("./locators/cashedWebElementLocator");
 const filteredByConditionWebElementsLocator_1 = require("./locators/filteredByConditionWebElementsLocator");
 const wait_1 = require("./wait");
-class Collection {
+const entity_1 = require("./entity");
+class Collection extends entity_1.Entity {
+    // private readonly wait: Wait<Collection>;
     constructor(locator, configuration) {
+        super(configuration.timeout, configuration.onFailureHooks);
         this.locator = locator;
         this.configuration = configuration;
         this.locator = locator;
         this.configuration = configuration;
-        this.wait = new wait_1.Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
+        // this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
+    }
+    configuredWith(custom) {
+        return new Collection(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
     }
     // todo: should not we move it to queries?, or rename to asCashedArray() ?
     async getAsCashedArray() {
         return (await this.getWebElements())
             .map((it, index) => new element_1.Element(new cashedWebElementLocator_1.CashedWebElementLocator(it, `${this}[${index}]`), this.configuration));
     }
-    /* With Conditions */
-    async should(condition, timeout = this.configuration.timeout) {
-        this.wait.until(condition, timeout);
-        return this;
-    }
-    async shouldNot(condition, timeout) {
-        this.should(wait_1.Condition.not(condition), timeout);
-        return this;
-    }
-    async waitUntil(condition, timeout = this.configuration.timeout) {
-        return this.wait.until(condition, timeout);
-    }
-    async waitUntilNot(condition, timeout = this.configuration.timeout) {
-        return this.wait.until(wait_1.Condition.not(condition), timeout);
-    }
-    // todo: matches or match? collection.matches... but browser.all.match ... which to choose? :(
-    async matches(condition) {
-        return wait_1.Condition.asPredicate(condition)(this);
-    }
-    async matchesNot(condition) {
-        return this.matches(wait_1.Condition.not(condition));
-    }
-    /* Others... */
     elementAt(index) {
         return new element_1.Element(new byIndexWebElementLocator_1.ByIndexWebElementLocator(index, this), this.configuration);
     }
@@ -69,15 +53,24 @@ class Collection {
     first() {
         return this.elementAt(0);
     }
-    filteredBy(condition) {
+    filteredBy(...conditions) {
+        if (conditions.length === 0) {
+            return this; // todo: consider throwing error
+        }
+        const condition = conditions.length > 1 ?
+            wait_1.Condition.and(...conditions) :
+            conditions[0];
         return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(condition, this), this.configuration);
     }
-    elementBy(condition) {
+    elementBy(...conditions) {
+        if (conditions.length === 0) {
+            return this.first(); // todo: consider throwing error
+        }
+        const condition = conditions.length > 1 ?
+            wait_1.Condition.and(...conditions) :
+            conditions[0];
         return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(condition, this), this.configuration)
             .elementAt(0); // todo: implement through separate ByFind...Locator
-    }
-    async get(query, timeout = this.configuration.timeout) {
-        return this.wait.query(query, timeout);
     }
     async getWebElements() {
         return this.locator.find();

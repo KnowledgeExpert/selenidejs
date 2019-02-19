@@ -34,7 +34,7 @@ describe('Collection get by index Element', () => {
                 </ul>
         `);
 
-        expect(await element.matches(have.text('Kate'))).toBe(true);
+        expect(await element.matching(have.text('Kate'))).toBe(true);
     });
     
     it('is performed on each subsequent "ask"', async () => {
@@ -47,7 +47,7 @@ describe('Collection get by index Element', () => {
                     <li class='will-exist'>Kate</li>
                 </ul>
         `);
-        expect(await element.matches(have.text('Kate'))).toBe(true);
+        expect(await element.matching(have.text('Kate'))).toBe(true);
 
         await WHEN.withBody(`
                 <ul>Hello to:
@@ -55,8 +55,8 @@ describe('Collection get by index Element', () => {
                     <li class='will-exist'>Margo</li>
                 </ul>
         `);
-        expect(await element.matches(have.text('Kate'))).toBe(false);
-        expect(await element.matches(have.text('Margo'))).toBe(true);
+        expect(await element.matching(have.text('Kate'))).toBe(false);
+        expect(await element.matching(have.text('Margo'))).toBe(true);
     });
 
     it('waits for element command like click to be possible', async () => {

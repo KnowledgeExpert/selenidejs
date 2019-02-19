@@ -23,9 +23,9 @@ import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
 import { ElementActionHooks } from './refactor/elementActionHooks';
-import { Assertable } from './entity';
+import { Assertable, Entity, Matchable } from './entity';
 
-export class Browser implements SearchContext, Assertable<Browser> {
+export class Browser extends Entity implements SearchContext, Assertable, Matchable {
 
     static configuredWith(): Customized<Browser> {
         return Customized.browser();
@@ -48,11 +48,15 @@ export class Browser implements SearchContext, Assertable<Browser> {
 
     readonly configuration: Configuration;
 
-    private readonly wait: Wait<Browser>;
-
     constructor(configuration: Partial<Configuration> = {}) {
+        super(configuration.timeout, configuration.onFailureHooks);
         this.configuration = new Configuration(configuration);
-        this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
+    }
+
+    // todo: isn't it a bit confusing taking into account browser.element(With.id(...)) ?
+    // example: browser.with({timeout: 5000}).element(With.id(...)).should(have.text('foo'));
+    with(custom: Partial<Configuration>): Browser {
+        return new Browser(new Configuration({ ...this.configuration, ...custom }));
     }
 
     get driver(): WebDriver {
@@ -75,53 +79,26 @@ export class Browser implements SearchContext, Assertable<Browser> {
 
     /* Elements */
 
-    element(cssOrXpathOrBy: string | By): Element {
+    // todo: how to create element with specific timeout?
+    element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element {
         const by = Extensions.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementLocator(by, this);
-        return new Element(locator, this.configuration);
+        const configuration = customized === undefined ?
+            this.configuration :
+            new Configuration({ ...this.configuration, ...customized });
+        return new Element(locator, configuration);
     }
 
-    all(cssOrXpathOrBy: string | By): Collection {
+    all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection {
         const by = Extensions.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementsLocator(by, this);
-        return new Collection(locator, this.configuration);
-    }
-
-    /* With conditions */ // todo: extract interface? provide base abstract class implementation with generics?
-
-    async should(condition: BrowserCondition, timeout: number = this.configuration.timeout): Promise<Browser> {
-        this.wait.until(condition, timeout);
-        return this;
-    }
-
-    async shouldNot(condition: BrowserCondition, timeout?: number): Promise<Browser> {
-        this.should(Condition.not(condition), timeout);
-        return this;
-    }
-
-    async waitUntil(condition: BrowserCondition, timeout: number = this.configuration.timeout): Promise<boolean> {
-        return this.wait.until(condition, timeout);
-    }
-
-    async waitUntilNot(condition: BrowserCondition, timeout: number = this.configuration.timeout): Promise<boolean> {
-        return this.wait.until(Condition.not(condition), timeout);
-    }
-
-    async matches(condition: BrowserCondition): Promise<boolean> {
-        return Condition.asPredicate(condition)(this);
-    }
-
-    async matchesNot(condition: BrowserCondition): Promise<boolean> {
-        return this.matches(Condition.not(condition));
+        const configuration = customized === undefined ?
+            this.configuration :
+            new Configuration({ ...this.configuration, ...customized });
+        return new Collection(locator, configuration);
     }
 
     /* Commands */
-
-    @ElementActionHooks
-    async perform(command: Command<Browser>, timeout: number = this.configuration.timeout): Promise<Browser> {
-        await this.wait.command(command, timeout);
-        return this;
-    }
 
     // todo: should we implement all following commands through calling perform method from above?
 
@@ -131,7 +108,7 @@ export class Browser implements SearchContext, Assertable<Browser> {
     }
     /* tslint:enable:ban-types */
 
-    async open(url: string) {
+    async open(url: string): Promise<Browser> {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(
                 parseInt(this.configuration.windowWidth),
@@ -139,10 +116,12 @@ export class Browser implements SearchContext, Assertable<Browser> {
             );
         }
         await this.driver.get(url);
+        return this;
     }
 
-    async resizeWindow(width: number, height: number) {
+    async resizeWindow(width: number, height: number): Promise<Browser> {
         await this.driver.manage().window().setSize(width, height);
+        return this;
     }
 
     async screenshot(): Promise<Buffer> {
@@ -151,8 +130,9 @@ export class Browser implements SearchContext, Assertable<Browser> {
             : Buffer.from(await this.driver.takeScreenshot(), 'base64');
     }
 
-    async closeCurrentTab() {
+    async closeCurrentTab(): Promise<Browser> {
         await this.driver.close();
+        return this;
     }
 
     async quit() {
@@ -160,46 +140,46 @@ export class Browser implements SearchContext, Assertable<Browser> {
     }
 
     // todo: should it fail if there is no next tab? probably yes... same for other similar methods
-    async nextTab() { // todo: name does not tell that there will be a switch.... rename to switchToNextTab? or goTo...
+    async nextTab(): Promise<Browser> {
+        // todo: name does not tell that there will be a switch.... rename to switchToNextTab? or goTo...
         const currentTab = await this.driver.getWindowHandle();
         const allTabs = await this.driver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
         await this.driver
             .switchTo()
             .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
+        return this;
     }
 
-    async previousTab() {
+    async previousTab(): Promise<Browser> {
         const currentTab = await this.driver.getWindowHandle();
         const allTabs = await this.driver.getAllWindowHandles();
         const currentTabIndex = allTabs.indexOf(currentTab);
         await this.driver
             .switchTo()
             .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
+        return this;
     }
 
-    async switchToFrame(frameElement: Element) {
+    async switchToFrame(frameElement: Element): Promise<Browser> {
         await this.wait.command(async browser => {
             browser.driver.switchTo().frame(await frameElement.getWebElement());
         });
+        return this;
     }
 
-    async switchToDefaultFrame() {
+    async switchToDefaultFrame(): Promise<Browser> {
         await this.driver.switchTo().defaultContent();
+        return this;
     }
 
-    async clearCacheAndCookies() {
+    async clearCacheAndCookies(): Promise<Browser> {
         await this.driver.executeScript('window.localStorage.clear();').catch(ignored => {
         });
         await this.driver.executeScript('window.sessionStorage.clear();').catch(ignored => {
         });
         await this.driver.manage().deleteAllCookies().catch(ignored => {
         });
-    }
-
-    /* Queries */
-
-    async get<R>(query: Query<Browser, R>, timeout: number = this.configuration.timeout): Promise<R> {
-        return this.wait.query(query, timeout);
+        return this;
     }
 }

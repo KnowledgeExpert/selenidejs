@@ -60,15 +60,15 @@ export namespace perform {
     export const open = (url: string) => (browser: Browser) => browser.open(url);
     export const resizeWindow = (width: number, height: number) =>
         (browser: Browser) => browser.resizeWindow(width, height);
-    export const screenshot = () => (browser: Browser): Promise<Buffer> => browser.screenshot();
-    export const closeCurrentTab = () => (browser: Browser) => browser.closeCurrentTab();
-    export const quit = () => (browser: Browser) => browser.quit();
-    export const nextTab = () => (browser: Browser) => browser.nextTab();
-    export const previousTab = () => (browser: Browser) => browser.previousTab();
+    export const screenshot = (browser: Browser): Promise<Buffer> => browser.screenshot();
+    export const closeCurrentTab = (browser: Browser) => browser.closeCurrentTab();
+    export const quit = (browser: Browser) => browser.quit();
+    export const nextTab = (browser: Browser) => browser.nextTab();
+    export const previousTab = (browser: Browser) => browser.previousTab();
     export const switchToFrame = (frameElement: Element) =>
         (browser: Browser) => browser.switchToFrame(frameElement);
-    export const switchToDefaultFrame = () => (browser: Browser) => browser.switchToDefaultFrame();
-    export const clearCacheAndCookies = () => (browser: Browser) => browser.clearCacheAndCookies();
+    export const switchToDefaultFrame = (browser: Browser) => browser.switchToDefaultFrame();
+    export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
 
     /* tslint:disable:ban-types */
     export const executeScript = (script: string | Function, ...args: any[]) =>

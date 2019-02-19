@@ -23,7 +23,7 @@
 
 **Type parameters:**
 
-#### T 
+#### T :  [Assertable](../interfaces/assertable.md)
 **Parameters:**
 
 | Param | Type |
@@ -43,7 +43,7 @@ ___
 
 **Type parameters:**
 
-#### T 
+#### T :  [Assertable](../interfaces/assertable.md)
 **Parameters:**
 
 | Param | Type |

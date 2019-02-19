@@ -21,17 +21,22 @@ import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
 import { Condition, Query, Wait } from './wait';
-import { Assertable } from './entity';
+import { Assertable, Entity, Matchable } from './entity';
 
-export class Collection implements Assertable<Collection> {
+export class Collection extends Entity implements Assertable, Matchable {
 
-    private readonly wait: Wait<Collection>;
+    // private readonly wait: Wait<Collection>;
 
     constructor(private readonly locator: Locator<Promise<WebElement[]>>,
                 private readonly configuration: Configuration) {
+        super(configuration.timeout, configuration.onFailureHooks);
         this.locator = locator;
         this.configuration = configuration;
-        this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
+        // this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
+    }
+
+    configuredWith(custom: Partial<Configuration>): Collection {
+        return new Collection(this.locator, new Configuration({ ...this.configuration, ...custom }));
     }
 
     // todo: should not we move it to queries?, or rename to asCashedArray() ?
@@ -41,37 +46,6 @@ export class Collection implements Assertable<Collection> {
                 new CashedWebElementLocator(it, `${this}[${index}]`), this.configuration)
             );
     }
-
-    /* With Conditions */
-
-    async should(condition: CollectionCondition, timeout: number = this.configuration.timeout): Promise<Collection> {
-        this.wait.until(condition, timeout);
-        return this;
-    }
-
-    async shouldNot(condition: CollectionCondition, timeout?: number): Promise<Collection> {
-        this.should(Condition.not(condition), timeout);
-        return this;
-    }
-
-    async waitUntil(condition: CollectionCondition, timeout: number = this.configuration.timeout): Promise<boolean> {
-        return this.wait.until(condition, timeout);
-    }
-
-    async waitUntilNot(condition: CollectionCondition, timeout: number = this.configuration.timeout): Promise<boolean> {
-        return this.wait.until(Condition.not(condition), timeout);
-    }
-
-    // todo: matches or match? collection.matches... but browser.all.match ... which to choose? :(
-    async matches(condition: CollectionCondition): Promise<boolean> {
-        return Condition.asPredicate(condition)(this);
-    }
-
-    async matchesNot(condition: CollectionCondition): Promise<boolean> {
-        return this.matches(Condition.not(condition));
-    }
-
-    /* Others... */
 
     elementAt(index: number): Element {
         return new Element(new ByIndexWebElementLocator(index, this), this.configuration);
@@ -90,17 +64,25 @@ export class Collection implements Assertable<Collection> {
         return this.elementAt(0);
     }
 
-    filteredBy(condition: ElementCondition): Collection { // todo: think on renaming to filteredBy
+    filteredBy(...conditions: ElementCondition[]): Collection { // todo: think on renaming to filteredBy
+        if (conditions.length === 0) {
+            return this; // todo: consider throwing error
+        }
+        const condition = conditions.length > 1 ?
+            Condition.and(...conditions) :
+            conditions[0];
         return new Collection(new FilteredByConditionWebElementsLocator(condition, this), this.configuration);
     }
 
-    elementBy(condition: ElementCondition): Element {
+    elementBy(...conditions: ElementCondition[]): Element {
+        if (conditions.length === 0) {
+            return this.first(); // todo: consider throwing error
+        }
+        const condition = conditions.length > 1 ?
+            Condition.and(...conditions) :
+            conditions[0];
         return new Collection(new FilteredByConditionWebElementsLocator(condition, this), this.configuration)
             .elementAt(0);  // todo: implement through separate ByFind...Locator
-    }
-
-    async get<R>(query: Query<Collection, R>, timeout: number = this.configuration.timeout): Promise<R> {
-        return this.wait.query(query, timeout);
     }
 
     async getWebElements(): Promise<WebElement[]> {
