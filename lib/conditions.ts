@@ -244,6 +244,14 @@ export namespace condition {
             lambda(`has url ${url}`,
                    throwIfNotActual(query.url, predicate.equals(url)));
 
+        export const hasTitle = (title: string): BrowserCondition =>
+            lambda(`has title ${title}`,
+                   throwIfNotActual(query.title, predicate.equals(title)));
+
+        export const hasTitleContaining = (partialTitle: string): BrowserCondition =>
+            lambda(`has title containing ${partialTitle}`,
+                   throwIfNotActual(query.title, predicate.includes(partialTitle)));
+
         export const hasTabsNumber = (num: number): BrowserCondition =>
             lambda(`has tabs number ${num}`,
                    throwIfNotActual(query.tabsNumber, predicate.equals(num)));

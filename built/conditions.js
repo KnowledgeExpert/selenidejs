@@ -168,6 +168,8 @@ var condition;
         browser_1.hasUrlContaining = (partialUrl) => // todo: do we need string | number
          utils_1.lambda(`has url containing ${partialUrl}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.includes(partialUrl)));
         browser_1.hasUrl = (url) => utils_1.lambda(`has url ${url}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.equals(url)));
+        browser_1.hasTitle = (title) => utils_1.lambda(`has title ${title}`, throwIfNotActual(queries_1.query.title, predicates_1.predicate.equals(title)));
+        browser_1.hasTitleContaining = (partialTitle) => utils_1.lambda(`has title containing ${partialTitle}`, throwIfNotActual(queries_1.query.title, predicates_1.predicate.includes(partialTitle)));
         browser_1.hasTabsNumber = (num) => utils_1.lambda(`has tabs number ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.equals(num)));
         browser_1.hasTabsNumberMoreThan = (num) => utils_1.lambda(`has tabs number more than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isMoreThan(num)));
         browser_1.hasTabsNumberLessThan = (num) => utils_1.lambda(`has tabs number less than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isLessThan(num)));

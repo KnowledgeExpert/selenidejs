@@ -10,6 +10,8 @@
 * [hasTabsNumber](condition.browser.md#hastabsnumber)
 * [hasTabsNumberLessThan](condition.browser.md#hastabsnumberlessthan)
 * [hasTabsNumberMoreThan](condition.browser.md#hastabsnumbermorethan)
+* [hasTitle](condition.browser.md#hastitle)
+* [hasTitleContaining](condition.browser.md#hastitlecontaining)
 * [hasUrl](condition.browser.md#hasurl)
 * [hasUrlContaining](condition.browser.md#hasurlcontaining)
 
@@ -23,7 +25,7 @@
 
 ▸ **hasJsReturnedTrue**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:261](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L261)*
+*Defined in [conditions.ts:269](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L269)*
 
 **Parameters:**
 
@@ -41,7 +43,7 @@ ___
 
 ▸ **hasTabsNumber**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:247](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L247)*
+*Defined in [conditions.ts:255](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L255)*
 
 **Parameters:**
 
@@ -58,7 +60,7 @@ ___
 
 ▸ **hasTabsNumberLessThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:255](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L255)*
+*Defined in [conditions.ts:263](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L263)*
 
 **Parameters:**
 
@@ -75,13 +77,47 @@ ___
 
 ▸ **hasTabsNumberMoreThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [conditions.ts:251](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L251)*
+*Defined in [conditions.ts:259](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L259)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
 | num | `number` |
+
+**Returns:** [BrowserCondition](../#browsercondition)
+
+___
+<a id="hastitle"></a>
+
+### `<Const>` hasTitle
+
+▸ **hasTitle**(title: *`string`*): [BrowserCondition](../#browsercondition)
+
+*Defined in [conditions.ts:247](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L247)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| title | `string` |
+
+**Returns:** [BrowserCondition](../#browsercondition)
+
+___
+<a id="hastitlecontaining"></a>
+
+### `<Const>` hasTitleContaining
+
+▸ **hasTitleContaining**(partialTitle: *`string`*): [BrowserCondition](../#browsercondition)
+
+*Defined in [conditions.ts:251](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L251)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| partialTitle | `string` |
 
 **Returns:** [BrowserCondition](../#browsercondition)
 

@@ -70,8 +70,8 @@ export namespace have {
     export const texts = (...texts: string[]): CollectionCondition =>
         condition.collection.hasExactTexts(texts);
 
-    export const url = (urlPart: string): BrowserCondition =>
-        condition.browser.hasUrl(urlPart);
+    export const url = (url: string): BrowserCondition =>
+        condition.browser.hasUrl(url);
 
     // todo: what about inUrl?
     /*
@@ -84,6 +84,12 @@ export namespace have {
      */
     export const urlContaining = (urlPart: string): BrowserCondition =>
         condition.browser.hasUrlContaining(urlPart);
+
+    export const title = (expected: string): BrowserCondition =>
+        condition.browser.hasTitle(expected);
+
+    export const titleContaining = (titlePart: string): BrowserCondition =>
+        condition.browser.hasTitleContaining(titlePart);
 
     export const exactTexts = (...texts: string[]): CollectionCondition =>
         condition.collection.hasExactTexts(texts);

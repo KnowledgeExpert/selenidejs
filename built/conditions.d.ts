@@ -110,6 +110,8 @@ export declare namespace condition {
     namespace browser {
         const hasUrlContaining: (partialUrl: string) => import("./wait").Query<Browser, void>;
         const hasUrl: (url: string) => import("./wait").Query<Browser, void>;
+        const hasTitle: (title: string) => import("./wait").Query<Browser, void>;
+        const hasTitleContaining: (partialTitle: string) => import("./wait").Query<Browser, void>;
         const hasTabsNumber: (num: number) => import("./wait").Query<Browser, void>;
         const hasTabsNumberMoreThan: (num: number) => import("./wait").Query<Browser, void>;
         const hasTabsNumberLessThan: (num: number) => import("./wait").Query<Browser, void>;
