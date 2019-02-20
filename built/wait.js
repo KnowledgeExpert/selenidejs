@@ -16,10 +16,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const timeoutError_1 = require("./errors/timeoutError");
 const conditionDoesNotMatchError_1 = require("./errors/conditionDoesNotMatchError");
 const utils_1 = require("./utils");
-/*
- * todo: do we need Condition as class? so we can do have.text('foo').or(have.value('foo'))?
- * or is Condition.or(have.text('foo'), have.value('foo')) enough?
- */
 var Condition;
 (function (Condition) {
     /**

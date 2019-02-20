@@ -58,7 +58,7 @@
 
 *Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
 
-*Defined in [collection.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L26)*
+*Defined in [collection.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L27)*
 
 **Parameters:**
 
@@ -79,7 +79,7 @@ ___
 
 **● configuration**: *[Configuration](configuration.md)*
 
-*Defined in [collection.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L31)*
+*Defined in [collection.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L32)*
 
 ___
 <a id="locator"></a>
@@ -88,7 +88,7 @@ ___
 
 **● locator**: *[Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>*
 
-*Defined in [collection.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L30)*
+*Defined in [collection.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L31)*
 
 ___
 <a id="wait"></a>
@@ -111,7 +111,7 @@ ___
 
 ▸ **configuredWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
 
-*Defined in [collection.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L38)*
+*Defined in [collection.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L39)*
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ ___
 
 ▸ **elementAt**(index: *`number`*): [Element](element.md)
 
-*Defined in [collection.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L50)*
+*Defined in [collection.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L51)*
 
 **Parameters:**
 
@@ -145,7 +145,7 @@ ___
 
 ▸ **elementBy**(...conditions: *[ElementCondition](../#elementcondition)[]*): [Element](element.md)
 
-*Defined in [collection.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L74)*
+*Defined in [collection.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L75)*
 
 **Parameters:**
 
@@ -162,7 +162,7 @@ ___
 
 ▸ **filteredBy**(...conditions: *[ElementCondition](../#elementcondition)[]*): [Collection](collection.md)
 
-*Defined in [collection.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L67)*
+*Defined in [collection.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L68)*
 
 **Parameters:**
 
@@ -179,7 +179,7 @@ ___
 
 ▸ **first**(): [Element](element.md)
 
-*Defined in [collection.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L63)*
+*Defined in [collection.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L64)*
 
 **Returns:** [Element](element.md)
 
@@ -212,7 +212,7 @@ ___
 
 ▸ **getAsCashedArray**(): `Promise`<[Element](element.md)[]>
 
-*Defined in [collection.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L43)*
+*Defined in [collection.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L44)*
 
 **Returns:** `Promise`<[Element](element.md)[]>
 
@@ -223,7 +223,7 @@ ___
 
 ▸ **getWebElements**(): `Promise`<`WebElement`[]>
 
-*Defined in [collection.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L81)*
+*Defined in [collection.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L82)*
 
 **Returns:** `Promise`<`WebElement`[]>
 
@@ -329,7 +329,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [collection.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L85)*
+*Defined in [collection.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L86)*
 
 **Returns:** `string`
 

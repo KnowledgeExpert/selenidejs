@@ -31,6 +31,7 @@
 * [Configuration](classes/configuration.md)
 * [Customized](classes/customized.md)
 * [Element](classes/element.md)
+* [ElementByConditionWebElementLocator](classes/elementbyconditionwebelementlocator.md)
 * [Entity](classes/entity.md)
 * [FailedToMatchConditionWithReasonError](classes/failedtomatchconditionwithreasonerror.md)
 * [FilteredByConditionWebElementsLocator](classes/filteredbyconditionwebelementslocator.md)

@@ -16,9 +16,10 @@ import { WebElement } from 'selenium-webdriver';
 import { ElementCondition } from '../conditions';
 import { Collection } from '../collection';
 import { Locator } from './locator';
+import { query } from '../queries';
 
 
-export class FilteredByConditionWebElementsLocator implements Locator<Promise<WebElement[]>> {
+export class ElementByConditionWebElementLocator implements Locator<Promise<WebElement>> {
 
     constructor(private readonly condition: ElementCondition,
                 private readonly collection: Collection) {
@@ -26,27 +27,27 @@ export class FilteredByConditionWebElementsLocator implements Locator<Promise<We
         this.collection = collection;
     }
 
-    async find(): Promise<WebElement[]> {
+    async find(): Promise<WebElement> {
         const arrayOfCachedElements = await this.collection.getAsCashedArray();
 
-        const filtered: WebElement[] = [];
         for (const element of arrayOfCachedElements) {
             if (await element.matching(this.condition)) {
-                filtered.push(await element.getWebElement());
+                return element.getWebElement();
             }
         }
-        return filtered;
 
-        // todo: why the following implementation does not work? o_O
-        // const filtered = arrayOfCachedElements.filter(async element => element.matching(this.condition));
-        // const filtered = await Promise.all(
-        //     arrayOfCachedElements.filter(element => element.matching(this.condition))
-        // );
-        // return Promise.all(filtered.map(element => element.getWebElement()));
+        const outerHTMLs: string[] = [];
+        for (const element of arrayOfCachedElements) {
+            outerHTMLs.push(await query.outerHtml(element));  // todo: can it fail with "stale element error"?
+        }
+        throw new Error(
+            `Cannot find element by condition «${this.condition}» ` +
+            `from webelements collection:\n[${outerHTMLs}]`
+        );
     }
 
     toString(): string {
-        return `${this.collection.toString()}.filteredBy(${this.condition.toString()})`;
+        return `${this.collection.toString()}.elementBy(${this.condition})`;
     }
 
 }

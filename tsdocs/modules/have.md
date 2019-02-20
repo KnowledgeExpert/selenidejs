@@ -124,7 +124,7 @@ ___
 
 ▸ **exactTexts**(...texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [support/conditions/have.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L94)*
+*Defined in [support/conditions/have.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L73)*
 
 **Parameters:**
 
@@ -260,7 +260,7 @@ ___
 
 ▸ **title**(expected: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L88)*
+*Defined in [support/conditions/have.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L91)*
 
 **Parameters:**
 
@@ -277,7 +277,7 @@ ___
 
 ▸ **titleContaining**(titlePart: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L91)*
+*Defined in [support/conditions/have.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L94)*
 
 **Parameters:**
 
@@ -294,7 +294,7 @@ ___
 
 ▸ **url**(url: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L73)*
+*Defined in [support/conditions/have.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L76)*
 
 **Parameters:**
 
@@ -311,7 +311,7 @@ ___
 
 ▸ **urlContaining**(urlPart: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L85)*
+*Defined in [support/conditions/have.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L88)*
 
 **Parameters:**
 

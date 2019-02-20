@@ -14,6 +14,7 @@
 * [ByWebElementLocator](../classes/bywebelementlocator.md)
 * [ByWebElementsLocator](../classes/bywebelementslocator.md)
 * [CashedWebElementLocator](../classes/cashedwebelementlocator.md)
+* [ElementByConditionWebElementLocator](../classes/elementbyconditionwebelementlocator.md)
 * [FilteredByConditionWebElementsLocator](../classes/filteredbyconditionwebelementslocator.md)
 
 ## Index

@@ -37,7 +37,7 @@
 
 ⊕ **new Wait**(entity: *`T`*, timeout: *`number`*, onFailureHooks: *[OnFailureHook](../#onfailurehook)[]*): [Wait](wait.md)
 
-*Defined in [wait.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L154)*
+*Defined in [wait.ts:149](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L149)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ ___
 
 **● entity**: *`T`*
 
-*Defined in [wait.ts:156](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L156)*
+*Defined in [wait.ts:151](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L151)*
 
 ___
 <a id="onfailurehooks"></a>
@@ -68,7 +68,7 @@ ___
 
 **● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]*
 
-*Defined in [wait.ts:158](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L158)*
+*Defined in [wait.ts:153](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L153)*
 
 ___
 <a id="timeout"></a>
@@ -77,7 +77,7 @@ ___
 
 **● timeout**: *`number`*
 
-*Defined in [wait.ts:157](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L157)*
+*Defined in [wait.ts:152](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L152)*
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 ▸ **command**(fn: *[Command](../#command)<`T`>*): `Promise`<`void`>
 
-*Defined in [wait.ts:173](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L173)*
+*Defined in [wait.ts:168](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L168)*
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **query**<`R`>(fn: *[Query](../#query)<`T`, `R`>*): `Promise`<`R`>
 
-*Defined in [wait.ts:177](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L177)*
+*Defined in [wait.ts:172](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L172)*
 
 **Type parameters:**
 
@@ -126,7 +126,7 @@ ___
 
 ▸ **until**(...conditions: *`Array`<[Condition](../modules/condition.md)<`T`>>*): `Promise`<`boolean`>
 
-*Defined in [wait.ts:164](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L164)*
+*Defined in [wait.ts:159](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L159)*
 
 **Parameters:**
 
@@ -143,7 +143,7 @@ ___
 
 ▸ **untilNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`T`>>*): `Promise`<`boolean`>
 
-*Defined in [wait.ts:168](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L168)*
+*Defined in [wait.ts:163](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L163)*
 
 **Parameters:**
 

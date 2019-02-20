@@ -91,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/filteredByConditionWebElementsLocator.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L35)*
+*Defined in [locators/filteredByConditionWebElementsLocator.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L48)*
 
 **Returns:** `string`
 

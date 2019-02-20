@@ -44,7 +44,8 @@ var have;
     have.valueContaining = (expected /* | number*/) => conditions_1.condition.element.hasValueContaining(expected);
     have.cssClass = (cssClass) => conditions_1.condition.element.hasCssClass(cssClass);
     have.size = (size) => conditions_1.condition.collection.hasSize(size);
-    have.texts = (...texts) => conditions_1.condition.collection.hasExactTexts(texts);
+    have.texts = (...texts) => conditions_1.condition.collection.hasTexts(texts);
+    have.exactTexts = (...texts) => conditions_1.condition.collection.hasExactTexts(texts);
     have.url = (url) => conditions_1.condition.browser.hasUrl(url);
     // todo: what about inUrl?
     /*
@@ -58,7 +59,6 @@ var have;
     have.urlContaining = (urlPart) => conditions_1.condition.browser.hasUrlContaining(urlPart);
     have.title = (expected) => conditions_1.condition.browser.hasTitle(expected);
     have.titleContaining = (titlePart) => conditions_1.condition.browser.hasTitleContaining(titlePart);
-    have.exactTexts = (...texts) => conditions_1.condition.collection.hasExactTexts(texts);
     have.tabsNumber = (num) => conditions_1.condition.browser.hasTabsNumber(num);
     have.tabsNumberLessThan = (num) => conditions_1.condition.browser.hasTabsNumberLessThan(num);
     have.tabsNumberMoreThan = (num) => conditions_1.condition.browser.hasTabsNumberMoreThan(num);

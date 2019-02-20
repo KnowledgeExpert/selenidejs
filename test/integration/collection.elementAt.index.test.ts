@@ -94,7 +94,7 @@ describe('Collection get by index Element', () => {
             .then(ifNoError => fail('should fail on timeout before can be clicked'))
             .catch(async error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
-                expect(await await driver.getCurrentUrl()).not.toContain('second');
+                expect(await driver.getCurrentUrl()).not.toContain('second');
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
 \tbrowser.all(By(css selector, a))[1].click
@@ -116,7 +116,7 @@ Reason:
             .then(ifNoError => fail('should fail on timeout'))
             .catch(async error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
-                expect(await await driver.getCurrentUrl()).not.toContain('second');
+                expect(await driver.getCurrentUrl()).not.toContain('second');
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
 \tbrowser.all(By(css selector, li))[1].has text: Kate

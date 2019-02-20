@@ -23,7 +23,8 @@ class ByIndexWebElementLocator {
     async find() {
         const webelements = await this.collection.getWebElements();
         if (webelements.length <= this.index) {
-            throw new Error(`Cannot get element with index ${this.index} from webelements collection with length ${webelements.length}`);
+            throw new Error(`Cannot get element with index ${this.index} ` +
+                `from webelements collection with length ${webelements.length}`); // todo: should we log here the full collection of outerHTMLs? like in byCondition locator...
         }
         return webelements[this.index];
     }

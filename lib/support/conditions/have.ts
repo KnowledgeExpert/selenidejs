@@ -68,6 +68,9 @@ export namespace have {
         condition.collection.hasSize(size);
 
     export const texts = (...texts: string[]): CollectionCondition =>
+        condition.collection.hasTexts(texts);
+
+    export const exactTexts = (...texts: string[]): CollectionCondition =>
         condition.collection.hasExactTexts(texts);
 
     export const url = (url: string): BrowserCondition =>
@@ -90,9 +93,6 @@ export namespace have {
 
     export const titleContaining = (titlePart: string): BrowserCondition =>
         condition.browser.hasTitleContaining(titlePart);
-
-    export const exactTexts = (...texts: string[]): CollectionCondition =>
-        condition.collection.hasExactTexts(texts);
 
     export const tabsNumber = (num: number): BrowserCondition =>
         condition.browser.hasTabsNumber(num);

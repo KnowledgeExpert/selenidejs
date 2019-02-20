@@ -41,11 +41,6 @@ export type Command<T> = Query<T, void>;
  * Read "void" in Query<T, void> as "matched", or "passed".
  */
 export type Condition<T> = Query<T, void>;
-
-/*
- * todo: do we need Condition as class? so we can do have.text('foo').or(have.value('foo'))?
- * or is Condition.or(have.text('foo'), have.value('foo')) enough?
- */
 export namespace Condition {
     /**
      * Negates condition. Making the negated condition to:

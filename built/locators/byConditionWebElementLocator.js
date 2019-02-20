@@ -13,7 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-class FilteredByConditionWebElementsLocator {
+const queries_1 = require("../queries");
+class ElementByConditionWebElementLocator {
     constructor(condition, collection) {
         this.condition = condition;
         this.collection = collection;
@@ -22,23 +23,21 @@ class FilteredByConditionWebElementsLocator {
     }
     async find() {
         const arrayOfCachedElements = await this.collection.getAsCashedArray();
-        const filtered = [];
         for (const element of arrayOfCachedElements) {
             if (await element.matching(this.condition)) {
-                filtered.push(await element.getWebElement());
+                return element.getWebElement();
             }
         }
-        return filtered;
-        // todo: why the following implementation does not work? o_O
-        // const filtered = arrayOfCachedElements.filter(async element => element.matching(this.condition));
-        // const filtered = await Promise.all(
-        //     arrayOfCachedElements.filter(element => element.matching(this.condition))
-        // );
-        // return Promise.all(filtered.map(element => element.getWebElement()));
+        const outerHTMLs = [];
+        for (const element of arrayOfCachedElements) {
+            outerHTMLs.push(await queries_1.query.outerHtml(element)); // todo: can it fail with "stale element error"?
+        }
+        throw new Error(`Cannot find element by condition «${this.condition}» ` +
+            `from webelements collection:\n[${outerHTMLs}]`);
     }
     toString() {
-        return `${this.collection.toString()}.filteredBy(${this.condition.toString()})`;
+        return `${this.collection.toString()}.elementBy(${this.condition})`;
     }
 }
-exports.FilteredByConditionWebElementsLocator = FilteredByConditionWebElementsLocator;
-//# sourceMappingURL=filteredByConditionWebElementsLocator.js.map
+exports.ElementByConditionWebElementLocator = ElementByConditionWebElementLocator;
+//# sourceMappingURL=byConditionWebElementLocator.js.map

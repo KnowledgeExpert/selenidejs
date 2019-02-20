@@ -20,6 +20,7 @@ const cashedWebElementLocator_1 = require("./locators/cashedWebElementLocator");
 const filteredByConditionWebElementsLocator_1 = require("./locators/filteredByConditionWebElementsLocator");
 const wait_1 = require("./wait");
 const entity_1 = require("./entity");
+const byConditionWebElementLocator_1 = require("./locators/byConditionWebElementLocator");
 class Collection extends entity_1.Entity {
     // private readonly wait: Wait<Collection>;
     constructor(locator, configuration) {
@@ -57,7 +58,7 @@ class Collection extends entity_1.Entity {
         return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(wait_1.Condition.all(...conditions), this), this.configuration);
     }
     elementBy(...conditions) {
-        return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(wait_1.Condition.all(...conditions), this), this.configuration).elementAt(0); // todo: implement through separate ByFind...Locator
+        return new element_1.Element(new byConditionWebElementLocator_1.ElementByConditionWebElementLocator(wait_1.Condition.all(...conditions), this), this.configuration);
     }
     async getWebElements() {
         return this.locator.find();

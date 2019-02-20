@@ -22,6 +22,7 @@ import { FilteredByConditionWebElementsLocator } from './locators/filteredByCond
 import { Locator } from './locators/locator';
 import { Condition, Query, Wait } from './wait';
 import { Assertable, Entity, Matchable } from './entity';
+import { ElementByConditionWebElementLocator } from './locators/byConditionWebElementLocator';
 
 export class Collection extends Entity implements Assertable, Matchable {
 
@@ -72,10 +73,10 @@ export class Collection extends Entity implements Assertable, Matchable {
     }
 
     elementBy(...conditions: ElementCondition[]): Element {
-        return new Collection(
-            new FilteredByConditionWebElementsLocator(Condition.all(...conditions), this),
+        return new Element(
+            new ElementByConditionWebElementLocator(Condition.all(...conditions), this),
             this.configuration
-        ).elementAt(0);  // todo: implement through separate ByFind...Locator
+        );
     }
 
     async getWebElements(): Promise<WebElement[]> {
