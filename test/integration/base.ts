@@ -49,6 +49,7 @@ beforeAll(async () => {
     browser = Browser
         .drivedBy(driver)
         .timeout(data.timeouts.byDefault)
+        .baseUrl(TestUtils.resourcesUrl())
         .build();
 
     GIVEN = new Gherkin(browser);

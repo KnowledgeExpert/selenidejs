@@ -21,6 +21,7 @@ const element_1 = require("./element");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const entity_1 = require("./entity");
+var isAbsoluteUrl = extensions_1.Extensions.isAbsoluteUrl;
 class Browser extends entity_1.Entity {
     static configuredWith() {
         return configuration_1.Customized.browser();
@@ -82,11 +83,14 @@ class Browser extends entity_1.Entity {
         return this.driver.executeScript(script, ...args);
     }
     /* tslint:enable:ban-types */
-    async open(url) {
+    async open(relativeOrAbsoluteUrl) {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(parseInt(this.configuration.windowWidth), parseInt(this.configuration.windowHeight));
         }
-        await this.driver.get(url);
+        const absoluteUrl = isAbsoluteUrl(relativeOrAbsoluteUrl) ?
+            relativeOrAbsoluteUrl :
+            this.configuration.baseUrl + relativeOrAbsoluteUrl;
+        await this.driver.get(absoluteUrl);
         return this;
     }
     async resizeWindow(width, height) {
@@ -105,6 +109,20 @@ class Browser extends entity_1.Entity {
     async quit() {
         await this.driver.quit();
     }
+    async refresh() {
+        await this.driver.navigate().refresh();
+    }
+    // todo: await browser.back ... is it ok? would not it be better with await browser.navigateBack()?
+    // todo: also take into account this: browser. ... .then(perform.back) - does not it look weird?
+    // todo: compare vs ... .then(perform.navigate.back) or ... .then(perform.navigateBack)
+    // todo: or just await browser.navigate().back() ? same applies forward, but not refresh...
+    // async back() {
+    //     await this.driver.navigate().back();
+    // }
+    //
+    // async forward() {
+    //     await this.driver.navigate().forward();
+    // }
     // todo: should it fail if there is no next tab? probably yes... same for other similar methods
     async nextTab() {
         // todo: name does not tell that there will be a switch.... rename to switchToNextTab? or goTo...

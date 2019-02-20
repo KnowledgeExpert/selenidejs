@@ -24,6 +24,7 @@ import { SearchContext } from './searchContext';
 import { Command, Condition, Query, Wait } from './wait';
 import { ElementActionHooks } from './refactor/elementActionHooks';
 import { Assertable, Entity, Matchable } from './entity';
+import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 
 export class Browser extends Entity implements SearchContext, Assertable, Matchable {
 
@@ -108,14 +109,19 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
     }
     /* tslint:enable:ban-types */
 
-    async open(url: string): Promise<Browser> {
+    async open(relativeOrAbsoluteUrl: string): Promise<Browser> {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(
                 parseInt(this.configuration.windowWidth),
                 parseInt(this.configuration.windowHeight)
             );
         }
-        await this.driver.get(url);
+
+        const absoluteUrl = isAbsoluteUrl(relativeOrAbsoluteUrl) ?
+            relativeOrAbsoluteUrl :
+            this.configuration.baseUrl + relativeOrAbsoluteUrl;
+
+        await this.driver.get(absoluteUrl);
         return this;
     }
 
@@ -138,6 +144,22 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
     async quit() {
         await this.driver.quit();
     }
+
+    async refresh() {
+        await this.driver.navigate().refresh();
+    }
+
+    // todo: await browser.back ... is it ok? would not it be better with await browser.navigateBack()?
+    // todo: also take into account this: browser. ... .then(perform.back) - does not it look weird?
+    // todo: compare vs ... .then(perform.navigate.back) or ... .then(perform.navigateBack)
+    // todo: or just await browser.navigate().back() ? same applies forward, but not refresh...
+    // async back() {
+    //     await this.driver.navigate().back();
+    // }
+    //
+    // async forward() {
+    //     await this.driver.navigate().forward();
+    // }
 
     // todo: should it fail if there is no next tab? probably yes... same for other similar methods
     async nextTab(): Promise<Browser> {

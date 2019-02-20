@@ -46,4 +46,11 @@ export namespace Extensions {
             ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
+
+    export function isAbsoluteUrl(relativeOrAbsoluteUrl: string): boolean {
+        return relativeOrAbsoluteUrl.toLowerCase().startsWith('http:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('https:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('file:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('data:');
+    }
 }

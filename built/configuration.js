@@ -22,6 +22,7 @@ class Configuration {
         // todo: should we make them readonly? can we? with this object.assign technique...
         this.driver = null;
         this.timeout = 4000;
+        this.baseUrl = '';
         this.windowWidth = ''; // todo: why not as number?
         this.windowHeight = ''; // todo: why not as number?
         this.htmlPath = path.resolve('./htmls');
@@ -81,6 +82,10 @@ class Customized {
     }
     driver(webdriver) {
         this.configuration = Object.assign({}, this.configuration, { driver: webdriver });
+        return this;
+    }
+    baseUrl(base) {
+        this.configuration = Object.assign({}, this.configuration, { baseUrl: base });
         return this;
     }
     timeout(milliseconds) {

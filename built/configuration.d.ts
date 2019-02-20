@@ -6,6 +6,7 @@ export declare class Configuration {
     static withDriver(driver: WebDriver): Customized<Configuration>;
     readonly driver: WebDriver;
     readonly timeout: number;
+    readonly baseUrl: string;
     readonly windowWidth: string;
     readonly windowHeight: string;
     readonly htmlPath: string;
@@ -22,6 +23,7 @@ export declare class Customized<T> {
     private constructor();
     build(): T;
     driver(webdriver: WebDriver): this;
+    baseUrl(base: string): this;
     timeout(milliseconds: number): this;
     windowWidth(value: string): this;
     windowHeight(value: string): this;

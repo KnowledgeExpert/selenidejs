@@ -44,5 +44,12 @@ var Extensions;
             : cssOrXpathOrBy;
     }
     Extensions.toBy = toBy;
+    function isAbsoluteUrl(relativeOrAbsoluteUrl) {
+        return relativeOrAbsoluteUrl.toLowerCase().startsWith('http:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('https:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('file:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('data:');
+    }
+    Extensions.isAbsoluteUrl = isAbsoluteUrl;
 })(Extensions = exports.Extensions || (exports.Extensions = {}));
 //# sourceMappingURL=extensions.js.map

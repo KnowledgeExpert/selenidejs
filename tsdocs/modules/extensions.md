@@ -6,6 +6,7 @@
 
 ### Functions
 
+* [isAbsoluteUrl](extensions.md#isabsoluteurl)
 * [savePageSource](extensions.md#savepagesource)
 * [saveScreenshot](extensions.md#savescreenshot)
 * [toBy](extensions.md#toby)
@@ -14,6 +15,23 @@
 
 ## Functions
 
+<a id="isabsoluteurl"></a>
+
+###  isAbsoluteUrl
+
+▸ **isAbsoluteUrl**(relativeOrAbsoluteUrl: *`string`*): `boolean`
+
+*Defined in [utils/extensions.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L50)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| relativeOrAbsoluteUrl | `string` |
+
+**Returns:** `boolean`
+
+___
 <a id="savepagesource"></a>
 
 ###  savePageSource

@@ -23,7 +23,7 @@ export class Gherkin {
     }
 
     async openedEmptyPage() {
-        await this.browser.open(TestUtils.resourcesUrl() + 'empty.html');
+        await this.browser.open('empty.html');
     }
 
     async withBody(html: string) {

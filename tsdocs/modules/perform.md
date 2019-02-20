@@ -23,6 +23,7 @@
 * [pressTab](perform.md#presstab)
 * [previousTab](perform.md#previoustab)
 * [quit](perform.md#quit)
+* [refresh](perform.md#refresh)
 * [resizeWindow](perform.md#resizewindow)
 * [screenshot](perform.md#screenshot)
 * [scrollIntoView](perform.md#scrollintoview)
@@ -42,7 +43,7 @@
 
 ▸ **clearLocalStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L72)*
+*Defined in [support/commands/perform.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L75)*
 
 **Parameters:**
 
@@ -59,7 +60,7 @@ ___
 
 ▸ **clearSessionStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L73)*
+*Defined in [support/commands/perform.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L76)*
 
 **Parameters:**
 
@@ -145,7 +146,7 @@ ___
 
 ▸ **deleteCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L74)*
+*Defined in [support/commands/perform.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L77)*
 
 **Parameters:**
 
@@ -179,7 +180,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L77)*
+*Defined in [support/commands/perform.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L80)*
 
 **Parameters:**
 
@@ -214,7 +215,7 @@ ___
 
 ▸ **nextTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L66)*
+*Defined in [support/commands/perform.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L69)*
 
 **Parameters:**
 
@@ -299,7 +300,7 @@ ___
 
 ▸ **previousTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L67)*
+*Defined in [support/commands/perform.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L70)*
 
 **Parameters:**
 
@@ -317,6 +318,23 @@ ___
 ▸ **quit**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
 
 *Defined in [support/commands/perform.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L65)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<`void`>
+
+___
+<a id="refresh"></a>
+
+### `<Const>` refresh
+
+▸ **refresh**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
+
+*Defined in [support/commands/perform.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L68)*
 
 **Parameters:**
 
@@ -436,7 +454,7 @@ ___
 
 ▸ **switchToDefaultFrame**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L70)*
+*Defined in [support/commands/perform.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L73)*
 
 **Parameters:**
 
@@ -453,7 +471,7 @@ ___
 
 ▸ **switchToFrame**(frameElement: *[Element](../classes/element.md)*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L68)*
+*Defined in [support/commands/perform.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L71)*
 
 **Parameters:**
 

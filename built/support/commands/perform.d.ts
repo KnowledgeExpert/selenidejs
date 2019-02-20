@@ -19,6 +19,7 @@ export declare namespace perform {
     const screenshot: (browser: Browser) => Promise<Buffer>;
     const closeCurrentTab: (browser: Browser) => Promise<Browser>;
     const quit: (browser: Browser) => Promise<void>;
+    const refresh: (browser: Browser) => Promise<void>;
     const nextTab: (browser: Browser) => Promise<Browser>;
     const previousTab: (browser: Browser) => Promise<Browser>;
     const switchToFrame: (frameElement: Element) => (browser: Browser) => Promise<Browser>;

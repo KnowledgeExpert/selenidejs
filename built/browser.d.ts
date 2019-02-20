@@ -20,11 +20,12 @@ export declare class Browser extends Entity implements SearchContext, Assertable
     element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element;
     all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection;
     executeScript(script: string | Function, ...args: any[]): Promise<{}>;
-    open(url: string): Promise<Browser>;
+    open(relativeOrAbsoluteUrl: string): Promise<Browser>;
     resizeWindow(width: number, height: number): Promise<Browser>;
     screenshot(): Promise<Buffer>;
     closeCurrentTab(): Promise<Browser>;
     quit(): Promise<void>;
+    refresh(): Promise<void>;
     nextTab(): Promise<Browser>;
     previousTab(): Promise<Browser>;
     switchToFrame(frameElement: Element): Promise<Browser>;
