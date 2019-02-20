@@ -105,7 +105,7 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
     /* Commands */
 
     @ElementActionHooks
-    // todo: do we need to wrap it into this.wait. ?
+    // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
     async executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]) {
         return this.configuration.driver.executeScript(
             scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
@@ -121,72 +121,44 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
     }
 
     @ElementActionHooks
-    async clickByJs(xOffset: number = 0, yOffset: number = 0) {  // todo: what about element.js.click() instead?
-        // todo: should we wrap it into this.wait.command ?
-        await this.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true,
-            'clientX': arguments[0].getClientRects()[0].left + ${xOffset},
-            'clientY': arguments[0].getClientRects()[0].top + ${yOffset}
-        }))`);
-        return this;
-    }
-
-    @ElementActionHooks
     async setValue(value: string | number) {  // todo: should we rename it just to set?
                                               // kind of more readable and reflects user context
-        await this.wait.command(async element => {
+        await this.wait.command(lambda(`set value: ${value}`, async element => {
             const webelement = await element.getWebElement();
             await webelement.clear();
             await webelement.sendKeys(String(value));
-        });
-        return this;
-    }
-
-    @ElementActionHooks
-    async setValueByJs(value: string | number) {
-        // todo: should we here ensure visibility or not?
-        await this.executeScript(`return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null
-                        ? -1
-                        : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text
-                            : text.length <= maxlength ? text
-                                : text.substring(0, maxlength);
-                    return null;
-                    })(arguments[0], ${String(value)});`);
+        }));
         return this;
     }
 
     @ElementActionHooks
     async type(keys: string | number) {
-        await this.wait.command(async element =>
-            element.getWebElement().then(it => it.sendKeys(String(keys))));
+        await this.wait.command(lambda(`type: ${keys}`, async element =>
+            element.getWebElement().then(it => it.sendKeys(String(keys)))));
         return this;
     }
 
     @ElementActionHooks
     async doubleClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(async element =>
-            driver.actions().doubleClick(await element.getWebElement()).perform());
+        await this.wait.command(lambda('double-click', async element =>
+            driver.actions().doubleClick(await element.getWebElement()).perform()));
         return this;
     }
 
     @ElementActionHooks
     async hover() {
         const driver = this.configuration.driver;
-        await this.wait.command(async element =>
-            driver.actions().mouseMove(await element.getWebElement()).perform());
+        await this.wait.command(lambda('hover', async element =>
+            driver.actions().mouseMove(await element.getWebElement()).perform()));
         return this;
     }
 
     @ElementActionHooks
     async contextClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(async element =>
-            driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform());
+        await this.wait.command(lambda('context-click', async element =>
+            driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform()));
         return this;
     }
 
@@ -207,9 +179,9 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
 
     @ElementActionHooks
     async scrollIntoView() {  // todo: do we need here byJs ?
-        await this.wait.query(async element =>
+        await this.wait.query(lambda('scroll into view', async element =>
             element.executeScript('arguments[0].scrollIntoView(true);')  // todo: is ensuring visibility covered here?
-        );
+        ));
         return this;
     }
 

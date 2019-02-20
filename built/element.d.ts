@@ -24,9 +24,7 @@ export declare class Element extends Entity implements SearchContext, Assertable
     all(cssOrXpathOrBy: string | By): Collection;
     executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]): Promise<{}>;
     click(): Promise<this>;
-    clickByJs(xOffset?: number, yOffset?: number): Promise<this>;
     setValue(value: string | number): Promise<this>;
-    setValueByJs(value: string | number): Promise<this>;
     type(keys: string | number): Promise<this>;
     doubleClick(): Promise<this>;
     hover(): Promise<this>;

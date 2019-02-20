@@ -22,17 +22,56 @@ var perform;
 (function (perform) {
     /* Element commands */
     perform.click = (element) => element.click();
-    perform.clickByJs = (xOffset = 0, yOffset = 0) => (element) => element.clickByJs(xOffset, yOffset);
     perform.doubleClick = (element) => element.doubleClick();
     perform.contextClick = (element) => element.contextClick();
     perform.hover = (element) => element.hover();
     perform.scrollIntoView = (element) => element.scrollIntoView();
     perform.type = (keys) => (element) => element.type(keys);
     perform.setValue = (value) => (element) => element.setValue(value);
-    perform.setValueByJs = (value) => (element) => element.setValueByJs(value);
     perform.pressEnter = (element) => element.pressEnter();
     perform.pressTab = (element) => element.pressTab();
     perform.pressEscape = (element) => element.pressEscape();
+    /*
+     * todo: the following commands has no @ElementActionHooks... what to do?
+     */
+    let js;
+    (function (js) {
+        js.click = (xOffset = 0, yOffset = 0) => (element) => {
+            element.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': true,
+                    'clientX': arguments[0].getClientRects()[0].left + ${xOffset},
+                    'clientY': arguments[0].getClientRects()[0].top + ${yOffset}
+                }))`);
+            return element;
+        };
+        js.setValue = (value) => (element) => {
+            element.executeScript(`return (function(webelement, text) {
+                    var maxlength = webelement.getAttribute('maxlength') == null
+                        ? -1
+                        : parseInt(webelement.getAttribute('maxlength'));
+                    webelement.value = maxlength == -1 ? text
+                            : text.length <= maxlength ? text
+                                : text.substring(0, maxlength);
+                    return null;
+                })(arguments[0], ${String(value)});`);
+            return element;
+        };
+        js.type = (value) => (element) => {
+            element.executeScript(`return (function(webelement, text) {
+                    var maxlength = webelement.getAttribute('maxlength') == null
+                        ? -1
+                        : parseInt(webelement.getAttribute('maxlength'));
+                    var value = webelement.value + text;
+                    webelement.value = maxlength == -1 ? value
+                            : value.length <= maxlength ? value
+                                : value.substring(0, maxlength);
+                    return null;
+                })(arguments[0], ${String(value)});`);
+            return element;
+        };
+    })(js = perform.js || (perform.js = {}));
     /*  // had to comment it, to resolve conflict with browser.executeScript :(
     
         // todo: consider making it as accepting func:

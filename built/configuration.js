@@ -28,7 +28,7 @@ class Configuration {
         this.htmlPath = path.resolve('./htmls');
         this.screenshotPath = path.resolve('./screenshots'); // todo: why not screenshotsPath?
         this.fullPageScreenshot = true;
-        this.onFailureHooks = [
+        this.onFailureHooks = [ // todo: should we bother and make it immutable?
         /*
         async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
             const driver = Utils.getDriver(entity);

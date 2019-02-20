@@ -86,7 +86,7 @@ class Element extends entity_1.Entity {
         return new collection_1.Collection(locator, this.configuration);
     }
     /* Commands */
-    // todo: do we need to wrap it into this.wait. ?
+    // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
@@ -95,56 +95,32 @@ class Element extends entity_1.Entity {
          element.getWebElement().then(it => it.click())));
         return this;
     }
-    async clickByJs(xOffset = 0, yOffset = 0) {
-        // todo: should we wrap it into this.wait.command ?
-        await this.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true,
-            'clientX': arguments[0].getClientRects()[0].left + ${xOffset},
-            'clientY': arguments[0].getClientRects()[0].top + ${yOffset}
-        }))`);
-        return this;
-    }
     async setValue(value) {
         // kind of more readable and reflects user context
-        await this.wait.command(async (element) => {
+        await this.wait.command(utils_1.lambda(`set value: ${value}`, async (element) => {
             const webelement = await element.getWebElement();
             await webelement.clear();
             await webelement.sendKeys(String(value));
-        });
-        return this;
-    }
-    async setValueByJs(value) {
-        // todo: should we here ensure visibility or not?
-        await this.executeScript(`return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null
-                        ? -1
-                        : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text
-                            : text.length <= maxlength ? text
-                                : text.substring(0, maxlength);
-                    return null;
-                    })(arguments[0], ${String(value)});`);
+        }));
         return this;
     }
     async type(keys) {
-        await this.wait.command(async (element) => element.getWebElement().then(it => it.sendKeys(String(keys))));
+        await this.wait.command(utils_1.lambda(`type: ${keys}`, async (element) => element.getWebElement().then(it => it.sendKeys(String(keys)))));
         return this;
     }
     async doubleClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(async (element) => driver.actions().doubleClick(await element.getWebElement()).perform());
+        await this.wait.command(utils_1.lambda('double-click', async (element) => driver.actions().doubleClick(await element.getWebElement()).perform()));
         return this;
     }
     async hover() {
         const driver = this.configuration.driver;
-        await this.wait.command(async (element) => driver.actions().mouseMove(await element.getWebElement()).perform());
+        await this.wait.command(utils_1.lambda('hover', async (element) => driver.actions().mouseMove(await element.getWebElement()).perform()));
         return this;
     }
     async contextClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(async (element) => driver.actions().click(await element.getWebElement(), String(selenium_webdriver_1.Button.RIGHT)).perform());
+        await this.wait.command(utils_1.lambda('context-click', async (element) => driver.actions().click(await element.getWebElement(), String(selenium_webdriver_1.Button.RIGHT)).perform()));
         return this;
     }
     async pressEnter() {
@@ -157,8 +133,8 @@ class Element extends entity_1.Entity {
         return this.type(selenium_webdriver_1.Key.TAB);
     }
     async scrollIntoView() {
-        await this.wait.query(async (element) => element.executeScript('arguments[0].scrollIntoView(true);') // todo: is ensuring visibility covered here?
-        );
+        await this.wait.query(utils_1.lambda('scroll into view', async (element) => element.executeScript('arguments[0].scrollIntoView(true);') // todo: is ensuring visibility covered here?
+        ));
         return this;
     }
 }
@@ -166,20 +142,14 @@ Element.beforeActionHooks = []; // todo: should we move it to Configuration?
 Element.afterActionHooks = []; // we should...
 __decorate([
     elementActionHooks_1.ElementActionHooks
-    // todo: do we need to wrap it into this.wait. ?
+    // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
 ], Element.prototype, "executeScript", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "click", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
-], Element.prototype, "clickByJs", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "setValue", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "setValueByJs", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "type", null);

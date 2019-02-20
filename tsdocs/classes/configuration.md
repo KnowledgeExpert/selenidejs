@@ -93,7 +93,7 @@ ___
 
 ###  onFailureHooks
 
-**● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]* =  [
+**● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]* =  [ // todo: should we bother and make it immutable?
         /*
         async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
             const driver = Utils.getDriver(entity);
