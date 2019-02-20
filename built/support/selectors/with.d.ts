@@ -5,6 +5,7 @@ export declare namespace With {
     function partialId(...idParts: string[]): By;
     function text(text: string): By;
     function exactText(text: string): By;
+    function linkText(text: string): By;
     function id(id: string): By;
     function name(name: string): By;
     function className(className: string): By;

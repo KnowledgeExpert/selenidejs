@@ -15,6 +15,7 @@
 * [css](with.md#css)
 * [exactText](with.md#exacttext)
 * [id](with.md#id)
+* [linkText](with.md#linktext)
 * [name](with.md#name)
 * [partialId](with.md#partialid)
 * [text](with.md#text)
@@ -45,7 +46,7 @@ ___
 
 ▸ **attribute**(attributeName: *`string`*, attributeValue: *`string`*): `By`
 
-*Defined in [support/selectors/with.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L65)*
+*Defined in [support/selectors/with.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L69)*
 
 **Parameters:**
 
@@ -63,7 +64,7 @@ ___
 
 ▸ **className**(className: *`string`*): `By`
 
-*Defined in [support/selectors/with.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L53)*
+*Defined in [support/selectors/with.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L57)*
 
 **Parameters:**
 
@@ -80,7 +81,7 @@ ___
 
 ▸ **css**(css: *`string`*): `By`
 
-*Defined in [support/selectors/with.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L61)*
+*Defined in [support/selectors/with.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L65)*
 
 **Parameters:**
 
@@ -114,7 +115,7 @@ ___
 
 ▸ **id**(id: *`string`*): `By`
 
-*Defined in [support/selectors/with.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L45)*
+*Defined in [support/selectors/with.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L49)*
 
 **Parameters:**
 
@@ -125,13 +126,30 @@ ___
 **Returns:** `By`
 
 ___
+<a id="linktext"></a>
+
+###  linkText
+
+▸ **linkText**(text: *`string`*): `By`
+
+*Defined in [support/selectors/with.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L45)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| text | `string` |
+
+**Returns:** `By`
+
+___
 <a id="name"></a>
 
 ###  name
 
 ▸ **name**(name: *`string`*): `By`
 
-*Defined in [support/selectors/with.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L49)*
+*Defined in [support/selectors/with.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L53)*
 
 **Parameters:**
 
@@ -216,7 +234,7 @@ ___
 
 ▸ **xpath**(xpath: *`string`*): `By`
 
-*Defined in [support/selectors/with.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L57)*
+*Defined in [support/selectors/with.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/with.ts#L61)*
 
 **Parameters:**
 

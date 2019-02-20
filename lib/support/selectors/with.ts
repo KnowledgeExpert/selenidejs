@@ -42,6 +42,10 @@ export namespace With { // todo: consider renaming to by (with.xpath vs by.xpath
         return By.xpath(`.//*/text()[${NORMALIZE_SPACE_XPATH} = "${text}"]/parent::*`);
     }
 
+    export function linkText(text: string): By {
+        return By.linkText(text);
+    }
+
     export function id(id: string): By {
         return By.id(id);
     }

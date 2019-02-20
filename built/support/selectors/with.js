@@ -40,6 +40,10 @@ var With;
         return selenium_webdriver_1.By.xpath(`.//*/text()[${NORMALIZE_SPACE_XPATH} = "${text}"]/parent::*`);
     }
     With.exactText = exactText;
+    function linkText(text) {
+        return selenium_webdriver_1.By.linkText(text);
+    }
+    With.linkText = linkText;
     function id(id) {
         return selenium_webdriver_1.By.id(id);
     }
