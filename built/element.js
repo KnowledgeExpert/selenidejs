@@ -128,8 +128,8 @@ class Element extends entity_1.Entity {
                     })(arguments[0], ${String(value)});`);
         return this;
     }
-    async sendKeys(value) {
-        await this.wait.command(async (element) => element.getWebElement().then(it => it.sendKeys(String(value))));
+    async type(keys) {
+        await this.wait.command(async (element) => element.getWebElement().then(it => it.sendKeys(String(keys))));
         return this;
     }
     async doubleClick() {
@@ -148,13 +148,13 @@ class Element extends entity_1.Entity {
         return this;
     }
     async pressEnter() {
-        return this.sendKeys(selenium_webdriver_1.Key.ENTER);
+        return this.type(selenium_webdriver_1.Key.ENTER);
     }
     async pressEscape() {
-        return this.sendKeys(selenium_webdriver_1.Key.ESCAPE);
+        return this.type(selenium_webdriver_1.Key.ESCAPE);
     }
     async pressTab() {
-        return this.sendKeys(selenium_webdriver_1.Key.TAB);
+        return this.type(selenium_webdriver_1.Key.TAB);
     }
     async scrollIntoView() {
         await this.wait.query(async (element) => element.executeScript('arguments[0].scrollIntoView(true);') // todo: is ensuring visibility covered here?
@@ -182,7 +182,7 @@ __decorate([
 ], Element.prototype, "setValueByJs", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
-], Element.prototype, "sendKeys", null);
+], Element.prototype, "type", null);
 __decorate([
     elementActionHooks_1.ElementActionHooks
 ], Element.prototype, "doubleClick", null);

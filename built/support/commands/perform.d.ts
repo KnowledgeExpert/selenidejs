@@ -8,7 +8,7 @@ export declare namespace perform {
     const contextClick: (element: Element) => Promise<Element>;
     const hover: (element: Element) => Promise<Element>;
     const scrollIntoView: (element: Element) => Promise<Element>;
-    const sendKeys: (value: string | number) => (element: Element) => Promise<Element>;
+    const type: (keys: string | number) => (element: Element) => Promise<Element>;
     const setValue: (value: string | number) => (element: Element) => Promise<Element>;
     const setValueByJs: (value: string | number) => (element: Element) => Promise<Element>;
     const pressEnter: (element: Element) => Promise<Element>;

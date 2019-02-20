@@ -27,7 +27,7 @@ export declare class Element extends Entity implements SearchContext, Assertable
     clickByJs(xOffset?: number, yOffset?: number): Promise<this>;
     setValue(value: string | number): Promise<this>;
     setValueByJs(value: string | number): Promise<this>;
-    sendKeys(value: string | number): Promise<this>;
+    type(keys: string | number): Promise<this>;
     doubleClick(): Promise<this>;
     hover(): Promise<this>;
     contextClick(): Promise<this>;

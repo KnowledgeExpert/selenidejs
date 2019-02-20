@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import { Button, By, Key, WebElement } from 'selenium-webdriver';
-import { ElementCondition } from './conditions';
 import { be } from './support/conditions/be';
 import { With } from './support/selectors/with';
 import { Extensions } from './utils/extensions';
@@ -26,7 +25,6 @@ import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
-import { Command, Condition, Query, Wait } from './wait';
 import { lambda } from './utils';
 import { Assertable, Entity, Matchable } from './entity';
 
@@ -162,9 +160,9 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
     }
 
     @ElementActionHooks
-    async sendKeys(value: string | number) { // todo: should we rename it (or create alias) to "enter" or "type"?
+    async type(keys: string | number) {
         await this.wait.command(async element =>
-            element.getWebElement().then(it => it.sendKeys(String(value))));
+            element.getWebElement().then(it => it.sendKeys(String(keys))));
         return this;
     }
 
@@ -194,17 +192,17 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
 
     @ElementActionHooks
     async pressEnter() {
-        return this.sendKeys(Key.ENTER);
+        return this.type(Key.ENTER);
     }
 
     @ElementActionHooks
     async pressEscape() {
-        return this.sendKeys(Key.ESCAPE);
+        return this.type(Key.ESCAPE);
     }
 
     @ElementActionHooks
     async pressTab() {
-        return this.sendKeys(Key.TAB);
+        return this.type(Key.TAB);
     }
 
     @ElementActionHooks

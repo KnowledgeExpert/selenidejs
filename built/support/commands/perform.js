@@ -27,7 +27,7 @@ var perform;
     perform.contextClick = (element) => element.contextClick();
     perform.hover = (element) => element.hover();
     perform.scrollIntoView = (element) => element.scrollIntoView();
-    perform.sendKeys = (value) => (element) => element.sendKeys(value);
+    perform.type = (keys) => (element) => element.type(keys);
     perform.setValue = (value) => (element) => element.setValue(value);
     perform.setValueByJs = (value) => (element) => element.setValueByJs(value);
     perform.pressEnter = (element) => element.pressEnter();

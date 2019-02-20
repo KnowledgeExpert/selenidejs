@@ -27,11 +27,11 @@
 * [resizeWindow](perform.md#resizewindow)
 * [screenshot](perform.md#screenshot)
 * [scrollIntoView](perform.md#scrollintoview)
-* [sendKeys](perform.md#sendkeys)
 * [setValue](perform.md#setvalue)
 * [setValueByJs](perform.md#setvaluebyjs)
 * [switchToDefaultFrame](perform.md#switchtodefaultframe)
 * [switchToFrame](perform.md#switchtoframe)
+* [type](perform.md#type)
 
 ---
 
@@ -397,23 +397,6 @@ ___
 **Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
-<a id="sendkeys"></a>
-
-### `<Const>` sendKeys
-
-▸ **sendKeys**(value: * `string` &#124; `number`*): `(Anonymous function)`
-
-*Defined in [support/commands/perform.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L36)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| value |  `string` &#124; `number`|
-
-**Returns:** `(Anonymous function)`
-
-___
 <a id="setvalue"></a>
 
 ### `<Const>` setValue
@@ -478,6 +461,23 @@ ___
 | Param | Type |
 | ------ | ------ |
 | frameElement | [Element](../classes/element.md) |
+
+**Returns:** `(Anonymous function)`
+
+___
+<a id="type"></a>
+
+### `<Const>` type
+
+▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
+
+*Defined in [support/commands/perform.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L36)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| keys |  `string` &#124; `number`|
 
 **Returns:** `(Anonymous function)`
 

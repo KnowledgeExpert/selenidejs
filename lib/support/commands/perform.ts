@@ -33,7 +33,7 @@ export namespace perform {
     export const hover = (element: Element) => element.hover();
     export const scrollIntoView = (element: Element) => element.scrollIntoView();
 
-    export const sendKeys = (value: string | number) => (element: Element) => element.sendKeys(value);
+    export const type = (keys: string | number) => (element: Element) => element.type(keys);
     export const setValue = (value: string | number) => (element: Element) => element.setValue(value);
     export const setValueByJs = (value: string | number) => (element: Element) => element.setValueByJs(value);
 

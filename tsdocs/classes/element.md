@@ -57,12 +57,12 @@
 * [pressEscape](element.md#pressescape)
 * [pressTab](element.md#presstab)
 * [scrollIntoView](element.md#scrollintoview)
-* [sendKeys](element.md#sendkeys)
 * [setValue](element.md#setvalue)
 * [setValueByJs](element.md#setvaluebyjs)
 * [should](element.md#should)
 * [shouldNot](element.md#shouldnot)
 * [toString](element.md#tostring)
+* [type](element.md#type)
 * [visibleElement](element.md#visibleelement)
 * [waitUntil](element.md#waituntil)
 * [waitUntilNot](element.md#waituntilnot)
@@ -79,7 +79,7 @@
 
 *Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
 
-*Defined in [element.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L37)*
+*Defined in [element.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L35)*
 
 **Parameters:**
 
@@ -100,7 +100,7 @@ ___
 
 **● configuration**: *[Configuration](configuration.md)*
 
-*Defined in [element.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L42)*
+*Defined in [element.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L40)*
 
 ___
 <a id="locator"></a>
@@ -109,7 +109,7 @@ ___
 
 **● locator**: *[Locator](../interfaces/locator.md)<`Promise`<`WebElement`>>*
 
-*Defined in [element.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L41)*
+*Defined in [element.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L39)*
 
 ___
 <a id="wait"></a>
@@ -129,7 +129,7 @@ ___
 
 **● afterActionHooks**: *[AfterElementActionHook](../#afterelementactionhook)[]* =  []
 
-*Defined in [element.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L37)*
+*Defined in [element.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L35)*
 
 ___
 <a id="beforeactionhooks"></a>
@@ -138,7 +138,7 @@ ___
 
 **● beforeActionHooks**: *[BeforeElementActionHook](../#beforeelementactionhook)[]* =  []
 
-*Defined in [element.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L36)*
+*Defined in [element.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L34)*
 
 ___
 
@@ -150,7 +150,7 @@ ___
 
 getparent(): [Element](element.md)
 
-*Defined in [element.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L79)*
+*Defined in [element.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L77)*
 
 **Returns:** [Element](element.md)
 
@@ -164,7 +164,7 @@ ___
 
 ▸ **all**(cssOrXpathOrBy: * `string` &#124; `By`*): [Collection](collection.md)
 
-*Defined in [element.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L101)*
+*Defined in [element.ts:99](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L99)*
 
 **Parameters:**
 
@@ -181,7 +181,7 @@ ___
 
 ▸ **click**(): `Promise`<`this`>
 
-*Defined in [element.ts:118](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L118)*
+*Defined in [element.ts:116](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L116)*
 
 **Returns:** `Promise`<`this`>
 
@@ -192,7 +192,7 @@ ___
 
 ▸ **clickByJs**(xOffset?: *`number`*, yOffset?: *`number`*): `Promise`<`this`>
 
-*Defined in [element.ts:126](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L126)*
+*Defined in [element.ts:124](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L124)*
 
 **Parameters:**
 
@@ -210,7 +210,7 @@ ___
 
 ▸ **configuredWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Element](element.md)
 
-*Defined in [element.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L68)*
+*Defined in [element.ts:66](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L66)*
 
 **Parameters:**
 
@@ -227,7 +227,7 @@ ___
 
 ▸ **contextClick**(): `Promise`<`this`>
 
-*Defined in [element.ts:188](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L188)*
+*Defined in [element.ts:186](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L186)*
 
 **Returns:** `Promise`<`this`>
 
@@ -238,7 +238,7 @@ ___
 
 ▸ **doubleClick**(): `Promise`<`this`>
 
-*Defined in [element.ts:172](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L172)*
+*Defined in [element.ts:170](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L170)*
 
 **Returns:** `Promise`<`this`>
 
@@ -249,7 +249,7 @@ ___
 
 ▸ **element**(cssOrXpathOrBy: * `string` &#124; `By`*): [Element](element.md)
 
-*Defined in [element.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L72)*
+*Defined in [element.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L70)*
 
 **Parameters:**
 
@@ -266,7 +266,7 @@ ___
 
 ▸ **executeScript**(scriptOnThisWebElement: *`string`*, ...additionalArgs: *`any`[]*): `Promise`<`Object`>
 
-*Defined in [element.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L111)*
+*Defined in [element.ts:109](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L109)*
 
 **Parameters:**
 
@@ -286,7 +286,7 @@ ___
 
 *Implementation of [SearchContext](../interfaces/searchcontext.md).[findWebElement](../interfaces/searchcontext.md#findwebelement)*
 
-*Defined in [element.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L58)*
+*Defined in [element.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L56)*
 
 **Parameters:**
 
@@ -305,7 +305,7 @@ ___
 
 *Implementation of [SearchContext](../interfaces/searchcontext.md).[findWebElements](../interfaces/searchcontext.md#findwebelements)*
 
-*Defined in [element.ts:62](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L62)*
+*Defined in [element.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L60)*
 
 **Parameters:**
 
@@ -322,7 +322,7 @@ ___
 
 ▸ **followingSibling**(predicate?: *`string`*): [Element](element.md)
 
-*Defined in [element.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L83)*
+*Defined in [element.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L81)*
 
 **Parameters:**
 
@@ -361,7 +361,7 @@ ___
 
 ▸ **getWebElement**(): `Promise`<`WebElement`>
 
-*Defined in [element.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L52)*
+*Defined in [element.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L50)*
 
 **Returns:** `Promise`<`WebElement`>
 
@@ -372,7 +372,7 @@ ___
 
 ▸ **hover**(): `Promise`<`this`>
 
-*Defined in [element.ts:180](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L180)*
+*Defined in [element.ts:178](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L178)*
 
 **Returns:** `Promise`<`this`>
 
@@ -440,7 +440,7 @@ ___
 
 ▸ **pressEnter**(): `Promise`<`this`>
 
-*Defined in [element.ts:196](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L196)*
+*Defined in [element.ts:194](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L194)*
 
 **Returns:** `Promise`<`this`>
 
@@ -451,7 +451,7 @@ ___
 
 ▸ **pressEscape**(): `Promise`<`this`>
 
-*Defined in [element.ts:201](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L201)*
+*Defined in [element.ts:199](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L199)*
 
 **Returns:** `Promise`<`this`>
 
@@ -462,7 +462,7 @@ ___
 
 ▸ **pressTab**(): `Promise`<`this`>
 
-*Defined in [element.ts:206](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L206)*
+*Defined in [element.ts:204](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L204)*
 
 **Returns:** `Promise`<`this`>
 
@@ -473,24 +473,7 @@ ___
 
 ▸ **scrollIntoView**(): `Promise`<`this`>
 
-*Defined in [element.ts:211](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L211)*
-
-**Returns:** `Promise`<`this`>
-
-___
-<a id="sendkeys"></a>
-
-###  sendKeys
-
-▸ **sendKeys**(value: * `string` &#124; `number`*): `Promise`<`this`>
-
-*Defined in [element.ts:165](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L165)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| value |  `string` &#124; `number`|
+*Defined in [element.ts:209](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L209)*
 
 **Returns:** `Promise`<`this`>
 
@@ -501,7 +484,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `Promise`<`this`>
 
-*Defined in [element.ts:139](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L139)*
+*Defined in [element.ts:137](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L137)*
 
 **Parameters:**
 
@@ -518,7 +501,7 @@ ___
 
 ▸ **setValueByJs**(value: * `string` &#124; `number`*): `Promise`<`this`>
 
-*Defined in [element.ts:150](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L150)*
+*Defined in [element.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L148)*
 
 **Parameters:**
 
@@ -573,9 +556,26 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [element.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L48)*
+*Defined in [element.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L46)*
 
 **Returns:** `string`
+
+___
+<a id="type"></a>
+
+###  type
+
+▸ **type**(keys: * `string` &#124; `number`*): `Promise`<`this`>
+
+*Defined in [element.ts:163](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L163)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| keys |  `string` &#124; `number`|
+
+**Returns:** `Promise`<`this`>
 
 ___
 <a id="visibleelement"></a>
@@ -584,7 +584,7 @@ ___
 
 ▸ **visibleElement**(cssOrXpathOrBy: * `string` &#124; `By`*): [Element](element.md)
 
-*Defined in [element.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L97)*
+*Defined in [element.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L95)*
 
 **Parameters:**
 

@@ -39,7 +39,7 @@ export class Configuration {
     readonly htmlPath: string                = path.resolve('./htmls');
     readonly screenshotPath: string          = path.resolve('./screenshots');  // todo: why not screenshotsPath?
     readonly fullPageScreenshot: boolean     = true;
-    readonly onFailureHooks: OnFailureHook[] = [
+    readonly onFailureHooks: OnFailureHook[] = [ // todo: should we bother and make it immutable?
         /*
         async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
             const driver = Utils.getDriver(entity);
