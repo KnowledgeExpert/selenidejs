@@ -23,6 +23,8 @@ export declare namespace perform {
     const previousTab: (browser: Browser) => Promise<Browser>;
     const switchToFrame: (frameElement: Element) => (browser: Browser) => Promise<Browser>;
     const switchToDefaultFrame: (browser: Browser) => Promise<Browser>;
-    const clearCacheAndCookies: (browser: Browser) => Promise<Browser>;
+    const clearLocalStorage: (browser: Browser) => Promise<Browser>;
+    const clearSessionStorage: (browser: Browser) => Promise<Browser>;
+    const deleteCookies: (browser: Browser) => Promise<Browser>;
     const executeScript: (script: string | Function, ...args: any[]) => (browser: Browser) => Promise<{}>;
 }

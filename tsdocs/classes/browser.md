@@ -34,8 +34,10 @@
 ### Methods
 
 * [all](browser.md#all)
-* [clearCacheAndCookies](browser.md#clearcacheandcookies)
+* [clearLocalStorage](browser.md#clearlocalstorage)
+* [clearSessionStorage](browser.md#clearsessionstorage)
 * [closeCurrentTab](browser.md#closecurrenttab)
+* [deleteCookies](browser.md#deletecookies)
 * [element](browser.md#element)
 * [executeScript](browser.md#executescript)
 * [findWebElement](browser.md#findwebelement)
@@ -144,13 +146,24 @@ ___
 **Returns:** [Collection](collection.md)
 
 ___
-<a id="clearcacheandcookies"></a>
+<a id="clearlocalstorage"></a>
 
-###  clearCacheAndCookies
+###  clearLocalStorage
 
-▸ **clearCacheAndCookies**(): `Promise`<[Browser](browser.md)>
+▸ **clearLocalStorage**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:176](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L176)*
+*Defined in [browser.ts:187](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L187)*
+
+**Returns:** `Promise`<[Browser](browser.md)>
+
+___
+<a id="clearsessionstorage"></a>
+
+###  clearSessionStorage
+
+▸ **clearSessionStorage**(): `Promise`<[Browser](browser.md)>
+
+*Defined in [browser.ts:193](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L193)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -162,6 +175,17 @@ ___
 ▸ **closeCurrentTab**(): `Promise`<[Browser](browser.md)>
 
 *Defined in [browser.ts:133](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L133)*
+
+**Returns:** `Promise`<[Browser](browser.md)>
+
+___
+<a id="deletecookies"></a>
+
+###  deleteCookies
+
+▸ **deleteCookies**(): `Promise`<[Browser](browser.md)>
+
+*Defined in [browser.ts:199](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L199)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 

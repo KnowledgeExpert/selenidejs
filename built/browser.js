@@ -135,13 +135,29 @@ class Browser extends entity_1.Entity {
         await this.driver.switchTo().defaultContent();
         return this;
     }
-    async clearCacheAndCookies() {
-        await this.driver.executeScript('window.localStorage.clear();').catch(ignored => {
-        });
-        await this.driver.executeScript('window.sessionStorage.clear();').catch(ignored => {
-        });
-        await this.driver.manage().deleteAllCookies().catch(ignored => {
-        });
+    // todo: cache is not the same as LocalAndSessionStorage; so we have to be verbose in name; but do we need it then?
+    /*    async clearLocalAndSessionStorageAndCookies(): Promise<Browser> {
+            await this.driver.executeScript('window.localStorage.clear();')
+                .catch(ignored => {});
+            await this.driver.executeScript('window.sessionStorage.clear();')
+                .catch(ignored => {});
+            await this.driver.manage().deleteAllCookies()
+                .catch(ignored => {});
+            return this;
+        }*/
+    async clearLocalStorage() {
+        await this.driver.executeScript('window.localStorage.clear();')
+            .catch(ignored => { });
+        return this;
+    }
+    async clearSessionStorage() {
+        await this.driver.executeScript('window.sessionStorage.clear();')
+            .catch(ignored => { });
+        return this;
+    }
+    async deleteCookies() {
+        await this.driver.manage().deleteAllCookies()
+            .catch(ignored => { });
         return this;
     }
 }

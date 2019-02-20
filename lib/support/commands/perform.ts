@@ -68,7 +68,10 @@ export namespace perform {
     export const switchToFrame = (frameElement: Element) =>
         (browser: Browser) => browser.switchToFrame(frameElement);
     export const switchToDefaultFrame = (browser: Browser) => browser.switchToDefaultFrame();
-    export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
+    // export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
+    export const clearLocalStorage = (browser: Browser) => browser.clearLocalStorage();
+    export const clearSessionStorage = (browser: Browser) => browser.clearSessionStorage();
+    export const deleteCookies = (browser: Browser) => browser.deleteCookies();
 
     /* tslint:disable:ban-types */
     export const executeScript = (script: string | Function, ...args: any[]) =>

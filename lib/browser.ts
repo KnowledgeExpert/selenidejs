@@ -173,13 +173,32 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
         return this;
     }
 
-    async clearCacheAndCookies(): Promise<Browser> {
-        await this.driver.executeScript('window.localStorage.clear();').catch(ignored => {
-        });
-        await this.driver.executeScript('window.sessionStorage.clear();').catch(ignored => {
-        });
-        await this.driver.manage().deleteAllCookies().catch(ignored => {
-        });
+    // todo: cache is not the same as LocalAndSessionStorage; so we have to be verbose in name; but do we need it then?
+/*    async clearLocalAndSessionStorageAndCookies(): Promise<Browser> {
+        await this.driver.executeScript('window.localStorage.clear();')
+            .catch(ignored => {});
+        await this.driver.executeScript('window.sessionStorage.clear();')
+            .catch(ignored => {});
+        await this.driver.manage().deleteAllCookies()
+            .catch(ignored => {});
+        return this;
+    }*/
+
+    async clearLocalStorage(): Promise<Browser> {
+        await this.driver.executeScript('window.localStorage.clear();')
+            .catch(ignored => {});
+        return this;
+    }
+
+    async clearSessionStorage(): Promise<Browser> {
+        await this.driver.executeScript('window.sessionStorage.clear();')
+            .catch(ignored => {});
+        return this;
+    }
+
+    async deleteCookies(): Promise<Browser> {
+        await this.driver.manage().deleteAllCookies()
+            .catch(ignored => {});
         return this;
     }
 }

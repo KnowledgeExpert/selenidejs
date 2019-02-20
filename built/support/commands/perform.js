@@ -54,7 +54,10 @@ var perform;
     perform.previousTab = (browser) => browser.previousTab();
     perform.switchToFrame = (frameElement) => (browser) => browser.switchToFrame(frameElement);
     perform.switchToDefaultFrame = (browser) => browser.switchToDefaultFrame();
-    perform.clearCacheAndCookies = (browser) => browser.clearCacheAndCookies();
+    // export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
+    perform.clearLocalStorage = (browser) => browser.clearLocalStorage();
+    perform.clearSessionStorage = (browser) => browser.clearSessionStorage();
+    perform.deleteCookies = (browser) => browser.deleteCookies();
     /* tslint:disable:ban-types */
     perform.executeScript = (script, ...args) => (browser) => browser.executeScript(script, ...args);
     /* tslint:enable:ban-types */

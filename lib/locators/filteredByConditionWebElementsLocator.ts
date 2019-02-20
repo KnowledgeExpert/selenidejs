@@ -16,7 +16,6 @@ import { WebElement } from 'selenium-webdriver';
 import { ElementCondition } from '../conditions';
 import { Collection } from '../collection';
 import { Locator } from './locator';
-import { Condition } from '../wait';
 
 
 export class FilteredByConditionWebElementsLocator implements Locator<Promise<WebElement[]>> {
@@ -29,7 +28,7 @@ export class FilteredByConditionWebElementsLocator implements Locator<Promise<We
 
     async find(): Promise<WebElement[]> {
         const arrayOfCachedElements = await this.collection.getAsCashedArray();
-        const filtered = arrayOfCachedElements.filter(async element => Condition.asPredicate(this.condition)(element));
+        const filtered = arrayOfCachedElements.filter(async element => element.matching(this.condition));
         return Promise.all(filtered.map(async element => element.getWebElement()));
     }
 

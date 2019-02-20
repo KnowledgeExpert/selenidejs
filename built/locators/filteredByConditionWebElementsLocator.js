@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const wait_1 = require("../wait");
 class FilteredByConditionWebElementsLocator {
     constructor(condition, collection) {
         this.condition = condition;
@@ -23,7 +22,7 @@ class FilteredByConditionWebElementsLocator {
     }
     async find() {
         const arrayOfCachedElements = await this.collection.getAsCashedArray();
-        const filtered = arrayOfCachedElements.filter(async (element) => wait_1.Condition.asPredicate(this.condition)(element));
+        const filtered = arrayOfCachedElements.filter(async (element) => element.matching(this.condition));
         return Promise.all(filtered.map(async (element) => element.getWebElement()));
     }
     toString() {

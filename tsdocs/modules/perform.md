@@ -6,11 +6,13 @@
 
 ### Functions
 
-* [clearCacheAndCookies](perform.md#clearcacheandcookies)
+* [clearLocalStorage](perform.md#clearlocalstorage)
+* [clearSessionStorage](perform.md#clearsessionstorage)
 * [click](perform.md#click)
 * [clickByJs](perform.md#clickbyjs)
 * [closeCurrentTab](perform.md#closecurrenttab)
 * [contextClick](perform.md#contextclick)
+* [deleteCookies](perform.md#deletecookies)
 * [doubleClick](perform.md#doubleclick)
 * [executeScript](perform.md#executescript)
 * [hover](perform.md#hover)
@@ -34,13 +36,30 @@
 
 ## Functions
 
-<a id="clearcacheandcookies"></a>
+<a id="clearlocalstorage"></a>
 
-### `<Const>` clearCacheAndCookies
+### `<Const>` clearLocalStorage
 
-▸ **clearCacheAndCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **clearLocalStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L71)*
+*Defined in [support/commands/perform.ts:72](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L72)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
+
+___
+<a id="clearsessionstorage"></a>
+
+### `<Const>` clearSessionStorage
+
+▸ **clearSessionStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+
+*Defined in [support/commands/perform.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L73)*
 
 **Parameters:**
 
@@ -120,6 +139,23 @@ ___
 **Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
+<a id="deletecookies"></a>
+
+### `<Const>` deleteCookies
+
+▸ **deleteCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+
+*Defined in [support/commands/perform.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L74)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
+
+___
 <a id="doubleclick"></a>
 
 ### `<Const>` doubleClick
@@ -143,7 +179,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L74)*
+*Defined in [support/commands/perform.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L77)*
 
 **Parameters:**
 
