@@ -57,10 +57,6 @@ class Entity {
     async waitUntilNot(...conditions) {
         return this.wait.untilNot(...conditions);
     }
-    /*
-     * todo: problem with this is we originally have Promise<true | false>, then make it Promise<true | throws Error>,
-     * and then again Promise<true | false>
-     */
     async matching(...conditions) {
         return wait_1.Condition.asPredicate(...conditions)(this);
     }

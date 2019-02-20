@@ -101,7 +101,7 @@ ___
 
 ▸ **get**<`R`>(query: *[Query](../#query)<`this`, `R`>*): `Promise`<`R`>
 
-*Defined in [entity.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L119)*
+*Defined in [entity.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L115)*
 
 **Type parameters:**
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **matching**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
+*Defined in [entity.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L97)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **matchingNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L105)*
+*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
 
 **Parameters:**
 
@@ -155,7 +155,7 @@ ___
 
 ▸ **perform**(command: *[Command](../#command)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:112](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L112)*
+*Defined in [entity.ts:108](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L108)*
 
 **Parameters:**
 

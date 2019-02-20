@@ -54,23 +54,10 @@ class Collection extends entity_1.Entity {
         return this.elementAt(0);
     }
     filteredBy(...conditions) {
-        if (conditions.length === 0) {
-            return this; // todo: consider throwing error
-        }
-        const condition = conditions.length > 1 ?
-            wait_1.Condition.and(...conditions) :
-            conditions[0];
-        return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(condition, this), this.configuration);
+        return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(wait_1.Condition.all(...conditions), this), this.configuration);
     }
     elementBy(...conditions) {
-        if (conditions.length === 0) {
-            return this.first(); // todo: consider throwing error
-        }
-        const condition = conditions.length > 1 ?
-            wait_1.Condition.and(...conditions) :
-            conditions[0];
-        return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(condition, this), this.configuration)
-            .elementAt(0); // todo: implement through separate ByFind...Locator
+        return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(wait_1.Condition.all(...conditions), this), this.configuration).elementAt(0); // todo: implement through separate ByFind...Locator
     }
     async getWebElements() {
         return this.locator.find();

@@ -255,5 +255,12 @@ export namespace condition {
         export const hasTabsNumberLessThan = (num: number): BrowserCondition =>
             lambda(`has tabs number less than ${num}`,
                    throwIfNotActual(query.tabsNumber, predicate.isLessThan(num)));
+
+        // todo: make it accept func
+        /* tslint:disable:ban-types */
+        export const hasJsReturnedTrue = (script: string | Function, ...args: any[]): BrowserCondition =>
+            throwIfNot(`true is returned by js script: ${script}`, async (browser: Browser) =>
+                !!(await browser.executeScript(script, ...args))); // todo: is it correct? :)
+        /* tslint:enable:ban-types */
     }
 }

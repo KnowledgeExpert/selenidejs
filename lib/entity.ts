@@ -94,10 +94,6 @@ export abstract class Entity implements Assertable, Matchable {
         return this.wait.untilNot(...conditions);
     }
 
-    /*
-     * todo: problem with this is we originally have Promise<true | false>, then make it Promise<true | throws Error>,
-     * and then again Promise<true | false>
-     */
     async matching(...conditions: Array<Condition<this>>): Promise<boolean> {
         return Condition.asPredicate(...conditions)(this);
     }

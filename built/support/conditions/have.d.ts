@@ -17,4 +17,5 @@ export declare namespace have {
     const tabsNumber: (num: number) => import("../../wait").Query<import("../../browser").Browser, void>;
     const tabsNumberLessThan: (num: number) => import("../../wait").Query<import("../../browser").Browser, void>;
     const tabsNumberMoreThan: (num: number) => import("../../wait").Query<import("../../browser").Browser, void>;
+    const jsReturnedTrue: (script: string) => import("../../wait").Query<import("../../browser").Browser, void>;
 }

@@ -96,4 +96,7 @@ export namespace have {
 
     export const tabsNumberMoreThan = (num: number): BrowserCondition =>
         condition.browser.hasTabsNumberMoreThan(num);
+
+    export const jsReturnedTrue = (script: string): BrowserCondition =>
+        condition.browser.hasJsReturnedTrue(script);
 }

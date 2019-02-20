@@ -64,25 +64,18 @@ export class Collection extends Entity implements Assertable, Matchable {
         return this.elementAt(0);
     }
 
-    filteredBy(...conditions: ElementCondition[]): Collection { // todo: think on renaming to filteredBy
-        if (conditions.length === 0) {
-            return this; // todo: consider throwing error
-        }
-        const condition = conditions.length > 1 ?
-            Condition.and(...conditions) :
-            conditions[0];
-        return new Collection(new FilteredByConditionWebElementsLocator(condition, this), this.configuration);
+    filteredBy(...conditions: ElementCondition[]): Collection {
+        return new Collection(
+            new FilteredByConditionWebElementsLocator(Condition.all(...conditions), this),
+            this.configuration
+        );
     }
 
     elementBy(...conditions: ElementCondition[]): Element {
-        if (conditions.length === 0) {
-            return this.first(); // todo: consider throwing error
-        }
-        const condition = conditions.length > 1 ?
-            Condition.and(...conditions) :
-            conditions[0];
-        return new Collection(new FilteredByConditionWebElementsLocator(condition, this), this.configuration)
-            .elementAt(0);  // todo: implement through separate ByFind...Locator
+        return new Collection(
+            new FilteredByConditionWebElementsLocator(Condition.all(...conditions), this),
+            this.configuration
+        ).elementAt(0);  // todo: implement through separate ByFind...Locator
     }
 
     async getWebElements(): Promise<WebElement[]> {

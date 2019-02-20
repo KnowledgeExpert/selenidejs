@@ -145,7 +145,7 @@ ___
 
 ▸ **elementBy**(...conditions: *[ElementCondition](../#elementcondition)[]*): [Element](element.md)
 
-*Defined in [collection.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L77)*
+*Defined in [collection.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L74)*
 
 **Parameters:**
 
@@ -192,7 +192,7 @@ ___
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
-*Defined in [entity.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L119)*
+*Defined in [entity.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L115)*
 
 **Type parameters:**
 
@@ -223,7 +223,7 @@ ___
 
 ▸ **getWebElements**(): `Promise`<`WebElement`[]>
 
-*Defined in [collection.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L88)*
+*Defined in [collection.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L81)*
 
 **Returns:** `Promise`<`WebElement`[]>
 
@@ -236,7 +236,7 @@ ___
 
 *Inherited from [Entity](entity.md).[matching](entity.md#matching)*
 
-*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
+*Defined in [entity.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L97)*
 
 **Parameters:**
 
@@ -255,7 +255,7 @@ ___
 
 *Inherited from [Entity](entity.md).[matchingNot](entity.md#matchingnot)*
 
-*Defined in [entity.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L105)*
+*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
 
 **Parameters:**
 
@@ -274,7 +274,7 @@ ___
 
 *Inherited from [Entity](entity.md).[perform](entity.md#perform)*
 
-*Defined in [entity.ts:112](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L112)*
+*Defined in [entity.ts:108](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L108)*
 
 **Parameters:**
 
@@ -329,7 +329,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [collection.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L92)*
+*Defined in [collection.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L85)*
 
 **Returns:** `string`
 

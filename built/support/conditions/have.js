@@ -60,5 +60,6 @@ var have;
     have.tabsNumber = (num) => conditions_1.condition.browser.hasTabsNumber(num);
     have.tabsNumberLessThan = (num) => conditions_1.condition.browser.hasTabsNumberLessThan(num);
     have.tabsNumberMoreThan = (num) => conditions_1.condition.browser.hasTabsNumberMoreThan(num);
+    have.jsReturnedTrue = (script) => conditions_1.condition.browser.hasJsReturnedTrue(script);
 })(have = exports.have || (exports.have = {}));
 //# sourceMappingURL=have.js.map

@@ -164,13 +164,17 @@ var condition;
         collection.hasExactTexts = (texts) => utils_1.lambda(`has exact texts ${texts}`, throwIfNotActual(queries_1.query.texts, predicates_1.predicate.equalsByContainsToArray(texts)));
     })(collection = condition.collection || (condition.collection = {}));
     let browser;
-    (function (browser) {
-        browser.hasUrlContaining = (partialUrl) => // todo: do we need string | number
+    (function (browser_1) {
+        browser_1.hasUrlContaining = (partialUrl) => // todo: do we need string | number
          utils_1.lambda(`has url containing ${partialUrl}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.includes(partialUrl)));
-        browser.hasUrl = (url) => utils_1.lambda(`has url ${url}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.equals(url)));
-        browser.hasTabsNumber = (num) => utils_1.lambda(`has tabs number ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.equals(num)));
-        browser.hasTabsNumberMoreThan = (num) => utils_1.lambda(`has tabs number more than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isMoreThan(num)));
-        browser.hasTabsNumberLessThan = (num) => utils_1.lambda(`has tabs number less than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isLessThan(num)));
+        browser_1.hasUrl = (url) => utils_1.lambda(`has url ${url}`, throwIfNotActual(queries_1.query.url, predicates_1.predicate.equals(url)));
+        browser_1.hasTabsNumber = (num) => utils_1.lambda(`has tabs number ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.equals(num)));
+        browser_1.hasTabsNumberMoreThan = (num) => utils_1.lambda(`has tabs number more than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isMoreThan(num)));
+        browser_1.hasTabsNumberLessThan = (num) => utils_1.lambda(`has tabs number less than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isLessThan(num)));
+        // todo: make it accept func
+        /* tslint:disable:ban-types */
+        browser_1.hasJsReturnedTrue = (script, ...args) => throwIfNot(`true is returned by js script: ${script}`, async (browser) => !!(await browser.executeScript(script, ...args))); // todo: is it correct? :)
+        /* tslint:enable:ban-types */
     })(browser = condition.browser || (condition.browser = {}));
 })(condition = exports.condition || (exports.condition = {}));
 //# sourceMappingURL=conditions.js.map

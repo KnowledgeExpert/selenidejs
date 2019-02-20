@@ -6,6 +6,7 @@
 
 ### Functions
 
+* [hasJsReturnedTrue](condition.browser.md#hasjsreturnedtrue)
 * [hasTabsNumber](condition.browser.md#hastabsnumber)
 * [hasTabsNumberLessThan](condition.browser.md#hastabsnumberlessthan)
 * [hasTabsNumberMoreThan](condition.browser.md#hastabsnumbermorethan)
@@ -16,6 +17,24 @@
 
 ## Functions
 
+<a id="hasjsreturnedtrue"></a>
+
+### `<Const>` hasJsReturnedTrue
+
+▸ **hasJsReturnedTrue**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): [BrowserCondition](../#browsercondition)
+
+*Defined in [conditions.ts:261](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L261)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| script |  `string` &#124; `Function`|
+| `Rest` args | `any`[] |
+
+**Returns:** [BrowserCondition](../#browsercondition)
+
+___
 <a id="hastabsnumber"></a>
 
 ### `<Const>` hasTabsNumber

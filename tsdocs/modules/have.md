@@ -12,6 +12,7 @@
 * [cssClass](have.md#cssclass)
 * [exactText](have.md#exacttext)
 * [exactTexts](have.md#exacttexts)
+* [jsReturnedTrue](have.md#jsreturnedtrue)
 * [size](have.md#size)
 * [tabsNumber](have.md#tabsnumber)
 * [tabsNumberLessThan](have.md#tabsnumberlessthan)
@@ -130,6 +131,23 @@ ___
 | `Rest` texts | `string`[] |
 
 **Returns:** [CollectionCondition](../#collectioncondition)
+
+___
+<a id="jsreturnedtrue"></a>
+
+### `<Const>` jsReturnedTrue
+
+▸ **jsReturnedTrue**(script: *`string`*): [BrowserCondition](../#browsercondition)
+
+*Defined in [support/conditions/have.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L100)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| script | `string` |
+
+**Returns:** [BrowserCondition](../#browsercondition)
 
 ___
 <a id="size"></a>

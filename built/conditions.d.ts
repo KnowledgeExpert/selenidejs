@@ -113,5 +113,6 @@ export declare namespace condition {
         const hasTabsNumber: (num: number) => import("./wait").Query<Browser, void>;
         const hasTabsNumberMoreThan: (num: number) => import("./wait").Query<Browser, void>;
         const hasTabsNumberLessThan: (num: number) => import("./wait").Query<Browser, void>;
+        const hasJsReturnedTrue: (script: string | Function, ...args: any[]) => import("./wait").Query<Browser, void>;
     }
 }
