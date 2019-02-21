@@ -25,8 +25,7 @@
 
 ### Properties
 
-* [onFailureHooks](entity.md#onfailurehooks)
-* [timeout](entity.md#timeout)
+* [configuration](entity.md#configuration)
 * [wait](entity.md#wait)
 
 ### Methods
@@ -48,16 +47,15 @@
 
 ###  constructor
 
-⊕ **new Entity**(timeout: *`number`*, onFailureHooks: *[OnFailureHook](../#onfailurehook)[]*): [Entity](entity.md)
+⊕ **new Entity**(configuration: *[Configuration](configuration.md)*): [Entity](entity.md)
 
-*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
+*Defined in [entity.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L55)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| timeout | `number` |
-| onFailureHooks | [OnFailureHook](../#onfailurehook)[] |
+| configuration | [Configuration](configuration.md) |
 
 **Returns:** [Entity](entity.md)
 
@@ -65,22 +63,13 @@ ___
 
 ## Properties
 
-<a id="onfailurehooks"></a>
+<a id="configuration"></a>
 
-### `<Private>` onFailureHooks
+### `<Protected>` configuration
 
-**● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]*
+**● configuration**: *[Configuration](configuration.md)*
 
-*Defined in [entity.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L54)*
-
-___
-<a id="timeout"></a>
-
-### `<Private>` timeout
-
-**● timeout**: *`number`*
-
-*Defined in [entity.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L54)*
+*Defined in [entity.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L57)*
 
 ___
 <a id="wait"></a>
@@ -89,7 +78,7 @@ ___
 
 **● wait**: *[Wait](wait.md)<`this`>*
 
-*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
+*Defined in [entity.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L55)*
 
 ___
 
@@ -101,7 +90,7 @@ ___
 
 ▸ **get**<`R`>(query: *[Query](../#query)<`this`, `R`>*): `Promise`<`R`>
 
-*Defined in [entity.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L115)*
+*Defined in [entity.ts:118](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L118)*
 
 **Type parameters:**
 
@@ -121,7 +110,7 @@ ___
 
 ▸ **matching**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L97)*
+*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
 
 **Parameters:**
 
@@ -138,7 +127,7 @@ ___
 
 ▸ **matchingNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
+*Defined in [entity.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L105)*
 
 **Parameters:**
 
@@ -155,7 +144,7 @@ ___
 
 ▸ **perform**(command: *[Command](../#command)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:108](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L108)*
+*Defined in [entity.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L111)*
 
 **Parameters:**
 
@@ -172,7 +161,7 @@ ___
 
 ▸ **should**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
 
-*Defined in [entity.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L76)*
+*Defined in [entity.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L80)*
 
 **Parameters:**
 
@@ -189,7 +178,7 @@ ___
 
 ▸ **shouldNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
 
-*Defined in [entity.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L81)*
+*Defined in [entity.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L85)*
 
 **Parameters:**
 
@@ -208,7 +197,7 @@ ___
 
 *Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
 
-*Defined in [entity.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L88)*
+*Defined in [entity.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L92)*
 
 **Parameters:**
 
@@ -227,7 +216,7 @@ ___
 
 *Implementation of [Matchable](../interfaces/matchable.md).[waitUntilNot](../interfaces/matchable.md#waituntilnot)*
 
-*Defined in [entity.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L92)*
+*Defined in [entity.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L96)*
 
 **Parameters:**
 

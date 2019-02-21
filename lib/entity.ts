@@ -13,8 +13,7 @@
 // limitations under the License.
 
 import { Command, Condition, Query, Wait } from './wait';
-import { OnFailureHook } from './refactor/onFailureHook';
-import { ElementActionHooks } from './refactor/elementActionHooks';
+import { Configuration, OnEntityFailureHook } from './configuration';
 
 /* With Conditions
  *
@@ -46,13 +45,18 @@ export interface Matchable {
     matching(condition: Condition<this>): Promise<boolean>;
     matchingNot(condition: Condition<this>): Promise<boolean>;
 }
+/* todo: discuss somewhere do we need it or not... (it could be used mainly in onFailureHooks)
+export interface Configured {
+    readonly configuration: Configuration;
+}*/
 
-export abstract class Entity implements Assertable, Matchable {
+export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
 
     protected readonly wait: Wait<this>;
 
-    constructor(private readonly timeout: number, private readonly onFailureHooks: OnFailureHook[]) {
-        this.wait = new Wait(this, timeout, []);
+    constructor(protected readonly configuration: Configuration) {
+        this.configuration = configuration;
+        this.wait = new Wait(this, configuration.timeout, []/*configuration.onFailureHooks*/);
     }
 
 
@@ -104,7 +108,6 @@ export abstract class Entity implements Assertable, Matchable {
 
     /* Commands */
 
-    @ElementActionHooks  // todo: cover with tests
     async perform(command: Command<this>): Promise<this> {
         await this.wait.command(command);
         return this;

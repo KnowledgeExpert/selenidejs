@@ -18,22 +18,22 @@ const with_1 = require("../support/selectors/with");
 var Extensions;
 (function (Extensions) {
     // todo: Why not to move it Browser
-    async function savePageSource(browser, filePath) {
-        const pageTitle = await browser.driver.getTitle();
+    async function savePageSource(driver, filePath) {
+        const pageTitle = await driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const pageSource = await browser.driver.getPageSource();
+        const pageSource = await driver.getPageSource();
         fs.outputFileSync(completeFilePath, pageSource);
         return completeFilePath;
     }
     Extensions.savePageSource = savePageSource;
-    async function saveScreenshot(browser, filePath) {
-        const pageTitle = await browser.driver.getTitle();
+    async function saveScreenshot(driver, filePath) {
+        const pageTitle = await driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const screenshot = await browser.screenshot();
+        const screenshot = Buffer.from(await driver.takeScreenshot(), 'base64');
         fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
     }
@@ -48,6 +48,7 @@ var Extensions;
         return relativeOrAbsoluteUrl.toLowerCase().startsWith('http:') ||
             relativeOrAbsoluteUrl.toLowerCase().startsWith('https:') ||
             relativeOrAbsoluteUrl.toLowerCase().startsWith('file:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('about:') ||
             relativeOrAbsoluteUrl.toLowerCase().startsWith('data:');
     }
     Extensions.isAbsoluteUrl = isAbsoluteUrl;

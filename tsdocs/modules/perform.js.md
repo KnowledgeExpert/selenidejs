@@ -20,7 +20,7 @@
 
 ▸ **click**(xOffset?: *`number`*, yOffset?: *`number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L44)*
+*Defined in [support/commands/perform.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L43)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L47)*
+*Defined in [support/commands/perform.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L46)*
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ ___
 
 ▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L50)*
+*Defined in [support/commands/perform.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L49)*
 
 **Parameters:**
 

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import * as fs from 'fs-extra';
-import { By } from 'selenium-webdriver';
+import { By, WebDriver } from 'selenium-webdriver';
 import { Browser } from '../browser';
 import { With } from '../support/selectors/with';
 
@@ -21,22 +21,22 @@ import { With } from '../support/selectors/with';
 export namespace Extensions {
 
     // todo: Why not to move it Browser
-    export async function savePageSource(browser: Browser, filePath: string): Promise<string> {
-        const pageTitle = await browser.driver.getTitle();
+    export async function savePageSource(driver: WebDriver, filePath: string): Promise<string> {
+        const pageTitle = await driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.html`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const pageSource = await browser.driver.getPageSource();
+        const pageSource = await driver.getPageSource();
         fs.outputFileSync(completeFilePath, pageSource);
         return completeFilePath;
     }
 
-    export async function saveScreenshot(browser: Browser, filePath: string): Promise<string> {
-        const pageTitle = await browser.driver.getTitle();
+    export async function saveScreenshot(driver: WebDriver, filePath: string): Promise<string> {
+        const pageTitle = await driver.getTitle();
         const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
         const fileName = `${pageTitle}_${dateTime}.png`;
         const completeFilePath = `${filePath}/${fileName}`;
-        const screenshot = await browser.screenshot();
+        const screenshot = Buffer.from(await driver.takeScreenshot(), 'base64');
         fs.outputFileSync(completeFilePath, screenshot);
         return completeFilePath;
     }
@@ -51,6 +51,7 @@ export namespace Extensions {
         return relativeOrAbsoluteUrl.toLowerCase().startsWith('http:') ||
             relativeOrAbsoluteUrl.toLowerCase().startsWith('https:') ||
             relativeOrAbsoluteUrl.toLowerCase().startsWith('file:') ||
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('about:') ||
             relativeOrAbsoluteUrl.toLowerCase().startsWith('data:');
     }
 }

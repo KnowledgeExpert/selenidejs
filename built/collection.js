@@ -22,14 +22,12 @@ const wait_1 = require("./wait");
 const entity_1 = require("./entity");
 const byConditionWebElementLocator_1 = require("./locators/byConditionWebElementLocator");
 class Collection extends entity_1.Entity {
-    // private readonly wait: Wait<Collection>;
     constructor(locator, configuration) {
-        super(configuration.timeout, configuration.onFailureHooks);
+        // readonly configuration: Configuration) {
+        super(configuration);
         this.locator = locator;
         this.configuration = configuration;
         this.locator = locator;
-        this.configuration = configuration;
-        // this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
     configuredWith(custom) {
         return new Collection(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));

@@ -12,20 +12,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const wait_1 = require("./wait");
-const elementActionHooks_1 = require("./refactor/elementActionHooks");
+/* todo: discuss somewhere do we need it or not... (it could be used mainly in onFailureHooks)
+export interface Configured {
+    readonly configuration: Configuration;
+}*/
 class Entity {
-    constructor(timeout, onFailureHooks) {
-        this.timeout = timeout;
-        this.onFailureHooks = onFailureHooks;
-        this.wait = new wait_1.Wait(this, timeout, []);
+    constructor(configuration) {
+        this.configuration = configuration;
+        this.configuration = configuration;
+        this.wait = new wait_1.Wait(this, configuration.timeout, [] /*configuration.onFailureHooks*/);
     }
     /*
      * todo: consider assert or shouldMatch aliases for should
@@ -73,8 +70,5 @@ class Entity {
         return this.wait.query(query);
     }
 }
-__decorate([
-    elementActionHooks_1.ElementActionHooks // todo: cover with tests
-], Entity.prototype, "perform", null);
 exports.Entity = Entity;
 //# sourceMappingURL=entity.js.map

@@ -1,6 +1,16 @@
 import { WebDriver } from 'selenium-webdriver';
-import { OnFailureHook } from './refactor/onFailureHook';
 import { Browser } from './browser';
+import { OnFailureHook } from './wait';
+import { Collection } from './collection';
+import { Element } from './element';
+/**
+ * A one place to configure everything.
+ * There is no separate Browser, Element or Collection configurations.
+ * All corresponding options live here, in Configuration.*
+ * It was implemented like this to stay KISS and simplify implementation.
+ * Enjoy;)
+ */
+export declare type OnEntityFailureHook = OnFailureHook<Browser | Element | Collection>;
 export declare class Configuration {
     static with(): Customized<Configuration>;
     static withDriver(driver: WebDriver): Customized<Configuration>;
@@ -14,7 +24,7 @@ export declare class Configuration {
     readonly htmlPath: string;
     readonly screenshotPath: string;
     readonly fullPageScreenshot: boolean;
-    readonly onFailureHooks: OnFailureHook[];
+    readonly onFailureHooks: OnEntityFailureHook[];
     constructor(init?: Partial<Configuration>);
 }
 export declare class Customized<T> {
@@ -34,5 +44,5 @@ export declare class Customized<T> {
     htmlPath(path: string): this;
     screenshotPath(path: string): this;
     fullPageScreenshot(turnedOn: boolean): this;
-    onFailureHooks(hooks: OnFailureHook[]): this;
+    onFailureHooks(hooks: OnEntityFailureHook[]): this;
 }

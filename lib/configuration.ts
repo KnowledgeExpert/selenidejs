@@ -14,11 +14,21 @@
 
 import * as path from 'path';
 import { Builder, Capabilities, WebDriver } from 'selenium-webdriver';
-import { OnFailureHook } from './refactor/onFailureHook';
 import { Browser } from './browser';
+import { OnFailureHook } from './wait';
+import { Collection } from './collection';
+import { Element } from './element';
 
 
-// todo: should we break it down into separate configurations - for element, browser, collection?
+/**
+ * A one place to configure everything.
+ * There is no separate Browser, Element or Collection configurations.
+ * All corresponding options live here, in Configuration.*
+ * It was implemented like this to stay KISS and simplify implementation.
+ * Enjoy;)
+ */
+
+export type OnEntityFailureHook = OnFailureHook<Browser | Element | Collection>;
 
 export class Configuration {
 
@@ -40,23 +50,22 @@ export class Configuration {
     readonly htmlPath: string                = path.resolve('./htmls');
     readonly screenshotPath: string          = path.resolve('./screenshots');  // todo: why not screenshotsPath?
     readonly fullPageScreenshot: boolean     = true;
-    readonly onFailureHooks: OnFailureHook[] = [ // todo: should we bother and make it immutable?
-        /*
-        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-            const driver = Utils.getDriver(entity);
-            if (driver.config.screenshotPath) {
-                const screenshotPath = await Utils.saveScreenshot(driver, Browser.config.screenshotPath);
-                lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
-            }
+    // todo: should we bother and make it immutable?
+    readonly onFailureHooks: OnEntityFailureHook[] = [
+/*        async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
+            const configuration = (entity as Entity).configuration;
+            const driver = configuration.driver;
+            const screenshotPath = await saveScreenshot(driver, configuration.screenshotPath);
+            const htmlPath = await savePageSource(driver, configuration.htmlPath);
+            // todo: handle failure
+            return failure;
+        }, // todo: how to make it be passed only in entity wait when Entity is Element?
+        async (failure: Error, entity: Element): Promise<void | Error> => {
+            // ...
         },
-        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-            const driver = Utils.getDriver(entity);
-            if (driver.config.htmlPath) {
-                const htmlPath = await Utils.savePageSource(driver, Browser.config.htmlPath);
-                lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
-            }
-        }
-        */
+        async (failure: Error, entity: Collection): Promise<void | Error> => {
+            // ...
+        }*/
     ];
 
     constructor(init?: Partial<Configuration>) {
@@ -143,7 +152,7 @@ export class Customized<T> {  // todo: add generic? Customized<T> ... constructo
         return this;
     }
 
-    onFailureHooks(hooks: OnFailureHook[]) {
+    onFailureHooks(hooks: OnEntityFailureHook[]) { // todo: consider switching to varargs
         this.configuration = {...this.configuration, onFailureHooks: hooks};
         return this;
     }

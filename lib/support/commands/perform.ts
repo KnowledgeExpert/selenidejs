@@ -14,7 +14,6 @@
 
 import { Element } from '../../element';
 import { Browser } from '../../browser';
-import { ElementActionHooks } from '../../refactor/elementActionHooks';
 import { command } from '../../commands';
 
 

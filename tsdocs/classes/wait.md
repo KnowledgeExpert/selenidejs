@@ -35,9 +35,9 @@
 
 ###  constructor
 
-⊕ **new Wait**(entity: *`T`*, timeout: *`number`*, onFailureHooks: *[OnFailureHook](../#onfailurehook)[]*): [Wait](wait.md)
+⊕ **new Wait**(entity: *`T`*, timeout: *`number`*, onFailureHooks: *`Array`<[OnFailureHook](../#onfailurehook)<`T`>>*): [Wait](wait.md)
 
-*Defined in [wait.ts:149](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L149)*
+*Defined in [wait.ts:150](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L150)*
 
 **Parameters:**
 
@@ -45,7 +45,7 @@
 | ------ | ------ |
 | entity | `T` |
 | timeout | `number` |
-| onFailureHooks | [OnFailureHook](../#onfailurehook)[] |
+| onFailureHooks | `Array`<[OnFailureHook](../#onfailurehook)<`T`>> |
 
 **Returns:** [Wait](wait.md)
 
@@ -59,16 +59,16 @@ ___
 
 **● entity**: *`T`*
 
-*Defined in [wait.ts:151](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L151)*
+*Defined in [wait.ts:152](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L152)*
 
 ___
 <a id="onfailurehooks"></a>
 
 ### `<Private>` onFailureHooks
 
-**● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]*
+**● onFailureHooks**: *`Array`<[OnFailureHook](../#onfailurehook)<`T`>>*
 
-*Defined in [wait.ts:153](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L153)*
+*Defined in [wait.ts:154](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L154)*
 
 ___
 <a id="timeout"></a>
@@ -77,7 +77,7 @@ ___
 
 **● timeout**: *`number`*
 
-*Defined in [wait.ts:152](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L152)*
+*Defined in [wait.ts:153](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L153)*
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 ▸ **command**(fn: *[Command](../#command)<`T`>*): `Promise`<`void`>
 
-*Defined in [wait.ts:168](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L168)*
+*Defined in [wait.ts:169](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L169)*
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **query**<`R`>(fn: *[Query](../#query)<`T`, `R`>*): `Promise`<`R`>
 
-*Defined in [wait.ts:172](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L172)*
+*Defined in [wait.ts:173](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L173)*
 
 **Type parameters:**
 
@@ -126,7 +126,7 @@ ___
 
 ▸ **until**(...conditions: *`Array`<[Condition](../modules/condition.md)<`T`>>*): `Promise`<`boolean`>
 
-*Defined in [wait.ts:159](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L159)*
+*Defined in [wait.ts:160](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L160)*
 
 **Parameters:**
 
@@ -143,7 +143,7 @@ ___
 
 ▸ **untilNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`T`>>*): `Promise`<`boolean`>
 
-*Defined in [wait.ts:163](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L163)*
+*Defined in [wait.ts:164](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L164)*
 
 **Parameters:**
 

@@ -12,12 +12,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const be_1 = require("./support/conditions/be");
@@ -25,7 +19,6 @@ const with_1 = require("./support/selectors/with");
 const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
 const configuration_1 = require("./configuration");
-const elementActionHooks_1 = require("./refactor/elementActionHooks");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const utils_1 = require("./utils");
@@ -33,12 +26,13 @@ const entity_1 = require("./entity");
 const commands_1 = require("./commands");
 class Element extends entity_1.Entity {
     // todo: why not have private readonly driver property?
-    constructor(locator, configuration) {
-        super(configuration.timeout, configuration.onFailureHooks);
+    constructor(locator, 
+    // readonly configuration: Configuration) {
+    configuration) {
+        super(configuration);
         this.locator = locator;
         this.configuration = configuration;
         this.locator = locator;
-        this.configuration = configuration;
     }
     toString() {
         return this.locator.toString();
@@ -87,6 +81,21 @@ class Element extends entity_1.Entity {
         return new collection_1.Collection(locator, this.configuration);
     }
     /* Commands */
+    /* todo: consider the following implementation:
+
+    async executeScript(script: string, ...args: any[]) {
+        const wrappedScript =
+            `
+            var element = arguments[0];
+            return (function(arguments) {
+                ${script}
+            })(arguments);
+            `;
+        const webelement = await this.getWebElement();
+        return this.driver.executeScript(wrappedScript, webelement, ...args);
+    }
+
+     */
     // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
@@ -143,41 +152,5 @@ class Element extends entity_1.Entity {
         return this;
     }
 }
-Element.beforeActionHooks = []; // todo: should we move it to Configuration?
-Element.afterActionHooks = []; // we should...
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-    // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
-], Element.prototype, "executeScript", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "click", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "setValue", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "type", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "doubleClick", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "hover", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "contextClick", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "pressEnter", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "pressEscape", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "pressTab", null);
-__decorate([
-    elementActionHooks_1.ElementActionHooks
-], Element.prototype, "scrollIntoView", null);
 exports.Element = Element;
 //# sourceMappingURL=element.js.map

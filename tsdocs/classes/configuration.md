@@ -41,7 +41,7 @@
 
 ⊕ **new Configuration**(init?: *`Partial`<[Configuration](configuration.md)>*): [Configuration](configuration.md)
 
-*Defined in [configuration.ts:60](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L60)*
+*Defined in [configuration.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L69)*
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ ___
 
 **● baseUrl**: *`string`* = ""
 
-*Defined in [configuration.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L35)*
+*Defined in [configuration.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L45)*
 
 ___
 <a id="driver"></a>
@@ -70,7 +70,7 @@ ___
 
 **● driver**: *`WebDriver`* =  null
 
-*Defined in [configuration.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L33)*
+*Defined in [configuration.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L43)*
 
 ___
 <a id="fullpagescreenshot"></a>
@@ -79,7 +79,7 @@ ___
 
 **● fullPageScreenshot**: *`boolean`* = true
 
-*Defined in [configuration.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L42)*
+*Defined in [configuration.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L52)*
 
 ___
 <a id="htmlpath"></a>
@@ -88,33 +88,31 @@ ___
 
 **● htmlPath**: *`string`* =  path.resolve('./htmls')
 
-*Defined in [configuration.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L40)*
+*Defined in [configuration.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L50)*
 
 ___
 <a id="onfailurehooks"></a>
 
 ###  onFailureHooks
 
-**● onFailureHooks**: *[OnFailureHook](../#onfailurehook)[]* =  [ // todo: should we bother and make it immutable?
-        /*
-        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-            const driver = Utils.getDriver(entity);
-            if (driver.config.screenshotPath) {
-                const screenshotPath = await Utils.saveScreenshot(driver, Browser.config.screenshotPath);
-                lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
-            }
+**● onFailureHooks**: *[OnEntityFailureHook](../#onentityfailurehook)[]* =  [
+/*        async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
+            const configuration = (entity as Entity).configuration;
+            const driver = configuration.driver;
+            const screenshotPath = await saveScreenshot(driver, configuration.screenshotPath);
+            const htmlPath = await savePageSource(driver, configuration.htmlPath);
+            // todo: handle failure
+            return failure;
+        }, // todo: how to make it be passed only in entity wait when Entity is Element?
+        async (failure: Error, entity: Element): Promise<void | Error> => {
+            // ...
         },
-        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-            const driver = Utils.getDriver(entity);
-            if (driver.config.htmlPath) {
-                const htmlPath = await Utils.savePageSource(driver, Browser.config.htmlPath);
-                lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
-            }
-        }
-        */
+        async (failure: Error, entity: Collection): Promise<void | Error> => {
+            // ...
+        }*/
     ]
 
-*Defined in [configuration.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L43)*
+*Defined in [configuration.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L54)*
 
 ___
 <a id="screenshotpath"></a>
@@ -123,7 +121,7 @@ ___
 
 **● screenshotPath**: *`string`* =  path.resolve('./screenshots')
 
-*Defined in [configuration.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L41)*
+*Defined in [configuration.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L51)*
 
 ___
 <a id="setvaluebyjs"></a>
@@ -132,7 +130,7 @@ ___
 
 **● setValueByJs**: *`boolean`* = false
 
-*Defined in [configuration.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L36)*
+*Defined in [configuration.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L46)*
 
 ___
 <a id="timeout"></a>
@@ -141,7 +139,7 @@ ___
 
 **● timeout**: *`number`* = 4000
 
-*Defined in [configuration.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L34)*
+*Defined in [configuration.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L44)*
 
 ___
 <a id="typebyjs"></a>
@@ -150,7 +148,7 @@ ___
 
 **● typeByJs**: *`boolean`* = false
 
-*Defined in [configuration.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L37)*
+*Defined in [configuration.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L47)*
 
 ___
 <a id="windowheight"></a>
@@ -159,7 +157,7 @@ ___
 
 **● windowHeight**: *`string`* = ""
 
-*Defined in [configuration.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L39)*
+*Defined in [configuration.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L49)*
 
 ___
 <a id="windowwidth"></a>
@@ -168,7 +166,7 @@ ___
 
 **● windowWidth**: *`string`* = ""
 
-*Defined in [configuration.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L38)*
+*Defined in [configuration.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L48)*
 
 ___
 
@@ -180,7 +178,7 @@ ___
 
 ▸ **with**(): [Customized](customized.md)<[Configuration](configuration.md)>
 
-*Defined in [configuration.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L25)*
+*Defined in [configuration.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L35)*
 
 **Returns:** [Customized](customized.md)<[Configuration](configuration.md)>
 
@@ -191,7 +189,7 @@ ___
 
 ▸ **withDriver**(driver: *`WebDriver`*): [Customized](customized.md)<[Configuration](configuration.md)>
 
-*Defined in [configuration.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L29)*
+*Defined in [configuration.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L39)*
 
 **Parameters:**
 

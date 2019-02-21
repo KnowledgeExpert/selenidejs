@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { OnFailureHook } from './refactor/onFailureHook';
 import { TimeoutError } from './errors/timeoutError';
 import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
 import { lambda, toString } from './utils';
@@ -146,11 +145,13 @@ export namespace Condition {
             Condition.all(...conditions)(entity).then(res => true, err => false);
 }
 
+export type OnFailureHook<T> = (failure: Error, entity: T) => Promise<void | Error>;
+
 export class Wait<T> {
 
     constructor(private readonly entity: T,
                 private readonly timeout: number,
-                private readonly onFailureHooks: OnFailureHook[]) {
+                private readonly onFailureHooks: Array<OnFailureHook<T>>) {
         this.entity = entity;
         this.timeout = timeout;
         this.onFailureHooks = onFailureHooks;
@@ -177,7 +178,8 @@ export class Wait<T> {
                 return await fn(this.entity);
             } catch (error) {
                 if (new Date().getTime() > finishTime) {
-                    throw new TimeoutError(// todo: should we move this error formatting to the Error class definition?
+                    // todo: should we move this error formatting to the Error class definition?
+                    const failure = new TimeoutError(
                         '\n' +
                         `\tTimed out after ${this.timeout}ms, while waiting for:\n` +
                         `\t${this.entity.toString()}.${fn.toString()}\n` + // todo: if string has trailing
@@ -185,9 +187,17 @@ export class Wait<T> {
                         'Reason:\n' +
                         `\t${error.message}`
                     );
+
+/*                    for (const hook of this.onFailureHooks) { // todo: ignore unexpected error from hook
+                        const hooked = await hook(failure, this.entity); // todo: or catch and remember it...
+                        if (!!hooked) {
+                            failure = hooked;
+                        }
+                    }*/
+
+                    throw failure;
                 }
             }
         }
-
     }
 }

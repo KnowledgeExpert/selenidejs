@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import { Builder, By, Capabilities, WebDriver, WebElement } from 'selenium-webdriver';
-import { BrowserCondition } from './conditions';
 import { Extensions } from './utils/extensions';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
@@ -21,8 +20,6 @@ import { Element } from './element';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { SearchContext } from './searchContext';
-import { Command, Condition, Query, Wait } from './wait';
-import { ElementActionHooks } from './refactor/elementActionHooks';
 import { Assertable, Entity, Matchable } from './entity';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 
@@ -47,11 +44,8 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
 
     // todo: make hooks for browser commands & asserts (for queries file a ticket) too
 
-    readonly configuration: Configuration;
-
     constructor(configuration: Partial<Configuration> = {}) {
-        super(configuration.timeout, configuration.onFailureHooks);
-        this.configuration = new Configuration(configuration);
+        super(new Configuration(configuration));
     }
 
     // todo: isn't it a bit confusing taking into account browser.element(With.id(...)) ?

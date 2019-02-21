@@ -1,5 +1,5 @@
 import { Command, Condition, Query, Wait } from './wait';
-import { OnFailureHook } from './refactor/onFailureHook';
+import { Configuration } from './configuration';
 export interface Assertable {
     should(condition: Condition<this>): Promise<this>;
     shouldNot(condition: Condition<this>): Promise<this>;
@@ -11,10 +11,9 @@ export interface Matchable {
     matchingNot(condition: Condition<this>): Promise<boolean>;
 }
 export declare abstract class Entity implements Assertable, Matchable {
-    private readonly timeout;
-    private readonly onFailureHooks;
+    protected readonly configuration: Configuration;
     protected readonly wait: Wait<this>;
-    constructor(timeout: number, onFailureHooks: OnFailureHook[]);
+    constructor(configuration: Configuration);
     should(...conditions: Array<Condition<this>>): Promise<this>;
     shouldNot(...conditions: Array<Condition<this>>): Promise<this>;
     waitUntil(...conditions: Array<Condition<this>>): Promise<boolean>;

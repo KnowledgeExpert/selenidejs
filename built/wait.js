@@ -137,13 +137,20 @@ class Wait {
             }
             catch (error) {
                 if (new Date().getTime() > finishTime) {
-                    throw new timeoutError_1.TimeoutError(// todo: should we move this error formatting to the Error class definition?
-                    '\n' +
+                    // todo: should we move this error formatting to the Error class definition?
+                    const failure = new timeoutError_1.TimeoutError('\n' +
                         `\tTimed out after ${this.timeout}ms, while waiting for:\n` +
                         `\t${this.entity.toString()}.${fn.toString()}\n` + // todo: if string has trailing
                         // and leading spaces it will not be readable
                         'Reason:\n' +
                         `\t${error.message}`);
+                    /*                    for (const hook of this.onFailureHooks) { // todo: ignore unexpected error from hook
+                                            const hooked = await hook(failure, this.entity); // todo: or catch and remember it...
+                                            if (!!hooked) {
+                                                failure = hooked;
+                                            }
+                                        }*/
+                    throw failure;
                 }
             }
         }

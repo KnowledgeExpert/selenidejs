@@ -10,7 +10,6 @@ export declare class Browser extends Entity implements SearchContext, Assertable
     static drivedBy(driver: WebDriver): Customized<Browser>;
     static chromeWith(): Customized<Browser>;
     static chrome(): Browser;
-    readonly configuration: Configuration;
     constructor(configuration?: Partial<Configuration>);
     with(custom: Partial<Configuration>): Browser;
     readonly driver: WebDriver;

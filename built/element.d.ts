@@ -1,6 +1,4 @@
 import { By, WebElement } from 'selenium-webdriver';
-import { AfterElementActionHook } from './refactor/afterElementActionHook';
-import { BeforeElementActionHook } from './refactor/beforeElementActionHook';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
 import { Locator } from './locators/locator';
@@ -8,9 +6,7 @@ import { SearchContext } from './searchContext';
 import { Assertable, Entity, Matchable } from './entity';
 export declare class Element extends Entity implements SearchContext, Assertable, Matchable {
     private readonly locator;
-    private readonly configuration;
-    static beforeActionHooks: BeforeElementActionHook[];
-    static afterActionHooks: AfterElementActionHook[];
+    protected readonly configuration: Configuration;
     constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration);
     toString(): string;
     getWebElement(): Promise<WebElement>;

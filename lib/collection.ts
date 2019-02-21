@@ -26,14 +26,11 @@ import { ElementByConditionWebElementLocator } from './locators/byConditionWebEl
 
 export class Collection extends Entity implements Assertable, Matchable {
 
-    // private readonly wait: Wait<Collection>;
-
     constructor(private readonly locator: Locator<Promise<WebElement[]>>,
-                private readonly configuration: Configuration) {
-        super(configuration.timeout, configuration.onFailureHooks);
+                protected readonly configuration: Configuration) {
+                // readonly configuration: Configuration) {
+        super(configuration);
         this.locator = locator;
-        this.configuration = configuration;
-        // this.wait = new Wait(this, this.configuration.timeout, this.configuration.onFailureHooks);
     }
 
     configuredWith(custom: Partial<Configuration>): Collection {

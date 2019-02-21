@@ -1,4 +1,3 @@
-import { OnFailureHook } from './refactor/onFailureHook';
 import { lambda } from './utils';
 /**
  * We use queries to perform an async query on entity of type T, i.e. get something from entity.
@@ -72,11 +71,12 @@ export declare namespace Condition {
      */
     const asPredicate: <T>(...conditions: Query<T, void>[]) => (entity: T) => Promise<boolean>;
 }
+export declare type OnFailureHook<T> = (failure: Error, entity: T) => Promise<void | Error>;
 export declare class Wait<T> {
     private readonly entity;
     private readonly timeout;
     private readonly onFailureHooks;
-    constructor(entity: T, timeout: number, onFailureHooks: OnFailureHook[]);
+    constructor(entity: T, timeout: number, onFailureHooks: Array<OnFailureHook<T>>);
     until(...conditions: Array<Condition<T>>): Promise<boolean>;
     untilNot(...conditions: Array<Condition<T>>): Promise<boolean>;
     command(fn: Command<T>): Promise<void>;

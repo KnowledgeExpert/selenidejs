@@ -36,7 +36,7 @@ ___
 
 ###  savePageSource
 
-▸ **savePageSource**(browser: *[Browser](../classes/browser.md)*, filePath: *`string`*): `Promise`<`string`>
+▸ **savePageSource**(driver: *`WebDriver`*, filePath: *`string`*): `Promise`<`string`>
 
 *Defined in [utils/extensions.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L24)*
 
@@ -44,7 +44,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+| driver | `WebDriver` |
 | filePath | `string` |
 
 **Returns:** `Promise`<`string`>
@@ -54,7 +54,7 @@ ___
 
 ###  saveScreenshot
 
-▸ **saveScreenshot**(browser: *[Browser](../classes/browser.md)*, filePath: *`string`*): `Promise`<`string`>
+▸ **saveScreenshot**(driver: *`WebDriver`*, filePath: *`string`*): `Promise`<`string`>
 
 *Defined in [utils/extensions.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L34)*
 
@@ -62,7 +62,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+| driver | `WebDriver` |
 | filePath | `string` |
 
 **Returns:** `Promise`<`string`>

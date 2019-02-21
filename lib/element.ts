@@ -16,33 +16,25 @@ import { Button, By, Key, WebElement } from 'selenium-webdriver';
 import { be } from './support/conditions/be';
 import { With } from './support/selectors/with';
 import { Extensions } from './utils/extensions';
-import { AfterElementActionHook } from './refactor/afterElementActionHook';
-import { BeforeElementActionHook } from './refactor/beforeElementActionHook';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
-import { ElementActionHooks } from './refactor/elementActionHooks';
 import { ByWebElementLocator } from './locators/byWebElementLocator';
 import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { lambda } from './utils';
 import { Assertable, Entity, Matchable } from './entity';
-import { perform } from './support/commands/perform';
 import { command } from './commands';
 
 
-export class Element  extends Entity implements SearchContext, Assertable, Matchable {
-
-    static beforeActionHooks: BeforeElementActionHook[] = []; // todo: should we move it to Configuration?
-    static afterActionHooks: AfterElementActionHook[] = []; // we should...
-
+export class Element extends Entity implements SearchContext, Assertable, Matchable {
     // todo: why not have private readonly driver property?
 
     constructor(private readonly locator: Locator<Promise<WebElement>>,
-                private readonly configuration: Configuration) {
-        super(configuration.timeout, configuration.onFailureHooks);
+                // readonly configuration: Configuration) {
+                protected readonly configuration: Configuration) {
+        super(configuration);
         this.locator = locator;
-        this.configuration = configuration;
     }
 
     toString(): string {
@@ -106,7 +98,22 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
 
     /* Commands */
 
-    @ElementActionHooks
+    /* todo: consider the following implementation:
+
+    async executeScript(script: string, ...args: any[]) {
+        const wrappedScript =
+            `
+            var element = arguments[0];
+            return (function(arguments) {
+                ${script}
+            })(arguments);
+            `;
+        const webelement = await this.getWebElement();
+        return this.driver.executeScript(wrappedScript, webelement, ...args);
+    }
+
+     */
+
     // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
     async executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]) {
         return this.configuration.driver.executeScript(
@@ -114,7 +121,6 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
         );
     }
 
-    @ElementActionHooks
     async click() {
         await this.wait.command(lambda('click', async element =>  // todo: add describing lambdas to other commands
             element.getWebElement().then(it => it.click())
@@ -122,7 +128,6 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
         return this;
     }
 
-    @ElementActionHooks
     async setValue(value: string | number) {  // todo: should we rename it just to set?
                                               // kind of more readable and reflects user context
         await this.wait.command(
@@ -137,7 +142,6 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
         return this;
     }
 
-    @ElementActionHooks
     async type(keys: string | number) {
         await this.wait.command(
             this.configuration.typeByJs ?
@@ -148,7 +152,6 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
         return this;
     }
 
-    @ElementActionHooks
     async doubleClick() {
         const driver = this.configuration.driver;
         await this.wait.command(lambda('double-click', async element =>
@@ -156,7 +159,6 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
         return this;
     }
 
-    @ElementActionHooks
     async hover() {
         const driver = this.configuration.driver;
         await this.wait.command(lambda('hover', async element =>
@@ -164,7 +166,6 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
         return this;
     }
 
-    @ElementActionHooks
     async contextClick() {
         const driver = this.configuration.driver;
         await this.wait.command(lambda('context-click', async element =>
@@ -172,27 +173,22 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
         return this;
     }
 
-    @ElementActionHooks
     async pressEnter() {
         return this.type(Key.ENTER);
     }
 
-    @ElementActionHooks
     async pressEscape() {
         return this.type(Key.ESCAPE);
     }
 
-    @ElementActionHooks
     async pressTab() {
         return this.type(Key.TAB);
     }
 
-    @ElementActionHooks
     async scrollIntoView() {  // todo: do we need here byJs ?
         await this.wait.query(lambda('scroll into view', async element =>
             element.executeScript('arguments[0].scrollIntoView(true);')  // todo: is ensuring visibility covered here?
         ));
         return this;
     }
-
 }

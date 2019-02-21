@@ -36,9 +36,9 @@ class Browser extends entity_1.Entity {
     static chrome() {
         return Browser.chromeWith().build();
     }
+    // todo: make hooks for browser commands & asserts (for queries file a ticket) too
     constructor(configuration = {}) {
-        super(configuration.timeout, configuration.onFailureHooks);
-        this.configuration = new configuration_1.Configuration(configuration);
+        super(new configuration_1.Configuration(configuration));
     }
     // todo: isn't it a bit confusing taking into account browser.element(With.id(...)) ?
     // example: browser.with({timeout: 5000}).element(With.id(...)).should(have.text('foo'));

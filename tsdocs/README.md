@@ -48,72 +48,24 @@
 
 ### Type aliases
 
-* [AfterElementActionHook](#afterelementactionhook)
-* [BeforeElementActionHook](#beforeelementactionhook)
 * [BrowserCondition](#browsercondition)
 * [CollectionCondition](#collectioncondition)
 * [Command](#command)
 * [ElementCondition](#elementcondition)
 * [ElementQuery](#elementquery)
+* [OnEntityFailureHook](#onentityfailurehook)
 * [OnFailureHook](#onfailurehook)
 * [Query](#query)
 
 ### Functions
 
-* [ElementActionHooks](#elementactionhooks)
 * [lambda](#lambda)
-* [logFailedHook](#logfailedhook)
-* [runAfterHooks](#runafterhooks)
-* [runBeforeHooks](#runbeforehooks)
 * [toString](#tostring)
 
 ---
 
 ## Type aliases
 
-<a id="afterelementactionhook"></a>
-
-###  AfterElementActionHook
-
-**Ƭ AfterElementActionHook**: *`function`*
-
-*Defined in [refactor/afterElementActionHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/afterElementActionHook.ts#L17)*
-
-#### Type declaration
-▸(actionError: *`Error`*, element: *[Element](classes/element.md)*, actionName: *`string`*):  `void` &#124; `Promise`<`void`>
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| actionError | `Error` |
-| element | [Element](classes/element.md) |
-| actionName | `string` |
-
-**Returns:**  `void` &#124; `Promise`<`void`>
-
-___
-<a id="beforeelementactionhook"></a>
-
-###  BeforeElementActionHook
-
-**Ƭ BeforeElementActionHook**: *`function`*
-
-*Defined in [refactor/beforeElementActionHook.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/beforeElementActionHook.ts#L17)*
-
-#### Type declaration
-▸(element: *[Element](classes/element.md)*, actionName: *`string`*):  `void` &#124; `Promise`<`void`>
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| element | [Element](classes/element.md) |
-| actionName | `string` |
-
-**Returns:**  `void` &#124; `Promise`<`void`>
-
-___
 <a id="browsercondition"></a>
 
 ###  BrowserCondition
@@ -138,7 +90,7 @@ ___
 
 **Ƭ Command**: *[Query](#query)<`T`, `void`>*
 
-*Defined in [wait.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L33)*
+*Defined in [wait.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L32)*
 
 Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T. Command can pass or fail with Error correspondingly.
 
@@ -161,29 +113,36 @@ ___
 *Defined in [queries.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L21)*
 
 ___
+<a id="onentityfailurehook"></a>
+
+###  OnEntityFailureHook
+
+**Ƭ OnEntityFailureHook**: *[OnFailureHook](#onfailurehook)< [Browser](classes/browser.md) &#124; [Element](classes/element.md) &#124; [Collection](classes/collection.md)>*
+
+*Defined in [configuration.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L31)*
+
+A one place to configure everything. There is no separate Browser, Element or Collection configurations. All corresponding options live here, in Configuration.* It was implemented like this to stay KISS and simplify implementation. Enjoy;)
+
+___
 <a id="onfailurehook"></a>
 
 ###  OnFailureHook
 
 **Ƭ OnFailureHook**: *`function`*
 
-*Defined in [refactor/onFailureHook.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/onFailureHook.ts#L19)*
+*Defined in [wait.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L148)*
 
 #### Type declaration
-▸<`T`>(lastError: *`Error`*, entity: *`T`*, condition?: *[Condition](modules/condition.md)<`T`>*):  `void` &#124; `Promise`<`void`>
+▸(failure: *`Error`*, entity: *`T`*): `Promise`< `void` &#124; `Error`>
 
-**Type parameters:**
-
-#### T 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| lastError | `Error` |
+| failure | `Error` |
 | entity | `T` |
-| `Optional` condition | [Condition](modules/condition.md)<`T`> |
 
-**Returns:**  `void` &#124; `Promise`<`void`>
+**Returns:** `Promise`< `void` &#124; `Error`>
 
 ___
 <a id="query"></a>
@@ -192,7 +151,7 @@ ___
 
 **Ƭ Query**: *`function`*
 
-*Defined in [wait.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L27)*
+*Defined in [wait.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L26)*
 
 We use queries to perform an async query on entity of type T, i.e. get something from entity. So a query can pass and return something of type R or failed with Error correspondingly.
 
@@ -211,25 +170,6 @@ ___
 
 ## Functions
 
-<a id="elementactionhooks"></a>
-
-###  ElementActionHooks
-
-▸ **ElementActionHooks**(target: *`any`*, methodName: *`any`*, descriptor: *`PropertyDescriptor`*): `void`
-
-*Defined in [refactor/elementActionHooks.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/elementActionHooks.ts#L20)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| target | `any` |
-| methodName | `any` |
-| descriptor | `PropertyDescriptor` |
-
-**Returns:** `void`
-
-___
 <a id="lambda"></a>
 
 ###  lambda
@@ -249,63 +189,6 @@ ___
 | fn | `F` |
 
 **Returns:** `F`
-
-___
-<a id="logfailedhook"></a>
-
-###  logFailedHook
-
-▸ **logFailedHook**(error: *`Error`*, actionName: *`string`*): `void`
-
-*Defined in [refactor/elementActionHooks.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/elementActionHooks.ts#L63)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| error | `Error` |
-| actionName | `string` |
-
-**Returns:** `void`
-
-___
-<a id="runafterhooks"></a>
-
-###  runAfterHooks
-
-▸ **runAfterHooks**(hooks: *[AfterElementActionHook](#afterelementactionhook)[]*, actionError: *`any`*, element: *`any`*, actionName: *`any`*): `Promise`<`void`>
-
-*Defined in [refactor/elementActionHooks.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/elementActionHooks.ts#L53)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| hooks | [AfterElementActionHook](#afterelementactionhook)[] |
-| actionError | `any` |
-| element | `any` |
-| actionName | `any` |
-
-**Returns:** `Promise`<`void`>
-
-___
-<a id="runbeforehooks"></a>
-
-###  runBeforeHooks
-
-▸ **runBeforeHooks**(hooks: *[BeforeElementActionHook](#beforeelementactionhook)[]*, element: *`any`*, actionName: *`any`*): `Promise`<`void`>
-
-*Defined in [refactor/elementActionHooks.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/refactor/elementActionHooks.ts#L43)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| hooks | [BeforeElementActionHook](#beforeelementactionhook)[] |
-| element | `any` |
-| actionName | `any` |
-
-**Returns:** `Promise`<`void`>
 
 ___
 <a id="tostring"></a>

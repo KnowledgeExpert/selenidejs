@@ -33,7 +33,7 @@
 
 ▸ **should**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L39)*
+*Defined in [entity.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L38)*
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **shouldNot**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L40)*
+*Defined in [entity.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L39)*
 
 **Parameters:**
 

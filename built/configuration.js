@@ -16,7 +16,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 const selenium_webdriver_1 = require("selenium-webdriver");
 const browser_1 = require("./browser");
-// todo: should we break it down into separate configurations - for element, browser, collection?
 class Configuration {
     constructor(init) {
         this.driver = null;
@@ -29,23 +28,22 @@ class Configuration {
         this.htmlPath = path.resolve('./htmls');
         this.screenshotPath = path.resolve('./screenshots'); // todo: why not screenshotsPath?
         this.fullPageScreenshot = true;
-        this.onFailureHooks = [ // todo: should we bother and make it immutable?
-        /*
-        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-            const driver = Utils.getDriver(entity);
-            if (driver.config.screenshotPath) {
-                const screenshotPath = await Utils.saveScreenshot(driver, Browser.config.screenshotPath);
-                lastError.message = `${lastError.message}\nSaved screenshot: ${screenshotPath}`;
-            }
-        },
-        async <T extends Driver | Element | Collection>(lastError: Error, entity: T, condition?: Condition<T>) => {
-            const driver = Utils.getDriver(entity);
-            if (driver.config.htmlPath) {
-                const htmlPath = await Utils.savePageSource(driver, Browser.config.htmlPath);
-                lastError.message = `${lastError.message}\nSaved html: ${htmlPath}`;
-            }
-        }
-        */
+        // todo: should we bother and make it immutable?
+        this.onFailureHooks = [
+        /*        async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
+                    const configuration = (entity as Entity).configuration;
+                    const driver = configuration.driver;
+                    const screenshotPath = await saveScreenshot(driver, configuration.screenshotPath);
+                    const htmlPath = await savePageSource(driver, configuration.htmlPath);
+                    // todo: handle failure
+                    return failure;
+                }, // todo: how to make it be passed only in entity wait when Entity is Element?
+                async (failure: Error, entity: Element): Promise<void | Error> => {
+                    // ...
+                },
+                async (failure: Error, entity: Collection): Promise<void | Error> => {
+                    // ...
+                }*/
         ];
         Object.assign(this, init);
         if (this.driver === null) {
