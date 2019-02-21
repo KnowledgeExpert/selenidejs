@@ -52,6 +52,8 @@ export namespace get {
     export const url = waitingForBrowser(query.url);
     export const title = waitingForBrowser(query.title);
     export const tabs = waitingForBrowser(query.tabs);
+    export const tab = (index: number) => waitingForBrowser(query.tab(index));
+    export const currentTab = waitingForBrowser(query.currentTab);
     export const tabsNumber = waitingForBrowser(query.tabsNumber);
     export const pageSource = waitingForBrowser(query.pageSource);
 

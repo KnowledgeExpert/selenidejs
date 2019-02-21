@@ -72,11 +72,12 @@ export namespace perform {
     export const screenshot = (browser: Browser): Promise<Buffer> => browser.screenshot();
     export const closeCurrentTab = (browser: Browser) => browser.closeCurrentTab();
     export const quit = (browser: Browser) => browser.quit();
-    // export const back = (browser: Browser) => browser.back();
-    // export const forward = (browser: Browser) => browser.forward();
+    export const back = (browser: Browser) => browser.back();
+    export const forward = (browser: Browser) => browser.forward();
     export const refresh = (browser: Browser) => browser.refresh();
-    export const nextTab = (browser: Browser) => browser.nextTab();
-    export const previousTab = (browser: Browser) => browser.previousTab();
+    export const goToNextTab = (browser: Browser) => browser.goToNextTab();
+    export const goToPreviousTab = (browser: Browser) => browser.goToPreviousTab();
+    export const goToTab = (indexOrId: number | string) => (browser: Browser) => browser.goToTab(indexOrId);
     export const switchToFrame = (frameElement: Element) =>
         (browser: Browser) => browser.switchToFrame(frameElement);
     export const switchToDefaultFrame = (browser: Browser) => browser.switchToDefaultFrame();

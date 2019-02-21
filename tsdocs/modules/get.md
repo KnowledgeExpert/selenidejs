@@ -8,6 +8,7 @@ to be used in the following context: `element.click().then(get.text)`
 
 ### Variables
 
+* [currentTab](get.md#currenttab)
 * [innerHtml](get.md#innerhtml)
 * [outerHtml](get.md#outerhtml)
 * [pageSource](get.md#pagesource)
@@ -24,6 +25,7 @@ to be used in the following context: `element.click().then(get.text)`
 ### Functions
 
 * [attribute](get.md#attribute)
+* [tab](get.md#tab)
 * [waitingForBrowser](get.md#waitingforbrowser)
 * [waitingForCollection](get.md#waitingforcollection)
 * [waitingForEntity](get.md#waitingforentity)
@@ -32,6 +34,15 @@ to be used in the following context: `element.click().then(get.text)`
 
 ## Variables
 
+<a id="currenttab"></a>
+
+### `<Const>` currentTab
+
+**● currentTab**: *`(Anonymous function)`* =  waitingForBrowser(query.currentTab)
+
+*Defined in [support/queries/get.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L56)*
+
+___
 <a id="innerhtml"></a>
 
 ### `<Const>` innerHtml
@@ -56,7 +67,7 @@ ___
 
 **● pageSource**: *`(Anonymous function)`* =  waitingForBrowser(query.pageSource)
 
-*Defined in [support/queries/get.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L56)*
+*Defined in [support/queries/get.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L58)*
 
 ___
 <a id="size"></a>
@@ -92,7 +103,7 @@ ___
 
 **● tabsNumber**: *`(Anonymous function)`* =  waitingForBrowser(query.tabsNumber)
 
-*Defined in [support/queries/get.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L55)*
+*Defined in [support/queries/get.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L57)*
 
 ___
 <a id="text"></a>
@@ -156,6 +167,23 @@ ___
 | Param | Type |
 | ------ | ------ |
 | name | `string` |
+
+**Returns:** `(Anonymous function)`
+
+___
+<a id="tab"></a>
+
+### `<Const>` tab
+
+▸ **tab**(index: *`number`*): `(Anonymous function)`
+
+*Defined in [support/queries/get.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L55)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| index | `number` |
 
 **Returns:** `(Anonymous function)`
 

@@ -39,6 +39,10 @@ export declare namespace query {
     const texts: (collection: Collection) => Promise<string[]>;
     const url: (browser: Browser) => Promise<string>;
     const title: (browser: Browser) => Promise<string>;
+    const currentTab: (browser: Browser) => Promise<string>;
+    const tab: (index: number) => (browser: Browser) => Promise<string>;
+    const nextTab: (browser: Browser) => Promise<string>;
+    const previousTab: (browser: Browser) => Promise<string>;
     const tabs: (browser: Browser) => Promise<string[]>;
     const tabsNumber: (browser: Browser) => Promise<number>;
     const pageSource: (browser: Browser) => Promise<string>;

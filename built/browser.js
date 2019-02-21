@@ -22,6 +22,7 @@ const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const entity_1 = require("./entity");
 var isAbsoluteUrl = extensions_1.Extensions.isAbsoluteUrl;
+const queries_1 = require("./queries");
 class Browser extends entity_1.Entity {
     static configuredWith() {
         return configuration_1.Customized.browser();
@@ -36,12 +37,9 @@ class Browser extends entity_1.Entity {
     static chrome() {
         return Browser.chromeWith().build();
     }
-    // todo: make hooks for browser commands & asserts (for queries file a ticket) too
     constructor(configuration = {}) {
         super(new configuration_1.Configuration(configuration));
     }
-    // todo: isn't it a bit confusing taking into account browser.element(With.id(...)) ?
-    // example: browser.with({timeout: 5000}).element(With.id(...)).should(have.text('foo'));
     with(custom) {
         return new Browser(new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
     }
@@ -59,7 +57,6 @@ class Browser extends entity_1.Entity {
         return this.driver.findElements(by);
     }
     /* Elements */
-    // todo: how to create element with specific timeout?
     element(cssOrXpathOrBy, customized) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
@@ -112,35 +109,35 @@ class Browser extends entity_1.Entity {
     async refresh() {
         await this.driver.navigate().refresh();
     }
-    // todo: await browser.back ... is it ok? would not it be better with await browser.navigateBack()?
-    // todo: also take into account this: browser. ... .then(perform.back) - does not it look weird?
-    // todo: compare vs ... .then(perform.navigate.back) or ... .then(perform.navigateBack)
-    // todo: or just await browser.navigate().back() ? same applies forward, but not refresh...
-    // async back() {
-    //     await this.driver.navigate().back();
-    // }
-    //
-    // async forward() {
-    //     await this.driver.navigate().forward();
-    // }
-    // todo: should it fail if there is no next tab? probably yes... same for other similar methods
-    async nextTab() {
-        // todo: name does not tell that there will be a switch.... rename to switchToNextTab? or goTo...
-        const currentTab = await this.driver.getWindowHandle();
-        const allTabs = await this.driver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
+    async back() {
+        await this.driver.navigate().back();
+    }
+    async forward() {
+        await this.driver.navigate().forward();
+    }
+    async goToNextTab() {
         await this.driver
             .switchTo()
-            .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
+            .window(await queries_1.query.nextTab(this));
         return this;
     }
-    async previousTab() {
-        const currentTab = await this.driver.getWindowHandle();
-        const allTabs = await this.driver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
+    async goToPreviousTab() {
         await this.driver
             .switchTo()
-            .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
+            .window(await queries_1.query.previousTab(this));
+        return this;
+    }
+    async goToTab(indexOrId) {
+        if (typeof indexOrId === 'number') {
+            await this.driver
+                .switchTo()
+                .window(await (queries_1.query.tab(indexOrId)(this)));
+        }
+        else {
+            await this.driver
+                .switchTo()
+                .window(indexOrId);
+        }
         return this;
     }
     async switchToFrame(frameElement) {

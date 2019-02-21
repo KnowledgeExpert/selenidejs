@@ -22,9 +22,12 @@ export declare namespace perform {
     const screenshot: (browser: Browser) => Promise<Buffer>;
     const closeCurrentTab: (browser: Browser) => Promise<Browser>;
     const quit: (browser: Browser) => Promise<void>;
+    const back: (browser: Browser) => Promise<void>;
+    const forward: (browser: Browser) => Promise<void>;
     const refresh: (browser: Browser) => Promise<void>;
-    const nextTab: (browser: Browser) => Promise<Browser>;
-    const previousTab: (browser: Browser) => Promise<Browser>;
+    const goToNextTab: (browser: Browser) => Promise<Browser>;
+    const goToPreviousTab: (browser: Browser) => Promise<Browser>;
+    const goToTab: (indexOrId: string | number) => (browser: Browser) => Promise<Browser>;
     const switchToFrame: (frameElement: Element) => (browser: Browser) => Promise<Browser>;
     const switchToDefaultFrame: (browser: Browser) => Promise<Browser>;
     const clearLocalStorage: (browser: Browser) => Promise<Browser>;

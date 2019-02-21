@@ -22,6 +22,7 @@ import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { SearchContext } from './searchContext';
 import { Assertable, Entity, Matchable } from './entity';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
+import { query } from './queries';
 
 export class Browser extends Entity implements SearchContext, Assertable, Matchable {
 
@@ -42,14 +43,10 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
         return Browser.chromeWith().build();
     }
 
-    // todo: make hooks for browser commands & asserts (for queries file a ticket) too
-
     constructor(configuration: Partial<Configuration> = {}) {
         super(new Configuration(configuration));
     }
 
-    // todo: isn't it a bit confusing taking into account browser.element(With.id(...)) ?
-    // example: browser.with({timeout: 5000}).element(With.id(...)).should(have.text('foo'));
     with(custom: Partial<Configuration>): Browser {
         return new Browser(new Configuration({ ...this.configuration, ...custom }));
     }
@@ -74,7 +71,6 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
 
     /* Elements */
 
-    // todo: how to create element with specific timeout?
     element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element {
         const by = Extensions.toBy(cssOrXpathOrBy);
         const locator = new ByWebElementLocator(by, this);
@@ -143,37 +139,38 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
         await this.driver.navigate().refresh();
     }
 
-    // todo: await browser.back ... is it ok? would not it be better with await browser.navigateBack()?
-    // todo: also take into account this: browser. ... .then(perform.back) - does not it look weird?
-    // todo: compare vs ... .then(perform.navigate.back) or ... .then(perform.navigateBack)
-    // todo: or just await browser.navigate().back() ? same applies forward, but not refresh...
-    // async back() {
-    //     await this.driver.navigate().back();
-    // }
-    //
-    // async forward() {
-    //     await this.driver.navigate().forward();
-    // }
+    async back() {
+        await this.driver.navigate().back();
+    }
 
-    // todo: should it fail if there is no next tab? probably yes... same for other similar methods
-    async nextTab(): Promise<Browser> {
-        // todo: name does not tell that there will be a switch.... rename to switchToNextTab? or goTo...
-        const currentTab = await this.driver.getWindowHandle();
-        const allTabs = await this.driver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
+    async forward() {
+        await this.driver.navigate().forward();
+    }
+
+    async goToNextTab(): Promise<Browser> {
         await this.driver
             .switchTo()
-            .window(currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1]);
+            .window(await query.nextTab(this));
         return this;
     }
 
-    async previousTab(): Promise<Browser> {
-        const currentTab = await this.driver.getWindowHandle();
-        const allTabs = await this.driver.getAllWindowHandles();
-        const currentTabIndex = allTabs.indexOf(currentTab);
+    async goToPreviousTab(): Promise<Browser> {
         await this.driver
             .switchTo()
-            .window(currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1]);
+            .window(await query.previousTab(this));
+        return this;
+    }
+
+    async goToTab(indexOrId: number | string): Promise<Browser> {
+        if (typeof indexOrId === 'number') {
+            await this.driver
+                .switchTo()
+                .window(await (query.tab(indexOrId)(this)));
+        } else {
+            await this.driver
+                .switchTo()
+                .window(indexOrId);
+        }
         return this;
     }
 

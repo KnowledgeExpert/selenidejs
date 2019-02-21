@@ -25,8 +25,11 @@ export declare class Browser extends Entity implements SearchContext, Assertable
     closeCurrentTab(): Promise<Browser>;
     quit(): Promise<void>;
     refresh(): Promise<void>;
-    nextTab(): Promise<Browser>;
-    previousTab(): Promise<Browser>;
+    back(): Promise<void>;
+    forward(): Promise<void>;
+    goToNextTab(): Promise<Browser>;
+    goToPreviousTab(): Promise<Browser>;
+    goToTab(indexOrId: number | string): Promise<Browser>;
     switchToFrame(frameElement: Element): Promise<Browser>;
     switchToDefaultFrame(): Promise<Browser>;
     clearLocalStorage(): Promise<Browser>;

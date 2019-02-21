@@ -14,9 +14,12 @@ Here, queries do not contain has* and is* queries, like hasText, or isVisible. U
 
 ### Variables
 
+* [currentTab](query.md#currenttab)
 * [innerHtml](query.md#innerhtml)
+* [nextTab](query.md#nexttab)
 * [outerHtml](query.md#outerhtml)
 * [pageSource](query.md#pagesource)
+* [previousTab](query.md#previoustab)
 * [size](query.md#size)
 * [someText](query.md#sometext)
 * [tabs](query.md#tabs)
@@ -30,11 +33,22 @@ Here, queries do not contain has* and is* queries, like hasText, or isVisible. U
 ### Functions
 
 * [attribute](query.md#attribute)
+* [tab](query.md#tab)
 
 ---
 
 ## Variables
 
+<a id="currenttab"></a>
+
+### `<Const>` currentTab
+
+**● currentTab**: *`(Anonymous function)`* =  lambda('current tab (window handle)', async (browser: Browser) =>
+        browser.driver.getWindowHandle())
+
+*Defined in [queries.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L92)*
+
+___
 <a id="innerhtml"></a>
 
 ### `<Const>` innerHtml
@@ -42,6 +56,20 @@ Here, queries do not contain has* and is* queries, like hasText, or isVisible. U
 **● innerHtml**: *`(Anonymous function)`* =  attribute('innerHTML')
 
 *Defined in [queries.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L67)*
+
+___
+<a id="nexttab"></a>
+
+### `<Const>` nextTab
+
+**● nextTab**: *`(Anonymous function)`* =  lambda('next tab (window handle)', async (browser: Browser) => {
+        const currentTab = await browser.driver.getWindowHandle();
+        const allTabs = await browser.driver.getAllWindowHandles();
+        const currentTabIndex = allTabs.indexOf(currentTab);
+        return currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1];
+    })
+
+*Defined in [queries.ts:98](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L98)*
 
 ___
 <a id="outerhtml"></a>
@@ -60,7 +88,21 @@ ___
 **● pageSource**: *`(Anonymous function)`* =  lambda('page source', async (browser: Browser) =>
        browser.driver.getPageSource())
 
-*Defined in [queries.ts:98](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L98)*
+*Defined in [queries.ts:118](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L118)*
+
+___
+<a id="previoustab"></a>
+
+### `<Const>` previousTab
+
+**● previousTab**: *`(Anonymous function)`* =  lambda('previous tab (window handle)', async (browser: Browser) => {
+        const currentTab = await browser.driver.getWindowHandle();
+        const allTabs = await browser.driver.getAllWindowHandles();
+        const currentTabIndex = allTabs.indexOf(currentTab);
+        return currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1];
+    })
+
+*Defined in [queries.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L105)*
 
 ___
 <a id="size"></a>
@@ -95,7 +137,7 @@ ___
 **● tabs**: *`(Anonymous function)`* =  lambda('tabs (all window handles)', async (browser: Browser) =>
         browser.driver.getAllWindowHandles())
 
-*Defined in [queries.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L92)*
+*Defined in [queries.ts:112](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L112)*
 
 ___
 <a id="tabsnumber"></a>
@@ -105,7 +147,7 @@ ___
 **● tabsNumber**: *`(Anonymous function)`* =  lambda('tabs number', async (browser: Browser) =>
         (await browser.driver.getAllWindowHandles()).length)
 
-*Defined in [queries.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L95)*
+*Defined in [queries.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L115)*
 
 ___
 <a id="text"></a>
@@ -175,6 +217,23 @@ ___
 | Param | Type |
 | ------ | ------ |
 | name | `string` |
+
+**Returns:** `(Anonymous function)`
+
+___
+<a id="tab"></a>
+
+### `<Const>` tab
+
+▸ **tab**(index: *`number`*): `(Anonymous function)`
+
+*Defined in [queries.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L95)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| index | `number` |
 
 **Returns:** `(Anonymous function)`
 

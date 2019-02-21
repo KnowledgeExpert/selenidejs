@@ -37,6 +37,8 @@ var get;
     get.url = waitingForBrowser(queries_1.query.url);
     get.title = waitingForBrowser(queries_1.query.title);
     get.tabs = waitingForBrowser(queries_1.query.tabs);
+    get.tab = (index) => waitingForBrowser(queries_1.query.tab(index));
+    get.currentTab = waitingForBrowser(queries_1.query.currentTab);
     get.tabsNumber = waitingForBrowser(queries_1.query.tabsNumber);
     get.pageSource = waitingForBrowser(queries_1.query.pageSource);
 })(get = exports.get || (exports.get = {}));

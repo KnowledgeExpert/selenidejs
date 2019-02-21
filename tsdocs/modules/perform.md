@@ -10,6 +10,7 @@
 
 ### Functions
 
+* [back](perform.md#back)
 * [clearLocalStorage](perform.md#clearlocalstorage)
 * [clearSessionStorage](perform.md#clearsessionstorage)
 * [click](perform.md#click)
@@ -18,13 +19,15 @@
 * [deleteCookies](perform.md#deletecookies)
 * [doubleClick](perform.md#doubleclick)
 * [executeScript](perform.md#executescript)
+* [forward](perform.md#forward)
+* [goToNextTab](perform.md#gotonexttab)
+* [goToPreviousTab](perform.md#gotoprevioustab)
+* [goToTab](perform.md#gototab)
 * [hover](perform.md#hover)
-* [nextTab](perform.md#nexttab)
 * [open](perform.md#open)
 * [pressEnter](perform.md#pressenter)
 * [pressEscape](perform.md#pressescape)
 * [pressTab](perform.md#presstab)
-* [previousTab](perform.md#previoustab)
 * [quit](perform.md#quit)
 * [refresh](perform.md#refresh)
 * [resizeWindow](perform.md#resizewindow)
@@ -39,13 +42,30 @@
 
 ## Functions
 
+<a id="back"></a>
+
+### `<Const>` back
+
+▸ **back**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
+
+*Defined in [support/commands/perform.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L75)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<`void`>
+
+___
 <a id="clearlocalstorage"></a>
 
 ### `<Const>` clearLocalStorage
 
 ▸ **clearLocalStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L84)*
+*Defined in [support/commands/perform.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L85)*
 
 **Parameters:**
 
@@ -62,7 +82,7 @@ ___
 
 ▸ **clearSessionStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L85)*
+*Defined in [support/commands/perform.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L86)*
 
 **Parameters:**
 
@@ -130,7 +150,7 @@ ___
 
 ▸ **deleteCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L86)*
+*Defined in [support/commands/perform.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L87)*
 
 **Parameters:**
 
@@ -164,7 +184,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L89)*
+*Defined in [support/commands/perform.ts:90](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L90)*
 
 **Parameters:**
 
@@ -172,6 +192,74 @@ ___
 | ------ | ------ |
 | script |  `string` &#124; `Function`|
 | `Rest` args | `any`[] |
+
+**Returns:** `(Anonymous function)`
+
+___
+<a id="forward"></a>
+
+### `<Const>` forward
+
+▸ **forward**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
+
+*Defined in [support/commands/perform.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L76)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<`void`>
+
+___
+<a id="gotonexttab"></a>
+
+### `<Const>` goToNextTab
+
+▸ **goToNextTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+
+*Defined in [support/commands/perform.ts:78](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L78)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
+
+___
+<a id="gotoprevioustab"></a>
+
+### `<Const>` goToPreviousTab
+
+▸ **goToPreviousTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+
+*Defined in [support/commands/perform.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L79)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
+
+___
+<a id="gototab"></a>
+
+### `<Const>` goToTab
+
+▸ **goToTab**(indexOrId: * `number` &#124; `string`*): `(Anonymous function)`
+
+*Defined in [support/commands/perform.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L80)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| indexOrId |  `number` &#124; `string`|
 
 **Returns:** `(Anonymous function)`
 
@@ -191,23 +279,6 @@ ___
 | element | [Element](../classes/element.md) |
 
 **Returns:** `Promise`<[Element](../classes/element.md)>
-
-___
-<a id="nexttab"></a>
-
-### `<Const>` nextTab
-
-▸ **nextTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
-
-*Defined in [support/commands/perform.ts:78](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L78)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
-
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="open"></a>
@@ -276,23 +347,6 @@ ___
 | element | [Element](../classes/element.md) |
 
 **Returns:** `Promise`<[Element](../classes/element.md)>
-
-___
-<a id="previoustab"></a>
-
-### `<Const>` previousTab
-
-▸ **previousTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
-
-*Defined in [support/commands/perform.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L79)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
-
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="quit"></a>
@@ -404,7 +458,7 @@ ___
 
 ▸ **switchToDefaultFrame**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L82)*
+*Defined in [support/commands/perform.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L83)*
 
 **Parameters:**
 
@@ -421,7 +475,7 @@ ___
 
 ▸ **switchToFrame**(frameElement: *[Element](../classes/element.md)*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L80)*
+*Defined in [support/commands/perform.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L81)*
 
 **Parameters:**
 

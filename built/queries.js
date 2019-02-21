@@ -64,6 +64,20 @@ var query;
     /* Browser queries */
     query.url = utils_1.lambda('url', async (browser) => browser.driver.getCurrentUrl());
     query.title = utils_1.lambda('title', async (browser) => browser.driver.getTitle());
+    query.currentTab = utils_1.lambda('current tab (window handle)', async (browser) => browser.driver.getWindowHandle());
+    query.tab = (index) => utils_1.lambda(`tab by index ${index}`, async (browser) => (await browser.driver.getAllWindowHandles())[index]);
+    query.nextTab = utils_1.lambda('next tab (window handle)', async (browser) => {
+        const currentTab = await browser.driver.getWindowHandle();
+        const allTabs = await browser.driver.getAllWindowHandles();
+        const currentTabIndex = allTabs.indexOf(currentTab);
+        return currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1];
+    });
+    query.previousTab = utils_1.lambda('previous tab (window handle)', async (browser) => {
+        const currentTab = await browser.driver.getWindowHandle();
+        const allTabs = await browser.driver.getAllWindowHandles();
+        const currentTabIndex = allTabs.indexOf(currentTab);
+        return currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1];
+    });
     query.tabs = utils_1.lambda('tabs (all window handles)', async (browser) => browser.driver.getAllWindowHandles());
     query.tabsNumber = utils_1.lambda('tabs number', async (browser) => (await browser.driver.getAllWindowHandles()).length);
     query.pageSource = utils_1.lambda('page source', async (browser) => browser.driver.getPageSource());

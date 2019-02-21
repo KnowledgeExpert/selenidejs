@@ -89,6 +89,26 @@ export namespace query {
     export const title = lambda('title', async (browser: Browser) =>
         browser.driver.getTitle());
 
+    export const currentTab = lambda('current tab (window handle)', async (browser: Browser) =>
+        browser.driver.getWindowHandle());
+
+    export const tab = (index: number) => lambda(`tab by index ${index}`, async (browser: Browser) =>
+        (await browser.driver.getAllWindowHandles())[index]);
+
+    export const nextTab = lambda('next tab (window handle)', async (browser: Browser) => {
+        const currentTab = await browser.driver.getWindowHandle();
+        const allTabs = await browser.driver.getAllWindowHandles();
+        const currentTabIndex = allTabs.indexOf(currentTab);
+        return currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1];
+    });
+
+    export const previousTab = lambda('previous tab (window handle)', async (browser: Browser) => {
+        const currentTab = await browser.driver.getWindowHandle();
+        const allTabs = await browser.driver.getAllWindowHandles();
+        const currentTabIndex = allTabs.indexOf(currentTab);
+        return currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1];
+    });
+
     export const tabs = lambda('tabs (all window handles)', async (browser: Browser) =>
         browser.driver.getAllWindowHandles());
 
