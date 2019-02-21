@@ -17,6 +17,23 @@ const path = require("path");
 const selenium_webdriver_1 = require("selenium-webdriver");
 const browser_1 = require("./browser");
 class Configuration {
+    // todo: should we bother and make it immutable?
+    /*    readonly onFailureHooks: OnEntityFailureHook[] = [
+            async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
+                const configuration = (entity as Entity).configuration;
+                const driver = configuration.driver;
+                const screenshotPath = await saveScreenshot(driver, configuration.screenshotPath);
+                const htmlPath = await savePageSource(driver, configuration.htmlPath);
+                // todo: handle failure
+                return failure;
+            }, // todo: how to make it be passed only in entity wait when Entity is Element?
+            async (failure: Error, entity: Element): Promise<void | Error> => {
+                // ...
+            },
+            async (failure: Error, entity: Collection): Promise<void | Error> => {
+                // ...
+            }
+        ];*/
     constructor(init) {
         this.driver = null;
         this.timeout = 4000; // todo: seems like explicit types are not needed somewhere...
@@ -28,23 +45,6 @@ class Configuration {
         this.htmlPath = path.resolve('./htmls');
         this.screenshotPath = path.resolve('./screenshots'); // todo: why not screenshotsPath?
         this.fullPageScreenshot = true;
-        // todo: should we bother and make it immutable?
-        this.onFailureHooks = [
-        /*        async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
-                    const configuration = (entity as Entity).configuration;
-                    const driver = configuration.driver;
-                    const screenshotPath = await saveScreenshot(driver, configuration.screenshotPath);
-                    const htmlPath = await savePageSource(driver, configuration.htmlPath);
-                    // todo: handle failure
-                    return failure;
-                }, // todo: how to make it be passed only in entity wait when Entity is Element?
-                async (failure: Error, entity: Element): Promise<void | Error> => {
-                    // ...
-                },
-                async (failure: Error, entity: Collection): Promise<void | Error> => {
-                    // ...
-                }*/
-        ];
         Object.assign(this, init);
         if (this.driver === null) {
             this.driver = new selenium_webdriver_1.Builder().withCapabilities(selenium_webdriver_1.Capabilities.chrome()).build();
@@ -117,10 +117,6 @@ class Customized {
     }
     fullPageScreenshot(turnedOn) {
         this.configuration = Object.assign({}, this.configuration, { fullPageScreenshot: turnedOn });
-        return this;
-    }
-    onFailureHooks(hooks) {
-        this.configuration = Object.assign({}, this.configuration, { onFailureHooks: hooks });
         return this;
     }
 }

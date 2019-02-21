@@ -51,8 +51,8 @@ export class Configuration {
     readonly screenshotPath: string          = path.resolve('./screenshots');  // todo: why not screenshotsPath?
     readonly fullPageScreenshot: boolean     = true;
     // todo: should we bother and make it immutable?
-    readonly onFailureHooks: OnEntityFailureHook[] = [
-/*        async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
+/*    readonly onFailureHooks: OnEntityFailureHook[] = [
+        async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
             const configuration = (entity as Entity).configuration;
             const driver = configuration.driver;
             const screenshotPath = await saveScreenshot(driver, configuration.screenshotPath);
@@ -65,8 +65,8 @@ export class Configuration {
         },
         async (failure: Error, entity: Collection): Promise<void | Error> => {
             // ...
-        }*/
-    ];
+        }
+    ];*/
 
     constructor(init?: Partial<Configuration>) {
         Object.assign(this, init);
@@ -152,8 +152,8 @@ export class Customized<T> {  // todo: add generic? Customized<T> ... constructo
         return this;
     }
 
-    onFailureHooks(hooks: OnEntityFailureHook[]) { // todo: consider switching to varargs
+/*    onFailureHooks(hooks: OnEntityFailureHook[]) { // todo: consider switching to varargs
         this.configuration = {...this.configuration, onFailureHooks: hooks};
         return this;
-    }
+    }*/
 }

@@ -26,7 +26,6 @@
 * [driver](customized.md#driver)
 * [fullPageScreenshot](customized.md#fullpagescreenshot)
 * [htmlPath](customized.md#htmlpath)
-* [onFailureHooks](customized.md#onfailurehooks)
 * [screenshotPath](customized.md#screenshotpath)
 * [setValueByJs](customized.md#setvaluebyjs)
 * [timeout](customized.md#timeout)
@@ -156,23 +155,6 @@ ___
 | Param | Type |
 | ------ | ------ |
 | path | `string` |
-
-**Returns:** `this`
-
-___
-<a id="onfailurehooks"></a>
-
-###  onFailureHooks
-
-▸ **onFailureHooks**(hooks: *[OnEntityFailureHook](../#onentityfailurehook)[]*): `this`
-
-*Defined in [configuration.ts:155](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L155)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| hooks | [OnEntityFailureHook](../#onentityfailurehook)[] |
 
 **Returns:** `this`
 

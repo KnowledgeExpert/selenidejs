@@ -24,7 +24,6 @@ export declare class Configuration {
     readonly htmlPath: string;
     readonly screenshotPath: string;
     readonly fullPageScreenshot: boolean;
-    readonly onFailureHooks: OnEntityFailureHook[];
     constructor(init?: Partial<Configuration>);
 }
 export declare class Customized<T> {
@@ -44,5 +43,4 @@ export declare class Customized<T> {
     htmlPath(path: string): this;
     screenshotPath(path: string): this;
     fullPageScreenshot(turnedOn: boolean): this;
-    onFailureHooks(hooks: OnEntityFailureHook[]): this;
 }

@@ -18,7 +18,6 @@
 * [driver](configuration.md#driver)
 * [fullPageScreenshot](configuration.md#fullpagescreenshot)
 * [htmlPath](configuration.md#htmlpath)
-* [onFailureHooks](configuration.md#onfailurehooks)
 * [screenshotPath](configuration.md#screenshotpath)
 * [setValueByJs](configuration.md#setvaluebyjs)
 * [timeout](configuration.md#timeout)
@@ -41,7 +40,7 @@
 
 ⊕ **new Configuration**(init?: *`Partial`<[Configuration](configuration.md)>*): [Configuration](configuration.md)
 
-*Defined in [configuration.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L69)*
+*Defined in [configuration.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L52)*
 
 **Parameters:**
 
@@ -89,30 +88,6 @@ ___
 **● htmlPath**: *`string`* =  path.resolve('./htmls')
 
 *Defined in [configuration.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L50)*
-
-___
-<a id="onfailurehooks"></a>
-
-###  onFailureHooks
-
-**● onFailureHooks**: *[OnEntityFailureHook](../#onentityfailurehook)[]* =  [
-/*        async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
-            const configuration = (entity as Entity).configuration;
-            const driver = configuration.driver;
-            const screenshotPath = await saveScreenshot(driver, configuration.screenshotPath);
-            const htmlPath = await savePageSource(driver, configuration.htmlPath);
-            // todo: handle failure
-            return failure;
-        }, // todo: how to make it be passed only in entity wait when Entity is Element?
-        async (failure: Error, entity: Element): Promise<void | Error> => {
-            // ...
-        },
-        async (failure: Error, entity: Collection): Promise<void | Error> => {
-            // ...
-        }*/
-    ]
-
-*Defined in [configuration.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L54)*
 
 ___
 <a id="screenshotpath"></a>
