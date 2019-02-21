@@ -27,6 +27,8 @@ import { Locator } from './locators/locator';
 import { SearchContext } from './searchContext';
 import { lambda } from './utils';
 import { Assertable, Entity, Matchable } from './entity';
+import { perform } from './support/commands/perform';
+import { command } from './commands';
 
 
 export class Element  extends Entity implements SearchContext, Assertable, Matchable {
@@ -123,18 +125,26 @@ export class Element  extends Entity implements SearchContext, Assertable, Match
     @ElementActionHooks
     async setValue(value: string | number) {  // todo: should we rename it just to set?
                                               // kind of more readable and reflects user context
-        await this.wait.command(lambda(`set value: ${value}`, async element => {
-            const webelement = await element.getWebElement();
-            await webelement.clear();
-            await webelement.sendKeys(String(value));
-        }));
+        await this.wait.command(
+            this.configuration.setValueByJs ?
+                command.js.setValue(value) :
+                lambda(`set value: ${value}`, async element => {
+                    const webelement = await element.getWebElement();
+                    await webelement.clear();
+                    await webelement.sendKeys(String(value));
+                })
+        );
         return this;
     }
 
     @ElementActionHooks
     async type(keys: string | number) {
-        await this.wait.command(lambda(`type: ${keys}`, async element =>
-            element.getWebElement().then(it => it.sendKeys(String(keys)))));
+        await this.wait.command(
+            this.configuration.typeByJs ?
+                command.js.type(keys) :
+                lambda(`type: ${keys}`, async element =>
+                    element.getWebElement().then(it => it.sendKeys(String(keys))))
+        );
         return this;
     }
 

@@ -9,6 +9,7 @@
 * [Extensions](modules/extensions.md)
 * [With](modules/with.md)
 * [be](modules/be.md)
+* [command](modules/command.md)
 * [condition](modules/condition.md)
 * [find](modules/find.md)
 * [get](modules/get.md)

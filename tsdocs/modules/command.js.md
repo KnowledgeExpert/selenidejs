@@ -1,4 +1,4 @@
-[selenidejs](../README.md) > [perform](../modules/perform.md) > [js](../modules/perform.js.md)
+[selenidejs](../README.md) > [command](../modules/command.md) > [js](../modules/command.js.md)
 
 # Module: js
 
@@ -6,9 +6,9 @@
 
 ### Functions
 
-* [click](perform.js.md#click)
-* [setValue](perform.js.md#setvalue)
-* [type](perform.js.md#type)
+* [click](command.js.md#click)
+* [setValue](command.js.md#setvalue)
+* [type](command.js.md#type)
 
 ---
 
@@ -20,7 +20,7 @@
 
 ▸ **click**(xOffset?: *`number`*, yOffset?: *`number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L44)*
+*Defined in [commands.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L24)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L47)*
+*Defined in [commands.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L35)*
 
 **Parameters:**
 
@@ -55,7 +55,7 @@ ___
 
 ▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L50)*
+*Defined in [commands.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L48)*
 
 **Parameters:**
 

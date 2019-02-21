@@ -28,7 +28,9 @@
 * [htmlPath](customized.md#htmlpath)
 * [onFailureHooks](customized.md#onfailurehooks)
 * [screenshotPath](customized.md#screenshotpath)
+* [setValueByJs](customized.md#setvaluebyjs)
 * [timeout](customized.md#timeout)
+* [typeByJs](customized.md#typebyjs)
 * [windowHeight](customized.md#windowheight)
 * [windowWidth](customized.md#windowwidth)
 * [browser](customized.md#browser)
@@ -44,7 +46,7 @@
 
 ⊕ **new Customized**(customizedType: *`any`*): [Customized](customized.md)
 
-*Defined in [configuration.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L83)*
+*Defined in [configuration.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L84)*
 
 **Parameters:**
 
@@ -64,7 +66,7 @@ ___
 
 **● configuration**: *`Partial`<[Configuration](configuration.md)>*
 
-*Defined in [configuration.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L83)*
+*Defined in [configuration.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L84)*
 
 ___
 <a id="customizedtype"></a>
@@ -73,7 +75,7 @@ ___
 
 **● customizedType**: *`any`*
 
-*Defined in [configuration.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L86)*
+*Defined in [configuration.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L87)*
 
 ___
 
@@ -85,7 +87,7 @@ ___
 
 ▸ **baseUrl**(base: *`string`*): `this`
 
-*Defined in [configuration.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L100)*
+*Defined in [configuration.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L101)*
 
 **Parameters:**
 
@@ -102,7 +104,7 @@ ___
 
 ▸ **build**(): `T`
 
-*Defined in [configuration.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L91)*
+*Defined in [configuration.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L92)*
 
 **Returns:** `T`
 
@@ -113,7 +115,7 @@ ___
 
 ▸ **driver**(webdriver: *`WebDriver`*): `this`
 
-*Defined in [configuration.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L95)*
+*Defined in [configuration.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L96)*
 
 **Parameters:**
 
@@ -130,7 +132,7 @@ ___
 
 ▸ **fullPageScreenshot**(turnedOn: *`boolean`*): `this`
 
-*Defined in [configuration.ts:130](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L130)*
+*Defined in [configuration.ts:141](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L141)*
 
 **Parameters:**
 
@@ -147,7 +149,7 @@ ___
 
 ▸ **htmlPath**(path: *`string`*): `this`
 
-*Defined in [configuration.ts:120](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L120)*
+*Defined in [configuration.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L131)*
 
 **Parameters:**
 
@@ -164,7 +166,7 @@ ___
 
 ▸ **onFailureHooks**(hooks: *[OnFailureHook](../#onfailurehook)[]*): `this`
 
-*Defined in [configuration.ts:135](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L135)*
+*Defined in [configuration.ts:146](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L146)*
 
 **Parameters:**
 
@@ -181,7 +183,7 @@ ___
 
 ▸ **screenshotPath**(path: *`string`*): `this`
 
-*Defined in [configuration.ts:125](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L125)*
+*Defined in [configuration.ts:136](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L136)*
 
 **Parameters:**
 
@@ -192,13 +194,30 @@ ___
 **Returns:** `this`
 
 ___
+<a id="setvaluebyjs"></a>
+
+###  setValueByJs
+
+▸ **setValueByJs**(value: *`boolean`*): `this`
+
+*Defined in [configuration.ts:121](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L121)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| value | `boolean` |
+
+**Returns:** `this`
+
+___
 <a id="timeout"></a>
 
 ###  timeout
 
 ▸ **timeout**(milliseconds: *`number`*): `this`
 
-*Defined in [configuration.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L105)*
+*Defined in [configuration.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L106)*
 
 **Parameters:**
 
@@ -209,13 +228,30 @@ ___
 **Returns:** `this`
 
 ___
+<a id="typebyjs"></a>
+
+###  typeByJs
+
+▸ **typeByJs**(value: *`boolean`*): `this`
+
+*Defined in [configuration.ts:126](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L126)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| value | `boolean` |
+
+**Returns:** `this`
+
+___
 <a id="windowheight"></a>
 
 ###  windowHeight
 
 ▸ **windowHeight**(value: *`string`*): `this`
 
-*Defined in [configuration.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L115)*
+*Defined in [configuration.ts:116](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L116)*
 
 **Parameters:**
 
@@ -232,7 +268,7 @@ ___
 
 ▸ **windowWidth**(value: *`string`*): `this`
 
-*Defined in [configuration.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L110)*
+*Defined in [configuration.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L111)*
 
 **Parameters:**
 
@@ -249,7 +285,7 @@ ___
 
 ▸ **browser**(): [Customized](customized.md)<[Browser](browser.md)>
 
-*Defined in [configuration.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L75)*
+*Defined in [configuration.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L76)*
 
 **Returns:** [Customized](customized.md)<[Browser](browser.md)>
 
@@ -260,7 +296,7 @@ ___
 
 ▸ **configuration**(): [Customized](customized.md)<[Configuration](configuration.md)>
 
-*Defined in [configuration.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L79)*
+*Defined in [configuration.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L80)*
 
 **Returns:** [Customized](customized.md)<[Configuration](configuration.md)>
 

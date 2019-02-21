@@ -7,6 +7,8 @@ export declare class Configuration {
     readonly driver: WebDriver;
     readonly timeout: number;
     readonly baseUrl: string;
+    readonly setValueByJs: boolean;
+    readonly typeByJs: boolean;
     readonly windowWidth: string;
     readonly windowHeight: string;
     readonly htmlPath: string;
@@ -27,6 +29,8 @@ export declare class Customized<T> {
     timeout(milliseconds: number): this;
     windowWidth(value: string): this;
     windowHeight(value: string): this;
+    setValueByJs(value: boolean): this;
+    typeByJs(value: boolean): this;
     htmlPath(path: string): this;
     screenshotPath(path: string): this;
     fullPageScreenshot(turnedOn: boolean): this;

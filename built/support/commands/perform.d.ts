@@ -13,9 +13,9 @@ export declare namespace perform {
     const pressTab: (element: Element) => Promise<Element>;
     const pressEscape: (element: Element) => Promise<Element>;
     namespace js {
-        const click: (xOffset?: number, yOffset?: number) => (element: Element) => Element;
-        const setValue: (value: string | number) => (element: Element) => Element;
-        const type: (value: string | number) => (element: Element) => Element;
+        const click: (xOffset?: number, yOffset?: number) => (element: Element) => Promise<Element>;
+        const setValue: (value: string | number) => (element: Element) => Promise<Element>;
+        const type: (keys: string | number) => (element: Element) => Promise<Element>;
     }
     const open: (url: string) => (browser: Browser) => Promise<Browser>;
     const resizeWindow: (width: number, height: number) => (browser: Browser) => Promise<Browser>;

@@ -19,10 +19,11 @@ const browser_1 = require("./browser");
 // todo: should we break it down into separate configurations - for element, browser, collection?
 class Configuration {
     constructor(init) {
-        // todo: should we make them readonly? can we? with this object.assign technique...
         this.driver = null;
-        this.timeout = 4000;
+        this.timeout = 4000; // todo: seems like explicit types are not needed somewhere...
         this.baseUrl = '';
+        this.setValueByJs = false;
+        this.typeByJs = false;
         this.windowWidth = ''; // todo: why not as number?
         this.windowHeight = ''; // todo: why not as number?
         this.htmlPath = path.resolve('./htmls');
@@ -98,6 +99,14 @@ class Customized {
     }
     windowHeight(value) {
         this.configuration = Object.assign({}, this.configuration, { windowHeight: value });
+        return this;
+    }
+    setValueByJs(value) {
+        this.configuration = Object.assign({}, this.configuration, { setValueByJs: value });
+        return this;
+    }
+    typeByJs(value) {
+        this.configuration = Object.assign({}, this.configuration, { typeByJs: value });
         return this;
     }
     htmlPath(path) {

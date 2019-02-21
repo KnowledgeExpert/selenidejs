@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
+const commands_1 = require("../../commands");
 /* todo: is it Ok to just alias element.* command?
  * or should we define separate command.* namespace with raw commands implementation like we did for query.*
  * and then define entity commands through calling command.* correspondingly...
@@ -31,46 +32,11 @@ var perform;
     perform.pressEnter = (element) => element.pressEnter();
     perform.pressTab = (element) => element.pressTab();
     perform.pressEscape = (element) => element.pressEscape();
-    /*
-     * todo: the following commands has no @ElementActionHooks... what to do?
-     */
     let js;
     (function (js) {
-        js.click = (xOffset = 0, yOffset = 0) => (element) => {
-            element.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
-                    'view': window,
-                    'bubbles': true,
-                    'cancelable': true,
-                    'clientX': arguments[0].getClientRects()[0].left + ${xOffset},
-                    'clientY': arguments[0].getClientRects()[0].top + ${yOffset}
-                }))`);
-            return element;
-        };
-        js.setValue = (value) => (element) => {
-            element.executeScript(`return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null
-                        ? -1
-                        : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text
-                            : text.length <= maxlength ? text
-                                : text.substring(0, maxlength);
-                    return null;
-                })(arguments[0], ${String(value)});`);
-            return element;
-        };
-        js.type = (value) => (element) => {
-            element.executeScript(`return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null
-                        ? -1
-                        : parseInt(webelement.getAttribute('maxlength'));
-                    var value = webelement.value + text;
-                    webelement.value = maxlength == -1 ? value
-                            : value.length <= maxlength ? value
-                                : value.substring(0, maxlength);
-                    return null;
-                })(arguments[0], ${String(value)});`);
-            return element;
-        };
+        js.click = (xOffset = 0, yOffset = 0) => (element) => element.perform(commands_1.command.js.click(xOffset, yOffset));
+        js.setValue = (value) => (element) => element.perform(commands_1.command.js.setValue(value));
+        js.type = (keys) => (element) => element.perform(commands_1.command.js.type(keys));
     })(js = perform.js || (perform.js = {}));
     /*  // had to comment it, to resolve conflict with browser.executeScript :(
     

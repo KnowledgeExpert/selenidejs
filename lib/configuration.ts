@@ -30,10 +30,11 @@ export class Configuration {
         return Configuration.with().driver(driver);
     }
 
-    // todo: should we make them readonly? can we? with this object.assign technique...
     readonly driver: WebDriver               = null;
-    readonly timeout: number                 = 4000;
+    readonly timeout: number                 = 4000; // todo: seems like explicit types are not needed somewhere...
     readonly baseUrl: string                 = '';
+    readonly setValueByJs: boolean           = false;
+    readonly typeByJs: boolean               = false;
     readonly windowWidth: string             = '';  // todo: why not as number?
     readonly windowHeight: string            = '';  // todo: why not as number?
     readonly htmlPath: string                = path.resolve('./htmls');
@@ -114,6 +115,16 @@ export class Customized<T> {  // todo: add generic? Customized<T> ... constructo
 
     windowHeight(value: string) {
         this.configuration = {...this.configuration, windowHeight: value};
+        return this;
+    }
+
+    setValueByJs(value: boolean) {
+        this.configuration = {...this.configuration, setValueByJs: value};
+        return this;
+    }
+
+    typeByJs(value: boolean) {
+        this.configuration = {...this.configuration, typeByJs: value};
         return this;
     }
 

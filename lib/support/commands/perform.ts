@@ -15,6 +15,7 @@
 import { Element } from '../../element';
 import { Browser } from '../../browser';
 import { ElementActionHooks } from '../../refactor/elementActionHooks';
+import { command } from '../../commands';
 
 
 /* todo: is it Ok to just alias element.* command?
@@ -39,54 +40,15 @@ export namespace perform {
     export const pressTab = (element: Element) => element.pressTab();
     export const pressEscape = (element: Element) => element.pressEscape();
 
-    /*
-     * todo: the following commands has no @ElementActionHooks... what to do?
-     */
     export namespace js {
         export const click = (xOffset: number = 0, yOffset: number = 0) =>
-            (element: Element) => {
-                element.executeScript(`arguments[0].dispatchEvent(new MouseEvent('click', {
-                    'view': window,
-                    'bubbles': true,
-                    'cancelable': true,
-                    'clientX': arguments[0].getClientRects()[0].left + ${xOffset},
-                    'clientY': arguments[0].getClientRects()[0].top + ${yOffset}
-                }))`);
-
-                return element;
-            };
+            (element: Element) => element.perform(command.js.click(xOffset, yOffset));
 
         export const setValue = (value: string | number) =>
-            (element: Element) => {
-                element.executeScript(`return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null
-                        ? -1
-                        : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text
-                            : text.length <= maxlength ? text
-                                : text.substring(0, maxlength);
-                    return null;
-                })(arguments[0], ${String(value)});`);
+            (element: Element) => element.perform(command.js.setValue(value));
 
-                return element;
-            };
-
-        export const type = (value: string | number) =>
-            (element: Element) => {
-                element.executeScript(`return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null
-                        ? -1
-                        : parseInt(webelement.getAttribute('maxlength'));
-                    var value = webelement.value + text;
-                    webelement.value = maxlength == -1 ? value
-                            : value.length <= maxlength ? value
-                                : value.substring(0, maxlength);
-                    return null;
-                })(arguments[0], ${String(value)});`);
-
-                return element;
-            };
-
+        export const type = (keys: string | number) =>
+            (element: Element) => element.perform(command.js.type(keys));
     }
 
 /*  // had to comment it, to resolve conflict with browser.executeScript :(

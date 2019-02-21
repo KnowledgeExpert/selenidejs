@@ -30,6 +30,7 @@ const byWebElementLocator_1 = require("./locators/byWebElementLocator");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const utils_1 = require("./utils");
 const entity_1 = require("./entity");
+const commands_1 = require("./commands");
 class Element extends entity_1.Entity {
     // todo: why not have private readonly driver property?
     constructor(locator, configuration) {
@@ -97,15 +98,19 @@ class Element extends entity_1.Entity {
     }
     async setValue(value) {
         // kind of more readable and reflects user context
-        await this.wait.command(utils_1.lambda(`set value: ${value}`, async (element) => {
-            const webelement = await element.getWebElement();
-            await webelement.clear();
-            await webelement.sendKeys(String(value));
-        }));
+        await this.wait.command(this.configuration.setValueByJs ?
+            commands_1.command.js.setValue(value) :
+            utils_1.lambda(`set value: ${value}`, async (element) => {
+                const webelement = await element.getWebElement();
+                await webelement.clear();
+                await webelement.sendKeys(String(value));
+            }));
         return this;
     }
     async type(keys) {
-        await this.wait.command(utils_1.lambda(`type: ${keys}`, async (element) => element.getWebElement().then(it => it.sendKeys(String(keys)))));
+        await this.wait.command(this.configuration.typeByJs ?
+            commands_1.command.js.type(keys) :
+            utils_1.lambda(`type: ${keys}`, async (element) => element.getWebElement().then(it => it.sendKeys(String(keys)))));
         return this;
     }
     async doubleClick() {
