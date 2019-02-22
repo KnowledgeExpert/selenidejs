@@ -21,7 +21,8 @@ var find;
     /* Element.* builders */
     find.parent = (element) => element.parent;
     find.followingSibling = (predicate = '') => (element) => element.followingSibling(predicate);
-    find.visibleElement = (cssOrXpathOrBy) => (element) => element.visibleElement(cssOrXpathOrBy);
+    // export const visibleElement = (cssOrXpathOrBy: string | By) =>
+    //     (element: Element) => element.visibleElement(cssOrXpathOrBy);
     /* Collection.* builders */
     find.elementAt = (index) => (collection) => collection.elementAt(index);
     find.first = (collection) => collection.first();

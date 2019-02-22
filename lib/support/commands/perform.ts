@@ -30,7 +30,6 @@ export namespace perform {
     export const doubleClick = (element: Element) => element.doubleClick();
     export const contextClick = (element: Element) => element.contextClick();
     export const hover = (element: Element) => element.hover();
-    export const scrollIntoView = (element: Element) => element.scrollIntoView();
 
     export const type = (keys: string | number) => (element: Element) => element.type(keys);
     export const setValue = (value: string | number) => (element: Element) => element.setValue(value);
@@ -39,15 +38,20 @@ export namespace perform {
     export const pressTab = (element: Element) => element.pressTab();
     export const pressEscape = (element: Element) => element.pressEscape();
 
-    export namespace js {
-        export const click = (xOffset: number = 0, yOffset: number = 0) =>
-            (element: Element) => element.perform(command.js.click(xOffset, yOffset));
+    export namespace js { // todo: cover with tests
+
+        export const click = (element: Element) => element.perform(command.js.click);
+
+        export const clickWithOffset = (xOffset: number, yOffset: number) =>
+            (element: Element) => element.perform(command.js.clickWithOffset(xOffset, yOffset));
 
         export const setValue = (value: string | number) =>
             (element: Element) => element.perform(command.js.setValue(value));
 
         export const type = (keys: string | number) =>
             (element: Element) => element.perform(command.js.type(keys));
+
+        export const scrollIntoView = (element: Element) => element.perform(command.js.scrollIntoView);
     }
 
 /*  // had to comment it, to resolve conflict with browser.executeScript :(

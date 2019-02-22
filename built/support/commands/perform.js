@@ -26,7 +26,6 @@ var perform;
     perform.doubleClick = (element) => element.doubleClick();
     perform.contextClick = (element) => element.contextClick();
     perform.hover = (element) => element.hover();
-    perform.scrollIntoView = (element) => element.scrollIntoView();
     perform.type = (keys) => (element) => element.type(keys);
     perform.setValue = (value) => (element) => element.setValue(value);
     perform.pressEnter = (element) => element.pressEnter();
@@ -34,9 +33,11 @@ var perform;
     perform.pressEscape = (element) => element.pressEscape();
     let js;
     (function (js) {
-        js.click = (xOffset = 0, yOffset = 0) => (element) => element.perform(commands_1.command.js.click(xOffset, yOffset));
+        js.click = (element) => element.perform(commands_1.command.js.click);
+        js.clickWithOffset = (xOffset, yOffset) => (element) => element.perform(commands_1.command.js.clickWithOffset(xOffset, yOffset));
         js.setValue = (value) => (element) => element.perform(commands_1.command.js.setValue(value));
         js.type = (keys) => (element) => element.perform(commands_1.command.js.type(keys));
+        js.scrollIntoView = (element) => element.perform(commands_1.command.js.scrollIntoView);
     })(js = perform.js || (perform.js = {}));
     /*  // had to comment it, to resolve conflict with browser.executeScript :(
     

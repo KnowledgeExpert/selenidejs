@@ -16,9 +16,8 @@ export declare class Element extends Entity implements SearchContext, Assertable
     element(cssOrXpathOrBy: string | By): Element;
     readonly parent: Element;
     followingSibling(predicate?: string): Element;
-    visibleElement(cssOrXpathOrBy: string | By): Element;
     all(cssOrXpathOrBy: string | By): Collection;
-    executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]): Promise<{}>;
+    executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]): Promise<{}>;
     click(): Promise<this>;
     setValue(value: string | number): Promise<this>;
     type(keys: string | number): Promise<this>;
@@ -28,5 +27,4 @@ export declare class Element extends Entity implements SearchContext, Assertable
     pressEnter(): Promise<this>;
     pressEscape(): Promise<this>;
     pressTab(): Promise<this>;
-    scrollIntoView(): Promise<this>;
 }

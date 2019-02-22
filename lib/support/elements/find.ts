@@ -32,8 +32,8 @@ export namespace find {
     export const parent = (element: Element) => element.parent;
     export const followingSibling = (predicate: string = '') =>
         (element: Element) => element.followingSibling(predicate);
-    export const visibleElement = (cssOrXpathOrBy: string | By) =>
-        (element: Element) => element.visibleElement(cssOrXpathOrBy);
+    // export const visibleElement = (cssOrXpathOrBy: string | By) =>
+    //     (element: Element) => element.visibleElement(cssOrXpathOrBy);
 
     /* Collection.* builders */
 

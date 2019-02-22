@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, WHEN, driver, webelements, webelement, textOf, isAbsentInDom } from './base';
-import { be, have, perform } from '../../lib';
+import { browser, GIVEN, data, webelement, textOf, isAbsentInDom } from './base';
+import { perform } from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
@@ -22,83 +22,81 @@ import { be, have, perform } from '../../lib';
 
 const something = async element => { /*nothing;P*/ };
 
-describe('Element.* commands: doubleClick', () => {
+describe('Element.* commands: hover', () => {
 
-/*    it('double-clicks on element once it is present in DOM and visible', async () => {
+    it('hovers on element once it is present in DOM and visible', async () => {
         await GIVEN.openedEmptyPage();
         await GIVEN.executeScriptAfter(data.timeouts.smallest, `
-            $('body').append('<label style="display: none">Before double-click</label>')
-            $('label').dblclick(function(e) {
-                $('label').text('After double-click');
+            $('body').append('<label style="display: none">Before hover</label>')
+            $('label').mouseenter(function(e) {
+                $('label').text('After hover');
             });
         `);
         await GIVEN.executeScriptAfter(data.timeouts.smallerThanDefault, `
             $('label').attr('style', 'display: block');
         `);
 
-        await browser.element('label').doubleClick();
-        expect(await textOf('label')).toContain('After double-click');
-    });*/
+        await browser.element('label').hover();
+        expect(await textOf('label')).toContain('After hover');
+    });
 
-/*    it('double-clicks through then(perform.doubleClick) on element once it is present in DOM and visible',
-       async () => {
-
+/*    it('hovers through then(perform.hover) on element once it is present in DOM and visible', async () => {
         await GIVEN.openedEmptyPage();
         await GIVEN.executeScriptAfter(data.timeouts.smallest, `
-            $('body').append('<label style="display: none">Before double-click</label>')
-            $('label').dblclick(function(e) {
-                $('label').text('After double-click');
+            $('body').append('<label style="display: none">Before hover</label>')
+            $('label').mouseenter(function(e) {
+                $('label').text('After hover');
             });
         `);
         await GIVEN.executeScriptAfter(data.timeouts.smallerThanDefault, `
             $('label').attr('style', 'display: block');
         `);
 
-        await browser.element('label').perform(something).then(perform.doubleClick);
-        expect(await textOf('label')).toContain('After double-click');
+        await browser.element('label').perform(something).then(perform.hover);
+        expect(await textOf('label')).toContain('After hover');
     });*/
 
-    it('fails to double-click with error on not present in DOM element (after timeout)', async () => {
+    it('fails to hover with error on not present in DOM element (after timeout)', async () => {
         await GIVEN.openedEmptyPage();
         await GIVEN.executeScriptAfter(data.timeouts.biggerThanDefault, `
-            $('body').append('<label style="display: none">Before double-click</label>')
-            $('label').dblclick(function(e) {
-                $('label').text('After double-click');
+            $('body').append('<label style="display: none">Before hover</label>')
+            $('label').mouseenter(function(e) {
+                $('label').text('After hover');
             });
         `);
 
-        await browser.element('label').doubleClick()
+        await browser.element('label').hover()
             .then(ifNoError => fail('should fail on timeout'))
             .catch(async error => {
                 expect(await isAbsentInDom('label')).toBe(true);
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.element(By(css selector, label)).double-click
+\tbrowser.element(By(css selector, label)).hover
 Reason:
 \tno such element: Unable to locate element: {"method":"css selector","selector":"label"}`
                 );
             });
     });
 
-    it('fails to double-click with error on not visible element (after timeout)', async () => {
+    it('fails to hover with error on not visible element (after timeout)', async () => {
         await GIVEN.openedEmptyPage();
         await GIVEN.executeScriptAfter(data.timeouts.smallest, `
-            $('body').append('<label style="display: none">Before double-click</label>')
-            $('label').dblclick(function(e) {
-                $('label').text('After double-click');
+            $('body').append('<label style="display: none">Before hover</label>')
+            $('label').mouseenter(function(e) {
+                $('label').text('After hover');
             });
         `);
         await GIVEN.executeScriptAfter(data.timeouts.biggerThanDefault, `
             $('label').attr('style', 'display: block');
         `);
 
-        await browser.element('label').doubleClick()
+        await browser.element('label').hover()
             .then(ifNoError => fail('should fail on timeout'))
             .catch(async error => {
                 expect(await webelement('label').then(it => it.isDisplayed())).toBe(false);
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.element(By(css selector, label)).double-click
+\tbrowser.element(By(css selector, label)).hover
 Reason:
 \telement is hidden` // todo: consider to have here also element actual html
                 );

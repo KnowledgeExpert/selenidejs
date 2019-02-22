@@ -4,30 +4,59 @@
 
 ## Index
 
-### Functions
+### Variables
 
 * [click](command.js.md#click)
+* [scrollIntoView](command.js.md#scrollintoview)
+
+### Functions
+
+* [clickWithOffset](command.js.md#clickwithoffset)
 * [setValue](command.js.md#setvalue)
 * [type](command.js.md#type)
 
 ---
 
-## Functions
+## Variables
 
 <a id="click"></a>
 
 ### `<Const>` click
 
-▸ **click**(xOffset?: *`number`*, yOffset?: *`number`*): `(Anonymous function)`
+**● click**: *`(Anonymous function)`* =  lambda('click by js', clickWithOffset(0, 0))
 
-*Defined in [commands.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L24)*
+*Defined in [commands.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L47)*
+
+___
+<a id="scrollintoview"></a>
+
+### `<Const>` scrollIntoView
+
+**● scrollIntoView**: *`(Anonymous function)`* =  lambda('scroll into view', async element =>
+            element.executeScript(// todo: is ensuring visibility covered here?
+                'return (function(element) { element.scrollIntoView(true); })(arguments[0]);'
+            ))
+
+*Defined in [commands.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L86)*
+
+___
+
+## Functions
+
+<a id="clickwithoffset"></a>
+
+### `<Const>` clickWithOffset
+
+▸ **clickWithOffset**(xOffset: *`number`*, yOffset: *`number`*): `(Anonymous function)`
+
+*Defined in [commands.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L35)*
 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| `Default value` xOffset | `number` | 0 |
-| `Default value` yOffset | `number` | 0 |
+| Param | Type |
+| ------ | ------ |
+| xOffset | `number` |
+| yOffset | `number` |
 
 **Returns:** `(Anonymous function)`
 
@@ -38,7 +67,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [commands.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L35)*
+*Defined in [commands.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L49)*
 
 **Parameters:**
 
@@ -55,7 +84,7 @@ ___
 
 ▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [commands.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L48)*
+*Defined in [commands.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L67)*
 
 **Parameters:**
 

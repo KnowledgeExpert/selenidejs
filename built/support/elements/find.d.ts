@@ -7,7 +7,6 @@ export declare namespace find {
     const all: (cssOrXpathOrBy: string | By) => (context: Element | Browser) => Collection;
     const parent: (element: Element) => Element;
     const followingSibling: (predicate?: string) => (element: Element) => Element;
-    const visibleElement: (cssOrXpathOrBy: string | By) => (element: Element) => Element;
     const elementAt: (index: number) => (collection: Collection) => Element;
     const first: (collection: Collection) => Element;
     const elementBy: (condition: import("../../wait").Query<Element, void>) => (collection: Collection) => Element;

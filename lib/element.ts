@@ -80,15 +80,15 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
         return this.element(With.xpath('./following-sibling::*' + predicate));
     }
 
-    // todo: do we need it?
+    // todo: do we need element.visibleElement?
     // why then not have browser.visibleElement?
     // won't it confuse? and hide some "smelly" parts for locators...
     // all.findBy(be.visible) is nevertheless not a good way to locate... it's kind of a workaround
     // won't it be better to leave workarounds less shiny ans so kind of highlighted in a code?
     // or should the name be more precise, like firstVisibleElement? (this probably is too much though...)
-    visibleElement(cssOrXpathOrBy: string | By): Element {
+/*    visibleElement(cssOrXpathOrBy: string | By): Element {
         return this.all(cssOrXpathOrBy).elementBy(be.visible);
-    }
+    }*/
 
     all(cssOrXpathOrBy: string | By): Collection {
         const by = Extensions.toBy(cssOrXpathOrBy);
@@ -115,11 +115,13 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
      */
 
     // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
-    async executeScript(scriptOnThisWebElement: string, ...additionalArgs: any[]) {
+    /* tslint:disable:ban-types */
+    async executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]) {
         return this.configuration.driver.executeScript(
             scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
         );
     }
+    /* tslint:enable:ban-types */
 
     async click() {
         await this.wait.command(lambda('click', async element =>  // todo: add describing lambdas to other commands
@@ -157,7 +159,7 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
         await this.wait.command(lambda('double-click', async element => {
             const webelement = await element.getWebElement();
             if (! await webelement.isDisplayed()) {
-                throw new Error('element is hidden');
+                throw new Error('element is hidden'); // todo: consider refactoring/DRYing to throwErrorIfHidden(webel)
             }
             driver.actions().doubleClick(webelement).perform();
         }));
@@ -166,17 +168,29 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
 
     async hover() {
         const driver = this.configuration.driver;
-        await this.wait.command(lambda('hover', async element =>
-            driver.actions().mouseMove(await element.getWebElement()).perform()));
+        await this.wait.command(lambda('hover', async element => {
+            const webelement = await element.getWebElement();
+            if (! await webelement.isDisplayed()) {
+                throw new Error('element is hidden');
+            }
+            driver.actions().mouseMove(await element.getWebElement()).perform();
+        }));
         return this;
     }
 
     async contextClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(lambda('context-click', async element =>
-            driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform()));
+        await this.wait.command(lambda('context-click', async element => {
+            const webelement = await element.getWebElement();
+            if (! await webelement.isDisplayed()) {
+                throw new Error('element is hidden');
+            }
+            driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform();
+        }));
         return this;
     }
+
+    // todo: cover with tests element.press* methods...
 
     async pressEnter() {
         return this.type(Key.ENTER);
@@ -188,12 +202,5 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
 
     async pressTab() {
         return this.type(Key.TAB);
-    }
-
-    async scrollIntoView() {  // todo: do we need here byJs ?
-        await this.wait.query(lambda('scroll into view', async element =>
-            element.executeScript('arguments[0].scrollIntoView(true);')  // todo: is ensuring visibility covered here?
-        ));
-        return this;
     }
 }

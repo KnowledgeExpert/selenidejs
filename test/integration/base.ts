@@ -42,6 +42,10 @@ export function textOf(cssSelector: string) {
     return webelement(cssSelector).then(it => it.getText());
 }
 
+export function valueOf(cssSelector: string) {
+    return webelement(cssSelector).then(it => it.getAttribute('value'));
+}
+
 export function isAbsentInDom(cssSelector: string) {
     return driver.findElements(By.css(cssSelector)).then(it => it.length === 0);
 }

@@ -14,7 +14,6 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
-const be_1 = require("./support/conditions/be");
 const with_1 = require("./support/selectors/with");
 const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
@@ -66,15 +65,15 @@ class Element extends entity_1.Entity {
         // followingSibling(tagAndPredicate = '*'): Element {
         return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
     }
-    // todo: do we need it?
+    // todo: do we need element.visibleElement?
     // why then not have browser.visibleElement?
     // won't it confuse? and hide some "smelly" parts for locators...
     // all.findBy(be.visible) is nevertheless not a good way to locate... it's kind of a workaround
     // won't it be better to leave workarounds less shiny ans so kind of highlighted in a code?
     // or should the name be more precise, like firstVisibleElement? (this probably is too much though...)
-    visibleElement(cssOrXpathOrBy) {
-        return this.all(cssOrXpathOrBy).elementBy(be_1.be.visible);
-    }
+    /*    visibleElement(cssOrXpathOrBy: string | By): Element {
+            return this.all(cssOrXpathOrBy).elementBy(be.visible);
+        }*/
     all(cssOrXpathOrBy) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
@@ -97,9 +96,11 @@ class Element extends entity_1.Entity {
 
      */
     // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
+    /* tslint:disable:ban-types */
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
         return this.configuration.driver.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
+    /* tslint:enable:ban-types */
     async click() {
         await this.wait.command(utils_1.lambda('click', async (element) => // todo: add describing lambdas to other commands
          element.getWebElement().then(it => it.click())));
@@ -127,7 +128,7 @@ class Element extends entity_1.Entity {
         await this.wait.command(utils_1.lambda('double-click', async (element) => {
             const webelement = await element.getWebElement();
             if (!await webelement.isDisplayed()) {
-                throw new Error('element is hidden');
+                throw new Error('element is hidden'); // todo: consider refactoring/DRYing to throwErrorIfHidden(webel)
             }
             driver.actions().doubleClick(webelement).perform();
         }));
@@ -135,14 +136,27 @@ class Element extends entity_1.Entity {
     }
     async hover() {
         const driver = this.configuration.driver;
-        await this.wait.command(utils_1.lambda('hover', async (element) => driver.actions().mouseMove(await element.getWebElement()).perform()));
+        await this.wait.command(utils_1.lambda('hover', async (element) => {
+            const webelement = await element.getWebElement();
+            if (!await webelement.isDisplayed()) {
+                throw new Error('element is hidden');
+            }
+            driver.actions().mouseMove(await element.getWebElement()).perform();
+        }));
         return this;
     }
     async contextClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(utils_1.lambda('context-click', async (element) => driver.actions().click(await element.getWebElement(), String(selenium_webdriver_1.Button.RIGHT)).perform()));
+        await this.wait.command(utils_1.lambda('context-click', async (element) => {
+            const webelement = await element.getWebElement();
+            if (!await webelement.isDisplayed()) {
+                throw new Error('element is hidden');
+            }
+            driver.actions().click(await element.getWebElement(), String(selenium_webdriver_1.Button.RIGHT)).perform();
+        }));
         return this;
     }
+    // todo: cover with tests element.press* methods...
     async pressEnter() {
         return this.type(selenium_webdriver_1.Key.ENTER);
     }
@@ -151,11 +165,6 @@ class Element extends entity_1.Entity {
     }
     async pressTab() {
         return this.type(selenium_webdriver_1.Key.TAB);
-    }
-    async scrollIntoView() {
-        await this.wait.query(utils_1.lambda('scroll into view', async (element) => element.executeScript('arguments[0].scrollIntoView(true);') // todo: is ensuring visibility covered here?
-        ));
-        return this;
     }
 }
 exports.Element = Element;

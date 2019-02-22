@@ -15,7 +15,6 @@
 * [first](find.md#first)
 * [followingSibling](find.md#followingsibling)
 * [parent](find.md#parent)
-* [visibleElement](find.md#visibleelement)
 
 ---
 
@@ -172,23 +171,6 @@ ___
 | element | [Element](../classes/element.md) |
 
 **Returns:** [Element](../classes/element.md)
-
-___
-<a id="visibleelement"></a>
-
-### `<Const>` visibleElement
-
-▸ **visibleElement**(cssOrXpathOrBy: * `string` &#124; `By`*): `(Anonymous function)`
-
-*Defined in [support/elements/find.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L35)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
-
-**Returns:** `(Anonymous function)`
 
 ___
 
