@@ -38,6 +38,7 @@
 * [clearLocalStorage](browser.md#clearlocalstorage)
 * [clearSessionStorage](browser.md#clearsessionstorage)
 * [closeCurrentTab](browser.md#closecurrenttab)
+* [deleteCookie](browser.md#deletecookie)
 * [deleteCookies](browser.md#deletecookies)
 * [element](browser.md#element)
 * [executeScript](browser.md#executescript)
@@ -192,6 +193,23 @@ ___
 ▸ **closeCurrentTab**(): `Promise`<[Browser](browser.md)>
 
 *Defined in [browser.ts:129](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L129)*
+
+**Returns:** `Promise`<[Browser](browser.md)>
+
+___
+<a id="deletecookie"></a>
+
+###  deleteCookie
+
+▸ **deleteCookie**(name: *`string`*): `Promise`<[Browser](browser.md)>
+
+*Defined in [browser.ts:218](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L218)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| name | `string` |
 
 **Returns:** `Promise`<[Browser](browser.md)>
 

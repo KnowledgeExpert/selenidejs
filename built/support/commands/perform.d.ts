@@ -33,5 +33,6 @@ export declare namespace perform {
     const clearLocalStorage: (browser: Browser) => Promise<Browser>;
     const clearSessionStorage: (browser: Browser) => Promise<Browser>;
     const deleteCookies: (browser: Browser) => Promise<Browser>;
+    const deleteCookie: (name: string) => (browser: Browser) => Promise<Browser>;
     const executeScript: (script: string | Function, ...args: any[]) => (browser: Browser) => Promise<{}>;
 }

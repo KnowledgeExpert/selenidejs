@@ -35,4 +35,5 @@ export declare class Browser extends Entity implements SearchContext, Assertable
     clearLocalStorage(): Promise<Browser>;
     clearSessionStorage(): Promise<Browser>;
     deleteCookies(): Promise<Browser>;
+    deleteCookie(name: string): Promise<Browser>;
 }

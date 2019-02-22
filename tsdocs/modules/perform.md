@@ -16,6 +16,7 @@
 * [click](perform.md#click)
 * [closeCurrentTab](perform.md#closecurrenttab)
 * [contextClick](perform.md#contextclick)
+* [deleteCookie](perform.md#deletecookie)
 * [deleteCookies](perform.md#deletecookies)
 * [doubleClick](perform.md#doubleclick)
 * [executeScript](perform.md#executescript)
@@ -144,6 +145,23 @@ ___
 **Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
+<a id="deletecookie"></a>
+
+### `<Const>` deleteCookie
+
+▸ **deleteCookie**(name: *`string`*): `(Anonymous function)`
+
+*Defined in [support/commands/perform.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L88)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| name | `string` |
+
+**Returns:** `(Anonymous function)`
+
+___
 <a id="deletecookies"></a>
 
 ### `<Const>` deleteCookies
@@ -184,7 +202,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:90](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L90)*
+*Defined in [support/commands/perform.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L91)*
 
 **Parameters:**
 

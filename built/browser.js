@@ -175,6 +175,10 @@ class Browser extends entity_1.Entity {
             .catch(ignored => { });
         return this;
     }
+    async deleteCookie(name) {
+        await this.driver.manage().deleteCookie(name);
+        return this;
+    }
 }
 exports.Browser = Browser;
 //# sourceMappingURL=browser.js.map

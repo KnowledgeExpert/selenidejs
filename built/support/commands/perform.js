@@ -67,6 +67,7 @@ var perform;
     perform.clearLocalStorage = (browser) => browser.clearLocalStorage();
     perform.clearSessionStorage = (browser) => browser.clearSessionStorage();
     perform.deleteCookies = (browser) => browser.deleteCookies();
+    perform.deleteCookie = (name) => (browser) => browser.deleteCookie(name);
     /* tslint:disable:ban-types */
     perform.executeScript = (script, ...args) => (browser) => browser.executeScript(script, ...args);
     /* tslint:enable:ban-types */
