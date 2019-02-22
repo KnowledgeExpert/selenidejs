@@ -1,151 +1,246 @@
 [![Build Status](https://travis-ci.com/KnowledgeExpert/selenidejs.svg?branch=master)](https://travis-ci.com/KnowledgeExpert/selenidejs)
 [![Coverage Status](https://coveralls.io/repos/github/KnowledgeExpert/selenidejs/badge.svg?branch=master)](https://coveralls.io/github/KnowledgeExpert/selenidejs?branch=master)
 [![NPM Version](https://badge.fury.io/js/selenidejs.svg)](https://badge.fury.io/js/selenidejs)
-![NPM Downloads Per Month](https://img.shields.io/npm/dm/selenidejs.svg)
+![NPM Downloads Per Month](https://img.shields.io/npm/dm/selenidejs.svg)[![Join the chat at https://t
+.me/js_for_testing](https://img.shields.io/badge/join%20chat-telegram-blue.svg)](https://t.me/js_for_testing)
 
-## How to use Selenidejs
+# SelenideJS
 
-## Installation
+Wrapper for Selenium WebDriver, which provides testing user oriented API for writing stable and readable UI tests in
+JavaScript/TypeScript.
 
-`npm i selenidejs`
+### Prerequisites
 
-## Base entities in selenidejs
+[Nodejs 8+](https://nodejs.org/en/)
 
-* `Browser` - wrapper for protractor's `browser` with bunch of new useful functions
-* `Element` - 'lazy' web element
-* `Collection` - 'lazy' web elements collection
+### Installing
 
-To create 'lazy' element you can use `Browser.element(string | By)` or simply `element(string | By)`.
- - `Browser.element("#header")`
- - `element(With.exactText('Continue'))`
+Install `selenidejs` via npm to your project:
 
-To create 'lazy' collection you can use `Browser.all(string | By)` or simply `all(string | By)`.
- - `all(".//span[@id='header']")`
- - `Browser.all(With.id('chkbx'))`
-
-
-You can pass an Webdriver `By` or `string` (which transforms to `By.css` or `By.xpath`, basing on content) to initialize 'lazy' element(s).
-
- Also you can use our helper [With](./lib/locators/with.ts) several useful `By`'s:
-  - `element(With.exactText('Continue'))`
-  - `all(With.attribute("href", "/continue"))`
-
-## [Element](./lib/base-entities/element.ts)
-
-In **Selenidejs** we are using "clever" elements, because an actual "version" of the real element from the page will be received at the moment when we will need it, and then we can perform some action or condition check on it. If it is impossible to perform an action within the specified timeout, you will receive an error message.
-
-There is also `visibleElement(string)` method. It is very useful when there are several identical elements on the page, but only one of them is visible. This method returns the first of the visible elements found by the locator.
-
-When the required element is found you can:
-  * do some actions on it:
-    * `element(".dropdown").hover();`
-    * `element("button[title='Actions']").click();`
-  * get statuses and attribute values:
-    * `element(With.text('Hello')).text();` // "Hello world"
-    * `element("#FirstName").isVisible();` // true/false
-  * assert some condition:
-    * `element("#Greeting").should(have.text("Hello"))`
-
-It is also possible to build "locators chains", getting one element (or elements) inside another:
-      `element(".menuItem").parent().element(".//ul[contains(@id, 'navigation')]").click();`
-
-## Element action hooks
-
-You can add after/before hooks to `Element` actions. It can be useful for specific conditions testing (f.e. if you might want to ensure that some script is present/loaded/initialized on a page before element action), logging, debugging.
-
-Hooks api introduced by hook signature `(element: Element, actionName: string) => void | Promise<void>` and lists for before/after hooks.
-
-Example:
 ```
-// log element's .toString() to console
-const logElementHook = async (element: Element, actionName: string) => console.log(await element.toString());
-// log element's .text() to console
-const logElementTextHook = async (element: Element, actionName: string) => console.log(await element.text()));
-
-// add hooks to log element info before and after action
-Element.beforeActionHooks.push(logElementHook, logElementTextHook);
-Element.afterActionHooks.push(logElementHook, logElementTextHook);
+npm i --save-dev selenidejs
 ```
 
-Element actions list:
- * click
- * clickByJS
- * setValue
- * setValueByJS
- * sendKeys
- * doubleClick
- * hover
- * contextClick
- * pressEnter
- * pressEscape
- * pressTab
- * scrollIntoView
+### Usage
 
-*Note: you should NOT use action methods inside hooks code, it will cause recursion*
-Example:
+Set your webdriver instance:
+
 ```
-// that is not correct!
-const clickBeforeActionHook = async (element: Element, actionName: string) => await element.click());
+import { Browser } from "selenidejs";
+const webDriverInstance = ...;
+const browser = Browser.drivedBy(webDriverInstance).build();
 ```
 
+And you are ready to go!
 
-## [Collection](./lib/base-entities/collection.ts)
+## Quick Start and Examples
 
- "Clever" collection also will be received at the moment when we will need it (like a ["clever element"](#element)).
+### Basic API
 
- On `Collection` you can:
-  * perform filter operations:
-    * `all(".//span[@class='menu']").filter(be.visible())`
-    * `all(".//span[@class='menu']").filter(have.attribute('value', 'item'))`
-  * find first element by condition:
-    * `all(".autocomplete-results").findBy(have.text("Summer"))`
-  * or get element by index:
-    * `all(".autocomplete-results").get(2)`
+GIVEN
 
-## Assertion Conditions: [be.*](./lib/conditions/helpers/be.ts) and [have.*](./lib/conditions/helpers/have.ts)
-
-Assertion conditions are used in "assertion actions" on elements and in "filter actions" on collections:
-
-  * `element(".assignment_title").should(be.visible)`
-  * `all(With.testId('2014100609491604293426')).first().shouldNot(have.text("New Case"))`
-
-## Extended logging
-On errors throwing (for example if `element.click()` or `Browser.should(...)` throws an exception) you can enable attaching of screenshots and page source to an error. It can be useful in debugging, to make errors clearer and easier to resolve.
-
-For enabling that feature you should add in your `protractor.conf` next properties in `selenidejs` section:
+```typescript
+    import { Builder, Capabilities } from 'selenium-webdriver';
+    const webdriver = new Builder().withCapabilities(Capabilities.chrome()).build()
 ```
-export const config = {
-    params: {
-        selenidejs: {
-            saveScreenshotOnFail: true, // put any trufy value here to enable automatic screenshot on error
-            saveHtmlOnFail: true, // put any trufy value here to enable automatic page source on error
 
-            // provide here custom path for saving screenshots directory (default - './screenshots')
-            screenshotPath: path.resolve("./myscreenshots"),
+WHEN
 
-            // provide here custom path for saving htmls directory (default - './htmls')
-            htmlPath: path.resolve("./mypagesources")
-        }
+```typescript
+
+    import { Browser } from 'selenidejs';
+
+    const browser = Browser.configuredWith()
+        .driver(webdriver)
+        .baseUrl('https://google.com')
+        .timeout(4000)
+        .build();
+
+    // OR:
+    // browser = Browser.drivedBy(webdriver).timeout(4000).baseUrl('https://google.com').build();
+
+    // OR:
+    // browser = Browser.chromeWith().timeout(4000).baseUrl('https://google.com').build();
+
+    // OR:
+    // browser = Browser.chrome(); //if you are ok with defaults for baseUrl and timeout
+```
+
+AND
+```typescript
+    await browser.open('/ncr');
+```
+
+AND
+```typescript
+    // await browser.element('[name=q]')).setValue('selenium');
+    // OR:
+
+    import { With } from 'selenidejs';
+
+    const query = browser.element(With.name('q')); // actual search does not start here, the element is lazy
+    await query.setValue('selenium')              // here the actual webelement is found
+    await query.pressEnter();                    // here the actual webelement is found again
+```
+
+AND
+```typescript
+    // in case we need to filter collection of items by some condition like visibility:
+
+    import { be } from 'selenidejs';
+
+    const results = browser.all('.srg .g').filteredBy(be.visible);
+
+
+THEN
+```typescript
+    import { have } from 'selenidejs';
+
+    await results.should(have.size(10));
+    await results.first().should(have.text('Selenium automates browsers'));
+```
+
+FINALLY
+```typescript
+    await browser.quit();
+```
+
+### More advanced tricks
+
+```typescript
+    // OR just in case you like the "flow"
+    import { find, should } from 'selenidejs';
+
+    await browser.all('.srg .g').should(have.size(10))
+        .then(find.first)
+        .then(should.match(have.text('Selenium automates browsers')));
+```
+
+***
+
+```typescript
+    // OR:
+    import { perform } from 'selenidejs';
+
+        await browser.element(With.name('q')).setValue('selenium').then(perform.pressEnter);
+
+    // instead of
+    const query = browser.element(With.name('q'));
+    await query.setValue('selenium')
+    await query.pressEnter();
+```
+
+***
+
+Not sure when you will need it, but just in case:) ...
+```typescript
+    import { get } from 'selenidejs';
+
+    const iWillRememberYourTextOnceReady =
+        await browser.element('#i-change-my-text-on-hover').hover().then(get.someText)
+```
+
+***
+
+You might think you need something like...
+```typescript
+    import { its } from 'selenidejs';
+
+    if (await browser.element('#i-might-say-yes-or-no').get(its.text) === 'yes') {
+        // do something...
     }
-};
 ```
 
-## [Full page screenshot](./lib/screenshot.ts)
-Full page browser screenshot achieved via screen-and-scroll strategy (take multiple screenshots and merge them into single image). To get full page screenshot use function `Browser.fullpageScreenshot()`.
+Or...
+```typescript
+    import { their } from 'selenidejs';
 
-## Custom project parameters
-* `params.selenidejs.timeouts.toWaitElementsInMs`
-  * timeout in milliseconds
-  * for smart waits
-    * "smart" means - the "wait implementation" will wait only the minimum needed amount of time, not greater than specified timeout
-  * during
-    * asserts / checking test steps results
-    * access to elements
-  * Default value = `10000`
-  * `npm test -- --params.selenidejs.timeouts.toWaitElementsInMs=20000`
-* `params.selenidejs.timeouts.toHardWaitInMs`
-  * timeout in milliseconds
-  * for hard wait
-    * "hard" means -  the "wait implementation" will wait whole timeout interval
-  * Default value = `1000`
-  * `npm test -- --params.selenidejs.timeouts.toHardWaitInMs=2000`
+    if (await browser.all('.option').get(their.size) >= 2) {
+        // do something...
+    }
+```
+
+Maybe one day, you really find a use case:) But for above cases, probably easier would be:
+```typescript
+    if (await browser.element('#i-might-say-yes-or-no').waitUntil(have.text('yes'))) {
+        // do something...
+    }
+    ...
+    if (await browser.all('.i-will-appear').waitUntil(have.sizeMoreThanOrEqual(2))) {
+        // do something...
+    }
+```
+
+Or, by using non-waiting versions, if "you are in a rush":)...
+```typescript
+    if (await browser.element('#i-might-say-yes-or-no').matching(have.text('yes'))) {
+        // do something...
+    }
+    ...
+    if (await browser.all('.i-will-appear').matching(have.sizeMoreThanOrEqual(2))) {
+        // do something...
+    }
+```
+
+***
+
+In case you want to be different) ...
+```typescript
+   const browser = new Browser(Configuration.withDriver(driver).timeout(4000).build());
+```
+
+## Tutorials
+
+You can start with Typescript or Javascript tutorial to get familiar with basic and some advance features of Selenidejs.
+ Using Typescript is recommended when writing tests (it will enable IDE's autocompletion features, compile-time checks,
+etc. since Selenidejs itself written in Typescript), but you still can use Javascript.
+
+Typescript tutorial can be found [here](./docs/TUTORIAL_TS.md).
+
+Javascript tutorial can be found [here](./docs/TUTORIAL_JS.md).
+
+## API Documentation
+
+Generated API documentation can be found [here](./tsdocs/README.md).
+
+## For Contributors
+
+### Guide
+
+please read [contributing](./docs/contributing.md) for details on our code of conduct, and the process for submitting
+ pull requests to
+ us.
+
+### Running the tests
+
+#### Prerequisites
+- google chrome is installed locally
+
+run unit and integration tests:
+
+```
+npm test
+```
+
+### run code style test
+
+run ts linter:
+
+```
+npm run lint
+```
+
+## Versioning
+
+we use [npm](http://npm.com/) for versioning. for the versions available, see the [npm](https://www.npmjs.com/package/selenidejs#versions) or github [releases](https://github.com/knowledgeexpert/selenidejs/releases).
+
+## Authors
+
+* **Iakiv Kramarenko** - *initial work* - [yashaka](https://github.com/yashaka)
+* **Alexander Popov** - *initial work* - [aleksanderpopov](https://github.com/aleksanderpopov)
+
+see also the full list of current [contributors](https://github.com/knowledgeexpert/selenidejs/contributors) who participated in this project.
+
+## License
+
+this project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE.md) file for details
