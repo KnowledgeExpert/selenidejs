@@ -29,17 +29,17 @@
 
 ### Accessors
 
+* [alert](browser.md#alert)
 * [driver](browser.md#driver)
 
 ### Methods
 
 * [all](browser.md#all)
 * [back](browser.md#back)
+* [clearCookies](browser.md#clearcookies)
 * [clearLocalStorage](browser.md#clearlocalstorage)
 * [clearSessionStorage](browser.md#clearsessionstorage)
 * [closeCurrentTab](browser.md#closecurrenttab)
-* [deleteCookie](browser.md#deletecookie)
-* [deleteCookies](browser.md#deletecookies)
 * [element](browser.md#element)
 * [executeScript](browser.md#executescript)
 * [findWebElement](browser.md#findwebelement)
@@ -121,6 +121,17 @@ ___
 
 ## Accessors
 
+<a id="alert"></a>
+
+###  alert
+
+getalert(): `AlertPromise`
+
+*Defined in [browser.ts:224](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L224)*
+
+**Returns:** `AlertPromise`
+
+___
 <a id="driver"></a>
 
 ###  driver
@@ -164,6 +175,17 @@ ___
 **Returns:** `Promise`<`void`>
 
 ___
+<a id="clearcookies"></a>
+
+###  clearCookies
+
+▸ **clearCookies**(): `Promise`<[Browser](browser.md)>
+
+*Defined in [browser.ts:212](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L212)*
+
+**Returns:** `Promise`<[Browser](browser.md)>
+
+___
 <a id="clearlocalstorage"></a>
 
 ###  clearLocalStorage
@@ -193,34 +215,6 @@ ___
 ▸ **closeCurrentTab**(): `Promise`<[Browser](browser.md)>
 
 *Defined in [browser.ts:129](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L129)*
-
-**Returns:** `Promise`<[Browser](browser.md)>
-
-___
-<a id="deletecookie"></a>
-
-###  deleteCookie
-
-▸ **deleteCookie**(name: *`string`*): `Promise`<[Browser](browser.md)>
-
-*Defined in [browser.ts:218](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L218)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
-
-**Returns:** `Promise`<[Browser](browser.md)>
-
-___
-<a id="deletecookies"></a>
-
-###  deleteCookies
-
-▸ **deleteCookies**(): `Promise`<[Browser](browser.md)>
-
-*Defined in [browser.ts:212](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L212)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 

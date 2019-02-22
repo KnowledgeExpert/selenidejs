@@ -84,8 +84,8 @@ export namespace perform {
     // export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
     export const clearLocalStorage = (browser: Browser) => browser.clearLocalStorage();
     export const clearSessionStorage = (browser: Browser) => browser.clearSessionStorage();
-    export const deleteCookies = (browser: Browser) => browser.deleteCookies();
-    export const deleteCookie = (name: string) => (browser: Browser) => browser.deleteCookie(name);
+    export const clearCookies = (browser: Browser) => browser.clearCookies();
+    // export const deleteCookie = (name: string) => (browser: Browser) => browser.deleteCookie(name);
 
     /* tslint:disable:ban-types */
     export const executeScript = (script: string | Function, ...args: any[]) =>

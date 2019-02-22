@@ -11,13 +11,12 @@
 ### Functions
 
 * [back](perform.md#back)
+* [clearCookies](perform.md#clearcookies)
 * [clearLocalStorage](perform.md#clearlocalstorage)
 * [clearSessionStorage](perform.md#clearsessionstorage)
 * [click](perform.md#click)
 * [closeCurrentTab](perform.md#closecurrenttab)
 * [contextClick](perform.md#contextclick)
-* [deleteCookie](perform.md#deletecookie)
-* [deleteCookies](perform.md#deletecookies)
 * [doubleClick](perform.md#doubleclick)
 * [executeScript](perform.md#executescript)
 * [forward](perform.md#forward)
@@ -58,6 +57,23 @@
 | browser | [Browser](../classes/browser.md) |
 
 **Returns:** `Promise`<`void`>
+
+___
+<a id="clearcookies"></a>
+
+### `<Const>` clearCookies
+
+▸ **clearCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+
+*Defined in [support/commands/perform.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L87)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="clearlocalstorage"></a>
@@ -143,40 +159,6 @@ ___
 | element | [Element](../classes/element.md) |
 
 **Returns:** `Promise`<[Element](../classes/element.md)>
-
-___
-<a id="deletecookie"></a>
-
-### `<Const>` deleteCookie
-
-▸ **deleteCookie**(name: *`string`*): `(Anonymous function)`
-
-*Defined in [support/commands/perform.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L88)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
-
-**Returns:** `(Anonymous function)`
-
-___
-<a id="deletecookies"></a>
-
-### `<Const>` deleteCookies
-
-▸ **deleteCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
-
-*Defined in [support/commands/perform.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L87)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
-
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
 
 ___
 <a id="doubleclick"></a>

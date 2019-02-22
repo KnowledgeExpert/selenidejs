@@ -6,6 +6,7 @@
 
 ### Functions
 
+* [alert](find.md#alert)
 * [all](find.md#all)
 * [element](find.md#element)
 * [elementAt](find.md#elementat)
@@ -20,6 +21,23 @@
 
 ## Functions
 
+<a id="alert"></a>
+
+### `<Const>` alert
+
+▸ **alert**(browser: *[Browser](../classes/browser.md)*): `AlertPromise`
+
+*Defined in [support/elements/find.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L49)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| browser | [Browser](../classes/browser.md) |
+
+**Returns:** `AlertPromise`
+
+___
 <a id="all"></a>
 
 ### `<Const>` all

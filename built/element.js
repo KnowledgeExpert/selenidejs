@@ -124,7 +124,13 @@ class Element extends entity_1.Entity {
     }
     async doubleClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(utils_1.lambda('double-click', async (element) => driver.actions().doubleClick(await element.getWebElement()).perform()));
+        await this.wait.command(utils_1.lambda('double-click', async (element) => {
+            const webelement = await element.getWebElement();
+            if (!await webelement.isDisplayed()) {
+                throw new Error('element is hidden');
+            }
+            driver.actions().doubleClick(webelement).perform();
+        }));
         return this;
     }
     async hover() {

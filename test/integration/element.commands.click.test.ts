@@ -13,12 +13,14 @@
 // limitations under the License.
 
 import { browser, GIVEN, data, WHEN, driver, webelements } from './base';
-import { be } from '../../lib';
+import { be, perform } from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
+
+const something = async element => { /*nothing;P*/ };
 
 describe('Element.* commands: click', () => {
 
@@ -27,12 +29,24 @@ describe('Element.* commands: click', () => {
                 <a href='#second' style='display:none'>go to Heading 2</a>
                 <h2 id='second'>Heading 2</h2>
         `);
-        await GIVEN.executeScriptWithTimeout(
-            'document.getElementsByTagName("a")[0].style = "display:block";',
-            data.timeouts.smallerThanDefault
-        );
+        await GIVEN.executeScriptAfter(data.timeouts.smallerThanDefault, `
+            document.getElementsByTagName("a")[0].style = "display:block";
+        `);
 
         await browser.element('a').click();
+        expect(await driver.getCurrentUrl()).toContain('second');
+    });
+
+    it('clicks through then(perform.click) on element once it is present in DOM and visible', async () => {
+        await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.smallest, `
+                <a href='#second' style='display:none'>go to Heading 2</a>
+                <h2 id='second'>Heading 2</h2>
+        `);
+        await GIVEN.executeScriptAfter(data.timeouts.smallerThanDefault, `
+            document.getElementsByTagName("a")[0].style = "display:block";
+        `);
+
+        await browser.element('a').perform(something).then(perform.click);
         expect(await driver.getCurrentUrl()).toContain('second');
     });
 
@@ -69,7 +83,7 @@ Reason:
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
 \tbrowser.element(By(css selector, a)).click
 Reason:
-\telement not interactable`
+\telement not interactable` // todo: consider change to 'element is not displayed'
                 );
             });
     });

@@ -27,5 +27,7 @@ var find;
     find.first = (collection) => collection.first();
     find.elementBy = (condition) => (collection) => collection.elementBy(condition);
     find.filteredBy = (condition) => (collection) => collection.filteredBy(condition);
+    /* Browser.* builders */
+    find.alert = (browser) => browser.alert;
 })(find = exports.find || (exports.find = {}));
 //# sourceMappingURL=find.js.map

@@ -45,4 +45,6 @@ export namespace find {
     export const filteredBy = (condition: ElementCondition) =>
         (collection: Collection) => collection.filteredBy(condition);
 
+    /* Browser.* builders */
+    export const alert = (browser: Browser) => browser.alert;
 }

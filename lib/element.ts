@@ -154,8 +154,13 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
 
     async doubleClick() {
         const driver = this.configuration.driver;
-        await this.wait.command(lambda('double-click', async element =>
-            driver.actions().doubleClick(await element.getWebElement()).perform()));
+        await this.wait.command(lambda('double-click', async element => {
+            const webelement = await element.getWebElement();
+            if (! await webelement.isDisplayed()) {
+                throw new Error('element is hidden');
+            }
+            driver.actions().doubleClick(webelement).perform();
+        }));
         return this;
     }
 

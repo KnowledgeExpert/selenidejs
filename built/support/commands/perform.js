@@ -66,8 +66,8 @@ var perform;
     // export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
     perform.clearLocalStorage = (browser) => browser.clearLocalStorage();
     perform.clearSessionStorage = (browser) => browser.clearSessionStorage();
-    perform.deleteCookies = (browser) => browser.deleteCookies();
-    perform.deleteCookie = (name) => (browser) => browser.deleteCookie(name);
+    perform.clearCookies = (browser) => browser.clearCookies();
+    // export const deleteCookie = (name: string) => (browser: Browser) => browser.deleteCookie(name);
     /* tslint:disable:ban-types */
     perform.executeScript = (script, ...args) => (browser) => browser.executeScript(script, ...args);
     /* tslint:enable:ban-types */

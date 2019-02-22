@@ -170,14 +170,18 @@ class Browser extends entity_1.Entity {
             .catch(ignored => { });
         return this;
     }
-    async deleteCookies() {
+    async clearCookies() {
         await this.driver.manage().deleteAllCookies()
             .catch(ignored => { });
         return this;
     }
-    async deleteCookie(name) {
-        await this.driver.manage().deleteCookie(name);
-        return this;
+    /*
+        async deleteCookie(name: string): Promise<Browser> {
+            await this.driver.manage().deleteCookie(name);
+            return this;
+        }*/
+    get alert() {
+        return this.driver.switchTo().alert();
     }
 }
 exports.Browser = Browser;

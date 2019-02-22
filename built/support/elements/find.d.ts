@@ -12,4 +12,5 @@ export declare namespace find {
     const first: (collection: Collection) => Element;
     const elementBy: (condition: import("../../wait").Query<Element, void>) => (collection: Collection) => Element;
     const filteredBy: (condition: import("../../wait").Query<Element, void>) => (collection: Collection) => Collection;
+    const alert: (browser: Browser) => import("selenium-webdriver").AlertPromise;
 }

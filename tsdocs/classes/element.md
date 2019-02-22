@@ -189,7 +189,7 @@ ___
 
 ▸ **contextClick**(): `Promise`<`this`>
 
-*Defined in [element.ts:169](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L169)*
+*Defined in [element.ts:174](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L174)*
 
 **Returns:** `Promise`<`this`>
 
@@ -334,7 +334,7 @@ ___
 
 ▸ **hover**(): `Promise`<`this`>
 
-*Defined in [element.ts:162](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L162)*
+*Defined in [element.ts:167](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L167)*
 
 **Returns:** `Promise`<`this`>
 
@@ -402,7 +402,7 @@ ___
 
 ▸ **pressEnter**(): `Promise`<`this`>
 
-*Defined in [element.ts:176](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L176)*
+*Defined in [element.ts:181](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L181)*
 
 **Returns:** `Promise`<`this`>
 
@@ -413,7 +413,7 @@ ___
 
 ▸ **pressEscape**(): `Promise`<`this`>
 
-*Defined in [element.ts:180](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L180)*
+*Defined in [element.ts:185](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L185)*
 
 **Returns:** `Promise`<`this`>
 
@@ -424,7 +424,7 @@ ___
 
 ▸ **pressTab**(): `Promise`<`this`>
 
-*Defined in [element.ts:184](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L184)*
+*Defined in [element.ts:189](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L189)*
 
 **Returns:** `Promise`<`this`>
 
@@ -435,7 +435,7 @@ ___
 
 ▸ **scrollIntoView**(): `Promise`<`this`>
 
-*Defined in [element.ts:188](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L188)*
+*Defined in [element.ts:193](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L193)*
 
 **Returns:** `Promise`<`this`>
 

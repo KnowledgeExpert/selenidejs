@@ -38,6 +38,14 @@ export function webelement(cssSelector: string) {
     return driver.findElement(By.css(cssSelector));
 }
 
+export function textOf(cssSelector: string) {
+    return webelement(cssSelector).then(it => it.getText());
+}
+
+export function isAbsentInDom(cssSelector: string) {
+    return driver.findElements(By.css(cssSelector)).then(it => it.length === 0);
+}
+
 export function webelements(cssSelector: string) {
     return driver.findElements(By.css(cssSelector));
 }

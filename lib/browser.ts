@@ -209,15 +209,20 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
         return this;
     }
 
-    async deleteCookies(): Promise<Browser> {
+    async clearCookies(): Promise<Browser> {
         await this.driver.manage().deleteAllCookies()
             .catch(ignored => {});
         return this;
     }
 
+/*
     async deleteCookie(name: string): Promise<Browser> {
         await this.driver.manage().deleteCookie(name);
         return this;
+    }*/
+
+    get alert() {
+        return this.driver.switchTo().alert();
     }
 
     // todo: there are lot more methods in switchTo().alert() should not we just expose switchTo or alert?
