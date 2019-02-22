@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
 const selenium_webdriver_1 = require("selenium-webdriver");
 const browser_1 = require("./browser");
 class Configuration {
@@ -42,8 +41,8 @@ class Configuration {
         this.typeByJs = false;
         this.windowWidth = ''; // todo: why not as number?
         this.windowHeight = ''; // todo: why not as number?
-        this.htmlPath = path.resolve('./htmls');
-        this.screenshotPath = path.resolve('./screenshots'); // todo: why not screenshotsPath?
+        // readonly htmlPath: string                = path.resolve('./htmls');
+        // readonly screenshotPath: string          = path.resolve('./screenshots');
         this.fullPageScreenshot = true;
         Object.assign(this, init);
         if (this.driver === null) {
@@ -107,14 +106,15 @@ class Customized {
         this.configuration = Object.assign({}, this.configuration, { typeByJs: value });
         return this;
     }
-    htmlPath(path) {
-        this.configuration = Object.assign({}, this.configuration, { htmlPath: path });
-        return this;
-    }
-    screenshotPath(path) {
-        this.configuration = Object.assign({}, this.configuration, { screenshotPath: path });
-        return this;
-    }
+    /*    htmlPath(path: string) {
+            this.configuration = {...this.configuration, htmlPath: path};
+            return this;
+        }
+    
+        screenshotPath(path: string) {
+            this.configuration = {...this.configuration, screenshotPath: path};
+            return this;
+        }*/
     fullPageScreenshot(turnedOn) {
         this.configuration = Object.assign({}, this.configuration, { fullPageScreenshot: turnedOn });
         return this;

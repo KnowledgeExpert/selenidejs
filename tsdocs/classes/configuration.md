@@ -17,8 +17,6 @@
 * [baseUrl](configuration.md#baseurl)
 * [driver](configuration.md#driver)
 * [fullPageScreenshot](configuration.md#fullpagescreenshot)
-* [htmlPath](configuration.md#htmlpath)
-* [screenshotPath](configuration.md#screenshotpath)
 * [setValueByJs](configuration.md#setvaluebyjs)
 * [timeout](configuration.md#timeout)
 * [typeByJs](configuration.md#typebyjs)
@@ -79,24 +77,6 @@ ___
 **● fullPageScreenshot**: *`boolean`* = true
 
 *Defined in [configuration.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L52)*
-
-___
-<a id="htmlpath"></a>
-
-###  htmlPath
-
-**● htmlPath**: *`string`* =  path.resolve('./htmls')
-
-*Defined in [configuration.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L50)*
-
-___
-<a id="screenshotpath"></a>
-
-###  screenshotPath
-
-**● screenshotPath**: *`string`* =  path.resolve('./screenshots')
-
-*Defined in [configuration.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L51)*
 
 ___
 <a id="setvaluebyjs"></a>

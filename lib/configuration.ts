@@ -47,8 +47,8 @@ export class Configuration {
     readonly typeByJs: boolean               = false;
     readonly windowWidth: string             = '';  // todo: why not as number?
     readonly windowHeight: string            = '';  // todo: why not as number?
-    readonly htmlPath: string                = path.resolve('./htmls');
-    readonly screenshotPath: string          = path.resolve('./screenshots');  // todo: why not screenshotsPath?
+    // readonly htmlPath: string                = path.resolve('./htmls');
+    // readonly screenshotPath: string          = path.resolve('./screenshots');
     readonly fullPageScreenshot: boolean     = true;
     // todo: should we bother and make it immutable?
 /*    readonly onFailureHooks: OnEntityFailureHook[] = [
@@ -137,7 +137,7 @@ export class Customized<T> {  // todo: add generic? Customized<T> ... constructo
         return this;
     }
 
-    htmlPath(path: string) {
+/*    htmlPath(path: string) {
         this.configuration = {...this.configuration, htmlPath: path};
         return this;
     }
@@ -145,7 +145,7 @@ export class Customized<T> {  // todo: add generic? Customized<T> ... constructo
     screenshotPath(path: string) {
         this.configuration = {...this.configuration, screenshotPath: path};
         return this;
-    }
+    }*/
 
     fullPageScreenshot(turnedOn: boolean) {
         this.configuration = {...this.configuration, fullPageScreenshot: turnedOn};

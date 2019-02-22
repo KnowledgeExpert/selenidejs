@@ -25,8 +25,6 @@
 * [build](customized.md#build)
 * [driver](customized.md#driver)
 * [fullPageScreenshot](customized.md#fullpagescreenshot)
-* [htmlPath](customized.md#htmlpath)
-* [screenshotPath](customized.md#screenshotpath)
 * [setValueByJs](customized.md#setvaluebyjs)
 * [timeout](customized.md#timeout)
 * [typeByJs](customized.md#typebyjs)
@@ -138,40 +136,6 @@ ___
 | Param | Type |
 | ------ | ------ |
 | turnedOn | `boolean` |
-
-**Returns:** `this`
-
-___
-<a id="htmlpath"></a>
-
-###  htmlPath
-
-▸ **htmlPath**(path: *`string`*): `this`
-
-*Defined in [configuration.ts:140](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L140)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| path | `string` |
-
-**Returns:** `this`
-
-___
-<a id="screenshotpath"></a>
-
-###  screenshotPath
-
-▸ **screenshotPath**(path: *`string`*): `this`
-
-*Defined in [configuration.ts:145](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L145)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| path | `string` |
 
 **Returns:** `this`
 

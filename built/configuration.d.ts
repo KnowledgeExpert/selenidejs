@@ -21,8 +21,6 @@ export declare class Configuration {
     readonly typeByJs: boolean;
     readonly windowWidth: string;
     readonly windowHeight: string;
-    readonly htmlPath: string;
-    readonly screenshotPath: string;
     readonly fullPageScreenshot: boolean;
     constructor(init?: Partial<Configuration>);
 }
@@ -40,7 +38,5 @@ export declare class Customized<T> {
     windowHeight(value: string): this;
     setValueByJs(value: boolean): this;
     typeByJs(value: boolean): this;
-    htmlPath(path: string): this;
-    screenshotPath(path: string): this;
     fullPageScreenshot(turnedOn: boolean): this;
 }

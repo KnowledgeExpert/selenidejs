@@ -25,19 +25,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * WHEN:
  * ```
  *     import { Browser } from 'selenidejs';
- *     const browser = Browser.configuredWith().driver(driver).timeout(4000).build();
+ *     const browser = Browser.configuredWith()
+ *         .driver(driver)
+ *         .baseUrl('https://google.com')
+ *         .timeout(4000)
+ *         .build();
  *
  *     // OR:
- *     // browser = Browser.drivedBy(driver).timeout(4000).build();
+ *     // browser = Browser.drivedBy(driver).timeout(4000).baseUrl('https://google.com').build();
  *     // OR:
- *     // browser = Browser.chromeWith().timeout(4000).build();
+ *     // browser = Browser.chromeWith().timeout(4000).baseUrl('https://google.com').build();
  *
  *     // OR:
- *     // browser = Browser.chrome();
+ *     // browser = Browser.chrome(); //if you are ok with defaults for baseUrl and timeout
  * ```
  * AND:
  * ```
- *     await browser.open('https://google.com/ncr');
+ *     await browser.open('/ncr');
  * ```
  */
 var browser_1 = require("./browser");
@@ -50,9 +54,9 @@ exports.Browser = browser_1.Browser;
  *
  *     import { With } from 'selenidejs';
  *
- *     const query = browser.element(With.name('q'));   // actual search does not start here, the element is lazy
- *     await query.setValue('selenium')                 // here the actual webelement is found
- *     await query.pressEnter();                        // here the actual webelement is found again
+ *     const query = browser.element(With.name('q')); // actual search does not start here, the element is lazy
+ *     await query.setValue('selenium')              // here the actual webelement is found
+ *     await query.pressEnter();                    // here the actual webelement is found again
  * ```
  */
 var with_1 = require("./support/selectors/with");
@@ -88,10 +92,10 @@ exports.have = have_1.have;
  */
 /********************
  * Advanced Helpers *
- ********************/ // todo: consider moving to lib/experimental/index.ts
+ ********************/
 /**
  * ```
- *     // OR just in case you are crazy a bit:
+ *     // OR just in case you like the "flow":
  *
  *     import { find, should } from 'selenidejs';
  *
@@ -124,7 +128,7 @@ exports.perform = perform_1.perform;
  * ```
  *     import { get } from 'selenidejs';
  *
- *     const iWillRememberYou =
+ *     const iWillRememberYourTextOnceReady =
  *         await browser.element('#i-change-my-text-on-hover').hover().then(get.someText)
  * ```
  */
@@ -161,17 +165,17 @@ exports.their = queries_2.query;
  *         // do something...
  *     }
  *     ...
- *     if (await browser.all('.option').waitUntil(have.sizeMoreThanOrEqual(2))) {
+ *     if (await browser.all('.i-will-appear').waitUntil(have.sizeMoreThanOrEqual(2))) {
  *         // do something...
  *     }
  * ```
  * Or, by using non-waiting versions, if "you are in a rush":)...
  * ```
- *     if (await browser.element('#i-might-say-yes-or-no').matches(have.text('yes'))) {
+ *     if (await browser.element('#i-might-say-yes-or-no').matching(have.text('yes'))) {
  *         // do something...
  *     }
  *     ...
- *     if (await browser.all('.option').matches(have.sizeMoreThanOrEqual(2))) {
+ *     if (await browser.all('.i-will-appear').matching(have.sizeMoreThanOrEqual(2))) {
  *         // do something...
  *     }
  * ```
