@@ -14,7 +14,7 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs-extra");
-const with_1 = require("../support/selectors/with");
+const by_1 = require("../support/selectors/by");
 var Extensions;
 (function (Extensions) {
     // todo: Why not to move it Browser
@@ -40,7 +40,7 @@ var Extensions;
     Extensions.saveScreenshot = saveScreenshot;
     function toBy(cssOrXpathOrBy) {
         return (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
+            ? cssOrXpathOrBy.includes('/') ? by_1.by.xpath(cssOrXpathOrBy) : by_1.by.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
     Extensions.toBy = toBy;

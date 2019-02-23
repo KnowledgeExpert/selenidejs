@@ -7,8 +7,8 @@
 
 * [Condition](modules/condition.md)
 * [Extensions](modules/extensions.md)
-* [With](modules/with.md)
 * [be](modules/be.md)
+* [by](modules/by.md)
 * [command](modules/command.md)
 * [condition](modules/condition.md)
 * [find](modules/find.md)

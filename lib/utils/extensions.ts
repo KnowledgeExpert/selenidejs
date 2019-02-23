@@ -15,7 +15,7 @@
 import * as fs from 'fs-extra';
 import { By, WebDriver } from 'selenium-webdriver';
 import { Browser } from '../browser';
-import { With } from '../support/selectors/with';
+import { by } from '../support/selectors/by';
 
 
 export namespace Extensions {
@@ -43,7 +43,7 @@ export namespace Extensions {
 
     export function toBy(cssOrXpathOrBy: string | By): By {  // todo: probably we need to enhance xpath identification
         return (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
+            ? cssOrXpathOrBy.includes('/') ? by.xpath(cssOrXpathOrBy) : by.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
 

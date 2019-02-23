@@ -32,7 +32,7 @@ var perform;
     perform.pressEnter = (element) => element.pressEnter();
     perform.pressTab = (element) => element.pressTab();
     perform.pressEscape = (element) => element.pressEscape();
-    perform.switchToFrame = (element) => element.switchToFrame();
+    // export const switchToFrame = (element: Element) => element.switchToFrame();
     let js;
     (function (js) {
         js.click = (element) => element.perform(commands_1.command.js.click);

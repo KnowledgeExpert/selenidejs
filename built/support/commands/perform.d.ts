@@ -12,7 +12,6 @@ export declare namespace perform {
     const pressEnter: (element: Element) => Promise<Element>;
     const pressTab: (element: Element) => Promise<Element>;
     const pressEscape: (element: Element) => Promise<Element>;
-    const switchToFrame: (element: Element) => Promise<Element>;
     namespace js {
         const click: (element: Element) => Promise<Element>;
         const clickWithOffset: (xOffset: number, yOffset: number) => (element: Element) => Promise<Element>;

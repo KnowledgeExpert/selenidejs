@@ -53,14 +53,14 @@ export { Browser } from './browser';
  *     // await browser.element('[name=q]')).setValue('selenium');
  *     // OR:
  *
- *     import { With } from 'selenidejs';
+ *     import { by } from 'selenidejs';
  *
- *     const query = browser.element(With.name('q')); // actual search does not start here, the element is lazy
+ *     const query = browser.element(by.name('q')); // actual search does not start here, the element is lazy
  *     await query.setValue('selenium')              // here the actual webelement is found
  *     await query.pressEnter();                    // here the actual webelement is found again
  * ```
  */
-export { With } from './support/selectors/with';
+export { by } from './support/selectors/by';
 
 /**
  * AND:
@@ -115,10 +115,10 @@ export { should } from './support/asserts/should';
  *     // OR:
  *     import { perform } from 'selenidejs';
  *
- *     await browser.element(With.name('q')).setValue('selenium').then(perform.pressEnter);
+ *     await browser.element(by.name('q')).setValue('selenium').then(perform.pressEnter);
  *
  *     // instead of
- *     const query = browser.element(With.name('q'));
+ *     const query = browser.element(by.name('q'));
  *     await query.setValue('selenium')
  *     await query.pressEnter();
  * ```

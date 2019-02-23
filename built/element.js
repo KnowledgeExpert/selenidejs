@@ -14,7 +14,7 @@
 // limitations under the License.
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
-const with_1 = require("./support/selectors/with");
+const by_1 = require("./support/selectors/by");
 const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
 const configuration_1 = require("./configuration");
@@ -49,8 +49,8 @@ class Element extends entity_1.Entity {
     //     return (await this.getWebElement()).findElements(by);
     // }
     /* Relative search */
-    customizedWith(custom) {
-        return new Element(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
+    with(customConfig) {
+        return new Element(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, customConfig)));
     }
     element(cssOrXpathOrBy) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
@@ -58,14 +58,14 @@ class Element extends entity_1.Entity {
         return new Element(locator, this.configuration);
     }
     get parent() {
-        return this.element(with_1.With.xpath('./..'));
+        return this.element(by_1.by.xpath('./..'));
     }
     followingSibling(predicate = '') {
         // todo: should we move * to parameter to? like:
         // followingSibling(tag = '*', predicate = ''): Element {
         // or:
         // followingSibling(tagAndPredicate = '*'): Element {
-        return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
+        return this.element(by_1.by.xpath('./following-sibling::*' + predicate));
     }
     // todo: do we need element.visibleElement?
     // why then not have browser.visibleElement?
@@ -161,10 +161,12 @@ class Element extends entity_1.Entity {
         }));
         return this;
     }
-    async switchToFrame() {
-        await this.wait.command(utils_1.lambda('switch to frame', async (element) => this.configuration.driver.switchTo().frame(await element.getWebElement())));
-        return this;
-    }
+    // async switchToFrame(): Promise<Element> {
+    //     await this.wait.command(lambda('switch to frame', async element =>
+    //         this.configuration.driver.switchTo().frame(await element.getWebElement())
+    //     ));
+    //     return this;
+    // }
     // todo: cover with tests element.press* methods...
     async pressEnter() {
         return this.type(selenium_webdriver_1.Key.ENTER);

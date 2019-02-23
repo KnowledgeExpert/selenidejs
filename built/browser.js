@@ -40,8 +40,8 @@ class Browser extends entity_1.Entity {
     constructor(configuration = {}) {
         super(new configuration_1.Configuration(configuration));
     }
-    customizedWith(custom) {
-        return new Browser(new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
+    with(customConfig) {
+        return new Browser(new configuration_1.Configuration(Object.assign({}, this.configuration, customConfig)));
     }
     get driver() {
         return this.configuration.driver;

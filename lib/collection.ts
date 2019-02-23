@@ -33,8 +33,8 @@ export class Collection extends Entity implements Assertable, Matchable {
         this.locator = locator;
     }
 
-    customizedWith(custom: Partial<Configuration>): Collection {
-        return new Collection(this.locator, new Configuration({ ...this.configuration, ...custom }));
+    with(customConfig: Partial<Configuration>): Collection {
+        return new Collection(this.locator, new Configuration({ ...this.configuration, ...customConfig }));
     }
 
     // todo: should not we move it to queries?, or rename to asCashedArray() ?

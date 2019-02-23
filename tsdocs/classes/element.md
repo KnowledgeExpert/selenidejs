@@ -37,7 +37,6 @@
 * [clear](element.md#clear)
 * [click](element.md#click)
 * [contextClick](element.md#contextclick)
-* [customizedWith](element.md#customizedwith)
 * [doubleClick](element.md#doubleclick)
 * [element](element.md#element-1)
 * [executeScript](element.md#executescript)
@@ -54,11 +53,11 @@
 * [setValue](element.md#setvalue)
 * [should](element.md#should)
 * [shouldNot](element.md#shouldnot)
-* [switchToFrame](element.md#switchtoframe)
 * [toString](element.md#tostring)
 * [type](element.md#type)
 * [waitUntil](element.md#waituntil)
 * [waitUntilNot](element.md#waituntilnot)
+* [with](element.md#with)
 
 ---
 
@@ -183,23 +182,6 @@ ___
 *Defined in [element.ts:186](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L186)*
 
 **Returns:** `Promise`<`this`>
-
-___
-<a id="customizedwith"></a>
-
-###  customizedWith
-
-▸ **customizedWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Element](element.md)
-
-*Defined in [element.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L58)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| custom | `Partial`<[Configuration](configuration.md)> |
-
-**Returns:** [Element](element.md)
 
 ___
 <a id="doubleclick"></a>
@@ -454,17 +436,6 @@ ___
 **Returns:** `Promise`<`this`>
 
 ___
-<a id="switchtoframe"></a>
-
-###  switchToFrame
-
-▸ **switchToFrame**(): `Promise`<[Element](element.md)>
-
-*Defined in [element.ts:198](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L198)*
-
-**Returns:** `Promise`<[Element](element.md)>
-
-___
 <a id="tostring"></a>
 
 ###  toString
@@ -533,6 +504,23 @@ ___
 | `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
+
+___
+<a id="with"></a>
+
+###  with
+
+▸ **with**(customConfig: *`Partial`<[Configuration](configuration.md)>*): [Element](element.md)
+
+*Defined in [element.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/element.ts#L58)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| customConfig | `Partial`<[Configuration](configuration.md)> |
+
+**Returns:** [Element](element.md)
 
 ___
 

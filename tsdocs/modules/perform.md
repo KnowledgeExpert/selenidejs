@@ -35,7 +35,6 @@
 * [screenshot](perform.md#screenshot)
 * [setValue](perform.md#setvalue)
 * [switchToDefaultFrame](perform.md#switchtodefaultframe)
-* [switchToFrame](perform.md#switchtoframe)
 * [type](perform.md#type)
 
 ---
@@ -467,23 +466,6 @@ ___
 | browser | [Browser](../classes/browser.md) |
 
 **Returns:** `Promise`<[Browser](../classes/browser.md)>
-
-___
-<a id="switchtoframe"></a>
-
-### `<Const>` switchToFrame
-
-▸ **switchToFrame**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
-
-*Defined in [support/commands/perform.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L42)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
-
-**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="type"></a>

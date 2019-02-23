@@ -9,7 +9,7 @@ export declare class Element extends Entity implements /*SearchContext, */ Asser
     constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration);
     toString(): string;
     getWebElement(): Promise<WebElement>;
-    customizedWith(custom: Partial<Configuration>): Element;
+    with(customConfig: Partial<Configuration>): Element;
     element(cssOrXpathOrBy: string | By): Element;
     readonly parent: Element;
     followingSibling(predicate?: string): Element;
@@ -22,7 +22,6 @@ export declare class Element extends Entity implements /*SearchContext, */ Asser
     doubleClick(): Promise<this>;
     hover(): Promise<this>;
     contextClick(): Promise<this>;
-    switchToFrame(): Promise<Element>;
     pressEnter(): Promise<this>;
     pressEscape(): Promise<this>;
     pressTab(): Promise<this>;

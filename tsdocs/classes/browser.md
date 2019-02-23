@@ -39,7 +39,6 @@
 * [clearLocalStorage](browser.md#clearlocalstorage)
 * [clearSessionStorage](browser.md#clearsessionstorage)
 * [closeCurrentTab](browser.md#closecurrenttab)
-* [customizedWith](browser.md#customizedwith)
 * [element](browser.md#element)
 * [executeScript](browser.md#executescript)
 * [forward](browser.md#forward)
@@ -61,6 +60,7 @@
 * [toString](browser.md#tostring)
 * [waitUntil](browser.md#waituntil)
 * [waitUntilNot](browser.md#waituntilnot)
+* [with](browser.md#with)
 * [chrome](browser.md#chrome)
 * [chromeWith](browser.md#chromewith)
 * [configuredWith](browser.md#configuredwith)
@@ -213,23 +213,6 @@ ___
 *Defined in [browser.ts:128](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L128)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
-
-___
-<a id="customizedwith"></a>
-
-###  customizedWith
-
-▸ **customizedWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Browser](browser.md)
-
-*Defined in [browser.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L49)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| custom | `Partial`<[Configuration](configuration.md)> |
-
-**Returns:** [Browser](browser.md)
 
 ___
 <a id="element"></a>
@@ -565,6 +548,23 @@ ___
 | `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
+
+___
+<a id="with"></a>
+
+###  with
+
+▸ **with**(customConfig: *`Partial`<[Configuration](configuration.md)>*): [Browser](browser.md)
+
+*Defined in [browser.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L49)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| customConfig | `Partial`<[Configuration](configuration.md)> |
+
+**Returns:** [Browser](browser.md)
 
 ___
 <a id="chrome"></a>

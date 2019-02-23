@@ -8,7 +8,7 @@ export declare class Collection extends Entity implements Assertable, Matchable 
     private readonly locator;
     protected readonly configuration: Configuration;
     constructor(locator: Locator<Promise<WebElement[]>>, configuration: Configuration);
-    customizedWith(custom: Partial<Configuration>): Collection;
+    with(customConfig: Partial<Configuration>): Collection;
     getAsCashedArray(): Promise<Element[]>;
     elementAt(index: number): Element;
     first(): Element;

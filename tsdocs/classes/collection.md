@@ -29,7 +29,6 @@
 
 ### Methods
 
-* [customizedWith](collection.md#customizedwith)
 * [elementAt](collection.md#elementat)
 * [elementBy](collection.md#elementby)
 * [filteredBy](collection.md#filteredby)
@@ -45,6 +44,7 @@
 * [toString](collection.md#tostring)
 * [waitUntil](collection.md#waituntil)
 * [waitUntilNot](collection.md#waituntilnot)
+* [with](collection.md#with)
 
 ---
 
@@ -107,23 +107,6 @@ ___
 
 ## Methods
 
-<a id="customizedwith"></a>
-
-###  customizedWith
-
-▸ **customizedWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
-
-*Defined in [collection.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L36)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| custom | `Partial`<[Configuration](configuration.md)> |
-
-**Returns:** [Collection](collection.md)
-
-___
 <a id="elementat"></a>
 
 ###  elementAt
@@ -376,6 +359,23 @@ ___
 | `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
+
+___
+<a id="with"></a>
+
+###  with
+
+▸ **with**(customConfig: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
+
+*Defined in [collection.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L36)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| customConfig | `Partial`<[Configuration](configuration.md)> |
+
+**Returns:** [Collection](collection.md)
 
 ___
 

@@ -46,8 +46,8 @@ export class Browser extends Entity implements /*SearchContext, */Assertable, Ma
         super(new Configuration(configuration));
     }
 
-    customizedWith(custom: Partial<Configuration>): Browser {
-        return new Browser(new Configuration({ ...this.configuration, ...custom }));
+    with(customConfig: Partial<Configuration>): Browser {
+        return new Browser(new Configuration({ ...this.configuration, ...customConfig }));
     }
 
     get driver(): WebDriver {

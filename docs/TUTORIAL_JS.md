@@ -123,7 +123,7 @@ describe('The Internet', () => {
         await browser.open('http://the-internet.herokuapp.com/dynamic_loading/1');
         await browser.element('button').click();
 
-        await browser.element(With.id('finish')).should(be.visible);
+        await browser.element(by.id('finish')).should(be.visible);
     });
 });
 ```
@@ -132,11 +132,11 @@ This uses the `browser.element` and `With`, which are also provided by Selenidej
 
 Elements in Selenidejs are lazy - it means when you do `const element = browser.element(...)` no actual search of webelement on a page performed. This method returns Element object, which can be used to interact with element, get information from it, or assert its state.
 
-In the test, we used `should` method to assert that 'Hello world!' text will be displayed after pressing on a button. `With` is a module which contains bunch of readable and useful aliases for building elements locators (like `With.text`, `With.attribute`, etc.).
+In the test, we used `should` method to assert that 'Hello world!' text will be displayed after pressing on a button. `With` is a module which contains bunch of readable and useful aliases for building elements locators (like `by.text`, `by.attribute`, etc.).
 
-`browser.element` takes one parameter with type of Locator or string. In case of string passed Selenidejs will automatically build `With.xpath` or `With.css` Locator, depends on string content.
+`browser.element` takes one parameter with type of Locator or string. In case of string passed Selenidejs will automatically build `by.xpath` or `by.css` Locator, depends on string content.
 
-tsdocs - [With](./tsdocs/modules/with.md) module and [Element](./tsdocs/classes/element.md) class.
+tsdocs - [With](./tsdocs/modules/by.md) module and [Element](./tsdocs/classes/element.md) class.
 
 Run the tests with
 
@@ -166,7 +166,7 @@ describe('The Internet', () => {
         await browser.open('http://the-internet.herokuapp.com/dynamic_loading/1');
         await browser.element('button').click();
 
-        await browser.element(With.id('finish')).should(be.visible);
+        await browser.element(by.id('finish')).should(be.visible);
     });
 
     it('should reset password', async () => {
@@ -215,7 +215,7 @@ describe('The Internet', () => {
         await browser.open('http://the-internet.herokuapp.com/dynamic_loading/1');
         await browser.element('button').click();
 
-        await browser.element(With.id('finish')).should(be.visible);
+        await browser.element(by.id('finish')).should(be.visible);
     });
 
     it('should reset password', async () => {

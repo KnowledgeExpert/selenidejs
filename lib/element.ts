@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { Button, By, Key, WebElement } from 'selenium-webdriver';
-import { With } from './support/selectors/with';
+import { by } from './support/selectors/by';
 import { Extensions } from './utils/extensions';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
@@ -55,8 +55,8 @@ export class Element extends Entity implements /*SearchContext, */Assertable, Ma
 
     /* Relative search */
 
-    customizedWith(custom: Partial<Configuration>): Element {
-        return new Element(this.locator, new Configuration({ ...this.configuration, ...custom }));
+    with(customConfig: Partial<Configuration>): Element {
+        return new Element(this.locator, new Configuration({ ...this.configuration, ...customConfig }));
     }
 
     element(cssOrXpathOrBy: string | By): Element { // todo: think on refactoring string | By to a new type
@@ -67,7 +67,7 @@ export class Element extends Entity implements /*SearchContext, */Assertable, Ma
 
 
     get parent(): Element {
-        return this.element(With.xpath('./..'));
+        return this.element(by.xpath('./..'));
     }
 
     followingSibling(predicate: string = ''): Element {
@@ -75,7 +75,7 @@ export class Element extends Entity implements /*SearchContext, */Assertable, Ma
         // followingSibling(tag = '*', predicate = ''): Element {
         // or:
         // followingSibling(tagAndPredicate = '*'): Element {
-        return this.element(With.xpath('./following-sibling::*' + predicate));
+        return this.element(by.xpath('./following-sibling::*' + predicate));
     }
 
     // todo: do we need element.visibleElement?
@@ -195,12 +195,12 @@ export class Element extends Entity implements /*SearchContext, */Assertable, Ma
         return this;
     }
 
-    async switchToFrame(): Promise<Element> {
-        await this.wait.command(lambda('switch to frame', async element =>
-            this.configuration.driver.switchTo().frame(await element.getWebElement())
-        ));
-        return this;
-    }
+    // async switchToFrame(): Promise<Element> {
+    //     await this.wait.command(lambda('switch to frame', async element =>
+    //         this.configuration.driver.switchTo().frame(await element.getWebElement())
+    //     ));
+    //     return this;
+    // }
 
     // todo: cover with tests element.press* methods...
 

@@ -39,7 +39,7 @@ export namespace perform {
     export const pressTab = (element: Element) => element.pressTab();
     export const pressEscape = (element: Element) => element.pressEscape();
 
-    export const switchToFrame = (element: Element) => element.switchToFrame();
+    // export const switchToFrame = (element: Element) => element.switchToFrame();
 
     export namespace js { // todo: cover with tests
 
