@@ -25,6 +25,7 @@ import { SearchContext } from './searchContext';
 import { lambda } from './utils';
 import { Assertable, Entity, Matchable } from './entity';
 import { command } from './commands';
+import { Browser } from './browser';
 
 
 export class Element extends Entity implements SearchContext, Assertable, Matchable {
@@ -57,7 +58,7 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
 
     /* Relative search */
 
-    configuredWith(custom: Partial<Configuration>): Element {
+    customizedWith(custom: Partial<Configuration>): Element {
         return new Element(this.locator, new Configuration({ ...this.configuration, ...custom }));
     }
 
@@ -124,8 +125,15 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
     /* tslint:enable:ban-types */
 
     async click() {
-        await this.wait.command(lambda('click', async element =>  // todo: add describing lambdas to other commands
+        await this.wait.command(lambda('click', async element =>
             element.getWebElement().then(it => it.click())
+        ));
+        return this;
+    }
+
+    async clear() {
+        await this.wait.command(lambda('clear', async element =>
+            element.getWebElement().then(it => it.clear())
         ));
         return this;
     }
@@ -187,6 +195,13 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
             }
             driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform();
         }));
+        return this;
+    }
+
+    async switchToFrame(): Promise<Element> {
+        await this.wait.command(lambda('switch to frame', async element =>
+            this.configuration.driver.switchTo().frame(await element.getWebElement())
+        ));
         return this;
     }
 

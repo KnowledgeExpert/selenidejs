@@ -48,11 +48,11 @@ describe('Element.waitUntilNot as "waiting predicate"', () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <button>click me if you see me;)</button>
         `);
+        const started = new Date().getTime();
         await GIVEN.executeScriptWithTimeout(
             'document.getElementsByTagName("button")[0].style = "display:none";',
             data.timeouts.smallerThanDefault
         );
-        const started = new Date().getTime();
 
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);

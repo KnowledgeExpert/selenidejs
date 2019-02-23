@@ -40,7 +40,7 @@ class Browser extends entity_1.Entity {
     constructor(configuration = {}) {
         super(new configuration_1.Configuration(configuration));
     }
-    with(custom) {
+    customizedWith(custom) {
         return new Browser(new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
     }
     get driver() {
@@ -140,12 +140,12 @@ class Browser extends entity_1.Entity {
         }
         return this;
     }
-    async switchToFrame(frameElement) {
-        await this.wait.command(async (browser) => {
-            browser.driver.switchTo().frame(await frameElement.getWebElement());
-        });
-        return this;
-    }
+    /*    async switchToFrame(frameElement: Element): Promise<Browser> {
+            await this.wait.command(async browser => {
+                browser.driver.switchTo().frame(await frameElement.getWebElement());
+            });
+            return this;
+        }*/
     async switchToDefaultFrame() {
         await this.driver.switchTo().defaultContent();
         return this;

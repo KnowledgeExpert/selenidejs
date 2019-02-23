@@ -29,7 +29,7 @@
 
 ### Methods
 
-* [configuredWith](collection.md#configuredwith)
+* [customizedWith](collection.md#customizedwith)
 * [elementAt](collection.md#elementat)
 * [elementBy](collection.md#elementby)
 * [filteredBy](collection.md#filteredby)
@@ -107,11 +107,11 @@ ___
 
 ## Methods
 
-<a id="configuredwith"></a>
+<a id="customizedwith"></a>
 
-###  configuredWith
+###  customizedWith
 
-▸ **configuredWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
+▸ **customizedWith**(custom: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
 
 *Defined in [collection.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L36)*
 

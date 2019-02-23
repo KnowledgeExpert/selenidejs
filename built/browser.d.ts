@@ -11,7 +11,7 @@ export declare class Browser extends Entity implements SearchContext, Assertable
     static chromeWith(): Customized<Browser>;
     static chrome(): Browser;
     constructor(configuration?: Partial<Configuration>);
-    with(custom: Partial<Configuration>): Browser;
+    customizedWith(custom: Partial<Configuration>): Browser;
     readonly driver: WebDriver;
     toString(): string;
     findWebElement(by: By): Promise<WebElement>;
@@ -30,7 +30,6 @@ export declare class Browser extends Entity implements SearchContext, Assertable
     goToNextTab(): Promise<Browser>;
     goToPreviousTab(): Promise<Browser>;
     goToTab(indexOrId: number | string): Promise<Browser>;
-    switchToFrame(frameElement: Element): Promise<Browser>;
     switchToDefaultFrame(): Promise<Browser>;
     clearLocalStorage(): Promise<Browser>;
     clearSessionStorage(): Promise<Browser>;

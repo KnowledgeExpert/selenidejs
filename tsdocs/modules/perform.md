@@ -11,6 +11,7 @@
 ### Functions
 
 * [back](perform.md#back)
+* [clear](perform.md#clear)
 * [clearCookies](perform.md#clearcookies)
 * [clearLocalStorage](perform.md#clearlocalstorage)
 * [clearSessionStorage](perform.md#clearsessionstorage)
@@ -47,7 +48,7 @@
 
 ▸ **back**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
 
-*Defined in [support/commands/perform.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L79)*
+*Defined in [support/commands/perform.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L82)*
 
 **Parameters:**
 
@@ -58,13 +59,30 @@
 **Returns:** `Promise`<`void`>
 
 ___
+<a id="clear"></a>
+
+### `<Const>` clear
+
+▸ **clear**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+
+*Defined in [support/commands/perform.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L34)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
+
+**Returns:** `Promise`<[Element](../classes/element.md)>
+
+___
 <a id="clearcookies"></a>
 
 ### `<Const>` clearCookies
 
 ▸ **clearCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L91)*
+*Defined in [support/commands/perform.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L94)*
 
 **Parameters:**
 
@@ -81,7 +99,7 @@ ___
 
 ▸ **clearLocalStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L89)*
+*Defined in [support/commands/perform.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L92)*
 
 **Parameters:**
 
@@ -98,7 +116,7 @@ ___
 
 ▸ **clearSessionStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:90](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L90)*
+*Defined in [support/commands/perform.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L93)*
 
 **Parameters:**
 
@@ -132,7 +150,7 @@ ___
 
 ▸ **closeCurrentTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L77)*
+*Defined in [support/commands/perform.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L80)*
 
 **Parameters:**
 
@@ -183,7 +201,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L95)*
+*Defined in [support/commands/perform.ts:98](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L98)*
 
 **Parameters:**
 
@@ -201,7 +219,7 @@ ___
 
 ▸ **forward**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
 
-*Defined in [support/commands/perform.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L80)*
+*Defined in [support/commands/perform.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L83)*
 
 **Parameters:**
 
@@ -218,7 +236,7 @@ ___
 
 ▸ **goToNextTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L82)*
+*Defined in [support/commands/perform.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L85)*
 
 **Parameters:**
 
@@ -235,7 +253,7 @@ ___
 
 ▸ **goToPreviousTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L83)*
+*Defined in [support/commands/perform.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L86)*
 
 **Parameters:**
 
@@ -252,7 +270,7 @@ ___
 
 ▸ **goToTab**(indexOrId: * `number` &#124; `string`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L84)*
+*Defined in [support/commands/perform.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L87)*
 
 **Parameters:**
 
@@ -286,7 +304,7 @@ ___
 
 ▸ **open**(url: *`string`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L73)*
+*Defined in [support/commands/perform.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L76)*
 
 **Parameters:**
 
@@ -303,7 +321,7 @@ ___
 
 ▸ **pressEnter**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [support/commands/perform.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L37)*
+*Defined in [support/commands/perform.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L38)*
 
 **Parameters:**
 
@@ -320,7 +338,7 @@ ___
 
 ▸ **pressEscape**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [support/commands/perform.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L39)*
+*Defined in [support/commands/perform.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L40)*
 
 **Parameters:**
 
@@ -337,7 +355,7 @@ ___
 
 ▸ **pressTab**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [support/commands/perform.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L38)*
+*Defined in [support/commands/perform.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L39)*
 
 **Parameters:**
 
@@ -354,7 +372,7 @@ ___
 
 ▸ **quit**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
 
-*Defined in [support/commands/perform.ts:78](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L78)*
+*Defined in [support/commands/perform.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L81)*
 
 **Parameters:**
 
@@ -371,7 +389,7 @@ ___
 
 ▸ **refresh**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
 
-*Defined in [support/commands/perform.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L81)*
+*Defined in [support/commands/perform.ts:84](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L84)*
 
 **Parameters:**
 
@@ -388,7 +406,7 @@ ___
 
 ▸ **resizeWindow**(width: *`number`*, height: *`number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L74)*
+*Defined in [support/commands/perform.ts:77](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L77)*
 
 **Parameters:**
 
@@ -406,7 +424,7 @@ ___
 
 ▸ **screenshot**(browser: *[Browser](../classes/browser.md)*): `Promise`<`Buffer`>
 
-*Defined in [support/commands/perform.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L76)*
+*Defined in [support/commands/perform.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L79)*
 
 **Parameters:**
 
@@ -423,7 +441,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L35)*
+*Defined in [support/commands/perform.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L36)*
 
 **Parameters:**
 
@@ -440,7 +458,7 @@ ___
 
 ▸ **switchToDefaultFrame**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
 
-*Defined in [support/commands/perform.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L87)*
+*Defined in [support/commands/perform.ts:90](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L90)*
 
 **Parameters:**
 
@@ -455,17 +473,17 @@ ___
 
 ### `<Const>` switchToFrame
 
-▸ **switchToFrame**(frameElement: *[Element](../classes/element.md)*): `(Anonymous function)`
+▸ **switchToFrame**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [support/commands/perform.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L85)*
+*Defined in [support/commands/perform.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L42)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| frameElement | [Element](../classes/element.md) |
+| element | [Element](../classes/element.md) |
 
-**Returns:** `(Anonymous function)`
+**Returns:** `Promise`<[Element](../classes/element.md)>
 
 ___
 <a id="type"></a>
@@ -474,7 +492,7 @@ ___
 
 ▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L34)*
+*Defined in [support/commands/perform.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L35)*
 
 **Parameters:**
 

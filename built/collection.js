@@ -29,7 +29,7 @@ class Collection extends entity_1.Entity {
         this.configuration = configuration;
         this.locator = locator;
     }
-    configuredWith(custom) {
+    customizedWith(custom) {
         return new Collection(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
     }
     // todo: should not we move it to queries?, or rename to asCashedArray() ?

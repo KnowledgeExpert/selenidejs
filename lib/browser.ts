@@ -47,7 +47,7 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
         super(new Configuration(configuration));
     }
 
-    with(custom: Partial<Configuration>): Browser {
+    customizedWith(custom: Partial<Configuration>): Browser {
         return new Browser(new Configuration({ ...this.configuration, ...custom }));
     }
 
@@ -174,12 +174,12 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
         return this;
     }
 
-    async switchToFrame(frameElement: Element): Promise<Browser> {
+/*    async switchToFrame(frameElement: Element): Promise<Browser> {
         await this.wait.command(async browser => {
             browser.driver.switchTo().frame(await frameElement.getWebElement());
         });
         return this;
-    }
+    }*/
 
     async switchToDefaultFrame(): Promise<Browser> {
         await this.driver.switchTo().defaultContent();

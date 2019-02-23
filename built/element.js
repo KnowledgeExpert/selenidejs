@@ -47,7 +47,7 @@ class Element extends entity_1.Entity {
         return (await this.getWebElement()).findElements(by);
     }
     /* Relative search */
-    configuredWith(custom) {
+    customizedWith(custom) {
         return new Element(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
     }
     element(cssOrXpathOrBy) {
@@ -102,8 +102,11 @@ class Element extends entity_1.Entity {
     }
     /* tslint:enable:ban-types */
     async click() {
-        await this.wait.command(utils_1.lambda('click', async (element) => // todo: add describing lambdas to other commands
-         element.getWebElement().then(it => it.click())));
+        await this.wait.command(utils_1.lambda('click', async (element) => element.getWebElement().then(it => it.click())));
+        return this;
+    }
+    async clear() {
+        await this.wait.command(utils_1.lambda('clear', async (element) => element.getWebElement().then(it => it.clear())));
         return this;
     }
     async setValue(value) {
@@ -154,6 +157,10 @@ class Element extends entity_1.Entity {
             }
             driver.actions().click(await element.getWebElement(), String(selenium_webdriver_1.Button.RIGHT)).perform();
         }));
+        return this;
+    }
+    async switchToFrame() {
+        await this.wait.command(utils_1.lambda('switch to frame', async (element) => this.configuration.driver.switchTo().frame(await element.getWebElement())));
         return this;
     }
     // todo: cover with tests element.press* methods...

@@ -22,7 +22,7 @@
 
 ▸ **click**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [support/commands/perform.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L43)*
+*Defined in [support/commands/perform.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L46)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **clickWithOffset**(xOffset: *`number`*, yOffset: *`number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L45)*
+*Defined in [support/commands/perform.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L48)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **scrollIntoView**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
 
-*Defined in [support/commands/perform.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L54)*
+*Defined in [support/commands/perform.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L57)*
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L48)*
+*Defined in [support/commands/perform.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L51)*
 
 **Parameters:**
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [support/commands/perform.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L51)*
+*Defined in [support/commands/perform.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/commands/perform.ts#L54)*
 
 **Parameters:**
 

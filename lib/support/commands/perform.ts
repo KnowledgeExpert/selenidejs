@@ -31,12 +31,15 @@ export namespace perform {
     export const contextClick = (element: Element) => element.contextClick();
     export const hover = (element: Element) => element.hover();
 
+    export const clear = (element: Element) => element.clear();
     export const type = (keys: string | number) => (element: Element) => element.type(keys);
     export const setValue = (value: string | number) => (element: Element) => element.setValue(value);
 
     export const pressEnter = (element: Element) => element.pressEnter();
     export const pressTab = (element: Element) => element.pressTab();
     export const pressEscape = (element: Element) => element.pressEscape();
+
+    export const switchToFrame = (element: Element) => element.switchToFrame();
 
     export namespace js { // todo: cover with tests
 
@@ -82,8 +85,8 @@ export namespace perform {
     export const goToNextTab = (browser: Browser) => browser.goToNextTab();
     export const goToPreviousTab = (browser: Browser) => browser.goToPreviousTab();
     export const goToTab = (indexOrId: number | string) => (browser: Browser) => browser.goToTab(indexOrId);
-    export const switchToFrame = (frameElement: Element) =>
-        (browser: Browser) => browser.switchToFrame(frameElement);
+    // export const switchToFrame = (frameElement: Element) =>
+    //     (browser: Browser) => browser.switchToFrame(frameElement);
     export const switchToDefaultFrame = (browser: Browser) => browser.switchToDefaultFrame();
     // export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
     export const clearLocalStorage = (browser: Browser) => browser.clearLocalStorage();

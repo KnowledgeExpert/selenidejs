@@ -26,11 +26,13 @@ var perform;
     perform.doubleClick = (element) => element.doubleClick();
     perform.contextClick = (element) => element.contextClick();
     perform.hover = (element) => element.hover();
+    perform.clear = (element) => element.clear();
     perform.type = (keys) => (element) => element.type(keys);
     perform.setValue = (value) => (element) => element.setValue(value);
     perform.pressEnter = (element) => element.pressEnter();
     perform.pressTab = (element) => element.pressTab();
     perform.pressEscape = (element) => element.pressEscape();
+    perform.switchToFrame = (element) => element.switchToFrame();
     let js;
     (function (js) {
         js.click = (element) => element.perform(commands_1.command.js.click);
@@ -62,7 +64,8 @@ var perform;
     perform.goToNextTab = (browser) => browser.goToNextTab();
     perform.goToPreviousTab = (browser) => browser.goToPreviousTab();
     perform.goToTab = (indexOrId) => (browser) => browser.goToTab(indexOrId);
-    perform.switchToFrame = (frameElement) => (browser) => browser.switchToFrame(frameElement);
+    // export const switchToFrame = (frameElement: Element) =>
+    //     (browser: Browser) => browser.switchToFrame(frameElement);
     perform.switchToDefaultFrame = (browser) => browser.switchToDefaultFrame();
     // export const clearCacheAndCookies = (browser: Browser) => browser.clearCacheAndCookies();
     perform.clearLocalStorage = (browser) => browser.clearLocalStorage();

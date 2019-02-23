@@ -33,7 +33,7 @@ export class Collection extends Entity implements Assertable, Matchable {
         this.locator = locator;
     }
 
-    configuredWith(custom: Partial<Configuration>): Collection {
+    customizedWith(custom: Partial<Configuration>): Collection {
         return new Collection(this.locator, new Configuration({ ...this.configuration, ...custom }));
     }
 
