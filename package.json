@@ -2,7 +2,7 @@
   "name": "selenidejs",
   "description": "Wrapper for Selenium Webdriver",
   "homepage": "https://github.com/KnowledgeExpert/selenidejs",
-  "version": "0.2.8",
+  "version": "1.0.0",
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {

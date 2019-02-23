@@ -26,12 +26,20 @@ describe('Element.* commands: hover', () => {
 
     it('hovers on element once it is present in DOM and visible', async () => {
         await GIVEN.openedEmptyPage();
-        await GIVEN.executeScriptAfter(data.timeouts.smallest, `
-            $('body').append('<label style="display: none">Before hover</label>')
-            $('label').mouseenter(function(e) {
-                $('label').text('After hover');
-            });
+        await GIVEN.withBodyAfter(data.timeouts.smallest, `
+            <label style="display: none" 
+               onmouseover="$(this).text('After hover');"
+               onmouseout="$(this).text('Before hover');"
+            >
+               Before hover
+            </label>
         `);
+        // await GIVEN.executeScriptAfter(data.timeouts.smallest, `
+        //     $('body').append('<label style="display: none">Before hover</label>')
+        //     $('label').mouseenter(function(e) {
+        //         $('label').text('After hover');
+        //     });
+        // `);
         await GIVEN.executeScriptAfter(data.timeouts.smallerThanDefault, `
             $('label').attr('style', 'display: block');
         `);
