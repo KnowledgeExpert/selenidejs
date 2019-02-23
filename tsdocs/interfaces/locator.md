@@ -10,11 +10,15 @@
 
 ## Implemented by
 
+* [BrowserWebElementByLocator](../classes/browserwebelementbylocator.md)
+* [BrowserWebElementsByLocator](../classes/browserwebelementsbylocator.md)
 * [ByIndexWebElementLocator](../classes/byindexwebelementlocator.md)
 * [ByWebElementLocator](../classes/bywebelementlocator.md)
 * [ByWebElementsLocator](../classes/bywebelementslocator.md)
 * [CashedWebElementLocator](../classes/cashedwebelementlocator.md)
 * [ElementByConditionWebElementLocator](../classes/elementbyconditionwebelementlocator.md)
+* [ElementWebElementByLocator](../classes/elementwebelementbylocator.md)
+* [ElementWebElementsByLocator](../classes/elementwebelementsbylocator.md)
 * [FilteredByConditionWebElementsLocator](../classes/filteredbyconditionwebelementslocator.md)
 
 ## Index

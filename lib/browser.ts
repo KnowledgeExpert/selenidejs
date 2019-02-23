@@ -17,14 +17,13 @@ import { Extensions } from './utils/extensions';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
-import { ByWebElementLocator } from './locators/byWebElementLocator';
-import { ByWebElementsLocator } from './locators/byWebElementsLocator';
-import { SearchContext } from './searchContext';
 import { Assertable, Entity, Matchable } from './entity';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 import { query } from './queries';
+import { BrowserWebElementByLocator } from './locators/BrowserWebElementByLocator';
+import { BrowserWebElementsByLocator } from './locators/BrowserWebElementsByLocator';
 
-export class Browser extends Entity implements SearchContext, Assertable, Matchable {
+export class Browser extends Entity implements /*SearchContext, */Assertable, Matchable {
 
     static configuredWith(): Customized<Browser> {
         return Customized.browser();
@@ -59,21 +58,21 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
         return 'browser';
     }
 
-    /* SearchContext */
-
-    async findWebElement(by: By): Promise<WebElement> {
-        return this.driver.findElement(by);
-    }
-
-    async findWebElements(by: By): Promise<WebElement[]> {
-        return this.driver.findElements(by);
-    }
+    // /* SearchContext */
+    //
+    // async findWebElement(by: By): Promise<WebElement> {
+    //     return this.driver.findElement(by);
+    // }
+    //
+    // async findWebElements(by: By): Promise<WebElement[]> {
+    //     return this.driver.findElements(by);
+    // }
 
     /* Elements */
 
     element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element {
         const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementLocator(by, this);
+        const locator = new BrowserWebElementByLocator(by, this);
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
@@ -82,7 +81,7 @@ export class Browser extends Entity implements SearchContext, Assertable, Matcha
 
     all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection {
         const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementsLocator(by, this);
+        const locator = new BrowserWebElementsByLocator(by, this);
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });

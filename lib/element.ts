@@ -13,22 +13,19 @@
 // limitations under the License.
 
 import { Button, By, Key, WebElement } from 'selenium-webdriver';
-import { be } from './support/conditions/be';
 import { With } from './support/selectors/with';
 import { Extensions } from './utils/extensions';
 import { Collection } from './collection';
 import { Configuration } from './configuration';
-import { ByWebElementLocator } from './locators/byWebElementLocator';
-import { ByWebElementsLocator } from './locators/byWebElementsLocator';
 import { Locator } from './locators/locator';
-import { SearchContext } from './searchContext';
 import { lambda } from './utils';
 import { Assertable, Entity, Matchable } from './entity';
 import { command } from './commands';
-import { Browser } from './browser';
+import { ElementWebElementByLocator } from './locators/ElementWebElementByLocator';
+import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLocator';
 
 
-export class Element extends Entity implements SearchContext, Assertable, Matchable {
+export class Element extends Entity implements /*SearchContext, */Assertable, Matchable {
     // todo: why not have private readonly driver property?
 
     constructor(private readonly locator: Locator<Promise<WebElement>>,
@@ -46,15 +43,15 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
         return this.locator.find();
     }
 
-    /* SearchContext */
-
-    async findWebElement(by: By): Promise<WebElement> {
-        return (await this.getWebElement()).findElement(by);
-    }
-
-    async findWebElements(by: By): Promise<WebElement[]> {
-        return (await this.getWebElement()).findElements(by);
-    }
+    // /* SearchContext */
+    //
+    // async findWebElement(by: By): Promise<WebElement> {
+    //     return (await this.getWebElement()).findElement(by);
+    // }
+    //
+    // async findWebElements(by: By): Promise<WebElement[]> {
+    //     return (await this.getWebElement()).findElements(by);
+    // }
 
     /* Relative search */
 
@@ -64,7 +61,7 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
 
     element(cssOrXpathOrBy: string | By): Element { // todo: think on refactoring string | By to a new type
         const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementLocator(by, this);
+        const locator = new ElementWebElementByLocator(by, this);
         return new Element(locator, this.configuration);
     }
 
@@ -93,7 +90,7 @@ export class Element extends Entity implements SearchContext, Assertable, Matcha
 
     all(cssOrXpathOrBy: string | By): Collection {
         const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ByWebElementsLocator(by, this);
+        const locator = new ElementWebElementsByLocator(by, this);
         return new Collection(locator, this.configuration);
     }
 

@@ -1,11 +1,10 @@
 /// <reference types="node" />
-import { By, WebDriver, WebElement } from 'selenium-webdriver';
+import { By, WebDriver } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
-import { SearchContext } from './searchContext';
 import { Assertable, Entity, Matchable } from './entity';
-export declare class Browser extends Entity implements SearchContext, Assertable, Matchable {
+export declare class Browser extends Entity implements /*SearchContext, */ Assertable, Matchable {
     static configuredWith(): Customized<Browser>;
     static drivedBy(driver: WebDriver): Customized<Browser>;
     static chromeWith(): Customized<Browser>;
@@ -14,8 +13,6 @@ export declare class Browser extends Entity implements SearchContext, Assertable
     customizedWith(custom: Partial<Configuration>): Browser;
     readonly driver: WebDriver;
     toString(): string;
-    findWebElement(by: By): Promise<WebElement>;
-    findWebElements(by: By): Promise<WebElement[]>;
     element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element;
     all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection;
     executeScript(script: string | Function, ...args: any[]): Promise<{}>;

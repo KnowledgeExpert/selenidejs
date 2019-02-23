@@ -22,6 +22,8 @@
 ### Classes
 
 * [Browser](classes/browser.md)
+* [BrowserWebElementByLocator](classes/browserwebelementbylocator.md)
+* [BrowserWebElementsByLocator](classes/browserwebelementsbylocator.md)
 * [ByIndexWebElementLocator](classes/byindexwebelementlocator.md)
 * [ByWebElementLocator](classes/bywebelementlocator.md)
 * [ByWebElementsLocator](classes/bywebelementslocator.md)
@@ -33,6 +35,8 @@
 * [Customized](classes/customized.md)
 * [Element](classes/element.md)
 * [ElementByConditionWebElementLocator](classes/elementbyconditionwebelementlocator.md)
+* [ElementWebElementByLocator](classes/elementwebelementbylocator.md)
+* [ElementWebElementsByLocator](classes/elementwebelementsbylocator.md)
 * [Entity](classes/entity.md)
 * [FailedToMatchConditionWithReasonError](classes/failedtomatchconditionwithreasonerror.md)
 * [FilteredByConditionWebElementsLocator](classes/filteredbyconditionwebelementslocator.md)

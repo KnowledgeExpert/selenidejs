@@ -18,11 +18,11 @@ const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
 const configuration_1 = require("./configuration");
 const element_1 = require("./element");
-const byWebElementLocator_1 = require("./locators/byWebElementLocator");
-const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const entity_1 = require("./entity");
 var isAbsoluteUrl = extensions_1.Extensions.isAbsoluteUrl;
 const queries_1 = require("./queries");
+const BrowserWebElementByLocator_1 = require("./locators/BrowserWebElementByLocator");
+const BrowserWebElementsByLocator_1 = require("./locators/BrowserWebElementsByLocator");
 class Browser extends entity_1.Entity {
     static configuredWith() {
         return configuration_1.Customized.browser();
@@ -49,17 +49,19 @@ class Browser extends entity_1.Entity {
     toString() {
         return 'browser';
     }
-    /* SearchContext */
-    async findWebElement(by) {
-        return this.driver.findElement(by);
-    }
-    async findWebElements(by) {
-        return this.driver.findElements(by);
-    }
+    // /* SearchContext */
+    //
+    // async findWebElement(by: By): Promise<WebElement> {
+    //     return this.driver.findElement(by);
+    // }
+    //
+    // async findWebElements(by: By): Promise<WebElement[]> {
+    //     return this.driver.findElements(by);
+    // }
     /* Elements */
     element(cssOrXpathOrBy, customized) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
+        const locator = new BrowserWebElementByLocator_1.BrowserWebElementByLocator(by, this);
         const configuration = customized === undefined ?
             this.configuration :
             new configuration_1.Configuration(Object.assign({}, this.configuration, customized));
@@ -67,7 +69,7 @@ class Browser extends entity_1.Entity {
     }
     all(cssOrXpathOrBy, customized) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
+        const locator = new BrowserWebElementsByLocator_1.BrowserWebElementsByLocator(by, this);
         const configuration = customized === undefined ?
             this.configuration :
             new configuration_1.Configuration(Object.assign({}, this.configuration, customized));

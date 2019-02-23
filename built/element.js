@@ -18,11 +18,11 @@ const with_1 = require("./support/selectors/with");
 const extensions_1 = require("./utils/extensions");
 const collection_1 = require("./collection");
 const configuration_1 = require("./configuration");
-const byWebElementLocator_1 = require("./locators/byWebElementLocator");
-const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const utils_1 = require("./utils");
 const entity_1 = require("./entity");
 const commands_1 = require("./commands");
+const ElementWebElementByLocator_1 = require("./locators/ElementWebElementByLocator");
+const ElementWebElementsByLocator_1 = require("./locators/ElementWebElementsByLocator");
 class Element extends entity_1.Entity {
     // todo: why not have private readonly driver property?
     constructor(locator, 
@@ -39,20 +39,22 @@ class Element extends entity_1.Entity {
     async getWebElement() {
         return this.locator.find();
     }
-    /* SearchContext */
-    async findWebElement(by) {
-        return (await this.getWebElement()).findElement(by);
-    }
-    async findWebElements(by) {
-        return (await this.getWebElement()).findElements(by);
-    }
+    // /* SearchContext */
+    //
+    // async findWebElement(by: By): Promise<WebElement> {
+    //     return (await this.getWebElement()).findElement(by);
+    // }
+    //
+    // async findWebElements(by: By): Promise<WebElement[]> {
+    //     return (await this.getWebElement()).findElements(by);
+    // }
     /* Relative search */
     customizedWith(custom) {
         return new Element(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, custom)));
     }
     element(cssOrXpathOrBy) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementLocator_1.ByWebElementLocator(by, this);
+        const locator = new ElementWebElementByLocator_1.ElementWebElementByLocator(by, this);
         return new Element(locator, this.configuration);
     }
     get parent() {
@@ -76,7 +78,7 @@ class Element extends entity_1.Entity {
         }*/
     all(cssOrXpathOrBy) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
-        const locator = new byWebElementsLocator_1.ByWebElementsLocator(by, this);
+        const locator = new ElementWebElementsByLocator_1.ElementWebElementsByLocator(by, this);
         return new collection_1.Collection(locator, this.configuration);
     }
     /* Commands */

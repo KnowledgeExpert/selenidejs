@@ -3,8 +3,8 @@ import { By } from 'selenium-webdriver';
 import { Collection } from '../../collection';
 import { Browser } from '../../browser';
 export declare namespace find {
-    const element: (cssOrXpathOrBy: string | By) => (context: Element | Browser) => Element;
-    const all: (cssOrXpathOrBy: string | By) => (context: Element | Browser) => Collection;
+    const element: (cssOrXpathOrBy: string | By) => (context: Browser | Element) => Element;
+    const all: (cssOrXpathOrBy: string | By) => (context: Browser | Element) => Collection;
     const parent: (element: Element) => Element;
     const followingSibling: (predicate?: string) => (element: Element) => Element;
     const elementAt: (index: number) => (collection: Collection) => Element;

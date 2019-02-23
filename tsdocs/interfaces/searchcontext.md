@@ -6,11 +6,6 @@
 
 **SearchContext**
 
-## Implemented by
-
-* [Browser](../classes/browser.md)
-* [Element](../classes/element.md)
-
 ## Index
 
 ### Methods
