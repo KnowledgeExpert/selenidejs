@@ -65,6 +65,24 @@ describe('Element search', () => {
         expect(await driver.getCurrentUrl()).toContain('second');
     });
 
+    it('waits with custom timeout for element command like click to be possible', async () => {
+        await GIVEN.openedEmptyPageWithBody(`
+                <a href='#second' style='display:none'>go to Heading 2</a>
+                <h2 id='second'>Heading 2</h2>
+        `);
+        await GIVEN.executeScriptWithTimeout(
+            'document.getElementsByTagName("a")[0].style = "display:block";',
+            data.timeouts.biggerThanDefault
+        );
+        const started = new Date().getTime();
+
+        await browser.element('a')
+            .with({timeout: data.timeouts.biggerThanDefault + data.timeouts.step})
+            .click();
+        expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.biggerThanDefault);
+        expect(await driver.getCurrentUrl()).toContain('second');
+    });
+
     it('fails on timeout during waiting for action like click to be possible, if element invisible', async () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <a href='#second' style='display:none'>go to Heading 2</a>
