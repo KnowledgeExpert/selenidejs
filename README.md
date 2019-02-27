@@ -6,7 +6,7 @@
 
 # SelenideJS
 
-Wrapper for Selenium WebDriver, which provides testing user oriented API for writing stable and readable UI tests in
+Wrapper for Selenium WebDriver, which provides testing user-oriented API for writing stable and readable UI tests in
 JavaScript/TypeScript.
 
 ### Prerequisites
@@ -191,7 +191,7 @@ In case you want to be different) ...
 
 ## Tutorials
 
-You can start with Typescript or Javascript tutorial to get familiar with basic and some advance features of Selenidejs.
+You can start with Typescript or Javascript tutorial to get familiar with basic and some advanced features of Selenidejs.
  Using Typescript is recommended when writing tests (it will enable IDE's autocompletion features, compile-time checks,
 etc. since Selenidejs itself written in Typescript), but you still can use Javascript.
 
@@ -207,7 +207,7 @@ Generated API documentation can be found [here](./tsdocs/README.md).
 
 ### Guide
 
-please read [contributing](./docs/contributing.md) for details on our code of conduct, and the process for submitting
+please read [contributing](./docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting
  pull requests to
  us.
 
@@ -232,7 +232,7 @@ npm run lint
 
 ## Versioning
 
-we use [npm](http://npm.com/) for versioning. for the versions available, see the [npm](https://www.npmjs.com/package/selenidejs#versions) or github [releases](https://github.com/knowledgeexpert/selenidejs/releases).
+we use [npm](https://www.npmjs.com/) for versioning. for the versions available, see the [npm](https://www.npmjs.com/package/selenidejs#versions) or github [releases](https://github.com/knowledgeexpert/selenidejs/releases).
 
 ## Authors
 
