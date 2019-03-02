@@ -16,8 +16,10 @@
 export namespace predicate {
     export const isTruthy = <V>(actual: V) => !!actual;
     export const equals = <V>(expected: V) => (actual: V) => actual === expected;
-    export const isMoreThan = <V>(expected: V) => (actual: V) => actual > expected;
+    export const isGreaterThan = <V>(expected: V) => (actual: V) => actual > expected;
+    export const isGreaterThanOrEqual = <V>(expected: V) => (actual: V) => actual >= expected;
     export const isLessThan = <V>(expected: V) => (actual: V) => actual < expected;
+    export const isLessThanOrEqual = <V>(expected: V) => (actual: V) => actual <= expected;
     export const includes = (expected: any) => (actual: any) => actual.includes(expected);
     export const includesWord =
         (expected: string) => (actual: string) => actual.split(' ').includes(expected);

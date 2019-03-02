@@ -21,6 +21,7 @@ const filteredByConditionWebElementsLocator_1 = require("./locators/filteredByCo
 const wait_1 = require("./wait");
 const entity_1 = require("./entity");
 const byConditionWebElementLocator_1 = require("./locators/byConditionWebElementLocator");
+const slicedWebElementsLocator_1 = require("./locators/slicedWebElementsLocator");
 class Collection extends entity_1.Entity {
     constructor(locator, configuration) {
         // readonly configuration: Configuration) {
@@ -40,17 +41,16 @@ class Collection extends entity_1.Entity {
     elementAt(index) {
         return new element_1.Element(new byIndexWebElementLocator_1.ByIndexWebElementLocator(index, this), this.configuration);
     }
-    /*
-     * todo: should we implement collection.first() as getter? i.e. collection.first ?
-     * here we should think, because in future we might want to implement method to return
-     * a collection subset, i.e. "first n elements"...
-     * then we might need first(count: number?)...
-     * yet we can name it as take(count: number)
-     * then no problem with first as getter... need to think... but probably define it before
-     * release 1.0
-     */
-    first() {
+    get first() {
         return this.elementAt(0);
+    }
+    /**
+     * Represents a new collection sliced from 'start' element index to 'end' element index exclusive.
+     * @param start The inclusive "start" index of collection to be sliced.
+     * @param end The exclusive "end" index of collection to be sliced
+     */
+    sliced(start, end) {
+        return new Collection(new slicedWebElementsLocator_1.SlicedWebElementsLocator(start, end, this), this.configuration);
     }
     filteredBy(...conditions) {
         return new Collection(new filteredByConditionWebElementsLocator_1.FilteredByConditionWebElementsLocator(wait_1.Condition.all(...conditions), this), this.configuration);

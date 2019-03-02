@@ -15,8 +15,10 @@
 * [equals](predicate.md#equals)
 * [includes](predicate.md#includes)
 * [includesWord](predicate.md#includesword)
+* [isGreaterThan](predicate.md#isgreaterthan)
+* [isGreaterThanOrEqual](predicate.md#isgreaterthanorequal)
 * [isLessThan](predicate.md#islessthan)
-* [isMoreThan](predicate.md#ismorethan)
+* [isLessThanOrEqual](predicate.md#islessthanorequal)
 * [isTruthy](predicate.md#istruthy)
 
 ---
@@ -29,7 +31,7 @@
 
 **● equalsByContainsToArray**: *`(Anonymous function)`* =  arrayCompareBy(includes)
 
-*Defined in [utils/predicates.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L29)*
+*Defined in [utils/predicates.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L31)*
 
 ___
 <a id="equalstoarray"></a>
@@ -38,7 +40,7 @@ ___
 
 **● equalsToArray**: *`(Anonymous function)`* =  arrayCompareBy(equals)
 
-*Defined in [utils/predicates.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L28)*
+*Defined in [utils/predicates.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L30)*
 
 ___
 
@@ -50,7 +52,7 @@ ___
 
 ▸ **arrayCompareBy**(f: *`any`*): `(Anonymous function)`
 
-*Defined in [utils/predicates.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L24)*
+*Defined in [utils/predicates.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L26)*
 
 **Parameters:**
 
@@ -87,7 +89,7 @@ ___
 
 ▸ **includes**(expected: *`any`*): `(Anonymous function)`
 
-*Defined in [utils/predicates.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L21)*
+*Defined in [utils/predicates.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L23)*
 
 **Parameters:**
 
@@ -104,7 +106,7 @@ ___
 
 ▸ **includesWord**(expected: *`string`*): `(Anonymous function)`
 
-*Defined in [utils/predicates.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L22)*
+*Defined in [utils/predicates.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L24)*
 
 **Parameters:**
 
@@ -115,11 +117,31 @@ ___
 **Returns:** `(Anonymous function)`
 
 ___
-<a id="islessthan"></a>
+<a id="isgreaterthan"></a>
 
-### `<Const>` isLessThan
+### `<Const>` isGreaterThan
 
-▸ **isLessThan**<`V`>(expected: *`V`*): `(Anonymous function)`
+▸ **isGreaterThan**<`V`>(expected: *`V`*): `(Anonymous function)`
+
+*Defined in [utils/predicates.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L19)*
+
+**Type parameters:**
+
+#### V 
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| expected | `V` |
+
+**Returns:** `(Anonymous function)`
+
+___
+<a id="isgreaterthanorequal"></a>
+
+### `<Const>` isGreaterThanOrEqual
+
+▸ **isGreaterThanOrEqual**<`V`>(expected: *`V`*): `(Anonymous function)`
 
 *Defined in [utils/predicates.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L20)*
 
@@ -135,13 +157,33 @@ ___
 **Returns:** `(Anonymous function)`
 
 ___
-<a id="ismorethan"></a>
+<a id="islessthan"></a>
 
-### `<Const>` isMoreThan
+### `<Const>` isLessThan
 
-▸ **isMoreThan**<`V`>(expected: *`V`*): `(Anonymous function)`
+▸ **isLessThan**<`V`>(expected: *`V`*): `(Anonymous function)`
 
-*Defined in [utils/predicates.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L19)*
+*Defined in [utils/predicates.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L21)*
+
+**Type parameters:**
+
+#### V 
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| expected | `V` |
+
+**Returns:** `(Anonymous function)`
+
+___
+<a id="islessthanorequal"></a>
+
+### `<Const>` isLessThanOrEqual
+
+▸ **isLessThanOrEqual**<`V`>(expected: *`V`*): `(Anonymous function)`
+
+*Defined in [utils/predicates.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/predicates.ts#L22)*
 
 **Type parameters:**
 

@@ -23,6 +23,8 @@ import { Locator } from './locators/locator';
 import { Condition, Query, Wait } from './wait';
 import { Assertable, Entity, Matchable } from './entity';
 import { ElementByConditionWebElementLocator } from './locators/byConditionWebElementLocator';
+import { have } from './support/conditions/have';
+import { SlicedWebElementsLocator } from './locators/slicedWebElementsLocator';
 
 export class Collection extends Entity implements Assertable, Matchable {
 
@@ -49,17 +51,17 @@ export class Collection extends Entity implements Assertable, Matchable {
         return new Element(new ByIndexWebElementLocator(index, this), this.configuration);
     }
 
-    /*
-     * todo: should we implement collection.first() as getter? i.e. collection.first ?
-     * here we should think, because in future we might want to implement method to return
-     * a collection subset, i.e. "first n elements"...
-     * then we might need first(count: number?)...
-     * yet we can name it as take(count: number)
-     * then no problem with first as getter... need to think... but probably define it before
-     * release 1.0
-     */
-    first(): Element {
+    get first(): Element {
         return this.elementAt(0);
+    }
+
+    /**
+     * Represents a new collection sliced from 'start' element index to 'end' element index exclusive.
+     * @param start The inclusive "start" index of collection to be sliced.
+     * @param end The exclusive "end" index of collection to be sliced
+     */
+    sliced(start: number, end: number): Collection {
+        return new Collection(new SlicedWebElementsLocator(start, end, this), this.configuration);
     }
 
     filteredBy(...conditions: ElementCondition[]): Collection {

@@ -20,12 +20,12 @@ var find;
     find.all = (cssOrXpathOrBy) => (context) => context.all(cssOrXpathOrBy);
     /* Element.* builders */
     find.parent = (element) => element.parent;
-    find.followingSibling = (predicate = '') => (element) => element.followingSibling(predicate);
-    // export const visibleElement = (cssOrXpathOrBy: string | By) =>
-    //     (element: Element) => element.visibleElement(cssOrXpathOrBy);
+    find.followingSibling = (element) => element.followingSibling;
     /* Collection.* builders */
     find.elementAt = (index) => (collection) => collection.elementAt(index);
-    find.first = (collection) => collection.first();
+    find.first = (collection) => collection.first;
+    find.sliced = (start, end) => (collection) => collection.sliced(start, end);
+    // export const first = (count?: number) => (collection: Collection) => collection.first(count);
     find.elementBy = (condition) => (collection) => collection.elementBy(condition);
     find.filteredBy = (condition) => (collection) => collection.filteredBy(condition);
     /* Browser.* builders */

@@ -15,6 +15,7 @@
 * [first](find.md#first)
 * [followingSibling](find.md#followingsibling)
 * [parent](find.md#parent)
+* [sliced](find.md#sliced)
 
 ---
 
@@ -26,7 +27,7 @@
 
 ▸ **alert**(browser: *[Browser](../classes/browser.md)*): `AlertPromise`
 
-*Defined in [support/elements/find.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L49)*
+*Defined in [support/elements/find.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L51)*
 
 **Parameters:**
 
@@ -77,7 +78,7 @@ ___
 
 ▸ **elementAt**(index: *`number`*): `(Anonymous function)`
 
-*Defined in [support/elements/find.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L40)*
+*Defined in [support/elements/find.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L37)*
 
 **Parameters:**
 
@@ -94,7 +95,7 @@ ___
 
 ▸ **elementBy**(condition: *[ElementCondition](../#elementcondition)*): `(Anonymous function)`
 
-*Defined in [support/elements/find.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L43)*
+*Defined in [support/elements/find.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L45)*
 
 **Parameters:**
 
@@ -111,7 +112,7 @@ ___
 
 ▸ **filteredBy**(condition: *[ElementCondition](../#elementcondition)*): `(Anonymous function)`
 
-*Defined in [support/elements/find.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L45)*
+*Defined in [support/elements/find.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L47)*
 
 **Parameters:**
 
@@ -128,7 +129,7 @@ ___
 
 ▸ **first**(collection: *[Collection](../classes/collection.md)*): [Element](../classes/element.md)
 
-*Defined in [support/elements/find.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L42)*
+*Defined in [support/elements/find.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L40)*
 
 **Parameters:**
 
@@ -143,17 +144,17 @@ ___
 
 ### `<Const>` followingSibling
 
-▸ **followingSibling**(predicate?: *`string`*): `(Anonymous function)`
+▸ **followingSibling**(element: *[Element](../classes/element.md)*): [Element](../classes/element.md)
 
 *Defined in [support/elements/find.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L33)*
 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| `Default value` predicate | `string` | &quot;&quot; |
+| Param | Type |
+| ------ | ------ |
+| element | [Element](../classes/element.md) |
 
-**Returns:** `(Anonymous function)`
+**Returns:** [Element](../classes/element.md)
 
 ___
 <a id="parent"></a>
@@ -171,6 +172,24 @@ ___
 | element | [Element](../classes/element.md) |
 
 **Returns:** [Element](../classes/element.md)
+
+___
+<a id="sliced"></a>
+
+### `<Const>` sliced
+
+▸ **sliced**(start: *`number`*, end: *`number`*): `(Anonymous function)`
+
+*Defined in [support/elements/find.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L41)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| start | `number` |
+| end | `number` |
+
+**Returns:** `(Anonymous function)`
 
 ___
 

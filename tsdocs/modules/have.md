@@ -14,6 +14,10 @@
 * [exactTexts](have.md#exacttexts)
 * [jsReturnedTrue](have.md#jsreturnedtrue)
 * [size](have.md#size)
+* [sizeGreaterThan](have.md#sizegreaterthan)
+* [sizeGreaterThanOrEqual](have.md#sizegreaterthanorequal)
+* [sizeLessThan](have.md#sizelessthan)
+* [sizeLessThanOrEqual](have.md#sizelessthanorequal)
 * [tabsNumber](have.md#tabsnumber)
 * [tabsNumberLessThan](have.md#tabsnumberlessthan)
 * [tabsNumberMoreThan](have.md#tabsnumbermorethan)
@@ -37,7 +41,7 @@
 
 ▸ **attribute**(name: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L48)*
+*Defined in [support/conditions/have.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L32)*
 
 **Parameters:**
 
@@ -54,7 +58,7 @@ ___
 
 ▸ **attributeWithValue**(attributeName: *`string`*, attributeValue: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L51)*
+*Defined in [support/conditions/have.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L35)*
 
 **Parameters:**
 
@@ -72,7 +76,7 @@ ___
 
 ▸ **attributeWithValueContaining**(attributeName: *`string`*, attributeValue: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L54)*
+*Defined in [support/conditions/have.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L38)*
 
 **Parameters:**
 
@@ -90,7 +94,7 @@ ___
 
 ▸ **cssClass**(cssClass: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:64](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L64)*
+*Defined in [support/conditions/have.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L48)*
 
 **Parameters:**
 
@@ -107,7 +111,7 @@ ___
 
 ▸ **exactText**(value: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L25)*
+*Defined in [support/conditions/have.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L26)*
 
 **Parameters:**
 
@@ -124,7 +128,7 @@ ___
 
 ▸ **exactTexts**(...texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [support/conditions/have.ts:73](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L73)*
+*Defined in [support/conditions/have.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L68)*
 
 **Parameters:**
 
@@ -141,7 +145,7 @@ ___
 
 ▸ **jsReturnedTrue**(script: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L106)*
+*Defined in [support/conditions/have.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L94)*
 
 **Parameters:**
 
@@ -158,7 +162,75 @@ ___
 
 ▸ **size**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [support/conditions/have.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L67)*
+*Defined in [support/conditions/have.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L53)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [CollectionCondition](../#collectioncondition)
+
+___
+<a id="sizegreaterthan"></a>
+
+### `<Const>` sizeGreaterThan
+
+▸ **sizeGreaterThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+
+*Defined in [support/conditions/have.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L59)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [CollectionCondition](../#collectioncondition)
+
+___
+<a id="sizegreaterthanorequal"></a>
+
+### `<Const>` sizeGreaterThanOrEqual
+
+▸ **sizeGreaterThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+
+*Defined in [support/conditions/have.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L61)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [CollectionCondition](../#collectioncondition)
+
+___
+<a id="sizelessthan"></a>
+
+### `<Const>` sizeLessThan
+
+▸ **sizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+
+*Defined in [support/conditions/have.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L55)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [CollectionCondition](../#collectioncondition)
+
+___
+<a id="sizelessthanorequal"></a>
+
+### `<Const>` sizeLessThanOrEqual
+
+▸ **sizeLessThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+
+*Defined in [support/conditions/have.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L57)*
 
 **Parameters:**
 
@@ -175,7 +247,7 @@ ___
 
 ▸ **tabsNumber**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L97)*
+*Defined in [support/conditions/have.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L85)*
 
 **Parameters:**
 
@@ -192,7 +264,7 @@ ___
 
 ▸ **tabsNumberLessThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L100)*
+*Defined in [support/conditions/have.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L88)*
 
 **Parameters:**
 
@@ -209,7 +281,7 @@ ___
 
 ▸ **tabsNumberMoreThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:103](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L103)*
+*Defined in [support/conditions/have.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L91)*
 
 **Parameters:**
 
@@ -226,7 +298,7 @@ ___
 
 ▸ **text**(value: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L28)*
+*Defined in [support/conditions/have.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L29)*
 
 **Parameters:**
 
@@ -243,7 +315,7 @@ ___
 
 ▸ **texts**(...texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [support/conditions/have.ts:70](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L70)*
+*Defined in [support/conditions/have.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L65)*
 
 **Parameters:**
 
@@ -260,7 +332,7 @@ ___
 
 ▸ **title**(expected: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:91](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L91)*
+*Defined in [support/conditions/have.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L79)*
 
 **Parameters:**
 
@@ -277,7 +349,7 @@ ___
 
 ▸ **titleContaining**(titlePart: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L94)*
+*Defined in [support/conditions/have.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L82)*
 
 **Parameters:**
 
@@ -294,7 +366,7 @@ ___
 
 ▸ **url**(url: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L76)*
+*Defined in [support/conditions/have.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L71)*
 
 **Parameters:**
 
@@ -311,7 +383,7 @@ ___
 
 ▸ **urlContaining**(urlPart: *`string`*): [BrowserCondition](../#browsercondition)
 
-*Defined in [support/conditions/have.ts:88](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L88)*
+*Defined in [support/conditions/have.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L76)*
 
 **Parameters:**
 
@@ -328,7 +400,7 @@ ___
 
 ▸ **value**(value: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L58)*
+*Defined in [support/conditions/have.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L42)*
 
 **Parameters:**
 
@@ -345,7 +417,7 @@ ___
 
 ▸ **valueContaining**(expected: *`string`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L61)*
+*Defined in [support/conditions/have.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L45)*
 
 **Parameters:**
 
@@ -362,7 +434,7 @@ ___
 
 ▸ **visibleElement**(locator: *`By`*): [ElementCondition](../#elementcondition)
 
-*Defined in [support/conditions/have.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L22)*
+*Defined in [support/conditions/have.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L23)*
 
 **Parameters:**
 

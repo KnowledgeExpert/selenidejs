@@ -3,7 +3,7 @@ import { Collection } from './collection';
 import { Configuration } from './configuration';
 import { Locator } from './locators/locator';
 import { Assertable, Entity, Matchable } from './entity';
-export declare class Element extends Entity implements /*SearchContext, */ Assertable, Matchable {
+export declare class Element extends Entity implements Assertable, Matchable {
     private readonly locator;
     protected readonly configuration: Configuration;
     constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration);
@@ -12,7 +12,7 @@ export declare class Element extends Entity implements /*SearchContext, */ Asser
     with(customConfig: Partial<Configuration>): Element;
     element(cssOrXpathOrBy: string | By): Element;
     readonly parent: Element;
-    followingSibling(predicate?: string): Element;
+    readonly followingSibling: Element;
     all(cssOrXpathOrBy: string | By): Collection;
     executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]): Promise<{}>;
     click(): Promise<this>;

@@ -17,7 +17,8 @@ import { CollectionCondition, BrowserCondition, ElementCondition, condition } fr
 
 
 export namespace have {
-    // todo: refactor to arrow const versions
+
+    /* Element conditions */
 
     export const visibleElement = (locator: By): ElementCondition =>
         condition.element.hasVisibleElement(locator);
@@ -28,23 +29,6 @@ export namespace have {
     export const text = (value: string/* | number*/): ElementCondition =>
         condition.element.hasText(value);
 
-    // todo: do we really need this "optionality" of attributeValue, i.e. one super condition instead of two?
-    /* ... - no, we do not
-     * here is why... look at this example:
-     * element.should(have.attribute('class', 'green'));
-     * if you read it, like in real English, you will never guess, that it will be compared by "contains"
-     * because naturally a native speaker will understand it as "exact comparison".
-     * Ok, we can rename:
-     * element.should(have.attributeContaining('class', 'green'));
-     * but how then understand this:
-     * element.should(have.attributeContaining('class'));
-     * o_O?
-     * in english it will sound like "there should be an element with some of attributes
-     * that contains "class" text in the value
-     * ;)
-     * This why, if we want to keep things "naturally readable and understandable", we have to separate...
-     * and keep things simple...
-     **/
     export const attribute = (name: string): ElementCondition =>
         condition.element.hasAttribute(name);
 
@@ -64,8 +48,19 @@ export namespace have {
     export const cssClass = (cssClass: string): ElementCondition =>
         condition.element.hasCssClass(cssClass);
 
+    /* Collection conditions */
+
     export const size = (size: number): CollectionCondition =>
         condition.collection.hasSize(size);
+    export const sizeLessThan = (size: number): CollectionCondition =>
+        condition.collection.hasSizeLessThan(size);
+    export const sizeLessThanOrEqual = (size: number): CollectionCondition =>
+        condition.collection.hasSizeLessThanOrEqual(size);
+    export const sizeGreaterThan = (size: number): CollectionCondition =>
+        condition.collection.hasSizeGreaterThan(size);
+    export const sizeGreaterThanOrEqual = (size: number): CollectionCondition =>
+        condition.collection.hasSizeGreaterThanOrEqual(size);
+
 
     export const texts = (...texts: string[]): CollectionCondition =>
         condition.collection.hasTexts(texts);
@@ -76,15 +71,8 @@ export namespace have {
     export const url = (url: string): BrowserCondition =>
         condition.browser.hasUrl(url);
 
-    // todo: what about inUrl?
-    /*
-     * compare:
-     * browser.should(have.inUrl('main-page'));
-     * VS
-     * browser.should(have.urlContaining('main-page'));
-     * or...
-     * browser.should(have.textInUrl('main-page'));
-     */
+    /* Browser conditions */
+
     export const urlContaining = (urlPart: string): BrowserCondition =>
         condition.browser.hasUrlContaining(urlPart);
 

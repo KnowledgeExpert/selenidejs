@@ -217,13 +217,21 @@ export namespace condition {
             lambda(`has size ${expected}`,
                    throwIfNotActual(query.size, predicate.equals(expected)));
 
-        export const hasSizeMoreThan = (size: number): CollectionCondition =>
+        export const hasSizeGreaterThan = (size: number): CollectionCondition =>
             lambda(`has size more than ${size}`,
-                   throwIfNotActual(query.size, predicate.isMoreThan(size)));
+                   throwIfNotActual(query.size, predicate.isGreaterThan(size)));
+
+        export const hasSizeGreaterThanOrEqual = (size: number): CollectionCondition =>
+            lambda(`has size more than ${size}`,
+                   throwIfNotActual(query.size, predicate.isGreaterThanOrEqual(size)));
 
         export const hasSizeLessThan = (size: number): CollectionCondition =>
             lambda(`has size less than ${size}`,
                    throwIfNotActual(query.size, predicate.isLessThan(size)));
+
+        export const hasSizeLessThanOrEqual = (size: number): CollectionCondition =>
+            lambda(`has size less than ${size}`,
+                   throwIfNotActual(query.size, predicate.isLessThanOrEqual(size)));
 
         // todo: should we filter collection for visibility before applying this condition?
         export const hasTexts = (texts: string[]): CollectionCondition =>
@@ -258,7 +266,7 @@ export namespace condition {
 
         export const hasTabsNumberMoreThan = (num: number): BrowserCondition =>
             lambda(`has tabs number more than ${num}`,
-                   throwIfNotActual(query.tabsNumber, predicate.isMoreThan(num)));
+                   throwIfNotActual(query.tabsNumber, predicate.isGreaterThan(num)));
 
         export const hasTabsNumberLessThan = (num: number): BrowserCondition =>
             lambda(`has tabs number less than ${num}`,

@@ -17,8 +17,10 @@ var predicate;
 (function (predicate) {
     predicate.isTruthy = (actual) => !!actual;
     predicate.equals = (expected) => (actual) => actual === expected;
-    predicate.isMoreThan = (expected) => (actual) => actual > expected;
+    predicate.isGreaterThan = (expected) => (actual) => actual > expected;
+    predicate.isGreaterThanOrEqual = (expected) => (actual) => actual >= expected;
     predicate.isLessThan = (expected) => (actual) => actual < expected;
+    predicate.isLessThanOrEqual = (expected) => (actual) => actual <= expected;
     predicate.includes = (expected) => (actual) => actual.includes(expected);
     predicate.includesWord = (expected) => (actual) => actual.split(' ').includes(expected);
     predicate.arrayCompareBy = (f) => ([x, ...xs]) => ([y, ...ys]) => x === undefined && y === undefined

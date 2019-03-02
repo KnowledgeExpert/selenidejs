@@ -29,7 +29,6 @@ describe('Element.* commands: hover', () => {
         await GIVEN.withBodyAfter(data.timeouts.smallest, `
             <label style="display: none" 
                onmouseover="$(this).text('After hover');"
-               onmouseout="$(this).text('Before hover');"
             >
                Before hover
             </label>

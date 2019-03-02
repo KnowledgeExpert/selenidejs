@@ -11,7 +11,13 @@ export declare class Collection extends Entity implements Assertable, Matchable 
     with(customConfig: Partial<Configuration>): Collection;
     getAsCashedArray(): Promise<Element[]>;
     elementAt(index: number): Element;
-    first(): Element;
+    readonly first: Element;
+    /**
+     * Represents a new collection sliced from 'start' element index to 'end' element index exclusive.
+     * @param start The inclusive "start" index of collection to be sliced.
+     * @param end The exclusive "end" index of collection to be sliced
+     */
+    sliced(start: number, end: number): Collection;
     filteredBy(...conditions: ElementCondition[]): Collection;
     elementBy(...conditions: ElementCondition[]): Element;
     getWebElements(): Promise<WebElement[]>;

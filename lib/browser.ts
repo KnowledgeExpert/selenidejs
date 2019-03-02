@@ -23,7 +23,7 @@ import { query } from './queries';
 import { BrowserWebElementByLocator } from './locators/BrowserWebElementByLocator';
 import { BrowserWebElementsByLocator } from './locators/BrowserWebElementsByLocator';
 
-export class Browser extends Entity implements /*SearchContext, */Assertable, Matchable {
+export class Browser extends Entity implements Assertable, Matchable {
 
     static configuredWith(): Customized<Browser> {
         return Customized.browser();
@@ -57,16 +57,6 @@ export class Browser extends Entity implements /*SearchContext, */Assertable, Ma
     toString() {
         return 'browser';
     }
-
-    // /* SearchContext */
-    //
-    // async findWebElement(by: By): Promise<WebElement> {
-    //     return this.driver.findElement(by);
-    // }
-    //
-    // async findWebElements(by: By): Promise<WebElement[]> {
-    //     return this.driver.findElements(by);
-    // }
 
     /* Elements */
 

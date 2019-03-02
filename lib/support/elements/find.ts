@@ -30,16 +30,18 @@ export namespace find {
 
     /* Element.* builders */
     export const parent = (element: Element) => element.parent;
-    export const followingSibling = (predicate: string = '') =>
-        (element: Element) => element.followingSibling(predicate);
-    // export const visibleElement = (cssOrXpathOrBy: string | By) =>
-    //     (element: Element) => element.visibleElement(cssOrXpathOrBy);
+    export const followingSibling = (element: Element) => element.followingSibling;
 
     /* Collection.* builders */
 
     export const elementAt = (index: number) =>
         (collection: Collection) => collection.elementAt(index);
-    export const first = (collection: Collection) => collection.first();
+
+    export const first = (collection: Collection) => collection.first;
+    export const sliced = (start: number, end: number) =>
+        (collection: Collection) => collection.sliced(start, end);
+
+    // export const first = (count?: number) => (collection: Collection) => collection.first(count);
     export const elementBy = (condition: ElementCondition) =>
         (collection: Collection) => collection.elementBy(condition);
     export const filteredBy = (condition: ElementCondition) =>

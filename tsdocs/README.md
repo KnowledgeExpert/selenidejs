@@ -25,8 +25,6 @@
 * [BrowserWebElementByLocator](classes/browserwebelementbylocator.md)
 * [BrowserWebElementsByLocator](classes/browserwebelementsbylocator.md)
 * [ByIndexWebElementLocator](classes/byindexwebelementlocator.md)
-* [ByWebElementLocator](classes/bywebelementlocator.md)
-* [ByWebElementsLocator](classes/bywebelementslocator.md)
 * [CannotPerformActionError](classes/cannotperformactionerror.md)
 * [CashedWebElementLocator](classes/cashedwebelementlocator.md)
 * [Collection](classes/collection.md)
@@ -40,6 +38,7 @@
 * [Entity](classes/entity.md)
 * [FailedToMatchConditionWithReasonError](classes/failedtomatchconditionwithreasonerror.md)
 * [FilteredByConditionWebElementsLocator](classes/filteredbyconditionwebelementslocator.md)
+* [SlicedWebElementsLocator](classes/slicedwebelementslocator.md)
 * [TimeoutError](classes/timeouterror.md)
 * [Wait](classes/wait.md)
 
@@ -48,7 +47,6 @@
 * [Assertable](interfaces/assertable.md)
 * [Locator](interfaces/locator.md)
 * [Matchable](interfaces/matchable.md)
-* [SearchContext](interfaces/searchcontext.md)
 
 ### Type aliases
 

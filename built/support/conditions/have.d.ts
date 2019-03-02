@@ -10,6 +10,10 @@ export declare namespace have {
     const valueContaining: (expected: string) => import("../../wait").Query<import("../../element").Element, void>;
     const cssClass: (cssClass: string) => import("../../wait").Query<import("../../element").Element, void>;
     const size: (size: number) => import("../../wait").Query<import("../../collection").Collection, void>;
+    const sizeLessThan: (size: number) => import("../../wait").Query<import("../../collection").Collection, void>;
+    const sizeLessThanOrEqual: (size: number) => import("../../wait").Query<import("../../collection").Collection, void>;
+    const sizeGreaterThan: (size: number) => import("../../wait").Query<import("../../collection").Collection, void>;
+    const sizeGreaterThanOrEqual: (size: number) => import("../../wait").Query<import("../../collection").Collection, void>;
     const texts: (...texts: string[]) => import("../../wait").Query<import("../../collection").Collection, void>;
     const exactTexts: (...texts: string[]) => import("../../wait").Query<import("../../collection").Collection, void>;
     const url: (url: string) => import("../../wait").Query<import("../../browser").Browser, void>;

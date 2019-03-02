@@ -8,8 +8,10 @@
 
 * [hasExactTexts](condition.collection.md#hasexacttexts)
 * [hasSize](condition.collection.md#hassize)
+* [hasSizeGreaterThan](condition.collection.md#hassizegreaterthan)
+* [hasSizeGreaterThanOrEqual](condition.collection.md#hassizegreaterthanorequal)
 * [hasSizeLessThan](condition.collection.md#hassizelessthan)
-* [hasSizeMoreThan](condition.collection.md#hassizemorethan)
+* [hasSizeLessThanOrEqual](condition.collection.md#hassizelessthanorequal)
 * [hasTexts](condition.collection.md#hastexts)
 
 ---
@@ -22,7 +24,7 @@
 
 ▸ **hasExactTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:233](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L233)*
+*Defined in [conditions.ts:241](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L241)*
 
 **Parameters:**
 
@@ -50,11 +52,28 @@ ___
 **Returns:** [CollectionCondition](../#collectioncondition)
 
 ___
-<a id="hassizelessthan"></a>
+<a id="hassizegreaterthan"></a>
 
-### `<Const>` hasSizeLessThan
+### `<Const>` hasSizeGreaterThan
 
-▸ **hasSizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSizeGreaterThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+
+*Defined in [conditions.ts:220](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L220)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [CollectionCondition](../#collectioncondition)
+
+___
+<a id="hassizegreaterthanorequal"></a>
+
+### `<Const>` hasSizeGreaterThanOrEqual
+
+▸ **hasSizeGreaterThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
 *Defined in [conditions.ts:224](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L224)*
 
@@ -67,13 +86,30 @@ ___
 **Returns:** [CollectionCondition](../#collectioncondition)
 
 ___
-<a id="hassizemorethan"></a>
+<a id="hassizelessthan"></a>
 
-### `<Const>` hasSizeMoreThan
+### `<Const>` hasSizeLessThan
 
-▸ **hasSizeMoreThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:220](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L220)*
+*Defined in [conditions.ts:228](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L228)*
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| size | `number` |
+
+**Returns:** [CollectionCondition](../#collectioncondition)
+
+___
+<a id="hassizelessthanorequal"></a>
+
+### `<Const>` hasSizeLessThanOrEqual
+
+▸ **hasSizeLessThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+
+*Defined in [conditions.ts:232](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L232)*
 
 **Parameters:**
 
@@ -90,7 +126,7 @@ ___
 
 ▸ **hasTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
-*Defined in [conditions.ts:229](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L229)*
+*Defined in [conditions.ts:237](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L237)*
 
 **Parameters:**
 

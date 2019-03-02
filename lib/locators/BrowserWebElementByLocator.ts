@@ -14,7 +14,6 @@
 
 import { By, WebElement } from 'selenium-webdriver';
 import { Locator } from './locator';
-import { SearchContext } from '../searchContext';
 import { Browser } from '../browser';
 
 

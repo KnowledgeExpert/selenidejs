@@ -102,8 +102,10 @@ export declare namespace condition {
     }
     namespace collection {
         const hasSize: (expected: number) => import("./wait").Query<Collection, void>;
-        const hasSizeMoreThan: (size: number) => import("./wait").Query<Collection, void>;
+        const hasSizeGreaterThan: (size: number) => import("./wait").Query<Collection, void>;
+        const hasSizeGreaterThanOrEqual: (size: number) => import("./wait").Query<Collection, void>;
         const hasSizeLessThan: (size: number) => import("./wait").Query<Collection, void>;
+        const hasSizeLessThanOrEqual: (size: number) => import("./wait").Query<Collection, void>;
         const hasTexts: (texts: string[]) => import("./wait").Query<Collection, void>;
         const hasExactTexts: (texts: string[]) => import("./wait").Query<Collection, void>;
     }

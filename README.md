@@ -97,7 +97,7 @@ THEN
     import { have } from 'selenidejs';
 
     await results.should(have.size(10));
-    await results.first().should(have.text('Selenium automates browsers'));
+    await results.first.should(have.text('Selenium automates browsers'));
 ```
 
 FINALLY

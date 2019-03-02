@@ -39,15 +39,6 @@ class Element extends entity_1.Entity {
     async getWebElement() {
         return this.locator.find();
     }
-    // /* SearchContext */
-    //
-    // async findWebElement(by: By): Promise<WebElement> {
-    //     return (await this.getWebElement()).findElement(by);
-    // }
-    //
-    // async findWebElements(by: By): Promise<WebElement[]> {
-    //     return (await this.getWebElement()).findElements(by);
-    // }
     /* Relative search */
     with(customConfig) {
         return new Element(this.locator, new configuration_1.Configuration(Object.assign({}, this.configuration, customConfig)));
@@ -60,22 +51,9 @@ class Element extends entity_1.Entity {
     get parent() {
         return this.element(by_1.by.xpath('./..'));
     }
-    followingSibling(predicate = '') {
-        // todo: should we move * to parameter to? like:
-        // followingSibling(tag = '*', predicate = ''): Element {
-        // or:
-        // followingSibling(tagAndPredicate = '*'): Element {
-        return this.element(by_1.by.xpath('./following-sibling::*' + predicate));
+    get followingSibling() {
+        return this.element(by_1.by.xpath('./following-sibling::*'));
     }
-    // todo: do we need element.visibleElement?
-    // why then not have browser.visibleElement?
-    // won't it confuse? and hide some "smelly" parts for locators...
-    // all.findBy(be.visible) is nevertheless not a good way to locate... it's kind of a workaround
-    // won't it be better to leave workarounds less shiny ans so kind of highlighted in a code?
-    // or should the name be more precise, like firstVisibleElement? (this probably is too much though...)
-    /*    visibleElement(cssOrXpathOrBy: string | By): Element {
-            return this.all(cssOrXpathOrBy).elementBy(be.visible);
-        }*/
     all(cssOrXpathOrBy) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);
         const locator = new ElementWebElementsByLocator_1.ElementWebElementsByLocator(by, this);
@@ -167,7 +145,6 @@ class Element extends entity_1.Entity {
     //     ));
     //     return this;
     // }
-    // todo: cover with tests element.press* methods...
     async pressEnter() {
         return this.type(selenium_webdriver_1.Key.ENTER);
     }

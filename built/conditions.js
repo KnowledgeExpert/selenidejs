@@ -157,8 +157,10 @@ var condition;
     let collection;
     (function (collection) {
         collection.hasSize = (expected) => utils_1.lambda(`has size ${expected}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.equals(expected)));
-        collection.hasSizeMoreThan = (size) => utils_1.lambda(`has size more than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isMoreThan(size)));
+        collection.hasSizeGreaterThan = (size) => utils_1.lambda(`has size more than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isGreaterThan(size)));
+        collection.hasSizeGreaterThanOrEqual = (size) => utils_1.lambda(`has size more than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isGreaterThanOrEqual(size)));
         collection.hasSizeLessThan = (size) => utils_1.lambda(`has size less than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isLessThan(size)));
+        collection.hasSizeLessThanOrEqual = (size) => utils_1.lambda(`has size less than ${size}`, throwIfNotActual(queries_1.query.size, predicates_1.predicate.isLessThanOrEqual(size)));
         // todo: should we filter collection for visibility before applying this condition?
         collection.hasTexts = (texts) => utils_1.lambda(`has texts ${texts}`, throwIfNotActual(queries_1.query.texts, predicates_1.predicate.equalsByContainsToArray(texts)));
         collection.hasExactTexts = (texts) => utils_1.lambda(`has exact texts ${texts}`, throwIfNotActual(queries_1.query.texts, predicates_1.predicate.equalsByContainsToArray(texts)));
@@ -171,7 +173,7 @@ var condition;
         browser_1.hasTitle = (title) => utils_1.lambda(`has title ${title}`, throwIfNotActual(queries_1.query.title, predicates_1.predicate.equals(title)));
         browser_1.hasTitleContaining = (partialTitle) => utils_1.lambda(`has title containing ${partialTitle}`, throwIfNotActual(queries_1.query.title, predicates_1.predicate.includes(partialTitle)));
         browser_1.hasTabsNumber = (num) => utils_1.lambda(`has tabs number ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.equals(num)));
-        browser_1.hasTabsNumberMoreThan = (num) => utils_1.lambda(`has tabs number more than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isMoreThan(num)));
+        browser_1.hasTabsNumberMoreThan = (num) => utils_1.lambda(`has tabs number more than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isGreaterThan(num)));
         browser_1.hasTabsNumberLessThan = (num) => utils_1.lambda(`has tabs number less than ${num}`, throwIfNotActual(queries_1.query.tabsNumber, predicates_1.predicate.isLessThan(num)));
         // todo: make it accept func
         /* tslint:disable:ban-types */

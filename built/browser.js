@@ -49,15 +49,6 @@ class Browser extends entity_1.Entity {
     toString() {
         return 'browser';
     }
-    // /* SearchContext */
-    //
-    // async findWebElement(by: By): Promise<WebElement> {
-    //     return this.driver.findElement(by);
-    // }
-    //
-    // async findWebElements(by: By): Promise<WebElement[]> {
-    //     return this.driver.findElements(by);
-    // }
     /* Elements */
     element(cssOrXpathOrBy, customized) {
         const by = extensions_1.Extensions.toBy(cssOrXpathOrBy);

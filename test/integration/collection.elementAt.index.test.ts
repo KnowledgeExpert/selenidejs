@@ -13,7 +13,9 @@
 // limitations under the License.
 
 import { browser, GIVEN, data, WHEN, driver } from './base';
-import { be, have } from '../../lib';
+import { be, find, have } from '../../lib';
+
+const something = async entity => { /*nothing;P*/ };
 
 describe('Collection get by index Element', () => {
 
@@ -23,9 +25,12 @@ describe('Collection get by index Element', () => {
         expect(element.toString()).toBeTruthy();
     });
 
-    it('search is postponed until asking actual element data like "has specific text?"', async () => {
+    it('search through then(find.elementAt(index)) ' +
+       'is postponed until asking actual element data like "has specific text?"',
+       async () => {
+
         await GIVEN.openedEmptyPage();
-        const element = browser.all('.will-exist').elementAt(1);
+        const element = await browser.all('.will-exist').perform(something).then(find.elementAt(1));
 
         await WHEN.withBody(`
                 <ul>Hello to:

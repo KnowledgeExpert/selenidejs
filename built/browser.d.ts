@@ -4,7 +4,7 @@ import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { Assertable, Entity, Matchable } from './entity';
-export declare class Browser extends Entity implements /*SearchContext, */ Assertable, Matchable {
+export declare class Browser extends Entity implements Assertable, Matchable {
     static configuredWith(): Customized<Browser>;
     static drivedBy(driver: WebDriver): Customized<Browser>;
     static chromeWith(): Customized<Browser>;

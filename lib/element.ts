@@ -23,9 +23,10 @@ import { Assertable, Entity, Matchable } from './entity';
 import { command } from './commands';
 import { ElementWebElementByLocator } from './locators/ElementWebElementByLocator';
 import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLocator';
+import { Condition } from './wait';
 
 
-export class Element extends Entity implements /*SearchContext, */Assertable, Matchable {
+export class Element extends Entity implements Assertable, Matchable {
     // todo: why not have private readonly driver property?
 
     constructor(private readonly locator: Locator<Promise<WebElement>>,
@@ -42,16 +43,6 @@ export class Element extends Entity implements /*SearchContext, */Assertable, Ma
     async getWebElement(): Promise<WebElement> {
         return this.locator.find();
     }
-
-    // /* SearchContext */
-    //
-    // async findWebElement(by: By): Promise<WebElement> {
-    //     return (await this.getWebElement()).findElement(by);
-    // }
-    //
-    // async findWebElements(by: By): Promise<WebElement[]> {
-    //     return (await this.getWebElement()).findElements(by);
-    // }
 
     /* Relative search */
 
@@ -70,23 +61,9 @@ export class Element extends Entity implements /*SearchContext, */Assertable, Ma
         return this.element(by.xpath('./..'));
     }
 
-    followingSibling(predicate: string = ''): Element {
-        // todo: should we move * to parameter to? like:
-        // followingSibling(tag = '*', predicate = ''): Element {
-        // or:
-        // followingSibling(tagAndPredicate = '*'): Element {
-        return this.element(by.xpath('./following-sibling::*' + predicate));
+    get followingSibling(): Element {
+        return this.element(by.xpath('./following-sibling::*'));
     }
-
-    // todo: do we need element.visibleElement?
-    // why then not have browser.visibleElement?
-    // won't it confuse? and hide some "smelly" parts for locators...
-    // all.findBy(be.visible) is nevertheless not a good way to locate... it's kind of a workaround
-    // won't it be better to leave workarounds less shiny ans so kind of highlighted in a code?
-    // or should the name be more precise, like firstVisibleElement? (this probably is too much though...)
-/*    visibleElement(cssOrXpathOrBy: string | By): Element {
-        return this.all(cssOrXpathOrBy).elementBy(be.visible);
-    }*/
 
     all(cssOrXpathOrBy: string | By): Collection {
         const by = Extensions.toBy(cssOrXpathOrBy);
@@ -201,8 +178,6 @@ export class Element extends Entity implements /*SearchContext, */Assertable, Ma
     //     ));
     //     return this;
     // }
-
-    // todo: cover with tests element.press* methods...
 
     async pressEnter() {
         return this.type(Key.ENTER);
