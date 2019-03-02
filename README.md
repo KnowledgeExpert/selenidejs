@@ -189,6 +189,10 @@ In case you want to be different) ...
    const browser = new Browser(Configuration.withDriver(driver).timeout(4000).build());
 ```
 
+### Examples
+
+[SelenideJS on top of Selenium Webdriver with Jasmine as test runner](https://github.com/KnowledgeExpert/selenidejs-webdriver-jasmine-example)
+
 ## Tutorials
 
 You can start with Typescript or Javascript tutorial to get familiar with basic and some advanced features of Selenidejs.
