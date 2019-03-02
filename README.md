@@ -9,11 +9,11 @@
 Wrapper for Selenium WebDriver, which provides testing user-oriented API for writing stable and readable UI tests in
 JavaScript/TypeScript.
 
-### Prerequisites
+## Prerequisites
 
 [Nodejs 8+](https://nodejs.org/en/)
 
-### Installing
+## Installing
 
 Install `selenidejs` via npm to your project:
 
@@ -21,7 +21,7 @@ Install `selenidejs` via npm to your project:
 npm i --save-dev selenidejs
 ```
 
-### Usage
+## Usage
 
 Set your webdriver instance:
 
@@ -33,7 +33,7 @@ const browser = Browser.drivedBy(webDriverInstance).build();
 
 And you are ready to go!
 
-## Quick Start and Examples
+## Quick Start
 
 ### Basic API
 
@@ -189,7 +189,7 @@ In case you want to be different) ...
    const browser = new Browser(Configuration.withDriver(driver).timeout(4000).build());
 ```
 
-### Examples
+## More Examples
 
 [SelenideJS on top of Selenium Webdriver with Jasmine as test runner](https://github.com/KnowledgeExpert/selenidejs-webdriver-jasmine-example)
 
