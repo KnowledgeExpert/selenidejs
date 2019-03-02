@@ -90,7 +90,7 @@ AND
     import { be } from 'selenidejs';
 
     const results = browser.all('.srg .g').filteredBy(be.visible);
-
+```
 
 THEN
 ```typescript
@@ -122,7 +122,7 @@ FINALLY
     // OR:
     import { perform } from 'selenidejs';
 
-        await browser.element(by.name('q')).setValue('selenium').then(perform.pressEnter);
+    await browser.element(by.name('q')).setValue('selenium').then(perform.pressEnter);
 
     // instead of
     const query = browser.element(by.name('q'));
@@ -166,7 +166,7 @@ Maybe one day, you really find a use case:) But for above cases, probably easier
         // do something...
     }
     ...
-    if (await browser.all('.i-will-appear').waitUntil(have.sizeMoreThanOrEqual(2))) {
+    if (await browser.all('.i-will-appear').waitUntil(have.sizeGreaterThanOrEqual(2))) {
         // do something...
     }
 ```
@@ -177,7 +177,7 @@ Or, by using non-waiting versions, if "you are in a rush":)...
         // do something...
     }
     ...
-    if (await browser.all('.i-will-appear').matching(have.sizeMoreThanOrEqual(2))) {
+    if (await browser.all('.i-will-appear').matching(have.sizeGreaterThanOrEqual(2))) {
         // do something...
     }
 ```
