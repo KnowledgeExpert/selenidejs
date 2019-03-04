@@ -12,20 +12,45 @@ const protractor_1 = require("protractor");
 const collection_1 = require("./collection");
 const cannotPerformActionError_1 = require("../errors/cannotPerformActionError");
 const be_1 = require("../conditions/helpers/be");
+const elementCondition_1 = require("../conditions/elementCondition");
 const wait_1 = require("../wait");
 const with_1 = require("../locators/with");
 const condition_1 = require("../conditions/condition");
 const byExtendedWebElementLocator_1 = require("./locators/byExtendedWebElementLocator");
 const utils_1 = require("../utils");
 const browser_1 = require("./browser");
+const _1 = require("../");
 class Element {
     constructor(locator) {
         this.locator = locator;
     }
     async click() {
-        await this.performActionOnVisible(async (element) => {
-            await (await element.getWebElement()).click();
-        }, 'click');
+        const DEFAULT_WAIT_TO_CLICK = true;
+        const WAIT_TO_CLICK = () => utils_1.Utils.getSelenidejsParam(`waitToClick`) || DEFAULT_WAIT_TO_CLICK;
+        const beClicked = new elementCondition_1.ElementCondition({
+            matches: async function (element) {
+                try {
+                    await (await element.getWebElement()).click();
+                }
+                catch (error) {
+                    throw new _1.ConditionDoesNotMatchError(`could not perform ${this.toString()} because of: ${error}`);
+                }
+                return element;
+            },
+            toString: function () {
+                return 'click';
+            }
+        });
+        if (WAIT_TO_CLICK()) {
+            await this.performActionOnVisible(async (element) => {
+                await element.should(beClicked);
+            }, 'click');
+        }
+        else {
+            await this.performActionOnVisible(async (element) => {
+                await (await element.getWebElement()).click();
+            }, 'click');
+        }
     }
     async clickByJS() {
         await this.performActionOnVisible(async (element) => {

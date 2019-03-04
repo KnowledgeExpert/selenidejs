@@ -26,6 +26,7 @@ import {Condition} from '../conditions/condition';
 import {ByExtendedWebElementLocator} from './locators/byExtendedWebElementLocator';
 import {Utils} from '../utils';
 import {Browser} from './browser';
+import { ConditionDoesNotMatchError } from '../';
 
 
 export class Element {
@@ -41,9 +42,32 @@ export class Element {
 
     @ActionHooks
     async click() {
-        await this.performActionOnVisible(async (element) => {
-            await (await element.getWebElement()).click();
-        }, 'click');
+        const DEFAULT_WAIT_TO_CLICK = true;
+        const WAIT_TO_CLICK = () => Utils.getSelenidejsParam(`waitToClick`) || DEFAULT_WAIT_TO_CLICK;
+
+        const beClicked: ElementCondition = new ElementCondition({
+            matches: async function (element: Element) {
+                try {
+                    await (await element.getWebElement()).click();
+                } catch (error) {
+                    throw new ConditionDoesNotMatchError(`could not perform ${this.toString()} because of: ${error}`);
+                }
+                return element;
+            },
+            toString: function () {
+                return 'click';
+            }
+        });
+
+        if (WAIT_TO_CLICK()) {
+            await this.performActionOnVisible(async (element) => {
+                await element.should(beClicked);
+            }, 'click');
+        } else {
+            await this.performActionOnVisible(async (element) => {
+                await (await element.getWebElement()).click();
+            }, 'click');
+        }
     }
 
     @ActionHooks
