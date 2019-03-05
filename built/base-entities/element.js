@@ -20,7 +20,6 @@ const byExtendedWebElementLocator_1 = require("./locators/byExtendedWebElementLo
 const utils_1 = require("../utils");
 const browser_1 = require("./browser");
 const _1 = require("../");
-var toBy = utils_1.Utils.toBy;
 class Element {
     constructor(locator) {
         this.locator = locator;
@@ -232,7 +231,7 @@ class Element {
         return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
     }
     element(cssOrXpathOrBy) {
-        return new Element(new byWebElementLocator_1.ByWebElementLocator(toBy(cssOrXpathOrBy), this));
+        return new Element(new byWebElementLocator_1.ByWebElementLocator(utils_1.toBy(cssOrXpathOrBy), this));
     }
     elementSmart(locator) {
         return new Element(new byExtendedWebElementLocator_1.ByExtendedWebElementLocator(locator, this));
@@ -241,7 +240,7 @@ class Element {
         return collection_1.all(cssSelector).findBy(be_1.be.visible);
     }
     all(cssOrXpathOrBy) {
-        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(toBy(cssOrXpathOrBy), this));
+        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(utils_1.toBy(cssOrXpathOrBy), this));
     }
     toString() {
         return this.locator.toString();
@@ -287,11 +286,11 @@ __decorate([
 ], Element.prototype, "scrollIntoView", null);
 exports.Element = Element;
 function element(cssOrXpathOrBy) {
-    return new Element(new byWebElementLocator_1.ByWebElementLocator(toBy(cssOrXpathOrBy)));
+    return new Element(new byWebElementLocator_1.ByWebElementLocator(utils_1.toBy(cssOrXpathOrBy)));
 }
 exports.element = element;
 function visibleElement(cssOrXpathOrBy) {
-    return collection_1.all(toBy(cssOrXpathOrBy)).findBy(be_1.be.visible);
+    return collection_1.all(utils_1.toBy(cssOrXpathOrBy)).findBy(be_1.be.visible);
 }
 exports.visibleElement = visibleElement;
 function elementSmart(locator) {

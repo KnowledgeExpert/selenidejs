@@ -20,7 +20,6 @@ const wait_1 = require("../wait");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const condition_1 = require("../conditions/condition");
 const utils_1 = require("../utils");
-var toBy = utils_1.Utils.toBy;
 class Collection {
     constructor(locator) {
         this.locator = locator;
@@ -64,7 +63,7 @@ class Collection {
 }
 exports.Collection = Collection;
 function all(cssOrXpathOrBy) {
-    return new Collection(new byWebElementsLocator_1.ByWebElementsLocator(toBy(cssOrXpathOrBy)));
+    return new Collection(new byWebElementsLocator_1.ByWebElementsLocator(utils_1.toBy(cssOrXpathOrBy)));
 }
 exports.all = all;
 //# sourceMappingURL=collection.js.map

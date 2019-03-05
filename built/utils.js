@@ -68,11 +68,11 @@ var Utils;
         return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join('.'));
     }
     Utils.getValueFromPath = getValueFromPath;
-    function toBy(cssOrXpathOrBy) {
-        return (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
-            : cssOrXpathOrBy;
-    }
-    Utils.toBy = toBy;
 })(Utils = exports.Utils || (exports.Utils = {}));
+function toBy(cssOrXpathOrBy) {
+    return (typeof cssOrXpathOrBy === 'string')
+        ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
+        : cssOrXpathOrBy;
+}
+exports.toBy = toBy;
 //# sourceMappingURL=utils.js.map

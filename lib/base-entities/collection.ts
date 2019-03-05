@@ -23,8 +23,7 @@ import {Wait} from '../wait';
 import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {With} from '../locators/with';
 import {Condition} from '../conditions/condition';
-import { Utils } from '../utils';
-import toBy = Utils.toBy;
+import { Utils, toBy } from '../utils';
 
 
 export class Collection {

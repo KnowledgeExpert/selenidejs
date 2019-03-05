@@ -25,7 +25,6 @@ const screenshot_1 = require("../screenshot");
 const utils_1 = require("../utils");
 var Browser;
 (function (Browser) {
-    var toBy = utils_1.Utils.toBy;
     function params(dotSeparatedPath) {
         return dotSeparatedPath ? utils_1.Utils.getValueFromPath(protractor_1.browser.params, dotSeparatedPath) : protractor_1.browser.params;
     }
@@ -58,11 +57,11 @@ var Browser;
     }
     Browser.resizeWindow = resizeWindow;
     function element(cssOrXpathOrBy) {
-        return new element_1.Element(new byWebElementLocator_1.ByWebElementLocator(toBy(cssOrXpathOrBy)));
+        return new element_1.Element(new byWebElementLocator_1.ByWebElementLocator(utils_1.toBy(cssOrXpathOrBy)));
     }
     Browser.element = element;
     function all(cssOrXpathOrBy) {
-        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(toBy(cssOrXpathOrBy)));
+        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(utils_1.toBy(cssOrXpathOrBy)));
     }
     Browser.all = all;
     async function should(condition, timeout) {

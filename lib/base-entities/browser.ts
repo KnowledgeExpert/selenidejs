@@ -19,16 +19,14 @@ import {BrowserCondition, Condition} from '..';
 import {Wait} from '../wait';
 import {ActionSequence, By} from 'selenium-webdriver';
 import {ByWebElementLocator} from './locators/byWebElementLocator';
-import {With} from '../locators/with';
 import {Collection} from './collection';
 import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {Screenshot} from '../screenshot';
-import {Utils} from '../utils';
+import {toBy, Utils} from '../utils';
 
 
 export namespace Browser {
 
-    import toBy = Utils.toBy;
 
     export function params(dotSeparatedPath?: string): any {
         return dotSeparatedPath ? Utils.getValueFromPath(browser.params, dotSeparatedPath) : browser.params;

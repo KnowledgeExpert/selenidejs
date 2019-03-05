@@ -69,10 +69,10 @@ export namespace Utils {
         return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join('.'));
     }
 
-    export function toBy(cssOrXpathOrBy: string | By): By {  // todo: probably we need to enhance xpath identification
-        return (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
-            : cssOrXpathOrBy;
-    }
+}
 
+export function toBy(cssOrXpathOrBy: string | By): By {  // todo: probably we need to enhance xpath identification
+    return (typeof cssOrXpathOrBy === 'string')
+        ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
+        : cssOrXpathOrBy;
 }

@@ -24,10 +24,9 @@ import {Wait} from '../wait';
 import {With} from '../locators/with';
 import {Condition} from '../conditions/condition';
 import {ByExtendedWebElementLocator} from './locators/byExtendedWebElementLocator';
-import {Utils} from '../utils';
+import {toBy, Utils} from '../utils';
 import {Browser} from './browser';
 import { ConditionDoesNotMatchError } from '../';
-import toBy = Utils.toBy;
 
 
 export class Element {

@@ -5,5 +5,5 @@ export declare namespace Utils {
     function buildFilePath(path: string): void;
     function getSelenidejsParam(dotSeparatedPath: string): any;
     function getValueFromPath(obj: any, objPath: string): any;
-    function toBy(cssOrXpathOrBy: string | By): By;
 }
+export declare function toBy(cssOrXpathOrBy: string | By): By;
