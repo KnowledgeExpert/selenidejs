@@ -15,6 +15,8 @@
 import {Browser} from './base-entities/browser';
 import * as fs from 'fs';
 import * as path from 'path';
+import { By } from 'selenium-webdriver';
+import { With } from './locators/with';
 
 
 export namespace Utils {
@@ -65,6 +67,12 @@ export namespace Utils {
         if (obj === null) return null;
         const parts = objPath.split('.');
         return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join('.'));
+    }
+
+    export function toBy(cssOrXpathOrBy: string | By): By {  // todo: probably we need to enhance xpath identification
+        return (typeof cssOrXpathOrBy === 'string')
+            ? cssOrXpathOrBy.includes('/') ? With.xpath(cssOrXpathOrBy) : With.css(cssOrXpathOrBy)
+            : cssOrXpathOrBy;
     }
 
 }

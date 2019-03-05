@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const browser_1 = require("./base-entities/browser");
 const fs = require("fs");
 const path = require("path");
+const with_1 = require("./locators/with");
 var Utils;
 (function (Utils) {
     const DEFAULT_SCREENSHOT_PATH = path.resolve('./screenshots');
@@ -67,5 +68,11 @@ var Utils;
         return parts.length === 1 ? obj[parts[0]] : getValueFromPath(obj[parts[0]], parts.slice(1).join('.'));
     }
     Utils.getValueFromPath = getValueFromPath;
+    function toBy(cssOrXpathOrBy) {
+        return (typeof cssOrXpathOrBy === 'string')
+            ? cssOrXpathOrBy.includes('/') ? with_1.With.xpath(cssOrXpathOrBy) : with_1.With.css(cssOrXpathOrBy)
+            : cssOrXpathOrBy;
+    }
+    Utils.toBy = toBy;
 })(Utils = exports.Utils || (exports.Utils = {}));
 //# sourceMappingURL=utils.js.map

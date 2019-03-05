@@ -19,13 +19,13 @@ const be_1 = require("../conditions/helpers/be");
 const __1 = require("..");
 const wait_1 = require("../wait");
 const byWebElementLocator_1 = require("./locators/byWebElementLocator");
-const with_1 = require("../locators/with");
 const collection_1 = require("./collection");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const screenshot_1 = require("../screenshot");
 const utils_1 = require("../utils");
 var Browser;
 (function (Browser) {
+    var toBy = utils_1.Utils.toBy;
     function params(dotSeparatedPath) {
         return dotSeparatedPath ? utils_1.Utils.getValueFromPath(protractor_1.browser.params, dotSeparatedPath) : protractor_1.browser.params;
     }
@@ -57,16 +57,12 @@ var Browser;
         await protractor_1.browser.manage().window().setSize(width, height);
     }
     Browser.resizeWindow = resizeWindow;
-    function element(locator) {
-        return new element_1.Element(new byWebElementLocator_1.ByWebElementLocator(typeof locator === 'string'
-            ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
-            : locator));
+    function element(cssOrXpathOrBy) {
+        return new element_1.Element(new byWebElementLocator_1.ByWebElementLocator(toBy(cssOrXpathOrBy)));
     }
     Browser.element = element;
-    function all(locator) {
-        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === 'string'
-            ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
-            : locator));
+    function all(cssOrXpathOrBy) {
+        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(toBy(cssOrXpathOrBy)));
     }
     Browser.all = all;
     async function should(condition, timeout) {

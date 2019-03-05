@@ -19,4 +19,4 @@ export declare class Collection {
     getWebElements(): Promise<WebElement[]>;
     toString(): string;
 }
-export declare function all(locator: string | By): Collection;
+export declare function all(cssOrXpathOrBy: string | By): Collection;

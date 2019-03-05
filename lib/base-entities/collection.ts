@@ -23,6 +23,8 @@ import {Wait} from '../wait';
 import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {With} from '../locators/with';
 import {Condition} from '../conditions/condition';
+import { Utils } from '../utils';
+import toBy = Utils.toBy;
 
 
 export class Collection {
@@ -82,8 +84,6 @@ export class Collection {
     }
 }
 
-export function all(locator: string | By): Collection {
-    return new Collection(new ByWebElementsLocator(typeof locator === 'string'
-        ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
-        : locator));
+export function all(cssOrXpathOrBy: string | By): Collection {
+    return new Collection(new ByWebElementsLocator(toBy(cssOrXpathOrBy)));
 }

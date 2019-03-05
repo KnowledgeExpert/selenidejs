@@ -36,12 +36,12 @@ export declare class Element {
     private performActionOnVisible(action, actionName);
     parent(): Element;
     followingSibling(predicate?: string): Element;
-    element(cssOrLocator: string | By): Element;
+    element(cssOrXpathOrBy: string | By): Element;
     elementSmart(locator: string): Element;
     visibleElement(cssSelector: string): Element;
-    all(locator: string | By): Collection;
+    all(cssOrXpathOrBy: string | By): Collection;
     toString(): string;
 }
-export declare function element(locator: string | By): Element;
-export declare function visibleElement(cssSelector: string): Element;
+export declare function element(cssOrXpathOrBy: string | By): Element;
+export declare function visibleElement(cssOrXpathOrBy: string | By): Element;
 export declare function elementSmart(locator: string): Element;

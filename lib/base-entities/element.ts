@@ -27,6 +27,7 @@ import {ByExtendedWebElementLocator} from './locators/byExtendedWebElementLocato
 import {Utils} from '../utils';
 import {Browser} from './browser';
 import { ConditionDoesNotMatchError } from '../';
+import toBy = Utils.toBy;
 
 
 export class Element {
@@ -287,8 +288,8 @@ export class Element {
         return this.element(With.xpath('./following-sibling::*' + predicate));
     }
 
-    element(cssOrLocator: string | By): Element {
-        return new Element(new ByWebElementLocator((typeof cssOrLocator === 'string' ? With.css(cssOrLocator) : cssOrLocator), this));
+    element(cssOrXpathOrBy: string | By): Element {
+        return new Element(new ByWebElementLocator(toBy(cssOrXpathOrBy), this));
     }
 
     elementSmart(locator: string): Element {
@@ -299,10 +300,8 @@ export class Element {
         return all(cssSelector).findBy(be.visible);
     }
 
-    all(locator: string | By): Collection {
-        return new Collection(new ByWebElementsLocator(typeof locator === 'string'
-            ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
-            : locator,
+    all(cssOrXpathOrBy: string | By): Collection {
+        return new Collection(new ByWebElementsLocator(toBy(cssOrXpathOrBy),
             this));
     }
 
@@ -311,14 +310,12 @@ export class Element {
     }
 }
 
-export function element(locator: string | By): Element {
-    return new Element(new ByWebElementLocator(typeof locator === 'string'
-        ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
-        : locator));
+export function element(cssOrXpathOrBy: string | By): Element {
+    return new Element(new ByWebElementLocator(toBy(cssOrXpathOrBy)));
 }
 
-export function visibleElement(cssSelector: string): Element {
-    return all(cssSelector).findBy(be.visible);
+export function visibleElement(cssOrXpathOrBy: string | By): Element {
+    return all(toBy(cssOrXpathOrBy)).findBy(be.visible);
 }
 
 export function elementSmart(locator: string): Element {

@@ -28,6 +28,8 @@ import {Utils} from '../utils';
 
 export namespace Browser {
 
+    import toBy = Utils.toBy;
+
     export function params(dotSeparatedPath?: string): any {
         return dotSeparatedPath ? Utils.getValueFromPath(browser.params, dotSeparatedPath) : browser.params;
     }
@@ -59,16 +61,12 @@ export namespace Browser {
         await browser.manage().window().setSize(width, height);
     }
 
-    export function element(locator: string | By): Element {
-        return new Element(new ByWebElementLocator(typeof locator === 'string'
-            ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
-            : locator))
+    export function element(cssOrXpathOrBy: string | By): Element {
+        return new Element(new ByWebElementLocator(toBy(cssOrXpathOrBy)));
     }
 
-    export function all(locator: string | By): Collection {
-        return new Collection(new ByWebElementsLocator(typeof locator === 'string'
-            ? locator.includes('/') ? With.xpath(locator) : With.css(locator)
-            : locator));
+    export function all(cssOrXpathOrBy: string | By): Collection {
+        return new Collection(new ByWebElementsLocator(toBy(cssOrXpathOrBy)));
     }
 
     export async function should(condition: BrowserCondition, timeout?: number): Promise<ProtractorBrowser> {

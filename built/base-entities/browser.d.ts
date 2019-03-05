@@ -12,8 +12,8 @@ export declare namespace Browser {
     function screenshot(): Promise<string>;
     function fullpageScreenshot(): Promise<Buffer>;
     function resizeWindow(width: number, height: number): Promise<void>;
-    function element(locator: string | By): Element;
-    function all(locator: string | By): Collection;
+    function element(cssOrXpathOrBy: string | By): Element;
+    function all(cssOrXpathOrBy: string | By): Collection;
     function should(condition: BrowserCondition, timeout?: number): Promise<ProtractorBrowser>;
     function shouldNot(condition: BrowserCondition, timeout?: number): Promise<ProtractorBrowser>;
     function is(condition: BrowserCondition, timeout?: number): Promise<boolean>;

@@ -20,6 +20,7 @@ const byExtendedWebElementLocator_1 = require("./locators/byExtendedWebElementLo
 const utils_1 = require("../utils");
 const browser_1 = require("./browser");
 const _1 = require("../");
+var toBy = utils_1.Utils.toBy;
 class Element {
     constructor(locator) {
         this.locator = locator;
@@ -230,8 +231,8 @@ class Element {
     followingSibling(predicate = '') {
         return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
     }
-    element(cssOrLocator) {
-        return new Element(new byWebElementLocator_1.ByWebElementLocator((typeof cssOrLocator === 'string' ? with_1.With.css(cssOrLocator) : cssOrLocator), this));
+    element(cssOrXpathOrBy) {
+        return new Element(new byWebElementLocator_1.ByWebElementLocator(toBy(cssOrXpathOrBy), this));
     }
     elementSmart(locator) {
         return new Element(new byExtendedWebElementLocator_1.ByExtendedWebElementLocator(locator, this));
@@ -239,10 +240,8 @@ class Element {
     visibleElement(cssSelector) {
         return collection_1.all(cssSelector).findBy(be_1.be.visible);
     }
-    all(locator) {
-        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(typeof locator === 'string'
-            ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
-            : locator, this));
+    all(cssOrXpathOrBy) {
+        return new collection_1.Collection(new byWebElementsLocator_1.ByWebElementsLocator(toBy(cssOrXpathOrBy), this));
     }
     toString() {
         return this.locator.toString();
@@ -287,14 +286,12 @@ __decorate([
     ActionHooks
 ], Element.prototype, "scrollIntoView", null);
 exports.Element = Element;
-function element(locator) {
-    return new Element(new byWebElementLocator_1.ByWebElementLocator(typeof locator === 'string'
-        ? locator.includes('/') ? with_1.With.xpath(locator) : with_1.With.css(locator)
-        : locator));
+function element(cssOrXpathOrBy) {
+    return new Element(new byWebElementLocator_1.ByWebElementLocator(toBy(cssOrXpathOrBy)));
 }
 exports.element = element;
-function visibleElement(cssSelector) {
-    return collection_1.all(cssSelector).findBy(be_1.be.visible);
+function visibleElement(cssOrXpathOrBy) {
+    return collection_1.all(toBy(cssOrXpathOrBy)).findBy(be_1.be.visible);
 }
 exports.visibleElement = visibleElement;
 function elementSmart(locator) {
