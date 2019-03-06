@@ -18,6 +18,8 @@ export declare namespace Browser {
     function shouldNot(condition: BrowserCondition, timeout?: number): Promise<ProtractorBrowser>;
     function is(condition: BrowserCondition, timeout?: number): Promise<boolean>;
     function isNot(condition: BrowserCondition, timeout?: number): Promise<boolean>;
+    function matching(condition: BrowserCondition, timeout?: number): Promise<boolean>;
+    function matchingNot(condition: BrowserCondition, timeout?: number): Promise<boolean>;
     function executeScript(script: string | Function, ...args: any[]): Promise<{}>;
     function actions(): ActionSequence;
     function nextTab(): Promise<void>;

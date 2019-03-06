@@ -23,6 +23,8 @@ export declare class Element {
     shouldNot(condition: ElementCondition): Promise<Element>;
     is(condition: ElementCondition, timeout?: number): Promise<boolean>;
     isNot(condition: ElementCondition): Promise<boolean>;
+    matching(condition: ElementCondition, timeout?: number): Promise<boolean>;
+    matchingNot(condition: ElementCondition): Promise<boolean>;
     isVisible(): Promise<boolean>;
     isPresent(): Promise<boolean>;
     isAbsent(): Promise<boolean>;

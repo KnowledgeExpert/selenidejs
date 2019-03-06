@@ -180,6 +180,14 @@ export class Element {
         return await this.is(Condition.not(condition));
     }
 
+    async matching(condition: ElementCondition, timeout?: number): Promise<boolean> {
+        return await Wait.isMatch(this, condition, timeout);
+    }
+
+    async matchingNot(condition: ElementCondition): Promise<boolean> {
+        return await this.is(Condition.not(condition));
+    }
+
     async isVisible(): Promise<boolean> {
         return await (await this.getWebElement()).isDisplayed();
     }

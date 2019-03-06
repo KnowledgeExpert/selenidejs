@@ -10,6 +10,8 @@ export declare class Collection {
     shouldNot(condition: CollectionCondition, timeout?: number): Promise<Collection>;
     is(condition: CollectionCondition, timeout?: number): Promise<boolean>;
     isNot(condition: CollectionCondition, timeout?: number): Promise<boolean>;
+    matching(condition: CollectionCondition, timeout?: number): Promise<boolean>;
+    matchingNot(condition: CollectionCondition, timeout?: number): Promise<boolean>;
     get(index: number): Element;
     first(): Element;
     filter(condition: ElementCondition): Collection;

@@ -36,6 +36,12 @@ class Collection {
     async isNot(condition, timeout) {
         return await this.is(condition_1.Condition.not(condition), timeout);
     }
+    async matching(condition, timeout) {
+        return timeout ? await wait_1.Wait.isMatch(this, condition, timeout) : await wait_1.Wait.isMatch(this, condition);
+    }
+    async matchingNot(condition, timeout) {
+        return await this.is(condition_1.Condition.not(condition), timeout);
+    }
     get(index) {
         return new element_1.Element(new byIndexedWebElementLocator_1.ByIndexedWebElementLocator(index, this));
     }

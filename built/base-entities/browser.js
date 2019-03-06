@@ -80,6 +80,14 @@ var Browser;
         return await is(__1.Condition.not(condition), timeout);
     }
     Browser.isNot = isNot;
+    async function matching(condition, timeout) {
+        return timeout ? await wait_1.Wait.isMatch(protractor_1.browser, condition, timeout) : await wait_1.Wait.isMatch(protractor_1.browser, condition);
+    }
+    Browser.matching = matching;
+    async function matchingNot(condition, timeout) {
+        return await is(__1.Condition.not(condition), timeout);
+    }
+    Browser.matchingNot = matchingNot;
     async function executeScript(script, ...args) {
         return await protractor_1.browser.executeScript(script, args);
     }

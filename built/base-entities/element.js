@@ -132,6 +132,12 @@ class Element {
     async isNot(condition) {
         return await this.is(condition_1.Condition.not(condition));
     }
+    async matching(condition, timeout) {
+        return await wait_1.Wait.isMatch(this, condition, timeout);
+    }
+    async matchingNot(condition) {
+        return await this.is(condition_1.Condition.not(condition));
+    }
     async isVisible() {
         return await (await this.getWebElement()).isDisplayed();
     }

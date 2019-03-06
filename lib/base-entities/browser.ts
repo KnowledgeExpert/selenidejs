@@ -83,6 +83,14 @@ export namespace Browser {
         return await is(Condition.not(condition), timeout);
     }
 
+    export async function matching(condition: BrowserCondition, timeout?: number): Promise<boolean> {
+        return timeout ? await Wait.isMatch(browser, condition, timeout) : await Wait.isMatch(browser, condition);
+    }
+
+    export async function matchingNot(condition: BrowserCondition, timeout?: number): Promise<boolean> {
+        return await is(Condition.not(condition), timeout);
+    }
+
     export async function executeScript(script: string | Function, ...args: any[]) {
         return await browser.executeScript(script, args);
     }

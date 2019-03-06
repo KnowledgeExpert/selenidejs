@@ -50,6 +50,14 @@ export class Collection {
         return await this.is(Condition.not(condition), timeout);
     }
 
+    async matching(condition: CollectionCondition, timeout?: number): Promise<boolean> {
+        return timeout ? await Wait.isMatch(this, condition, timeout) : await Wait.isMatch(this, condition);
+    }
+
+    async matchingNot(condition: CollectionCondition, timeout?: number): Promise<boolean> {
+        return await this.is(Condition.not(condition), timeout);
+    }
+
     get(index: number): Element {
         return new Element(new ByIndexedWebElementLocator(index, this));
     }
