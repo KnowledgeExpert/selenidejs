@@ -11,6 +11,7 @@ export declare class Element {
     clickByJS(): Promise<void>;
     setValue(value: string | number): Promise<void>;
     setValueByJS(value: string | number): Promise<void>;
+    executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]): Promise<{}>;
     sendKeys(value: string | number): Promise<void>;
     doubleClick(): Promise<void>;
     hover(): Promise<void>;

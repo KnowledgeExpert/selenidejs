@@ -69,15 +69,33 @@ class Element {
     }
     async setValueByJS(value) {
         await this.performActionOnVisible(async (element) => {
-            await (await element.getWebElement()).clear();
-            await browser_1.Browser.executeScript(`return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text 
-                            : text.length <= maxlength ? text 
+            await element.executeScript(`return (function(element, text) {
+                        var maxlength = element.getAttribute('maxlength') === null
+                            ? -1
+                            : parseInt(element.getAttribute('maxlength'));
+                        element.value = maxlength === -1
+                            ? text
+                            : text.length <= maxlength
+                                ? text
                                 : text.substring(0, maxlength);
-                    return null;
-                    })(arguments[0], arguments[1]);`, await this.getWebElement(), String(value));
-        }, 'setValueByJS');
+                        return null;
+                    })(arguments[0], arguments[1]);`, String(value));
+        }, 'setValueByJs');
+        // await this.performActionOnVisible(async (element) => {
+        //     await (await element.getWebElement()).clear();
+        //     await Browser.executeScript(
+        //         `return (function(webelement, text) {
+        //             var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
+        //             webelement.value = maxlength == -1 ? text
+        //                     : text.length <= maxlength ? text
+        //                         : text.substring(0, maxlength);
+        //             return null;
+        //             })(arguments[0], arguments[1]);`,
+        //         await this.getWebElement(), String(value));
+        // }, 'setValueByJS');
+    }
+    async executeScript(scriptOnThisWebElement, ...additionalArgs) {
+        return browser_1.Browser.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async sendKeys(value) {
         await this.performActionOnVisible(async (element) => {
@@ -266,6 +284,9 @@ __decorate([
 __decorate([
     ActionHooks
 ], Element.prototype, "setValueByJS", null);
+__decorate([
+    ActionHooks
+], Element.prototype, "executeScript", null);
 __decorate([
     ActionHooks
 ], Element.prototype, "sendKeys", null);

@@ -93,18 +93,41 @@ export class Element {
 
     @ActionHooks
     async setValueByJS(value: string | number) {
-        await this.performActionOnVisible(async (element) => {
-            await (await element.getWebElement()).clear();
-            await Browser.executeScript(
-                `return (function(webelement, text) {
-                    var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
-                    webelement.value = maxlength == -1 ? text 
-                            : text.length <= maxlength ? text 
+        await this.performActionOnVisible(async (element: Element) => {
+            await element.executeScript(
+                `return (function(element, text) {
+                        var maxlength = element.getAttribute('maxlength') === null
+                            ? -1
+                            : parseInt(element.getAttribute('maxlength'));
+                        element.value = maxlength === -1
+                            ? text
+                            : text.length <= maxlength
+                                ? text
                                 : text.substring(0, maxlength);
-                    return null;
+                        return null;
                     })(arguments[0], arguments[1]);`,
-                await this.getWebElement(), String(value));
-        }, 'setValueByJS');
+                String(value)
+            );
+        }, 'setValueByJs');
+        // await this.performActionOnVisible(async (element) => {
+        //     await (await element.getWebElement()).clear();
+        //     await Browser.executeScript(
+        //         `return (function(webelement, text) {
+        //             var maxlength = webelement.getAttribute('maxlength') == null ? -1 : parseInt(webelement.getAttribute('maxlength'));
+        //             webelement.value = maxlength == -1 ? text
+        //                     : text.length <= maxlength ? text
+        //                         : text.substring(0, maxlength);
+        //             return null;
+        //             })(arguments[0], arguments[1]);`,
+        //         await this.getWebElement(), String(value));
+        // }, 'setValueByJS');
+    }
+
+    @ActionHooks
+    async executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]) {
+        return Browser.executeScript(
+            scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
+        );
     }
 
     @ActionHooks
