@@ -14,7 +14,7 @@
 import {Locator} from './locators/locator';
 import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {ByWebElementLocator} from './locators/byWebElementLocator';
-import {protractor} from 'protractor';
+import { browser, protractor } from 'protractor';
 import {all, Collection} from './collection';
 import {By, WebElement} from 'selenium-webdriver';
 import {CannotPerformActionError} from '../errors/cannotPerformActionError';
@@ -125,7 +125,7 @@ export class Element {
 
     @ActionHooks
     async executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]) {
-        return Browser.executeScript(
+        return browser.executeScript(
             scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
         );
     }

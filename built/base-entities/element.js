@@ -95,7 +95,7 @@ class Element {
         // }, 'setValueByJS');
     }
     async executeScript(scriptOnThisWebElement, ...additionalArgs) {
-        return browser_1.Browser.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
+        return protractor_1.browser.executeScript(scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs);
     }
     async sendKeys(value) {
         await this.performActionOnVisible(async (element) => {
