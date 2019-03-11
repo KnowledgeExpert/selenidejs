@@ -238,12 +238,17 @@ npm run lint
 
 we use [npm](https://www.npmjs.com/) for versioning. for the versions available, see the [npm](https://www.npmjs.com/package/selenidejs#versions) or github [releases](https://github.com/knowledgeexpert/selenidejs/releases).
 
-## Authors
+## History & Contributors
 
-* **Iakiv Kramarenko** - *initial work* - [yashaka](https://github.com/yashaka)
-* **Alexander Popov** - *initial work* - [aleksanderpopov](https://github.com/aleksanderpopov)
+The Selenide was originally started to be ported from Java to JavaScript by [@yashaka](https://github.com/yashaka) (Iakiv Kramarenko) in the [selenejs](https://github.com/automician/selenejs) repository (originally named also as selenidejs).
 
-see also the full list of current [contributors](https://github.com/knowledgeexpert/selenidejs/contributors) who participated in this project.
+Then Knowledge Expert picked the Iakiv's race, and under Iakiv's leadership rewrote the initial draft implementation in TypeScript. [@aleksanderpopov](https://github.com/aleksanderpopov) (Alexander Popov) put main efforts in the beginning to build the first working version.
+
+In Feb 2019, after refining the API and hardening the implementation, the 1.0 version was released.
+
+See the [CHANGELOG](CHANGELOG.md) for details of all further development details and changes.
+
+See also the full list of [contributors](https://github.com/knowledgeexpert/selenidejs/contributors) who participated in this project.
 
 ## License
 
