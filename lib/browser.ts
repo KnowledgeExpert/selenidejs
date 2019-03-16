@@ -29,13 +29,9 @@ export class Browser extends Entity implements Assertable, Matchable {
         return Customized.browser();
     }
 
-    static drivedBy(driver: WebDriver): Customized<Browser> {
-        return Browser.configuredWith().driver(driver);
-    }
-
     static chromeWith(): Customized<Browser> {
         return Browser
-            .drivedBy(new Builder().withCapabilities(Capabilities.chrome()).build());
+            .configuredWith().driver(new Builder().withCapabilities(Capabilities.chrome()).build());
     }
 
     static chrome(): Browser {

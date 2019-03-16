@@ -57,8 +57,8 @@ export function webelements(cssSelector: string) {
 beforeAll(async () => {
     driver = TestUtils.buildWebDriver();
 
-    browser = Browser
-        .drivedBy(driver)
+    browser = Browser.configuredWith()
+        .driver(driver)
         .timeout(data.timeouts.byDefault)
         .baseUrl(TestUtils.resourcesUrl())
         .build();

@@ -33,8 +33,6 @@
  *         .build();
  *
  *     // OR:
- *     // browser = Browser.drivedBy(driver).timeout(4000).baseUrl('https://google.com').build();
- *     // OR:
  *     // browser = Browser.chromeWith().timeout(4000).baseUrl('https://google.com').build();
  *
  *     // OR:

@@ -1,6 +1,11 @@
 # Changelog
 
-## 1.1.0 (in progress)
+## 1.2.0 (in progress)
+
+### BREAKING CHANGEs
+  * removed Browser.drivedBy (see [#88](https://github.com/KnowledgeExpert/selenidejs/issues/88))
+
+## 1.1.0 (released on 2019.03.02)
 
 ### BREAKING CHANGEs (hot fixing main release:D)
   * changed Collection#first

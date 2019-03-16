@@ -25,10 +25,10 @@ npm i --save-dev selenidejs
 
 Set your webdriver instance:
 
-```
-import { Browser } from "selenidejs";
+```typescript
+import { Browser } from 'selenidejs';
 const webDriverInstance = ...;
-const browser = Browser.drivedBy(webDriverInstance).build();
+const browser = Browser.configuredWith().driver(webDriverInstance).build();
 ```
 
 And you are ready to go!
@@ -55,9 +55,6 @@ WHEN
         .baseUrl('https://google.com')
         .timeout(4000)
         .build();
-
-    // OR:
-    // browser = Browser.drivedBy(webdriver).timeout(4000).baseUrl('https://google.com').build();
 
     // OR:
     // browser = Browser.chromeWith().timeout(4000).baseUrl('https://google.com').build();

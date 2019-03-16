@@ -69,8 +69,8 @@ beforeAll(async () => {
     const driver = new Builder().withCapabilities(Capabilities.chrome()).build();
     
     // now you can create your Browser instance and main entry point to SelenideJS API
-    browser = Browser
-        .drivedBy(driver)
+    browser = Browser.configuredWith()
+        .driver(driver)
         .timeout(5000) // this is MAXIMUM wait time for elements to be visible or match conditions
         .build();
 
