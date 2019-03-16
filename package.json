@@ -26,14 +26,15 @@
     "chromedriver": "^2.43.1"
   },
   "scripts": {
-    "clean": "rm -rf ./built && rm -f package-lock.json",
-    "compile-test": "tsc --skipLibCheck --project test",
-    "compile": "tsc --skipLibCheck --project lib",
+    "clean": "rm -rf ./built",
+    "compile-test": "npm run clean && tsc --skipLibCheck --project test",
+    "compile": "npm run clean && tsc --skipLibCheck --project lib",
     "startserver": "http-server ./resources -p 4445",
     "lint": "tslint --project lib",
-    "pretest": "npm run clean && npm run compile-test",
+    "pretest": "npm run compile-test",
     "test": "nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json",
-    "build": "npm run lint && npm run test && npm run clean && npm run compile && npm run generateDocs",
+    "build": "npm run lint && npm run test && npm run generateDocs",
+    "prepublish": "npm run compile",
     "generateDocs": "typedoc --theme markdown --mode file --readme none --tsconfig lib/tsconfig.json --out tsdocs --gitRevision master lib"
   },
   "repository": {
