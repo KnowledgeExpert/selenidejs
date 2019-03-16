@@ -53,7 +53,7 @@ ___
 
 *Inherited from Error.message*
 
-*Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:904*
+*Defined in /Users/alexanderpopov/projects/github/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:904*
 
 ___
 <a id="name"></a>
@@ -64,7 +64,7 @@ ___
 
 *Inherited from Error.name*
 
-*Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:903*
+*Defined in /Users/alexanderpopov/projects/github/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:903*
 
 ___
 <a id="stack"></a>
@@ -77,7 +77,7 @@ ___
 
 *Overrides Error.stack*
 
-*Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:905*
+*Defined in /Users/alexanderpopov/projects/github/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:905*
 
 ___
 <a id="error"></a>
@@ -86,7 +86,7 @@ ___
 
 **● Error**: *`ErrorConstructor`*
 
-*Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:914*
+*Defined in /Users/alexanderpopov/projects/github/selenidejs/node_modules/typescript/lib/lib.es5.d.ts:914*
 
 ___
 
