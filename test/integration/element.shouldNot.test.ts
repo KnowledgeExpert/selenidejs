@@ -28,7 +28,7 @@ describe('Element.shouldNot', () => {
         `);
         const started = new Date().getTime();
 
-        await browser.element('button').shouldNot(be.visible);
+        await browser.element('button').should(be.not.visible);
         expect(new Date().getTime() - started)
             .toBeLessThan(data.timeouts.smallest);
         expect(await (await webelement('button')).isDisplayed()).toBe(false);
@@ -38,7 +38,7 @@ describe('Element.shouldNot', () => {
         await GIVEN.openedEmptyPage();
         const started = new Date().getTime();
 
-        await browser.element('button').shouldNot(be.visible);
+        await browser.element('button').should(be.not.visible);
         expect(new Date().getTime() - started)
             .toBeLessThan(data.timeouts.smallest);
         expect(await (await webelements('button')).length).toBe(0);
@@ -56,7 +56,7 @@ describe('Element.shouldNot', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 
-        await browser.element('button').shouldNot(be.visible);
+        await browser.element('button').should(be.not.visible);
         expect(new Date().getTime() - started)
             .toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
         expect(await (await webelement('button')).isDisplayed())
@@ -75,13 +75,13 @@ describe('Element.shouldNot', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 
-        await browser.element('button').shouldNot(be.visible)
+        await browser.element('button').should(be.not.visible)
             .then(ifNoError => fail('should fail on timeout before element becomes not visible'))
             .catch(async error => {
-                expect(new Date().getTime() - started)
-                    .toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(await (await webelement('button')).isDisplayed())
                     .toBe(true);
+                expect(new Date().getTime() - started)
+                    .toBeGreaterThanOrEqual(data.timeouts.byDefault);
             });
     });
 
@@ -101,7 +101,7 @@ describe('Element.shouldNot', () => {
             .toBe(true);
 
         await (await
-              browser.element('button').shouldNot(be.visible)).shouldNot(be.enabled);
+              browser.element('button').should(be.not.visible)).should(be.not.enabled);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
         expect(await (await webelement('button')).isEnabled())

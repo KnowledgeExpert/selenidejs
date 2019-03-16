@@ -28,7 +28,7 @@ describe('Element.waitUntilNot as "waiting predicate"', () => {
         `);
         const started = new Date().getTime();
 
-        await browser.element('button').waitUntilNot(be.visible);
+        await browser.element('button').waitUntil(be.not.visible);
         expect(new Date().getTime() - started)
             .toBeLessThan(data.timeouts.smallest);
         expect(await (await webelement('button')).isDisplayed()).toBe(false);
@@ -38,7 +38,7 @@ describe('Element.waitUntilNot as "waiting predicate"', () => {
         await GIVEN.openedEmptyPage();
         const started = new Date().getTime();
 
-        await browser.element('button').waitUntilNot(be.visible);
+        await browser.element('button').waitUntil(be.not.visible);
         expect(new Date().getTime() - started)
             .toBeLessThan(data.timeouts.smallest);
         expect(await (await webelements('button')).length).toBe(0);
@@ -57,7 +57,7 @@ describe('Element.waitUntilNot as "waiting predicate"', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 
-        expect(await browser.element('button').waitUntilNot(be.visible)).toBe(true);
+        expect(await browser.element('button').waitUntil(be.not.visible)).toBe(true);
         expect(new Date().getTime() - started)
             .toBeGreaterThanOrEqual(data.timeouts.smallerThanDefault);
         expect(await (await webelement('button')).isDisplayed())
@@ -76,7 +76,7 @@ describe('Element.waitUntilNot as "waiting predicate"', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 
-        await browser.element('button').waitUntilNot(be.visible)
+        await browser.element('button').waitUntil(be.not.visible)
             .then(async resIfNoError => {
                 expect(resIfNoError).toBe(false);
                 expect(await (await webelement('button')).isDisplayed())

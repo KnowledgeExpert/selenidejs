@@ -19,7 +19,4 @@ export namespace should {
 
     export const match = <T extends Assertable>(condition: Condition<T>) =>
         (entity: T) => entity.should(condition);
-
-    export const notMatch = <T extends Assertable>(condition: Condition<T>) =>
-        (entity: T) => entity.shouldNot(condition);
 }

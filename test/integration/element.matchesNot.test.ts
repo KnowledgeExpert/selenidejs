@@ -33,7 +33,7 @@ describe('Element.matchesNot as negated condition based "predicate"', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
 
-        expect(await browser.element('button').matchingNot(be.visible)).toBe(true);
+        expect(await browser.element('button').matching(be.not.visible)).toBe(true);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(false);
     });
@@ -46,7 +46,7 @@ describe('Element.matchesNot as negated condition based "predicate"', () => {
             data.timeouts.smallerThanDefault
         );
 
-        expect(await browser.element('button').matchingNot(be.visible)).toBe(true);
+        expect(await browser.element('button').matching(be.not.visible)).toBe(true);
         try {
             await webelement('button');
             // ifNoError
@@ -69,7 +69,7 @@ describe('Element.matchesNot as negated condition based "predicate"', () => {
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
 
-        expect(await browser.element('button').matchingNot(be.visible)).toBe(false);
+        expect(await browser.element('button').matching(be.not.visible)).toBe(false);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
     });

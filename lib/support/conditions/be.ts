@@ -14,23 +14,36 @@
 
 // todo: consider delete
 import { condition, ElementCondition } from '../../conditions';
+import { Condition } from '../../wait';
 
-export namespace be {
-    export const selected: ElementCondition = condition.element.isSelected;
+class Be {
+    readonly selected: ElementCondition = condition.element.isSelected;
 
-    export const absent: ElementCondition = condition.element.isAbsent;
+    readonly absent: ElementCondition = condition.element.isAbsent;
 
-    export const present: ElementCondition = condition.element.isPresent;
+    readonly present: ElementCondition = condition.element.isPresent;
 
-    export const visible: ElementCondition = condition.element.isVisible;
+    readonly visible: ElementCondition = condition.element.isVisible;
 
-    export const hidden: ElementCondition = condition.element.isHidden;
+    readonly hidden: ElementCondition = condition.element.isHidden;
 
-    export const focused: ElementCondition = condition.element.isFocused;
+    readonly focused: ElementCondition = condition.element.isFocused;
 
-    export const enabled: ElementCondition = condition.element.isEnabled;
+    readonly enabled: ElementCondition = condition.element.isEnabled;
 
-    export const disabled: ElementCondition = condition.element.isDisabled;
+    readonly disabled: ElementCondition = condition.element.isDisabled;
 
-    export const blank: ElementCondition = condition.element.isBlank;
+    readonly blank: ElementCondition = condition.element.isBlank;
 }
+
+const not = new Proxy(new Be(), {
+    get: (target, name) => {
+        return name in target ?
+            // (...args) => Condition.not(target[name](...args)) :
+            Condition.not(target[name]) :
+            undefined;
+    }
+});
+
+export const be = { ...new Be(), not };
+

@@ -36,14 +36,11 @@ import { Configuration, OnEntityFailureHook } from './configuration';
  */
 export interface Assertable {
     should(condition: Condition<this>): Promise<this>;
-    shouldNot(condition: Condition<this>): Promise<this>;
 }
 
 export interface Matchable {
     waitUntil(...conditions: Array<Condition<this>>): Promise<boolean>;
-    waitUntilNot(...conditions: Array<Condition<this>>): Promise<boolean>;
     matching(condition: Condition<this>): Promise<boolean>;
-    matchingNot(condition: Condition<this>): Promise<boolean>;
 }
 /* todo: discuss somewhere do we need it or not... (it could be used mainly in onFailureHooks)
 export interface Configured {
@@ -82,28 +79,14 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
         return this;
     }
 
-    async shouldNot(...conditions: Array<Condition<this>>): Promise<this> {
-        await this.wait.query(Condition.allNot(...conditions));
-        return this;
-    }
-
     /* Matchable */
 
     async waitUntil(...conditions: Array<Condition<this>>): Promise<boolean> {
         return this.wait.until(...conditions);
     }
 
-    async waitUntilNot(...conditions: Array<Condition<this>>)
-    : Promise<boolean> {
-        return this.wait.untilNot(...conditions);
-    }
-
     async matching(...conditions: Array<Condition<this>>): Promise<boolean> {
         return Condition.asPredicate(...conditions)(this);
-    }
-
-    async matchingNot(...conditions: Array<Condition<this>>): Promise<boolean> {
-        return this.matching(...conditions.map(c => Condition.not(c)));
     }
 
     /* Commands */
