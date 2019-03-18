@@ -254,6 +254,9 @@ class Element {
     followingSibling(predicate = '') {
         return this.element(with_1.With.xpath('./following-sibling::*' + predicate));
     }
+    precedingSibling(predicate = '') {
+        return this.element(with_1.With.xpath('./preceding-sibling::*' + predicate));
+    }
     element(cssOrXpathOrBy) {
         return new Element(new byWebElementLocator_1.ByWebElementLocator(utils_1.toBy(cssOrXpathOrBy), this));
     }

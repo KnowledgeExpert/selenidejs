@@ -318,6 +318,10 @@ export class Element {
         return this.element(With.xpath('./following-sibling::*' + predicate));
     }
 
+    precedingSibling(predicate: string = ''): Element {
+        return this.element(With.xpath('./preceding-sibling::*' + predicate));
+    }
+
     element(cssOrXpathOrBy: string | By): Element {
         return new Element(new ByWebElementLocator(toBy(cssOrXpathOrBy), this));
     }

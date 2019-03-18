@@ -39,6 +39,7 @@ export declare class Element {
     private performActionOnVisible(action, actionName);
     parent(): Element;
     followingSibling(predicate?: string): Element;
+    precedingSibling(predicate?: string): Element;
     element(cssOrXpathOrBy: string | By): Element;
     elementSmart(locator: string): Element;
     visibleElement(cssSelector: string): Element;
