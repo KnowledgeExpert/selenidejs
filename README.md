@@ -189,6 +189,7 @@ In case you want to be different) ...
 ## More Examples
 
 * [SelenideJS on top of Selenium Webdriver with Jasmine as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-jasmine-example)
+* [SelenideJS on top of Selenium Webdriver with Toundra as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-toundra-example)
 * [SelenideJS on top of Protractor (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-protractor-example)
 * [SelenideJS on top of Webdriverio (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriverio-mocha-example)
 
