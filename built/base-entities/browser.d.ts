@@ -1,12 +1,15 @@
 /// <reference types="node" />
-import { ProtractorBrowser } from 'protractor';
+import { ProtractorBrowser, WebDriver } from 'protractor';
 import { Element } from './element';
 import { BrowserCondition } from '..';
-import { ActionSequence, By } from 'selenium-webdriver';
+import { ActionSequence, By, Navigation } from 'selenium-webdriver';
 import { Collection } from './collection';
 export declare namespace Browser {
     function params(dotSeparatedPath?: string): any;
     function get(url: string): Promise<void>;
+    function refresh(): Promise<void>;
+    function navigate(): Navigation;
+    function driver(): WebDriver;
     function title(): Promise<string>;
     function pageSource(): Promise<string>;
     function screenshot(): Promise<string>;

@@ -36,6 +36,18 @@ var Browser;
         await protractor_1.browser.get(url);
     }
     Browser.get = get;
+    async function refresh() {
+        await protractor_1.browser.refresh();
+    }
+    Browser.refresh = refresh;
+    function navigate() {
+        return protractor_1.browser.navigate();
+    }
+    Browser.navigate = navigate;
+    function driver() {
+        return protractor_1.browser.driver;
+    }
+    Browser.driver = driver;
     async function title() {
         return await protractor_1.browser.getTitle();
     }

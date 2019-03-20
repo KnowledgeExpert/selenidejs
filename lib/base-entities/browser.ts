@@ -12,17 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {browser, ProtractorBrowser} from 'protractor';
+import { browser, ProtractorBrowser, WebDriver } from 'protractor';
 import {Element} from './element';
 import {be} from '../conditions/helpers/be';
 import {BrowserCondition, Condition} from '..';
 import {Wait} from '../wait';
-import {ActionSequence, By} from 'selenium-webdriver';
+import { ActionSequence, By, Navigation } from 'selenium-webdriver';
 import {ByWebElementLocator} from './locators/byWebElementLocator';
 import {Collection} from './collection';
 import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {Screenshot} from '../screenshot';
 import {toBy, Utils} from '../utils';
+import { AbstractExtendedWebDriver } from 'protractor/built/browser';
 
 
 export namespace Browser {
@@ -37,6 +38,18 @@ export namespace Browser {
             await resizeWindow(Utils.getSelenidejsParam('windowSize.width'), Utils.getSelenidejsParam('windowSize.height'));
         }
         await browser.get(url);
+    }
+
+    export async function refresh() {
+        await browser.refresh();
+    }
+
+    export function navigate(): Navigation {
+        return browser.navigate();
+    }
+
+    export function driver(): WebDriver {
+        return browser.driver as WebDriver;
     }
 
     export async function title(): Promise<string> {
