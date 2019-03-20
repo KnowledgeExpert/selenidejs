@@ -53,7 +53,7 @@ var have;
     }
     have.size = size;
     function texts(...texts) {
-        return conditions_1.Conditions.collectionHasExactTexts(texts);
+        return conditions_1.Conditions.collectionHasTexts(texts);
     }
     have.texts = texts;
     function exactTexts(...texts) {

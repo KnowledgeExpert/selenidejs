@@ -57,7 +57,7 @@ export namespace have {
     }
 
     export function texts(...texts: string[]): CollectionCondition {
-        return Conditions.collectionHasExactTexts(texts);
+        return Conditions.collectionHasTexts(texts);
     }
 
     export function exactTexts(...texts: string[]): CollectionCondition {
