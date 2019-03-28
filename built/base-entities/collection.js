@@ -20,6 +20,7 @@ const wait_1 = require("../wait");
 const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const condition_1 = require("../conditions/condition");
 const utils_1 = require("../utils");
+const __1 = require("..");
 class Collection {
     constructor(locator) {
         this.locator = locator;
@@ -56,6 +57,18 @@ class Collection {
     }
     findBy(condition) {
         return new Collection(new byFilteredWebElementsLocator_1.ByFilteredWebElementsLocator(condition, this)).get(0);
+    }
+    async indexOfElementBy(condition) {
+        await this.findBy(condition).should(__1.be.visible);
+        const webElements = await this.getWebElements();
+        for (let i = 0; i < webElements.length; i++) {
+            try {
+                await condition.matches(this.get(i));
+                return i;
+            }
+            catch (ignored) {
+            }
+        }
     }
     async size() {
         return (await this.getWebElements()).length;

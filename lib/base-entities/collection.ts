@@ -24,6 +24,7 @@ import {ByWebElementsLocator} from './locators/byWebElementsLocator';
 import {With} from '../locators/with';
 import {Condition} from '../conditions/condition';
 import { Utils, toBy } from '../utils';
+import { be } from '..';
 
 
 export class Collection {
@@ -76,6 +77,19 @@ export class Collection {
 
     findBy(condition: ElementCondition): Element {
         return new Collection(new ByFilteredWebElementsLocator(condition, this)).get(0);
+    }
+
+    async indexOfElementBy(condition: ElementCondition): Promise<number> {
+        await this.findBy(condition).should(be.visible);
+        const webElements = await this.getWebElements();
+
+        for (let i = 0; i < webElements.length; i++) {
+            try {
+                await condition.matches(this.get(i));
+                return i;
+            } catch (ignored) {
+            }
+        }
     }
 
     async size(): Promise<number> {
