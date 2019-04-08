@@ -27,6 +27,7 @@ import {ByExtendedWebElementLocator} from './locators/byExtendedWebElementLocato
 import {toBy, Utils} from '../utils';
 import {Browser} from './browser';
 import { ConditionDoesNotMatchError } from '../';
+import {AssertionHooks} from './assertionHook';
 
 
 export class Element {
@@ -187,10 +188,12 @@ export class Element {
         await Browser.executeScript('arguments[0].scrollIntoView(true);', await this.getWebElement());
     }
 
+    @AssertionHooks
     async should(condition: ElementCondition, timeout?: number): Promise<Element> {
         return await Wait.shouldMatch(this, condition, timeout);
     }
 
+    @AssertionHooks
     async shouldNot(condition: ElementCondition): Promise<Element> {
         return await this.should(Condition.not(condition));
     }
@@ -361,16 +364,6 @@ function ActionHooks(target, methodName, descriptor: PropertyDescriptor) {
     const beforeHooks = Element.beforeActionHooks;
     const afterHooks = Element.afterActionHooks;
 
-    async function safeApplyActionHooks(hooks: ((element: Element, actionName: string, actionError?: Error) => void | Promise<void>)[], element, actionName, actionError?: Error) {
-        for (let hook of hooks) {
-            try {
-                await hook(element, actionName, actionError);
-            } catch (error) {
-                console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
-            }
-        }
-    }
-
     descriptor.value = async function () {
         let err;
         try {
@@ -385,3 +378,12 @@ function ActionHooks(target, methodName, descriptor: PropertyDescriptor) {
     }
 }
 
+async function safeApplyActionHooks(hooks: ((element: Element, actionName: string, actionError?: Error) => void | Promise<void>)[], element, actionName, actionError?: Error) {
+    for (let hook of hooks) {
+        try {
+            await hook(element, actionName, actionError);
+        } catch (error) {
+            console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
+        }
+    }
+}

@@ -12,6 +12,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const byIndexedWebElementLocator_1 = require("./locators/byIndexedWebElementLocator");
 const byFilteredWebElementsLocator_1 = require("./locators/byFilteredWebElementsLocator");
@@ -21,6 +27,7 @@ const byWebElementsLocator_1 = require("./locators/byWebElementsLocator");
 const condition_1 = require("../conditions/condition");
 const utils_1 = require("../utils");
 const __1 = require("..");
+const assertionHook_1 = require("./assertionHook");
 class Collection {
     constructor(locator) {
         this.locator = locator;
@@ -80,6 +87,12 @@ class Collection {
         return this.locator.toString();
     }
 }
+__decorate([
+    assertionHook_1.AssertionHooks
+], Collection.prototype, "should", null);
+__decorate([
+    assertionHook_1.AssertionHooks
+], Collection.prototype, "shouldNot", null);
 exports.Collection = Collection;
 function all(cssOrXpathOrBy) {
     return new Collection(new byWebElementsLocator_1.ByWebElementsLocator(utils_1.toBy(cssOrXpathOrBy)));

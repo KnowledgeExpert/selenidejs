@@ -20,6 +20,7 @@ const byExtendedWebElementLocator_1 = require("./locators/byExtendedWebElementLo
 const utils_1 = require("../utils");
 const browser_1 = require("./browser");
 const _1 = require("../");
+const assertionHook_1 = require("./assertionHook");
 class Element {
     constructor(locator) {
         this.locator = locator;
@@ -314,6 +315,12 @@ __decorate([
 __decorate([
     ActionHooks
 ], Element.prototype, "scrollIntoView", null);
+__decorate([
+    assertionHook_1.AssertionHooks
+], Element.prototype, "should", null);
+__decorate([
+    assertionHook_1.AssertionHooks
+], Element.prototype, "shouldNot", null);
 exports.Element = Element;
 function element(cssOrXpathOrBy) {
     return new Element(new byWebElementLocator_1.ByWebElementLocator(utils_1.toBy(cssOrXpathOrBy)));
@@ -331,16 +338,6 @@ function ActionHooks(target, methodName, descriptor) {
     const originalMethod = descriptor.value;
     const beforeHooks = Element.beforeActionHooks;
     const afterHooks = Element.afterActionHooks;
-    async function safeApplyActionHooks(hooks, element, actionName, actionError) {
-        for (let hook of hooks) {
-            try {
-                await hook(element, actionName, actionError);
-            }
-            catch (error) {
-                console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
-            }
-        }
-    }
     descriptor.value = async function () {
         let err;
         try {
@@ -355,5 +352,15 @@ function ActionHooks(target, methodName, descriptor) {
             await safeApplyActionHooks(afterHooks, this, methodName, err);
         }
     };
+}
+async function safeApplyActionHooks(hooks, element, actionName, actionError) {
+    for (let hook of hooks) {
+        try {
+            await hook(element, actionName, actionError);
+        }
+        catch (error) {
+            console.warn(`Cannot perform hook on '${actionName}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
+        }
+    }
 }
 //# sourceMappingURL=element.js.map
