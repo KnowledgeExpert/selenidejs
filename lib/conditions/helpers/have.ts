@@ -64,6 +64,10 @@ export namespace have {
         return Conditions.collectionHasExactTexts(texts);
     }
 
+    export function exactTextsInAnyOrder(...texts: string[]): CollectionCondition {
+        return Conditions.collectionHasExactTextsInAnyOrder(texts);
+    }
+
     export function tabsSize(size: number): BrowserCondition {
         return Conditions.browserTabsHaveSize(size);
     }

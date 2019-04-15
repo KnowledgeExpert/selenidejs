@@ -304,6 +304,41 @@ export namespace Conditions {
         });
     }
 
+    export function collectionHasExactTextsInAnyOrder(texts: string[] | number[]): CollectionCondition {
+        return new CollectionCondition({
+            matches: async function (collection: Collection) {
+                let actualTexts: string[] = [];
+                try {
+                    const actualElements = await collection.getWebElements();
+                    actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
+
+                    if (actualTexts.length != texts.length) {
+                        throw new Error();
+                    }
+
+										for (let expected of texts) {
+												let haveExpected = false;
+												for (let i = 0; i < texts.length; i++) {
+														if (actualTexts[i] === String(expected)) {
+																haveExpected = true;
+																break;
+														}
+											}
+											if (!haveExpected) {
+													throw new Error();
+											}
+										}
+                    return collection;
+                } catch (ignored) {
+                }
+                throw new ConditionDoesNotMatchError(`${this.toString()}, but was '${actualTexts}'`);
+            },
+            toString: function () {
+                return `have exact texts '${texts}'`;
+            }
+        });
+    }
+
     export function browserUrlContains(url: string): BrowserCondition {
         return new BrowserCondition({
             matches: async (browser: ProtractorBrowser) => {
