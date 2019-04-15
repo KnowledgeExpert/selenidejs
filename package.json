@@ -7,15 +7,20 @@
   "typings": "built/index.d.ts",
   "dependencies": {
     "axios": "0.17.1",
-    "protractor": "5.2.2",
+    "protractor": "5.4.2",
     "saucelabs": "1.4.0",
     "testingbot-api": "1.0.5",
     "typescript": "2.5.3",
     "jimp": "0.2.28",
+    "@types/jasmine": "2.5.41",
+    "allure-cookies": "git+ssh://git@github.com/KnowledgeExpert/allure-cookies.git#0.3.2",
     "merge-img": "2.1.2"
   },
   "scripts": {
-    "build": "tsc"
+    "clean": "rm -rf built",
+    "build": "npm run clean && tsc",
+    "test": "npm run build && protractor built/specs/protractor.conf.js",
+    "allure": "allure generate --clean --output ./build/allure-report ./build/allure-results"
   },
   "repository": {
     "type": "git",

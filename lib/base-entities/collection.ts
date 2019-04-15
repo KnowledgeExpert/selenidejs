@@ -25,6 +25,7 @@ import {With} from '../locators/with';
 import {Condition} from '../conditions/condition';
 import { Utils, toBy } from '../utils';
 import { be } from '..';
+import {AssertionHooks} from './assertionHook';
 
 
 export class Collection {
@@ -35,10 +36,12 @@ export class Collection {
         this.locator = locator;
     }
 
+    @AssertionHooks
     async should(condition: CollectionCondition, timeout?: number): Promise<Collection> {
         return timeout ? await Wait.shouldMatch(this, condition, timeout) : await Wait.shouldMatch(this, condition);
     }
 
+    @AssertionHooks
     async shouldNot(condition: CollectionCondition, timeout?: number): Promise<Collection> {
         return await this.should(Condition.not(condition), timeout);
     }
