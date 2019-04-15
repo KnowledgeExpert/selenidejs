@@ -316,18 +316,18 @@ export namespace Conditions {
                         throw new Error();
                     }
 
-										for (let expected of texts) {
-												let haveExpected = false;
-												for (let i = 0; i < texts.length; i++) {
-														if (actualTexts[i] === String(expected)) {
-																haveExpected = true;
-																break;
-														}
-											}
-											if (!haveExpected) {
-													throw new Error();
-											}
-										}
+                    for (let expected of texts) {
+                        let haveExpected = false;
+                        for (let i = 0; i < texts.length; i++) {
+                            if (actualTexts[i] === String(expected)) {
+                                haveExpected = true;
+                                break;
+                            }
+                        }
+                        if (!haveExpected) {
+                            throw new Error();
+                        }
+                    }
                     return collection;
                 } catch (ignored) {
                 }
