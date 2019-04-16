@@ -19,6 +19,7 @@ export declare namespace Conditions {
     function collectionHasSizeMoreThan(size: number): CollectionCondition;
     function collectionHasTexts(texts: string[] | number[]): CollectionCondition;
     function collectionHasExactTexts(texts: string[] | number[]): CollectionCondition;
+    function collectionHasExactTextsInAnyOrder(texts: string[] | number[]): CollectionCondition;
     function browserUrlContains(url: string): BrowserCondition;
     function browserTabsHaveSize(size: number): BrowserCondition;
     function browserTabsHaveSizeGreaterThan(size: number): BrowserCondition;

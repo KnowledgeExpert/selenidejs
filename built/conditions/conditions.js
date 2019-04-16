@@ -307,6 +307,40 @@ var Conditions;
         });
     }
     Conditions.collectionHasExactTexts = collectionHasExactTexts;
+    function collectionHasExactTextsInAnyOrder(texts) {
+        return new collectionCondition_1.CollectionCondition({
+            matches: async function (collection) {
+                let actualTexts = [];
+                try {
+                    const actualElements = await collection.getWebElements();
+                    actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
+                    if (actualTexts.length != texts.length) {
+                        throw new Error();
+                    }
+                    for (let expected of texts) {
+                        let haveExpected = false;
+                        for (let i = 0; i < texts.length; i++) {
+                            if (actualTexts[i] === String(expected)) {
+                                haveExpected = true;
+                                break;
+                            }
+                        }
+                        if (!haveExpected) {
+                            throw new Error();
+                        }
+                    }
+                    return collection;
+                }
+                catch (ignored) {
+                }
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${this.toString()}, but was '${actualTexts}'`);
+            },
+            toString: function () {
+                return `have exact texts '${texts}'`;
+            }
+        });
+    }
+    Conditions.collectionHasExactTextsInAnyOrder = collectionHasExactTextsInAnyOrder;
     function browserUrlContains(url) {
         return new browserCondition_1.BrowserCondition({
             matches: async (browser) => {

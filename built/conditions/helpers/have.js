@@ -60,6 +60,10 @@ var have;
         return conditions_1.Conditions.collectionHasExactTexts(texts);
     }
     have.exactTexts = exactTexts;
+    function exactTextsInAnyOrder(...texts) {
+        return conditions_1.Conditions.collectionHasExactTextsInAnyOrder(texts);
+    }
+    have.exactTextsInAnyOrder = exactTextsInAnyOrder;
     function tabsSize(size) {
         return conditions_1.Conditions.browserTabsHaveSize(size);
     }
