@@ -334,7 +334,7 @@ export namespace Conditions {
                 throw new ConditionDoesNotMatchError(`${this.toString()}, but was '${actualTexts}'`);
             },
             toString: function () {
-                return `have exact texts '${texts}'`;
+                return `have exact texts in any order'${texts}'`;
             }
         });
     }
