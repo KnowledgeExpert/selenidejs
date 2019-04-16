@@ -19,9 +19,7 @@ export declare let config: {
                 toWaitElementsInMs: number;
                 toHardWaitInMs: number;
             };
-            beforeAssertionHooks: ((entity: any, description: any) => Promise<void>)[];
-            afterAssertionHooks: ((entity: any, description: any, error: any) => Promise<void>)[];
         };
+        onPrepare: () => Promise<void>;
     };
-    onPrepare: () => Promise<void>;
 };

@@ -4,11 +4,7 @@ import {browser} from 'protractor';
 describe('suite', () => {
     it('test', async () => {
         await browser.waitForAngularEnabled(false);
-        await Browser.get('http://the-internet.herokuapp.com/add_remove_elements/')
-        //await Browser.element('.example button').should(be.hidden);
-        await Browser.element('.example button').click();
-        await Browser.element('.example button').click();
-        await Browser.element('.example button').click();
-        await Browser.all('button.added-manually').should(have.size(4));
+        await Browser.get('http://the-internet.herokuapp.com/challenging_dom');
+        await Browser.all('thead th').should(have.exactTextsInAnyOrder('Diceret','Dolor','Lorem','Ipsum','Sit','Amet','Action'));
     });
 });
