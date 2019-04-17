@@ -14,7 +14,6 @@ export function AssertionHooks(target, methodName, descriptor: PropertyDescripto
         const beforeHooks = Utils.getSelenidejsParam(`beforeAssertionHooks`) || [];
         const afterHooks = Utils.getSelenidejsParam(`afterAssertionHooks`) || [];
         const conditionDescription = arguments[0].toString();
-        console.log(`init assertion hooks... condition - ${conditionDescription}, before.length === ${beforeHooks.length}, after.length === ${afterHooks.length}`)
 		let err;
 		try {
 			await safeApplyActionHooks(beforeHooks, this, conditionDescription);
@@ -31,14 +30,10 @@ export function AssertionHooks(target, methodName, descriptor: PropertyDescripto
 type AssertionHook = ((entity: Element | Collection, conditionDescription: string, err?: Error) => void | Promise<void>);
 
 async function safeApplyActionHooks(hooks: AssertionHook[], entity: Element | Collection, conditionDescription: string, err?: Error) {
-    console.log(`safe apply hooks, entity - ${entity}, description - ${conditionDescription}, err - ${err}`)
 	for (let hook of hooks) {
 		try {
-            console.log('before execute hook');
             await hook(entity, conditionDescription, err);
-            console.log('after execute hook');
 		} catch (error) {
-			console.warn(`Cannot perform hook on '${conditionDescription}' action cause of:\n\tError message: ${error.message}\n\tError stacktrace: ${error.stackTrace}`);
 		}
 	}
 }
