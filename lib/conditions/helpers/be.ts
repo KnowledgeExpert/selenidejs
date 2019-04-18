@@ -27,5 +27,4 @@ export namespace be {
     export const hidden = Conditions.elementIsHidden;
 
     export const empty = Conditions.elementHasEmptyText;
-
 }
