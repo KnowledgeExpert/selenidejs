@@ -100,6 +100,25 @@ export namespace Conditions {
         }
     });
 
+    export function elementHasEmptyText(): ElementCondition {
+        return new ElementCondition({
+            matches: async function (element: Element) {
+                let actualText;
+                try {
+                    const actualText = await element.getWebElement().then(webelement => webelement.getText());
+                    if (actualText.length) {
+                        throw new Error();
+                    }
+                } catch (ignored) {
+                }
+                throw new ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}'`);
+            },
+            toString: function () {
+                return `be empty`;
+            }
+        });
+    }
+
     export function elementHasText(text: string | number): ElementCondition {
         return new ElementCondition({
             matches: async function (element: Element) {

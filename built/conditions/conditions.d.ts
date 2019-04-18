@@ -9,6 +9,7 @@ export declare namespace Conditions {
     const elementIsPresent: ElementCondition;
     const elementIsVisible: ElementCondition;
     const elementIsHidden: ElementCondition;
+    function elementHasEmptyText(): ElementCondition;
     function elementHasText(text: string | number): ElementCondition;
     function elementHasExactText(text: string | number): ElementCondition;
     function elementHasAttribute(attributeName: string): ElementCondition;

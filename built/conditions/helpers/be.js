@@ -21,5 +21,6 @@ var be;
     be.present = conditions_1.Conditions.elementIsPresent;
     be.visible = conditions_1.Conditions.elementIsVisible;
     be.hidden = conditions_1.Conditions.elementIsHidden;
+    be.empty = conditions_1.Conditions.elementHasEmptyText;
 })(be = exports.be || (exports.be = {}));
 //# sourceMappingURL=be.js.map

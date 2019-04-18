@@ -95,6 +95,26 @@ var Conditions;
             return 'be hidden';
         }
     });
+    function elementHasEmptyText() {
+        return new elementCondition_1.ElementCondition({
+            matches: async function (element) {
+                let actualText;
+                try {
+                    const actualText = await element.getWebElement().then(webelement => webelement.getText());
+                    if (actualText.length) {
+                        throw new Error();
+                    }
+                }
+                catch (ignored) {
+                }
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}'`);
+            },
+            toString: function () {
+                return `be empty`;
+            }
+        });
+    }
+    Conditions.elementHasEmptyText = elementHasEmptyText;
     function elementHasText(text) {
         return new elementCondition_1.ElementCondition({
             matches: async function (element) {
