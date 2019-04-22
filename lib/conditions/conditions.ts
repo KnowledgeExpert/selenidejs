@@ -104,9 +104,9 @@ export namespace Conditions {
         matches: async function (element: Element) {
             let actualText;
             try {
-                const actualText = await element.getWebElement().then(webelement => webelement.getText());
-                if (actualText.length) {
-                    throw new Error();
+                actualText = await element.getWebElement().then(webelement => webelement.getText());
+                if (actualText.length === 0) {
+                    return element;
                 }
             } catch (ignored) {
             }
