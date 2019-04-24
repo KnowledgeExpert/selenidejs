@@ -24,4 +24,5 @@ export declare namespace Conditions {
     function browserUrlContains(url: string): BrowserCondition;
     function browserTabsHaveSize(size: number): BrowserCondition;
     function browserTabsHaveSizeGreaterThan(size: number): BrowserCondition;
+    const browserHasAlert: BrowserCondition;
 }

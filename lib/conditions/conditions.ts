@@ -412,4 +412,19 @@ export namespace Conditions {
             }
         });
     }
+
+    export const browserHasAlert: BrowserCondition = new BrowserCondition({
+            matches: async function (browser: ProtractorBrowser) {
+                try {
+                    await browser.switchTo().alert();
+                    return browser;
+                } catch (ignored) {
+                }
+                throw new ConditionDoesNotMatchError(this.toString());
+            },
+            toString: function () {
+                return `has alert`;
+            }
+        });
+
 }

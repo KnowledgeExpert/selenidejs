@@ -47,7 +47,8 @@ var Wait;
             }
         } while (new Date().getTime() < finishTime);
         if (throwError) {
-            lastError.message = `${entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
+            const entityDescription = entity instanceof protractor_1.ProtractorBrowser ? 'browser' : entity.toString();
+            lastError.message = `${entityDescription}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
             if (utils_1.Utils.getSelenidejsParam(`saveScreenshotOnFail`)) {
                 try {
                     const screenshotPath = await utils_1.Utils.saveScreenshot();

@@ -72,5 +72,6 @@ var have;
         return conditions_1.Conditions.browserTabsHaveSizeGreaterThan(size);
     }
     have.tabsSizeGreaterThan = tabsSizeGreaterThan;
+    have.alert = conditions_1.Conditions.browserHasAlert;
 })(have = exports.have || (exports.have = {}));
 //# sourceMappingURL=have.js.map

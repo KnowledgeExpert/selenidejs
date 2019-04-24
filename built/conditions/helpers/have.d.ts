@@ -16,4 +16,5 @@ export declare namespace have {
     function exactTextsInAnyOrder(...texts: string[]): CollectionCondition;
     function tabsSize(size: number): BrowserCondition;
     function tabsSizeGreaterThan(size: number): BrowserCondition;
+    const alert: BrowserCondition;
 }

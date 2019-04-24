@@ -418,5 +418,19 @@ var Conditions;
         });
     }
     Conditions.browserTabsHaveSizeGreaterThan = browserTabsHaveSizeGreaterThan;
+    Conditions.browserHasAlert = new browserCondition_1.BrowserCondition({
+        matches: async function (browser) {
+            try {
+                await browser.switchTo().alert();
+                return browser;
+            }
+            catch (ignored) {
+            }
+            throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
+        },
+        toString: function () {
+            return `has alert`;
+        }
+    });
 })(Conditions = exports.Conditions || (exports.Conditions = {}));
 //# sourceMappingURL=conditions.js.map

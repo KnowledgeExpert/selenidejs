@@ -22,7 +22,7 @@ exports.config = {
                 height: 1100
             },
             timeouts: {
-                toWaitElementsInMs: 5000,
+                toWaitElementsInMs: 3000,
                 toHardWaitInMs: 3000
             }
         },

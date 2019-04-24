@@ -75,4 +75,6 @@ export namespace have {
     export function tabsSizeGreaterThan(size: number): BrowserCondition {
         return Conditions.browserTabsHaveSizeGreaterThan(size);
     }
+
+    export const alert = Conditions.browserHasAlert;
 }

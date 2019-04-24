@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {browser} from 'protractor';
+import {browser, ProtractorBrowser} from 'protractor';
 import {Utils} from './utils';
 import {Condition} from './conditions/condition';
 
@@ -52,7 +52,8 @@ export namespace Wait {
         } while (new Date().getTime() < finishTime);
 
         if (throwError) {
-            lastError.message = `${entity.toString()}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
+            const entityDescription = entity instanceof ProtractorBrowser ? 'browser' : entity.toString();
+            lastError.message = `${entityDescription}\n\tshould ${lastError.message}\n\tWait timed out after ${timeout}ms`;
             if (Utils.getSelenidejsParam(`saveScreenshotOnFail`)) {
                 try {
                     const screenshotPath = await Utils.saveScreenshot();
