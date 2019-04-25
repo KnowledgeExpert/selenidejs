@@ -17,4 +17,5 @@ export declare namespace have {
     function tabsSize(size: number): BrowserCondition;
     function tabsSizeGreaterThan(size: number): BrowserCondition;
     const alert: BrowserCondition;
+    function alertText(text: string | number): BrowserCondition;
 }

@@ -427,4 +427,23 @@ export namespace Conditions {
             }
         });
 
+    export function browserHasAlertWithText(text: string | number): BrowserCondition {
+        return new BrowserCondition({
+            matches: async (browser: ProtractorBrowser) => {
+                let actualText;
+                try {
+                    actualText = await browser.switchTo().alert().getText();
+                    if (String(text) === actualText) {
+                        return browser;
+                    }
+                } catch (ignored) {
+                }
+                throw new ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}'`);
+            },
+            toString: function () {
+                return `have alert text '${text}'`;
+            }
+        });
+    }
+
 }

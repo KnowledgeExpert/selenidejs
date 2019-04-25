@@ -25,4 +25,5 @@ export declare namespace Conditions {
     function browserTabsHaveSize(size: number): BrowserCondition;
     function browserTabsHaveSizeGreaterThan(size: number): BrowserCondition;
     const browserHasAlert: BrowserCondition;
+    function browserHasAlertWithText(text: string | number): BrowserCondition;
 }

@@ -77,4 +77,8 @@ export namespace have {
     }
 
     export const alert = Conditions.browserHasAlert;
+
+    export function alertText(text: string | number): BrowserCondition {
+        return Conditions.browserHasAlertWithText(text);
+    }
 }

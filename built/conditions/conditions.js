@@ -432,5 +432,25 @@ var Conditions;
             return `has alert`;
         }
     });
+    function browserHasAlertWithText(text) {
+        return new browserCondition_1.BrowserCondition({
+            matches: async (browser) => {
+                let actualText;
+                try {
+                    actualText = await browser.switchTo().alert().getText();
+                    if (String(text) === actualText) {
+                        return browser;
+                    }
+                }
+                catch (ignored) {
+                }
+                throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(`${this.toString()}, but was '${actualText}'`);
+            },
+            toString: function () {
+                return `have alert text '${text}'`;
+            }
+        });
+    }
+    Conditions.browserHasAlertWithText = browserHasAlertWithText;
 })(Conditions = exports.Conditions || (exports.Conditions = {}));
 //# sourceMappingURL=conditions.js.map

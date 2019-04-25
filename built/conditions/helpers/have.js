@@ -73,5 +73,9 @@ var have;
     }
     have.tabsSizeGreaterThan = tabsSizeGreaterThan;
     have.alert = conditions_1.Conditions.browserHasAlert;
+    function alertText(text) {
+        return conditions_1.Conditions.browserHasAlertWithText(text);
+    }
+    have.alertText = alertText;
 })(have = exports.have || (exports.have = {}));
 //# sourceMappingURL=have.js.map
