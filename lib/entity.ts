@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Command, Condition, Query, Wait } from './wait';
+import { Command, Condition, Lambda, Query, Wait } from './wait';
 import { Configuration, OnEntityFailureHook } from './configuration';
 
 /* With Conditions
@@ -56,7 +56,6 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
         this.wait = new Wait(this, configuration.timeout, []/*configuration.onFailureHooks*/);
     }
 
-
     /*
      * todo: consider assert or shouldMatch aliases for should
      * should is good for
@@ -75,14 +74,14 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
     /* Assertable */
 
     async should(...conditions: Array<Condition<this>>): Promise<this> {
-        await this.wait.query(Condition.all(...conditions));
+        await this.wait.for(Condition.all(...conditions));
         return this;
     }
 
     /* Matchable */
 
     async waitUntil(...conditions: Array<Condition<this>>): Promise<boolean> {
-        return this.wait.until(...conditions);
+        return this.wait.until(Condition.all(...conditions));
     }
 
     async matching(...conditions: Array<Condition<this>>): Promise<boolean> {
@@ -91,14 +90,14 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
 
     /* Commands */
 
-    async perform(command: Command<this>): Promise<this> {
+    async perform(command: Lambda<this, void>): Promise<this> { // todo: should we accept real Command over Lambda here?
         await this.wait.command(command);
         return this;
     }
 
     /* Queries */ // todo: do we need @ElementQueryHooks?
 
-    async get<R>(query: Query<this, R>): Promise<R> {
+    async get<R>(query: Lambda<this, R>): Promise<R> {
         return this.wait.query(query);
     }
 }

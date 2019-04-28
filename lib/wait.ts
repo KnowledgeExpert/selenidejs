@@ -14,23 +14,51 @@
 
 import { TimeoutError } from './errors/timeoutError';
 import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
-import { lambda, toString } from './utils';
+import { toString } from './utils';
 
 /* tslint:disable:prefer-template */
+
+/**
+ * Just a type alias to one-argument-async-function...
+ */
+export type Lambda<T, R> = (entity: T) => Promise<R>;
+
+/**
+ * An interface for the "object" version of Lambda
+ */
+export interface Fn<T, R> {
+    call(entity: T): Promise<R>;
+}
 
 
 /**
  * We use queries to perform an async query on entity of type T, i.e. get something from entity.
  * So a query can pass and return something of type R or failed with Error correspondingly.
  */
-export type Query<T, R> = (entity: T) => Promise<R>;
+export class Query<T, R> implements Fn<T, R> {
+
+    constructor(private readonly description: string,
+                private readonly fn: Lambda<T, R>) {
+        this.description = description;
+        this.fn = fn;
+    }
+
+    async call(entity: T): Promise<R> {
+        return this.fn(entity);
+    }
+
+    toString(): string {
+        return this.description;
+    }
+}
 
 /**
  * Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T.
  * Command can pass or fail with Error correspondingly.
  */
-export type Command<T> = Query<T, void>;
+export class Command<T> extends Query<T, void> {}
 
+// todo: updated tsdocs
 /**
  * Like Command<T>, i.e. can pass or fail with Error.
  * It is defined as separate type alias to differentiate the usage scenarios.
@@ -39,7 +67,31 @@ export type Command<T> = Query<T, void>;
  *
  * Read "void" in Query<T, void> as "matched", or "passed".
  */
-export type Condition<T> = Query<T, void>;
+export class Condition<E> implements Fn<E, void> {
+
+    constructor(private readonly description: string,
+                private readonly fn: Lambda<E, void>) {
+        this.description = description;
+        this.fn = fn;
+    }
+
+    async call(entity: E): Promise<void> {
+        await this.fn(entity);
+    }
+
+    and(condition: Condition<E>) {
+        return Condition.and(this, condition);
+    }
+
+    or(condition: Condition<E>) {
+        return Condition.or(this, condition);
+    }
+
+    toString(): string {
+        return this.description;
+    }
+}
+
 export namespace Condition {
     /**
      * Negates condition. Making the negated condition to:
@@ -51,9 +103,9 @@ export namespace Condition {
      * @returns {Condition<T>}
      */
     export const not = <T>(condition: Condition<T>, description?: string): Condition<T> =>
-        lambda(description || `not ${condition}`, async (entity: T) => {
+        new Condition(description || `not ${condition}`, async (entity: T) => {
             try {
-                await condition(entity);
+                await condition.call(entity);
             } catch (error) {
                 return;
             }
@@ -67,9 +119,9 @@ export namespace Condition {
      * @returns {Condition<T>}
      */
     export const and = <T>(...conditions: Array<Condition<T>>): Condition<T> =>
-        lambda(conditions.map(toString).join(' and '), async (entity: T) => {
+        new Condition(conditions.map(toString).join(' and '), async (entity: T) => {
             for (const condition of conditions) {
-                await condition(entity);
+                await condition.call(entity);
             }
         });
 
@@ -79,11 +131,11 @@ export namespace Condition {
      * @returns {Condition<T>}
      */
     export const or = <T>(...conditions: Array<Condition<T>>): Condition<T> =>
-        lambda(conditions.map(toString).join(' or '), async (entity: T) => {
+        new Condition(conditions.map(toString).join(' or '), async (entity: T) => {
             const errors: Error[] = [];
             for (const condition of conditions) {
                 try {
-                    await condition(entity);
+                    await condition.call(entity);
                     return;
                 } catch (error) {
                     errors.push(error);
@@ -92,17 +144,6 @@ export namespace Condition {
             throw new Error(errors.map(toString).join('; '));
         });
 
-    /**
-     * Changes condition's description to the new provided one.
-     * Example:
-     * ```
-     *   const isBlank = Condition.named('is blank', Condition.and(has.exactText(''), has.value('')))
-     * ```
-     * @type {<F>(toString: string, fn: F) => F}
-     */
-    export const named = lambda;  // todo: consider renaming to Condition.as ...
-
-    // todo: consider renaming to Condition.fromAll ...
     /**
      * Transforms conditions array provided as varargs to condition by applying Condition.and
      * @param {Array<Condition<T>>} conditions
@@ -142,7 +183,7 @@ export namespace Condition {
      */
     export const asPredicate = <T>(...conditions: Array<Condition<T>>) =>
         (entity: T): Promise<boolean> =>
-            Condition.all(...conditions)(entity).then(res => true, err => false);
+            Condition.all(...conditions).call(entity).then(res => true, err => false);
 }
 
 export type OnFailureHook<T> = (failure: Error, entity: T) => Promise<void | Error>;
@@ -157,25 +198,24 @@ export class Wait<T> {
         this.onFailureHooks = onFailureHooks;
     }
 
-    async until(...conditions: Array<Condition<T>>): Promise<boolean> {
-        return this.query(Condition.all(...conditions)).then(res => true, err => false);
+    async query<R>(fn: Lambda<T, R>): Promise<R> {
+        return this.for(new Query(fn.toString(), fn));
     }
 
-    async untilNot(...conditions: Array<Condition<T>>): Promise<boolean> {
-        return this.query(Condition.allNot(...conditions)).then(res => true, err => false);
+    async command(fn: Lambda<T, void>): Promise<void> {
+        await this.for(new Command(fn.toString(), fn));
     }
 
-    // todo: consider accepting ...fn: Array<Command<T>>
-    async command(fn: Command<T>): Promise<void> {
-        await this.query(fn);
+    async until<R>(fn: Fn<T, R>): Promise<boolean> {
+        return this.for(fn).then(res => true, err => false);
     }
 
-    async query<R>(fn: Query<T, R>): Promise<R> {
+    async for<R>(fn: Fn<T, R>): Promise<R> {
         const finishTime = new Date().getTime() + this.timeout;
 
         while (true) {
             try {
-                return await fn(this.entity);
+                return await fn.call(this.entity);
             } catch (error) {
                 if (new Date().getTime() > finishTime) {
                     // todo: should we move this error formatting to the Error class definition?

@@ -20,38 +20,21 @@ Yet there are more handy aliases in be.* and have.* namespaces:
 await browser.all('.google-result').should(have.size(10))
 ```
 
-All conditions (Condition) are just predicate-like functions on entity of corresponding type (T), with:
+All conditions (Condition) are just predicate-like functions on entity of corresponding type (T), wrapped into Condition object: `new Condition(description, predicateLikeFn)` The "predicate-like" function should:
 
-*   descriptive custom toString implementation
-*   just passing (returning void) in case when the "predicate" version would return true
-*   throwing Error in case when the "predicate" version would return false
+*   pass (returning void) in case when a "normal predicate" version would return true
+*   throw Error in case when a "normal predicate" would return false
 
 The following example shows how a condition can be implemented:
 
 ```ts
 export function hasText(expected: string): ElementCondition {
-        const description = `has text: ${expected}`
-        const condition = (element: Element) => {
+        return new Condition(`has text: ${expected}`, async (element: Element) => {
             const actual = await element.getWebElement().then(it => it.getText());
             if (!actual.includes(expected)) {
                 throw new Error(`actual text: ${actual}`);
             }
-        }
-        condition.toString = () => description;
-        return condition;
-    }
-```
-
-The code above can be simply refactored, by utilizing some function (let's call it lambda) that will automatically "describe" a passed function with provided description:
-
-```ts
-export function hasText(expected: string): ElementCondition {
-        return lambda(`has text: ${expected}`, (element: Element) => {
-            const actual = await element.getWebElement().then(it => it.getText());
-            if (!actual.includes(expected)) {
-                throw new Error(`actual text: ${actual}`);
-            }
-        });
+        })
     }
 ```
 
@@ -59,7 +42,7 @@ Or more concise by using arrow functions:
 
 ```ts
 export const hasText = (expected: string): ElementCondition =>
-        lambda(`has text: ${expected}`, (element: Element) => {
+        new Condition(`has text: ${expected}`, async (element: Element) => {
             const actual = await element.getWebElement().then(it => it.getText());
             if (!actual.includes(expected)) {
                 throw new Error(`actual text: ${actual}`);
@@ -72,7 +55,7 @@ We can refactor the code above even more, if notice, that the actual condition r
 *   throw error if actual value (returned from some query on element like "getting its text") does not satisfy the predicate (like includes expected text) If we abstract this "throw error if not predicate(actual)" into some function like throwIfNotActual, The code will become very concise and declarative:
     ```ts
     export const hasText = (expected: string): ElementCondition =>
-          lambda(`has text: ${expected}`,
+          new Condition(`has text: ${expected}`,
                  throwIfNotActual(query.text, predicate.includes(expected)));
     ```
     
@@ -91,7 +74,6 @@ Have fun;)
 
 ### Functions
 
-* [conditionFromAsyncQuery](condition.md#conditionfromasyncquery)
 * [throwIfNot](condition.md#throwifnot)
 * [throwIfNotActual](condition.md#throwifnotactual)
 
@@ -99,35 +81,15 @@ Have fun;)
 
 ## Functions
 
-<a id="conditionfromasyncquery"></a>
-
-###  conditionFromAsyncQuery
-
-▸ **conditionFromAsyncQuery**<`E`>(describedPredicate: *`function`*): [Condition](condition.md)<`E`>
-
-*Defined in [conditions.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L131)*
-
-**Type parameters:**
-
-#### E 
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| describedPredicate | `function` |
-
-**Returns:** [Condition](condition.md)<`E`>
-
-___
 <a id="throwifnot"></a>
 
 ###  throwIfNot
 
-▸ **throwIfNot**<`E`>(description: *`string`*, predicate: *`function`*): [Condition](condition.md)<`E`>
+▸ **throwIfNot**<`E`>(predicate: *`function`*): [Lambda](../#lambda)<`E`, `void`>
 
-*Defined in [conditions.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L110)*
+*Defined in [conditions.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L97)*
 
-like conditionFromAsyncQuery but with custom description
+Creates condition from async query
 
 **Type parameters:**
 
@@ -136,19 +98,18 @@ like conditionFromAsyncQuery but with custom description
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| description | `string` |  - |
 | predicate | `function` |  - |
 
-**Returns:** [Condition](condition.md)<`E`>
+**Returns:** [Lambda](../#lambda)<`E`, `void`>
 
 ___
 <a id="throwifnotactual"></a>
 
 ###  throwIfNotActual
 
-▸ **throwIfNotActual**<`E`,`A`>(query: *`function`*, predicate: *`function`*): [Condition](condition.md)<`E`>
+▸ **throwIfNotActual**<`E`,`A`>(query: *`function`*, predicate: *`function`*): [Lambda](../#lambda)<`E`, `void`>
 
-*Defined in [conditions.ts:122](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L122)*
+*Defined in [conditions.ts:109](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L109)*
 
 Transforms an entity query compared through predicate - to Condition Example: throwIfNotActual(query.text, predicate.equals(text))
 
@@ -163,7 +124,7 @@ Transforms an entity query compared through predicate - to Condition Example: th
 | query | `function` |
 | predicate | `function` |
 
-**Returns:** [Condition](condition.md)<`E`>
+**Returns:** [Lambda](../#lambda)<`E`, `void`>
 
 ___
 

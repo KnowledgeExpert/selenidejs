@@ -192,7 +192,7 @@ ___
 
 ### `<Const>` waitingForBrowser
 
-▸ **waitingForBrowser**<`R`>(query: *[Query](../#query)<[Browser](../classes/browser.md), `R`>*): `(Anonymous function)`
+▸ **waitingForBrowser**<`R`>(query: *[Lambda](../#lambda)<[Browser](../classes/browser.md), `R`>*): `(Anonymous function)`
 
 *Defined in [support/queries/get.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L49)*
 
@@ -203,7 +203,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| query | [Query](../#query)<[Browser](../classes/browser.md), `R`> |
+| query | [Lambda](../#lambda)<[Browser](../classes/browser.md), `R`> |
 
 **Returns:** `(Anonymous function)`
 
@@ -212,7 +212,7 @@ ___
 
 ### `<Const>` waitingForCollection
 
-▸ **waitingForCollection**<`R`>(query: *[Query](../#query)<[Collection](../classes/collection.md), `R`>*): `(Anonymous function)`
+▸ **waitingForCollection**<`R`>(query: *[Lambda](../#lambda)<[Collection](../classes/collection.md), `R`>*): `(Anonymous function)`
 
 *Defined in [support/queries/get.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L41)*
 
@@ -223,7 +223,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| query | [Query](../#query)<[Collection](../classes/collection.md), `R`> |
+| query | [Lambda](../#lambda)<[Collection](../classes/collection.md), `R`> |
 
 **Returns:** `(Anonymous function)`
 
@@ -232,7 +232,7 @@ ___
 
 ### `<Const>` waitingForEntity
 
-▸ **waitingForEntity**<`R`>(query: *[Query](../#query)<[Element](../classes/element.md), `R`>*): `(Anonymous function)`
+▸ **waitingForEntity**<`R`>(query: *[Lambda](../#lambda)<[Element](../classes/element.md), `R`>*): `(Anonymous function)`
 
 *Defined in [support/queries/get.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L29)*
 
@@ -243,7 +243,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| query | [Query](../#query)<[Element](../classes/element.md), `R`> |
+| query | [Lambda](../#lambda)<[Element](../classes/element.md), `R`> |
 
 **Returns:** `(Anonymous function)`
 

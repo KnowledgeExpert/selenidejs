@@ -1,10 +1,14 @@
-[selenidejs](../README.md) > [have](../modules/have.md)
+[selenidejs](../README.md) > [Have](../classes/have.md)
 
-# Module: have
+# Class: Have
+
+## Hierarchy
+
+**Have**
 
 ## Index
 
-### Functions
+### Methods
 
 * [attribute](have.md#attribute)
 * [attributeWithValue](have.md#attributewithvalue)
@@ -33,11 +37,11 @@
 
 ---
 
-## Functions
+## Methods
 
 <a id="attribute"></a>
 
-### `<Const>` attribute
+###  attribute
 
 ▸ **attribute**(name: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -54,7 +58,7 @@
 ___
 <a id="attributewithvalue"></a>
 
-### `<Const>` attributeWithValue
+###  attributeWithValue
 
 ▸ **attributeWithValue**(attributeName: *`string`*, attributeValue: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -72,7 +76,7 @@ ___
 ___
 <a id="attributewithvaluecontaining"></a>
 
-### `<Const>` attributeWithValueContaining
+###  attributeWithValueContaining
 
 ▸ **attributeWithValueContaining**(attributeName: *`string`*, attributeValue: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -90,7 +94,7 @@ ___
 ___
 <a id="cssclass"></a>
 
-### `<Const>` cssClass
+###  cssClass
 
 ▸ **cssClass**(cssClass: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -107,7 +111,7 @@ ___
 ___
 <a id="exacttext"></a>
 
-### `<Const>` exactText
+###  exactText
 
 ▸ **exactText**(value: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -124,7 +128,7 @@ ___
 ___
 <a id="exacttexts"></a>
 
-### `<Const>` exactTexts
+###  exactTexts
 
 ▸ **exactTexts**(...texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
@@ -141,7 +145,7 @@ ___
 ___
 <a id="jsreturnedtrue"></a>
 
-### `<Const>` jsReturnedTrue
+###  jsReturnedTrue
 
 ▸ **jsReturnedTrue**(script: *`string`*): [BrowserCondition](../#browsercondition)
 
@@ -158,7 +162,7 @@ ___
 ___
 <a id="size"></a>
 
-### `<Const>` size
+###  size
 
 ▸ **size**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
@@ -175,7 +179,7 @@ ___
 ___
 <a id="sizegreaterthan"></a>
 
-### `<Const>` sizeGreaterThan
+###  sizeGreaterThan
 
 ▸ **sizeGreaterThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
@@ -192,7 +196,7 @@ ___
 ___
 <a id="sizegreaterthanorequal"></a>
 
-### `<Const>` sizeGreaterThanOrEqual
+###  sizeGreaterThanOrEqual
 
 ▸ **sizeGreaterThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
@@ -209,7 +213,7 @@ ___
 ___
 <a id="sizelessthan"></a>
 
-### `<Const>` sizeLessThan
+###  sizeLessThan
 
 ▸ **sizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
@@ -226,7 +230,7 @@ ___
 ___
 <a id="sizelessthanorequal"></a>
 
-### `<Const>` sizeLessThanOrEqual
+###  sizeLessThanOrEqual
 
 ▸ **sizeLessThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
 
@@ -243,7 +247,7 @@ ___
 ___
 <a id="tabsnumber"></a>
 
-### `<Const>` tabsNumber
+###  tabsNumber
 
 ▸ **tabsNumber**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
@@ -260,7 +264,7 @@ ___
 ___
 <a id="tabsnumberlessthan"></a>
 
-### `<Const>` tabsNumberLessThan
+###  tabsNumberLessThan
 
 ▸ **tabsNumberLessThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
@@ -277,7 +281,7 @@ ___
 ___
 <a id="tabsnumbermorethan"></a>
 
-### `<Const>` tabsNumberMoreThan
+###  tabsNumberMoreThan
 
 ▸ **tabsNumberMoreThan**(num: *`number`*): [BrowserCondition](../#browsercondition)
 
@@ -294,7 +298,7 @@ ___
 ___
 <a id="text"></a>
 
-### `<Const>` text
+###  text
 
 ▸ **text**(value: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -311,7 +315,7 @@ ___
 ___
 <a id="texts"></a>
 
-### `<Const>` texts
+###  texts
 
 ▸ **texts**(...texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
 
@@ -328,7 +332,7 @@ ___
 ___
 <a id="title"></a>
 
-### `<Const>` title
+###  title
 
 ▸ **title**(expected: *`string`*): [BrowserCondition](../#browsercondition)
 
@@ -345,7 +349,7 @@ ___
 ___
 <a id="titlecontaining"></a>
 
-### `<Const>` titleContaining
+###  titleContaining
 
 ▸ **titleContaining**(titlePart: *`string`*): [BrowserCondition](../#browsercondition)
 
@@ -362,7 +366,7 @@ ___
 ___
 <a id="url"></a>
 
-### `<Const>` url
+###  url
 
 ▸ **url**(url: *`string`*): [BrowserCondition](../#browsercondition)
 
@@ -379,7 +383,7 @@ ___
 ___
 <a id="urlcontaining"></a>
 
-### `<Const>` urlContaining
+###  urlContaining
 
 ▸ **urlContaining**(urlPart: *`string`*): [BrowserCondition](../#browsercondition)
 
@@ -396,7 +400,7 @@ ___
 ___
 <a id="value"></a>
 
-### `<Const>` value
+###  value
 
 ▸ **value**(value: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -413,7 +417,7 @@ ___
 ___
 <a id="valuecontaining"></a>
 
-### `<Const>` valueContaining
+###  valueContaining
 
 ▸ **valueContaining**(expected: *`string`*): [ElementCondition](../#elementcondition)
 
@@ -430,7 +434,7 @@ ___
 ___
 <a id="visibleelement"></a>
 
-### `<Const>` visibleElement
+###  visibleElement
 
 ▸ **visibleElement**(locator: *`By`*): [ElementCondition](../#elementcondition)
 

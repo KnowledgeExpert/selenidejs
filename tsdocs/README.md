@@ -5,15 +5,12 @@
 
 ### Modules
 
-* [Condition](modules/condition.md)
 * [Extensions](modules/extensions.md)
-* [be](modules/be.md)
 * [by](modules/by.md)
 * [command](modules/command.md)
 * [condition](modules/condition.md)
 * [find](modules/find.md)
 * [get](modules/get.md)
-* [have](modules/have.md)
 * [perform](modules/perform.md)
 * [predicate](modules/predicate.md)
 * [query](modules/query.md)
@@ -21,6 +18,7 @@
 
 ### Classes
 
+* [Be](classes/be.md)
 * [Browser](classes/browser.md)
 * [BrowserWebElementByLocator](classes/browserwebelementbylocator.md)
 * [BrowserWebElementsByLocator](classes/browserwebelementsbylocator.md)
@@ -28,6 +26,8 @@
 * [CannotPerformActionError](classes/cannotperformactionerror.md)
 * [CashedWebElementLocator](classes/cashedwebelementlocator.md)
 * [Collection](classes/collection.md)
+* [Command](classes/command.md)
+* [Condition](classes/condition.md)
 * [ConditionNotMatchedError](classes/conditionnotmatchederror.md)
 * [Configuration](classes/configuration.md)
 * [Customized](classes/customized.md)
@@ -38,6 +38,8 @@
 * [Entity](classes/entity.md)
 * [FailedToMatchConditionWithReasonError](classes/failedtomatchconditionwithreasonerror.md)
 * [FilteredByConditionWebElementsLocator](classes/filteredbyconditionwebelementslocator.md)
+* [Have](classes/have.md)
+* [Query](classes/query.md)
 * [SlicedWebElementsLocator](classes/slicedwebelementslocator.md)
 * [TimeoutError](classes/timeouterror.md)
 * [Wait](classes/wait.md)
@@ -45,6 +47,7 @@
 ### Interfaces
 
 * [Assertable](interfaces/assertable.md)
+* [Fn](interfaces/fn.md)
 * [Locator](interfaces/locator.md)
 * [Matchable](interfaces/matchable.md)
 
@@ -52,17 +55,25 @@
 
 * [BrowserCondition](#browsercondition)
 * [CollectionCondition](#collectioncondition)
-* [Command](#command)
 * [ElementCondition](#elementcondition)
-* [ElementQuery](#elementquery)
+* [Lambda](#lambda)
 * [OnEntityFailureHook](#onentityfailurehook)
 * [OnFailureHook](#onfailurehook)
-* [Query](#query)
+
+### Variables
+
+* [no](#no)
+* [not](#not)
 
 ### Functions
 
 * [lambda](#lambda)
 * [toString](#tostring)
+
+### Object literals
+
+* [be](#be)
+* [have](#have)
 
 ---
 
@@ -72,7 +83,7 @@
 
 ###  BrowserCondition
 
-**Ƭ BrowserCondition**: *[Condition](modules/condition.md)<[Browser](classes/browser.md)>*
+**Ƭ BrowserCondition**: *[Condition](classes/condition.md)<[Browser](classes/browser.md)>*
 
 *Defined in [conditions.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L27)*
 
@@ -81,38 +92,40 @@ ___
 
 ###  CollectionCondition
 
-**Ƭ CollectionCondition**: *[Condition](modules/condition.md)<[Collection](classes/collection.md)>*
+**Ƭ CollectionCondition**: *[Condition](classes/condition.md)<[Collection](classes/collection.md)>*
 
 *Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
-
-___
-<a id="command"></a>
-
-###  Command
-
-**Ƭ Command**: *[Query](#query)<`T`, `void`>*
-
-*Defined in [wait.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L32)*
-
-Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T. Command can pass or fail with Error correspondingly.
 
 ___
 <a id="elementcondition"></a>
 
 ###  ElementCondition
 
-**Ƭ ElementCondition**: *[Condition](modules/condition.md)<[Element](classes/element.md)>*
+**Ƭ ElementCondition**: *[Condition](classes/condition.md)<[Element](classes/element.md)>*
 
 *Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
 
 ___
-<a id="elementquery"></a>
+<a id="lambda"></a>
 
-###  ElementQuery
+###  Lambda
 
-**Ƭ ElementQuery**: *[Query](#query)<[Element](classes/element.md), `R`>*
+**Ƭ Lambda**: *`function`*
 
-*Defined in [queries.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L21)*
+*Defined in [wait.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L24)*
+
+Just a type alias to one-argument-async-function...
+
+#### Type declaration
+▸(entity: *`T`*): `Promise`<`R`>
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| entity | `T` |
+
+**Returns:** `Promise`<`R`>
 
 ___
 <a id="onentityfailurehook"></a>
@@ -132,7 +145,7 @@ ___
 
 **Ƭ OnFailureHook**: *`function`*
 
-*Defined in [wait.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L148)*
+*Defined in [wait.ts:189](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L189)*
 
 #### Type declaration
 ▸(failure: *`Error`*, entity: *`T`*): `Promise`< `void` &#124; `Error`>
@@ -147,26 +160,38 @@ ___
 **Returns:** `Promise`< `void` &#124; `Error`>
 
 ___
-<a id="query"></a>
 
-###  Query
+## Variables
 
-**Ƭ Query**: *`function`*
+<a id="no"></a>
 
-*Defined in [wait.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L26)*
+### `<Const>` no
 
-We use queries to perform an async query on entity of type T, i.e. get something from entity. So a query can pass and return something of type R or failed with Error correspondingly.
+**● no**: *[Have](classes/have.md)* =  new Proxy(new Have(), {
+    get: (target, name) => {
+        return name in target ?
+            (...args) => Condition.not(target[name](...args)) :
+            undefined;
+    }
+})
 
-#### Type declaration
-▸(entity: *`T`*): `Promise`<`R`>
+*Defined in [support/conditions/have.ts:98](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L98)*
 
-**Parameters:**
+___
+<a id="not"></a>
 
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
+### `<Const>` not
 
-**Returns:** `Promise`<`R`>
+**● not**: *[Be](classes/be.md)* =  new Proxy(new Be(), {
+    get: (target, name) => {
+        return name in target ?
+            // (...args) => Condition.not(target[name](...args)) :
+            Condition.not(target[name]) :
+            undefined;
+    }
+})
+
+*Defined in [support/conditions/be.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L39)*
 
 ___
 
@@ -211,6 +236,47 @@ ___
 | obj | `O` |
 
 **Returns:** `string`
+
+___
+
+## Object literals
+
+<a id="be"></a>
+
+### `<Const>` be
+
+**be**: *`object`*
+
+*Defined in [support/conditions/be.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L48)*
+
+<a id="be.not"></a>
+
+####  not
+
+**● not**: *[Be](classes/be.md)*
+
+*Defined in [support/conditions/be.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L48)*
+
+___
+
+___
+<a id="have"></a>
+
+### `<Const>` have
+
+**have**: *`object`*
+
+*Defined in [support/conditions/have.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L106)*
+
+<a id="have.no"></a>
+
+####  no
+
+**● no**: *[Have](classes/have.md)*
+
+*Defined in [support/conditions/have.ts:106](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/have.ts#L106)*
+
+___
 
 ___
 

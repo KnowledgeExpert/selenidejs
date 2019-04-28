@@ -14,7 +14,7 @@
 
 import { Element } from '../../element';
 import { query } from '../../queries';
-import { Query } from '../../wait';
+import { Lambda, Query } from '../../wait';
 import { Collection } from '../../collection';
 import { Browser } from '../../browser';
 
@@ -26,7 +26,7 @@ export namespace get {
 
     /* Element waiting queries */
 
-    const waitingForEntity = <R>(query: Query<Element, R>) =>
+    const waitingForEntity = <R>(query: Lambda<Element, R>) =>
         async (element: Element) => element.get(query);
 
     export const text = waitingForEntity(query.text);
@@ -38,7 +38,7 @@ export namespace get {
 
     /* Collection waiting queries */
 
-    const waitingForCollection = <R>(query: Query<Collection, R>) =>
+    const waitingForCollection = <R>(query: Lambda<Collection, R>) =>
         async (collection: Collection) => collection.get(query);
 
     export const size = waitingForCollection(query.size);
@@ -46,7 +46,7 @@ export namespace get {
 
     /* Browser waiting queries */
 
-    const waitingForBrowser = <R>(query: Query<Browser, R>) =>
+    const waitingForBrowser = <R>(query: Lambda<Browser, R>) =>
         async (browser: Browser) => browser.get(query);
 
     export const url = waitingForBrowser(query.url);
@@ -56,5 +56,4 @@ export namespace get {
     export const currentTab = waitingForBrowser(query.currentTab);
     export const tabsNumber = waitingForBrowser(query.tabsNumber);
     export const pageSource = waitingForBrowser(query.pageSource);
-
 }

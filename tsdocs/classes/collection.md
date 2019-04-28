@@ -40,14 +40,11 @@
 * [getAsCashedArray](collection.md#getascashedarray)
 * [getWebElements](collection.md#getwebelements)
 * [matching](collection.md#matching)
-* [matchingNot](collection.md#matchingnot)
 * [perform](collection.md#perform)
 * [should](collection.md#should)
-* [shouldNot](collection.md#shouldnot)
 * [sliced](collection.md#sliced)
 * [toString](collection.md#tostring)
 * [waitUntil](collection.md#waituntil)
-* [waitUntilNot](collection.md#waituntilnot)
 * [with](collection.md#with)
 
 ---
@@ -105,7 +102,7 @@ ___
 
 *Inherited from [Entity](entity.md).[wait](entity.md#wait)*
 
-*Defined in [entity.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L55)*
+*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 ___
 
@@ -180,11 +177,11 @@ ___
 
 ###  get
 
-▸ **get**<`R`>(query: *[Query](../#query)<`this`, `R`>*): `Promise`<`R`>
+▸ **get**<`R`>(query: *[Lambda](../#lambda)<`this`, `R`>*): `Promise`<`R`>
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
-*Defined in [entity.ts:118](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L118)*
+*Defined in [entity.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L100)*
 
 **Type parameters:**
 
@@ -193,7 +190,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| query | [Query](../#query)<`this`, `R`> |
+| query | [Lambda](../#lambda)<`this`, `R`> |
 
 **Returns:** `Promise`<`R`>
 
@@ -224,36 +221,17 @@ ___
 
 ###  matching
 
-▸ **matching**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **matching**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
 
 *Inherited from [Entity](entity.md).[matching](entity.md#matching)*
 
-*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
+*Defined in [entity.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L87)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
-
-**Returns:** `Promise`<`boolean`>
-
-___
-<a id="matchingnot"></a>
-
-###  matchingNot
-
-▸ **matchingNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
-
-*Inherited from [Entity](entity.md).[matchingNot](entity.md#matchingnot)*
-
-*Defined in [entity.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L105)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
+| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 
@@ -262,17 +240,17 @@ ___
 
 ###  perform
 
-▸ **perform**(command: *[Command](../#command)<`this`>*): `Promise`<`this`>
+▸ **perform**(command: *[Lambda](../#lambda)<`this`, `void`>*): `Promise`<`this`>
 
 *Inherited from [Entity](entity.md).[perform](entity.md#perform)*
 
-*Defined in [entity.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L111)*
+*Defined in [entity.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L93)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| command | [Command](../#command)<`this`> |
+| command | [Lambda](../#lambda)<`this`, `void`> |
 
 **Returns:** `Promise`<`this`>
 
@@ -281,36 +259,17 @@ ___
 
 ###  should
 
-▸ **should**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
+▸ **should**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`this`>
 
 *Inherited from [Entity](entity.md).[should](entity.md#should)*
 
-*Defined in [entity.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L80)*
+*Defined in [entity.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L76)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
-
-**Returns:** `Promise`<`this`>
-
-___
-<a id="shouldnot"></a>
-
-###  shouldNot
-
-▸ **shouldNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
-
-*Inherited from [Entity](entity.md).[shouldNot](entity.md#shouldnot)*
-
-*Defined in [entity.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L85)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
+| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
 
 **Returns:** `Promise`<`this`>
 
@@ -350,40 +309,19 @@ ___
 
 ###  waitUntil
 
-▸ **waitUntil**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **waitUntil**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
 
 *Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
 
 *Inherited from [Entity](entity.md).[waitUntil](entity.md#waituntil)*
 
-*Defined in [entity.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L92)*
+*Defined in [entity.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L83)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
-
-**Returns:** `Promise`<`boolean`>
-
-___
-<a id="waituntilnot"></a>
-
-###  waitUntilNot
-
-▸ **waitUntilNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
-
-*Implementation of [Matchable](../interfaces/matchable.md).[waitUntilNot](../interfaces/matchable.md#waituntilnot)*
-
-*Inherited from [Entity](entity.md).[waitUntilNot](entity.md#waituntilnot)*
-
-*Defined in [entity.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L96)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
+| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 

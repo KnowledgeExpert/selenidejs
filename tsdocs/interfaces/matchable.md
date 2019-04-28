@@ -21,9 +21,7 @@
 ### Methods
 
 * [matching](matchable.md#matching)
-* [matchingNot](matchable.md#matchingnot)
 * [waitUntil](matchable.md#waituntil)
-* [waitUntilNot](matchable.md#waituntilnot)
 
 ---
 
@@ -33,32 +31,15 @@
 
 ###  matching
 
-▸ **matching**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`boolean`>
+▸ **matching**(condition: *[Condition](../classes/condition.md)<`this`>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L45)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](../modules/condition.md)<`this`> |
-
-**Returns:** `Promise`<`boolean`>
-
-___
-<a id="matchingnot"></a>
-
-###  matchingNot
-
-▸ **matchingNot**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`boolean`>
-
-*Defined in [entity.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L46)*
+*Defined in [entity.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L43)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [Condition](../modules/condition.md)<`this`> |
+| condition | [Condition](../classes/condition.md)<`this`> |
 
 **Returns:** `Promise`<`boolean`>
 
@@ -67,32 +48,15 @@ ___
 
 ###  waitUntil
 
-▸ **waitUntil**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **waitUntil**(...conditions: *`Array`<[Condition](../classes/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L43)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
-
-**Returns:** `Promise`<`boolean`>
-
-___
-<a id="waituntilnot"></a>
-
-###  waitUntilNot
-
-▸ **waitUntilNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
-
-*Defined in [entity.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L44)*
+*Defined in [entity.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L42)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
+| `Rest` conditions | `Array`<[Condition](../classes/condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 
