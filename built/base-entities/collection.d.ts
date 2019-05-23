@@ -14,6 +14,7 @@ export declare class Collection {
     matchingNot(condition: CollectionCondition, timeout?: number): Promise<boolean>;
     get(index: number): Element;
     first(): Element;
+    last(): Element;
     filter(condition: ElementCondition): Collection;
     filterBy(condition: ElementCondition): Collection;
     findBy(condition: ElementCondition): Element;

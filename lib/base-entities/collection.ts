@@ -14,6 +14,7 @@
 
 import {Locator} from './locators/locator';
 import {ByIndexedWebElementLocator} from './locators/byIndexedWebElementLocator';
+import {ByLastWebElementLocator} from './locators/byLastWebElementLocator';
 import {ByFilteredWebElementsLocator} from './locators/byFilteredWebElementsLocator';
 import {By, WebElement} from 'selenium-webdriver';
 import {Element} from './element';
@@ -68,6 +69,10 @@ export class Collection {
 
     first(): Element {
         return this.get(0);
+    }
+
+    last(): Element {
+        return new Element(new ByLastWebElementLocator(this));
     }
 
     filter(condition: ElementCondition): Collection {

@@ -20,6 +20,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const byIndexedWebElementLocator_1 = require("./locators/byIndexedWebElementLocator");
+const byLastWebElementLocator_1 = require("./locators/byLastWebElementLocator");
 const byFilteredWebElementsLocator_1 = require("./locators/byFilteredWebElementsLocator");
 const element_1 = require("./element");
 const wait_1 = require("../wait");
@@ -55,6 +56,9 @@ class Collection {
     }
     first() {
         return this.get(0);
+    }
+    last() {
+        return new element_1.Element(new byLastWebElementLocator_1.ByLastWebElementLocator(this));
     }
     filter(condition) {
         return new Collection(new byFilteredWebElementsLocator_1.ByFilteredWebElementsLocator(condition, this));
