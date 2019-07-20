@@ -1,12 +1,14 @@
-[selenidejs](../README.md) > [Browser](../classes/browser.md)
+> **[selenidejs](../README.md)**
+
+[Browser](browser.md) /
 
 # Class: Browser
 
 ## Hierarchy
 
- [Entity](entity.md)
+* [Entity](entity.md)
 
-**↳ Browser**
+  * **Browser**
 
 ## Implements
 
@@ -23,8 +25,8 @@
 
 ### Properties
 
-* [configuration](browser.md#configuration)
-* [wait](browser.md#wait)
+* [configuration](browser.md#protected-configuration)
+* [wait](browser.md#protected-wait)
 
 ### Accessors
 
@@ -58,19 +60,15 @@
 * [toString](browser.md#tostring)
 * [waitUntil](browser.md#waituntil)
 * [with](browser.md#with)
-* [chrome](browser.md#chrome)
-* [chromeWith](browser.md#chromewith)
-* [configuredWith](browser.md#configuredwith)
-
----
+* [chrome](browser.md#static-chrome)
+* [chromeWith](browser.md#static-chromewith)
+* [configuredWith](browser.md#static-configuredwith)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new Browser**(configuration?: *`Partial`<[Configuration](configuration.md)>*): [Browser](browser.md)
+\+ **new Browser**(`configuration`: `Partial<Configuration>`): *[Browser](browser.md)*
 
 *Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
 
@@ -78,191 +76,168 @@
 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| `Default value` configuration | `Partial`<[Configuration](configuration.md)> |  {} |
+Name | Type | Default |
+------ | ------ | ------ |
+`configuration` | `Partial<Configuration>` |  {} |
 
-**Returns:** [Browser](browser.md)
-
-___
+**Returns:** *[Browser](browser.md)*
 
 ## Properties
 
-<a id="configuration"></a>
+### `Protected` configuration
 
-### `<Protected>` configuration
+• **configuration**: *[Configuration](configuration.md)*
 
-**● configuration**: *[Configuration](configuration.md)*
-
-*Inherited from [Entity](entity.md).[configuration](entity.md#configuration)*
+*Inherited from [Entity](entity.md).[configuration](entity.md#protected-configuration)*
 
 *Defined in [entity.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L54)*
 
 ___
-<a id="wait"></a>
 
-### `<Protected>` wait
+### `Protected` wait
 
-**● wait**: *[Wait](wait.md)<`this`>*
+• **wait**: *[Wait](wait.md)‹*this*›*
 
-*Inherited from [Entity](entity.md).[wait](entity.md#wait)*
+*Inherited from [Entity](entity.md).[wait](entity.md#protected-wait)*
 
 *Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
-___
-
 ## Accessors
-
-<a id="alert"></a>
 
 ###  alert
 
-getalert(): `AlertPromise`
+• **get alert**(): *`AlertPromise`*
 
 *Defined in [browser.ts:209](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L209)*
 
-**Returns:** `AlertPromise`
+**Returns:** *`AlertPromise`*
 
 ___
-<a id="driver"></a>
 
 ###  driver
 
-getdriver(): `WebDriver`
+• **get driver**(): *`WebDriver`*
 
 *Defined in [browser.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L49)*
 
-**Returns:** `WebDriver`
-
-___
+**Returns:** *`WebDriver`*
 
 ## Methods
 
-<a id="all"></a>
-
 ###  all
 
-▸ **all**(cssOrXpathOrBy: * `string` &#124; `By`*, customized?: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
+▸ **all**(`cssOrXpathOrBy`: string | `By`, `customized?`: `Partial<Configuration>`): *[Collection](collection.md)*
 
 *Defined in [browser.ts:68](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L68)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
-| `Optional` customized | `Partial`<[Configuration](configuration.md)> |
+Name | Type |
+------ | ------ |
+`cssOrXpathOrBy` | string \| `By` |
+`customized?` | `Partial<Configuration>` |
 
-**Returns:** [Collection](collection.md)
+**Returns:** *[Collection](collection.md)*
 
 ___
-<a id="back"></a>
 
 ###  back
 
-▸ **back**(): `Promise`<`void`>
+▸ **back**(): *`Promise<void>`*
 
 *Defined in [browser.ts:127](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L127)*
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="clearcookies"></a>
 
 ###  clearCookies
 
-▸ **clearCookies**(): `Promise`<[Browser](browser.md)>
+▸ **clearCookies**(): *`Promise<Browser>`*
 
 *Defined in [browser.ts:197](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L197)*
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="clearlocalstorage"></a>
 
 ###  clearLocalStorage
 
-▸ **clearLocalStorage**(): `Promise`<[Browser](browser.md)>
+▸ **clearLocalStorage**(): *`Promise<Browser>`*
 
 *Defined in [browser.ts:185](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L185)*
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="clearsessionstorage"></a>
 
 ###  clearSessionStorage
 
-▸ **clearSessionStorage**(): `Promise`<[Browser](browser.md)>
+▸ **clearSessionStorage**(): *`Promise<Browser>`*
 
 *Defined in [browser.ts:191](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L191)*
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="closecurrenttab"></a>
 
 ###  closeCurrentTab
 
-▸ **closeCurrentTab**(): `Promise`<[Browser](browser.md)>
+▸ **closeCurrentTab**(): *`Promise<Browser>`*
 
 *Defined in [browser.ts:114](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L114)*
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="element"></a>
 
 ###  element
 
-▸ **element**(cssOrXpathOrBy: * `string` &#124; `By`*, customized?: *`Partial`<[Configuration](configuration.md)>*): [Element](element.md)
+▸ **element**(`cssOrXpathOrBy`: string | `By`, `customized?`: `Partial<Configuration>`): *[Element](element.md)*
 
 *Defined in [browser.ts:59](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L59)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
-| `Optional` customized | `Partial`<[Configuration](configuration.md)> |
+Name | Type |
+------ | ------ |
+`cssOrXpathOrBy` | string \| `By` |
+`customized?` | `Partial<Configuration>` |
 
-**Returns:** [Element](element.md)
+**Returns:** *[Element](element.md)*
 
 ___
-<a id="executescript"></a>
 
 ###  executeScript
 
-▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `Promise`<`Object`>
+▸ **executeScript**(`script`: string | `Function`, ...`args`: any[]): *`Promise<Object>`*
 
 *Defined in [browser.ts:82](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L82)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| script |  `string` &#124; `Function`|
-| `Rest` args | `any`[] |
+Name | Type |
+------ | ------ |
+`script` | string \| `Function` |
+`...args` | any[] |
 
-**Returns:** `Promise`<`Object`>
+**Returns:** *`Promise<Object>`*
 
 ___
-<a id="forward"></a>
 
 ###  forward
 
-▸ **forward**(): `Promise`<`void`>
+▸ **forward**(): *`Promise<void>`*
 
 *Defined in [browser.ts:131](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L131)*
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="get"></a>
 
 ###  get
 
-▸ **get**<`R`>(query: *[Lambda](../#lambda)<`this`, `R`>*): `Promise`<`R`>
+▸ **get**<**R**>(`query`: [Lambda](../README.md#lambda)‹*this*, *`R`*›): *`Promise<R>`*
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
@@ -270,60 +245,57 @@ ___
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| query | [Lambda](../#lambda)<`this`, `R`> |
+Name | Type |
+------ | ------ |
+`query` | [Lambda](../README.md#lambda)‹*this*, *`R`*› |
 
-**Returns:** `Promise`<`R`>
+**Returns:** *`Promise<R>`*
 
 ___
-<a id="gotonexttab"></a>
 
 ###  goToNextTab
 
-▸ **goToNextTab**(): `Promise`<[Browser](browser.md)>
+▸ **goToNextTab**(): *`Promise<Browser>`*
 
 *Defined in [browser.ts:135](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L135)*
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="gotoprevioustab"></a>
 
 ###  goToPreviousTab
 
-▸ **goToPreviousTab**(): `Promise`<[Browser](browser.md)>
+▸ **goToPreviousTab**(): *`Promise<Browser>`*
 
 *Defined in [browser.ts:142](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L142)*
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="gototab"></a>
 
 ###  goToTab
 
-▸ **goToTab**(indexOrId: * `number` &#124; `string`*): `Promise`<[Browser](browser.md)>
+▸ **goToTab**(`indexOrId`: number | string): *`Promise<Browser>`*
 
 *Defined in [browser.ts:149](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L149)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| indexOrId |  `number` &#124; `string`|
+Name | Type |
+------ | ------ |
+`indexOrId` | number \| string |
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="matching"></a>
 
 ###  matching
 
-▸ **matching**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **matching**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
 
 *Inherited from [Entity](entity.md).[matching](entity.md#matching)*
 
@@ -331,35 +303,33 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`boolean`>
+**Returns:** *`Promise<boolean>`*
 
 ___
-<a id="open"></a>
 
 ###  open
 
-▸ **open**(relativeOrAbsoluteUrl: *`string`*): `Promise`<[Browser](browser.md)>
+▸ **open**(`relativeOrAbsoluteUrl`: string): *`Promise<Browser>`*
 
 *Defined in [browser.ts:87](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L87)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| relativeOrAbsoluteUrl | `string` |
+Name | Type |
+------ | ------ |
+`relativeOrAbsoluteUrl` | string |
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="perform"></a>
 
 ###  perform
 
-▸ **perform**(command: *[Lambda](../#lambda)<`this`, `void`>*): `Promise`<`this`>
+▸ **perform**(`command`: [Lambda](../README.md#lambda)‹*this*, *void*›): *`Promise<this>`*
 
 *Inherited from [Entity](entity.md).[perform](entity.md#perform)*
 
@@ -367,69 +337,64 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| command | [Lambda](../#lambda)<`this`, `void`> |
+Name | Type |
+------ | ------ |
+`command` | [Lambda](../README.md#lambda)‹*this*, *void*› |
 
-**Returns:** `Promise`<`this`>
+**Returns:** *`Promise<this>`*
 
 ___
-<a id="quit"></a>
 
 ###  quit
 
-▸ **quit**(): `Promise`<`void`>
+▸ **quit**(): *`Promise<void>`*
 
 *Defined in [browser.ts:119](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L119)*
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="refresh"></a>
 
 ###  refresh
 
-▸ **refresh**(): `Promise`<`void`>
+▸ **refresh**(): *`Promise<void>`*
 
 *Defined in [browser.ts:123](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L123)*
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="resizewindow"></a>
 
 ###  resizeWindow
 
-▸ **resizeWindow**(width: *`number`*, height: *`number`*): `Promise`<[Browser](browser.md)>
+▸ **resizeWindow**(`width`: number, `height`: number): *`Promise<Browser>`*
 
 *Defined in [browser.ts:103](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L103)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| width | `number` |
-| height | `number` |
+Name | Type |
+------ | ------ |
+`width` | number |
+`height` | number |
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="screenshot"></a>
 
 ###  screenshot
 
-▸ **screenshot**(): `Promise`<`Buffer`>
+▸ **screenshot**(): *`Promise<Buffer>`*
 
 *Defined in [browser.ts:108](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L108)*
 
-**Returns:** `Promise`<`Buffer`>
+**Returns:** *`Promise<Buffer>`*
 
 ___
-<a id="should"></a>
 
 ###  should
 
-▸ **should**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`this`>
+▸ **should**(...`conditions`: `Array<Condition<this>>`): *`Promise<this>`*
 
 *Inherited from [Entity](entity.md).[should](entity.md#should)*
 
@@ -437,42 +402,39 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`this`>
+**Returns:** *`Promise<this>`*
 
 ___
-<a id="switchtodefaultframe"></a>
 
 ###  switchToDefaultFrame
 
-▸ **switchToDefaultFrame**(): `Promise`<[Browser](browser.md)>
+▸ **switchToDefaultFrame**(): *`Promise<Browser>`*
 
 *Defined in [browser.ts:169](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L169)*
 
-**Returns:** `Promise`<[Browser](browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [browser.ts:53](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L53)*
 
-**Returns:** `string`
+**Returns:** *string*
 
 ___
-<a id="waituntil"></a>
 
 ###  waitUntil
 
-▸ **waitUntil**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **waitUntil**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
 
-*Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
+*Implementation of [Matchable](../interfaces/matchable.md)*
 
 *Inherited from [Entity](entity.md).[waitUntil](entity.md#waituntil)*
 
@@ -480,61 +442,54 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`boolean`>
+**Returns:** *`Promise<boolean>`*
 
 ___
-<a id="with"></a>
 
 ###  with
 
-▸ **with**(customConfig: *`Partial`<[Configuration](configuration.md)>*): [Browser](browser.md)
+▸ **with**(`customConfig`: `Partial<Configuration>`): *[Browser](browser.md)*
 
 *Defined in [browser.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L45)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| customConfig | `Partial`<[Configuration](configuration.md)> |
+Name | Type |
+------ | ------ |
+`customConfig` | `Partial<Configuration>` |
 
-**Returns:** [Browser](browser.md)
+**Returns:** *[Browser](browser.md)*
 
 ___
-<a id="chrome"></a>
 
-### `<Static>` chrome
+### `Static` chrome
 
-▸ **chrome**(): [Browser](browser.md)
+▸ **chrome**(): *[Browser](browser.md)*
 
 *Defined in [browser.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L37)*
 
-**Returns:** [Browser](browser.md)
+**Returns:** *[Browser](browser.md)*
 
 ___
-<a id="chromewith"></a>
 
-### `<Static>` chromeWith
+### `Static` chromeWith
 
-▸ **chromeWith**(): [Customized](customized.md)<[Browser](browser.md)>
+▸ **chromeWith**(): *[Customized](customized.md)‹*[Browser](browser.md)*›*
 
 *Defined in [browser.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L32)*
 
-**Returns:** [Customized](customized.md)<[Browser](browser.md)>
+**Returns:** *[Customized](customized.md)‹*[Browser](browser.md)*›*
 
 ___
-<a id="configuredwith"></a>
 
-### `<Static>` configuredWith
+### `Static` configuredWith
 
-▸ **configuredWith**(): [Customized](customized.md)<[Browser](browser.md)>
+▸ **configuredWith**(): *[Customized](customized.md)‹*[Browser](browser.md)*›*
 
 *Defined in [browser.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L28)*
 
-**Returns:** [Customized](customized.md)<[Browser](browser.md)>
-
-___
-
+**Returns:** *[Customized](customized.md)‹*[Browser](browser.md)*›*

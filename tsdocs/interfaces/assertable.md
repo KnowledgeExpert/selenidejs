@@ -1,10 +1,12 @@
-[selenidejs](../README.md) > [Assertable](../interfaces/assertable.md)
+> **[selenidejs](../README.md)**
+
+[Assertable](assertable.md) /
 
 # Interface: Assertable
 
 ## Hierarchy
 
-**Assertable**
+* **Assertable**
 
 ## Implemented by
 
@@ -22,25 +24,18 @@
 
 * [should](assertable.md#should)
 
----
-
 ## Methods
-
-<a id="should"></a>
 
 ###  should
 
-▸ **should**(condition: *[Condition](../classes/condition.md)<`this`>*): `Promise`<`this`>
+▸ **should**(`condition`: [Condition](../classes/condition.md)‹*this*›): *`Promise<this>`*
 
 *Defined in [entity.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L38)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](../classes/condition.md)<`this`> |
+Name | Type |
+------ | ------ |
+`condition` | [Condition](../classes/condition.md)‹*this*› |
 
-**Returns:** `Promise`<`this`>
-
-___
-
+**Returns:** *`Promise<this>`*

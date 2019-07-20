@@ -1,5 +1,4 @@
-
-#  selenidejs
+> **[selenidejs](README.md)**
 
 ## Index
 
@@ -53,145 +52,132 @@
 
 ### Type aliases
 
-* [BrowserCondition](#browsercondition)
-* [CollectionCondition](#collectioncondition)
-* [ElementCondition](#elementcondition)
-* [Lambda](#lambda)
-* [OnEntityFailureHook](#onentityfailurehook)
-* [OnFailureHook](#onfailurehook)
+* [BrowserCondition](README.md#browsercondition)
+* [CollectionCondition](README.md#collectioncondition)
+* [ElementCondition](README.md#elementcondition)
+* [Lambda](README.md#lambda)
+* [OnEntityFailureHook](README.md#onentityfailurehook)
+* [OnFailureHook](README.md#onfailurehook)
 
 ### Functions
 
-* [lambda](#lambda)
-* [toString](#tostring)
-
----
+* [lambda](README.md#lambda)
+* [toString](README.md#const-tostring)
 
 ## Type aliases
 
-<a id="browsercondition"></a>
-
 ###  BrowserCondition
 
-**Ƭ BrowserCondition**: *[Condition](classes/condition.md)<[Browser](classes/browser.md)>*
+Ƭ **BrowserCondition**: *[Condition](classes/condition.md)‹*[Browser](classes/browser.md)*›*
 
 *Defined in [conditions.ts:27](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L27)*
 
 ___
-<a id="collectioncondition"></a>
 
 ###  CollectionCondition
 
-**Ƭ CollectionCondition**: *[Condition](classes/condition.md)<[Collection](classes/collection.md)>*
+Ƭ **CollectionCondition**: *[Condition](classes/condition.md)‹*[Collection](classes/collection.md)*›*
 
 *Defined in [conditions.ts:26](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L26)*
 
 ___
-<a id="elementcondition"></a>
 
 ###  ElementCondition
 
-**Ƭ ElementCondition**: *[Condition](classes/condition.md)<[Element](classes/element.md)>*
+Ƭ **ElementCondition**: *[Condition](classes/condition.md)‹*[Element](classes/element.md)*›*
 
 *Defined in [conditions.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L25)*
 
 ___
-<a id="lambda"></a>
 
 ###  Lambda
 
-**Ƭ Lambda**: *`function`*
+Ƭ **Lambda**: *function*
 
 *Defined in [wait.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L24)*
 
 Just a type alias to one-argument-async-function...
 
-#### Type declaration
-▸(entity: *`T`*): `Promise`<`R`>
+#### Type declaration:
+
+▸ (`entity`: `T`): *`Promise<R>`*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
-
-**Returns:** `Promise`<`R`>
+Name | Type |
+------ | ------ |
+`entity` | `T` |
 
 ___
-<a id="onentityfailurehook"></a>
 
 ###  OnEntityFailureHook
 
-**Ƭ OnEntityFailureHook**: *[OnFailureHook](#onfailurehook)< [Browser](classes/browser.md) &#124; [Element](classes/element.md) &#124; [Collection](classes/collection.md)>*
+Ƭ **OnEntityFailureHook**: *[OnFailureHook](README.md#onfailurehook)‹*[Browser](classes/browser.md) | [Element](classes/element.md) | [Collection](classes/collection.md)*›*
 
 *Defined in [configuration.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L31)*
 
-A one place to configure everything. There is no separate Browser, Element or Collection configurations. All corresponding options live here, in Configuration.* It was implemented like this to stay KISS and simplify implementation. Enjoy;)
+A one place to configure everything.
+There is no separate Browser, Element or Collection configurations.
+All corresponding options live here, in Configuration.*
+It was implemented like this to stay KISS and simplify implementation.
+Enjoy;)
 
 ___
-<a id="onfailurehook"></a>
 
 ###  OnFailureHook
 
-**Ƭ OnFailureHook**: *`function`*
+Ƭ **OnFailureHook**: *function*
 
 *Defined in [wait.ts:198](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L198)*
 
-#### Type declaration
-▸(failure: *`Error`*, entity: *`T`*): `Promise`< `void` &#124; `Error`>
+#### Type declaration:
+
+▸ (`failure`: `Error`, `entity`: `T`): *`Promise<void | Error>`*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| failure | `Error` |
-| entity | `T` |
-
-**Returns:** `Promise`< `void` &#124; `Error`>
-
-___
+Name | Type |
+------ | ------ |
+`failure` | `Error` |
+`entity` | `T` |
 
 ## Functions
 
-<a id="lambda"></a>
-
 ###  lambda
 
-▸ **lambda**<`F`>(toString: *`string`*, fn: *`F`*): `F`
+▸ **lambda**<**F**>(`toString`: string, `fn`: `F`): *`F`*
 
 *Defined in [utils/index.ts:17](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/index.ts#L17)*
 
 **Type parameters:**
 
-#### F 
+▪ **F**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| toString | `string` |
-| fn | `F` |
+Name | Type |
+------ | ------ |
+`toString` | string |
+`fn` | `F` |
 
-**Returns:** `F`
+**Returns:** *`F`*
 
 ___
-<a id="tostring"></a>
 
-### `<Const>` toString
+### `Const` toString
 
-▸ **toString**<`O`>(obj: *`O`*): `string`
+▸ **toString**<**O**>(`obj`: `O`): *string*
 
 *Defined in [utils/index.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/index.ts#L22)*
 
 **Type parameters:**
 
-#### O 
+▪ **O**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| obj | `O` |
+Name | Type |
+------ | ------ |
+`obj` | `O` |
 
-**Returns:** `string`
-
-___
-
+**Returns:** *string*

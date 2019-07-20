@@ -1,12 +1,14 @@
-[selenidejs](../README.md) > [FailedToMatchConditionWithReasonError](../classes/failedtomatchconditionwithreasonerror.md)
+> **[selenidejs](../README.md)**
+
+[FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md) /
 
 # Class: FailedToMatchConditionWithReasonError
 
 ## Hierarchy
 
-↳  [ConditionNotMatchedError](conditionnotmatchederror.md)
+  * [ConditionNotMatchedError](conditionnotmatchederror.md)
 
-**↳ FailedToMatchConditionWithReasonError**
+  * **FailedToMatchConditionWithReasonError**
 
 ## Index
 
@@ -18,17 +20,13 @@
 
 * [message](failedtomatchconditionwithreasonerror.md#message)
 * [name](failedtomatchconditionwithreasonerror.md#name)
-* [stack](failedtomatchconditionwithreasonerror.md#stack)
-
----
+* [stack](failedtomatchconditionwithreasonerror.md#optional-stack)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new FailedToMatchConditionWithReasonError**(expected: *`string`*, reason: *`Error`*): [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
+\+ **new FailedToMatchConditionWithReasonError**(`expected`: string, `reason`: `Error`): *[FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)*
 
 *Overrides [ConditionNotMatchedError](conditionnotmatchederror.md).[constructor](conditionnotmatchederror.md#constructor)*
 
@@ -36,50 +34,41 @@
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `string` |
-| reason | `Error` |
+Name | Type |
+------ | ------ |
+`expected` | string |
+`reason` | `Error` |
 
-**Returns:** [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
-
-___
+**Returns:** *[FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)*
 
 ## Properties
 
-<a id="message"></a>
-
 ###  message
 
-**● message**: *`string`*
+• **message**: *string*
 
-*Inherited from Error.message*
+*Inherited from void*
 
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:904*
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+• **name**: *string*
 
-*Inherited from Error.name*
+*Inherited from void*
 
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:903*
-
-___
-<a id="stack"></a>
-
-### `<Optional>` stack
-
-**● stack**: *`string`*
-
-*Inherited from Error.stack*
-
-*Overrides Error.stack*
-
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:905*
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
 
 ___
 
+### `Optional` stack
+
+• **stack**? : *string*
+
+*Inherited from void*
+
+*Overrides void*
+
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965

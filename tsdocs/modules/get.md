@@ -1,251 +1,230 @@
-[selenidejs](../README.md) > [get](../modules/get.md)
+> **[selenidejs](../README.md)**
+
+[get](get.md) /
 
 # Module: get
 
-to be used in the following context: `element.click().then(get.text)`
+to be used in the following context:
+  `element.click().then(get.text)`
 
 ## Index
 
 ### Variables
 
-* [currentTab](get.md#currenttab)
-* [innerHtml](get.md#innerhtml)
-* [outerHtml](get.md#outerhtml)
-* [pageSource](get.md#pagesource)
-* [size](get.md#size)
-* [someText](get.md#sometext)
-* [tabs](get.md#tabs)
-* [tabsNumber](get.md#tabsnumber)
-* [text](get.md#text)
-* [texts](get.md#texts)
-* [title](get.md#title)
-* [url](get.md#url)
-* [value](get.md#value)
+* [currentTab](get.md#const-currenttab)
+* [innerHtml](get.md#const-innerhtml)
+* [outerHtml](get.md#const-outerhtml)
+* [pageSource](get.md#const-pagesource)
+* [size](get.md#const-size)
+* [someText](get.md#const-sometext)
+* [tabs](get.md#const-tabs)
+* [tabsNumber](get.md#const-tabsnumber)
+* [text](get.md#const-text)
+* [texts](get.md#const-texts)
+* [title](get.md#const-title)
+* [url](get.md#const-url)
+* [value](get.md#const-value)
 
 ### Functions
 
-* [attribute](get.md#attribute)
-* [tab](get.md#tab)
-* [waitingForBrowser](get.md#waitingforbrowser)
-* [waitingForCollection](get.md#waitingforcollection)
-* [waitingForEntity](get.md#waitingforentity)
-
----
+* [attribute](get.md#const-attribute)
+* [tab](get.md#const-tab)
+* [waitingForBrowser](get.md#const-waitingforbrowser)
+* [waitingForCollection](get.md#const-waitingforcollection)
+* [waitingForEntity](get.md#const-waitingforentity)
 
 ## Variables
 
-<a id="currenttab"></a>
+### `Const` currentTab
 
-### `<Const>` currentTab
-
-**● currentTab**: *`(Anonymous function)`* =  waitingForBrowser(query.currentTab)
+• **currentTab**: *`(Anonymous function)`* =  waitingForBrowser(query.currentTab)
 
 *Defined in [support/queries/get.ts:56](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L56)*
 
 ___
-<a id="innerhtml"></a>
 
-### `<Const>` innerHtml
+### `Const` innerHtml
 
-**● innerHtml**: *`(Anonymous function)`* =  waitingForEntity(query.innerHtml)
+• **innerHtml**: *`(Anonymous function)`* =  waitingForEntity(query.innerHtml)
 
 *Defined in [support/queries/get.ts:35](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L35)*
 
 ___
-<a id="outerhtml"></a>
 
-### `<Const>` outerHtml
+### `Const` outerHtml
 
-**● outerHtml**: *`(Anonymous function)`* =  waitingForEntity(query.outerHtml)
+• **outerHtml**: *`(Anonymous function)`* =  waitingForEntity(query.outerHtml)
 
 *Defined in [support/queries/get.ts:36](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L36)*
 
 ___
-<a id="pagesource"></a>
 
-### `<Const>` pageSource
+### `Const` pageSource
 
-**● pageSource**: *`(Anonymous function)`* =  waitingForBrowser(query.pageSource)
+• **pageSource**: *`(Anonymous function)`* =  waitingForBrowser(query.pageSource)
 
 *Defined in [support/queries/get.ts:58](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L58)*
 
 ___
-<a id="size"></a>
 
-### `<Const>` size
+### `Const` size
 
-**● size**: *`(Anonymous function)`* =  waitingForCollection(query.size)
+• **size**: *`(Anonymous function)`* =  waitingForCollection(query.size)
 
 *Defined in [support/queries/get.ts:44](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L44)*
 
 ___
-<a id="sometext"></a>
 
-### `<Const>` someText
+### `Const` someText
 
-**● someText**: *`(Anonymous function)`* =  waitingForEntity(query.someText)
+• **someText**: *`(Anonymous function)`* =  waitingForEntity(query.someText)
 
 *Defined in [support/queries/get.ts:33](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L33)*
 
 ___
-<a id="tabs"></a>
 
-### `<Const>` tabs
+### `Const` tabs
 
-**● tabs**: *`(Anonymous function)`* =  waitingForBrowser(query.tabs)
+• **tabs**: *`(Anonymous function)`* =  waitingForBrowser(query.tabs)
 
 *Defined in [support/queries/get.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L54)*
 
 ___
-<a id="tabsnumber"></a>
 
-### `<Const>` tabsNumber
+### `Const` tabsNumber
 
-**● tabsNumber**: *`(Anonymous function)`* =  waitingForBrowser(query.tabsNumber)
+• **tabsNumber**: *`(Anonymous function)`* =  waitingForBrowser(query.tabsNumber)
 
 *Defined in [support/queries/get.ts:57](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L57)*
 
 ___
-<a id="text"></a>
 
-### `<Const>` text
+### `Const` text
 
-**● text**: *`(Anonymous function)`* =  waitingForEntity(query.text)
+• **text**: *`(Anonymous function)`* =  waitingForEntity(query.text)
 
 *Defined in [support/queries/get.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L32)*
 
 ___
-<a id="texts"></a>
 
-### `<Const>` texts
+### `Const` texts
 
-**● texts**: *`(Anonymous function)`* =  waitingForCollection(query.texts)
+• **texts**: *`(Anonymous function)`* =  waitingForCollection(query.texts)
 
 *Defined in [support/queries/get.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L45)*
 
 ___
-<a id="title"></a>
 
-### `<Const>` title
+### `Const` title
 
-**● title**: *`(Anonymous function)`* =  waitingForBrowser(query.title)
+• **title**: *`(Anonymous function)`* =  waitingForBrowser(query.title)
 
 *Defined in [support/queries/get.ts:53](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L53)*
 
 ___
-<a id="url"></a>
 
-### `<Const>` url
+### `Const` url
 
-**● url**: *`(Anonymous function)`* =  waitingForBrowser(query.url)
+• **url**: *`(Anonymous function)`* =  waitingForBrowser(query.url)
 
 *Defined in [support/queries/get.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L52)*
 
 ___
-<a id="value"></a>
 
-### `<Const>` value
+### `Const` value
 
-**● value**: *`(Anonymous function)`* =  waitingForEntity(query.value)
+• **value**: *`(Anonymous function)`* =  waitingForEntity(query.value)
 
 *Defined in [support/queries/get.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L37)*
 
-___
-
 ## Functions
 
-<a id="attribute"></a>
+### `Const` attribute
 
-### `<Const>` attribute
-
-▸ **attribute**(name: *`string`*): `(Anonymous function)`
+▸ **attribute**(`name`: string): *`(Anonymous function)`*
 
 *Defined in [support/queries/get.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L34)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
+Name | Type |
+------ | ------ |
+`name` | string |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="tab"></a>
 
-### `<Const>` tab
+### `Const` tab
 
-▸ **tab**(index: *`number`*): `(Anonymous function)`
+▸ **tab**(`index`: number): *`(Anonymous function)`*
 
 *Defined in [support/queries/get.ts:55](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L55)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| index | `number` |
+Name | Type |
+------ | ------ |
+`index` | number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="waitingforbrowser"></a>
 
-### `<Const>` waitingForBrowser
+### `Const` waitingForBrowser
 
-▸ **waitingForBrowser**<`R`>(query: *[Lambda](../#lambda)<[Browser](../classes/browser.md), `R`>*): `(Anonymous function)`
+▸ **waitingForBrowser**<**R**>(`query`: [Lambda](../README.md#lambda)‹*[Browser](../classes/browser.md)*, *`R`*›): *`(Anonymous function)`*
 
 *Defined in [support/queries/get.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L49)*
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| query | [Lambda](../#lambda)<[Browser](../classes/browser.md), `R`> |
+Name | Type |
+------ | ------ |
+`query` | [Lambda](../README.md#lambda)‹*[Browser](../classes/browser.md)*, *`R`*› |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="waitingforcollection"></a>
 
-### `<Const>` waitingForCollection
+### `Const` waitingForCollection
 
-▸ **waitingForCollection**<`R`>(query: *[Lambda](../#lambda)<[Collection](../classes/collection.md), `R`>*): `(Anonymous function)`
+▸ **waitingForCollection**<**R**>(`query`: [Lambda](../README.md#lambda)‹*[Collection](../classes/collection.md)*, *`R`*›): *`(Anonymous function)`*
 
 *Defined in [support/queries/get.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L41)*
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| query | [Lambda](../#lambda)<[Collection](../classes/collection.md), `R`> |
+Name | Type |
+------ | ------ |
+`query` | [Lambda](../README.md#lambda)‹*[Collection](../classes/collection.md)*, *`R`*› |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="waitingforentity"></a>
 
-### `<Const>` waitingForEntity
+### `Const` waitingForEntity
 
-▸ **waitingForEntity**<`R`>(query: *[Lambda](../#lambda)<[Element](../classes/element.md), `R`>*): `(Anonymous function)`
+▸ **waitingForEntity**<**R**>(`query`: [Lambda](../README.md#lambda)‹*[Element](../classes/element.md)*, *`R`*›): *`(Anonymous function)`*
 
 *Defined in [support/queries/get.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L29)*
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| query | [Lambda](../#lambda)<[Element](../classes/element.md), `R`> |
+Name | Type |
+------ | ------ |
+`query` | [Lambda](../README.md#lambda)‹*[Element](../classes/element.md)*, *`R`*› |
 
-**Returns:** `(Anonymous function)`
-
-___
-
+**Returns:** *`(Anonymous function)`*

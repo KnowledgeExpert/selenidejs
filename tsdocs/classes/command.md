@@ -1,20 +1,25 @@
-[selenidejs](../README.md) > [Command](../classes/command.md)
+> **[selenidejs](../README.md)**
 
-# Class: Command
+[Command](command.md) /
 
-Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T. Command can pass or fail with Error correspondingly.
+# Class: Command <**T**>
+
+Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T.
+Command can pass or fail with Error correspondingly.
 
 ## Type parameters
-#### T 
+
+▪ **T**
+
 ## Hierarchy
 
- [Query](query.md)<`T`, `void`>
+* [Query](query.md)‹*`T`*, *void*›
 
-**↳ Command**
+  * **Command**
 
 ## Implements
 
-* [Fn](../interfaces/fn.md)<`T`, `void`>
+* [Fn](../interfaces/fn.md)‹*`T`*, *void*›
 
 ## Index
 
@@ -27,15 +32,11 @@ Commands we use in a normal "command" case, i.e. to perform the async command on
 * [call](command.md#call)
 * [toString](command.md#tostring)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new Command**(description: *`any`*, fn: *`any`*): [Command](command.md)
+\+ **new Command**(`description`: any, `fn`: any): *[Command](command.md)*
 
 *Inherited from [Query](query.md).[constructor](query.md#constructor)*
 
@@ -43,24 +44,20 @@ Commands we use in a normal "command" case, i.e. to perform the async command on
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| description | `any` |
-| fn | `any` |
+Name | Type |
+------ | ------ |
+`description` | any |
+`fn` | any |
 
-**Returns:** [Command](command.md)
-
-___
+**Returns:** *[Command](command.md)*
 
 ## Methods
 
-<a id="call"></a>
-
 ###  call
 
-▸ **call**(entity: *`T`*): `Promise`<`void`>
+▸ **call**(`entity`: `T`): *`Promise<void>`*
 
-*Implementation of [Fn](../interfaces/fn.md).[call](../interfaces/fn.md#call)*
+*Implementation of [Fn](../interfaces/fn.md)*
 
 *Inherited from [Query](query.md).[call](query.md#call)*
 
@@ -68,24 +65,20 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
+Name | Type |
+------ | ------ |
+`entity` | `T` |
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Inherited from [Query](query.md).[toString](query.md#tostring)*
 
 *Defined in [wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
-**Returns:** `string`
-
-___
-
+**Returns:** *string*

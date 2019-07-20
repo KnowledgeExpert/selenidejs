@@ -1,15 +1,20 @@
-[selenidejs](../README.md) > [Fn](../interfaces/fn.md)
+> **[selenidejs](../README.md)**
 
-# Interface: Fn
+[Fn](fn.md) /
+
+# Interface: Fn <**T, R**>
 
 An interface for the "object" version of Lambda
 
 ## Type parameters
-#### T 
-#### R 
+
+▪ **T**
+
+▪ **R**
+
 ## Hierarchy
 
-**Fn**
+* **Fn**
 
 ## Implemented by
 
@@ -23,25 +28,18 @@ An interface for the "object" version of Lambda
 
 * [call](fn.md#call)
 
----
-
 ## Methods
-
-<a id="call"></a>
 
 ###  call
 
-▸ **call**(entity: *`T`*): `Promise`<`R`>
+▸ **call**(`entity`: `T`): *`Promise<R>`*
 
 *Defined in [wait.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L30)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
+Name | Type |
+------ | ------ |
+`entity` | `T` |
 
-**Returns:** `Promise`<`R`>
-
-___
-
+**Returns:** *`Promise<R>`*

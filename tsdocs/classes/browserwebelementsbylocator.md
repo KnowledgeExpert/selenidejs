@@ -1,14 +1,16 @@
-[selenidejs](../README.md) > [BrowserWebElementsByLocator](../classes/browserwebelementsbylocator.md)
+> **[selenidejs](../README.md)**
+
+[BrowserWebElementsByLocator](browserwebelementsbylocator.md) /
 
 # Class: BrowserWebElementsByLocator
 
 ## Hierarchy
 
-**BrowserWebElementsByLocator**
+* **BrowserWebElementsByLocator**
 
 ## Implements
 
-* [Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>
+* [Locator](../interfaces/locator.md)‹*`Promise<WebElement[]>`*›
 
 ## Index
 
@@ -18,82 +20,65 @@
 
 ### Properties
 
-* [browser](browserwebelementsbylocator.md#browser)
-* [by](browserwebelementsbylocator.md#by)
+* [browser](browserwebelementsbylocator.md#private-browser)
+* [by](browserwebelementsbylocator.md#private-by)
 
 ### Methods
 
 * [find](browserwebelementsbylocator.md#find)
 * [toString](browserwebelementsbylocator.md#tostring)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new BrowserWebElementsByLocator**(by: *`By`*, browser: *[Browser](browser.md)*): [BrowserWebElementsByLocator](browserwebelementsbylocator.md)
+\+ **new BrowserWebElementsByLocator**(`by`: `By`, `browser`: [Browser](browser.md)): *[BrowserWebElementsByLocator](browserwebelementsbylocator.md)*
 
 *Defined in [locators/BrowserWebElementsByLocator.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/BrowserWebElementsByLocator.ts#L20)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| by | `By` |
-| browser | [Browser](browser.md) |
+Name | Type |
+------ | ------ |
+`by` | `By` |
+`browser` | [Browser](browser.md) |
 
-**Returns:** [BrowserWebElementsByLocator](browserwebelementsbylocator.md)
-
-___
+**Returns:** *[BrowserWebElementsByLocator](browserwebelementsbylocator.md)*
 
 ## Properties
 
-<a id="browser"></a>
+### `Private` browser
 
-### `<Private>` browser
-
-**● browser**: *[Browser](browser.md)*
+• **browser**: *[Browser](browser.md)*
 
 *Defined in [locators/BrowserWebElementsByLocator.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/BrowserWebElementsByLocator.ts#L23)*
 
 ___
-<a id="by"></a>
 
-### `<Private>` by
+### `Private` by
 
-**● by**: *`By`*
+• **by**: *`By`*
 
 *Defined in [locators/BrowserWebElementsByLocator.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/BrowserWebElementsByLocator.ts#L22)*
 
-___
-
 ## Methods
-
-<a id="find"></a>
 
 ###  find
 
-▸ **find**(): `Promise`<`WebElement`[]>
+▸ **find**(): *`Promise<WebElement[]>`*
 
-*Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
+*Implementation of [Locator](../interfaces/locator.md)*
 
 *Defined in [locators/BrowserWebElementsByLocator.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/BrowserWebElementsByLocator.ts#L28)*
 
-**Returns:** `Promise`<`WebElement`[]>
+**Returns:** *`Promise<WebElement[]>`*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [locators/BrowserWebElementsByLocator.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/BrowserWebElementsByLocator.ts#L32)*
 
-**Returns:** `string`
-
-___
-
+**Returns:** *string*

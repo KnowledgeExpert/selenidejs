@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [command](../modules/command.md)
+> **[selenidejs](../README.md)**
+
+[command](command.md) /
 
 # Module: command
 
@@ -7,6 +9,3 @@
 ### Modules
 
 * [js](command.js.md)
-
----
-

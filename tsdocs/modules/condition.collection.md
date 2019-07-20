@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [condition](../modules/condition.md) > [collection](../modules/condition.collection.md)
+> **[selenidejs](../README.md)**
+
+[condition](condition.md) / [collection](condition.collection.md) /
 
 # Module: collection
 
@@ -6,135 +8,122 @@
 
 ### Functions
 
-* [hasExactTexts](condition.collection.md#hasexacttexts)
-* [hasSize](condition.collection.md#hassize)
-* [hasSizeGreaterThan](condition.collection.md#hassizegreaterthan)
-* [hasSizeGreaterThanOrEqual](condition.collection.md#hassizegreaterthanorequal)
-* [hasSizeLessThan](condition.collection.md#hassizelessthan)
-* [hasSizeLessThanOrEqual](condition.collection.md#hassizelessthanorequal)
-* [hasTexts](condition.collection.md#hastexts)
-
----
+* [hasExactTexts](condition.collection.md#const-hasexacttexts)
+* [hasSize](condition.collection.md#const-hassize)
+* [hasSizeGreaterThan](condition.collection.md#const-hassizegreaterthan)
+* [hasSizeGreaterThanOrEqual](condition.collection.md#const-hassizegreaterthanorequal)
+* [hasSizeLessThan](condition.collection.md#const-hassizelessthan)
+* [hasSizeLessThanOrEqual](condition.collection.md#const-hassizelessthanorequal)
+* [hasTexts](condition.collection.md#const-hastexts)
 
 ## Functions
 
-<a id="hasexacttexts"></a>
+### `Const` hasExactTexts
 
-### `<Const>` hasExactTexts
-
-▸ **hasExactTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
+▸ **hasExactTexts**(`texts`: string[]): *[CollectionCondition](../README.md#collectioncondition)*
 
 *Defined in [conditions.ts:233](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L233)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| texts | `string`[] |
+Name | Type |
+------ | ------ |
+`texts` | string[] |
 
-**Returns:** [CollectionCondition](../#collectioncondition)
+**Returns:** *[CollectionCondition](../README.md#collectioncondition)*
 
 ___
-<a id="hassize"></a>
 
-### `<Const>` hasSize
+### `Const` hasSize
 
-▸ **hasSize**(expected: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSize**(`expected`: number): *[CollectionCondition](../README.md#collectioncondition)*
 
 *Defined in [conditions.ts:199](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L199)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `number` |
+Name | Type |
+------ | ------ |
+`expected` | number |
 
-**Returns:** [CollectionCondition](../#collectioncondition)
+**Returns:** *[CollectionCondition](../README.md#collectioncondition)*
 
 ___
-<a id="hassizegreaterthan"></a>
 
-### `<Const>` hasSizeGreaterThan
+### `Const` hasSizeGreaterThan
 
-▸ **hasSizeGreaterThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSizeGreaterThan**(`size`: number): *[CollectionCondition](../README.md#collectioncondition)*
 
 *Defined in [conditions.ts:204](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L204)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| size | `number` |
+Name | Type |
+------ | ------ |
+`size` | number |
 
-**Returns:** [CollectionCondition](../#collectioncondition)
+**Returns:** *[CollectionCondition](../README.md#collectioncondition)*
 
 ___
-<a id="hassizegreaterthanorequal"></a>
 
-### `<Const>` hasSizeGreaterThanOrEqual
+### `Const` hasSizeGreaterThanOrEqual
 
-▸ **hasSizeGreaterThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSizeGreaterThanOrEqual**(`size`: number): *[CollectionCondition](../README.md#collectioncondition)*
 
 *Defined in [conditions.ts:209](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L209)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| size | `number` |
+Name | Type |
+------ | ------ |
+`size` | number |
 
-**Returns:** [CollectionCondition](../#collectioncondition)
+**Returns:** *[CollectionCondition](../README.md#collectioncondition)*
 
 ___
-<a id="hassizelessthan"></a>
 
-### `<Const>` hasSizeLessThan
+### `Const` hasSizeLessThan
 
-▸ **hasSizeLessThan**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSizeLessThan**(`size`: number): *[CollectionCondition](../README.md#collectioncondition)*
 
 *Defined in [conditions.ts:214](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L214)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| size | `number` |
+Name | Type |
+------ | ------ |
+`size` | number |
 
-**Returns:** [CollectionCondition](../#collectioncondition)
+**Returns:** *[CollectionCondition](../README.md#collectioncondition)*
 
 ___
-<a id="hassizelessthanorequal"></a>
 
-### `<Const>` hasSizeLessThanOrEqual
+### `Const` hasSizeLessThanOrEqual
 
-▸ **hasSizeLessThanOrEqual**(size: *`number`*): [CollectionCondition](../#collectioncondition)
+▸ **hasSizeLessThanOrEqual**(`size`: number): *[CollectionCondition](../README.md#collectioncondition)*
 
 *Defined in [conditions.ts:219](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L219)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| size | `number` |
+Name | Type |
+------ | ------ |
+`size` | number |
 
-**Returns:** [CollectionCondition](../#collectioncondition)
+**Returns:** *[CollectionCondition](../README.md#collectioncondition)*
 
 ___
-<a id="hastexts"></a>
 
-### `<Const>` hasTexts
+### `Const` hasTexts
 
-▸ **hasTexts**(texts: *`string`[]*): [CollectionCondition](../#collectioncondition)
+▸ **hasTexts**(`texts`: string[]): *[CollectionCondition](../README.md#collectioncondition)*
 
 *Defined in [conditions.ts:228](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L228)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| texts | `string`[] |
+Name | Type |
+------ | ------ |
+`texts` | string[] |
 
-**Returns:** [CollectionCondition](../#collectioncondition)
-
-___
-
+**Returns:** *[CollectionCondition](../README.md#collectioncondition)*

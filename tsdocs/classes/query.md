@@ -1,21 +1,27 @@
-[selenidejs](../README.md) > [Query](../classes/query.md)
+> **[selenidejs](../README.md)**
 
-# Class: Query
+[Query](query.md) /
 
-We use queries to perform an async query on entity of type T, i.e. get something from entity. So a query can pass and return something of type R or failed with Error correspondingly.
+# Class: Query <**T, R**>
+
+We use queries to perform an async query on entity of type T, i.e. get something from entity.
+So a query can pass and return something of type R or failed with Error correspondingly.
 
 ## Type parameters
-#### T 
-#### R 
+
+▪ **T**
+
+▪ **R**
+
 ## Hierarchy
 
-**Query**
+* **Query**
 
-↳  [Command](command.md)
+  * [Command](command.md)
 
 ## Implements
 
-* [Fn](../interfaces/fn.md)<`T`, `R`>
+* [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›
 
 ## Index
 
@@ -25,88 +31,71 @@ We use queries to perform an async query on entity of type T, i.e. get something
 
 ### Properties
 
-* [description](query.md#description)
-* [fn](query.md#fn)
+* [description](query.md#private-description)
+* [fn](query.md#private-fn)
 
 ### Methods
 
 * [call](query.md#call)
 * [toString](query.md#tostring)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new Query**(description: *`any`*, fn: *`any`*): [Query](query.md)
+\+ **new Query**(`description`: any, `fn`: any): *[Query](query.md)*
 
 *Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| description | `any` |
-| fn | `any` |
+Name | Type |
+------ | ------ |
+`description` | any |
+`fn` | any |
 
-**Returns:** [Query](query.md)
-
-___
+**Returns:** *[Query](query.md)*
 
 ## Properties
 
-<a id="description"></a>
+### `Private` description
 
-### `<Private>` description
-
-**● description**: *`string`*
+• **description**: *string*
 
 *Defined in [wait.ts:40](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L40)*
 
 ___
-<a id="fn"></a>
 
-### `<Private>` fn
+### `Private` fn
 
-**● fn**: *[Lambda](../#lambda)<`T`, `R`>*
+• **fn**: *[Lambda](../README.md#lambda)‹*`T`*, *`R`*›*
 
 *Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
-___
-
 ## Methods
-
-<a id="call"></a>
 
 ###  call
 
-▸ **call**(entity: *`T`*): `Promise`<`R`>
+▸ **call**(`entity`: `T`): *`Promise<R>`*
 
-*Implementation of [Fn](../interfaces/fn.md).[call](../interfaces/fn.md#call)*
+*Implementation of [Fn](../interfaces/fn.md)*
 
 *Defined in [wait.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L48)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
+Name | Type |
+------ | ------ |
+`entity` | `T` |
 
-**Returns:** `Promise`<`R`>
+**Returns:** *`Promise<R>`*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
-**Returns:** `string`
-
-___
-
+**Returns:** *string*

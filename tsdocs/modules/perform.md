@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [perform](../modules/perform.md)
+> **[selenidejs](../README.md)**
+
+[perform](perform.md) /
 
 # Module: perform
 
@@ -10,479 +12,447 @@
 
 ### Functions
 
-* [back](perform.md#back)
-* [clear](perform.md#clear)
-* [clearCookies](perform.md#clearcookies)
-* [clearLocalStorage](perform.md#clearlocalstorage)
-* [clearSessionStorage](perform.md#clearsessionstorage)
-* [click](perform.md#click)
-* [closeCurrentTab](perform.md#closecurrenttab)
-* [contextClick](perform.md#contextclick)
-* [doubleClick](perform.md#doubleclick)
-* [executeScript](perform.md#executescript)
-* [forward](perform.md#forward)
-* [goToNextTab](perform.md#gotonexttab)
-* [goToPreviousTab](perform.md#gotoprevioustab)
-* [goToTab](perform.md#gototab)
-* [hover](perform.md#hover)
-* [open](perform.md#open)
-* [pressEnter](perform.md#pressenter)
-* [pressEscape](perform.md#pressescape)
-* [pressTab](perform.md#presstab)
-* [quit](perform.md#quit)
-* [refresh](perform.md#refresh)
-* [resizeWindow](perform.md#resizewindow)
-* [screenshot](perform.md#screenshot)
-* [setValue](perform.md#setvalue)
-* [switchToDefaultFrame](perform.md#switchtodefaultframe)
-* [type](perform.md#type)
-
----
+* [back](perform.md#const-back)
+* [clear](perform.md#const-clear)
+* [clearCookies](perform.md#const-clearcookies)
+* [clearLocalStorage](perform.md#const-clearlocalstorage)
+* [clearSessionStorage](perform.md#const-clearsessionstorage)
+* [click](perform.md#const-click)
+* [closeCurrentTab](perform.md#const-closecurrenttab)
+* [contextClick](perform.md#const-contextclick)
+* [doubleClick](perform.md#const-doubleclick)
+* [executeScript](perform.md#const-executescript)
+* [forward](perform.md#const-forward)
+* [goToNextTab](perform.md#const-gotonexttab)
+* [goToPreviousTab](perform.md#const-gotoprevioustab)
+* [goToTab](perform.md#const-gototab)
+* [hover](perform.md#const-hover)
+* [open](perform.md#const-open)
+* [pressEnter](perform.md#const-pressenter)
+* [pressEscape](perform.md#const-pressescape)
+* [pressTab](perform.md#const-presstab)
+* [quit](perform.md#const-quit)
+* [refresh](perform.md#const-refresh)
+* [resizeWindow](perform.md#const-resizewindow)
+* [screenshot](perform.md#const-screenshot)
+* [setValue](perform.md#const-setvalue)
+* [switchToDefaultFrame](perform.md#const-switchtodefaultframe)
+* [type](perform.md#const-type)
 
 ## Functions
 
-<a id="back"></a>
+### `Const` back
 
-### `<Const>` back
-
-▸ **back**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
+▸ **back**(`browser`: [Browser](../classes/browser.md)): *`Promise<void>`*
 
 *Defined in [support/commands/perform.ts:82](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L82)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="clear"></a>
 
-### `<Const>` clear
+### `Const` clear
 
-▸ **clear**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **clear**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L34)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="clearcookies"></a>
 
-### `<Const>` clearCookies
+### `Const` clearCookies
 
-▸ **clearCookies**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **clearCookies**(`browser`: [Browser](../classes/browser.md)): *`Promise<Browser>`*
 
 *Defined in [support/commands/perform.ts:94](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L94)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="clearlocalstorage"></a>
 
-### `<Const>` clearLocalStorage
+### `Const` clearLocalStorage
 
-▸ **clearLocalStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **clearLocalStorage**(`browser`: [Browser](../classes/browser.md)): *`Promise<Browser>`*
 
 *Defined in [support/commands/perform.ts:92](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L92)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="clearsessionstorage"></a>
 
-### `<Const>` clearSessionStorage
+### `Const` clearSessionStorage
 
-▸ **clearSessionStorage**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **clearSessionStorage**(`browser`: [Browser](../classes/browser.md)): *`Promise<Browser>`*
 
 *Defined in [support/commands/perform.ts:93](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L93)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="click"></a>
 
-### `<Const>` click
+### `Const` click
 
-▸ **click**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **click**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L29)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="closecurrenttab"></a>
 
-### `<Const>` closeCurrentTab
+### `Const` closeCurrentTab
 
-▸ **closeCurrentTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **closeCurrentTab**(`browser`: [Browser](../classes/browser.md)): *`Promise<Browser>`*
 
 *Defined in [support/commands/perform.ts:80](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L80)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="contextclick"></a>
 
-### `<Const>` contextClick
+### `Const` contextClick
 
-▸ **contextClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **contextClick**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L31)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="doubleclick"></a>
 
-### `<Const>` doubleClick
+### `Const` doubleClick
 
-▸ **doubleClick**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **doubleClick**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L30)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="executescript"></a>
 
-### `<Const>` executeScript
+### `Const` executeScript
 
-▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `(Anonymous function)`
+▸ **executeScript**(`script`: string | `Function`, ...`args`: any[]): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:98](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L98)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| script |  `string` &#124; `Function`|
-| `Rest` args | `any`[] |
+Name | Type |
+------ | ------ |
+`script` | string \| `Function` |
+`...args` | any[] |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="forward"></a>
 
-### `<Const>` forward
+### `Const` forward
 
-▸ **forward**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
+▸ **forward**(`browser`: [Browser](../classes/browser.md)): *`Promise<void>`*
 
 *Defined in [support/commands/perform.ts:83](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L83)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="gotonexttab"></a>
 
-### `<Const>` goToNextTab
+### `Const` goToNextTab
 
-▸ **goToNextTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **goToNextTab**(`browser`: [Browser](../classes/browser.md)): *`Promise<Browser>`*
 
 *Defined in [support/commands/perform.ts:85](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L85)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="gotoprevioustab"></a>
 
-### `<Const>` goToPreviousTab
+### `Const` goToPreviousTab
 
-▸ **goToPreviousTab**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **goToPreviousTab**(`browser`: [Browser](../classes/browser.md)): *`Promise<Browser>`*
 
 *Defined in [support/commands/perform.ts:86](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L86)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="gototab"></a>
 
-### `<Const>` goToTab
+### `Const` goToTab
 
-▸ **goToTab**(indexOrId: * `number` &#124; `string`*): `(Anonymous function)`
+▸ **goToTab**(`indexOrId`: number | string): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:87](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L87)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| indexOrId |  `number` &#124; `string`|
+Name | Type |
+------ | ------ |
+`indexOrId` | number \| string |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="hover"></a>
 
-### `<Const>` hover
+### `Const` hover
 
-▸ **hover**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **hover**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L32)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="open"></a>
 
-### `<Const>` open
+### `Const` open
 
-▸ **open**(url: *`string`*): `(Anonymous function)`
+▸ **open**(`url`: string): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:76](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L76)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| url | `string` |
+Name | Type |
+------ | ------ |
+`url` | string |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="pressenter"></a>
 
-### `<Const>` pressEnter
+### `Const` pressEnter
 
-▸ **pressEnter**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **pressEnter**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L38)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="pressescape"></a>
 
-### `<Const>` pressEscape
+### `Const` pressEscape
 
-▸ **pressEscape**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **pressEscape**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:40](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L40)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="presstab"></a>
 
-### `<Const>` pressTab
+### `Const` pressTab
 
-▸ **pressTab**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **pressTab**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:39](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L39)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="quit"></a>
 
-### `<Const>` quit
+### `Const` quit
 
-▸ **quit**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
+▸ **quit**(`browser`: [Browser](../classes/browser.md)): *`Promise<void>`*
 
 *Defined in [support/commands/perform.ts:81](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L81)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="refresh"></a>
 
-### `<Const>` refresh
+### `Const` refresh
 
-▸ **refresh**(browser: *[Browser](../classes/browser.md)*): `Promise`<`void`>
+▸ **refresh**(`browser`: [Browser](../classes/browser.md)): *`Promise<void>`*
 
 *Defined in [support/commands/perform.ts:84](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L84)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="resizewindow"></a>
 
-### `<Const>` resizeWindow
+### `Const` resizeWindow
 
-▸ **resizeWindow**(width: *`number`*, height: *`number`*): `(Anonymous function)`
+▸ **resizeWindow**(`width`: number, `height`: number): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:77](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L77)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| width | `number` |
-| height | `number` |
+Name | Type |
+------ | ------ |
+`width` | number |
+`height` | number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="screenshot"></a>
 
-### `<Const>` screenshot
+### `Const` screenshot
 
-▸ **screenshot**(browser: *[Browser](../classes/browser.md)*): `Promise`<`Buffer`>
+▸ **screenshot**(`browser`: [Browser](../classes/browser.md)): *`Promise<Buffer>`*
 
 *Defined in [support/commands/perform.ts:79](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L79)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<`Buffer`>
+**Returns:** *`Promise<Buffer>`*
 
 ___
-<a id="setvalue"></a>
 
-### `<Const>` setValue
+### `Const` setValue
 
-▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
+▸ **setValue**(`value`: string | number): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:36](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L36)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| value |  `string` &#124; `number`|
+Name | Type |
+------ | ------ |
+`value` | string \| number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="switchtodefaultframe"></a>
 
-### `<Const>` switchToDefaultFrame
+### `Const` switchToDefaultFrame
 
-▸ **switchToDefaultFrame**(browser: *[Browser](../classes/browser.md)*): `Promise`<[Browser](../classes/browser.md)>
+▸ **switchToDefaultFrame**(`browser`: [Browser](../classes/browser.md)): *`Promise<Browser>`*
 
 *Defined in [support/commands/perform.ts:90](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L90)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `Promise`<[Browser](../classes/browser.md)>
+**Returns:** *`Promise<Browser>`*
 
 ___
-<a id="type"></a>
 
-### `<Const>` type
+### `Const` type
 
-▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
+▸ **type**(`keys`: string | number): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:35](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L35)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| keys |  `string` &#124; `number`|
+Name | Type |
+------ | ------ |
+`keys` | string \| number |
 
-**Returns:** `(Anonymous function)`
-
-___
-
+**Returns:** *`(Anonymous function)`*

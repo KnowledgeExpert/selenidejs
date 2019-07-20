@@ -1,12 +1,14 @@
-[selenidejs](../README.md) > [Collection](../classes/collection.md)
+> **[selenidejs](../README.md)**
+
+[Collection](collection.md) /
 
 # Class: Collection
 
 ## Hierarchy
 
- [Entity](entity.md)
+* [Entity](entity.md)
 
-**↳ Collection**
+  * **Collection**
 
 ## Implements
 
@@ -23,9 +25,9 @@
 
 ### Properties
 
-* [configuration](collection.md#configuration)
-* [locator](collection.md#locator)
-* [wait](collection.md#wait)
+* [configuration](collection.md#protected-configuration)
+* [locator](collection.md#private-locator)
+* [wait](collection.md#protected-wait)
 
 ### Accessors
 
@@ -47,15 +49,11 @@
 * [waitUntil](collection.md#waituntil)
 * [with](collection.md#with)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new Collection**(locator: *[Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>*, configuration: *[Configuration](configuration.md)*): [Collection](collection.md)
+\+ **new Collection**(`locator`: [Locator](../interfaces/locator.md)‹*`Promise<WebElement[]>`*›, `configuration`: [Configuration](configuration.md)): *[Collection](collection.md)*
 
 *Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
 
@@ -63,121 +61,104 @@
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| locator | [Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>> |
-| configuration | [Configuration](configuration.md) |
+Name | Type |
+------ | ------ |
+`locator` | [Locator](../interfaces/locator.md)‹*`Promise<WebElement[]>`*› |
+`configuration` | [Configuration](configuration.md) |
 
-**Returns:** [Collection](collection.md)
-
-___
+**Returns:** *[Collection](collection.md)*
 
 ## Properties
 
-<a id="configuration"></a>
+### `Protected` configuration
 
-### `<Protected>` configuration
+• **configuration**: *[Configuration](configuration.md)*
 
-**● configuration**: *[Configuration](configuration.md)*
-
-*Overrides [Entity](entity.md).[configuration](entity.md#configuration)*
+*Overrides [Entity](entity.md).[configuration](entity.md#protected-configuration)*
 
 *Defined in [collection.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L32)*
 
 ___
-<a id="locator"></a>
 
-### `<Private>` locator
+### `Private` locator
 
-**● locator**: *[Locator](../interfaces/locator.md)<`Promise`<`WebElement`[]>>*
+• **locator**: *[Locator](../interfaces/locator.md)‹*`Promise<WebElement[]>`*›*
 
 *Defined in [collection.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L31)*
 
 ___
-<a id="wait"></a>
 
-### `<Protected>` wait
+### `Protected` wait
 
-**● wait**: *[Wait](wait.md)<`this`>*
+• **wait**: *[Wait](wait.md)‹*this*›*
 
-*Inherited from [Entity](entity.md).[wait](entity.md#wait)*
+*Inherited from [Entity](entity.md).[wait](entity.md#protected-wait)*
 
 *Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
-___
-
 ## Accessors
-
-<a id="first"></a>
 
 ###  first
 
-getfirst(): [Element](element.md)
+• **get first**(): *[Element](element.md)*
 
 *Defined in [collection.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L54)*
 
-**Returns:** [Element](element.md)
-
-___
+**Returns:** *[Element](element.md)*
 
 ## Methods
 
-<a id="elementat"></a>
-
 ###  elementAt
 
-▸ **elementAt**(index: *`number`*): [Element](element.md)
+▸ **elementAt**(`index`: number): *[Element](element.md)*
 
 *Defined in [collection.ts:50](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L50)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| index | `number` |
+Name | Type |
+------ | ------ |
+`index` | number |
 
-**Returns:** [Element](element.md)
+**Returns:** *[Element](element.md)*
 
 ___
-<a id="elementby"></a>
 
 ###  elementBy
 
-▸ **elementBy**(...conditions: *[ElementCondition](../#elementcondition)[]*): [Element](element.md)
+▸ **elementBy**(...`conditions`: [ElementCondition](../README.md#elementcondition)[]): *[Element](element.md)*
 
 *Defined in [collection.ts:74](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L74)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | [ElementCondition](../#elementcondition)[] |
+Name | Type |
+------ | ------ |
+`...conditions` | [ElementCondition](../README.md#elementcondition)[] |
 
-**Returns:** [Element](element.md)
+**Returns:** *[Element](element.md)*
 
 ___
-<a id="filteredby"></a>
 
 ###  filteredBy
 
-▸ **filteredBy**(...conditions: *[ElementCondition](../#elementcondition)[]*): [Collection](collection.md)
+▸ **filteredBy**(...`conditions`: [ElementCondition](../README.md#elementcondition)[]): *[Collection](collection.md)*
 
 *Defined in [collection.ts:67](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L67)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | [ElementCondition](../#elementcondition)[] |
+Name | Type |
+------ | ------ |
+`...conditions` | [ElementCondition](../README.md#elementcondition)[] |
 
-**Returns:** [Collection](collection.md)
+**Returns:** *[Collection](collection.md)*
 
 ___
-<a id="get"></a>
 
 ###  get
 
-▸ **get**<`R`>(query: *[Lambda](../#lambda)<`this`, `R`>*): `Promise`<`R`>
+▸ **get**<**R**>(`query`: [Lambda](../README.md#lambda)‹*this*, *`R`*›): *`Promise<R>`*
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
@@ -185,43 +166,41 @@ ___
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| query | [Lambda](../#lambda)<`this`, `R`> |
+Name | Type |
+------ | ------ |
+`query` | [Lambda](../README.md#lambda)‹*this*, *`R`*› |
 
-**Returns:** `Promise`<`R`>
+**Returns:** *`Promise<R>`*
 
 ___
-<a id="getascashedarray"></a>
 
 ###  getAsCashedArray
 
-▸ **getAsCashedArray**(): `Promise`<[Element](element.md)[]>
+▸ **getAsCashedArray**(): *`Promise<Element[]>`*
 
 *Defined in [collection.ts:43](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L43)*
 
-**Returns:** `Promise`<[Element](element.md)[]>
+**Returns:** *`Promise<Element[]>`*
 
 ___
-<a id="getwebelements"></a>
 
 ###  getWebElements
 
-▸ **getWebElements**(): `Promise`<`WebElement`[]>
+▸ **getWebElements**(): *`Promise<WebElement[]>`*
 
 *Defined in [collection.ts:81](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L81)*
 
-**Returns:** `Promise`<`WebElement`[]>
+**Returns:** *`Promise<WebElement[]>`*
 
 ___
-<a id="matching"></a>
 
 ###  matching
 
-▸ **matching**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **matching**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
 
 *Inherited from [Entity](entity.md).[matching](entity.md#matching)*
 
@@ -229,18 +208,17 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`boolean`>
+**Returns:** *`Promise<boolean>`*
 
 ___
-<a id="perform"></a>
 
 ###  perform
 
-▸ **perform**(command: *[Lambda](../#lambda)<`this`, `void`>*): `Promise`<`this`>
+▸ **perform**(`command`: [Lambda](../README.md#lambda)‹*this*, *void*›): *`Promise<this>`*
 
 *Inherited from [Entity](entity.md).[perform](entity.md#perform)*
 
@@ -248,18 +226,17 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| command | [Lambda](../#lambda)<`this`, `void`> |
+Name | Type |
+------ | ------ |
+`command` | [Lambda](../README.md#lambda)‹*this*, *void*› |
 
-**Returns:** `Promise`<`this`>
+**Returns:** *`Promise<this>`*
 
 ___
-<a id="should"></a>
 
 ###  should
 
-▸ **should**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`this`>
+▸ **should**(...`conditions`: `Array<Condition<this>>`): *`Promise<this>`*
 
 *Inherited from [Entity](entity.md).[should](entity.md#should)*
 
@@ -267,18 +244,17 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`this`>
+**Returns:** *`Promise<this>`*
 
 ___
-<a id="sliced"></a>
 
 ###  sliced
 
-▸ **sliced**(start: *`number`*, end: *`number`*): [Collection](collection.md)
+▸ **sliced**(`start`: number, `end`: number): *[Collection](collection.md)*
 
 *Defined in [collection.ts:63](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L63)*
 
@@ -286,32 +262,30 @@ Represents a new collection sliced from 'start' element index to 'end' element i
 
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| start | `number` |  The inclusive "start" index of collection to be sliced. |
-| end | `number` |  The exclusive "end" index of collection to be sliced |
+Name | Type | Description |
+------ | ------ | ------ |
+`start` | number | The inclusive "start" index of collection to be sliced. |
+`end` | number | The exclusive "end" index of collection to be sliced  |
 
-**Returns:** [Collection](collection.md)
+**Returns:** *[Collection](collection.md)*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [collection.ts:85](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L85)*
 
-**Returns:** `string`
+**Returns:** *string*
 
 ___
-<a id="waituntil"></a>
 
 ###  waitUntil
 
-▸ **waitUntil**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **waitUntil**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
 
-*Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
+*Implementation of [Matchable](../interfaces/matchable.md)*
 
 *Inherited from [Entity](entity.md).[waitUntil](entity.md#waituntil)*
 
@@ -319,28 +293,24 @@ ___
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`boolean`>
+**Returns:** *`Promise<boolean>`*
 
 ___
-<a id="with"></a>
 
 ###  with
 
-▸ **with**(customConfig: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
+▸ **with**(`customConfig`: `Partial<Configuration>`): *[Collection](collection.md)*
 
 *Defined in [collection.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L38)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| customConfig | `Partial`<[Configuration](configuration.md)> |
+Name | Type |
+------ | ------ |
+`customConfig` | `Partial<Configuration>` |
 
-**Returns:** [Collection](collection.md)
-
-___
-
+**Returns:** *[Collection](collection.md)*

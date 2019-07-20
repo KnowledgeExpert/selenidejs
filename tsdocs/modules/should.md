@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [should](../modules/should.md)
+> **[selenidejs](../README.md)**
+
+[should](should.md) /
 
 # Module: should
 
@@ -6,30 +8,24 @@
 
 ### Functions
 
-* [match](should.md#match)
-
----
+* [match](should.md#const-match)
 
 ## Functions
 
-<a id="match"></a>
+### `Const` match
 
-### `<Const>` match
-
-▸ **match**<`T`>(condition: *[Condition](../classes/condition.md)<`T`>*): `(Anonymous function)`
+▸ **match**<**T**>(`condition`: [Condition](../classes/condition.md)‹*`T`*›): *`(Anonymous function)`*
 
 *Defined in [support/asserts/should.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/asserts/should.ts#L20)*
 
 **Type parameters:**
 
-#### T :  [Assertable](../interfaces/assertable.md)
+▪ **T**: *[Assertable](../interfaces/assertable.md)*
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](../classes/condition.md)<`T`> |
+Name | Type |
+------ | ------ |
+`condition` | [Condition](../classes/condition.md)‹*`T`*› |
 
-**Returns:** `(Anonymous function)`
-
-___
-
+**Returns:** *`(Anonymous function)`*

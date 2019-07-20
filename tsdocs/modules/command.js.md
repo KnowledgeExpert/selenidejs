@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [command](../modules/command.md) > [js](../modules/command.js.md)
+> **[selenidejs](../README.md)**
+
+[command](command.md) / [js](command.js.md) /
 
 # Module: js
 
@@ -6,93 +8,79 @@
 
 ### Variables
 
-* [click](command.js.md#click)
-* [scrollIntoView](command.js.md#scrollintoview)
+* [click](command.js.md#const-click)
+* [scrollIntoView](command.js.md#const-scrollintoview)
 
 ### Functions
 
-* [clickWithOffset](command.js.md#clickwithoffset)
-* [setValue](command.js.md#setvalue)
-* [type](command.js.md#type)
-
----
+* [clickWithOffset](command.js.md#const-clickwithoffset)
+* [setValue](command.js.md#const-setvalue)
+* [type](command.js.md#const-type)
 
 ## Variables
 
-<a id="click"></a>
+### `Const` click
 
-### `<Const>` click
-
-**● click**: *`(Anonymous function)`* =  lambda('click by js', clickWithOffset(0, 0))
+• **click**: *`(Anonymous function)`* =  lambda('click by js', clickWithOffset(0, 0))
 
 *Defined in [commands.ts:47](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L47)*
 
 ___
-<a id="scrollintoview"></a>
 
-### `<Const>` scrollIntoView
+### `Const` scrollIntoView
 
-**● scrollIntoView**: *`(Anonymous function)`* =  lambda('scroll into view', async element =>
+• **scrollIntoView**: *`(Anonymous function)`* =  lambda('scroll into view', async element =>
             element.executeScript(// todo: is ensuring visibility covered here?
                 'return (function(element) { element.scrollIntoView(true); })(arguments[0]);'
             ))
 
 *Defined in [commands.ts:86](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L86)*
 
-___
-
 ## Functions
 
-<a id="clickwithoffset"></a>
+### `Const` clickWithOffset
 
-### `<Const>` clickWithOffset
-
-▸ **clickWithOffset**(xOffset: *`number`*, yOffset: *`number`*): `(Anonymous function)`
+▸ **clickWithOffset**(`xOffset`: number, `yOffset`: number): *`(Anonymous function)`*
 
 *Defined in [commands.ts:35](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L35)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| xOffset | `number` |
-| yOffset | `number` |
+Name | Type |
+------ | ------ |
+`xOffset` | number |
+`yOffset` | number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="setvalue"></a>
 
-### `<Const>` setValue
+### `Const` setValue
 
-▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
+▸ **setValue**(`value`: string | number): *`(Anonymous function)`*
 
 *Defined in [commands.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L49)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| value |  `string` &#124; `number`|
+Name | Type |
+------ | ------ |
+`value` | string \| number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="type"></a>
 
-### `<Const>` type
+### `Const` type
 
-▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
+▸ **type**(`keys`: string | number): *`(Anonymous function)`*
 
 *Defined in [commands.ts:67](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L67)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| keys |  `string` &#124; `number`|
+Name | Type |
+------ | ------ |
+`keys` | string \| number |
 
-**Returns:** `(Anonymous function)`
-
-___
-
+**Returns:** *`(Anonymous function)`*

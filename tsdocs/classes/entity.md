@@ -1,16 +1,18 @@
-[selenidejs](../README.md) > [Entity](../classes/entity.md)
+> **[selenidejs](../README.md)**
+
+[Entity](entity.md) /
 
 # Class: Entity
 
 ## Hierarchy
 
-**Entity**
+* **Entity**
 
-↳  [Element](element.md)
+  * [Element](element.md)
 
-↳  [Collection](collection.md)
+  * [Collection](collection.md)
 
-↳  [Browser](browser.md)
+  * [Browser](browser.md)
 
 ## Implements
 
@@ -25,8 +27,8 @@
 
 ### Properties
 
-* [configuration](entity.md#configuration)
-* [wait](entity.md#wait)
+* [configuration](entity.md#protected-configuration)
+* [wait](entity.md#protected-wait)
 
 ### Methods
 
@@ -36,139 +38,120 @@
 * [should](entity.md#should)
 * [waitUntil](entity.md#waituntil)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new Entity**(configuration: *[Configuration](configuration.md)*): [Entity](entity.md)
+\+ **new Entity**(`configuration`: [Configuration](configuration.md)): *[Entity](entity.md)*
 
 *Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| configuration | [Configuration](configuration.md) |
+Name | Type |
+------ | ------ |
+`configuration` | [Configuration](configuration.md) |
 
-**Returns:** [Entity](entity.md)
-
-___
+**Returns:** *[Entity](entity.md)*
 
 ## Properties
 
-<a id="configuration"></a>
+### `Protected` configuration
 
-### `<Protected>` configuration
-
-**● configuration**: *[Configuration](configuration.md)*
+• **configuration**: *[Configuration](configuration.md)*
 
 *Defined in [entity.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L54)*
 
 ___
-<a id="wait"></a>
 
-### `<Protected>` wait
+### `Protected` wait
 
-**● wait**: *[Wait](wait.md)<`this`>*
+• **wait**: *[Wait](wait.md)‹*this*›*
 
 *Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
-___
-
 ## Methods
-
-<a id="get"></a>
 
 ###  get
 
-▸ **get**<`R`>(query: *[Lambda](../#lambda)<`this`, `R`>*): `Promise`<`R`>
+▸ **get**<**R**>(`query`: [Lambda](../README.md#lambda)‹*this*, *`R`*›): *`Promise<R>`*
 
 *Defined in [entity.ts:100](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L100)*
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| query | [Lambda](../#lambda)<`this`, `R`> |
+Name | Type |
+------ | ------ |
+`query` | [Lambda](../README.md#lambda)‹*this*, *`R`*› |
 
-**Returns:** `Promise`<`R`>
+**Returns:** *`Promise<R>`*
 
 ___
-<a id="matching"></a>
 
 ###  matching
 
-▸ **matching**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **matching**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
 
 *Defined in [entity.ts:87](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L87)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`boolean`>
+**Returns:** *`Promise<boolean>`*
 
 ___
-<a id="perform"></a>
 
 ###  perform
 
-▸ **perform**(command: *[Lambda](../#lambda)<`this`, `void`>*): `Promise`<`this`>
+▸ **perform**(`command`: [Lambda](../README.md#lambda)‹*this*, *void*›): *`Promise<this>`*
 
 *Defined in [entity.ts:93](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L93)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| command | [Lambda](../#lambda)<`this`, `void`> |
+Name | Type |
+------ | ------ |
+`command` | [Lambda](../README.md#lambda)‹*this*, *void*› |
 
-**Returns:** `Promise`<`this`>
+**Returns:** *`Promise<this>`*
 
 ___
-<a id="should"></a>
 
 ###  should
 
-▸ **should**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`this`>
+▸ **should**(...`conditions`: `Array<Condition<this>>`): *`Promise<this>`*
 
 *Defined in [entity.ts:76](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L76)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`this`>
+**Returns:** *`Promise<this>`*
 
 ___
-<a id="waituntil"></a>
 
 ###  waitUntil
 
-▸ **waitUntil**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **waitUntil**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
 
-*Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
+*Implementation of [Matchable](../interfaces/matchable.md)*
 
 *Defined in [entity.ts:83](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L83)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<this>>` |
 
-**Returns:** `Promise`<`boolean`>
-
-___
-
+**Returns:** *`Promise<boolean>`*
