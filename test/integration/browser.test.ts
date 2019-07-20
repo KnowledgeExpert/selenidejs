@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {browser, GIVEN, data, WHEN, driver} from './base';
-import {have} from '../../lib';
+import { have } from '../../lib';
+import { browser, data, driver, GIVEN, WHEN } from './base';
 
 describe('Browser', () => {
 
