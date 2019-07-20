@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [Extensions](../modules/extensions.md)
+> **[selenidejs](../README.md)**
+
+[Extensions](extensions.md) /
 
 # Module: Extensions
 
@@ -11,78 +13,68 @@
 * [saveScreenshot](extensions.md#savescreenshot)
 * [toBy](extensions.md#toby)
 
----
-
 ## Functions
-
-<a id="isabsoluteurl"></a>
 
 ###  isAbsoluteUrl
 
-▸ **isAbsoluteUrl**(relativeOrAbsoluteUrl: *`string`*): `boolean`
+▸ **isAbsoluteUrl**(`relativeOrAbsoluteUrl`: string): *boolean*
 
 *Defined in [utils/extensions.ts:50](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L50)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| relativeOrAbsoluteUrl | `string` |
+Name | Type |
+------ | ------ |
+`relativeOrAbsoluteUrl` | string |
 
-**Returns:** `boolean`
+**Returns:** *boolean*
 
 ___
-<a id="savepagesource"></a>
 
 ###  savePageSource
 
-▸ **savePageSource**(driver: *`WebDriver`*, filePath: *`string`*): `Promise`<`string`>
+▸ **savePageSource**(`driver`: `WebDriver`, `filePath`: string): *`Promise<string>`*
 
 *Defined in [utils/extensions.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L24)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| driver | `WebDriver` |
-| filePath | `string` |
+Name | Type |
+------ | ------ |
+`driver` | `WebDriver` |
+`filePath` | string |
 
-**Returns:** `Promise`<`string`>
+**Returns:** *`Promise<string>`*
 
 ___
-<a id="savescreenshot"></a>
 
 ###  saveScreenshot
 
-▸ **saveScreenshot**(driver: *`WebDriver`*, filePath: *`string`*): `Promise`<`string`>
+▸ **saveScreenshot**(`driver`: `WebDriver`, `filePath`: string): *`Promise<string>`*
 
 *Defined in [utils/extensions.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L34)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| driver | `WebDriver` |
-| filePath | `string` |
+Name | Type |
+------ | ------ |
+`driver` | `WebDriver` |
+`filePath` | string |
 
-**Returns:** `Promise`<`string`>
+**Returns:** *`Promise<string>`*
 
 ___
-<a id="toby"></a>
 
 ###  toBy
 
-▸ **toBy**(cssOrXpathOrBy: * `string` &#124; `By`*): `By`
+▸ **toBy**(`cssOrXpathOrBy`: string | `By`): *`By`*
 
 *Defined in [utils/extensions.ts:44](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L44)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
+Name | Type |
+------ | ------ |
+`cssOrXpathOrBy` | string \| `By` |
 
-**Returns:** `By`
-
-___
-
+**Returns:** *`By`*

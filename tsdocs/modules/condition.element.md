@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [condition](../modules/condition.md) > [element](../modules/condition.element.md)
+> **[selenidejs](../README.md)**
+
+[condition](condition.md) / [element](condition.element.md) /
 
 # Module: element
 
@@ -6,63 +8,56 @@
 
 ### Variables
 
-* [isAbsent](condition.element.md#isabsent)
-* [isBlank](condition.element.md#isblank)
-* [isDisabled](condition.element.md#isdisabled)
-* [isEnabled](condition.element.md#isenabled)
-* [isFocused](condition.element.md#isfocused)
-* [isHidden](condition.element.md#ishidden)
-* [isPresent](condition.element.md#ispresent)
-* [isSelected](condition.element.md#isselected)
-* [isVisible](condition.element.md#isvisible)
+* [isAbsent](condition.element.md#const-isabsent)
+* [isBlank](condition.element.md#const-isblank)
+* [isDisabled](condition.element.md#const-isdisabled)
+* [isEnabled](condition.element.md#const-isenabled)
+* [isFocused](condition.element.md#const-isfocused)
+* [isHidden](condition.element.md#const-ishidden)
+* [isPresent](condition.element.md#const-ispresent)
+* [isSelected](condition.element.md#const-isselected)
+* [isVisible](condition.element.md#const-isvisible)
 
 ### Functions
 
-* [hasAttribute](condition.element.md#hasattribute)
-* [hasAttributeWithValue](condition.element.md#hasattributewithvalue)
-* [hasAttributeWithValueContaining](condition.element.md#hasattributewithvaluecontaining)
-* [hasCssClass](condition.element.md#hascssclass)
-* [hasExactText](condition.element.md#hasexacttext)
-* [hasText](condition.element.md#hastext)
-* [hasValue](condition.element.md#hasvalue)
-* [hasValueContaining](condition.element.md#hasvaluecontaining)
-
----
+* [hasAttribute](condition.element.md#const-hasattribute)
+* [hasAttributeWithValue](condition.element.md#const-hasattributewithvalue)
+* [hasAttributeWithValueContaining](condition.element.md#const-hasattributewithvaluecontaining)
+* [hasCssClass](condition.element.md#const-hascssclass)
+* [hasExactText](condition.element.md#const-hasexacttext)
+* [hasText](condition.element.md#const-hastext)
+* [hasValue](condition.element.md#const-hasvalue)
+* [hasValueContaining](condition.element.md#const-hasvaluecontaining)
 
 ## Variables
 
-<a id="isabsent"></a>
+### `Const` isAbsent
 
-### `<Const>` isAbsent
-
-**● isAbsent**: *[Condition](../classes/condition.md)<`Object`>* =  Condition.not(isPresent, 'is absent')
+• **isAbsent**: *[Condition](../classes/condition.md)‹*Object*›* =  Condition.not(isPresent, 'is absent')
 
 *Defined in [conditions.ts:150](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L150)*
 
 ___
-<a id="isblank"></a>
 
-### `<Const>` isBlank
+### `Const` isBlank
 
-**● isBlank**: *`any`* =  hasExactText('').and(hasValue(''))
+• **isBlank**: *any* =  hasExactText('').and(hasValue(''))
 
 *Defined in [conditions.ts:195](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L195)*
 
 ___
-<a id="isdisabled"></a>
 
-### `<Const>` isDisabled
+### `Const` isDisabled
 
-**● isDisabled**: *[Condition](../classes/condition.md)<`Object`>* =  Condition.not(isEnabled, 'is disabled')
+• **isDisabled**: *[Condition](../classes/condition.md)‹*Object*›* =  Condition.not(isEnabled, 'is disabled')
 
 *Defined in [conditions.ts:143](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L143)*
 
 ___
-<a id="isenabled"></a>
 
-### `<Const>` isEnabled
+### `Const` isEnabled
 
-**● isEnabled**: *[Condition](../classes/condition.md)<`Object`>* =  new Condition(
+• **isEnabled**: *[Condition](../classes/condition.md)‹*Object*›* =  new Condition(
             'is enabled',
             throwIfNot(async (element: Element) => element.getWebElement().then(webelement => webelement.isEnabled()))
         )
@@ -70,11 +65,10 @@ ___
 *Defined in [conditions.ts:138](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L138)*
 
 ___
-<a id="isfocused"></a>
 
-### `<Const>` isFocused
+### `Const` isFocused
 
-**● isFocused**: *[Condition](../classes/condition.md)<`Object`>* =  new Condition(
+• **isFocused**: *[Condition](../classes/condition.md)‹*Object*›* =  new Condition(
             'is focused',
             throwIfNot(async (element: Element) =>
                 WebElement.equals(
@@ -86,20 +80,18 @@ ___
 *Defined in [conditions.ts:152](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L152)*
 
 ___
-<a id="ishidden"></a>
 
-### `<Const>` isHidden
+### `Const` isHidden
 
-**● isHidden**: *[Condition](../classes/condition.md)<`Object`>* =  Condition.not(isVisible, 'is hidden')
+• **isHidden**: *[Condition](../classes/condition.md)‹*Object*›* =  Condition.not(isVisible, 'is hidden')
 
 *Defined in [conditions.ts:129](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L129)*
 
 ___
-<a id="ispresent"></a>
 
-### `<Const>` isPresent
+### `Const` isPresent
 
-**● isPresent**: *[Condition](../classes/condition.md)<`Object`>* =  new Condition(
+• **isPresent**: *[Condition](../classes/condition.md)‹*Object*›* =  new Condition(
             'is present',
             throwIfNot(async (element: Element) => element.getWebElement().then(_ => true, _ => false)
             ))
@@ -107,166 +99,150 @@ ___
 *Defined in [conditions.ts:145](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L145)*
 
 ___
-<a id="isselected"></a>
 
-### `<Const>` isSelected
+### `Const` isSelected
 
-**● isSelected**: *[Condition](../classes/condition.md)<`Object`>* =  hasAttribute('elementIsSelected')
+• **isSelected**: *[Condition](../classes/condition.md)‹*Object*›* =  hasAttribute('elementIsSelected')
 
 *Defined in [conditions.ts:136](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L136)*
 
 ___
-<a id="isvisible"></a>
 
-### `<Const>` isVisible
+### `Const` isVisible
 
-**● isVisible**: *[Condition](../classes/condition.md)<`Object`>* =  new Condition(
+• **isVisible**: *[Condition](../classes/condition.md)‹*Object*›* =  new Condition(
             'is visible',
             throwIfNot(async (element: Element) => element.getWebElement().then(webelement => webelement.isDisplayed()))
         )
 
 *Defined in [conditions.ts:124](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L124)*
 
-___
-
 ## Functions
 
-<a id="hasattribute"></a>
+### `Const` hasAttribute
 
-### `<Const>` hasAttribute
-
-▸ **hasAttribute**(name: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasAttribute**(`name`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:131](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L131)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
+Name | Type |
+------ | ------ |
+`name` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*
 
 ___
-<a id="hasattributewithvalue"></a>
 
-### `<Const>` hasAttributeWithValue
+### `Const` hasAttributeWithValue
 
-▸ **hasAttributeWithValue**(name: *`string`*, value: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasAttributeWithValue**(`name`: string, `value`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:171](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L171)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
-| value | `string` |
+Name | Type |
+------ | ------ |
+`name` | string |
+`value` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*
 
 ___
-<a id="hasattributewithvaluecontaining"></a>
 
-### `<Const>` hasAttributeWithValueContaining
+### `Const` hasAttributeWithValueContaining
 
-▸ **hasAttributeWithValueContaining**(name: *`string`*, partialValue: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasAttributeWithValueContaining**(`name`: string, `partialValue`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:177](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L177)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
-| partialValue | `string` |
+Name | Type |
+------ | ------ |
+`name` | string |
+`partialValue` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*
 
 ___
-<a id="hascssclass"></a>
 
-### `<Const>` hasCssClass
+### `Const` hasCssClass
 
-▸ **hasCssClass**(cssClass: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasCssClass**(`cssClass`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:182](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L182)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| cssClass | `string` |
+Name | Type |
+------ | ------ |
+`cssClass` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*
 
 ___
-<a id="hasexacttext"></a>
 
-### `<Const>` hasExactText
+### `Const` hasExactText
 
-▸ **hasExactText**(expected: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasExactText**(`expected`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:167](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L167)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `string` |
+Name | Type |
+------ | ------ |
+`expected` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*
 
 ___
-<a id="hastext"></a>
 
-### `<Const>` hasText
+### `Const` hasText
 
-▸ **hasText**(expected: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasText**(`expected`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:162](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L162)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `string` |
+Name | Type |
+------ | ------ |
+`expected` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*
 
 ___
-<a id="hasvalue"></a>
 
-### `<Const>` hasValue
+### `Const` hasValue
 
-▸ **hasValue**(expected: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasValue**(`expected`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:187](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L187)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `string` |
+Name | Type |
+------ | ------ |
+`expected` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*
 
 ___
-<a id="hasvaluecontaining"></a>
 
-### `<Const>` hasValueContaining
+### `Const` hasValueContaining
 
-▸ **hasValueContaining**(expected: *`string`*): [Condition](../classes/condition.md)<`Object`>
+▸ **hasValueContaining**(`expected`: string): *[Condition](../classes/condition.md)‹*Object*›*
 
 *Defined in [conditions.ts:190](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L190)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `string` |
+Name | Type |
+------ | ------ |
+`expected` | string |
 
-**Returns:** [Condition](../classes/condition.md)<`Object`>
-
-___
-
+**Returns:** *[Condition](../classes/condition.md)‹*Object*›*

@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [by](../modules/by.md)
+> **[selenidejs](../README.md)**
+
+[by](by.md) /
 
 # Module: by
 
@@ -6,7 +8,7 @@
 
 ### Variables
 
-* [NORMALIZE_SPACE_XPATH](by.md#normalize_space_xpath)
+* [NORMALIZE_SPACE_XPATH](by.md#const-normalize_space_xpath)
 
 ### Functions
 
@@ -23,226 +25,205 @@
 * [value](by.md#value)
 * [xpath](by.md#xpath)
 
----
-
 ## Variables
 
-<a id="normalize_space_xpath"></a>
+### `Const` NORMALIZE_SPACE_XPATH
 
-### `<Const>` NORMALIZE_SPACE_XPATH
-
-**● NORMALIZE_SPACE_XPATH**: *"normalize-space(translate(string(.), &#x27;&#x27;, &#x27;    &#x27;))"* = "normalize-space(translate(string(.), '	
+• **NORMALIZE_SPACE_XPATH**: *"normalize-space(translate(string(.), '	
+ ', '    '))"* = "normalize-space(translate(string(.), '	
  ', '    '))"
 
 *Defined in [support/selectors/by.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L21)*
 
-___
-
 ## Functions
-
-<a id="attribute"></a>
 
 ###  attribute
 
-▸ **attribute**(attributeName: *`string`*, attributeValue: *`string`*): `By`
+▸ **attribute**(`attributeName`: string, `attributeValue`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:69](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L69)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| attributeName | `string` |
-| attributeValue | `string` |
+Name | Type |
+------ | ------ |
+`attributeName` | string |
+`attributeValue` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="classname"></a>
 
 ###  className
 
-▸ **className**(className: *`string`*): `By`
+▸ **className**(`className`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:57](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L57)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| className | `string` |
+Name | Type |
+------ | ------ |
+`className` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="css"></a>
 
 ###  css
 
-▸ **css**(css: *`string`*): `By`
+▸ **css**(`css`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:65](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L65)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| css | `string` |
+Name | Type |
+------ | ------ |
+`css` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="exacttext"></a>
 
 ###  exactText
 
-▸ **exactText**(text: *`string`*): `By`
+▸ **exactText**(`text`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L41)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| text | `string` |
+Name | Type |
+------ | ------ |
+`text` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="id"></a>
 
 ###  id
 
-▸ **id**(id: *`string`*): `By`
+▸ **id**(`id`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L49)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| id | `string` |
+Name | Type |
+------ | ------ |
+`id` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="linktext"></a>
 
 ###  linkText
 
-▸ **linkText**(text: *`string`*): `By`
+▸ **linkText**(`text`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L45)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| text | `string` |
+Name | Type |
+------ | ------ |
+`text` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="name"></a>
 
 ###  name
 
-▸ **name**(name: *`string`*): `By`
+▸ **name**(`name`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:53](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L53)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| name | `string` |
+Name | Type |
+------ | ------ |
+`name` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="partialid"></a>
 
 ###  partialId
 
-▸ **partialId**(...idParts: *`string`[]*): `By`
+▸ **partialId**(...`idParts`: string[]): *`By`*
 
 *Defined in [support/selectors/by.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L32)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Rest` idParts | `string`[] |
+Name | Type |
+------ | ------ |
+`...idParts` | string[] |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="text"></a>
 
 ###  text
 
-▸ **text**(text: *`string`*): `By`
+▸ **text**(`text`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L37)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| text | `string` |
+Name | Type |
+------ | ------ |
+`text` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="type"></a>
 
 ###  type
 
-▸ **type**(type: *`string`*): `By`
+▸ **type**(`type`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L23)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| type | `string` |
+Name | Type |
+------ | ------ |
+`type` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="value"></a>
 
 ###  value
 
-▸ **value**(value: *`string`*): `By`
+▸ **value**(`value`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:27](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L27)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| value | `string` |
+Name | Type |
+------ | ------ |
+`value` | string |
 
-**Returns:** `By`
+**Returns:** *`By`*
 
 ___
-<a id="xpath"></a>
 
 ###  xpath
 
-▸ **xpath**(xpath: *`string`*): `By`
+▸ **xpath**(`xpath`: string): *`By`*
 
 *Defined in [support/selectors/by.ts:61](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L61)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| xpath | `string` |
+Name | Type |
+------ | ------ |
+`xpath` | string |
 
-**Returns:** `By`
-
-___
-
+**Returns:** *`By`*

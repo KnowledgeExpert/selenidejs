@@ -1,14 +1,16 @@
-[selenidejs](../README.md) > [ByIndexWebElementLocator](../classes/byindexwebelementlocator.md)
+> **[selenidejs](../README.md)**
+
+[ByIndexWebElementLocator](byindexwebelementlocator.md) /
 
 # Class: ByIndexWebElementLocator
 
 ## Hierarchy
 
-**ByIndexWebElementLocator**
+* **ByIndexWebElementLocator**
 
 ## Implements
 
-* [Locator](../interfaces/locator.md)<`Promise`<`WebElement`>>
+* [Locator](../interfaces/locator.md)‹*`Promise<WebElement>`*›
 
 ## Index
 
@@ -18,82 +20,65 @@
 
 ### Properties
 
-* [collection](byindexwebelementlocator.md#collection)
-* [index](byindexwebelementlocator.md#index)
+* [collection](byindexwebelementlocator.md#private-collection)
+* [index](byindexwebelementlocator.md#private-index)
 
 ### Methods
 
 * [find](byindexwebelementlocator.md#find)
 * [toString](byindexwebelementlocator.md#tostring)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new ByIndexWebElementLocator**(index: *`number`*, collection: *[Collection](collection.md)*): [ByIndexWebElementLocator](byindexwebelementlocator.md)
+\+ **new ByIndexWebElementLocator**(`index`: number, `collection`: [Collection](collection.md)): *[ByIndexWebElementLocator](byindexwebelementlocator.md)*
 
 *Defined in [locators/byIndexWebElementLocator.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L20)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| index | `number` |
-| collection | [Collection](collection.md) |
+Name | Type |
+------ | ------ |
+`index` | number |
+`collection` | [Collection](collection.md) |
 
-**Returns:** [ByIndexWebElementLocator](byindexwebelementlocator.md)
-
-___
+**Returns:** *[ByIndexWebElementLocator](byindexwebelementlocator.md)*
 
 ## Properties
 
-<a id="collection"></a>
+### `Private` collection
 
-### `<Private>` collection
-
-**● collection**: *[Collection](collection.md)*
+• **collection**: *[Collection](collection.md)*
 
 *Defined in [locators/byIndexWebElementLocator.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L23)*
 
 ___
-<a id="index"></a>
 
-### `<Private>` index
+### `Private` index
 
-**● index**: *`number`*
+• **index**: *number*
 
 *Defined in [locators/byIndexWebElementLocator.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L22)*
 
-___
-
 ## Methods
-
-<a id="find"></a>
 
 ###  find
 
-▸ **find**(): `Promise`<`WebElement`>
+▸ **find**(): *`Promise<WebElement>`*
 
-*Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
+*Implementation of [Locator](../interfaces/locator.md)*
 
 *Defined in [locators/byIndexWebElementLocator.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L28)*
 
-**Returns:** `Promise`<`WebElement`>
+**Returns:** *`Promise<WebElement>`*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [locators/byIndexWebElementLocator.ts:39](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L39)*
 
-**Returns:** `string`
-
-___
-
+**Returns:** *string*

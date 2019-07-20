@@ -1,14 +1,16 @@
-[selenidejs](../README.md) > [ElementByConditionWebElementLocator](../classes/elementbyconditionwebelementlocator.md)
+> **[selenidejs](../README.md)**
+
+[ElementByConditionWebElementLocator](elementbyconditionwebelementlocator.md) /
 
 # Class: ElementByConditionWebElementLocator
 
 ## Hierarchy
 
-**ElementByConditionWebElementLocator**
+* **ElementByConditionWebElementLocator**
 
 ## Implements
 
-* [Locator](../interfaces/locator.md)<`Promise`<`WebElement`>>
+* [Locator](../interfaces/locator.md)‹*`Promise<WebElement>`*›
 
 ## Index
 
@@ -18,82 +20,65 @@
 
 ### Properties
 
-* [collection](elementbyconditionwebelementlocator.md#collection)
-* [condition](elementbyconditionwebelementlocator.md#condition)
+* [collection](elementbyconditionwebelementlocator.md#private-collection)
+* [condition](elementbyconditionwebelementlocator.md#private-condition)
 
 ### Methods
 
 * [find](elementbyconditionwebelementlocator.md#find)
 * [toString](elementbyconditionwebelementlocator.md#tostring)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new ElementByConditionWebElementLocator**(condition: *[ElementCondition](../#elementcondition)*, collection: *[Collection](collection.md)*): [ElementByConditionWebElementLocator](elementbyconditionwebelementlocator.md)
+\+ **new ElementByConditionWebElementLocator**(`condition`: [ElementCondition](../README.md#elementcondition), `collection`: [Collection](collection.md)): *[ElementByConditionWebElementLocator](elementbyconditionwebelementlocator.md)*
 
 *Defined in [locators/byConditionWebElementLocator.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L22)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| condition | [ElementCondition](../#elementcondition) |
-| collection | [Collection](collection.md) |
+Name | Type |
+------ | ------ |
+`condition` | [ElementCondition](../README.md#elementcondition) |
+`collection` | [Collection](collection.md) |
 
-**Returns:** [ElementByConditionWebElementLocator](elementbyconditionwebelementlocator.md)
-
-___
+**Returns:** *[ElementByConditionWebElementLocator](elementbyconditionwebelementlocator.md)*
 
 ## Properties
 
-<a id="collection"></a>
+### `Private` collection
 
-### `<Private>` collection
-
-**● collection**: *[Collection](collection.md)*
+• **collection**: *[Collection](collection.md)*
 
 *Defined in [locators/byConditionWebElementLocator.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L25)*
 
 ___
-<a id="condition"></a>
 
-### `<Private>` condition
+### `Private` condition
 
-**● condition**: *[ElementCondition](../#elementcondition)*
+• **condition**: *[ElementCondition](../README.md#elementcondition)*
 
 *Defined in [locators/byConditionWebElementLocator.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L24)*
 
-___
-
 ## Methods
-
-<a id="find"></a>
 
 ###  find
 
-▸ **find**(): `Promise`<`WebElement`>
+▸ **find**(): *`Promise<WebElement>`*
 
-*Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
+*Implementation of [Locator](../interfaces/locator.md)*
 
 *Defined in [locators/byConditionWebElementLocator.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L30)*
 
-**Returns:** `Promise`<`WebElement`>
+**Returns:** *`Promise<WebElement>`*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [locators/byConditionWebElementLocator.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L49)*
 
-**Returns:** `string`
-
-___
-
+**Returns:** *string*

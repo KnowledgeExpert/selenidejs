@@ -280,11 +280,13 @@ export namespace condition {
                 async (browser: Browser) => {
                     const actual = await browser.executeScript(script, ...args);
                     if (typeof expected === 'number' || typeof expected === 'string') {
-                        if (expected !== actual)
+                        if (expected !== actual) {
                             throw new Error(`actual: ${actual}`);
+                        }
                     } else {
-                        if (predicate.equals(expected)(actual))
+                        if (predicate.equals(expected)(actual)) {
                             throw new Error(`actual: ${JSON.stringify(actual)}`);
+                        }
                     }
                 }
             );

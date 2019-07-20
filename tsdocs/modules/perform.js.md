@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [perform](../modules/perform.md) > [js](../modules/perform.js.md)
+> **[selenidejs](../README.md)**
+
+[perform](perform.md) / [js](perform.js.md) /
 
 # Module: js
 
@@ -6,100 +8,89 @@
 
 ### Functions
 
-* [click](perform.js.md#click)
-* [clickWithOffset](perform.js.md#clickwithoffset)
-* [scrollIntoView](perform.js.md#scrollintoview)
-* [setValue](perform.js.md#setvalue)
-* [type](perform.js.md#type)
-
----
+* [click](perform.js.md#const-click)
+* [clickWithOffset](perform.js.md#const-clickwithoffset)
+* [scrollIntoView](perform.js.md#const-scrollintoview)
+* [setValue](perform.js.md#const-setvalue)
+* [type](perform.js.md#const-type)
 
 ## Functions
 
-<a id="click"></a>
+### `Const` click
 
-### `<Const>` click
-
-▸ **click**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **click**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:46](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L46)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="clickwithoffset"></a>
 
-### `<Const>` clickWithOffset
+### `Const` clickWithOffset
 
-▸ **clickWithOffset**(xOffset: *`number`*, yOffset: *`number`*): `(Anonymous function)`
+▸ **clickWithOffset**(`xOffset`: number, `yOffset`: number): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L48)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| xOffset | `number` |
-| yOffset | `number` |
+Name | Type |
+------ | ------ |
+`xOffset` | number |
+`yOffset` | number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="scrollintoview"></a>
 
-### `<Const>` scrollIntoView
+### `Const` scrollIntoView
 
-▸ **scrollIntoView**(element: *[Element](../classes/element.md)*): `Promise`<[Element](../classes/element.md)>
+▸ **scrollIntoView**(`element`: [Element](../classes/element.md)): *`Promise<Element>`*
 
 *Defined in [support/commands/perform.ts:57](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L57)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** `Promise`<[Element](../classes/element.md)>
+**Returns:** *`Promise<Element>`*
 
 ___
-<a id="setvalue"></a>
 
-### `<Const>` setValue
+### `Const` setValue
 
-▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
+▸ **setValue**(`value`: string | number): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:51](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L51)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| value |  `string` &#124; `number`|
+Name | Type |
+------ | ------ |
+`value` | string \| number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="type"></a>
 
-### `<Const>` type
+### `Const` type
 
-▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
+▸ **type**(`keys`: string | number): *`(Anonymous function)`*
 
 *Defined in [support/commands/perform.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/commands/perform.ts#L54)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| keys |  `string` &#124; `number`|
+Name | Type |
+------ | ------ |
+`keys` | string \| number |
 
-**Returns:** `(Anonymous function)`
-
-___
-
+**Returns:** *`(Anonymous function)`*

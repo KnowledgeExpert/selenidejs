@@ -1,12 +1,14 @@
-[selenidejs](../README.md) > [TimeoutError](../classes/timeouterror.md)
+> **[selenidejs](../README.md)**
+
+[TimeoutError](timeouterror.md) /
 
 # Class: TimeoutError
 
 ## Hierarchy
 
- `Error`
+* `Error`
 
-**↳ TimeoutError**
+  * **TimeoutError**
 
 ## Index
 
@@ -18,75 +20,61 @@
 
 * [message](timeouterror.md#message)
 * [name](timeouterror.md#name)
-* [stack](timeouterror.md#stack)
-* [Error](timeouterror.md#error)
-
----
+* [stack](timeouterror.md#optional-stack)
+* [Error](timeouterror.md#static-error)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new TimeoutError**(message: *`string`*): [TimeoutError](timeouterror.md)
+\+ **new TimeoutError**(`message`: string): *[TimeoutError](timeouterror.md)*
 
 *Defined in [errors/timeoutError.ts:16](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/errors/timeoutError.ts#L16)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| message | `string` |
+Name | Type |
+------ | ------ |
+`message` | string |
 
-**Returns:** [TimeoutError](timeouterror.md)
-
-___
+**Returns:** *[TimeoutError](timeouterror.md)*
 
 ## Properties
 
-<a id="message"></a>
-
 ###  message
 
-**● message**: *`string`*
+• **message**: *string*
 
-*Inherited from Error.message*
+*Inherited from void*
 
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:904*
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+• **name**: *string*
 
-*Inherited from Error.name*
+*Inherited from void*
 
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:903*
-
-___
-<a id="stack"></a>
-
-### `<Optional>` stack
-
-**● stack**: *`string`*
-
-*Inherited from Error.stack*
-
-*Overrides Error.stack*
-
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:905*
-
-___
-<a id="error"></a>
-
-### `<Static>` Error
-
-**● Error**: *`ErrorConstructor`*
-
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:914*
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
 
 ___
 
+### `Optional` stack
+
+• **stack**? : *string*
+
+*Inherited from void*
+
+*Overrides void*
+
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+
+___
+
+### `Static` Error
+
+▪ **Error**: *`ErrorConstructor`*
+
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974

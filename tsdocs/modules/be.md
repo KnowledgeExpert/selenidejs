@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [be](../modules/be.md)
+> **[selenidejs](../README.md)**
+
+[be](be.md) /
 
 # Module: be
 
@@ -6,109 +8,93 @@
 
 ### Variables
 
-* [absent](be.md#absent)
-* [blank](be.md#blank)
-* [disabled](be.md#disabled)
-* [enabled](be.md#enabled)
-* [focused](be.md#focused)
-* [hidden](be.md#hidden)
-* [not](be.md#not)
-* [present](be.md#present)
-* [selected](be.md#selected)
-* [visible](be.md#visible)
-
----
+* [absent](be.md#const-absent)
+* [blank](be.md#const-blank)
+* [disabled](be.md#const-disabled)
+* [enabled](be.md#const-enabled)
+* [focused](be.md#const-focused)
+* [hidden](be.md#const-hidden)
+* [not](be.md#const-not)
+* [present](be.md#const-present)
+* [selected](be.md#const-selected)
+* [visible](be.md#const-visible)
 
 ## Variables
 
-<a id="absent"></a>
+### `Const` absent
 
-### `<Const>` absent
-
-**● absent**: *[ElementCondition](../#elementcondition)* =  condition.element.isAbsent
+• **absent**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isAbsent
 
 *Defined in [support/conditions/be.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L24)*
 
 ___
-<a id="blank"></a>
 
-### `<Const>` blank
+### `Const` blank
 
-**● blank**: *[ElementCondition](../#elementcondition)* =  condition.element.isBlank
+• **blank**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isBlank
 
 *Defined in [support/conditions/be.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L38)*
 
 ___
-<a id="disabled"></a>
 
-### `<Const>` disabled
+### `Const` disabled
 
-**● disabled**: *[ElementCondition](../#elementcondition)* =  condition.element.isDisabled
+• **disabled**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isDisabled
 
 *Defined in [support/conditions/be.ts:36](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L36)*
 
 ___
-<a id="enabled"></a>
 
-### `<Const>` enabled
+### `Const` enabled
 
-**● enabled**: *[ElementCondition](../#elementcondition)* =  condition.element.isEnabled
+• **enabled**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isEnabled
 
 *Defined in [support/conditions/be.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L34)*
 
 ___
-<a id="focused"></a>
 
-### `<Const>` focused
+### `Const` focused
 
-**● focused**: *[ElementCondition](../#elementcondition)* =  condition.element.isFocused
+• **focused**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isFocused
 
 *Defined in [support/conditions/be.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L32)*
 
 ___
-<a id="hidden"></a>
 
-### `<Const>` hidden
+### `Const` hidden
 
-**● hidden**: *[ElementCondition](../#elementcondition)* =  condition.element.isHidden
+• **hidden**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isHidden
 
 *Defined in [support/conditions/be.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L30)*
 
 ___
-<a id="not"></a>
 
-### `<Const>` not
+### `Const` not
 
-**● not**: *[be](be.md)* =  new Proxy(be, { get: (be, conditionName) => Condition.not(be[conditionName]) })
+• **not**: *[be](be.md)* =  new Proxy(be, { get: (be, conditionName) => Condition.not(be[conditionName]) })
 
 *Defined in [support/conditions/be.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L20)*
 
 ___
-<a id="present"></a>
 
-### `<Const>` present
+### `Const` present
 
-**● present**: *[ElementCondition](../#elementcondition)* =  condition.element.isPresent
+• **present**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isPresent
 
 *Defined in [support/conditions/be.ts:26](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L26)*
 
 ___
-<a id="selected"></a>
 
-### `<Const>` selected
+### `Const` selected
 
-**● selected**: *[ElementCondition](../#elementcondition)* =  condition.element.isSelected
+• **selected**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isSelected
 
 *Defined in [support/conditions/be.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L22)*
 
 ___
-<a id="visible"></a>
 
-### `<Const>` visible
+### `Const` visible
 
-**● visible**: *[ElementCondition](../#elementcondition)* =  condition.element.isVisible
+• **visible**: *[ElementCondition](../README.md#elementcondition)* =  condition.element.isVisible
 
 *Defined in [support/conditions/be.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L28)*
-
-___
-

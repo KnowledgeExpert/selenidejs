@@ -1,20 +1,27 @@
-[selenidejs](../README.md) > [Condition](../classes/condition.md)
+> **[selenidejs](../README.md)**
 
-# Class: Condition
+[Condition](condition.md) /
 
-Like Command, i.e. can pass or fail with Error. It is defined as separate type alias to differentiate the usage scenarios. Conditions we use in context of matching condition on entity. Condition is like a predicate but instead of (true | false) you get (passed | throws Error)
+# Class: Condition <**E**>
+
+Like Command<T>, i.e. can pass or fail with Error.
+It is defined as separate type alias to differentiate the usage scenarios.
+Conditions we use in context of matching condition on entity.
+Condition is like a predicate but instead of (true | false) you get (passed | throws Error)
 
 Read "void" in Query<T, void> as "matched", or "passed".
 
 ## Type parameters
-#### E 
+
+▪ **E**
+
 ## Hierarchy
 
-**Condition**
+* **Condition**
 
 ## Implements
 
-* [Fn](../interfaces/fn.md)<`E`, `void`>
+* [Fn](../interfaces/fn.md)‹*`E`*, *void*›
 
 ## Index
 
@@ -24,8 +31,8 @@ Read "void" in Query<T, void> as "matched", or "passed".
 
 ### Properties
 
-* [description](condition.md#description)
-* [fn](condition.md#fn)
+* [description](condition.md#private-description)
+* [fn](condition.md#private-fn)
 
 ### Methods
 
@@ -33,128 +40,111 @@ Read "void" in Query<T, void> as "matched", or "passed".
 * [call](condition.md#call)
 * [or](condition.md#or)
 * [toString](condition.md#tostring)
-* [all](condition.md#all)
-* [allNot](condition.md#allnot)
-* [and](condition.md#and-1)
-* [asPredicate](condition.md#aspredicate)
-* [not](condition.md#not)
-* [or](condition.md#or-1)
-
----
+* [all](condition.md#static-all)
+* [allNot](condition.md#static-allnot)
+* [and](condition.md#static-and)
+* [asPredicate](condition.md#static-aspredicate)
+* [not](condition.md#static-not)
+* [or](condition.md#static-or)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new Condition**(description: *`any`*, fn: *`any`*): [Condition](condition.md)
+\+ **new Condition**(`description`: any, `fn`: any): *[Condition](condition.md)*
 
 *Defined in [wait.ts:75](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L75)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| description | `any` |
-| fn | `any` |
+Name | Type |
+------ | ------ |
+`description` | any |
+`fn` | any |
 
-**Returns:** [Condition](condition.md)
-
-___
+**Returns:** *[Condition](condition.md)*
 
 ## Properties
 
-<a id="description"></a>
+### `Private` description
 
-### `<Private>` description
-
-**● description**: *`string`*
+• **description**: *string*
 
 *Defined in [wait.ts:74](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L74)*
 
 ___
-<a id="fn"></a>
 
-### `<Private>` fn
+### `Private` fn
 
-**● fn**: *[Lambda](../#lambda)<`E`, `void`>*
+• **fn**: *[Lambda](../README.md#lambda)‹*`E`*, *void*›*
 
 *Defined in [wait.ts:75](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L75)*
 
-___
-
 ## Methods
-
-<a id="and"></a>
 
 ###  and
 
-▸ **and**(condition: *[Condition](condition.md)<`E`>*): `any`
+▸ **and**(`condition`: [Condition](condition.md)‹*`E`*›): *any*
 
 *Defined in [wait.ts:86](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L86)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](condition.md)<`E`> |
+Name | Type |
+------ | ------ |
+`condition` | [Condition](condition.md)‹*`E`*› |
 
-**Returns:** `any`
+**Returns:** *any*
 
 ___
-<a id="call"></a>
 
 ###  call
 
-▸ **call**(entity: *`E`*): `Promise`<`void`>
+▸ **call**(`entity`: `E`): *`Promise<void>`*
 
-*Implementation of [Fn](../interfaces/fn.md).[call](../interfaces/fn.md#call)*
+*Implementation of [Fn](../interfaces/fn.md)*
 
 *Defined in [wait.ts:82](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L82)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| entity | `E` |
+Name | Type |
+------ | ------ |
+`entity` | `E` |
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="or"></a>
 
 ###  or
 
-▸ **or**(condition: *[Condition](condition.md)<`E`>*): `any`
+▸ **or**(`condition`: [Condition](condition.md)‹*`E`*›): *any*
 
 *Defined in [wait.ts:90](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L90)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](condition.md)<`E`> |
+Name | Type |
+------ | ------ |
+`condition` | [Condition](condition.md)‹*`E`*› |
 
-**Returns:** `any`
+**Returns:** *any*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [wait.ts:94](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L94)*
 
-**Returns:** `string`
+**Returns:** *string*
 
 ___
-<a id="all"></a>
 
-### `<Static>` all
+### `Static` all
 
-▸ **all**<`T`>(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): [Condition](condition.md)<`T`>
+▸ **all**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
 
 *Defined in [wait.ts:161](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L161)*
 
@@ -162,21 +152,21 @@ Transforms conditions array provided as varargs to condition by applying Conditi
 
 **Type parameters:**
 
-#### T 
+▪ **T**
+
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`T`>> |  - |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<T>>` |
 
-**Returns:** [Condition](condition.md)<`T`>
+**Returns:** *[Condition](condition.md)‹*`T`*›*
 
 ___
-<a id="allnot"></a>
 
-### `<Static>` allNot
+### `Static` allNot
 
-▸ **allNot**<`T`>(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): [Condition](condition.md)<`T`>
+▸ **allNot**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
 
 *Defined in [wait.ts:176](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L176)*
 
@@ -184,21 +174,21 @@ Transforms conditions array provided as varargs to condition by applying Conditi
 
 **Type parameters:**
 
-#### T 
+▪ **T**
+
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`T`>> |  - |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<T>>` |
 
-**Returns:** [Condition](condition.md)<`T`>
+**Returns:** *[Condition](condition.md)‹*`T`*›*
 
 ___
-<a id="and-1"></a>
 
-### `<Static>` and
+### `Static` and
 
-▸ **and**<`T`>(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): [Condition](condition.md)<`T`>
+▸ **and**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
 
 *Defined in [wait.ts:130](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L130)*
 
@@ -206,69 +196,69 @@ Combines conditions by logical AND
 
 **Type parameters:**
 
-#### T 
+▪ **T**
+
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`T`>> |  - |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<T>>` |
 
-**Returns:** [Condition](condition.md)<`T`>
+**Returns:** *[Condition](condition.md)‹*`T`*›*
 
 ___
-<a id="aspredicate"></a>
 
-### `<Static>` asPredicate
+### `Static` asPredicate
 
-▸ **asPredicate**<`T`>(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): `(Anonymous function)`
+▸ **asPredicate**<**T**>(...`conditions`: `Array<Condition<T>>`): *`(Anonymous function)`*
 
 *Defined in [wait.ts:193](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L193)*
 
-Transforms Conditions (returning (void | throws Error)), combined by AND if more than one, to async Predicate (returning (true | false))
+Transforms Conditions (returning (void | throws Error)), combined by AND if more than one,
+to async Predicate   (returning (true | false))
 
 **Type parameters:**
 
-#### T 
+▪ **T**
+
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`T`>> |  - |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<T>>` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="not"></a>
 
-### `<Static>` not
+### `Static` not
 
-▸ **not**<`T`>(condition: *[Condition](condition.md)<`T`>*, description?: *`string`*): [Condition](condition.md)<`T`>
+▸ **not**<**T**>(`condition`: [Condition](condition.md)‹*`T`*›, `description?`: string): *[Condition](condition.md)‹*`T`*›*
 
 *Defined in [wait.ts:109](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L109)*
 
 Negates condition. Making the negated condition to:
-
-*   pass (return void) in case original condition would throw Error
-*   throw Error in case original condition would pass (return void)
+- pass (return void) in case original condition would throw Error
+- throw Error in case original condition would pass (return void)
 
 **Type parameters:**
 
-#### T 
+▪ **T**
+
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| condition | [Condition](condition.md)<`T`> |  original condition to be negated |
-| `Optional` description | `string` |  custom description if "not <original description>" version is not enough |
+Name | Type | Description |
+------ | ------ | ------ |
+`condition` | [Condition](condition.md)‹*`T`*› | original condition to be negated |
+`description?` | string | custom description if "not <original description>" version is not enough |
 
-**Returns:** [Condition](condition.md)<`T`>
+**Returns:** *[Condition](condition.md)‹*`T`*›*
 
 ___
-<a id="or-1"></a>
 
-### `<Static>` or
+### `Static` or
 
-▸ **or**<`T`>(...conditions: *`Array`<[Condition](condition.md)<`T`>>*): [Condition](condition.md)<`T`>
+▸ **or**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
 
 *Defined in [wait.ts:142](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L142)*
 
@@ -276,14 +266,12 @@ Combines conditions by logical OR
 
 **Type parameters:**
 
-#### T 
+▪ **T**
+
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](condition.md)<`T`>> |  - |
+Name | Type |
+------ | ------ |
+`...conditions` | `Array<Condition<T>>` |
 
-**Returns:** [Condition](condition.md)<`T`>
-
-___
-
+**Returns:** *[Condition](condition.md)‹*`T`*›*

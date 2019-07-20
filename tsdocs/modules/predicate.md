@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [predicate](../modules/predicate.md)
+> **[selenidejs](../README.md)**
+
+[predicate](predicate.md) /
 
 # Module: predicate
 
@@ -6,215 +8,201 @@
 
 ### Variables
 
-* [equalsByContainsToArray](predicate.md#equalsbycontainstoarray)
-* [equalsToArray](predicate.md#equalstoarray)
+* [equalsByContainsToArray](predicate.md#const-equalsbycontainstoarray)
+* [equalsToArray](predicate.md#const-equalstoarray)
 
 ### Functions
 
-* [arrayCompareBy](predicate.md#arraycompareby)
-* [equals](predicate.md#equals)
-* [includes](predicate.md#includes)
-* [includesWord](predicate.md#includesword)
-* [isGreaterThan](predicate.md#isgreaterthan)
-* [isGreaterThanOrEqual](predicate.md#isgreaterthanorequal)
-* [isLessThan](predicate.md#islessthan)
-* [isLessThanOrEqual](predicate.md#islessthanorequal)
-* [isTruthy](predicate.md#istruthy)
-
----
+* [arrayCompareBy](predicate.md#const-arraycompareby)
+* [equals](predicate.md#const-equals)
+* [includes](predicate.md#const-includes)
+* [includesWord](predicate.md#const-includesword)
+* [isGreaterThan](predicate.md#const-isgreaterthan)
+* [isGreaterThanOrEqual](predicate.md#const-isgreaterthanorequal)
+* [isLessThan](predicate.md#const-islessthan)
+* [isLessThanOrEqual](predicate.md#const-islessthanorequal)
+* [isTruthy](predicate.md#const-istruthy)
 
 ## Variables
 
-<a id="equalsbycontainstoarray"></a>
+### `Const` equalsByContainsToArray
 
-### `<Const>` equalsByContainsToArray
-
-**● equalsByContainsToArray**: *`(Anonymous function)`* =  arrayCompareBy(includes)
+• **equalsByContainsToArray**: *`(Anonymous function)`* =  arrayCompareBy(includes)
 
 *Defined in [utils/predicates.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L31)*
 
 ___
-<a id="equalstoarray"></a>
 
-### `<Const>` equalsToArray
+### `Const` equalsToArray
 
-**● equalsToArray**: *`(Anonymous function)`* =  arrayCompareBy(equals)
+• **equalsToArray**: *`(Anonymous function)`* =  arrayCompareBy(equals)
 
 *Defined in [utils/predicates.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L30)*
 
-___
-
 ## Functions
 
-<a id="arraycompareby"></a>
+### `Const` arrayCompareBy
 
-### `<Const>` arrayCompareBy
-
-▸ **arrayCompareBy**(f: *`any`*): `(Anonymous function)`
+▸ **arrayCompareBy**(`f`: any): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:26](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L26)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| f | `any` |
+Name | Type |
+------ | ------ |
+`f` | any |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="equals"></a>
 
-### `<Const>` equals
+### `Const` equals
 
-▸ **equals**<`V`>(expected: *`V`*): `(Anonymous function)`
+▸ **equals**<**V**>(`expected`: `V`): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:18](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L18)*
 
 **Type parameters:**
 
-#### V 
+▪ **V**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `V` |
+Name | Type |
+------ | ------ |
+`expected` | `V` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="includes"></a>
 
-### `<Const>` includes
+### `Const` includes
 
-▸ **includes**(expected: *`any`*): `(Anonymous function)`
+▸ **includes**(`expected`: any): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L23)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `any` |
+Name | Type |
+------ | ------ |
+`expected` | any |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="includesword"></a>
 
-### `<Const>` includesWord
+### `Const` includesWord
 
-▸ **includesWord**(expected: *`string`*): `(Anonymous function)`
+▸ **includesWord**(`expected`: string): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L24)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `string` |
+Name | Type |
+------ | ------ |
+`expected` | string |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="isgreaterthan"></a>
 
-### `<Const>` isGreaterThan
+### `Const` isGreaterThan
 
-▸ **isGreaterThan**<`V`>(expected: *`V`*): `(Anonymous function)`
+▸ **isGreaterThan**<**V**>(`expected`: `V`): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:19](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L19)*
 
 **Type parameters:**
 
-#### V 
+▪ **V**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `V` |
+Name | Type |
+------ | ------ |
+`expected` | `V` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="isgreaterthanorequal"></a>
 
-### `<Const>` isGreaterThanOrEqual
+### `Const` isGreaterThanOrEqual
 
-▸ **isGreaterThanOrEqual**<`V`>(expected: *`V`*): `(Anonymous function)`
+▸ **isGreaterThanOrEqual**<**V**>(`expected`: `V`): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L20)*
 
 **Type parameters:**
 
-#### V 
+▪ **V**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `V` |
+Name | Type |
+------ | ------ |
+`expected` | `V` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="islessthan"></a>
 
-### `<Const>` isLessThan
+### `Const` isLessThan
 
-▸ **isLessThan**<`V`>(expected: *`V`*): `(Anonymous function)`
+▸ **isLessThan**<**V**>(`expected`: `V`): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L21)*
 
 **Type parameters:**
 
-#### V 
+▪ **V**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `V` |
+Name | Type |
+------ | ------ |
+`expected` | `V` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="islessthanorequal"></a>
 
-### `<Const>` isLessThanOrEqual
+### `Const` isLessThanOrEqual
 
-▸ **isLessThanOrEqual**<`V`>(expected: *`V`*): `(Anonymous function)`
+▸ **isLessThanOrEqual**<**V**>(`expected`: `V`): *`(Anonymous function)`*
 
 *Defined in [utils/predicates.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L22)*
 
 **Type parameters:**
 
-#### V 
+▪ **V**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| expected | `V` |
+Name | Type |
+------ | ------ |
+`expected` | `V` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="istruthy"></a>
 
-### `<Const>` isTruthy
+### `Const` isTruthy
 
-▸ **isTruthy**<`V`>(actual: *`V`*): `boolean`
+▸ **isTruthy**<**V**>(`actual`: `V`): *boolean*
 
 *Defined in [utils/predicates.ts:17](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/predicates.ts#L17)*
 
 **Type parameters:**
 
-#### V 
+▪ **V**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| actual | `V` |
+Name | Type |
+------ | ------ |
+`actual` | `V` |
 
-**Returns:** `boolean`
-
-___
-
+**Returns:** *boolean*

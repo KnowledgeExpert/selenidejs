@@ -1,4 +1,6 @@
-[selenidejs](../README.md) > [find](../modules/find.md)
+> **[selenidejs](../README.md)**
+
+[find](find.md) /
 
 # Module: find
 
@@ -6,190 +8,174 @@
 
 ### Functions
 
-* [alert](find.md#alert)
-* [all](find.md#all)
-* [element](find.md#element)
-* [elementAt](find.md#elementat)
-* [elementBy](find.md#elementby)
-* [filteredBy](find.md#filteredby)
-* [first](find.md#first)
-* [followingSibling](find.md#followingsibling)
-* [parent](find.md#parent)
-* [sliced](find.md#sliced)
-
----
+* [alert](find.md#const-alert)
+* [all](find.md#const-all)
+* [element](find.md#const-element)
+* [elementAt](find.md#const-elementat)
+* [elementBy](find.md#const-elementby)
+* [filteredBy](find.md#const-filteredby)
+* [first](find.md#const-first)
+* [followingSibling](find.md#const-followingsibling)
+* [parent](find.md#const-parent)
+* [sliced](find.md#const-sliced)
 
 ## Functions
 
-<a id="alert"></a>
+### `Const` alert
 
-### `<Const>` alert
-
-▸ **alert**(browser: *[Browser](../classes/browser.md)*): `AlertPromise`
+▸ **alert**(`browser`: [Browser](../classes/browser.md)): *`AlertPromise`*
 
 *Defined in [support/elements/find.ts:51](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L51)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| browser | [Browser](../classes/browser.md) |
+Name | Type |
+------ | ------ |
+`browser` | [Browser](../classes/browser.md) |
 
-**Returns:** `AlertPromise`
+**Returns:** *`AlertPromise`*
 
 ___
-<a id="all"></a>
 
-### `<Const>` all
+### `Const` all
 
-▸ **all**(cssOrXpathOrBy: * `string` &#124; `By`*): `(Anonymous function)`
+▸ **all**(`cssOrXpathOrBy`: string | `By`): *`(Anonymous function)`*
 
 *Defined in [support/elements/find.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L28)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
+Name | Type |
+------ | ------ |
+`cssOrXpathOrBy` | string \| `By` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="element"></a>
 
-### `<Const>` element
+### `Const` element
 
-▸ **element**(cssOrXpathOrBy: * `string` &#124; `By`*): `(Anonymous function)`
+▸ **element**(`cssOrXpathOrBy`: string | `By`): *`(Anonymous function)`*
 
 *Defined in [support/elements/find.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L25)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| cssOrXpathOrBy |  `string` &#124; `By`|
+Name | Type |
+------ | ------ |
+`cssOrXpathOrBy` | string \| `By` |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="elementat"></a>
 
-### `<Const>` elementAt
+### `Const` elementAt
 
-▸ **elementAt**(index: *`number`*): `(Anonymous function)`
+▸ **elementAt**(`index`: number): *`(Anonymous function)`*
 
 *Defined in [support/elements/find.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L37)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| index | `number` |
+Name | Type |
+------ | ------ |
+`index` | number |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="elementby"></a>
 
-### `<Const>` elementBy
+### `Const` elementBy
 
-▸ **elementBy**(condition: *[ElementCondition](../#elementcondition)*): `(Anonymous function)`
+▸ **elementBy**(`condition`: [ElementCondition](../README.md#elementcondition)): *`(Anonymous function)`*
 
 *Defined in [support/elements/find.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L45)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| condition | [ElementCondition](../#elementcondition) |
+Name | Type |
+------ | ------ |
+`condition` | [ElementCondition](../README.md#elementcondition) |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="filteredby"></a>
 
-### `<Const>` filteredBy
+### `Const` filteredBy
 
-▸ **filteredBy**(condition: *[ElementCondition](../#elementcondition)*): `(Anonymous function)`
+▸ **filteredBy**(`condition`: [ElementCondition](../README.md#elementcondition)): *`(Anonymous function)`*
 
 *Defined in [support/elements/find.ts:47](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L47)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| condition | [ElementCondition](../#elementcondition) |
+Name | Type |
+------ | ------ |
+`condition` | [ElementCondition](../README.md#elementcondition) |
 
-**Returns:** `(Anonymous function)`
+**Returns:** *`(Anonymous function)`*
 
 ___
-<a id="first"></a>
 
-### `<Const>` first
+### `Const` first
 
-▸ **first**(collection: *[Collection](../classes/collection.md)*): [Element](../classes/element.md)
+▸ **first**(`collection`: [Collection](../classes/collection.md)): *[Element](../classes/element.md)*
 
 *Defined in [support/elements/find.ts:40](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L40)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| collection | [Collection](../classes/collection.md) |
+Name | Type |
+------ | ------ |
+`collection` | [Collection](../classes/collection.md) |
 
-**Returns:** [Element](../classes/element.md)
+**Returns:** *[Element](../classes/element.md)*
 
 ___
-<a id="followingsibling"></a>
 
-### `<Const>` followingSibling
+### `Const` followingSibling
 
-▸ **followingSibling**(element: *[Element](../classes/element.md)*): [Element](../classes/element.md)
+▸ **followingSibling**(`element`: [Element](../classes/element.md)): *[Element](../classes/element.md)*
 
 *Defined in [support/elements/find.ts:33](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L33)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** [Element](../classes/element.md)
+**Returns:** *[Element](../classes/element.md)*
 
 ___
-<a id="parent"></a>
 
-### `<Const>` parent
+### `Const` parent
 
-▸ **parent**(element: *[Element](../classes/element.md)*): [Element](../classes/element.md)
+▸ **parent**(`element`: [Element](../classes/element.md)): *[Element](../classes/element.md)*
 
 *Defined in [support/elements/find.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L32)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| element | [Element](../classes/element.md) |
+Name | Type |
+------ | ------ |
+`element` | [Element](../classes/element.md) |
 
-**Returns:** [Element](../classes/element.md)
+**Returns:** *[Element](../classes/element.md)*
 
 ___
-<a id="sliced"></a>
 
-### `<Const>` sliced
+### `Const` sliced
 
-▸ **sliced**(start: *`number`*, end: *`number`*): `(Anonymous function)`
+▸ **sliced**(`start`: number, `end`: number): *`(Anonymous function)`*
 
 *Defined in [support/elements/find.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L41)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| start | `number` |
-| end | `number` |
+Name | Type |
+------ | ------ |
+`start` | number |
+`end` | number |
 
-**Returns:** `(Anonymous function)`
-
-___
-
+**Returns:** *`(Anonymous function)`*

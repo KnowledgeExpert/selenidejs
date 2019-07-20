@@ -1,14 +1,16 @@
-[selenidejs](../README.md) > [ConditionNotMatchedError](../classes/conditionnotmatchederror.md)
+> **[selenidejs](../README.md)**
+
+[ConditionNotMatchedError](conditionnotmatchederror.md) /
 
 # Class: ConditionNotMatchedError
 
 ## Hierarchy
 
- `Error`
+* `Error`
 
-**↳ ConditionNotMatchedError**
+  * **ConditionNotMatchedError**
 
-↳  [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
+  * [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
 
 ## Index
 
@@ -20,75 +22,61 @@
 
 * [message](conditionnotmatchederror.md#message)
 * [name](conditionnotmatchederror.md#name)
-* [stack](conditionnotmatchederror.md#stack)
-* [Error](conditionnotmatchederror.md#error)
-
----
+* [stack](conditionnotmatchederror.md#optional-stack)
+* [Error](conditionnotmatchederror.md#static-error)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new ConditionNotMatchedError**(message?: *`string`*): [ConditionNotMatchedError](conditionnotmatchederror.md)
+\+ **new ConditionNotMatchedError**(`message`: string): *[ConditionNotMatchedError](conditionnotmatchederror.md)*
 
 *Defined in [errors/conditionDoesNotMatchError.ts:16](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L16)*
 
 **Parameters:**
 
-| Param | Type | Default value |
-| ------ | ------ | ------ |
-| `Default value` message | `string` | &quot;condition not matched&quot; |
+Name | Type | Default |
+------ | ------ | ------ |
+`message` | string | "condition not matched" |
 
-**Returns:** [ConditionNotMatchedError](conditionnotmatchederror.md)
-
-___
+**Returns:** *[ConditionNotMatchedError](conditionnotmatchederror.md)*
 
 ## Properties
 
-<a id="message"></a>
-
 ###  message
 
-**● message**: *`string`*
+• **message**: *string*
 
-*Inherited from Error.message*
+*Inherited from void*
 
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:904*
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
 
 ___
-<a id="name"></a>
 
 ###  name
 
-**● name**: *`string`*
+• **name**: *string*
 
-*Inherited from Error.name*
+*Inherited from void*
 
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:903*
-
-___
-<a id="stack"></a>
-
-### `<Optional>` stack
-
-**● stack**: *`string`*
-
-*Inherited from Error.stack*
-
-*Overrides Error.stack*
-
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:905*
-
-___
-<a id="error"></a>
-
-### `<Static>` Error
-
-**● Error**: *`ErrorConstructor`*
-
-*Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:914*
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
 
 ___
 
+### `Optional` stack
+
+• **stack**? : *string*
+
+*Inherited from void*
+
+*Overrides void*
+
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+
+___
+
+### `Static` Error
+
+▪ **Error**: *`ErrorConstructor`*
+
+Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974

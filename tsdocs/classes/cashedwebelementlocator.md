@@ -1,14 +1,16 @@
-[selenidejs](../README.md) > [CashedWebElementLocator](../classes/cashedwebelementlocator.md)
+> **[selenidejs](../README.md)**
+
+[CashedWebElementLocator](cashedwebelementlocator.md) /
 
 # Class: CashedWebElementLocator
 
 ## Hierarchy
 
-**CashedWebElementLocator**
+* **CashedWebElementLocator**
 
 ## Implements
 
-* [Locator](../interfaces/locator.md)<`Promise`<`WebElement`>>
+* [Locator](../interfaces/locator.md)‹*`Promise<WebElement>`*›
 
 ## Index
 
@@ -18,82 +20,65 @@
 
 ### Properties
 
-* [cash](cashedwebelementlocator.md#cash)
-* [description](cashedwebelementlocator.md#description)
+* [cash](cashedwebelementlocator.md#private-cash)
+* [description](cashedwebelementlocator.md#private-description)
 
 ### Methods
 
 * [find](cashedwebelementlocator.md#find)
 * [toString](cashedwebelementlocator.md#tostring)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new CashedWebElementLocator**(cash: *`WebElement`*, description: *`string`*): [CashedWebElementLocator](cashedwebelementlocator.md)
+\+ **new CashedWebElementLocator**(`cash`: `WebElement`, `description`: string): *[CashedWebElementLocator](cashedwebelementlocator.md)*
 
 *Defined in [locators/cashedWebElementLocator.ts:18](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L18)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| cash | `WebElement` |
-| description | `string` |
+Name | Type |
+------ | ------ |
+`cash` | `WebElement` |
+`description` | string |
 
-**Returns:** [CashedWebElementLocator](cashedwebelementlocator.md)
-
-___
+**Returns:** *[CashedWebElementLocator](cashedwebelementlocator.md)*
 
 ## Properties
 
-<a id="cash"></a>
+### `Private` cash
 
-### `<Private>` cash
-
-**● cash**: *`WebElement`*
+• **cash**: *`WebElement`*
 
 *Defined in [locators/cashedWebElementLocator.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L20)*
 
 ___
-<a id="description"></a>
 
-### `<Private>` description
+### `Private` description
 
-**● description**: *`string`*
+• **description**: *string*
 
 *Defined in [locators/cashedWebElementLocator.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L21)*
 
-___
-
 ## Methods
-
-<a id="find"></a>
 
 ###  find
 
-▸ **find**(): `Promise`<`WebElement`>
+▸ **find**(): *`Promise<WebElement>`*
 
-*Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
+*Implementation of [Locator](../interfaces/locator.md)*
 
 *Defined in [locators/cashedWebElementLocator.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L25)*
 
-**Returns:** `Promise`<`WebElement`>
+**Returns:** *`Promise<WebElement>`*
 
 ___
-<a id="tostring"></a>
 
 ###  toString
 
-▸ **toString**(): `string`
+▸ **toString**(): *string*
 
 *Defined in [locators/cashedWebElementLocator.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L29)*
 
-**Returns:** `string`
-
-___
-
+**Returns:** *string*

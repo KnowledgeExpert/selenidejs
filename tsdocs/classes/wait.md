@@ -1,12 +1,16 @@
-[selenidejs](../README.md) > [Wait](../classes/wait.md)
+> **[selenidejs](../README.md)**
 
-# Class: Wait
+[Wait](wait.md) /
+
+# Class: Wait <**T**>
 
 ## Type parameters
-#### T 
+
+▪ **T**
+
 ## Hierarchy
 
-**Wait**
+* **Wait**
 
 ## Index
 
@@ -16,8 +20,8 @@
 
 ### Properties
 
-* [entity](wait.md#entity)
-* [timeout](wait.md#timeout)
+* [entity](wait.md#private-entity)
+* [timeout](wait.md#private-timeout)
 
 ### Methods
 
@@ -26,127 +30,111 @@
 * [query](wait.md#query)
 * [until](wait.md#until)
 
----
-
 ## Constructors
-
-<a id="constructor"></a>
 
 ###  constructor
 
-⊕ **new Wait**(entity: *`T`*, timeout: *`number`*): [Wait](wait.md)
+\+ **new Wait**(`entity`: `T`, `timeout`: number): *[Wait](wait.md)*
 
 *Defined in [wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
-| timeout | `number` |
+Name | Type |
+------ | ------ |
+`entity` | `T` |
+`timeout` | number |
 
-**Returns:** [Wait](wait.md)
-
-___
+**Returns:** *[Wait](wait.md)*
 
 ## Properties
 
-<a id="entity"></a>
+### `Private` entity
 
-### `<Private>` entity
-
-**● entity**: *`T`*
+• **entity**: *`T`*
 
 *Defined in [wait.ts:202](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L202)*
 
 ___
-<a id="timeout"></a>
 
-### `<Private>` timeout
+### `Private` timeout
 
-**● timeout**: *`number`*
+• **timeout**: *number*
 
 *Defined in [wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
-___
-
 ## Methods
-
-<a id="command"></a>
 
 ###  command
 
-▸ **command**(fn: *[Lambda](../#lambda)<`T`, `void`>*): `Promise`<`void`>
+▸ **command**(`fn`: [Lambda](../README.md#lambda)‹*`T`*, *void*›): *`Promise<void>`*
 
-*Defined in [wait.ts:215](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L215)*
+*Defined in [wait.ts:214](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L214)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| fn | [Lambda](../#lambda)<`T`, `void`> |
+Name | Type |
+------ | ------ |
+`fn` | [Lambda](../README.md#lambda)‹*`T`*, *void*› |
 
-**Returns:** `Promise`<`void`>
+**Returns:** *`Promise<void>`*
 
 ___
-<a id="for"></a>
 
 ###  for
 
-▸ **for**<`R`>(fn: *[Fn](../interfaces/fn.md)<`T`, `R`>*): `Promise`<`R`>
+▸ **for**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›): *`Promise<R>`*
 
-*Defined in [wait.ts:223](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L223)*
+*Defined in [wait.ts:222](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L222)*
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| fn | [Fn](../interfaces/fn.md)<`T`, `R`> |
+Name | Type |
+------ | ------ |
+`fn` | [Fn](../interfaces/fn.md)‹*`T`*, *`R`*› |
 
-**Returns:** `Promise`<`R`>
+**Returns:** *`Promise<R>`*
 
 ___
-<a id="query"></a>
 
 ###  query
 
-▸ **query**<`R`>(fn: *[Lambda](../#lambda)<`T`, `R`>*): `Promise`<`R`>
+▸ **query**<**R**>(`fn`: [Lambda](../README.md#lambda)‹*`T`*, *`R`*›): *`Promise<R>`*
 
 *Defined in [wait.ts:210](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L210)*
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| fn | [Lambda](../#lambda)<`T`, `R`> |
+Name | Type |
+------ | ------ |
+`fn` | [Lambda](../README.md#lambda)‹*`T`*, *`R`*› |
 
-**Returns:** `Promise`<`R`>
+**Returns:** *`Promise<R>`*
 
 ___
-<a id="until"></a>
 
 ###  until
 
-▸ **until**<`R`>(fn: *[Fn](../interfaces/fn.md)<`T`, `R`>*): `Promise`<`boolean`>
+▸ **until**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›): *`Promise<boolean>`*
 
-*Defined in [wait.ts:219](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L219)*
+*Defined in [wait.ts:218](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L218)*
 
 **Type parameters:**
 
-#### R 
+▪ **R**
+
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| fn | [Fn](../interfaces/fn.md)<`T`, `R`> |
+Name | Type |
+------ | ------ |
+`fn` | [Fn](../interfaces/fn.md)‹*`T`*, *`R`*› |
 
-**Returns:** `Promise`<`boolean`>
-
-___
-
+**Returns:** *`Promise<boolean>`*

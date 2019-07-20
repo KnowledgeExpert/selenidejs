@@ -1,12 +1,16 @@
-[selenidejs](../README.md) > [Locator](../interfaces/locator.md)
+> **[selenidejs](../README.md)**
 
-# Interface: Locator
+[Locator](locator.md) /
+
+# Interface: Locator <**T**>
 
 ## Type parameters
-#### T 
+
+▪ **T**
+
 ## Hierarchy
 
-**Locator**
+* **Locator**
 
 ## Implemented by
 
@@ -26,19 +30,12 @@
 
 * [find](locator.md#find)
 
----
-
 ## Methods
-
-<a id="find"></a>
 
 ###  find
 
-▸ **find**(): `T`
+▸ **find**(): *`T`*
 
 *Defined in [locators/locator.ts:16](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/locator.ts#L16)*
 
-**Returns:** `T`
-
-___
-
+**Returns:** *`T`*

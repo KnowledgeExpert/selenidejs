@@ -1,10 +1,12 @@
-[selenidejs](../README.md) > [Configuration](../classes/configuration.md)
+> **[selenidejs](../README.md)**
+
+[Configuration](configuration.md) /
 
 # Class: Configuration
 
 ## Hierarchy
 
-**Configuration**
+* **Configuration**
 
 ## Index
 
@@ -25,134 +27,111 @@
 
 ### Methods
 
-* [with](configuration.md#with)
-* [withDriver](configuration.md#withdriver)
-
----
+* [with](configuration.md#static-with)
+* [withDriver](configuration.md#static-withdriver)
 
 ## Constructors
 
-<a id="constructor"></a>
-
 ###  constructor
 
-⊕ **new Configuration**(init?: *`Partial`<[Configuration](configuration.md)>*): [Configuration](configuration.md)
+\+ **new Configuration**(`init?`: `Partial<Configuration>`): *[Configuration](configuration.md)*
 
 *Defined in [configuration.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L52)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| `Optional` init | `Partial`<[Configuration](configuration.md)> |
+Name | Type |
+------ | ------ |
+`init?` | `Partial<Configuration>` |
 
-**Returns:** [Configuration](configuration.md)
-
-___
+**Returns:** *[Configuration](configuration.md)*
 
 ## Properties
 
-<a id="baseurl"></a>
-
 ###  baseUrl
 
-**● baseUrl**: *`string`* = ""
+• **baseUrl**: *string* = ""
 
 *Defined in [configuration.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L45)*
 
 ___
-<a id="driver"></a>
 
 ###  driver
 
-**● driver**: *`WebDriver`* =  null
+• **driver**: *`WebDriver`* =  null
 
 *Defined in [configuration.ts:43](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L43)*
 
 ___
-<a id="fullpagescreenshot"></a>
 
 ###  fullPageScreenshot
 
-**● fullPageScreenshot**: *`boolean`* = true
+• **fullPageScreenshot**: *boolean* = true
 
 *Defined in [configuration.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L52)*
 
 ___
-<a id="setvaluebyjs"></a>
 
 ###  setValueByJs
 
-**● setValueByJs**: *`boolean`* = false
+• **setValueByJs**: *boolean* = false
 
 *Defined in [configuration.ts:46](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L46)*
 
 ___
-<a id="timeout"></a>
 
 ###  timeout
 
-**● timeout**: *`number`* = 4000
+• **timeout**: *number* = 4000
 
 *Defined in [configuration.ts:44](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L44)*
 
 ___
-<a id="typebyjs"></a>
 
 ###  typeByJs
 
-**● typeByJs**: *`boolean`* = false
+• **typeByJs**: *boolean* = false
 
 *Defined in [configuration.ts:47](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L47)*
 
 ___
-<a id="windowheight"></a>
 
 ###  windowHeight
 
-**● windowHeight**: *`string`* = ""
+• **windowHeight**: *string* = ""
 
 *Defined in [configuration.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L49)*
 
 ___
-<a id="windowwidth"></a>
 
 ###  windowWidth
 
-**● windowWidth**: *`string`* = ""
+• **windowWidth**: *string* = ""
 
 *Defined in [configuration.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L48)*
 
-___
-
 ## Methods
 
-<a id="with"></a>
+### `Static` with
 
-### `<Static>` with
-
-▸ **with**(): [Customized](customized.md)<[Configuration](configuration.md)>
+▸ **with**(): *[Customized](customized.md)‹*[Configuration](configuration.md)*›*
 
 *Defined in [configuration.ts:35](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L35)*
 
-**Returns:** [Customized](customized.md)<[Configuration](configuration.md)>
+**Returns:** *[Customized](customized.md)‹*[Configuration](configuration.md)*›*
 
 ___
-<a id="withdriver"></a>
 
-### `<Static>` withDriver
+### `Static` withDriver
 
-▸ **withDriver**(driver: *`WebDriver`*): [Customized](customized.md)<[Configuration](configuration.md)>
+▸ **withDriver**(`driver`: `WebDriver`): *[Customized](customized.md)‹*[Configuration](configuration.md)*›*
 
 *Defined in [configuration.ts:39](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L39)*
 
 **Parameters:**
 
-| Param | Type |
-| ------ | ------ |
-| driver | `WebDriver` |
+Name | Type |
+------ | ------ |
+`driver` | `WebDriver` |
 
-**Returns:** [Customized](customized.md)<[Configuration](configuration.md)>
-
-___
-
+**Returns:** *[Customized](customized.md)‹*[Configuration](configuration.md)*›*
