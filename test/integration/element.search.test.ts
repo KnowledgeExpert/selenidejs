@@ -33,7 +33,7 @@ describe('Element search', () => {
 
         expect(await element.matching(be.visible)).toBe(true);
     });
-    
+
     it('is performed on each subsequent "ask"', async () => {
         await GIVEN.openedEmptyPage();
         const element = browser.element('#will-be-existing-element');

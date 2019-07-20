@@ -21,7 +21,6 @@
 ### Methods
 
 * [should](assertable.md#should)
-* [shouldNot](assertable.md#shouldnot)
 
 ---
 
@@ -31,32 +30,15 @@
 
 ###  should
 
-▸ **should**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`this`>
+▸ **should**(condition: *[Condition](../classes/condition.md)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L38)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](../modules/condition.md)<`this`> |
-
-**Returns:** `Promise`<`this`>
-
-___
-<a id="shouldnot"></a>
-
-###  shouldNot
-
-▸ **shouldNot**(condition: *[Condition](../modules/condition.md)<`this`>*): `Promise`<`this`>
-
-*Defined in [entity.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L39)*
+*Defined in [entity.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L38)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| condition | [Condition](../modules/condition.md)<`this`> |
+| condition | [Condition](../classes/condition.md)<`this`> |
 
 **Returns:** `Promise`<`this`>
 

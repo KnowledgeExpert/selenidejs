@@ -36,7 +36,7 @@
 
 ⊕ **new ElementWebElementByLocator**(by: *`By`*, element: *[Element](element.md)*): [ElementWebElementByLocator](elementwebelementbylocator.md)
 
-*Defined in [locators/ElementWebElementByLocator.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L20)*
+*Defined in [locators/ElementWebElementByLocator.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L20)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● by**: *`By`*
 
-*Defined in [locators/ElementWebElementByLocator.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L22)*
+*Defined in [locators/ElementWebElementByLocator.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L22)*
 
 ___
 <a id="element"></a>
@@ -66,7 +66,7 @@ ___
 
 **● element**: *[Element](element.md)*
 
-*Defined in [locators/ElementWebElementByLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L23)*
+*Defined in [locators/ElementWebElementByLocator.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L23)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/ElementWebElementByLocator.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L28)*
+*Defined in [locators/ElementWebElementByLocator.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L28)*
 
 **Returns:** `Promise`<`WebElement`>
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/ElementWebElementByLocator.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L32)*
+*Defined in [locators/ElementWebElementByLocator.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/ElementWebElementByLocator.ts#L32)*
 
 **Returns:** `string`
 

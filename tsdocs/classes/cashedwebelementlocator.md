@@ -36,7 +36,7 @@
 
 ⊕ **new CashedWebElementLocator**(cash: *`WebElement`*, description: *`string`*): [CashedWebElementLocator](cashedwebelementlocator.md)
 
-*Defined in [locators/cashedWebElementLocator.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L18)*
+*Defined in [locators/cashedWebElementLocator.ts:18](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L18)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● cash**: *`WebElement`*
 
-*Defined in [locators/cashedWebElementLocator.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L20)*
+*Defined in [locators/cashedWebElementLocator.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L20)*
 
 ___
 <a id="description"></a>
@@ -66,7 +66,7 @@ ___
 
 **● description**: *`string`*
 
-*Defined in [locators/cashedWebElementLocator.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L21)*
+*Defined in [locators/cashedWebElementLocator.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L21)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/cashedWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L25)*
+*Defined in [locators/cashedWebElementLocator.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L25)*
 
 **Returns:** `Promise`<`WebElement`>
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/cashedWebElementLocator.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L29)*
+*Defined in [locators/cashedWebElementLocator.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L29)*
 
 **Returns:** `string`
 

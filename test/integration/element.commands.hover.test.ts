@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { browser, GIVEN, data, webelement, textOf, isAbsentInDom } from './base';
-import { perform } from '../../lib';
+import { have, perform } from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
@@ -27,7 +27,7 @@ describe('Element.* commands: hover', () => {
     it('hovers on element once it is present in DOM and visible', async () => {
         await GIVEN.openedEmptyPage();
         await GIVEN.withBodyAfter(data.timeouts.smallest, `
-            <label style="display: none" 
+            <label style="display: none"
                onmouseover="$(this).text('After hover');"
             >
                Before hover
@@ -44,6 +44,7 @@ describe('Element.* commands: hover', () => {
         `);
 
         await browser.element('label').hover();
+        // await browser.element('label').should(have.text('After hover'));
         expect(await textOf('label')).toContain('After hover');
     });
 

@@ -7,7 +7,6 @@
 ### Functions
 
 * [match](should.md#match)
-* [notMatch](should.md#notmatch)
 
 ---
 
@@ -17,29 +16,9 @@
 
 ### `<Const>` match
 
-▸ **match**<`T`>(condition: *[Condition](condition.md)<`T`>*): `(Anonymous function)`
+▸ **match**<`T`>(condition: *[Condition](../classes/condition.md)<`T`>*): `(Anonymous function)`
 
-*Defined in [support/asserts/should.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/asserts/should.ts#L20)*
-
-**Type parameters:**
-
-#### T :  [Assertable](../interfaces/assertable.md)
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| condition | [Condition](condition.md)<`T`> |
-
-**Returns:** `(Anonymous function)`
-
-___
-<a id="notmatch"></a>
-
-### `<Const>` notMatch
-
-▸ **notMatch**<`T`>(condition: *[Condition](condition.md)<`T`>*): `(Anonymous function)`
-
-*Defined in [support/asserts/should.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/asserts/should.ts#L23)*
+*Defined in [support/asserts/should.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/asserts/should.ts#L20)*
 
 **Type parameters:**
 
@@ -48,7 +27,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| condition | [Condition](condition.md)<`T`> |
+| condition | [Condition](../classes/condition.md)<`T`> |
 
 **Returns:** `(Anonymous function)`
 

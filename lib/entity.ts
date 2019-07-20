@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Command, Condition, Query, Wait } from './wait';
-import { Configuration, OnEntityFailureHook } from './configuration';
+import { Configuration } from './configuration';
+import { Condition, Lambda, Wait } from './wait';
 
 /* With Conditions
  *
@@ -36,14 +36,11 @@ import { Configuration, OnEntityFailureHook } from './configuration';
  */
 export interface Assertable {
     should(condition: Condition<this>): Promise<this>;
-    shouldNot(condition: Condition<this>): Promise<this>;
 }
 
 export interface Matchable {
     waitUntil(...conditions: Array<Condition<this>>): Promise<boolean>;
-    waitUntilNot(...conditions: Array<Condition<this>>): Promise<boolean>;
     matching(condition: Condition<this>): Promise<boolean>;
-    matchingNot(condition: Condition<this>): Promise<boolean>;
 }
 /* todo: discuss somewhere do we need it or not... (it could be used mainly in onFailureHooks)
 export interface Configured {
@@ -56,9 +53,8 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
 
     constructor(protected readonly configuration: Configuration) {
         this.configuration = configuration;
-        this.wait = new Wait(this, configuration.timeout, []/*configuration.onFailureHooks*/);
+        this.wait = new Wait(this, configuration.timeout);
     }
-
 
     /*
      * todo: consider assert or shouldMatch aliases for should
@@ -78,44 +74,30 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
     /* Assertable */
 
     async should(...conditions: Array<Condition<this>>): Promise<this> {
-        await this.wait.query(Condition.all(...conditions));
-        return this;
-    }
-
-    async shouldNot(...conditions: Array<Condition<this>>): Promise<this> {
-        await this.wait.query(Condition.allNot(...conditions));
+        await this.wait.for(Condition.all(...conditions));
         return this;
     }
 
     /* Matchable */
 
     async waitUntil(...conditions: Array<Condition<this>>): Promise<boolean> {
-        return this.wait.until(...conditions);
-    }
-
-    async waitUntilNot(...conditions: Array<Condition<this>>)
-    : Promise<boolean> {
-        return this.wait.untilNot(...conditions);
+        return this.wait.until(Condition.all(...conditions));
     }
 
     async matching(...conditions: Array<Condition<this>>): Promise<boolean> {
         return Condition.asPredicate(...conditions)(this);
     }
 
-    async matchingNot(...conditions: Array<Condition<this>>): Promise<boolean> {
-        return this.matching(...conditions.map(c => Condition.not(c)));
-    }
-
     /* Commands */
 
-    async perform(command: Command<this>): Promise<this> {
+    async perform(command: Lambda<this, void>): Promise<this> { // todo: should we accept real Command over Lambda here?
         await this.wait.command(command);
         return this;
     }
 
     /* Queries */ // todo: do we need @ElementQueryHooks?
 
-    async get<R>(query: Query<this, R>): Promise<R> {
+    async get<R>(query: Lambda<this, R>): Promise<R> {
         return this.wait.query(query);
     }
 }

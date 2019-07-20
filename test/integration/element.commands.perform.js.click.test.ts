@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, driver } from './base';
-import { perform } from '../../lib';
+import {browser, GIVEN, data, driver} from './base';
+import {perform} from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 
-const something = async element => { /*nothing;P*/ };
+const something = async element => { /*nothing;P*/};
 
 describe('Element.* commands: perform.js.click', () => {
 
@@ -39,57 +39,57 @@ describe('Element.* commands: perform.js.click', () => {
 
     // todo: implement perform.js.click on element tests
 
-/*
+    /*
 
-    it('clicks through then(perform.click) on element once it is present in DOM and visible', async () => {
-        await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.smallest, `
-                <a href='#second' style='display:none'>go to Heading 2</a>
-                <h2 id='second'>Heading 2</h2>
-        `);
-        await GIVEN.executeScriptAfter(data.timeouts.smallerThanDefault, `
-            document.getElementsByTagName("a")[0].style = "display:block";
-        `);
+        it('clicks through then(perform.click) on element once it is present in DOM and visible', async () => {
+            await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.smallest, `
+                    <a href='#second' style='display:none'>go to Heading 2</a>
+                    <h2 id='second'>Heading 2</h2>
+            `);
+            await GIVEN.executeScriptAfter(data.timeouts.smallerThanDefault, `
+                document.getElementsByTagName("a")[0].style = "display:block";
+            `);
 
-        await browser.element('a').perform(something).then(perform.click);
-        expect(await driver.getCurrentUrl()).toContain('second');
-    });
+            await browser.element('a').perform(something).then(perform.click);
+            expect(await driver.getCurrentUrl()).toContain('second');
+        });
 
-    it('fails to click with error on not present in DOM element (after timeout)', async () => {
-        await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.biggerThanDefault, `
-                <a href='#second'>go to Heading 2</a>
-                <h2 id='second'>Heading 2</h2>
-        `);
+        it('fails to click with error on not present in DOM element (after timeout)', async () => {
+            await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.biggerThanDefault, `
+                    <a href='#second'>go to Heading 2</a>
+                    <h2 id='second'>Heading 2</h2>
+            `);
 
-        await browser.element('a').click()
-            .then(ifNoError => fail('should fail on timeout'))
-            .catch(async error => {
-                expect(await driver.getCurrentUrl()).not.toContain('second');
-                expect(error.message).toContain(`
-\tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.element(By(css selector, a)).click
-Reason:
-\tno such element: Unable to locate element: {"method":"css selector","selector":"a"}`
-                );
-            });
-    });
+            await browser.element('a').click()
+                .then(ifNoError => fail('should fail on timeout'))
+                .catch(async error => {
+                    expect(await driver.getCurrentUrl()).not.toContain('second');
+                    expect(error.message).toContain(`
+    \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
+    \tbrowser.element(By(css selector, a)).click
+    Reason:
+    \tno such element: Unable to locate element: {"method":"css selector","selector":"a"}`
+                    );
+                });
+        });
 
-    it('fails to click with error on not visible element (after timeout)', async () => {
-        await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.smallerThanDefault, `
-                <a href='#second' style='display:none'>go to Heading 2</a>
-                <h2 id='second'>Heading 2</h2>
-        `);
+        it('fails to click with error on not visible element (after timeout)', async () => {
+            await GIVEN.openedEmptyPageWithBodyAfter(data.timeouts.smallerThanDefault, `
+                    <a href='#second' style='display:none'>go to Heading 2</a>
+                    <h2 id='second'>Heading 2</h2>
+            `);
 
-        await browser.element('a').click()
-            .then(ifNoError => fail('should fail on timeout'))
-            .catch(async error => {
-                expect(await driver.getCurrentUrl()).not.toContain('second');
-                expect(error.message).toContain(`
-\tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.element(By(css selector, a)).click
-Reason:
-\telement not interactable` // todo: consider change to 'element is not displayed'
-                );
-            });
-    });*/
+            await browser.element('a').click()
+                .then(ifNoError => fail('should fail on timeout'))
+                .catch(async error => {
+                    expect(await driver.getCurrentUrl()).not.toContain('second');
+                    expect(error.message).toContain(`
+    \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
+    \tbrowser.element(By(css selector, a)).click
+    Reason:
+    \telement not interactable` // todo: consider change to 'element is not displayed'
+                    );
+                });
+        });*/
 
 });

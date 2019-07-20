@@ -14,8 +14,11 @@
 
 // todo: consider delete
 import { condition, ElementCondition } from '../../conditions';
+import { Condition } from '../../wait';
 
 export namespace be {
+    export const not = new Proxy(be, { get: (be, conditionName) => Condition.not(be[conditionName]) });
+
     export const selected: ElementCondition = condition.element.isSelected;
 
     export const absent: ElementCondition = condition.element.isAbsent;
@@ -34,3 +37,4 @@ export namespace be {
 
     export const blank: ElementCondition = condition.element.isBlank;
 }
+

@@ -36,7 +36,7 @@
 
 ⊕ **new ElementByConditionWebElementLocator**(condition: *[ElementCondition](../#elementcondition)*, collection: *[Collection](collection.md)*): [ElementByConditionWebElementLocator](elementbyconditionwebelementlocator.md)
 
-*Defined in [locators/byConditionWebElementLocator.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L22)*
+*Defined in [locators/byConditionWebElementLocator.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L22)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● collection**: *[Collection](collection.md)*
 
-*Defined in [locators/byConditionWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L25)*
+*Defined in [locators/byConditionWebElementLocator.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L25)*
 
 ___
 <a id="condition"></a>
@@ -66,7 +66,7 @@ ___
 
 **● condition**: *[ElementCondition](../#elementcondition)*
 
-*Defined in [locators/byConditionWebElementLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L24)*
+*Defined in [locators/byConditionWebElementLocator.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L24)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/byConditionWebElementLocator.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L30)*
+*Defined in [locators/byConditionWebElementLocator.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L30)*
 
 **Returns:** `Promise`<`WebElement`>
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/byConditionWebElementLocator.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L49)*
+*Defined in [locators/byConditionWebElementLocator.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byConditionWebElementLocator.ts#L49)*
 
 **Returns:** `string`
 

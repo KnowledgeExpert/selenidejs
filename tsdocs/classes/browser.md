@@ -47,7 +47,6 @@
 * [goToPreviousTab](browser.md#gotoprevioustab)
 * [goToTab](browser.md#gototab)
 * [matching](browser.md#matching)
-* [matchingNot](browser.md#matchingnot)
 * [open](browser.md#open)
 * [perform](browser.md#perform)
 * [quit](browser.md#quit)
@@ -55,11 +54,9 @@
 * [resizeWindow](browser.md#resizewindow)
 * [screenshot](browser.md#screenshot)
 * [should](browser.md#should)
-* [shouldNot](browser.md#shouldnot)
 * [switchToDefaultFrame](browser.md#switchtodefaultframe)
 * [toString](browser.md#tostring)
 * [waitUntil](browser.md#waituntil)
-* [waitUntilNot](browser.md#waituntilnot)
 * [with](browser.md#with)
 * [chrome](browser.md#chrome)
 * [chromeWith](browser.md#chromewith)
@@ -77,7 +74,7 @@
 
 *Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
 
-*Defined in [browser.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L39)*
+*Defined in [browser.ts:39](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L39)*
 
 **Parameters:**
 
@@ -99,7 +96,7 @@ ___
 
 *Inherited from [Entity](entity.md).[configuration](entity.md#configuration)*
 
-*Defined in [entity.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L57)*
+*Defined in [entity.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L54)*
 
 ___
 <a id="wait"></a>
@@ -110,7 +107,7 @@ ___
 
 *Inherited from [Entity](entity.md).[wait](entity.md#wait)*
 
-*Defined in [entity.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L55)*
+*Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 ___
 
@@ -122,7 +119,7 @@ ___
 
 getalert(): `AlertPromise`
 
-*Defined in [browser.ts:209](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L209)*
+*Defined in [browser.ts:209](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L209)*
 
 **Returns:** `AlertPromise`
 
@@ -133,7 +130,7 @@ ___
 
 getdriver(): `WebDriver`
 
-*Defined in [browser.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L49)*
+*Defined in [browser.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L49)*
 
 **Returns:** `WebDriver`
 
@@ -147,7 +144,7 @@ ___
 
 ▸ **all**(cssOrXpathOrBy: * `string` &#124; `By`*, customized?: *`Partial`<[Configuration](configuration.md)>*): [Collection](collection.md)
 
-*Defined in [browser.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L68)*
+*Defined in [browser.ts:68](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L68)*
 
 **Parameters:**
 
@@ -165,7 +162,7 @@ ___
 
 ▸ **back**(): `Promise`<`void`>
 
-*Defined in [browser.ts:127](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L127)*
+*Defined in [browser.ts:127](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L127)*
 
 **Returns:** `Promise`<`void`>
 
@@ -176,7 +173,7 @@ ___
 
 ▸ **clearCookies**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:197](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L197)*
+*Defined in [browser.ts:197](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L197)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -187,7 +184,7 @@ ___
 
 ▸ **clearLocalStorage**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:185](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L185)*
+*Defined in [browser.ts:185](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L185)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -198,7 +195,7 @@ ___
 
 ▸ **clearSessionStorage**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:191](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L191)*
+*Defined in [browser.ts:191](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L191)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -209,7 +206,7 @@ ___
 
 ▸ **closeCurrentTab**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:114](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L114)*
+*Defined in [browser.ts:114](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L114)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -220,7 +217,7 @@ ___
 
 ▸ **element**(cssOrXpathOrBy: * `string` &#124; `By`*, customized?: *`Partial`<[Configuration](configuration.md)>*): [Element](element.md)
 
-*Defined in [browser.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L59)*
+*Defined in [browser.ts:59](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L59)*
 
 **Parameters:**
 
@@ -238,7 +235,7 @@ ___
 
 ▸ **executeScript**(script: * `string` &#124; `Function`*, ...args: *`any`[]*): `Promise`<`Object`>
 
-*Defined in [browser.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L82)*
+*Defined in [browser.ts:82](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L82)*
 
 **Parameters:**
 
@@ -256,7 +253,7 @@ ___
 
 ▸ **forward**(): `Promise`<`void`>
 
-*Defined in [browser.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L131)*
+*Defined in [browser.ts:131](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L131)*
 
 **Returns:** `Promise`<`void`>
 
@@ -265,11 +262,11 @@ ___
 
 ###  get
 
-▸ **get**<`R`>(query: *[Query](../#query)<`this`, `R`>*): `Promise`<`R`>
+▸ **get**<`R`>(query: *[Lambda](../#lambda)<`this`, `R`>*): `Promise`<`R`>
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
-*Defined in [entity.ts:118](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L118)*
+*Defined in [entity.ts:100](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L100)*
 
 **Type parameters:**
 
@@ -278,7 +275,7 @@ ___
 
 | Param | Type |
 | ------ | ------ |
-| query | [Query](../#query)<`this`, `R`> |
+| query | [Lambda](../#lambda)<`this`, `R`> |
 
 **Returns:** `Promise`<`R`>
 
@@ -289,7 +286,7 @@ ___
 
 ▸ **goToNextTab**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:135](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L135)*
+*Defined in [browser.ts:135](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L135)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -300,7 +297,7 @@ ___
 
 ▸ **goToPreviousTab**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:142](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L142)*
+*Defined in [browser.ts:142](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L142)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -311,7 +308,7 @@ ___
 
 ▸ **goToTab**(indexOrId: * `number` &#124; `string`*): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:149](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L149)*
+*Defined in [browser.ts:149](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L149)*
 
 **Parameters:**
 
@@ -326,36 +323,17 @@ ___
 
 ###  matching
 
-▸ **matching**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **matching**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
 
 *Inherited from [Entity](entity.md).[matching](entity.md#matching)*
 
-*Defined in [entity.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L101)*
+*Defined in [entity.ts:87](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L87)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
-
-**Returns:** `Promise`<`boolean`>
-
-___
-<a id="matchingnot"></a>
-
-###  matchingNot
-
-▸ **matchingNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
-
-*Inherited from [Entity](entity.md).[matchingNot](entity.md#matchingnot)*
-
-*Defined in [entity.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L105)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
+| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 
@@ -366,7 +344,7 @@ ___
 
 ▸ **open**(relativeOrAbsoluteUrl: *`string`*): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L87)*
+*Defined in [browser.ts:87](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L87)*
 
 **Parameters:**
 
@@ -381,17 +359,17 @@ ___
 
 ###  perform
 
-▸ **perform**(command: *[Command](../#command)<`this`>*): `Promise`<`this`>
+▸ **perform**(command: *[Lambda](../#lambda)<`this`, `void`>*): `Promise`<`this`>
 
 *Inherited from [Entity](entity.md).[perform](entity.md#perform)*
 
-*Defined in [entity.ts:111](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L111)*
+*Defined in [entity.ts:93](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L93)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| command | [Command](../#command)<`this`> |
+| command | [Lambda](../#lambda)<`this`, `void`> |
 
 **Returns:** `Promise`<`this`>
 
@@ -402,7 +380,7 @@ ___
 
 ▸ **quit**(): `Promise`<`void`>
 
-*Defined in [browser.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L119)*
+*Defined in [browser.ts:119](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L119)*
 
 **Returns:** `Promise`<`void`>
 
@@ -413,7 +391,7 @@ ___
 
 ▸ **refresh**(): `Promise`<`void`>
 
-*Defined in [browser.ts:123](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L123)*
+*Defined in [browser.ts:123](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L123)*
 
 **Returns:** `Promise`<`void`>
 
@@ -424,7 +402,7 @@ ___
 
 ▸ **resizeWindow**(width: *`number`*, height: *`number`*): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:103](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L103)*
+*Defined in [browser.ts:103](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L103)*
 
 **Parameters:**
 
@@ -442,7 +420,7 @@ ___
 
 ▸ **screenshot**(): `Promise`<`Buffer`>
 
-*Defined in [browser.ts:108](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L108)*
+*Defined in [browser.ts:108](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L108)*
 
 **Returns:** `Promise`<`Buffer`>
 
@@ -451,36 +429,17 @@ ___
 
 ###  should
 
-▸ **should**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
+▸ **should**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`this`>
 
 *Inherited from [Entity](entity.md).[should](entity.md#should)*
 
-*Defined in [entity.ts:80](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L80)*
+*Defined in [entity.ts:76](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L76)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
-
-**Returns:** `Promise`<`this`>
-
-___
-<a id="shouldnot"></a>
-
-###  shouldNot
-
-▸ **shouldNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`this`>
-
-*Inherited from [Entity](entity.md).[shouldNot](entity.md#shouldnot)*
-
-*Defined in [entity.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L85)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
+| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
 
 **Returns:** `Promise`<`this`>
 
@@ -491,7 +450,7 @@ ___
 
 ▸ **switchToDefaultFrame**(): `Promise`<[Browser](browser.md)>
 
-*Defined in [browser.ts:169](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L169)*
+*Defined in [browser.ts:169](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L169)*
 
 **Returns:** `Promise`<[Browser](browser.md)>
 
@@ -502,7 +461,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [browser.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L53)*
+*Defined in [browser.ts:53](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L53)*
 
 **Returns:** `string`
 
@@ -511,40 +470,19 @@ ___
 
 ###  waitUntil
 
-▸ **waitUntil**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
+▸ **waitUntil**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
 
 *Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
 
 *Inherited from [Entity](entity.md).[waitUntil](entity.md#waituntil)*
 
-*Defined in [entity.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L92)*
+*Defined in [entity.ts:83](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L83)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
-
-**Returns:** `Promise`<`boolean`>
-
-___
-<a id="waituntilnot"></a>
-
-###  waitUntilNot
-
-▸ **waitUntilNot**(...conditions: *`Array`<[Condition](../modules/condition.md)<`this`>>*): `Promise`<`boolean`>
-
-*Implementation of [Matchable](../interfaces/matchable.md).[waitUntilNot](../interfaces/matchable.md#waituntilnot)*
-
-*Inherited from [Entity](entity.md).[waitUntilNot](entity.md#waituntilnot)*
-
-*Defined in [entity.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L96)*
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| `Rest` conditions | `Array`<[Condition](../modules/condition.md)<`this`>> |
+| `Rest` conditions | `Array`<[Condition](condition.md)<`this`>> |
 
 **Returns:** `Promise`<`boolean`>
 
@@ -555,7 +493,7 @@ ___
 
 ▸ **with**(customConfig: *`Partial`<[Configuration](configuration.md)>*): [Browser](browser.md)
 
-*Defined in [browser.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L45)*
+*Defined in [browser.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L45)*
 
 **Parameters:**
 
@@ -572,7 +510,7 @@ ___
 
 ▸ **chrome**(): [Browser](browser.md)
 
-*Defined in [browser.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L37)*
+*Defined in [browser.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L37)*
 
 **Returns:** [Browser](browser.md)
 
@@ -583,7 +521,7 @@ ___
 
 ▸ **chromeWith**(): [Customized](customized.md)<[Browser](browser.md)>
 
-*Defined in [browser.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L32)*
+*Defined in [browser.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L32)*
 
 **Returns:** [Customized](customized.md)<[Browser](browser.md)>
 
@@ -594,7 +532,7 @@ ___
 
 ▸ **configuredWith**(): [Customized](customized.md)<[Browser](browser.md)>
 
-*Defined in [browser.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L28)*
+*Defined in [browser.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L28)*
 
 **Returns:** [Customized](customized.md)<[Browser](browser.md)>
 

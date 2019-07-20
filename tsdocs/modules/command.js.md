@@ -25,7 +25,7 @@
 
 **● click**: *`(Anonymous function)`* =  lambda('click by js', clickWithOffset(0, 0))
 
-*Defined in [commands.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L47)*
+*Defined in [commands.ts:47](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L47)*
 
 ___
 <a id="scrollintoview"></a>
@@ -37,7 +37,7 @@ ___
                 'return (function(element) { element.scrollIntoView(true); })(arguments[0]);'
             ))
 
-*Defined in [commands.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L86)*
+*Defined in [commands.ts:86](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L86)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **clickWithOffset**(xOffset: *`number`*, yOffset: *`number`*): `(Anonymous function)`
 
-*Defined in [commands.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L35)*
+*Defined in [commands.ts:35](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L35)*
 
 **Parameters:**
 
@@ -67,7 +67,7 @@ ___
 
 ▸ **setValue**(value: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [commands.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L49)*
+*Defined in [commands.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L49)*
 
 **Parameters:**
 
@@ -84,7 +84,7 @@ ___
 
 ▸ **type**(keys: * `string` &#124; `number`*): `(Anonymous function)`
 
-*Defined in [commands.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/commands.ts#L67)*
+*Defined in [commands.ts:67](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/commands.ts#L67)*
 
 **Parameters:**
 

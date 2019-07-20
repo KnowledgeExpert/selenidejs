@@ -5,7 +5,6 @@
 
 ### Modules
 
-* [Condition](modules/condition.md)
 * [Extensions](modules/extensions.md)
 * [be](modules/be.md)
 * [by](modules/by.md)
@@ -28,6 +27,8 @@
 * [CannotPerformActionError](classes/cannotperformactionerror.md)
 * [CashedWebElementLocator](classes/cashedwebelementlocator.md)
 * [Collection](classes/collection.md)
+* [Command](classes/command.md)
+* [Condition](classes/condition.md)
 * [ConditionNotMatchedError](classes/conditionnotmatchederror.md)
 * [Configuration](classes/configuration.md)
 * [Customized](classes/customized.md)
@@ -38,6 +39,7 @@
 * [Entity](classes/entity.md)
 * [FailedToMatchConditionWithReasonError](classes/failedtomatchconditionwithreasonerror.md)
 * [FilteredByConditionWebElementsLocator](classes/filteredbyconditionwebelementslocator.md)
+* [Query](classes/query.md)
 * [SlicedWebElementsLocator](classes/slicedwebelementslocator.md)
 * [TimeoutError](classes/timeouterror.md)
 * [Wait](classes/wait.md)
@@ -45,6 +47,7 @@
 ### Interfaces
 
 * [Assertable](interfaces/assertable.md)
+* [Fn](interfaces/fn.md)
 * [Locator](interfaces/locator.md)
 * [Matchable](interfaces/matchable.md)
 
@@ -52,12 +55,10 @@
 
 * [BrowserCondition](#browsercondition)
 * [CollectionCondition](#collectioncondition)
-* [Command](#command)
 * [ElementCondition](#elementcondition)
-* [ElementQuery](#elementquery)
+* [Lambda](#lambda)
 * [OnEntityFailureHook](#onentityfailurehook)
 * [OnFailureHook](#onfailurehook)
-* [Query](#query)
 
 ### Functions
 
@@ -72,47 +73,49 @@
 
 ###  BrowserCondition
 
-**Ƭ BrowserCondition**: *[Condition](modules/condition.md)<[Browser](classes/browser.md)>*
+**Ƭ BrowserCondition**: *[Condition](classes/condition.md)<[Browser](classes/browser.md)>*
 
-*Defined in [conditions.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L27)*
+*Defined in [conditions.ts:27](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L27)*
 
 ___
 <a id="collectioncondition"></a>
 
 ###  CollectionCondition
 
-**Ƭ CollectionCondition**: *[Condition](modules/condition.md)<[Collection](classes/collection.md)>*
+**Ƭ CollectionCondition**: *[Condition](classes/condition.md)<[Collection](classes/collection.md)>*
 
-*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
-
-___
-<a id="command"></a>
-
-###  Command
-
-**Ƭ Command**: *[Query](#query)<`T`, `void`>*
-
-*Defined in [wait.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L32)*
-
-Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T. Command can pass or fail with Error correspondingly.
+*Defined in [conditions.ts:26](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L26)*
 
 ___
 <a id="elementcondition"></a>
 
 ###  ElementCondition
 
-**Ƭ ElementCondition**: *[Condition](modules/condition.md)<[Element](classes/element.md)>*
+**Ƭ ElementCondition**: *[Condition](classes/condition.md)<[Element](classes/element.md)>*
 
-*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
+*Defined in [conditions.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L25)*
 
 ___
-<a id="elementquery"></a>
+<a id="lambda"></a>
 
-###  ElementQuery
+###  Lambda
 
-**Ƭ ElementQuery**: *[Query](#query)<[Element](classes/element.md), `R`>*
+**Ƭ Lambda**: *`function`*
 
-*Defined in [queries.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L21)*
+*Defined in [wait.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L24)*
+
+Just a type alias to one-argument-async-function...
+
+#### Type declaration
+▸(entity: *`T`*): `Promise`<`R`>
+
+**Parameters:**
+
+| Param | Type |
+| ------ | ------ |
+| entity | `T` |
+
+**Returns:** `Promise`<`R`>
 
 ___
 <a id="onentityfailurehook"></a>
@@ -121,7 +124,7 @@ ___
 
 **Ƭ OnEntityFailureHook**: *[OnFailureHook](#onfailurehook)< [Browser](classes/browser.md) &#124; [Element](classes/element.md) &#124; [Collection](classes/collection.md)>*
 
-*Defined in [configuration.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L31)*
+*Defined in [configuration.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L31)*
 
 A one place to configure everything. There is no separate Browser, Element or Collection configurations. All corresponding options live here, in Configuration.* It was implemented like this to stay KISS and simplify implementation. Enjoy;)
 
@@ -132,7 +135,7 @@ ___
 
 **Ƭ OnFailureHook**: *`function`*
 
-*Defined in [wait.ts:148](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L148)*
+*Defined in [wait.ts:198](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L198)*
 
 #### Type declaration
 ▸(failure: *`Error`*, entity: *`T`*): `Promise`< `void` &#124; `Error`>
@@ -147,28 +150,6 @@ ___
 **Returns:** `Promise`< `void` &#124; `Error`>
 
 ___
-<a id="query"></a>
-
-###  Query
-
-**Ƭ Query**: *`function`*
-
-*Defined in [wait.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L26)*
-
-We use queries to perform an async query on entity of type T, i.e. get something from entity. So a query can pass and return something of type R or failed with Error correspondingly.
-
-#### Type declaration
-▸(entity: *`T`*): `Promise`<`R`>
-
-**Parameters:**
-
-| Param | Type |
-| ------ | ------ |
-| entity | `T` |
-
-**Returns:** `Promise`<`R`>
-
-___
 
 ## Functions
 
@@ -178,7 +159,7 @@ ___
 
 ▸ **lambda**<`F`>(toString: *`string`*, fn: *`F`*): `F`
 
-*Defined in [utils/index.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/index.ts#L17)*
+*Defined in [utils/index.ts:17](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/index.ts#L17)*
 
 **Type parameters:**
 
@@ -199,7 +180,7 @@ ___
 
 ▸ **toString**<`O`>(obj: *`O`*): `string`
 
-*Defined in [utils/index.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/index.ts#L22)*
+*Defined in [utils/index.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/index.ts#L22)*
 
 **Type parameters:**
 

@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By } from 'selenium-webdriver';
-import { CollectionCondition, BrowserCondition, ElementCondition, condition } from '../../conditions';
-
+import { BrowserCondition, CollectionCondition, condition, ElementCondition } from '../../conditions';
+import { Condition } from '../../wait';
 
 export namespace have {
 
-    /* Element conditions */
+    export const no = new Proxy(have, {
+        get: (have, conditionName) => (...args) => Condition.not(have[conditionName](...args))
+    });
 
-    export const visibleElement = (locator: By): ElementCondition =>
-        condition.element.hasVisibleElement(locator);
+    /* Element conditions */
 
     export const exactText = (value: string/* | number*/): ElementCondition =>
         condition.element.hasExactText(value);
@@ -36,7 +36,7 @@ export namespace have {
         condition.element.hasAttributeWithValue(attributeName, attributeValue);
 
     export const attributeWithValueContaining = (attributeName: string, attributeValue: string/* | number*/)
-    : ElementCondition =>
+        : ElementCondition =>
         condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
 
     export const value = (value: string/* | number*/): ElementCondition =>
@@ -91,6 +91,9 @@ export namespace have {
     export const tabsNumberMoreThan = (num: number): BrowserCondition =>
         condition.browser.hasTabsNumberMoreThan(num);
 
-    export const jsReturnedTrue = (script: string): BrowserCondition =>
-        condition.browser.hasJsReturnedTrue(script);
+    // TODO we can also do that with element or collection,
+    // maybe add/reuse conditions for them also?
+    export const jsReturned = (expected: any, script: string, ...scriptArgs): BrowserCondition =>
+        condition.browser.hasJsReturned(expected, script, ...scriptArgs);
 }
+

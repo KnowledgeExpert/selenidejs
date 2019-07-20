@@ -12,6 +12,7 @@
 * [enabled](be.md#enabled)
 * [focused](be.md#focused)
 * [hidden](be.md#hidden)
+* [not](be.md#not)
 * [present](be.md#present)
 * [selected](be.md#selected)
 * [visible](be.md#visible)
@@ -26,7 +27,7 @@
 
 **● absent**: *[ElementCondition](../#elementcondition)* =  condition.element.isAbsent
 
-*Defined in [support/conditions/be.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L21)*
+*Defined in [support/conditions/be.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L24)*
 
 ___
 <a id="blank"></a>
@@ -35,7 +36,7 @@ ___
 
 **● blank**: *[ElementCondition](../#elementcondition)* =  condition.element.isBlank
 
-*Defined in [support/conditions/be.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L35)*
+*Defined in [support/conditions/be.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L38)*
 
 ___
 <a id="disabled"></a>
@@ -44,7 +45,7 @@ ___
 
 **● disabled**: *[ElementCondition](../#elementcondition)* =  condition.element.isDisabled
 
-*Defined in [support/conditions/be.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L33)*
+*Defined in [support/conditions/be.ts:36](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L36)*
 
 ___
 <a id="enabled"></a>
@@ -53,7 +54,7 @@ ___
 
 **● enabled**: *[ElementCondition](../#elementcondition)* =  condition.element.isEnabled
 
-*Defined in [support/conditions/be.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L31)*
+*Defined in [support/conditions/be.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L34)*
 
 ___
 <a id="focused"></a>
@@ -62,7 +63,7 @@ ___
 
 **● focused**: *[ElementCondition](../#elementcondition)* =  condition.element.isFocused
 
-*Defined in [support/conditions/be.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L29)*
+*Defined in [support/conditions/be.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L32)*
 
 ___
 <a id="hidden"></a>
@@ -71,7 +72,16 @@ ___
 
 **● hidden**: *[ElementCondition](../#elementcondition)* =  condition.element.isHidden
 
-*Defined in [support/conditions/be.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L27)*
+*Defined in [support/conditions/be.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L30)*
+
+___
+<a id="not"></a>
+
+### `<Const>` not
+
+**● not**: *[be](be.md)* =  new Proxy(be, { get: (be, conditionName) => Condition.not(be[conditionName]) })
+
+*Defined in [support/conditions/be.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L20)*
 
 ___
 <a id="present"></a>
@@ -80,7 +90,7 @@ ___
 
 **● present**: *[ElementCondition](../#elementcondition)* =  condition.element.isPresent
 
-*Defined in [support/conditions/be.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L23)*
+*Defined in [support/conditions/be.ts:26](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L26)*
 
 ___
 <a id="selected"></a>
@@ -89,7 +99,7 @@ ___
 
 **● selected**: *[ElementCondition](../#elementcondition)* =  condition.element.isSelected
 
-*Defined in [support/conditions/be.ts:19](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L19)*
+*Defined in [support/conditions/be.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L22)*
 
 ___
 <a id="visible"></a>
@@ -98,7 +108,7 @@ ___
 
 **● visible**: *[ElementCondition](../#elementcondition)* =  condition.element.isVisible
 
-*Defined in [support/conditions/be.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/conditions/be.ts#L25)*
+*Defined in [support/conditions/be.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/conditions/be.ts#L28)*
 
 ___
 

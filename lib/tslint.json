@@ -95,7 +95,6 @@
     "align": [
       true,
       "parameters",
-      "arguments",
       "statements",
       "members",
       "elements"
