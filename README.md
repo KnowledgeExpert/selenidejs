@@ -189,10 +189,13 @@ In case you want to be different) ...
 ## More Examples
 
 * [SelenideJS on top of Selenium Webdriver with Jasmine as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-jasmine-example)
+* [SelenideJS on top of Selenium Webdriver with Toundra as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-toundra-example)
 * [SelenideJS on top of Protractor (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-protractor-example)
 * [SelenideJS on top of Webdriverio (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriverio-mocha-example)
 
 ## Tutorials
+
+### General
 
 You can start with Typescript or Javascript tutorial to get familiar with basic and some advanced features of Selenidejs.
  Using Typescript is recommended when writing tests (it will enable IDE's autocompletion features, compile-time checks,
@@ -201,6 +204,12 @@ etc. since Selenidejs itself written in Typescript), but you still can use Javas
 Typescript tutorial can be found [here](./docs/TUTORIAL_TS.md).
 
 Javascript tutorial can be found [here](./docs/TUTORIAL_JS.md).
+
+### How to create custom conditions
+
+If you ever need to write custom conditions like `button.should(have.matchedText(/.*Continue.*/g))`
+or `collection.should(have.sizeInRange(0, 10))` you might need to add your custom conditions.
+Detailed howto placed in [api docs](./tsdocs/modules/condition.md).
 
 ## API Documentation
 
