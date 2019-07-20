@@ -33,7 +33,7 @@
 
 ▸ **matching**(condition: *[Condition](../classes/condition.md)<`this`>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L43)*
+*Defined in [entity.ts:43](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L43)*
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ ___
 
 ▸ **waitUntil**(...conditions: *`Array`<[Condition](../classes/condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L42)*
+*Defined in [entity.ts:42](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L42)*
 
 **Parameters:**
 

@@ -16,34 +16,25 @@
 import { condition, ElementCondition } from '../../conditions';
 import { Condition } from '../../wait';
 
-class Be {
-    readonly selected: ElementCondition = condition.element.isSelected;
+export namespace be {
+    export const not = new Proxy(be, { get: (be, conditionName) => Condition.not(be[conditionName]) });
 
-    readonly absent: ElementCondition = condition.element.isAbsent;
+    export const selected: ElementCondition = condition.element.isSelected;
 
-    readonly present: ElementCondition = condition.element.isPresent;
+    export const absent: ElementCondition = condition.element.isAbsent;
 
-    readonly visible: ElementCondition = condition.element.isVisible;
+    export const present: ElementCondition = condition.element.isPresent;
 
-    readonly hidden: ElementCondition = condition.element.isHidden;
+    export const visible: ElementCondition = condition.element.isVisible;
 
-    readonly focused: ElementCondition = condition.element.isFocused;
+    export const hidden: ElementCondition = condition.element.isHidden;
 
-    readonly enabled: ElementCondition = condition.element.isEnabled;
+    export const focused: ElementCondition = condition.element.isFocused;
 
-    readonly disabled: ElementCondition = condition.element.isDisabled;
+    export const enabled: ElementCondition = condition.element.isEnabled;
 
-    readonly blank: ElementCondition = condition.element.isBlank;
+    export const disabled: ElementCondition = condition.element.isDisabled;
+
+    export const blank: ElementCondition = condition.element.isBlank;
 }
-
-const not = new Proxy(new Be(), {
-    get: (target, name) => {
-        return name in target ?
-            // (...args) => Condition.not(target[name](...args)) :
-            Condition.not(target[name]) :
-            undefined;
-    }
-});
-
-export const be = { ...new Be(), not };
 

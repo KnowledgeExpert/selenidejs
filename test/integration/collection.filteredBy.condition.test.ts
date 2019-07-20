@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, WHEN } from './base';
-import { have } from '../../lib';
+import {browser, GIVEN, data, WHEN} from './base';
+import {have, be} from '../../lib';
 
 describe('Collection filtered by condition', () => {
 
@@ -23,10 +23,39 @@ describe('Collection filtered by condition', () => {
         expect(collection.toString()).toBeTruthy();
     });
 
+    it('should filter by have no condition', async () => {
+        await GIVEN.openedEmptyPageWithBody(`
+                <ul>Hello to:
+                    <li>John</li>
+                    <li class='test'>Bob</li>
+                    <li class='test'>Kate</li>
+                </ul>
+        `);
+        const collection = browser.all('li').filteredBy(have.no.cssClass('test'));
+
+        expect(await collection.matching(have.texts('John'))).toBe(true);
+    });
+
+    it('should filter by be not condition', async () => {
+        await GIVEN.openedEmptyPageWithBody(`
+                <ul>Hello to:
+                    <li style="display: none">First</li>
+                    <li>Second</li>
+                    <li style="display: none">Third</li>
+                </ul>
+        `);
+        const collection = browser.all('li').filteredBy(be.not.hidden);
+
+        expect(await collection.matching(have.texts('Second'))).toBe(true);
+        await collection.should(have.texts('Second'))
+    });
+
     it('search is postponed until asking actual element data like "has specific texts?"', async () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <ul>Hello to:
                     <li>John</li>
+                    <li class='will-exist'>Bob</li>
+                    <li class='will-exist'>Kate</li>
                 </ul>
         `);
         const collection = browser.all('li').filteredBy(have.cssClass('will-exist'));
@@ -42,7 +71,7 @@ describe('Collection filtered by condition', () => {
         // todo: change here and below to raw webdriver assert implementation
         expect(await collection.matching(have.texts('Bob', 'Kate'))).toBe(true);
     });
-    
+
     it('is performed on each subsequent "ask"', async () => {
         await GIVEN.openedEmptyPage();
         const collection = browser.all('li').filteredBy(have.cssClass('will-exist'));
@@ -90,6 +119,27 @@ describe('Collection filtered by condition', () => {
         expect(await collection.matching(have.texts('Bob', 'Kate'))).toBe(true);
     });
 
+    it('fails with correct error message on have-not-condition', async () => {
+        await GIVEN.openedEmptyPageWithBody(`
+                <ul>Hello to:
+                    <li>John</li>
+                    <li>Ari</li>
+                    <li class='will-exist' style="display: none">Bob</li>
+                </ul>
+        `);
+        const collection = browser.all('li').filteredBy(have.no.attribute('class'))
+        const started = new Date().getTime();
+
+        await collection.should(have.texts('Bob'))
+            .then(_ => fail('should fail on timeout before matched condition'))
+            .catch(error => {
+                expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
+                expect(error.message)
+                    .toContain(`browser.all(By(css selector, li)).filteredBy(has no attribute 'class').has texts Bob`);
+            });
+
+    });
+
     it('fails on timeout with error during waiting to match condition in assert, if no visible elements', async () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <ul>Hello to:
@@ -110,7 +160,7 @@ describe('Collection filtered by condition', () => {
 
         await collection.should(have.texts('Bob', 'Kate'))
             .then(ifNoError => fail('should fail on timeout before matched condition'))
-            .catch(async error => {
+            .catch(error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:

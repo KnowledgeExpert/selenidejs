@@ -36,7 +36,7 @@
 
 ⊕ **new FilteredByConditionWebElementsLocator**(condition: *[ElementCondition](../#elementcondition)*, collection: *[Collection](collection.md)*): [FilteredByConditionWebElementsLocator](filteredbyconditionwebelementslocator.md)
 
-*Defined in [locators/filteredByConditionWebElementsLocator.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L21)*
+*Defined in [locators/filteredByConditionWebElementsLocator.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L21)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 **● collection**: *[Collection](collection.md)*
 
-*Defined in [locators/filteredByConditionWebElementsLocator.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L24)*
+*Defined in [locators/filteredByConditionWebElementsLocator.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L24)*
 
 ___
 <a id="condition"></a>
@@ -66,7 +66,7 @@ ___
 
 **● condition**: *[ElementCondition](../#elementcondition)*
 
-*Defined in [locators/filteredByConditionWebElementsLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L23)*
+*Defined in [locators/filteredByConditionWebElementsLocator.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L23)*
 
 ___
 
@@ -80,7 +80,7 @@ ___
 
 *Implementation of [Locator](../interfaces/locator.md).[find](../interfaces/locator.md#find)*
 
-*Defined in [locators/filteredByConditionWebElementsLocator.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L29)*
+*Defined in [locators/filteredByConditionWebElementsLocator.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L29)*
 
 **Returns:** `Promise`<`WebElement`[]>
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [locators/filteredByConditionWebElementsLocator.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L48)*
+*Defined in [locators/filteredByConditionWebElementsLocator.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/filteredByConditionWebElementsLocator.ts#L48)*
 
 **Returns:** `string`
 

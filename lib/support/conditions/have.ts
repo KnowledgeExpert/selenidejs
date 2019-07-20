@@ -12,95 +12,88 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By } from 'selenium-webdriver';
-import { CollectionCondition, BrowserCondition, ElementCondition, condition } from '../../conditions';
+import { BrowserCondition, CollectionCondition, condition, ElementCondition } from '../../conditions';
 import { Condition } from '../../wait';
 
-class Have {
+export namespace have {
+
+    export const no = new Proxy(have, {
+        get: (have, conditionName) => (...args) => Condition.not(have[conditionName](...args))
+    });
 
     /* Element conditions */
 
-    readonly visibleElement = (locator: By): ElementCondition =>
-        condition.element.hasVisibleElement(locator);
-
-    readonly exactText = (value: string/* | number*/): ElementCondition =>
+    export const exactText = (value: string/* | number*/): ElementCondition =>
         condition.element.hasExactText(value);
 
-    readonly text = (value: string/* | number*/): ElementCondition =>
+    export const text = (value: string/* | number*/): ElementCondition =>
         condition.element.hasText(value);
 
-    readonly attribute = (name: string): ElementCondition =>
+    export const attribute = (name: string): ElementCondition =>
         condition.element.hasAttribute(name);
 
-    readonly attributeWithValue = (attributeName: string, attributeValue: string/* | number*/): ElementCondition =>
+    export const attributeWithValue = (attributeName: string, attributeValue: string/* | number*/): ElementCondition =>
         condition.element.hasAttributeWithValue(attributeName, attributeValue);
 
-    readonly attributeWithValueContaining = (attributeName: string, attributeValue: string/* | number*/)
-    : ElementCondition =>
+    export const attributeWithValueContaining = (attributeName: string, attributeValue: string/* | number*/)
+        : ElementCondition =>
         condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
 
-    readonly value = (value: string/* | number*/): ElementCondition =>
+    export const value = (value: string/* | number*/): ElementCondition =>
         condition.element.hasValue(value);
 
-    readonly valueContaining = (expected: string/* | number*/): ElementCondition =>
+    export const valueContaining = (expected: string/* | number*/): ElementCondition =>
         condition.element.hasValueContaining(expected);
 
-    readonly cssClass = (cssClass: string): ElementCondition =>
+    export const cssClass = (cssClass: string): ElementCondition =>
         condition.element.hasCssClass(cssClass);
 
     /* Collection conditions */
 
-    readonly size = (size: number): CollectionCondition =>
+    export const size = (size: number): CollectionCondition =>
         condition.collection.hasSize(size);
-    readonly sizeLessThan = (size: number): CollectionCondition =>
+    export const sizeLessThan = (size: number): CollectionCondition =>
         condition.collection.hasSizeLessThan(size);
-    readonly sizeLessThanOrEqual = (size: number): CollectionCondition =>
+    export const sizeLessThanOrEqual = (size: number): CollectionCondition =>
         condition.collection.hasSizeLessThanOrEqual(size);
-    readonly sizeGreaterThan = (size: number): CollectionCondition =>
+    export const sizeGreaterThan = (size: number): CollectionCondition =>
         condition.collection.hasSizeGreaterThan(size);
-    readonly sizeGreaterThanOrEqual = (size: number): CollectionCondition =>
+    export const sizeGreaterThanOrEqual = (size: number): CollectionCondition =>
         condition.collection.hasSizeGreaterThanOrEqual(size);
 
 
-    readonly texts = (...texts: string[]): CollectionCondition =>
+    export const texts = (...texts: string[]): CollectionCondition =>
         condition.collection.hasTexts(texts);
 
-    readonly exactTexts = (...texts: string[]): CollectionCondition =>
+    export const exactTexts = (...texts: string[]): CollectionCondition =>
         condition.collection.hasExactTexts(texts);
 
-    readonly url = (url: string): BrowserCondition =>
+    export const url = (url: string): BrowserCondition =>
         condition.browser.hasUrl(url);
 
     /* Browser conditions */
 
-    readonly urlContaining = (urlPart: string): BrowserCondition =>
+    export const urlContaining = (urlPart: string): BrowserCondition =>
         condition.browser.hasUrlContaining(urlPart);
 
-    readonly title = (expected: string): BrowserCondition =>
+    export const title = (expected: string): BrowserCondition =>
         condition.browser.hasTitle(expected);
 
-    readonly titleContaining = (titlePart: string): BrowserCondition =>
+    export const titleContaining = (titlePart: string): BrowserCondition =>
         condition.browser.hasTitleContaining(titlePart);
 
-    readonly tabsNumber = (num: number): BrowserCondition =>
+    export const tabsNumber = (num: number): BrowserCondition =>
         condition.browser.hasTabsNumber(num);
 
-    readonly tabsNumberLessThan = (num: number): BrowserCondition =>
+    export const tabsNumberLessThan = (num: number): BrowserCondition =>
         condition.browser.hasTabsNumberLessThan(num);
 
-    readonly tabsNumberMoreThan = (num: number): BrowserCondition =>
+    export const tabsNumberMoreThan = (num: number): BrowserCondition =>
         condition.browser.hasTabsNumberMoreThan(num);
 
-    readonly jsReturnedTrue = (script: string): BrowserCondition =>
-        condition.browser.hasJsReturnedTrue(script);
+    // TODO we can also do that with element or collection,
+    // maybe add/reuse conditions for them also?
+    export const jsReturned = (expected: any, script: string, ...scriptArgs): BrowserCondition =>
+        condition.browser.hasJsReturned(expected, script, ...scriptArgs);
 }
 
-const no = new Proxy(new Have(), {
-    get: (target, name) => {
-        return name in target ?
-            (...args) => Condition.not(target[name](...args)) :
-            undefined;
-    }
-});
-
-export const have = { ...new Have(), no };

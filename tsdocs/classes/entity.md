@@ -46,7 +46,7 @@
 
 ⊕ **new Entity**(configuration: *[Configuration](configuration.md)*): [Entity](entity.md)
 
-*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
+*Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 **● configuration**: *[Configuration](configuration.md)*
 
-*Defined in [entity.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L54)*
+*Defined in [entity.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L54)*
 
 ___
 <a id="wait"></a>
@@ -75,7 +75,7 @@ ___
 
 **● wait**: *[Wait](wait.md)<`this`>*
 
-*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
+*Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **get**<`R`>(query: *[Lambda](../#lambda)<`this`, `R`>*): `Promise`<`R`>
 
-*Defined in [entity.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L100)*
+*Defined in [entity.ts:100](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L100)*
 
 **Type parameters:**
 
@@ -107,7 +107,7 @@ ___
 
 ▸ **matching**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`boolean`>
 
-*Defined in [entity.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L87)*
+*Defined in [entity.ts:87](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L87)*
 
 **Parameters:**
 
@@ -124,7 +124,7 @@ ___
 
 ▸ **perform**(command: *[Lambda](../#lambda)<`this`, `void`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L93)*
+*Defined in [entity.ts:93](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L93)*
 
 **Parameters:**
 
@@ -141,7 +141,7 @@ ___
 
 ▸ **should**(...conditions: *`Array`<[Condition](condition.md)<`this`>>*): `Promise`<`this`>
 
-*Defined in [entity.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L76)*
+*Defined in [entity.ts:76](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L76)*
 
 **Parameters:**
 
@@ -160,7 +160,7 @@ ___
 
 *Implementation of [Matchable](../interfaces/matchable.md).[waitUntil](../interfaces/matchable.md#waituntil)*
 
-*Defined in [entity.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L83)*
+*Defined in [entity.ts:83](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L83)*
 
 **Parameters:**
 

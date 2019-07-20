@@ -87,7 +87,7 @@ Have fun;)
 
 ▸ **throwIfNot**<`E`>(predicate: *`function`*): [Lambda](../#lambda)<`E`, `void`>
 
-*Defined in [conditions.ts:97](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L97)*
+*Defined in [conditions.ts:97](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L97)*
 
 Creates condition from async query
 
@@ -109,7 +109,7 @@ ___
 
 ▸ **throwIfNotActual**<`E`,`A`>(query: *`function`*, predicate: *`function`*): [Lambda](../#lambda)<`E`, `void`>
 
-*Defined in [conditions.ts:109](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L109)*
+*Defined in [conditions.ts:109](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L109)*
 
 Transforms an entity query compared through predicate - to Condition Example: throwIfNotActual(query.text, predicate.equals(text))
 

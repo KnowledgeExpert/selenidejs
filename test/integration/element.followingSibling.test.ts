@@ -42,7 +42,7 @@ describe('element.followingSibling', () => {
         // todo: change here and below to raw webdriver assert implementation
         expect(await element.matching(have.text('Bob'))).toBe(true);
     });
-    
+
     it('is performed on each subsequent "ask"', async () => {
         await GIVEN.openedEmptyPage();
         const element = browser.element('li').followingSibling;

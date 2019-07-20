@@ -32,7 +32,7 @@
 
 ▸ **should**(condition: *[Condition](../classes/condition.md)<`this`>*): `Promise`<`this`>
 
-*Defined in [entity.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L38)*
+*Defined in [entity.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L38)*
 
 **Parameters:**
 

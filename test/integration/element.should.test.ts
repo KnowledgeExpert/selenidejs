@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, webelement } from './base';
-import { be, have, perform, should } from '../../lib';
+import {browser, GIVEN, data, webelement} from './base';
+import {be, have, perform, should} from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
@@ -91,7 +91,7 @@ describe('Element.should', () => {
             .toBe(false);
 
         await (await
-              browser.element('button').should(be.visible)).should(be.enabled);
+            browser.element('button').should(be.visible)).should(be.enabled);
         expect(await (await webelement('button')).isDisplayed())
             .toBe(true);
         expect(await (await webelement('button')).isEnabled())

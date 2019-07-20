@@ -27,7 +27,7 @@ describe('Element.* commands: hover', () => {
     it('hovers on element once it is present in DOM and visible', async () => {
         await GIVEN.openedEmptyPage();
         await GIVEN.withBodyAfter(data.timeouts.smallest, `
-            <label style="display: none" 
+            <label style="display: none"
                onmouseover="$(this).text('After hover');"
             >
                Before hover

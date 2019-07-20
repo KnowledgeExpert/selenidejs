@@ -59,7 +59,7 @@ describe('Collection sliced elements from start to end exclusive', () => {
         // todo: change here and below to raw webdriver assert implementation
         expect(await collection.matching(have.texts('Bob', 'Kate'))).toBe(true);
     });
-    
+
     it('is performed on each subsequent "ask"', async () => {
         await GIVEN.openedEmptyPage();
         const collection = browser.all('li').sliced(0, 2);

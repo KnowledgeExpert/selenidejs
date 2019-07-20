@@ -17,7 +17,6 @@
 ### Properties
 
 * [entity](wait.md#entity)
-* [onFailureHooks](wait.md#onfailurehooks)
 * [timeout](wait.md#timeout)
 
 ### Methods
@@ -35,9 +34,9 @@
 
 ###  constructor
 
-⊕ **new Wait**(entity: *`T`*, timeout: *`number`*, onFailureHooks: *`Array`<[OnFailureHook](../#onfailurehook)<`T`>>*): [Wait](wait.md)
+⊕ **new Wait**(entity: *`T`*, timeout: *`number`*): [Wait](wait.md)
 
-*Defined in [wait.ts:191](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L191)*
+*Defined in [wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
 **Parameters:**
 
@@ -45,7 +44,6 @@
 | ------ | ------ |
 | entity | `T` |
 | timeout | `number` |
-| onFailureHooks | `Array`<[OnFailureHook](../#onfailurehook)<`T`>> |
 
 **Returns:** [Wait](wait.md)
 
@@ -59,16 +57,7 @@ ___
 
 **● entity**: *`T`*
 
-*Defined in [wait.ts:193](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L193)*
-
-___
-<a id="onfailurehooks"></a>
-
-### `<Private>` onFailureHooks
-
-**● onFailureHooks**: *`Array`<[OnFailureHook](../#onfailurehook)<`T`>>*
-
-*Defined in [wait.ts:195](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L195)*
+*Defined in [wait.ts:202](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L202)*
 
 ___
 <a id="timeout"></a>
@@ -77,7 +66,7 @@ ___
 
 **● timeout**: *`number`*
 
-*Defined in [wait.ts:194](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L194)*
+*Defined in [wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
 ___
 
@@ -89,7 +78,7 @@ ___
 
 ▸ **command**(fn: *[Lambda](../#lambda)<`T`, `void`>*): `Promise`<`void`>
 
-*Defined in [wait.ts:205](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L205)*
+*Defined in [wait.ts:215](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L215)*
 
 **Parameters:**
 
@@ -106,7 +95,7 @@ ___
 
 ▸ **for**<`R`>(fn: *[Fn](../interfaces/fn.md)<`T`, `R`>*): `Promise`<`R`>
 
-*Defined in [wait.ts:213](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L213)*
+*Defined in [wait.ts:223](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L223)*
 
 **Type parameters:**
 
@@ -126,7 +115,7 @@ ___
 
 ▸ **query**<`R`>(fn: *[Lambda](../#lambda)<`T`, `R`>*): `Promise`<`R`>
 
-*Defined in [wait.ts:201](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L201)*
+*Defined in [wait.ts:210](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L210)*
 
 **Type parameters:**
 
@@ -146,7 +135,7 @@ ___
 
 ▸ **until**<`R`>(fn: *[Fn](../interfaces/fn.md)<`T`, `R`>*): `Promise`<`boolean`>
 
-*Defined in [wait.ts:209](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L209)*
+*Defined in [wait.ts:219](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L219)*
 
 **Type parameters:**
 

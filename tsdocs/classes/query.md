@@ -41,16 +41,16 @@ We use queries to perform an async query on entity of type T, i.e. get something
 
 ###  constructor
 
-⊕ **new Query**(description: *`string`*, fn: *[Lambda](../#lambda)<`T`, `R`>*): [Query](query.md)
+⊕ **new Query**(description: *`any`*, fn: *`any`*): [Query](query.md)
 
-*Defined in [wait.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L38)*
+*Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| description | `string` |
-| fn | [Lambda](../#lambda)<`T`, `R`> |
+| description | `any` |
+| fn | `any` |
 
 **Returns:** [Query](query.md)
 
@@ -64,7 +64,7 @@ ___
 
 **● description**: *`string`*
 
-*Defined in [wait.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L40)*
+*Defined in [wait.ts:40](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L40)*
 
 ___
 <a id="fn"></a>
@@ -73,7 +73,7 @@ ___
 
 **● fn**: *[Lambda](../#lambda)<`T`, `R`>*
 
-*Defined in [wait.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L41)*
+*Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 *Implementation of [Fn](../interfaces/fn.md).[call](../interfaces/fn.md#call)*
 
-*Defined in [wait.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L46)*
+*Defined in [wait.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L48)*
 
 **Parameters:**
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **toString**(): `string`
 
-*Defined in [wait.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L50)*
+*Defined in [wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
 **Returns:** `string`
 

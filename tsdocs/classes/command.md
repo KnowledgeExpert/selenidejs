@@ -35,18 +35,18 @@ Commands we use in a normal "command" case, i.e. to perform the async command on
 
 ###  constructor
 
-⊕ **new Command**(description: *`string`*, fn: *[Lambda](../#lambda)<`T`, `void`>*): [Command](command.md)
+⊕ **new Command**(description: *`any`*, fn: *`any`*): [Command](command.md)
 
 *Inherited from [Query](query.md).[constructor](query.md#constructor)*
 
-*Defined in [wait.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L38)*
+*Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| description | `string` |
-| fn | [Lambda](../#lambda)<`T`, `void`> |
+| description | `any` |
+| fn | `any` |
 
 **Returns:** [Command](command.md)
 
@@ -64,7 +64,7 @@ ___
 
 *Inherited from [Query](query.md).[call](query.md#call)*
 
-*Defined in [wait.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L46)*
+*Defined in [wait.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L48)*
 
 **Parameters:**
 
@@ -83,7 +83,7 @@ ___
 
 *Inherited from [Query](query.md).[toString](query.md#tostring)*
 
-*Defined in [wait.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L50)*
+*Defined in [wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
 **Returns:** `string`
 

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeoutError } from './errors/timeoutError';
 import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
+import { TimeoutError } from './errors/timeoutError';
 import { toString } from './utils';
 
 /* tslint:disable:prefer-template */
@@ -37,8 +37,10 @@ export interface Fn<T, R> {
  */
 export class Query<T, R> implements Fn<T, R> {
 
-    constructor(private readonly description: string,
-                private readonly fn: Lambda<T, R>) {
+    private readonly description: string;
+    private readonly fn: Lambda<T, R>;
+
+    constructor(description, fn) {
         this.description = description;
         this.fn = fn;
     }
@@ -56,7 +58,7 @@ export class Query<T, R> implements Fn<T, R> {
  * Commands we use in a normal "command" case, i.e. to perform the async command on entity of type T.
  * Command can pass or fail with Error correspondingly.
  */
-export class Command<T> extends Query<T, void> {}
+export class Command<T> extends Query<T, void> { }
 
 // todo: updated tsdocs
 /**
@@ -69,8 +71,10 @@ export class Command<T> extends Query<T, void> {}
  */
 export class Condition<E> implements Fn<E, void> {
 
-    constructor(private readonly description: string,
-                private readonly fn: Lambda<E, void>) {
+    private readonly description: string;
+    private readonly fn: Lambda<E, void>;
+
+    constructor(description, fn) {
         this.description = description;
         this.fn = fn;
     }
@@ -102,15 +106,20 @@ export namespace Condition {
      * @param {string} description - custom description if "not <original description>" version is not enough
      * @returns {Condition<T>}
      */
-    export const not = <T>(condition: Condition<T>, description?: string): Condition<T> =>
-        new Condition(description || `not ${condition}`, async (entity: T) => {
-            try {
-                await condition.call(entity);
-            } catch (error) {
-                return;
-            }
-            throw new ConditionNotMatchedError();
-        });
+    export const not = <T>(condition: Condition<T>, description?: string): Condition<T> => {
+        const [isOrHave, ...conditionName] = condition.toString().split(' ');
+        return new Condition(
+            description || `${isOrHave} ${'is' === isOrHave ? 'not' : 'no'} ${conditionName.join(' ')}`,
+            async (entity: T) => {
+                try {
+                    await condition.call(entity);
+                } catch (error) {
+                    return;
+                }
+                throw new ConditionNotMatchedError();
+            });
+    };
+
 
     /**
      * Combines conditions by logical AND
@@ -183,31 +192,31 @@ export namespace Condition {
      */
     export const asPredicate = <T>(...conditions: Array<Condition<T>>) =>
         (entity: T): Promise<boolean> =>
-            Condition.all(...conditions).call(entity).then(res => true, err => false);
+            Condition.all(...conditions).call(entity).then(_ => true, _ => false);
 }
 
 export type OnFailureHook<T> = (failure: Error, entity: T) => Promise<void | Error>;
 
 export class Wait<T> {
 
-    constructor(private readonly entity: T,
-                private readonly timeout: number,
-                private readonly onFailureHooks: Array<OnFailureHook<T>>) {
+    private readonly entity: T;
+    private readonly timeout: number;
+
+    constructor(entity: T, timeout: number) {
         this.entity = entity;
         this.timeout = timeout;
-        this.onFailureHooks = onFailureHooks;
     }
 
     async query<R>(fn: Lambda<T, R>): Promise<R> {
-        return this.for(new Query(fn.toString(), fn));
+        return this.for(new Query(fn.toString(), fn)) as Promise<R>;
     }
 
     async command(fn: Lambda<T, void>): Promise<void> {
-        await this.for(new Command(fn.toString(), fn));
+        return this.for(new Command(fn.toString(), fn));
     }
 
     async until<R>(fn: Fn<T, R>): Promise<boolean> {
-        return this.for(fn).then(res => true, err => false);
+        return this.for(fn).then(_ => true, _ => false);
     }
 
     async for<R>(fn: Fn<T, R>): Promise<R> {
@@ -223,17 +232,10 @@ export class Wait<T> {
                         '\n' +
                         `\tTimed out after ${this.timeout}ms, while waiting for:\n` +
                         `\t${this.entity.toString()}.${fn.toString()}\n` + // todo: if string has trailing
-                                                                           // and leading spaces it will not be readable
+                        // and leading spaces it will not be readable
                         'Reason:\n' +
                         `\t${error.message}`
                     );
-
-/*                    for (const hook of this.onFailureHooks) { // todo: ignore unexpected error from hook
-                        const hooked = await hook(failure, this.entity); // todo: or catch and remember it...
-                        if (!!hooked) {
-                            failure = hooked;
-                        }
-                    }*/
 
                     throw failure;
                 }

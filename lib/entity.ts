@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Command, Condition, Lambda, Query, Wait } from './wait';
-import { Configuration, OnEntityFailureHook } from './configuration';
+import { Configuration } from './configuration';
+import { Condition, Lambda, Wait } from './wait';
 
 /* With Conditions
  *
@@ -53,7 +53,7 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
 
     constructor(protected readonly configuration: Configuration) {
         this.configuration = configuration;
-        this.wait = new Wait(this, configuration.timeout, []/*configuration.onFailureHooks*/);
+        this.wait = new Wait(this, configuration.timeout);
     }
 
     /*

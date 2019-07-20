@@ -38,7 +38,7 @@
 
 ⊕ **new Configuration**(init?: *`Partial`<[Configuration](configuration.md)>*): [Configuration](configuration.md)
 
-*Defined in [configuration.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L52)*
+*Defined in [configuration.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L52)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 **● baseUrl**: *`string`* = ""
 
-*Defined in [configuration.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L45)*
+*Defined in [configuration.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L45)*
 
 ___
 <a id="driver"></a>
@@ -67,7 +67,7 @@ ___
 
 **● driver**: *`WebDriver`* =  null
 
-*Defined in [configuration.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L43)*
+*Defined in [configuration.ts:43](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L43)*
 
 ___
 <a id="fullpagescreenshot"></a>
@@ -76,7 +76,7 @@ ___
 
 **● fullPageScreenshot**: *`boolean`* = true
 
-*Defined in [configuration.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L52)*
+*Defined in [configuration.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L52)*
 
 ___
 <a id="setvaluebyjs"></a>
@@ -85,7 +85,7 @@ ___
 
 **● setValueByJs**: *`boolean`* = false
 
-*Defined in [configuration.ts:46](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L46)*
+*Defined in [configuration.ts:46](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L46)*
 
 ___
 <a id="timeout"></a>
@@ -94,7 +94,7 @@ ___
 
 **● timeout**: *`number`* = 4000
 
-*Defined in [configuration.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L44)*
+*Defined in [configuration.ts:44](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L44)*
 
 ___
 <a id="typebyjs"></a>
@@ -103,7 +103,7 @@ ___
 
 **● typeByJs**: *`boolean`* = false
 
-*Defined in [configuration.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L47)*
+*Defined in [configuration.ts:47](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L47)*
 
 ___
 <a id="windowheight"></a>
@@ -112,7 +112,7 @@ ___
 
 **● windowHeight**: *`string`* = ""
 
-*Defined in [configuration.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L49)*
+*Defined in [configuration.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L49)*
 
 ___
 <a id="windowwidth"></a>
@@ -121,7 +121,7 @@ ___
 
 **● windowWidth**: *`string`* = ""
 
-*Defined in [configuration.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L48)*
+*Defined in [configuration.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L48)*
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 ▸ **with**(): [Customized](customized.md)<[Configuration](configuration.md)>
 
-*Defined in [configuration.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L35)*
+*Defined in [configuration.ts:35](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L35)*
 
 **Returns:** [Customized](customized.md)<[Configuration](configuration.md)>
 
@@ -144,7 +144,7 @@ ___
 
 ▸ **withDriver**(driver: *`WebDriver`*): [Customized](customized.md)<[Configuration](configuration.md)>
 
-*Defined in [configuration.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L39)*
+*Defined in [configuration.ts:39](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L39)*
 
 **Parameters:**
 
