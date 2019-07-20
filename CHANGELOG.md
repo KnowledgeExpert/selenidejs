@@ -1,33 +1,34 @@
 # Changelog
 
-## 1.2.0 (in progress)
+## 1.2.0
 
-### BREAKING CHANGEs
-  * removed 
+### BREAKING CHANGES
+  * removed
     * `Browser.drivedBy` (see [#88](https://github.com/KnowledgeExpert/selenidejs/issues/88))
     * (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
       * `wait.untilNot`
-      * `entity.*Not` 
+      * `entity.*Not`
         * like `element.shouldNot`, etc.
         * use now something like `element.should(be.not.*)` instead
   * changed
     * (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
       * refactored conditions to be object-based over function-based (should not break anything actually, if you have not created your own conditions...)
       * `wait.until` now accepts only one argument (no varargs anymore)
-      
+      * changed `have.jsReturnedTrue` to `have.jsReturned` which accepts expected result now ( f.e. `have.jsReturned(10, 'return 10;')` )
+
 ### New Features
 
   * added `condition.or` and `condition.and` (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
     * example: `elements.filteredBy(have.cssClass('green').or(have.cssClass('red')))`
   * added `be.not.*` and `have.no.*`
-    * example: 
+    * example:
       * `element.should(be.not.visible)`
       * `element.should(have.no.text('foo'))`
       * `elements.filteredBy(have.no.cssClass('green'))`
 
 ## 1.1.0 (released on 2019.03.02)
 
-### BREAKING CHANGEs (hot fixing main release:D)
+### BREAKING CHANGES (hot fixing main release:D)
   * changed Collection#first
     * `browser.all('#alphabet *').first().should(have.text('a'))`
     * to
