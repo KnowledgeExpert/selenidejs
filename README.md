@@ -70,13 +70,13 @@ AND
 
 AND
 ```typescript
-    // await browser.element('[name=q]')).setValue('selenium');
+    // await browser.element('[name=q]')).type('selenium');
     // OR:
 
     import { by } from 'selenidejs';
 
     const query = browser.element(by.name('q')); // actual search does not start here, the element is lazy
-    await query.setValue('selenium')              // here the actual webelement is found
+    await query.type('selenium')                 // here the actual webelement is found
     await query.pressEnter();                    // here the actual webelement is found again
 ```
 
@@ -119,11 +119,11 @@ FINALLY
     // OR:
     import { perform } from 'selenidejs';
 
-    await browser.element(by.name('q')).setValue('selenium').then(perform.pressEnter);
+    await browser.element(by.name('q')).type('selenium').then(perform.pressEnter);
 
     // instead of
     const query = browser.element(by.name('q'));
-    await query.setValue('selenium')
+    await query.type('selenium')
     await query.pressEnter();
 ```
 
