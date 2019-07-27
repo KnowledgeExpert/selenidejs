@@ -88,6 +88,7 @@ var Conditions;
                 }
             }
             catch (ignored) {
+                return element;
             }
             throw new conditionDoesNotMatchError_1.ConditionDoesNotMatchError(this.toString());
         },
@@ -99,7 +100,8 @@ var Conditions;
         matches: async function (element) {
             let actualText;
             try {
-                actualText = await element.getWebElement().then(webelement => webelement.getText());
+                let webelement = await element.getWebElement();
+                actualText = await webelement.getText();
                 if (actualText.length === 0) {
                     return element;
                 }
@@ -304,9 +306,8 @@ var Conditions;
                 try {
                     const actualElements = await collection.getWebElements();
                     actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
-                    if (actualTexts.length != texts.length) {
+                    if (actualTexts.length != texts.length)
                         throw new Error();
-                    }
                     for (let i = 0; i < texts.length; i++) {
                         if (actualTexts[i] !== String(texts[i])) {
                             throw new Error();

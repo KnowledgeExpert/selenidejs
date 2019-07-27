@@ -92,6 +92,7 @@ export namespace Conditions {
                     return element;
                 }
             } catch (ignored) {
+                return element;
             }
             throw new ConditionDoesNotMatchError(this.toString());
         },
@@ -104,7 +105,8 @@ export namespace Conditions {
         matches: async function (element: Element) {
             let actualText;
             try {
-                actualText = await element.getWebElement().then(webelement => webelement.getText());
+                let webelement = await element.getWebElement();
+                actualText = await webelement.getText();
                 if (actualText.length === 0) {
                     return element;
                 }
@@ -302,9 +304,7 @@ export namespace Conditions {
                     const actualElements = await collection.getWebElements();
                     actualTexts = await Promise.all(actualElements.map(async (webElement) => await webElement.getText()));
 
-                    if (actualTexts.length != texts.length) {
-                        throw new Error();
-                    }
+                    if (actualTexts.length != texts.length) throw new Error();
                     for (let i = 0; i < texts.length; i++) {
                         if (actualTexts[i] !== String(texts[i])) {
                             throw new Error();
@@ -445,5 +445,4 @@ export namespace Conditions {
             }
         });
     }
-
 }
