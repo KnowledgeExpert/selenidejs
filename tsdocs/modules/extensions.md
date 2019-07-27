@@ -19,7 +19,7 @@
 
 ▸ **isAbsoluteUrl**(`relativeOrAbsoluteUrl`: string): *boolean*
 
-*Defined in [utils/extensions.ts:50](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L50)*
+*Defined in [utils/extensions.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L50)*
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **savePageSource**(`driver`: `WebDriver`, `filePath`: string): *`Promise<string>`*
 
-*Defined in [utils/extensions.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L24)*
+*Defined in [utils/extensions.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L24)*
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ ___
 
 ▸ **saveScreenshot**(`driver`: `WebDriver`, `filePath`: string): *`Promise<string>`*
 
-*Defined in [utils/extensions.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L34)*
+*Defined in [utils/extensions.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L34)*
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **toBy**(`cssOrXpathOrBy`: string | `By`): *`By`*
 
-*Defined in [utils/extensions.ts:44](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/extensions.ts#L44)*
+*Defined in [utils/extensions.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/extensions.ts#L44)*
 
 **Parameters:**
 

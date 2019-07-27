@@ -57,7 +57,7 @@
 
 *Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
 
-*Defined in [collection.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L29)*
+*Defined in [collection.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L29)*
 
 **Parameters:**
 
@@ -76,7 +76,7 @@ Name | Type |
 
 *Overrides [Entity](entity.md).[configuration](entity.md#protected-configuration)*
 
-*Defined in [collection.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L32)*
+*Defined in [collection.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L32)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 • **locator**: *[Locator](../interfaces/locator.md)‹*`Promise<WebElement[]>`*›*
 
-*Defined in [collection.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L31)*
+*Defined in [collection.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L31)*
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 *Inherited from [Entity](entity.md).[wait](entity.md#protected-wait)*
 
-*Defined in [entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
+*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 ## Accessors
 
@@ -102,7 +102,7 @@ ___
 
 • **get first**(): *[Element](element.md)*
 
-*Defined in [collection.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L54)*
+*Defined in [collection.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L54)*
 
 **Returns:** *[Element](element.md)*
 
@@ -112,7 +112,7 @@ ___
 
 ▸ **elementAt**(`index`: number): *[Element](element.md)*
 
-*Defined in [collection.ts:50](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L50)*
+*Defined in [collection.ts:50](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L50)*
 
 **Parameters:**
 
@@ -128,7 +128,7 @@ ___
 
 ▸ **elementBy**(...`conditions`: [ElementCondition](../README.md#elementcondition)[]): *[Element](element.md)*
 
-*Defined in [collection.ts:74](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L74)*
+*Defined in [collection.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L74)*
 
 **Parameters:**
 
@@ -144,7 +144,7 @@ ___
 
 ▸ **filteredBy**(...`conditions`: [ElementCondition](../README.md#elementcondition)[]): *[Collection](collection.md)*
 
-*Defined in [collection.ts:67](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L67)*
+*Defined in [collection.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L67)*
 
 **Parameters:**
 
@@ -162,7 +162,7 @@ ___
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
-*Defined in [entity.ts:100](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L100)*
+*Defined in [entity.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L100)*
 
 **Type parameters:**
 
@@ -182,7 +182,7 @@ ___
 
 ▸ **getAsCashedArray**(): *`Promise<Element[]>`*
 
-*Defined in [collection.ts:43](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L43)*
+*Defined in [collection.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L43)*
 
 **Returns:** *`Promise<Element[]>`*
 
@@ -192,7 +192,7 @@ ___
 
 ▸ **getWebElements**(): *`Promise<WebElement[]>`*
 
-*Defined in [collection.ts:81](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L81)*
+*Defined in [collection.ts:81](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L81)*
 
 **Returns:** *`Promise<WebElement[]>`*
 
@@ -204,7 +204,7 @@ ___
 
 *Inherited from [Entity](entity.md).[matching](entity.md#matching)*
 
-*Defined in [entity.ts:87](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L87)*
+*Defined in [entity.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L87)*
 
 **Parameters:**
 
@@ -222,7 +222,7 @@ ___
 
 *Inherited from [Entity](entity.md).[perform](entity.md#perform)*
 
-*Defined in [entity.ts:93](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L93)*
+*Defined in [entity.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L93)*
 
 **Parameters:**
 
@@ -240,7 +240,7 @@ ___
 
 *Inherited from [Entity](entity.md).[should](entity.md#should)*
 
-*Defined in [entity.ts:76](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L76)*
+*Defined in [entity.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L76)*
 
 **Parameters:**
 
@@ -256,7 +256,7 @@ ___
 
 ▸ **sliced**(`start`: number, `end`: number): *[Collection](collection.md)*
 
-*Defined in [collection.ts:63](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L63)*
+*Defined in [collection.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L63)*
 
 Represents a new collection sliced from 'start' element index to 'end' element index exclusive.
 
@@ -275,7 +275,7 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [collection.ts:85](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L85)*
+*Defined in [collection.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L85)*
 
 **Returns:** *string*
 
@@ -289,7 +289,7 @@ ___
 
 *Inherited from [Entity](entity.md).[waitUntil](entity.md#waituntil)*
 
-*Defined in [entity.ts:83](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L83)*
+*Defined in [entity.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L83)*
 
 **Parameters:**
 
@@ -305,7 +305,7 @@ ___
 
 ▸ **with**(`customConfig`: `Partial<Configuration>`): *[Collection](collection.md)*
 
-*Defined in [collection.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/collection.ts#L38)*
+*Defined in [collection.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/collection.ts#L38)*
 
 **Parameters:**
 

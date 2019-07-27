@@ -40,7 +40,7 @@ Command can pass or fail with Error correspondingly.
 
 *Inherited from [Query](query.md).[constructor](query.md#constructor)*
 
-*Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
+*Defined in [wait.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 **Parameters:**
 
@@ -61,7 +61,7 @@ Name | Type |
 
 *Inherited from [Query](query.md).[call](query.md#call)*
 
-*Defined in [wait.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L48)*
+*Defined in [wait.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L48)*
 
 **Parameters:**
 
@@ -79,6 +79,6 @@ ___
 
 *Inherited from [Query](query.md).[toString](query.md#tostring)*
 
-*Defined in [wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
+*Defined in [wait.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
 **Returns:** *string*

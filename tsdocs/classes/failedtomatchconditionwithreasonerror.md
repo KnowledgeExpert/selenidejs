@@ -30,7 +30,7 @@
 
 *Overrides [ConditionNotMatchedError](conditionnotmatchederror.md).[constructor](conditionnotmatchederror.md#constructor)*
 
-*Defined in [errors/conditionDoesNotMatchError.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L23)*
+*Defined in [errors/conditionDoesNotMatchError.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L23)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ Name | Type |
 
 *Inherited from void*
 
-Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
+Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 *Inherited from void*
 
-Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
+Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
 
 ___
 
@@ -71,4 +71,4 @@ ___
 
 *Overrides void*
 
-Defined in /Users/alexanderpopov/Documents/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965

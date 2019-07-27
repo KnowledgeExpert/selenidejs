@@ -70,7 +70,7 @@
 
 Ƭ **BrowserCondition**: *[Condition](classes/condition.md)‹*[Browser](classes/browser.md)*›*
 
-*Defined in [conditions.ts:27](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L27)*
+*Defined in [conditions.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L27)*
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 Ƭ **CollectionCondition**: *[Condition](classes/condition.md)‹*[Collection](classes/collection.md)*›*
 
-*Defined in [conditions.ts:26](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L26)*
+*Defined in [conditions.ts:26](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L26)*
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 Ƭ **ElementCondition**: *[Condition](classes/condition.md)‹*[Element](classes/element.md)*›*
 
-*Defined in [conditions.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/conditions.ts#L25)*
+*Defined in [conditions.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/conditions.ts#L25)*
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 Ƭ **Lambda**: *function*
 
-*Defined in [wait.ts:24](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L24)*
+*Defined in [wait.ts:24](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L24)*
 
 Just a type alias to one-argument-async-function...
 
@@ -114,7 +114,7 @@ ___
 
 Ƭ **OnEntityFailureHook**: *[OnFailureHook](README.md#onfailurehook)‹*[Browser](classes/browser.md) | [Element](classes/element.md) | [Collection](classes/collection.md)*›*
 
-*Defined in [configuration.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L31)*
+*Defined in [configuration.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L31)*
 
 A one place to configure everything.
 There is no separate Browser, Element or Collection configurations.
@@ -128,7 +128,7 @@ ___
 
 Ƭ **OnFailureHook**: *function*
 
-*Defined in [wait.ts:198](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L198)*
+*Defined in [wait.ts:198](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L198)*
 
 #### Type declaration:
 
@@ -147,7 +147,7 @@ Name | Type |
 
 ▸ **lambda**<**F**>(`toString`: string, `fn`: `F`): *`F`*
 
-*Defined in [utils/index.ts:17](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/index.ts#L17)*
+*Defined in [utils/index.ts:17](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/index.ts#L17)*
 
 **Type parameters:**
 
@@ -168,7 +168,7 @@ ___
 
 ▸ **toString**<**O**>(`obj`: `O`): *string*
 
-*Defined in [utils/index.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/utils/index.ts#L22)*
+*Defined in [utils/index.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/utils/index.ts#L22)*
 
 **Type parameters:**
 

@@ -39,7 +39,7 @@ to be used in the following context:
 
 • **currentTab**: *`(Anonymous function)`* =  waitingForBrowser(query.currentTab)
 
-*Defined in [support/queries/get.ts:56](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L56)*
+*Defined in [support/queries/get.ts:56](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L56)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **innerHtml**: *`(Anonymous function)`* =  waitingForEntity(query.innerHtml)
 
-*Defined in [support/queries/get.ts:35](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L35)*
+*Defined in [support/queries/get.ts:35](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L35)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **outerHtml**: *`(Anonymous function)`* =  waitingForEntity(query.outerHtml)
 
-*Defined in [support/queries/get.ts:36](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L36)*
+*Defined in [support/queries/get.ts:36](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L36)*
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 • **pageSource**: *`(Anonymous function)`* =  waitingForBrowser(query.pageSource)
 
-*Defined in [support/queries/get.ts:58](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L58)*
+*Defined in [support/queries/get.ts:58](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L58)*
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • **size**: *`(Anonymous function)`* =  waitingForCollection(query.size)
 
-*Defined in [support/queries/get.ts:44](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L44)*
+*Defined in [support/queries/get.ts:44](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L44)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 • **someText**: *`(Anonymous function)`* =  waitingForEntity(query.someText)
 
-*Defined in [support/queries/get.ts:33](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L33)*
+*Defined in [support/queries/get.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L33)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 • **tabs**: *`(Anonymous function)`* =  waitingForBrowser(query.tabs)
 
-*Defined in [support/queries/get.ts:54](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L54)*
+*Defined in [support/queries/get.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L54)*
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 • **tabsNumber**: *`(Anonymous function)`* =  waitingForBrowser(query.tabsNumber)
 
-*Defined in [support/queries/get.ts:57](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L57)*
+*Defined in [support/queries/get.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L57)*
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 • **text**: *`(Anonymous function)`* =  waitingForEntity(query.text)
 
-*Defined in [support/queries/get.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L32)*
+*Defined in [support/queries/get.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L32)*
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 • **texts**: *`(Anonymous function)`* =  waitingForCollection(query.texts)
 
-*Defined in [support/queries/get.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L45)*
+*Defined in [support/queries/get.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L45)*
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 • **title**: *`(Anonymous function)`* =  waitingForBrowser(query.title)
 
-*Defined in [support/queries/get.ts:53](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L53)*
+*Defined in [support/queries/get.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L53)*
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 • **url**: *`(Anonymous function)`* =  waitingForBrowser(query.url)
 
-*Defined in [support/queries/get.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L52)*
+*Defined in [support/queries/get.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L52)*
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 • **value**: *`(Anonymous function)`* =  waitingForEntity(query.value)
 
-*Defined in [support/queries/get.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L37)*
+*Defined in [support/queries/get.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L37)*
 
 ## Functions
 
@@ -143,7 +143,7 @@ ___
 
 ▸ **attribute**(`name`: string): *`(Anonymous function)`*
 
-*Defined in [support/queries/get.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L34)*
+*Defined in [support/queries/get.ts:34](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L34)*
 
 **Parameters:**
 
@@ -159,7 +159,7 @@ ___
 
 ▸ **tab**(`index`: number): *`(Anonymous function)`*
 
-*Defined in [support/queries/get.ts:55](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L55)*
+*Defined in [support/queries/get.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L55)*
 
 **Parameters:**
 
@@ -175,7 +175,7 @@ ___
 
 ▸ **waitingForBrowser**<**R**>(`query`: [Lambda](../README.md#lambda)‹*[Browser](../classes/browser.md)*, *`R`*›): *`(Anonymous function)`*
 
-*Defined in [support/queries/get.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L49)*
+*Defined in [support/queries/get.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L49)*
 
 **Type parameters:**
 
@@ -195,7 +195,7 @@ ___
 
 ▸ **waitingForCollection**<**R**>(`query`: [Lambda](../README.md#lambda)‹*[Collection](../classes/collection.md)*, *`R`*›): *`(Anonymous function)`*
 
-*Defined in [support/queries/get.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L41)*
+*Defined in [support/queries/get.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L41)*
 
 **Type parameters:**
 
@@ -215,7 +215,7 @@ ___
 
 ▸ **waitingForEntity**<**R**>(`query`: [Lambda](../README.md#lambda)‹*[Element](../classes/element.md)*, *`R`*›): *`(Anonymous function)`*
 
-*Defined in [support/queries/get.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/queries/get.ts#L29)*
+*Defined in [support/queries/get.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/queries/get.ts#L29)*
 
 **Type parameters:**
 

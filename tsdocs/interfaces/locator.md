@@ -36,6 +36,6 @@
 
 ▸ **find**(): *`T`*
 
-*Defined in [locators/locator.ts:16](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/locator.ts#L16)*
+*Defined in [locators/locator.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/locator.ts#L16)*
 
 **Returns:** *`T`*

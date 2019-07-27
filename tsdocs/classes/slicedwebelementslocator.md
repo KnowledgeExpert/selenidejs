@@ -35,7 +35,7 @@
 
 \+ **new SlicedWebElementsLocator**(`start`: number, `end`: number, `collection`: [Collection](collection.md)): *[SlicedWebElementsLocator](slicedwebelementslocator.md)*
 
-*Defined in [locators/slicedWebElementsLocator.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L21)*
+*Defined in [locators/slicedWebElementsLocator.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L21)*
 
 Locates a slice in original collection webelements.
 
@@ -55,7 +55,7 @@ Name | Type | Description |
 
 • **collection**: *[Collection](collection.md)*
 
-*Defined in [locators/slicedWebElementsLocator.ts:31](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L31)*
+*Defined in [locators/slicedWebElementsLocator.ts:31](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L31)*
 
 Original collection to be sliced.
 
@@ -65,7 +65,7 @@ ___
 
 • **end**: *number*
 
-*Defined in [locators/slicedWebElementsLocator.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L30)*
+*Defined in [locators/slicedWebElementsLocator.ts:30](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L30)*
 
 The exclusive "end" index of webelements to be sliced.
 
@@ -75,7 +75,7 @@ ___
 
 • **start**: *number*
 
-*Defined in [locators/slicedWebElementsLocator.ts:29](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L29)*
+*Defined in [locators/slicedWebElementsLocator.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L29)*
 
 The inclusive "start" index of webelements to be sliced.
 
@@ -87,7 +87,7 @@ The inclusive "start" index of webelements to be sliced.
 
 *Implementation of [Locator](../interfaces/locator.md)*
 
-*Defined in [locators/slicedWebElementsLocator.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L37)*
+*Defined in [locators/slicedWebElementsLocator.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L37)*
 
 **Returns:** *`Promise<WebElement[]>`*
 
@@ -97,6 +97,6 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [locators/slicedWebElementsLocator.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L41)*
+*Defined in [locators/slicedWebElementsLocator.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/slicedWebElementsLocator.ts#L41)*
 
 **Returns:** *string*

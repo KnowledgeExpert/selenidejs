@@ -60,7 +60,7 @@ And SelenideJs is a tests tool, not something else.
 • **currentTab**: *`(Anonymous function)`* =  lambda('current tab (window handle)', async (browser: Browser) =>
         browser.driver.getWindowHandle())
 
-*Defined in [queries.ts:92](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L92)*
+*Defined in [queries.ts:92](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L92)*
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 • **innerHtml**: *`(Anonymous function)`* =  attribute('innerHTML')
 
-*Defined in [queries.ts:67](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L67)*
+*Defined in [queries.ts:67](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L67)*
 
 ___
 
@@ -81,7 +81,7 @@ ___
         return currentTabIndex >= allTabs.length ? allTabs[0] : allTabs[currentTabIndex + 1];
     })
 
-*Defined in [queries.ts:98](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L98)*
+*Defined in [queries.ts:98](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L98)*
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 • **outerHtml**: *`(Anonymous function)`* =  attribute('outerHTML')
 
-*Defined in [queries.ts:69](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L69)*
+*Defined in [queries.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L69)*
 
 ___
 
@@ -98,7 +98,7 @@ ___
 • **pageSource**: *`(Anonymous function)`* =  lambda('page source', async (browser: Browser) =>
        browser.driver.getPageSource())
 
-*Defined in [queries.ts:118](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L118)*
+*Defined in [queries.ts:118](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L118)*
 
 ___
 
@@ -111,7 +111,7 @@ ___
         return currentTabIndex > 0 ? allTabs[currentTabIndex - 1] : allTabs[allTabs.length - 1];
     })
 
-*Defined in [queries.ts:105](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L105)*
+*Defined in [queries.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L105)*
 
 ___
 
@@ -120,7 +120,7 @@ ___
 • **size**: *`(Anonymous function)`* =  lambda('size', async (collection: Collection) =>
         (await collection.getWebElements()).length)
 
-*Defined in [queries.ts:76](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L76)*
+*Defined in [queries.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L76)*
 
 ___
 
@@ -134,7 +134,7 @@ ___
         return text;
     })
 
-*Defined in [queries.ts:55](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L55)*
+*Defined in [queries.ts:55](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L55)*
 
 ___
 
@@ -143,7 +143,7 @@ ___
 • **tabs**: *`(Anonymous function)`* =  lambda('tabs (all window handles)', async (browser: Browser) =>
         browser.driver.getAllWindowHandles())
 
-*Defined in [queries.ts:112](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L112)*
+*Defined in [queries.ts:112](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L112)*
 
 ___
 
@@ -152,7 +152,7 @@ ___
 • **tabsNumber**: *`(Anonymous function)`* =  lambda('tabs number', async (browser: Browser) =>
         (await browser.driver.getAllWindowHandles()).length)
 
-*Defined in [queries.ts:115](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L115)*
+*Defined in [queries.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L115)*
 
 ___
 
@@ -161,7 +161,7 @@ ___
 • **text**: *`(Anonymous function)`* =  lambda('text', async (element: Element) =>
         (await element.getWebElement()).getText())
 
-*Defined in [queries.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L52)*
+*Defined in [queries.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L52)*
 
 ___
 
@@ -172,7 +172,7 @@ ___
         return Promise.all(webelements.map(webElement => webElement.getText()));
     })
 
-*Defined in [queries.ts:79](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L79)*
+*Defined in [queries.ts:79](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L79)*
 
 ___
 
@@ -181,7 +181,7 @@ ___
 • **title**: *`(Anonymous function)`* =  lambda('title', async (browser: Browser) =>
         browser.driver.getTitle())
 
-*Defined in [queries.ts:89](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L89)*
+*Defined in [queries.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L89)*
 
 ___
 
@@ -190,7 +190,7 @@ ___
 • **url**: *`(Anonymous function)`* =  lambda('url', async (browser: Browser) =>
         browser.driver.getCurrentUrl())
 
-*Defined in [queries.ts:86](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L86)*
+*Defined in [queries.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L86)*
 
 ___
 
@@ -198,7 +198,7 @@ ___
 
 • **value**: *`(Anonymous function)`* =  attribute('value')
 
-*Defined in [queries.ts:71](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L71)*
+*Defined in [queries.ts:71](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L71)*
 
 ## Functions
 
@@ -206,7 +206,7 @@ ___
 
 ▸ **attribute**(`name`: string): *`(Anonymous function)`*
 
-*Defined in [queries.ts:63](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L63)*
+*Defined in [queries.ts:63](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L63)*
 
 **Parameters:**
 
@@ -222,7 +222,7 @@ ___
 
 ▸ **tab**(`index`: number): *`(Anonymous function)`*
 
-*Defined in [queries.ts:95](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/queries.ts#L95)*
+*Defined in [queries.ts:95](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/queries.ts#L95)*
 
 **Parameters:**
 

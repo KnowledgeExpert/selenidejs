@@ -16,7 +16,7 @@
 
 ▸ **match**<**T**>(`condition`: [Condition](../classes/condition.md)‹*`T`*›): *`(Anonymous function)`*
 
-*Defined in [support/asserts/should.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/asserts/should.ts#L20)*
+*Defined in [support/asserts/should.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/asserts/should.ts#L20)*
 
 **Type parameters:**
 

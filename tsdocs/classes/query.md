@@ -45,7 +45,7 @@ So a query can pass and return something of type R or failed with Error correspo
 
 \+ **new Query**(`description`: any, `fn`: any): *[Query](query.md)*
 
-*Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
+*Defined in [wait.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 **Parameters:**
 
@@ -62,7 +62,7 @@ Name | Type |
 
 • **description**: *string*
 
-*Defined in [wait.ts:40](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L40)*
+*Defined in [wait.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L40)*
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 • **fn**: *[Lambda](../README.md#lambda)‹*`T`*, *`R`*›*
 
-*Defined in [wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
+*Defined in [wait.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 ## Methods
 
@@ -80,7 +80,7 @@ ___
 
 *Implementation of [Fn](../interfaces/fn.md)*
 
-*Defined in [wait.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L48)*
+*Defined in [wait.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L48)*
 
 **Parameters:**
 
@@ -96,6 +96,6 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
+*Defined in [wait.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
 **Returns:** *string*

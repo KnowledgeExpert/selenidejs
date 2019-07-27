@@ -33,7 +33,7 @@
  ', '    '))"* = "normalize-space(translate(string(.), '	
  ', '    '))"
 
-*Defined in [support/selectors/by.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L21)*
+*Defined in [support/selectors/by.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L21)*
 
 ## Functions
 
@@ -41,7 +41,7 @@
 
 ▸ **attribute**(`attributeName`: string, `attributeValue`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:69](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L69)*
+*Defined in [support/selectors/by.ts:69](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L69)*
 
 **Parameters:**
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **className**(`className`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:57](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L57)*
+*Defined in [support/selectors/by.ts:57](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L57)*
 
 **Parameters:**
 
@@ -74,7 +74,7 @@ ___
 
 ▸ **css**(`css`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:65](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L65)*
+*Defined in [support/selectors/by.ts:65](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L65)*
 
 **Parameters:**
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **exactText**(`text`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L41)*
+*Defined in [support/selectors/by.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L41)*
 
 **Parameters:**
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **id**(`id`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:49](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L49)*
+*Defined in [support/selectors/by.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L49)*
 
 **Parameters:**
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **linkText**(`text`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L45)*
+*Defined in [support/selectors/by.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L45)*
 
 **Parameters:**
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **name**(`name`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:53](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L53)*
+*Defined in [support/selectors/by.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L53)*
 
 **Parameters:**
 
@@ -154,7 +154,7 @@ ___
 
 ▸ **partialId**(...`idParts`: string[]): *`By`*
 
-*Defined in [support/selectors/by.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L32)*
+*Defined in [support/selectors/by.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L32)*
 
 **Parameters:**
 
@@ -170,7 +170,7 @@ ___
 
 ▸ **text**(`text`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L37)*
+*Defined in [support/selectors/by.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L37)*
 
 **Parameters:**
 
@@ -186,7 +186,7 @@ ___
 
 ▸ **type**(`type`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L23)*
+*Defined in [support/selectors/by.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L23)*
 
 **Parameters:**
 
@@ -202,7 +202,7 @@ ___
 
 ▸ **value**(`value`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:27](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L27)*
+*Defined in [support/selectors/by.ts:27](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L27)*
 
 **Parameters:**
 
@@ -218,7 +218,7 @@ ___
 
 ▸ **xpath**(`xpath`: string): *`By`*
 
-*Defined in [support/selectors/by.ts:61](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/selectors/by.ts#L61)*
+*Defined in [support/selectors/by.ts:61](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/selectors/by.ts#L61)*
 
 **Parameters:**
 

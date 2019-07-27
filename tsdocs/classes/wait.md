@@ -36,7 +36,7 @@
 
 \+ **new Wait**(`entity`: `T`, `timeout`: number): *[Wait](wait.md)*
 
-*Defined in [wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
+*Defined in [wait.ts:203](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ Name | Type |
 
 • **entity**: *`T`*
 
-*Defined in [wait.ts:202](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L202)*
+*Defined in [wait.ts:202](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L202)*
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 • **timeout**: *number*
 
-*Defined in [wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
+*Defined in [wait.ts:203](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
 ## Methods
 
@@ -69,7 +69,7 @@ ___
 
 ▸ **command**(`fn`: [Lambda](../README.md#lambda)‹*`T`*, *void*›): *`Promise<void>`*
 
-*Defined in [wait.ts:214](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L214)*
+*Defined in [wait.ts:214](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L214)*
 
 **Parameters:**
 
@@ -85,7 +85,7 @@ ___
 
 ▸ **for**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›): *`Promise<R>`*
 
-*Defined in [wait.ts:222](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L222)*
+*Defined in [wait.ts:222](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L222)*
 
 **Type parameters:**
 
@@ -105,7 +105,7 @@ ___
 
 ▸ **query**<**R**>(`fn`: [Lambda](../README.md#lambda)‹*`T`*, *`R`*›): *`Promise<R>`*
 
-*Defined in [wait.ts:210](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L210)*
+*Defined in [wait.ts:210](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L210)*
 
 **Type parameters:**
 
@@ -125,7 +125,7 @@ ___
 
 ▸ **until**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›): *`Promise<boolean>`*
 
-*Defined in [wait.ts:218](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L218)*
+*Defined in [wait.ts:218](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L218)*
 
 **Type parameters:**
 

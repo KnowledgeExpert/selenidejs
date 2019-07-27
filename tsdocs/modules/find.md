@@ -25,7 +25,7 @@
 
 ▸ **alert**(`browser`: [Browser](../classes/browser.md)): *`AlertPromise`*
 
-*Defined in [support/elements/find.ts:51](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L51)*
+*Defined in [support/elements/find.ts:51](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L51)*
 
 **Parameters:**
 
@@ -41,7 +41,7 @@ ___
 
 ▸ **all**(`cssOrXpathOrBy`: string | `By`): *`(Anonymous function)`*
 
-*Defined in [support/elements/find.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L28)*
+*Defined in [support/elements/find.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L28)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **element**(`cssOrXpathOrBy`: string | `By`): *`(Anonymous function)`*
 
-*Defined in [support/elements/find.ts:25](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L25)*
+*Defined in [support/elements/find.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L25)*
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **elementAt**(`index`: number): *`(Anonymous function)`*
 
-*Defined in [support/elements/find.ts:37](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L37)*
+*Defined in [support/elements/find.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L37)*
 
 **Parameters:**
 
@@ -89,7 +89,7 @@ ___
 
 ▸ **elementBy**(`condition`: [ElementCondition](../README.md#elementcondition)): *`(Anonymous function)`*
 
-*Defined in [support/elements/find.ts:45](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L45)*
+*Defined in [support/elements/find.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L45)*
 
 **Parameters:**
 
@@ -105,7 +105,7 @@ ___
 
 ▸ **filteredBy**(`condition`: [ElementCondition](../README.md#elementcondition)): *`(Anonymous function)`*
 
-*Defined in [support/elements/find.ts:47](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L47)*
+*Defined in [support/elements/find.ts:47](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L47)*
 
 **Parameters:**
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **first**(`collection`: [Collection](../classes/collection.md)): *[Element](../classes/element.md)*
 
-*Defined in [support/elements/find.ts:40](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L40)*
+*Defined in [support/elements/find.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L40)*
 
 **Parameters:**
 
@@ -137,7 +137,7 @@ ___
 
 ▸ **followingSibling**(`element`: [Element](../classes/element.md)): *[Element](../classes/element.md)*
 
-*Defined in [support/elements/find.ts:33](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L33)*
+*Defined in [support/elements/find.ts:33](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L33)*
 
 **Parameters:**
 
@@ -153,7 +153,7 @@ ___
 
 ▸ **parent**(`element`: [Element](../classes/element.md)): *[Element](../classes/element.md)*
 
-*Defined in [support/elements/find.ts:32](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L32)*
+*Defined in [support/elements/find.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L32)*
 
 **Parameters:**
 
@@ -169,7 +169,7 @@ ___
 
 ▸ **sliced**(`start`: number, `end`: number): *`(Anonymous function)`*
 
-*Defined in [support/elements/find.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/support/elements/find.ts#L41)*
+*Defined in [support/elements/find.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/support/elements/find.ts#L41)*
 
 **Parameters:**
 
