@@ -22,6 +22,8 @@ export declare class Element {
     scrollIntoView(): Promise<void>;
     should(condition: ElementCondition, timeout?: number): Promise<Element>;
     shouldNot(condition: ElementCondition): Promise<Element>;
+    waitUntil(condition: ElementCondition, timeout?: number): Promise<boolean>;
+    waitUntilNot(condition: ElementCondition, timeout?: number): Promise<boolean>;
     is(condition: ElementCondition, timeout?: number): Promise<boolean>;
     isNot(condition: ElementCondition): Promise<boolean>;
     matching(condition: ElementCondition, timeout?: number): Promise<boolean>;

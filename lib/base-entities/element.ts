@@ -198,6 +198,14 @@ export class Element {
         return await this.should(Condition.not(condition));
     }
 
+    async waitUntil(condition: ElementCondition, timeout?: number): Promise<boolean> {
+        return Wait.shouldMatch(this, condition, timeout).then((result) => true, (error) => false);
+    }
+
+    async waitUntilNot(condition: ElementCondition, timeout?: number): Promise<boolean> {
+        return this.should(Condition.not(condition), timeout).then((result) => true, (error) => false);
+    }
+
     async is(condition: ElementCondition, timeout?: number): Promise<boolean> {
         return await Wait.isMatch(this, condition, timeout);
     }

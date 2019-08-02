@@ -145,6 +145,12 @@ class Element {
     async shouldNot(condition) {
         return await this.should(condition_1.Condition.not(condition));
     }
+    async waitUntil(condition, timeout) {
+        return wait_1.Wait.shouldMatch(this, condition, timeout).then((result) => true, (error) => false);
+    }
+    async waitUntilNot(condition, timeout) {
+        return this.should(condition_1.Condition.not(condition), timeout).then((result) => true, (error) => false);
+    }
     async is(condition, timeout) {
         return await wait_1.Wait.isMatch(this, condition, timeout);
     }
