@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1 (released on 2019.08.16)
+
+### CHANGES
+  * updated `selenium-webdriver` version up to `4.0.0-alpha.4`
+
 ## 1.2.0
 
 ### BREAKING CHANGES
