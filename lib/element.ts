@@ -30,7 +30,7 @@ export class Element extends Entity implements Assertable, Matchable {
 
     constructor(private readonly locator: Locator<Promise<WebElement>>,
         // readonly configuration: Configuration) {
-        protected readonly configuration: Configuration) {
+                protected readonly configuration: Configuration) {
         super(configuration);
         this.locator = locator;
     }
