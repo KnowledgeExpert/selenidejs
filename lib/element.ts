@@ -13,25 +13,24 @@
 // limitations under the License.
 
 import { Button, By, Key, WebElement } from 'selenium-webdriver';
-import { by } from './support/selectors/by';
-import { Extensions } from './utils/extensions';
 import { Collection } from './collection';
-import { Configuration } from './configuration';
-import { Locator } from './locators/locator';
-import { lambda } from './utils';
-import { Assertable, Entity, Matchable } from './entity';
 import { command } from './commands';
+import { Configuration } from './configuration';
+import { Assertable, Entity, Matchable } from './entity';
 import { ElementWebElementByLocator } from './locators/ElementWebElementByLocator';
 import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLocator';
-import { Condition } from './wait';
+import { Locator } from './locators/locator';
+import { by } from './support/selectors/by';
+import { lambda } from './utils';
+import { Extensions } from './utils/extensions';
 
 
 export class Element extends Entity implements Assertable, Matchable {
     // todo: why not have private readonly driver property?
 
     constructor(private readonly locator: Locator<Promise<WebElement>>,
-                // readonly configuration: Configuration) {
-                protected readonly configuration: Configuration) {
+        // readonly configuration: Configuration) {
+        protected readonly configuration: Configuration) {
         super(configuration);
         this.locator = locator;
     }
@@ -113,7 +112,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     async setValue(value: string | number) {  // todo: should we rename it just to set?
-                                              // kind of more readable and reflects user context
+        // kind of more readable and reflects user context
         await this.wait.command(
             this.configuration.setValueByJs ?
                 command.js.setValue(value) :
@@ -155,7 +154,7 @@ export class Element extends Entity implements Assertable, Matchable {
             if (! await webelement.isDisplayed()) {
                 throw new Error('element is hidden');
             }
-            driver.actions().mouseMove(await element.getWebElement()).perform();
+            driver.actions().move({ x: 0, y: 0, duration: 100, origin: await element.getWebElement() }).perform();
         }));
         return this;
     }
