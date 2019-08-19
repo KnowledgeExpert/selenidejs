@@ -32,7 +32,7 @@
     "radix": false,
     "interface-over-type-literal": false,
     "no-internal-module": true,
-    "no-magic-numbers": true,
+    "no-magic-numbers": false,
     "interface-name": [
       true,
       "never-prefix"

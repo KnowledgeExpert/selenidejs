@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Builder, By, Capabilities, WebDriver, WebElement } from 'selenium-webdriver';
+import { Builder, By, Capabilities, IRectangle, WebDriver, WebElement } from 'selenium-webdriver';
 import { Extensions } from './utils/extensions';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
@@ -101,7 +101,7 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     async resizeWindow(width: number, height: number): Promise<Browser> {
-        await this.driver.manage().window().setSize(width, height);
+        await this.driver.manage().window().setRect({width, height});
         return this;
     }
 

@@ -241,7 +241,7 @@ ___
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
-*Defined in [entity.ts:100](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L100)*
+*Defined in [entity.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L102)*
 
 **Type parameters:**
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.2 (released on 2019.08.10)
+
+### FIXES
+  * fixed `setSize(...)` to `setRect({height: ..., width:...})` in `resizeWindow` according to latest upgrade of`selenium-webdriver` version up to `4.0.0-alpha.4`
+
 ## 1.2.1 (released on 2019.08.16)
 
 ### CHANGES

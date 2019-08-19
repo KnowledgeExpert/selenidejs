@@ -15,6 +15,7 @@
 import { Element } from '../../element';
 import { Browser } from '../../browser';
 import { command } from '../../commands';
+import { IRectangle } from 'selenium-webdriver';
 
 
 /* todo: is it Ok to just alias element.* command?
@@ -74,7 +75,7 @@ export namespace perform {
     /* Browser commands */
 
     export const open = (url: string) => (browser: Browser) => browser.open(url);
-    export const resizeWindow = (width: number, height: number) =>
+    export const resizeWindow = (width, height) =>
         (browser: Browser) => browser.resizeWindow(width, height);
     export const screenshot = (browser: Browser): Promise<Buffer> => browser.screenshot();
     export const closeCurrentTab = (browser: Browser) => browser.closeCurrentTab();
