@@ -38,11 +38,6 @@
     "prepublish": "npm run compile",
     "generateDocs": "typedoc --theme markdown --mode file --readme none --tsconfig lib/tsconfig.json --out tsdocs --gitRevision master lib"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run build"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/KnowledgeExpert/selenidejs.git"
