@@ -8,6 +8,26 @@
 Wrapper for Selenium WebDriver, which provides testing user-oriented API for writing stable and readable UI tests in
 JavaScript/TypeScript.
 
+## Table of content
+
+* [Usage](#usage)
+* [Quick Start](#quick-start)
+  * [Basic api](#basic-api)
+  * [More advanced tricks](#more-advanced-tricks)
+* [Examples](#more-examples)
+  * [SelenideJS + Jasmine](#selenidejs-on-top-of-selenium-webdriver-with-jasmine-as-test-runner-(typescript-version))
+  * [SelenideJS + Protractor](#selenidejs-on-top-of-protractor-(typescript-version))
+  * [SelenideJS + Webdriverio](#selenidejs-on-top-of-webdriverio-(typescript-version))
+  * [SelenideJS + Toundra](#selenidejs-on-top-of-selenium-webdriver-with-toundra-as-test-runner-(typescript-version))
+* [Tutorials](#tutorials)
+  * [General](#general)
+    * [TypeScript](#typescript-tutorial)
+    * [JavaScript](#javascript-tutorial)
+  * [How to create custom conditions](#how-to-create-custom-conditions)
+* [API documentation](#api-documentation)
+* [Contribution](#for-contributors)
+* [License](#license)
+
 ## Prerequisites
 
 [Nodejs 8+](https://nodejs.org/en/)
@@ -187,10 +207,10 @@ In case you want to be different) ...
 
 ## More Examples
 
-* [SelenideJS on top of Selenium Webdriver with Jasmine as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-jasmine-example)
-* [SelenideJS on top of Selenium Webdriver with Toundra as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-toundra-example)
-* [SelenideJS on top of Protractor (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-protractor-example)
-* [SelenideJS on top of Webdriverio (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriverio-mocha-example)
+##### [SelenideJS on top of Selenium Webdriver with Jasmine as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-jasmine-example)
+##### [SelenideJS on top of Selenium Webdriver with Toundra as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-toundra-example)
+##### [SelenideJS on top of Protractor (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-protractor-example)
+##### [SelenideJS on top of Webdriverio (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriverio-mocha-example)
 
 ## Tutorials
 
@@ -200,9 +220,9 @@ You can start with Typescript or Javascript tutorial to get familiar with basic 
  Using Typescript is recommended when writing tests (it will enable IDE's autocompletion features, compile-time checks,
 etc. since Selenidejs itself written in Typescript), but you still can use Javascript.
 
-Typescript tutorial can be found [here](./docs/TUTORIAL_TS.md).
+###### [Typescript tutorial](./docs/TUTORIAL_TS.md)
 
-Javascript tutorial can be found [here](./docs/TUTORIAL_JS.md).
+###### [Javascript tutorial](./docs/TUTORIAL_JS.md)
 
 ### How to create custom conditions
 
@@ -218,7 +238,7 @@ Generated API documentation can be found [here](./tsdocs/README.md).
 
 ### Guide
 
-please read [contributing](./docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting
+Please read [contributing](./docs/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting
  pull requests to
  us.
 
@@ -227,13 +247,13 @@ please read [contributing](./docs/CONTRIBUTING.md) for details on our code of co
 #### Prerequisites
 - google chrome is installed locally
 
-run unit and integration tests:
+Run unit and integration tests:
 
 ```
 npm test
 ```
 
-### run code style test
+### Run code style test
 
 run ts linter:
 
@@ -243,7 +263,7 @@ npm run lint
 
 ## Versioning
 
-we use [npm](https://www.npmjs.com/) for versioning. for the versions available, see the [npm](https://www.npmjs.com/package/selenidejs#versions) or github [releases](https://github.com/knowledgeexpert/selenidejs/releases).
+We use [npm](https://www.npmjs.com/) for versioning. for the versions available, see the [npm](https://www.npmjs.com/package/selenidejs#versions) or github [releases](https://github.com/knowledgeexpert/selenidejs/releases).
 
 ## History & Contributors
 
