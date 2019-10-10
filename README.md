@@ -15,10 +15,10 @@ JavaScript/TypeScript.
   * [Basic api](#basic-api)
   * [More advanced tricks](#more-advanced-tricks)
 * [Examples](#more-examples)
-  * [SelenideJS + Jasmine](#selenidejs-on-top-of-selenium-webdriver-with-jasmine-as-test-runner-(typescript-version))
-  * [SelenideJS + Protractor](#selenidejs-on-top-of-protractor-(typescript-version))
-  * [SelenideJS + Webdriverio](#selenidejs-on-top-of-webdriverio-(typescript-version))
-  * [SelenideJS + Toundra](#selenidejs-on-top-of-selenium-webdriver-with-toundra-as-test-runner-(typescript-version))
+  * [SelenideJS + Jasmine](#selenidejs-on-top-of-selenium-webdriver-with-jasmine-as-test-runner-typescript-version)
+  * [SelenideJS + Protractor](#selenidejs-on-top-of-protractor-typescript-version)
+  * [SelenideJS + Webdriverio](#selenidejs-on-top-of-webdriverio-typescript-version)
+  * [SelenideJS + Toundra](#selenidejs-on-top-of-selenium-webdriver-with-toundra-as-test-runner-typescript-version)
 * [Tutorials](#tutorials)
   * [General](#general)
     * [TypeScript](#typescript-tutorial)
@@ -208,9 +208,9 @@ In case you want to be different) ...
 ## More Examples
 
 ##### [SelenideJS on top of Selenium Webdriver with Jasmine as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-jasmine-example)
-##### [SelenideJS on top of Selenium Webdriver with Toundra as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-toundra-example)
 ##### [SelenideJS on top of Protractor (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-protractor-example)
 ##### [SelenideJS on top of Webdriverio (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriverio-mocha-example)
+##### [SelenideJS on top of Selenium Webdriver with Toundra as test runner (TypeScript version)](https://github.com/KnowledgeExpert/selenidejs-webdriver-toundra-example)
 
 ## Tutorials
 
