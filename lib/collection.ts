@@ -13,24 +13,23 @@
 // limitations under the License.
 
 import { WebElement } from 'selenium-webdriver';
-import { CollectionCondition, ElementCondition } from './conditions';
+import { ElementCondition } from './conditions';
 import { Configuration } from './configuration';
 import { Element } from './element';
+import { Assertable, Entity, Matchable } from './entity';
+import { ElementByConditionWebElementLocator } from './locators/byConditionWebElementLocator';
 import { ByIndexWebElementLocator } from './locators/byIndexWebElementLocator';
 import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
-import { Condition, Query, Wait } from './wait';
-import { Assertable, Entity, Matchable } from './entity';
-import { ElementByConditionWebElementLocator } from './locators/byConditionWebElementLocator';
-import { have } from './support/conditions/have';
 import { SlicedWebElementsLocator } from './locators/slicedWebElementsLocator';
+import { Condition } from './wait';
 
 export class Collection extends Entity implements Assertable, Matchable {
 
-    constructor(private readonly locator: Locator<Promise<WebElement[]>>,
-                protected readonly configuration: Configuration) {
-                // readonly configuration: Configuration) {
+    private readonly locator: Locator<Promise<WebElement[]>>
+
+    constructor(locator: Locator<Promise<WebElement[]>>, configuration: Configuration) {
         super(configuration);
         this.locator = locator;
     }

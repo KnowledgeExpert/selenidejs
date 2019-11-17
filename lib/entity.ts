@@ -49,9 +49,10 @@ export interface Configured {
 
 export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
 
+    readonly configuration: Configuration;
     protected readonly wait: Wait<this>;
 
-    constructor(protected readonly configuration: Configuration) {
+    constructor(configuration: Configuration) {
         this.configuration = configuration;
         this.wait = new Wait(this, configuration.timeout);
     }
