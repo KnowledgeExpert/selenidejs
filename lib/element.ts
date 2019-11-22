@@ -26,11 +26,10 @@ import { Extensions } from './utils/extensions';
 
 
 export class Element extends Entity implements Assertable, Matchable {
-    // todo: why not have private readonly driver property?
 
-    constructor(private readonly locator: Locator<Promise<WebElement>>,
-        // readonly configuration: Configuration) {
-                protected readonly configuration: Configuration) {
+    readonly locator: Locator<Promise<WebElement>>;
+
+    constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration) {
         super(configuration);
         this.locator = locator;
     }
