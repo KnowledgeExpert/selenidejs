@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, webelement, webelements } from './base';
-import { be, have } from '../../lib';
+import { have } from '../../lib';
+import { browser, data, GIVEN } from './base';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
@@ -31,6 +31,16 @@ describe('Conditions.element.hasText (via should*)', () => {
         await browser.element('button').should(have.text('hey, click me!'));
         await browser.element('button').should(have.no.text(' hey, click me! '));
     });
+
+    it('is matched instantly for element that matches text', async () => {
+        await GIVEN.openedEmptyPageWithBody(`
+                <button>hey, click me!</button>
+        `);
+
+        await browser.element('button').should(have.text(/click/g));
+        await browser.element('button').should(have.text(/hey, click me!/g));
+        await browser.element('button').should(have.no.text(/\d.*/g));
+    })
 
     // todo: add test for invisible element with some text...
 
