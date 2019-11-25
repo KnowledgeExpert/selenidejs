@@ -128,10 +128,31 @@ export namespace condition {
 
         export const isHidden = Condition.not(isVisible, 'is hidden');
 
-        export const hasAttribute = (name: string) => new Condition(
-            `has attribute '${name}'`,
+        export const hasAttribute = (name: string) => new (class extends Condition<Element> {
+            values(...values: string[]) {
+                return new Condition<Collection>(
+                    `${this.description} with values ${values}`,
+                    async (collection: Collection) => {
+                        const webelements = await collection.getWebElements();
+                        const attributes = [];
+                        for (const webelement of webelements) {
+                            attributes.push(await webelement.getAttribute(name));
+                        }
+                        if (attributes.length !== values.length) {
+                            throw new Error(`have values ${attributes}`);
+                        }
+                        for (let i = 0; i < attributes.length; i++) {
+                            if (!attributes[i].includes(values[i])) {
+                                throw new Error(`have values ${attributes}`);
+                            }
+                        }
+                    }
+                );
+            }
+        })(
+            `have attribute '${name}'`,
             throwIfNotActual(query.attribute(name), predicate.isTruthy)
-        );
+        ) as Condition<Element> & { values: (...attributeValues: string[]) => Condition<Collection> };
 
         export const isSelected = hasAttribute('elementIsSelected');
 

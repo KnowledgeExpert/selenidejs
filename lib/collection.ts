@@ -27,7 +27,7 @@ import { Condition } from './wait';
 
 export class Collection extends Entity implements Assertable, Matchable {
 
-    private readonly locator: Locator<Promise<WebElement[]>>
+    private readonly locator: Locator<Promise<WebElement[]>>;
 
     constructor(locator: Locator<Promise<WebElement[]>>, configuration: Configuration) {
         super(configuration);

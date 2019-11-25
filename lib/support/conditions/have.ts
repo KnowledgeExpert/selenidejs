@@ -29,8 +29,9 @@ export namespace have {
     export const text = (value: string/* | number*/): ElementCondition =>
         condition.element.hasText(value);
 
-    export const attribute = (name: string): ElementCondition =>
-        condition.element.hasAttribute(name);
+    export const attribute =
+        (name: string): ElementCondition & { values: (...values: string[]) => CollectionCondition } =>
+            condition.element.hasAttribute(name);
 
     export const attributeWithValue = (attributeName: string, attributeValue: string/* | number*/): ElementCondition =>
         condition.element.hasAttributeWithValue(attributeName, attributeValue);
