@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { WebElement } from 'selenium-webdriver';
+import { By, WebElement } from 'selenium-webdriver';
 import { ElementCondition } from './conditions';
 import { Configuration } from './configuration';
 import { Element } from './element';
@@ -20,10 +20,14 @@ import { Assertable, Entity, Matchable } from './entity';
 import { ElementByConditionWebElementLocator } from './locators/byConditionWebElementLocator';
 import { ByIndexWebElementLocator } from './locators/byIndexWebElementLocator';
 import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
+import { ElementInEachByLocator } from './locators/elementInEachByLocator';
+import { ElementsInEachByLocator } from './locators/elementsInEachByLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SlicedWebElementsLocator } from './locators/slicedWebElementsLocator';
+import { Extensions } from './utils/extensions';
 import { Condition } from './wait';
+
 
 export class Collection extends Entity implements Assertable, Matchable {
 
@@ -75,6 +79,16 @@ export class Collection extends Entity implements Assertable, Matchable {
             new ElementByConditionWebElementLocator(Condition.all(...conditions), this),
             this.configuration
         );
+    }
+
+    all(cssOrXpathOrBy: string | By): Collection {
+        const by = Extensions.toBy(cssOrXpathOrBy);
+        return new Collection(new ElementsInEachByLocator(by, this), this.configuration);
+    }
+
+    map(cssOrXpathOrBy: string | By): Collection {
+        const by = Extensions.toBy(cssOrXpathOrBy);
+        return new Collection(new ElementInEachByLocator(by, this), this.configuration);
     }
 
     async getWebElements(): Promise<WebElement[]> {
