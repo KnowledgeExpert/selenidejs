@@ -21,6 +21,7 @@ export namespace predicate {
     export const isLessThan = <V>(expected: V) => (actual: V) => actual < expected;
     export const isLessThanOrEqual = <V>(expected: V) => (actual: V) => actual <= expected;
     export const includes = (expected: any) => (actual: any) => actual.includes(expected);
+    export const matches = (expected: any) => (actual: any) => actual.match(expected);
     export const includesWord =
         (expected: string) => (actual: string) => actual.split(' ').includes(expected);
     export const arrayCompareBy = (f) => ([x, ...xs]: any[]) => ([y, ...ys]: any[]) =>
