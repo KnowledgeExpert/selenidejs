@@ -31,10 +31,20 @@ describe('Conditions.collection.have.attributt.values (via should*)', () => {
         `);
 
         await browser.all('span').should(have.attribute('attr').values('first', 'second', 'third', 'fourth'));
-        await browser.all('span').should(have.attribute('attr').values('fi', 'sec', 'th', 'fou'));
     });
 
-    it('throwr error witn correct text if values or size dont match', async () => {
+    it('is matched instantly for collection that do not have correct attributes', async () => {
+        await GIVEN.openedEmptyPageWithBody(`
+                <span attr='first'></span>
+                <span attr='second'></span>
+                <span attr='third'></span>
+                <span attr='fourth'></span>
+        `);
+
+        await browser.all('span').should(have.no.attribute('attr').values('fourth', 'third', 'second', 'first'));
+    });
+
+    it('throws error with correct text if values or size dont match', async () => {
         await GIVEN.openedEmptyPageWithBody(`
                 <span attr='first'></span>
                 <span attr='second'></span>
@@ -45,14 +55,22 @@ describe('Conditions.collection.have.attributt.values (via should*)', () => {
         await browser.all('span').should(have.attribute('attr').values('first'))
             .then(ifNoError => fail('should fail on timeout'))
             .catch(error => {
-                expect(error.message).toContain(`browser.all(By(css selector, span)).have attribute 'attr' with values first`);
-                expect(error.message).toContain('have values first,second,third,fourth');
+                expect(error.message).toContain(
+                    `browser.all(By(css selector, span)).have attribute 'attr' with values first`
+                );
+                expect(error.message).toContain(
+                    "actual 'attr' attribute values: first,second,third,fourth"
+                );
             });
         await browser.all('span').should(have.attribute('attr').values('FAIL', 'sec', 'th', 'fou'))
             .then(ifNoError => fail('should fail on timeout'))
             .catch(error => {
-                expect(error.message).toContain(`browser.all(By(css selector, span)).have attribute 'attr' with values FAIL,sec,th,fou`);
-                expect(error.message).toContain('have values first,second,third,fourth');
+                expect(error.message).toContain(
+                    `browser.all(By(css selector, span)).have attribute 'attr' with values FAIL,sec,th,fou`
+                );
+                expect(error.message).toContain(
+                    "actual 'attr' attribute values: first,second,third,fourth"
+                );
             });
     });
 

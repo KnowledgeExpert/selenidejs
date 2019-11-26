@@ -71,8 +71,8 @@ export class Command<T> extends Query<T, void> { }
  */
 export class Condition<E> implements Fn<E, void> {
 
-    protected readonly description: string;
-    protected readonly fn: Lambda<E, void>;
+    private readonly description: string;
+    private readonly fn: Lambda<E, void>;
 
     constructor(description, fn) {
         this.description = description;

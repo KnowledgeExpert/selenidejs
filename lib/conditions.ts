@@ -131,30 +131,16 @@ export namespace condition {
         export const hasAttribute = (name: string) => new (class extends Condition<Element> {
             values(...values: string[]) {
                 return new Condition<Collection>(
-                    `${this.description} with values ${values}`,
-                    async (collection: Collection) => {
-                        const webelements = await collection.getWebElements();
-                        const attributes = [];
-                        for (const webelement of webelements) {
-                            attributes.push(await webelement.getAttribute(name));
-                        }
-                        if (attributes.length !== values.length) {
-                            throw new Error(`have values ${attributes}`);
-                        }
-                        for (let i = 0; i < attributes.length; i++) {
-                            if (!attributes[i].includes(values[i])) {
-                                throw new Error(`have values ${attributes}`);
-                            }
-                        }
-                    }
+                    `have attribute '${name}' with values ${values}`,
+                    throwIfNotActual(query.attributes(name), predicate.equalsToArray(values))
                 );
             }
         })(
-            `have attribute '${name}'`,
+            `has attribute '${name}'`,
             throwIfNotActual(query.attribute(name), predicate.isTruthy)
         ) as Condition<Element> & { values: (...attributeValues: string[]) => Condition<Collection> };
 
-        export const isSelected = hasAttribute('elementIsSelected');
+        export const isSelected: Condition<Element> = hasAttribute('elementIsSelected');
 
         export const isEnabled = new Condition(
             'is enabled',
@@ -253,7 +239,7 @@ export namespace condition {
 
         export const hasExactTexts = (texts: string[]): CollectionCondition => new Condition(
             `has exact texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts))
+            throwIfNotActual(query.texts, predicate.equalsToArray(texts))
         );
     }
 
