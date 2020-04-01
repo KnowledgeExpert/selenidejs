@@ -59,15 +59,17 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     /* Elements */
 
-    element(cssOrXpathOrBy: (string | By | ((context: Browser) => Locator<Promise<WebElement>>)), customized?: Partial<Configuration>): Element {
+    // tslint:disable-next-line:ban-types
+    element(cssOrXpathOrBy: (string | By | { script: string | Function, args: any[] }), customized?: Partial<Configuration>): Element {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        if (cssOrXpathOrBy instanceof Function) {
-            return new Element(cssOrXpathOrBy(this), configuration);
-        } else {
+        if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
             const by = Extensions.toBy(cssOrXpathOrBy);
             const locator = new BrowserWebElementByLocator(by, this);
+            return new Element(locator, configuration);
+        } else {
+            const locator = new BrowserWebElementByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
             return new Element(locator, configuration);
         }
     }

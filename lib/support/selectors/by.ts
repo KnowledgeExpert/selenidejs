@@ -76,10 +76,8 @@ export namespace by {
     }
 
     // tslint:disable-next-line:ban-types
-    export function js(script: (string | Function), ...args: any[]): (context: Element | Browser) => Locator<Promise<WebElement>> {
-        return (context: Element | Browser) => context instanceof Element
-            ? new ElementWebElementByJs(context, script, args)
-            : new BrowserWebElementByJs(context, script, args);
+    export function js(script: (string | Function), ...args: any[]): { script: (string | Function), args: any[] } {
+        return { script, args };
     }
 
 }

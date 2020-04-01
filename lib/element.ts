@@ -25,6 +25,7 @@ import { lambda } from './utils';
 import { Extensions } from './utils/extensions';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 import instanceOfLocator = Extensions.instanceOfLocator;
+import { ElementWebElementByJs } from './locators/ElementWebElementByJs';
 
 
 export class Element extends Entity implements Assertable, Matchable {
@@ -50,16 +51,18 @@ export class Element extends Entity implements Assertable, Matchable {
         return new Element(this.locator, new Configuration({ ...this.configuration, ...customConfig }));
     }
 
-    element(cssOrXpathOrBy: (string | By | ((context: Element) => Locator<Promise<WebElement>>)), customized?: Partial<Configuration>): Element {
+    // tslint:disable-next-line:ban-types
+    element(cssOrXpathOrBy: (string | By | { script: string | Function, args: any[] }), customized?: Partial<Configuration>): Element {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        if (cssOrXpathOrBy instanceof Function) {
-            return new Element(cssOrXpathOrBy(this), configuration);
+        if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
+          const by = Extensions.toBy(cssOrXpathOrBy);
+          const locator = new ElementWebElementByLocator(by, this);
+          return new Element(locator, configuration);
         } else {
-            const by = Extensions.toBy(cssOrXpathOrBy);
-            const locator = new ElementWebElementByLocator(by, this);
-            return new Element(locator, configuration);
+          const locator = new ElementWebElementByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
+          return new Element(locator, configuration);
         }
     }
 
