@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By } from 'selenium-webdriver';
+import { By, WebElement, WebDriver } from 'selenium-webdriver';
+import { Locator } from '../../locators/locator';
+import { BrowserWebElementByJs } from '../../locators/BrowserWebElementByJs';
 
 
 // todo: why not use css selectors below, where it is enough?
@@ -68,6 +70,13 @@ export namespace by {
 
     export function attribute(attributeName: string, attributeValue: string): By {
         return By.xpath(`.//*[@${attributeName} = '${attributeValue}']`);
+    }
+
+    export function js(func: () => Node): (driver: WebDriver) => Locator<Promise<WebElement>> {
+        return (driver: WebDriver) => new BrowserWebElementByJs(
+            (driver: WebDriver) => driver.executeScript(func) as Promise<WebElement>,
+            driver
+        );
     }
 
 }

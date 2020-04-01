@@ -12,16 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Builder, By, Capabilities, IRectangle, WebDriver, WebElement } from 'selenium-webdriver';
-import { Extensions } from './utils/extensions';
+import { Builder, By, Capabilities, WebDriver, WebElement } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { Assertable, Entity, Matchable } from './entity';
-import isAbsoluteUrl = Extensions.isAbsoluteUrl;
-import { query } from './queries';
+import { BrowserWebElementByJs } from './locators/BrowserWebElementByJs';
 import { BrowserWebElementByLocator } from './locators/BrowserWebElementByLocator';
 import { BrowserWebElementsByLocator } from './locators/BrowserWebElementsByLocator';
+import { query } from './queries';
+import { Extensions } from './utils/extensions';
+import isAbsoluteUrl = Extensions.isAbsoluteUrl;
+import { Locator } from './locators/locator';
 
 export class Browser extends Entity implements Assertable, Matchable {
 
@@ -56,13 +58,17 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     /* Elements */
 
-    element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new BrowserWebElementByLocator(by, this);
+    element(cssOrXpathOrBy: string | By | ((driver: WebDriver) => Locator<Promise<WebElement>>), customized?: Partial<Configuration>): Element {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        return new Element(locator, configuration);
+        if (cssOrXpathOrBy instanceof Function) {
+            return new Element(cssOrXpathOrBy(this.driver), configuration);
+        } else {
+            const by = Extensions.toBy(cssOrXpathOrBy);
+            const locator = new BrowserWebElementByLocator(by, this);
+            return new Element(locator, configuration);
+        }
     }
 
     all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection {
@@ -101,7 +107,7 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     async resizeWindow(width: number, height: number): Promise<Browser> {
-        await this.driver.manage().window().setRect({width, height});
+        await this.driver.manage().window().setRect({ width, height });
         return this;
     }
 
@@ -159,12 +165,12 @@ export class Browser extends Entity implements Assertable, Matchable {
         return this;
     }
 
-/*    async switchToFrame(frameElement: Element): Promise<Browser> {
-        await this.wait.command(async browser => {
-            browser.driver.switchTo().frame(await frameElement.getWebElement());
-        });
-        return this;
-    }*/
+    /*    async switchToFrame(frameElement: Element): Promise<Browser> {
+            await this.wait.command(async browser => {
+                browser.driver.switchTo().frame(await frameElement.getWebElement());
+            });
+            return this;
+        }*/
 
     async switchToDefaultFrame(): Promise<Browser> {
         await this.driver.switchTo().defaultContent();
@@ -172,52 +178,52 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     // todo: cache is not the same as LocalAndSessionStorage; so we have to be verbose in name; but do we need it then?
-/*    async clearLocalAndSessionStorageAndCookies(): Promise<Browser> {
-        await this.driver.executeScript('window.localStorage.clear();')
-            .catch(ignored => {});
-        await this.driver.executeScript('window.sessionStorage.clear();')
-            .catch(ignored => {});
-        await this.driver.manage().deleteAllCookies()
-            .catch(ignored => {});
-        return this;
-    }*/
+    /*    async clearLocalAndSessionStorageAndCookies(): Promise<Browser> {
+            await this.driver.executeScript('window.localStorage.clear();')
+                .catch(ignored => {});
+            await this.driver.executeScript('window.sessionStorage.clear();')
+                .catch(ignored => {});
+            await this.driver.manage().deleteAllCookies()
+                .catch(ignored => {});
+            return this;
+        }*/
 
     async clearLocalStorage(): Promise<Browser> {
         await this.driver.executeScript('window.localStorage.clear();')
-            .catch(ignored => {});
+            .catch(ignored => { });
         return this;
     }
 
     async clearSessionStorage(): Promise<Browser> {
         await this.driver.executeScript('window.sessionStorage.clear();')
-            .catch(ignored => {});
+            .catch(ignored => { });
         return this;
     }
 
     async clearCookies(): Promise<Browser> {
         await this.driver.manage().deleteAllCookies()
-            .catch(ignored => {});
+            .catch(ignored => { });
         return this;
     }
 
-/*
-    async deleteCookie(name: string): Promise<Browser> {
-        await this.driver.manage().deleteCookie(name);
-        return this;
-    }*/
+    /*
+        async deleteCookie(name: string): Promise<Browser> {
+            await this.driver.manage().deleteCookie(name);
+            return this;
+        }*/
 
     get alert() {
         return this.driver.switchTo().alert();
     }
 
     // todo: there are lot more methods in switchTo().alert() should not we just expose switchTo or alert?
-/*    async acceptAlert(): Promise<Browser> {
-        await this.driver.switchTo().alert().accept();
-        return this;
-    }
+    /*    async acceptAlert(): Promise<Browser> {
+            await this.driver.switchTo().alert().accept();
+            return this;
+        }
 
-    async dismissAlert(): Promise<Browser> {
-        await this.driver.switchTo().alert().dismiss();
-        return this;
-    }*/
+        async dismissAlert(): Promise<Browser> {
+            await this.driver.switchTo().alert().dismiss();
+            return this;
+        }*/
 }
