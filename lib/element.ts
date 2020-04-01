@@ -23,6 +23,8 @@ import { Locator } from './locators/locator';
 import { by } from './support/selectors/by';
 import { lambda } from './utils';
 import { Extensions } from './utils/extensions';
+import isAbsoluteUrl = Extensions.isAbsoluteUrl;
+import instanceOfLocator = Extensions.instanceOfLocator;
 
 
 export class Element extends Entity implements Assertable, Matchable {
@@ -48,10 +50,17 @@ export class Element extends Entity implements Assertable, Matchable {
         return new Element(this.locator, new Configuration({ ...this.configuration, ...customConfig }));
     }
 
-    element(cssOrXpathOrBy: string | By): Element { // todo: think on refactoring string | By to a new type
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ElementWebElementByLocator(by, this);
-        return new Element(locator, this.configuration);
+    element(cssOrXpathOrBy: (string | By | ((context: Element) => Locator<Promise<WebElement>>)), customized?: Partial<Configuration>): Element {
+        const configuration = customized === undefined ?
+            this.configuration :
+            new Configuration({ ...this.configuration, ...customized });
+        if (cssOrXpathOrBy instanceof Function) {
+            return new Element(cssOrXpathOrBy(this), configuration);
+        } else {
+            const by = Extensions.toBy(cssOrXpathOrBy);
+            const locator = new ElementWebElementByLocator(by, this);
+            return new Element(locator, configuration);
+        }
     }
 
 
@@ -71,30 +80,16 @@ export class Element extends Entity implements Assertable, Matchable {
 
     /* Commands */
 
-    /* todo: consider the following implementation:
-
-    async executeScript(script: string, ...args: any[]) {
-        const wrappedScript =
-            `
-            var element = arguments[0];
-            return (function(arguments) {
-                ${script}
-            })(arguments);
-            `;
+    // TODO: probably we need to wrap that in wait as well - by Alexander Popov (alex.popov.tech@gmail.com) on Wed Apr  1 23:44:49 2020
+    // tslint:disable-next-line:ban-types
+    async executeScript(script: string | Function, ...args: any[]) {
+        const wrappedScript = 'var element = arguments[0];' +
+            (script instanceof Function
+            ? `return (${script.toString()}).apply(null, arguments);`
+            : `return (function(arguments) { ${script} })(arguments);`);
         const webelement = await this.getWebElement();
-        return this.driver.executeScript(wrappedScript, webelement, ...args);
+        return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
     }
-
-     */
-
-    // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
-    /* tslint:disable:ban-types */
-    async executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]) {
-        return this.configuration.driver.executeScript(
-            scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
-        );
-    }
-    /* tslint:enable:ban-types */
 
     async click() {
         await this.wait.command(lambda('click', async element =>

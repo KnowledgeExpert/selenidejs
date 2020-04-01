@@ -23,6 +23,7 @@ import { BrowserWebElementsByLocator } from './locators/BrowserWebElementsByLoca
 import { query } from './queries';
 import { Extensions } from './utils/extensions';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
+import instanceOfLocator = Extensions.instanceOfLocator;
 import { Locator } from './locators/locator';
 
 export class Browser extends Entity implements Assertable, Matchable {
@@ -58,12 +59,12 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     /* Elements */
 
-    element(cssOrXpathOrBy: string | By | ((driver: WebDriver) => Locator<Promise<WebElement>>), customized?: Partial<Configuration>): Element {
+    element(cssOrXpathOrBy: (string | By | ((context: Browser) => Locator<Promise<WebElement>>)), customized?: Partial<Configuration>): Element {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
         if (cssOrXpathOrBy instanceof Function) {
-            return new Element(cssOrXpathOrBy(this.driver), configuration);
+            return new Element(cssOrXpathOrBy(this), configuration);
         } else {
             const by = Extensions.toBy(cssOrXpathOrBy);
             const locator = new BrowserWebElementByLocator(by, this);

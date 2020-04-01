@@ -13,14 +13,14 @@
 // limitations under the License.
 
 import { WebElement } from 'selenium-webdriver';
+import { Element } from '../element';
 import { Locator } from './locator';
-import { Browser } from '../browser';
 
 
-export class BrowserWebElementByJs implements Locator<Promise<WebElement>> {
+export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
 
     constructor(
-        private readonly context: Browser,
+        private readonly context: Element,
         // tslint:disable-next-line:ban-types
         private readonly script: (string | Function),
         private readonly args: any[]
@@ -35,6 +35,6 @@ export class BrowserWebElementByJs implements Locator<Promise<WebElement>> {
     }
 
     toString(): string {
-        return `browser.element(${this.script.toString()})`;
+        return `browser.elementByJs(${this.script.toString()})`;
     }
 }

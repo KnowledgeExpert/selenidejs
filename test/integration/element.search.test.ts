@@ -102,9 +102,28 @@ describe('Element search', () => {
             });
     });
 
-    fit('finds root element by js', async () => {
+    it('finds root element by js', async () => {
         await GIVEN.openedEmptyPageWithBody('<span>hello there</span>');
         await browser.element(by.js(() => document.getElementsByTagName('span')[0]))
+            .getWebElement()
+            .then(element => element.getText())
+            .then(text => expect(text).toBe('hello there'));
+        await browser.element(by.js('return document.getElementsByTagName("span")[0];'))
+            .getWebElement()
+            .then(element => element.getText())
+            .then(text => expect(text).toBe('hello there'));
+    });
+
+    it('finds nested element by js', async () => {
+        await GIVEN.openedEmptyPageWithBody('<span>wrong one</span><div><span>hello there</span></div>');
+        await browser.element('div')
+            .element(by.js('return element.getElementsByTagName("span")[0]'))
+            .getWebElement()
+            .then(element => element.getText())
+            .then(text => expect(text).toBe('hello there'));
+        await browser.element('div')
+            // @ts-ignore
+            .element(by.js(() => element.getElementsByTagName("span")[0]))
             .getWebElement()
             .then(element => element.getText())
             .then(text => expect(text).toBe('hello there'));
