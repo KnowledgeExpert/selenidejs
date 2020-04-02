@@ -13,14 +13,14 @@
 // limitations under the License.
 
 import { WebElement } from 'selenium-webdriver';
-import { Element } from '../element';
 import { Locator } from './locator';
+import { Browser } from '../browser';
 
 
-export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
+export class BrowserWebElementsByJs implements Locator<Promise<WebElement[]>> {
 
     constructor(
-        private readonly context: Element,
+        private readonly context: Browser,
         // tslint:disable-next-line:ban-types
         private readonly script: (string | Function),
         private readonly args: any[]
@@ -30,17 +30,18 @@ export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
         this.args = args;
     }
 
-    async find(): Promise<WebElement> {
+    async find(): Promise<WebElement[]> {
         const result = await this.context.executeScript(this.script, this.args);
-        if (!(result instanceof WebElement)) {
+        if (!(result instanceof Array)) {
             throw new Error(
-                `You should return HTMLElement object from script, but was: ${result ? result.toString() : result}`
+                `You should return an array of HTMLElement objects from script, but was: ${result ? result.toString() : result}`
             );
+
         }
         return result;
     }
 
     toString(): string {
-        return `${this.context.toString()}.element(${this.script.toString()})`;
+        return `browser.all(${this.script.toString()})`;
     }
 }

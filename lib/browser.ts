@@ -25,6 +25,7 @@ import { Extensions } from './utils/extensions';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 import instanceOfLocator = Extensions.instanceOfLocator;
 import { Locator } from './locators/locator';
+import { BrowserWebElementsByJs } from './locators/BrowserWebElementsByJs';
 
 export class Browser extends Entity implements Assertable, Matchable {
 
@@ -74,13 +75,18 @@ export class Browser extends Entity implements Assertable, Matchable {
         }
     }
 
-    all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new BrowserWebElementsByLocator(by, this);
+    all(cssOrXpathOrBy: string | By | { script: string | Function, args: any[] }, customized?: Partial<Configuration>): Collection {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        return new Collection(locator, configuration);
+        if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
+            const by = Extensions.toBy(cssOrXpathOrBy);
+            const locator = new BrowserWebElementsByLocator(by, this);
+            return new Collection(locator, configuration);
+        } else {
+            const locator = new BrowserWebElementsByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
+            return new Collection(locator, configuration);
+        }
     }
 
     /* Commands */

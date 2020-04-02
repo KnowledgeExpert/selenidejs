@@ -17,6 +17,8 @@ import { Collection } from './collection';
 import { command } from './commands';
 import { Configuration } from './configuration';
 import { Assertable, Entity, Matchable } from './entity';
+import { ElementWebElementByJs } from './locators/ElementWebElementByJs';
+import { ElementWebElementsByJs } from './locators/ElementWebElementsByJs';
 import { ElementWebElementByLocator } from './locators/ElementWebElementByLocator';
 import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLocator';
 import { Locator } from './locators/locator';
@@ -25,165 +27,173 @@ import { lambda } from './utils';
 import { Extensions } from './utils/extensions';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 import instanceOfLocator = Extensions.instanceOfLocator;
-import { ElementWebElementByJs } from './locators/ElementWebElementByJs';
 
 
 export class Element extends Entity implements Assertable, Matchable {
 
-    readonly locator: Locator<Promise<WebElement>>;
+  readonly locator: Locator<Promise<WebElement>>;
 
-    constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration) {
-        super(configuration);
-        this.locator = locator;
+  constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration) {
+    super(configuration);
+    this.locator = locator;
+  }
+
+  toString(): string {
+    return this.locator.toString();
+  }
+
+  async getWebElement(): Promise<WebElement> {
+    return this.locator.find();
+  }
+
+  /* Relative search */
+
+  with(customConfig: Partial<Configuration>): Element {
+    return new Element(this.locator, new Configuration({ ...this.configuration, ...customConfig }));
+  }
+
+  // tslint:disable-next-line:ban-types
+  element(cssOrXpathOrBy: (string | By | { script: string | Function, args: any[] }), customized?: Partial<Configuration>): Element {
+    const configuration = customized === undefined ?
+      this.configuration :
+      new Configuration({ ...this.configuration, ...customized });
+    if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
+      const by = Extensions.toBy(cssOrXpathOrBy);
+      const locator = new ElementWebElementByLocator(by, this);
+      return new Element(locator, configuration);
+    } else {
+      const locator = new ElementWebElementByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
+      return new Element(locator, configuration);
     }
+  }
 
-    toString(): string {
-        return this.locator.toString();
+
+  get parent(): Element {
+    return this.element(by.xpath('./..'));
+  }
+
+  get followingSibling(): Element {
+    return this.element(by.xpath('./following-sibling::*'));
+  }
+
+  // tslint:disable-next-line:ban-types
+  all(cssOrXpathOrBy: string | By | { script: string | Function, args: any[] }, customized?: Partial<Configuration>): Collection {
+    const configuration = customized === undefined ?
+      this.configuration :
+      new Configuration({ ...this.configuration, ...customized });
+    if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
+      const by = Extensions.toBy(cssOrXpathOrBy);
+      const locator = new ElementWebElementsByLocator(by, this);
+      return new Collection(locator, configuration);
+    } else {
+      const locator = new ElementWebElementsByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
+      return new Collection(locator, configuration);
     }
+  }
 
-    async getWebElement(): Promise<WebElement> {
-        return this.locator.find();
-    }
+  /* Commands */
 
-    /* Relative search */
+  // TODO: probably we need to wrap that in wait as well - by Alexander Popov (alex.popov.tech@gmail.com) on Wed Apr  1 23:44:49 2020
+  // tslint:disable-next-line:ban-types
+  async executeScript(script: string | Function, ...args: any[]) {
+    const wrappedScript = 'var element = arguments[0];' +
+      (script instanceof Function
+        ? `return (${script.toString()}).apply(null, arguments);`
+        : `return (function(arguments) { ${script} })(arguments);`);
+    const webelement = await this.getWebElement();
+    return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
+  }
 
-    with(customConfig: Partial<Configuration>): Element {
-        return new Element(this.locator, new Configuration({ ...this.configuration, ...customConfig }));
-    }
+  async click() {
+    await this.wait.command(lambda('click', async element =>
+      element.getWebElement().then(it => it.click())
+    ));
+    return this;
+  }
 
-    // tslint:disable-next-line:ban-types
-    element(cssOrXpathOrBy: (string | By | { script: string | Function, args: any[] }), customized?: Partial<Configuration>): Element {
-        const configuration = customized === undefined ?
-            this.configuration :
-            new Configuration({ ...this.configuration, ...customized });
-        if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
-          const by = Extensions.toBy(cssOrXpathOrBy);
-          const locator = new ElementWebElementByLocator(by, this);
-          return new Element(locator, configuration);
-        } else {
-          const locator = new ElementWebElementByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
-          return new Element(locator, configuration);
-        }
-    }
+  async clear() {
+    await this.wait.command(lambda('clear', async element =>
+      element.getWebElement().then(it => it.clear())
+    ));
+    return this;
+  }
 
+  async setValue(value: string | number) {  // todo: should we rename it just to set?
+    // kind of more readable and reflects user context
+    await this.wait.command(
+      this.configuration.setValueByJs ?
+        command.js.setValue(value) :
+        lambda(`set value: ${value}`, async element => {
+          const webelement = await element.getWebElement();
+          await webelement.clear();
+          await webelement.sendKeys(String(value));
+        })
+    );
+    return this;
+  }
 
-    get parent(): Element {
-        return this.element(by.xpath('./..'));
-    }
+  async type(keys: string | number) {
+    await this.wait.command(
+      this.configuration.typeByJs ?
+        command.js.type(keys) :
+        lambda(`type: ${keys}`, async element =>
+          element.getWebElement().then(it => it.sendKeys(String(keys))))
+    );
+    return this;
+  }
 
-    get followingSibling(): Element {
-        return this.element(by.xpath('./following-sibling::*'));
-    }
+  async doubleClick() {
+    const driver = this.configuration.driver;
+    await this.wait.command(lambda('double-click', async element => {
+      const webelement = await element.getWebElement();
+      if (! await webelement.isDisplayed()) {
+        throw new Error('element is hidden'); // todo: consider refactoring/DRYing to throwErrorIfHidden(webel)
+      }
+      driver.actions().doubleClick(webelement).perform();
+    }));
+    return this;
+  }
 
-    all(cssOrXpathOrBy: string | By): Collection {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ElementWebElementsByLocator(by, this);
-        return new Collection(locator, this.configuration);
-    }
+  async hover() {
+    const driver = this.configuration.driver;
+    await this.wait.command(lambda('hover', async element => {
+      const webelement = await element.getWebElement();
+      if (! await webelement.isDisplayed()) {
+        throw new Error('element is hidden');
+      }
+      driver.actions().move({ x: 0, y: 0, duration: 100, origin: await element.getWebElement() }).perform();
+    }));
+    return this;
+  }
 
-    /* Commands */
+  async contextClick() {
+    const driver = this.configuration.driver;
+    await this.wait.command(lambda('context-click', async element => {
+      const webelement = await element.getWebElement();
+      if (! await webelement.isDisplayed()) {
+        throw new Error('element is hidden');
+      }
+      driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform();
+    }));
+    return this;
+  }
 
-    // TODO: probably we need to wrap that in wait as well - by Alexander Popov (alex.popov.tech@gmail.com) on Wed Apr  1 23:44:49 2020
-    // tslint:disable-next-line:ban-types
-    async executeScript(script: string | Function, ...args: any[]) {
-        const wrappedScript = 'var element = arguments[0];' +
-            (script instanceof Function
-            ? `return (${script.toString()}).apply(null, arguments);`
-            : `return (function(arguments) { ${script} })(arguments);`);
-        const webelement = await this.getWebElement();
-        return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
-    }
+  // async switchToFrame(): Promise<Element> {
+  //     await this.wait.command(lambda('switch to frame', async element =>
+  //         this.configuration.driver.switchTo().frame(await element.getWebElement())
+  //     ));
+  //     return this;
+  // }
 
-    async click() {
-        await this.wait.command(lambda('click', async element =>
-            element.getWebElement().then(it => it.click())
-        ));
-        return this;
-    }
+  async pressEnter() {
+    return this.type(Key.ENTER);
+  }
 
-    async clear() {
-        await this.wait.command(lambda('clear', async element =>
-            element.getWebElement().then(it => it.clear())
-        ));
-        return this;
-    }
+  async pressEscape() {
+    return this.type(Key.ESCAPE);
+  }
 
-    async setValue(value: string | number) {  // todo: should we rename it just to set?
-        // kind of more readable and reflects user context
-        await this.wait.command(
-            this.configuration.setValueByJs ?
-                command.js.setValue(value) :
-                lambda(`set value: ${value}`, async element => {
-                    const webelement = await element.getWebElement();
-                    await webelement.clear();
-                    await webelement.sendKeys(String(value));
-                })
-        );
-        return this;
-    }
-
-    async type(keys: string | number) {
-        await this.wait.command(
-            this.configuration.typeByJs ?
-                command.js.type(keys) :
-                lambda(`type: ${keys}`, async element =>
-                    element.getWebElement().then(it => it.sendKeys(String(keys))))
-        );
-        return this;
-    }
-
-    async doubleClick() {
-        const driver = this.configuration.driver;
-        await this.wait.command(lambda('double-click', async element => {
-            const webelement = await element.getWebElement();
-            if (! await webelement.isDisplayed()) {
-                throw new Error('element is hidden'); // todo: consider refactoring/DRYing to throwErrorIfHidden(webel)
-            }
-            driver.actions().doubleClick(webelement).perform();
-        }));
-        return this;
-    }
-
-    async hover() {
-        const driver = this.configuration.driver;
-        await this.wait.command(lambda('hover', async element => {
-            const webelement = await element.getWebElement();
-            if (! await webelement.isDisplayed()) {
-                throw new Error('element is hidden');
-            }
-            driver.actions().move({ x: 0, y: 0, duration: 100, origin: await element.getWebElement() }).perform();
-        }));
-        return this;
-    }
-
-    async contextClick() {
-        const driver = this.configuration.driver;
-        await this.wait.command(lambda('context-click', async element => {
-            const webelement = await element.getWebElement();
-            if (! await webelement.isDisplayed()) {
-                throw new Error('element is hidden');
-            }
-            driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform();
-        }));
-        return this;
-    }
-
-    // async switchToFrame(): Promise<Element> {
-    //     await this.wait.command(lambda('switch to frame', async element =>
-    //         this.configuration.driver.switchTo().frame(await element.getWebElement())
-    //     ));
-    //     return this;
-    // }
-
-    async pressEnter() {
-        return this.type(Key.ENTER);
-    }
-
-    async pressEscape() {
-        return this.type(Key.ESCAPE);
-    }
-
-    async pressTab() {
-        return this.type(Key.TAB);
-    }
+  async pressTab() {
+    return this.type(Key.TAB);
+  }
 }

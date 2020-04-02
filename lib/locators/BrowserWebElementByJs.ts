@@ -31,7 +31,13 @@ export class BrowserWebElementByJs implements Locator<Promise<WebElement>> {
     }
 
     async find(): Promise<WebElement> {
-        return this.context.executeScript(this.script, this.args) as Promise<WebElement>;
+        const result = await this.context.executeScript(this.script, this.args);
+        if (!(result instanceof WebElement)) {
+          throw new Error(
+              `You should return HTMLElement object from script, but was: ${result ? result.toString() : result}`
+          );
+        }
+        return result;
     }
 
     toString(): string {
