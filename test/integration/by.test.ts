@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { by, have } from '../../lib';
+import { by } from '../../lib';
 import { browser, GIVEN } from './base';
 
 describe('By', () => {
 
-    it('js should find elements in root with function', async () => {
+    it('js should find elements in root', async () => {
         await GIVEN.openedEmptyPageWithBody('<span>first</span><span>second</span>');
-        await browser.element(by.js(() => document.getElementsByTagName('span')[0]))
+        await browser.element(by.js(context => context.getElementsByTagName('span')[0]))
             .getWebElement()
             .then(element => element.getText().then(text => expect(text).toBe('first')));
-        await browser.all(by.js(() => document.getElementsByTagName('span')))
+        await browser.all(by.js(context => context.getElementsByTagName('span')))
             .getWebElements()
             .then(async (elements) => {
                 expect(elements.length).toBe(2);
@@ -31,30 +31,14 @@ describe('By', () => {
             });
     });
 
-    it('js should find elements in root with string', async () => {
-        await GIVEN.openedEmptyPageWithBody('<span>first</span><span>second</span>');
-        await browser.element(by.js('return document.getElementsByTagName("span")[0]'))
-            .getWebElement()
-            .then(element => element.getText().then(text => expect(text).toBe('first')));
-        await browser.all(by.js('return document.getElementsByTagName("span")'))
-            .getWebElements()
-            .then(async (elements) => {
-                expect(elements.length).toBe(2);
-                expect(await elements[0].getText()).toBe('first');
-                expect(await elements[1].getText()).toBe('second');
-            });
-    });
-
-    it('js should find nested elements with function', async () => {
+    it('js should find nested elements', async () => {
         await GIVEN.openedEmptyPageWithBody('<span>first</span><div><span>second</span><span>third</span></div>');
         await browser.element('div')
-            // @ts-ignore
-            .element(by.js(() => element.getElementsByTagName('span')[0]))
+            .element(by.js(element => element.getElementsByTagName('span')[0]))
             .getWebElement()
             .then(element => element.getText().then(text => expect(text).toBe('second')));
         await browser.element('div')
-            // @ts-ignore
-            .all(by.js(() => element.getElementsByTagName('span')))
+            .all(by.js(element => element.getElementsByTagName('span')))
             .getWebElements()
             .then(async (elements) => {
                 expect(elements.length).toBe(2);
@@ -63,69 +47,10 @@ describe('By', () => {
             });
     });
 
-    it('js should find nested elements with string', async () => {
-        await GIVEN.openedEmptyPageWithBody('<span>first</span><div><span>second</span><span>third</span></div>');
-        await browser.element('div')
-            .element(by.js('return element.getElementsByTagName("span")[0]'))
-            .getWebElement()
-            .then(element => element.getText().then(text => expect(text).toBe('second')));
-        await browser.element('div')
-            .all(by.js('return element.getElementsByTagName("span")'))
-            .getWebElements()
-            .then(async (elements) => {
-                expect(elements.length).toBe(2);
-                expect(await elements[0].getText()).toBe('second');
-                expect(await elements[1].getText()).toBe('third');
-            });
+    it('js should have correct toString', () => {
+        expect(browser.element(by.js((document: Document) => document.body)).toString())
+            .toBe('browser.element((document) => document.body)');
     });
 
-    it('js should throw correct error when script returns invalid type', async () => {
-        await GIVEN.openedEmptyPageWithBody('<span>first</span><div><span>second</span><span>third</span></div>');
-        await browser.element(by.js(() => 12), { timeout: 1 })
-            .click()
-            .then(
-                () => { throw new Error('element should not be found'); },
-                err => {
-                    expect(err.message).toContain('browser.element(() => 12)');
-                    expect(err.message).toContain('You should return HTMLElement object from script, but was: 12');
-                }
-            );
-        await browser.element(by.js(() => document.getElementsByTagName('span')), { timeout: 1 })
-            .click()
-            .then(
-                () => { throw new Error('element should not be found'); },
-                err => {
-                    expect(err.message).toContain("browser.element(() => document.getElementsByTagName('span'))");
-                    expect(err.message).toContain('You should return HTMLElement object from script, but was: [object Object],[object Object],[object Object]');
-                }
-            );
-        await browser.all(by.js(() => 12), { timeout: 1 })
-            .should(have.texts(''))
-            .then(
-                () => { throw new Error('elements should not be found'); },
-                err => {
-                    expect(err.message).toContain('browser.all(() => 12)');
-                    expect(err.message).toContain('You should return an array of HTMLElement objects from script, but was: 12');
-                }
-            );
-        await browser.all(by.js(() => document.getElementsByTagName('span')[0]), { timeout: 1 })
-            .should(have.texts(''))
-            .then(
-                () => { throw new Error('elements should not be found'); },
-                err => {
-                    expect(err.message).toContain("browser.all(() => document.getElementsByTagName('span')[0]).");
-                    expect(err.message).toContain('You should return an array of HTMLElement objects from script, but was: [object Object]');
-                }
-            );
-        await browser.element('div').element(by.js(() => 12), { timeout: 1 })
-            .click()
-            .then(
-                () => { throw new Error('element should not be found'); },
-                err => {
-                    expect(err.message).toContain('browser.element(By(css selector, div)).element(() => 12)');
-                    expect(err.message).toContain('You should return HTMLElement object from script, but was: 12');
-                }
-            );
-    });
 });
 

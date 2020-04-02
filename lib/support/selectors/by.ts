@@ -12,12 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By, WebElement } from 'selenium-webdriver';
-import { Element } from '../../element';
-import { BrowserWebElementByJs } from '../../locators/BrowserWebElementByJs';
-import { ElementWebElementByJs } from '../../locators/ElementWebElementByJs';
-import { Locator } from '../../locators/locator';
-import { Browser } from '../../browser';
+import { By } from 'selenium-webdriver';
 
 
 // todo: why not use css selectors below, where it is enough?
@@ -75,8 +70,10 @@ export namespace by {
         return By.xpath(`.//*[@${attributeName} = '${attributeValue}']`);
     }
 
-    // tslint:disable-next-line:ban-types
-    export function js(script: (string | Function), ...args: any[]): { script: (string | Function), args: any[] } {
+    export function js(
+        script: (string | ((context: Document | HTMLElement, args?: any[], window?: Window) => HTMLElement | HTMLCollectionOf<HTMLElement>)),
+        ...args: any[]
+    ): { script: (string | ((context: Document | HTMLElement, args?: any[], window?: Window) => any)), args: any[] } {
         return { script, args };
     }
 

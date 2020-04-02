@@ -35,13 +35,19 @@ export namespace command {
         export const clickWithOffset = (xOffset: number, yOffset: number) =>
             lambda(`click by js with offset - x: ${xOffset}, y: ${yOffset}`, async (element: Element) => {
                 await element.executeScript(
-                    `return (function(element) { element.dispatchEvent(new MouseEvent('click', {
-                        'view': window,
-                        'bubbles': true,
-                        'cancelable': true,
-                        'clientX': arguments[0].getClientRects()[0].left + ${xOffset},
-                        'clientY': arguments[0].getClientRects()[0].top + ${yOffset}
-                    }));})(arguments[0]);`);
+                    (element, args, window) => {
+                        element.dispatchEvent(new MouseEvent(
+                            'click',
+                            {
+                                bubbles: true,
+                                cancelable: true,
+                                clientX: element.getClientRects()[0].left + xOffset,
+                                clientY: element.getClientRects()[0].top + yOffset,
+                                view: window,
+                            }
+                        ));
+                    }
+                );
             });
 
         export const click = lambda('click by js', clickWithOffset(0, 0));
@@ -49,8 +55,9 @@ export namespace command {
         export const setValue = (value: string | number) =>
             lambda(`set value by js: ${value}`, async (element: Element) => {
                 await element.executeScript(
-                    `return (function(element, text) {
-                        var maxlength = element.getAttribute('maxlength') === null
+                    (element: HTMLInputElement, args) => {
+                        const text = args[1];
+                        const maxlength = element.getAttribute('maxlength') === null
                             ? -1
                             : parseInt(element.getAttribute('maxlength'));
                         element.value = maxlength === -1
@@ -59,28 +66,24 @@ export namespace command {
                                 ? text
                                 : text.substring(0, maxlength);
                         return null;
-                    })(arguments[0], arguments[1]);`,
-                    String(value)
+                    }, value
                 );
             });
 
         export const type = (keys: string | number) =>
             lambda(`type by js (append value): ${keys}`, async (element: Element) => {
-                await element.executeScript(
-                    `return (function(element, textToAppend) {
-                        var text = element.getAttribute('value') + textToAppend
-                        var maxlength = element.getAttribute('maxlength') === null
-                            ? -1
-                            : parseInt(element.getAttribute('maxlength'));
-                        element.value = maxlength === -1
+                await element.executeScript((element: HTMLInputElement, args) => {
+                    const text = element.getAttribute('value').concat(args[1]);
+                    const maxlength = element.getAttribute('maxlength') === null
+                        ? -1
+                        : parseInt(element.getAttribute('maxlength'));
+                    element.value = maxlength === -1
+                        ? text
+                        : text.length <= maxlength
                             ? text
-                            : text.length <= maxlength
-                                ? text
-                                : text.substring(0, maxlength);
-                        return null;
-                    })(arguments[0], arguments[1]);`,
-                    String(keys)
-                );
+                            : text.substring(0, maxlength);
+                    return null;
+                }, keys);
             });
 
         export const scrollIntoView = lambda('scroll into view', async element =>

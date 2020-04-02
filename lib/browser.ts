@@ -12,20 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Builder, By, Capabilities, WebDriver, WebElement } from 'selenium-webdriver';
+import { Builder, By, Capabilities, WebDriver } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { Assertable, Entity, Matchable } from './entity';
 import { BrowserWebElementByJs } from './locators/BrowserWebElementByJs';
 import { BrowserWebElementByLocator } from './locators/BrowserWebElementByLocator';
+import { BrowserWebElementsByJs } from './locators/BrowserWebElementsByJs';
 import { BrowserWebElementsByLocator } from './locators/BrowserWebElementsByLocator';
 import { query } from './queries';
 import { Extensions } from './utils/extensions';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 import instanceOfLocator = Extensions.instanceOfLocator;
-import { Locator } from './locators/locator';
-import { BrowserWebElementsByJs } from './locators/BrowserWebElementsByJs';
 
 export class Browser extends Entity implements Assertable, Matchable {
 
@@ -61,7 +60,7 @@ export class Browser extends Entity implements Assertable, Matchable {
     /* Elements */
 
     // tslint:disable-next-line:ban-types
-    element(cssOrXpathOrBy: (string | By | { script: string | Function, args: any[] }), customized?: Partial<Configuration>): Element {
+    element(cssOrXpathOrBy: (string | By | { script: string | (string | ((context: Document) => HTMLElement)), args: any[] }), customized?: Partial<Configuration>): Element {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
@@ -75,7 +74,8 @@ export class Browser extends Entity implements Assertable, Matchable {
         }
     }
 
-    all(cssOrXpathOrBy: string | By | { script: string | Function, args: any[] }, customized?: Partial<Configuration>): Collection {
+    // tslint:disable-next-line:ban-types
+    all(cssOrXpathOrBy: string | By | { script: string | (string | ((context: Document) => HTMLCollectionOf<HTMLElement>)), args: any[] }, customized?: Partial<Configuration>): Collection {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
@@ -91,13 +91,12 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     /* Commands */
 
-    // todo: should we implement all following commands through calling perform method from above?
-
-    /* tslint:disable:ban-types */
-    async executeScript(script: string | Function, ...args: any[]) {
-        return this.driver.executeScript(script, ...args);
+    async executeScript(script: (string | ((context: Document, args?: any[], window?: Window) => any)), ...args: any[]) {
+        const wrappedScript = script instanceof Function
+            ? `return (${script.toString()})(document, arguments, window);`
+            : `return (function(document, args, window) { ${script} })(document, arguments, window);`;
+        return this.driver.executeScript(wrappedScript, ...args);
     }
-    /* tslint:enable:ban-types */
 
     async open(relativeOrAbsoluteUrl: string): Promise<Browser> {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {

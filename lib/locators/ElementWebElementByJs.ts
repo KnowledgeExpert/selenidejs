@@ -21,8 +21,7 @@ export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
 
     constructor(
         private readonly context: Element,
-        // tslint:disable-next-line:ban-types
-        private readonly script: (string | Function),
+        private readonly script: (string | ((context: HTMLElement) => HTMLElement)),
         private readonly args: any[]
     ) {
         this.context = context;
@@ -31,13 +30,7 @@ export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
     }
 
     async find(): Promise<WebElement> {
-        const result = await this.context.executeScript(this.script, this.args);
-        if (!(result instanceof WebElement)) {
-            throw new Error(
-                `You should return HTMLElement object from script, but was: ${result ? result.toString() : result}`
-            );
-        }
-        return result;
+        return this.context.executeScript(this.script, ...this.args) as Promise<WebElement>;
     }
 
     toString(): string {

@@ -53,7 +53,7 @@ export class Element extends Entity implements Assertable, Matchable {
   }
 
   // tslint:disable-next-line:ban-types
-  element(cssOrXpathOrBy: (string | By | { script: string | Function, args: any[] }), customized?: Partial<Configuration>): Element {
+  element(cssOrXpathOrBy: (string | By | { script: string | (string | ((context: HTMLElement) => HTMLElement)), args: any[] }), customized?: Partial<Configuration>): Element {
     const configuration = customized === undefined ?
       this.configuration :
       new Configuration({ ...this.configuration, ...customized });
@@ -76,8 +76,7 @@ export class Element extends Entity implements Assertable, Matchable {
     return this.element(by.xpath('./following-sibling::*'));
   }
 
-  // tslint:disable-next-line:ban-types
-  all(cssOrXpathOrBy: string | By | { script: string | Function, args: any[] }, customized?: Partial<Configuration>): Collection {
+  all(cssOrXpathOrBy: string | By | { script: string | (string | ((context: HTMLElement) => HTMLCollectionOf<HTMLElement>)), args: any[] }, customized?: Partial<Configuration>): Collection {
     const configuration = customized === undefined ?
       this.configuration :
       new Configuration({ ...this.configuration, ...customized });
@@ -93,13 +92,11 @@ export class Element extends Entity implements Assertable, Matchable {
 
   /* Commands */
 
-  // TODO: probably we need to wrap that in wait as well - by Alexander Popov (alex.popov.tech@gmail.com) on Wed Apr  1 23:44:49 2020
-  // tslint:disable-next-line:ban-types
-  async executeScript(script: string | Function, ...args: any[]) {
+  async executeScript(script: string | ((context: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
     const wrappedScript = 'var element = arguments[0];' +
       (script instanceof Function
-        ? `return (${script.toString()}).apply(null, arguments);`
-        : `return (function(arguments) { ${script} })(arguments);`);
+        ? `return (${script.toString()})(arguments[0], arguments, window);`
+        : `return (function(element, args, window) { ${script} })(arguments[0], arguments, window);`);
     const webelement = await this.getWebElement();
     return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
   }
