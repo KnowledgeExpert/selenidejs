@@ -33,14 +33,14 @@ describe('Element commands executeScript', () => {
     it('should pass correct args when use function', async () => {
         await GIVEN.openedEmptyPageWithBody('hello there');
         await browser.element('body')
-            .executeScript((element, args) => element.innerHTML + args[1], ' selenium')
+            .executeScript((element, args) => element.innerHTML + args[0], ' selenium')
             .then(html => expect(html).toBe('hello there selenium'));
     });
 
     it('should pass correct args when use string', async () => {
         await GIVEN.openedEmptyPageWithBody('hello there');
         await browser.element('body')
-            .executeScript('return element.innerHTML + args[1]', ' selenium')
+            .executeScript('return element.innerHTML + args[0]', ' selenium')
             .then(html => expect(html).toBe('hello there selenium'));
     });
 

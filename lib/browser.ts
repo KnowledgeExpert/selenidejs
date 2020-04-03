@@ -24,7 +24,6 @@ import { BrowserWebElementsByLocator } from './locators/BrowserWebElementsByLoca
 import { query } from './queries';
 import { Extensions } from './utils/extensions';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
-import instanceOfLocator = Extensions.instanceOfLocator;
 
 export class Browser extends Entity implements Assertable, Matchable {
 
@@ -96,9 +95,10 @@ export class Browser extends Entity implements Assertable, Matchable {
     /* Commands */
 
     async executeScript(script: (string | ((context: Document, args?: any[], window?: Window) => any)), ...args: any[]) {
-        const wrappedScript = script instanceof Function
-            ? `return (${script.toString()})(document, arguments, window);`
-            : `return (function(document, args, window) { ${script} })(document, arguments, window);`;
+        const wrappedScript = 'var args = arguments;' +
+            (script instanceof Function
+                ? `return (${script.toString()})(document, args, window);`
+                : `return (function(document, args, window) { ${script} })(document, args, window);`);
         return this.driver.executeScript(wrappedScript, ...args);
     }
 

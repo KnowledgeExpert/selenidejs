@@ -35,18 +35,18 @@ export namespace command {
         export const clickWithOffset = (xOffset: number, yOffset: number) =>
             lambda(`click by js with offset - x: ${xOffset}, y: ${yOffset}`, async (element: Element) => {
                 await element.executeScript(
-                    (element, args, window) => {
+                    (element, args: number[], window) => {
                         element.dispatchEvent(new MouseEvent(
                             'click',
                             {
                                 bubbles: true,
                                 cancelable: true,
-                                clientX: element.getClientRects()[0].left + xOffset,
-                                clientY: element.getClientRects()[0].top + yOffset,
+                                clientX: element.getClientRects()[0].left + args[0],
+                                clientY: element.getClientRects()[0].top + args[1],
                                 view: window,
                             }
                         ));
-                    }
+                    }, xOffset, yOffset
                 );
             });
 
@@ -56,7 +56,7 @@ export namespace command {
             lambda(`set value by js: ${value}`, async (element: Element) => {
                 await element.executeScript(
                     (element: HTMLInputElement, args) => {
-                        const text = args[1];
+                        const text = args[0];
                         const maxlength = element.getAttribute('maxlength') === null
                             ? -1
                             : parseInt(element.getAttribute('maxlength'));
@@ -73,7 +73,7 @@ export namespace command {
         export const type = (keys: string | number) =>
             lambda(`type by js (append value): ${keys}`, async (element: Element) => {
                 await element.executeScript((element: HTMLInputElement, args) => {
-                    const text = element.getAttribute('value').concat(args[1]);
+                    const text = element.getAttribute('value').concat(args[0]);
                     const maxlength = element.getAttribute('maxlength') === null
                         ? -1
                         : parseInt(element.getAttribute('maxlength'));
@@ -87,8 +87,6 @@ export namespace command {
             });
 
         export const scrollIntoView = lambda('scroll into view', async element =>
-            element.executeScript(// todo: is ensuring visibility covered here?
-                'return (function(element) { element.scrollIntoView(true); })(arguments[0]);'
-            ));
+            element.executeScript((element: HTMLInputElement) => element.scrollIntoView(true)));
     }
 }

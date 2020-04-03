@@ -96,10 +96,10 @@ export class Element extends Entity implements Assertable, Matchable {
     /* Commands */
 
     async executeScript(script: string | ((context: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
-        const wrappedScript = 'var element = arguments[0];' +
+        const wrappedScript = 'var [ element, ...args ] = arguments;' +
             (script instanceof Function
-                ? `return (${script.toString()})(arguments[0], arguments, window);`
-                : `return (function(element, args, window) { ${script} })(arguments[0], arguments, window);`);
+                ? `return (${script.toString()})(element, args, window);`
+                : `return (function(element, args, window) { ${script} })(element, args, window);`);
         const webelement = await this.getWebElement();
         return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
     }
