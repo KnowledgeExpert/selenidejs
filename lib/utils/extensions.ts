@@ -16,6 +16,9 @@ import * as fs from 'fs-extra';
 import { By, WebDriver } from 'selenium-webdriver';
 import { Locator } from '../locators/locator';
 import { by } from '../support/selectors/by';
+import { Browser } from '..';
+import { BrowserWebElementByLocator } from '../locators/BrowserWebElementByLocator';
+import { ElementWebElementByLocator } from '../locators/ElementWebElementByLocator';
 
 
 export namespace Extensions {
@@ -45,10 +48,6 @@ export namespace Extensions {
         return (typeof cssOrXpathOrBy === 'string')
             ? cssOrXpathOrBy.includes('/') ? by.xpath(cssOrXpathOrBy) : by.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
-    }
-
-    export function instanceOfLocator(object: any): object is Locator<any> {
-        return 'find' in object;
     }
 
     export function isAbsoluteUrl(relativeOrAbsoluteUrl: string): boolean {

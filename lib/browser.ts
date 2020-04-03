@@ -59,32 +59,36 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     /* Elements */
 
-    // tslint:disable-next-line:ban-types
-    element(cssOrXpathOrBy: (string | By | { script: string | (string | ((context: Document) => HTMLElement)), args: any[] }), customized?: Partial<Configuration>): Element {
+    element(
+        located: (string | By | { script: string | ((context: Document) => HTMLElement), args: any[] }),
+        customized?: Partial<Configuration>
+    ): Element {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
-            const by = Extensions.toBy(cssOrXpathOrBy);
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
             const locator = new BrowserWebElementByLocator(by, this);
             return new Element(locator, configuration);
         } else {
-            const locator = new BrowserWebElementByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
+            const locator = new BrowserWebElementByJs(this, located.script, located.args);
             return new Element(locator, configuration);
         }
     }
 
-    // tslint:disable-next-line:ban-types
-    all(cssOrXpathOrBy: string | By | { script: string | (string | ((context: Document) => HTMLCollectionOf<HTMLElement>)), args: any[] }, customized?: Partial<Configuration>): Collection {
+    all(
+        located: string | By | { script: string | (string | ((context: Document) => HTMLCollectionOf<HTMLElement>)), args: any[] },
+        customized?: Partial<Configuration>
+    ): Collection {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        if (cssOrXpathOrBy instanceof By || typeof cssOrXpathOrBy === 'string') {
-            const by = Extensions.toBy(cssOrXpathOrBy);
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
             const locator = new BrowserWebElementsByLocator(by, this);
             return new Collection(locator, configuration);
         } else {
-            const locator = new BrowserWebElementsByJs(this, cssOrXpathOrBy.script, cssOrXpathOrBy.args);
+            const locator = new BrowserWebElementsByJs(this, located.script, located.args);
             return new Collection(locator, configuration);
         }
     }
