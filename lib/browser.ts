@@ -59,7 +59,7 @@ export class Browser extends Entity implements Assertable, Matchable {
     /* Elements */
 
     element(
-        located: (string | By | { script: string | ((context: Document) => HTMLElement), args: any[] }),
+        located: (string | By | { script: string | ((context: Document) => HTMLElement), args?: any[] }),
         customized?: Partial<Configuration>
     ): Element {
         const configuration = customized === undefined ?
@@ -76,7 +76,7 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     all(
-        located: string | By | { script: string | (string | ((context: Document) => HTMLCollectionOf<HTMLElement>)), args: any[] },
+        located: string | By | { script: string | ((context: Document) => HTMLCollectionOf<HTMLElement>), args?: any[] },
         customized?: Partial<Configuration>
     ): Collection {
         const configuration = customized === undefined ?

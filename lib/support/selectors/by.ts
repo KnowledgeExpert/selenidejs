@@ -70,11 +70,4 @@ export namespace by {
         return By.xpath(`.//*[@${attributeName} = '${attributeValue}']`);
     }
 
-    export function js(
-        script: (string | ((context: Document | HTMLElement, args?: any[], window?: Window) => HTMLElement | HTMLCollectionOf<HTMLElement>)),
-        ...args: any[]
-    ): { script: (string | ((context: Document | HTMLElement, args?: any[], window?: Window) => any)), args: any[] } {
-        return { script, args };
-    }
-
 }

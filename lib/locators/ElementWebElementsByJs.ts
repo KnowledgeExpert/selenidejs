@@ -26,7 +26,7 @@ export class ElementWebElementsByJs implements Locator<Promise<WebElement[]>> {
     ) {
         this.context = context;
         this.script = script;
-        this.args = args;
+        this.args = args || [];
     }
 
     async find(): Promise<WebElement[]> {

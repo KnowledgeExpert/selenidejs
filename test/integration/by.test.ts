@@ -19,10 +19,10 @@ describe('By', () => {
 
     it('js should find elements in root', async () => {
         await GIVEN.openedEmptyPageWithBody('<span>first</span><span>second</span>');
-        await browser.element(by.js(context => context.getElementsByTagName('span')[0]))
+        await browser.element({ script: context => context.getElementsByTagName('span')[0] })
             .getWebElement()
             .then(element => element.getText().then(text => expect(text).toBe('first')));
-        await browser.all(by.js(context => context.getElementsByTagName('span')))
+        await browser.all({ script: context => context.getElementsByTagName('span') })
             .getWebElements()
             .then(async (elements) => {
                 expect(elements.length).toBe(2);
@@ -34,11 +34,11 @@ describe('By', () => {
     it('js should find nested elements', async () => {
         await GIVEN.openedEmptyPageWithBody('<span>first</span><div><span>second</span><span>third</span></div>');
         await browser.element('div')
-            .element(by.js(element => element.getElementsByTagName('span')[0]))
+            .element({ script: element => element.getElementsByTagName('span')[0] })
             .getWebElement()
             .then(element => element.getText().then(text => expect(text).toBe('second')));
         await browser.element('div')
-            .all(by.js(element => element.getElementsByTagName('span')))
+            .all({ script: element => element.getElementsByTagName('span') })
             .getWebElements()
             .then(async (elements) => {
                 expect(elements.length).toBe(2);
@@ -48,8 +48,8 @@ describe('By', () => {
     });
 
     it('js should have correct toString', () => {
-        expect(browser.element(by.js((document: Document) => document.body)).toString())
-            .toBe('browser.element((document) => document.body)');
+        expect(browser.element({ script: document => document.body }).toString())
+            .toBe('browser.element(document => document.body)');
     });
 
 });

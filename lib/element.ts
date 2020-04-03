@@ -25,7 +25,6 @@ import { Locator } from './locators/locator';
 import { by } from './support/selectors/by';
 import { lambda } from './utils';
 import { Extensions } from './utils/extensions';
-import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 
 
 export class Element extends Entity implements Assertable, Matchable {
@@ -52,7 +51,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     element(
-        located: (string | By | { script: string | (string | ((context: HTMLElement) => HTMLElement)), args: any[] }),
+        located: (string | By | { script: string | ((context: HTMLElement) => HTMLElement), args?: any[] }),
         customized?: Partial<Configuration>
     ): Element {
         const configuration = customized === undefined ?
@@ -69,7 +68,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     all(
-        located: string | By | { script: string | (string | ((context: HTMLElement) => HTMLCollectionOf<HTMLElement>)), args: any[] },
+        located: string | By | { script: string | ((context: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
         customized?: Partial<Configuration>
     ): Collection {
         const configuration = customized === undefined ?
