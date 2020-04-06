@@ -21,7 +21,7 @@ export class BrowserWebElementByJs implements Locator<Promise<WebElement>> {
 
     constructor(
         private readonly browser: Browser,
-        private readonly script: (string | ((document: Document) => HTMLElement)),
+        private readonly script: (string | ((document: Document) => HTMLElement | ShadowRoot)),
         private readonly args: any[]
     ) {
         this.browser = browser;

@@ -21,7 +21,7 @@ export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
 
     constructor(
         private readonly element: Element,
-        private readonly script: (string | ((element: HTMLElement) => HTMLElement)),
+        private readonly script: (string | ((element: HTMLElement) => HTMLElement | ShadowRoot)),
         private readonly args: any[]
     ) {
         this.element = element;

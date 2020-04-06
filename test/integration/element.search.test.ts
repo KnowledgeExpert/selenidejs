@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { be, by } from '../../lib';
+import { be } from '../../lib';
 import { browser, data, driver, GIVEN, WHEN } from './base';
 
 describe('Element search', () => {
@@ -100,6 +100,49 @@ describe('Element search', () => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(await driver.getCurrentUrl()).not.toContain('second');
             });
+    });
+
+    it('should find shadow root', async () => {
+        await GIVEN.openedEmptyPage();
+        await GIVEN.executeScript(document => {
+            const shadow = document.body.attachShadow({ mode: 'open' });
+            shadow.innerHTML = '<span>hello from shadow</span>';
+        });
+
+        await browser.element('body')
+            .shadow('span')
+            .getWebElement()
+            .then(webelement => webelement.getText())
+            .then(text => expect(text).toBe('hello from shadow'));
+    });
+
+    it('should find nested shadow root', async () => {
+        await GIVEN.openedEmptyPage();
+        await GIVEN.executeScript(document => {
+            const shadow = document.body.attachShadow({ mode: 'open' });
+            const shadowChild = document.createElement('div');
+            shadow.appendChild(shadowChild);
+            const nestedShadow = shadowChild.attachShadow({ mode: 'open' });
+            nestedShadow.innerHTML = '<span>hello from nested shadow</span>';
+        });
+
+        await browser.element('body')
+            .shadow('div')
+            .shadow('span')
+            .getWebElement()
+            .then(webelement => webelement.getText())
+            .then(text => expect(text).toBe('hello from nested shadow'));
+    });
+
+    it('should have correct error message on fail find shadow', async () => {
+        await GIVEN.openedEmptyPage();
+        await browser.element('body')
+            .shadow('div')
+            .click()
+            .then(
+                () => { throw new Error('Click should not pass'); },
+                (err) => expect(err.message).toContain('browser.element(By(css selector, body)).element(element => element.shadowRoot)')
+            );
     });
 
 });

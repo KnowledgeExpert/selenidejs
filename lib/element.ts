@@ -51,7 +51,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     element(
-        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement), args?: any[] }),
+        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }),
         customized?: Partial<Configuration>
     ): Element {
         const configuration = customized === undefined ?
@@ -82,6 +82,14 @@ export class Element extends Entity implements Assertable, Matchable {
             const locator = new ElementWebElementsByJs(this, located.script, located.args);
             return new Collection(locator, configuration);
         }
+    }
+
+    shadow(
+        located: string | By | { script: string | ((element: HTMLElement) => HTMLElement), args?: any[] },
+        customized?: Partial<Configuration>
+    ): Element {
+        return this.element({ script: element => element.shadowRoot })
+            .element(located, customized);
     }
 
     get parent(): Element {
