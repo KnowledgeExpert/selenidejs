@@ -7,11 +7,11 @@
   * `executeScript` improvements:
     * `browser.executeScript(...)` and `element.executeScript(...)` - now accepts not plain `string`/`Function` - but brand new ones:
       * `browser.executeScript` - now accepts `(context, args, window) => ...` function, where:
-        * `context` - is [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+        * `document` - is [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
         * `args` - is an array of passed additional arguments, like `browser.executeScript((document, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
         * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
       * `element.executeScript` - now accepts `(context, args, window) => ...` function, where:
-        * `context` - is [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) which corresponds to `element`'s actual `WebElement`
+        * `element` - is [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) which corresponds to `element`'s actual `WebElement`
         * `args` - is an array of passed additional arguments, like `element.executeScript((element, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
         * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
             ```

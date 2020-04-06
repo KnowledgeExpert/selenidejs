@@ -51,7 +51,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     element(
-        located: (string | By | { script: string | ((context: HTMLElement) => HTMLElement), args?: any[] }),
+        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement), args?: any[] }),
         customized?: Partial<Configuration>
     ): Element {
         const configuration = customized === undefined ?
@@ -68,7 +68,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     all(
-        located: string | By | { script: string | ((context: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
+        located: string | By | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
         customized?: Partial<Configuration>
     ): Collection {
         const configuration = customized === undefined ?
@@ -94,7 +94,7 @@ export class Element extends Entity implements Assertable, Matchable {
 
     /* Commands */
 
-    async executeScript(script: string | ((context: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
+    async executeScript(script: string | ((element: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
         const wrappedScript = 'var [ element, ...args ] = arguments;' +
             (script instanceof Function
                 ? `return (${script.toString()})(element, args, window);`
