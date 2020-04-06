@@ -20,20 +20,20 @@ import { Locator } from './locator';
 export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
 
     constructor(
-        private readonly context: Element,
-        private readonly script: (string | ((context: HTMLElement) => HTMLElement)),
+        private readonly element: Element,
+        private readonly script: (string | ((element: HTMLElement) => HTMLElement)),
         private readonly args: any[]
     ) {
-        this.context = context;
+        this.element = element;
         this.script = script;
         this.args = args || [];
     }
 
     async find(): Promise<WebElement> {
-        return this.context.executeScript(this.script, ...this.args) as Promise<WebElement>;
+        return this.element.executeScript(this.script, ...this.args) as Promise<WebElement>;
     }
 
     toString(): string {
-        return `${this.context.toString()}.element(${this.script.toString()})`;
+        return `${this.element.toString()}.element(${this.script.toString()})`;
     }
 }

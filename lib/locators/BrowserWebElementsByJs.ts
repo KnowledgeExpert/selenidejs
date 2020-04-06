@@ -20,17 +20,17 @@ import { Browser } from '../browser';
 export class BrowserWebElementsByJs implements Locator<Promise<WebElement[]>> {
 
     constructor(
-        private readonly context: Browser,
+        private readonly browser: Browser,
         private readonly script: (string | ((document: Document) => HTMLCollectionOf<HTMLElement>)),
         private readonly args: any[]
     ) {
-        this.context = context;
+        this.browser = browser;
         this.script = script;
         this.args = args || [];
     }
 
     async find(): Promise<WebElement[]> {
-        return this.context.executeScript(this.script, ...this.args) as Promise<WebElement[]>;
+        return this.browser.executeScript(this.script, ...this.args) as Promise<WebElement[]>;
     }
 
     toString(): string {

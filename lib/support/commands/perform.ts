@@ -95,6 +95,6 @@ export namespace perform {
     export const clearCookies = (browser: Browser) => browser.clearCookies();
     // export const deleteCookie = (name: string) => (browser: Browser) => browser.deleteCookie(name);
 
-    export const executeScript = (script: string | ((context: Document) => any), ...args: any[]) =>
+    export const executeScript = (script: string | ((document: Document) => any), ...args: any[]) =>
         (browser: Browser) => browser.executeScript(script, ...args);
 }
