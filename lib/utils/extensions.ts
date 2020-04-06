@@ -14,8 +14,11 @@
 
 import * as fs from 'fs-extra';
 import { By, WebDriver } from 'selenium-webdriver';
-import { Browser } from '../browser';
+import { Locator } from '../locators/locator';
 import { by } from '../support/selectors/by';
+import { Browser } from '..';
+import { BrowserWebElementByLocator } from '../locators/BrowserWebElementByLocator';
+import { ElementWebElementByLocator } from '../locators/ElementWebElementByLocator';
 
 
 export namespace Extensions {

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, WHEN, driver } from './base';
-import { be } from '../../lib';
+import { be, by } from '../../lib';
+import { browser, data, driver, GIVEN, WHEN } from './base';
 
 describe('Element search', () => {
 
@@ -77,7 +77,7 @@ describe('Element search', () => {
         const started = new Date().getTime();
 
         await browser.element('a')
-            .with({timeout: data.timeouts.biggerThanDefault + data.timeouts.step})
+            .with({ timeout: data.timeouts.biggerThanDefault + data.timeouts.step })
             .click();
         expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.biggerThanDefault);
         expect(await driver.getCurrentUrl()).toContain('second');

@@ -1,5 +1,62 @@
 # Changelog
 
+## 1.3.0
+
+### New Features
+
+  * `executeScript` improvements:
+    * `browser.executeScript(...)` and `element.executeScript(...)` - now accepts not plain `string`/`Function` - but brand new ones:
+      * `browser.executeScript` - now accepts `(document, args, window) => ...` function, where:
+        * `document` - is [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+        * `args` - is an array of passed additional arguments, like `browser.executeScript((document, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
+        * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+      * `element.executeScript` - now accepts `(element, args, window) => ...` function, where:
+        * `element` - is [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) which corresponds to `element`'s actual `WebElement`
+        * `args` - is an array of passed additional arguments, like `element.executeScript((element, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
+        * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+            ```
+            // assume dom looks like
+            // <body>
+            //   <span>first</span>
+            //   <div>
+            //     <span>second</span>
+            //     <span>third</span>
+            //   </div>
+            // </body>
+
+            const text = await browser.executeScript(document => document.getElementsByTagName('span')[0].innerHTML);
+            console.log(text); // 'first item'
+
+            const texts = await browser.element('div').executeScript(
+              (element, args) => {
+                var spans = element.getElementsByTagName('span');
+                var textOne = spans[0].innerHTML;
+                var textTwo = spans[1].innerHTML;
+                return [args[0], textOne, textTwo];
+              },
+              'first'
+            );
+            console.log(texts); // ['first', 'second', 'third']
+            ```
+    * all new arguments for `executeScript` function are typed, so if you use Typescript - you will be able to use full completion inside passed function right in your IDE
+  * you can now find elements not only with `string` (which is xpath or css) or `By`, but using js function also:
+      ```
+            // assume dom looks like
+            // <body>
+            //   <span>first</span>
+            //   <div>
+            //     <span>second</span>
+            //     <span>third</span>
+            //   </div>
+            // </body>
+
+            const body = browser.element({ script: document => document.body });
+            const div = body.element({ script: element => element.getElementsByTagName('div')[0] });
+            const spans = div.all({ script: element => element.getElementsByTagName('span') });
+            console.log(await spans.get(their.texts)); // ['second', 'third']
+      ```
+
+
 ## 1.2.2 (released on 2019.08.10)
 
 ### FIXES

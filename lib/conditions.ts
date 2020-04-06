@@ -276,9 +276,8 @@ export namespace condition {
             throwIfNotActual(query.tabsNumber, predicate.isLessThan(num))
         );
 
-        /* tslint:disable:ban-types */
         export const hasJsReturned =
-            (expected: any, script: string | Function, ...args: any[]): BrowserCondition => new Condition(
+            (expected: any, script: string | ((document: Document) => any), ...args: any[]): BrowserCondition => new Condition(
                 `has execute script returned ${JSON.stringify(expected)}`,
                 async (browser: Browser) => {
                     const actual = await browser.executeScript(script, ...args);
@@ -293,6 +292,5 @@ export namespace condition {
                     }
                 }
             );
-        /* tslint:enable:ban-types */
     }
 }
