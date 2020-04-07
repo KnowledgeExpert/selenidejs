@@ -102,7 +102,7 @@ describe('Element search', () => {
             });
     });
 
-    it('should find shadow root', async () => {
+    it('should find element inside shadow root', async () => {
         await GIVEN.openedEmptyPage();
         await GIVEN.executeScript(document => {
             const shadow = document.body.attachShadow({ mode: 'open' });
@@ -110,10 +110,29 @@ describe('Element search', () => {
         });
 
         await browser.element('body')
-            .shadow('span')
+            .shadow
+            .element('span')
             .getWebElement()
             .then(webelement => webelement.getText())
             .then(text => expect(text).toBe('hello from shadow'));
+    });
+
+    it('should find elements inside shadow root', async () => {
+        await GIVEN.openedEmptyPage();
+        await GIVEN.executeScript(document => {
+            const shadow = document.body.attachShadow({ mode: 'open' });
+            shadow.innerHTML = '<span>hello</span><span>from</span><span>shadow</span>';
+        });
+
+        const webelements = await browser.element('body')
+            .shadow
+            .all('span')
+            .getWebElements();
+        const texts = [];
+        for (const webelement of webelements) {
+            texts.push(await webelement.getText());
+        }
+        expect(texts).toEqual(['hello', 'from', 'shadow']);
     });
 
     it('should find nested shadow root', async () => {
@@ -127,8 +146,10 @@ describe('Element search', () => {
         });
 
         await browser.element('body')
-            .shadow('div')
-            .shadow('span')
+            .shadow
+            .element('div')
+            .shadow
+            .element('span')
             .getWebElement()
             .then(webelement => webelement.getText())
             .then(text => expect(text).toBe('hello from nested shadow'));
@@ -137,7 +158,8 @@ describe('Element search', () => {
     it('should have correct error message on fail find shadow', async () => {
         await GIVEN.openedEmptyPage();
         await browser.element('body')
-            .shadow('div')
+            .shadow
+            .element('div')
             .click()
             .then(
                 () => { throw new Error('Click should not pass'); },
