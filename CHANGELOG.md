@@ -64,7 +64,7 @@
             // ...shadowRoot...
             // </body>
 
-            const span = browser.element('body').shadow('span');
+            const span = browser.element('body').shadow.element('span');
             console.log(await spans.get(its.text)); // 'first'
       ```
 
