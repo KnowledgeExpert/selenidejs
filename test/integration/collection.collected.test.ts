@@ -50,21 +50,26 @@ describe('Collection map each to first element', () => {
             .toEqual(['first', 'second', 'third', 'fourth']);
     });
 
-    it('should throw correct error when looking for single element in each of elements', async () => {
-        await browser.all('.not-existing', { timeout: 1 })
+    it('should throw correct error when collect to element when there is some missing childs', async () => {
+        await GIVEN.openedEmptyPageWithBody('<div></div><div><span></span</div>');
+        await browser.all('div', { timeout: 1 })
             .collected(it => it.element('span'))
             .should(have.size(1))
             .then(
-                () => { throw new Error('Should not pass here') },
-                err => expect(err.message).toContain("browser.all(By(css selector, .not-existing)).collected(it => it.element('span'))")
+                () => { throw new Error('Should not pass here'); },
+                err => {
+                    expect(err.message).toContain("browser.all(By(css selector, div)).collected(it => it.element('span'))");
+                    expect(err.message).toContain('no such element: Unable to locate element: {"method":"css selector","selector":"span"}');
+                }
             );
-        await browser.all('.not-existing', { timeout: 1 })
+    });
+
+    it('should not throw error when collect to all when there is some missing childs', async () => {
+        await GIVEN.openedEmptyPageWithBody('<div></div><div><span></span</div>');
+        await browser.all('div', { timeout: 1 })
             .collected(it => it.all('span'))
-            .should(have.size(1))
-            .then(
-                () => { throw new Error('Should not pass here') },
-                err => expect(err.message).toContain("browser.all(By(css selector, .not-existing)).collected(it => it.all('span'))")
-            );
+            .getWebElements()
+            .then(webelements => expect(webelements.length).toBe(1));
     });
 
     it('should find elements with find.collected', async () => {
