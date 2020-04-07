@@ -12,18 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By, WebElement } from 'selenium-webdriver';
+import { WebElement } from 'selenium-webdriver';
 import { Collection } from '../collection';
+import { Configuration } from '../configuration';
+import { Element } from '../element';
+import { CashedWebElementLocator } from './cashedWebElementLocator';
 import { Locator } from './locator';
 
 
 export class ElementsInEachByLocator implements Locator<Promise<WebElement[]>> {
 
     constructor(
-        private readonly by: By,
-        private readonly collection: Collection
+        private readonly searchFunction: (element: Element) => Collection,
+        private readonly collection: Collection,
+        private readonly configuration: Configuration
     ) {
-        this.by = by;
+        this.searchFunction = searchFunction;
         this.collection = collection;
     }
 
@@ -31,13 +35,14 @@ export class ElementsInEachByLocator implements Locator<Promise<WebElement[]>> {
         const rootElements = await this.collection.getWebElements();
         const innerElements = [];
         for (const rootElement of rootElements) {
-            const childs = await rootElement.findElements(this.by);
-            innerElements.push(...(childs || []));
+            const wrappedRootElement = new Element(new CashedWebElementLocator(rootElement), this.configuration);
+            const childElements = await this.searchFunction(wrappedRootElement).getWebElements();
+            innerElements.push(...childElements);
         }
         return innerElements;
     }
 
     toString(): string {
-        return `${this.collection.toString()}.all(${this.by})`;
+        return `${this.collection.toString()}.collected(${this.searchFunction.toString()})`;
     }
 }

@@ -25,8 +25,8 @@ export namespace find {
     export const element = (cssOrXpathOrBy: string | By) =>
         (context: Element | Browser) => context.element(cssOrXpathOrBy);
 
-    export const all = (cssOrXpathOrBy: string | By) =>
-        (context: Element | Browser | Collection) => context.all(cssOrXpathOrBy);
+    export const collected = (searchFunction: (element: Element) => Element | Collection) =>
+        (collection: Collection) => collection.collected(searchFunction);
 
     /* Element.* builders */
     export const parent = (element: Element) => element.parent;
@@ -46,8 +46,6 @@ export namespace find {
         (collection: Collection) => collection.elementBy(condition);
     export const filteredBy = (condition: ElementCondition) =>
         (collection: Collection) => collection.filteredBy(condition);
-    export const map = (cssOrXpathOrBy: string | By) =>
-        (collection: Collection) => collection.map(cssOrXpathOrBy);
 
     /* Browser.* builders */
     export const alert = (browser: Browser) => browser.alert;

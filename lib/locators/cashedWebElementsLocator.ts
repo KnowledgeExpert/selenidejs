@@ -15,13 +15,13 @@
 import { WebElement } from 'selenium-webdriver';
 import { Locator } from './locator';
 
-export class CashedWebElementLocator implements Locator<Promise<WebElement>> {
+export class CashedWebElementsLocator implements Locator<Promise<WebElement[]>> {
 
-    constructor(private readonly cash: WebElement) {
+    constructor(private readonly cash: WebElement[]) {
         this.cash = cash;
     }
 
-    async find(): Promise<WebElement> {
+    async find(): Promise<WebElement[]> {
         return this.cash;
     }
 

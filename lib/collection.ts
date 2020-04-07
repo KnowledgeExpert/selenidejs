@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { By, WebElement } from 'selenium-webdriver';
+import { WebElement } from 'selenium-webdriver';
 import { ElementCondition } from './conditions';
 import { Configuration } from './configuration';
 import { Element } from './element';
@@ -25,7 +25,6 @@ import { ElementsInEachByLocator } from './locators/elementsInEachByLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SlicedWebElementsLocator } from './locators/slicedWebElementsLocator';
-import { Extensions } from './utils/extensions';
 import { Condition } from './wait';
 
 
@@ -45,8 +44,8 @@ export class Collection extends Entity implements Assertable, Matchable {
     // todo: should not we move it to queries?, or rename to asCashedArray() ?
     async getAsCashedArray(): Promise<Element[]> {
         return (await this.getWebElements())
-            .map((it, index) => new Element(
-                new CashedWebElementLocator(it, `${this}[${index}]`), this.configuration)
+            .map(it => new Element(
+                new CashedWebElementLocator(it), this.configuration)
             );
     }
 
@@ -81,14 +80,18 @@ export class Collection extends Entity implements Assertable, Matchable {
         );
     }
 
-    all(cssOrXpathOrBy: string | By): Collection {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        return new Collection(new ElementsInEachByLocator(by, this), this.configuration);
-    }
-
-    map(cssOrXpathOrBy: string | By): Collection {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        return new Collection(new ElementInEachByLocator(by, this), this.configuration);
+    collected(searchFunction: (element: Element) => Element | Collection): Collection {
+        if (searchFunction(this.first) instanceof Element) {
+            return new Collection(
+                new ElementInEachByLocator(searchFunction as (element: Element) => Element, this, this.configuration),
+                this.configuration
+            );
+        } else {
+            return new Collection(
+                new ElementsInEachByLocator(searchFunction as (element: Element) => Collection, this, this.configuration),
+                this.configuration
+            );
+        }
     }
 
     async getWebElements(): Promise<WebElement[]> {

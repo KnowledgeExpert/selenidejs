@@ -65,9 +65,28 @@
             // </body>
 
             const span = browser.element('body').shadow.element('span');
-            console.log(await spans.get(its.text)); // 'first'
+            console.log(await span.get(its.text)); // 'first'
       ```
+  * mapping collection elements to inner (relative) elements:
+      ```
+            // assume dom looks like
+            // <body>
+            //  <div>
+            //    <span>first</span>
+            //    <span>second</span>
+            //  </div>
+            //  <div>
+            //    <span>third</span>
+            //    <span>fourth</span>
+            //  </div>
+            // </body>
 
+            const firstSpans = browser.all('div').collected(it => it.element('span'));
+            console.log(await firstSpans.get(their.texts)); // ['first', 'third']
+
+            const allSpans = browser.all('div').collected(it => it.all('span'));
+            console.log(await allSpans.get(their.texts)); // ['first', 'second', 'third', 'fourth']
+      ```
 
 ## 1.2.2 (released on 2019.08.10)
 
