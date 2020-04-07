@@ -25,6 +25,7 @@ import { Locator } from './locators/locator';
 import { by } from './support/selectors/by';
 import { lambda } from './utils';
 import { Extensions } from './utils/extensions';
+import { Shadow } from './shadow';
 
 
 export class Element extends Entity implements Assertable, Matchable {
@@ -51,7 +52,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     element(
-        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement), args?: any[] }),
+        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }),
         customized?: Partial<Configuration>
     ): Element {
         const configuration = customized === undefined ?
@@ -92,8 +93,11 @@ export class Element extends Entity implements Assertable, Matchable {
         return this.element(by.xpath('./following-sibling::*'));
     }
 
-    /* Commands */
+    get shadow(): Shadow {
+        return new Shadow(this.element({ script: element => element.shadowRoot }), this.configuration);
+    }
 
+    /* Commands */
     async executeScript(script: string | ((element: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
         const wrappedScript = 'var [ element, ...args ] = arguments;' +
             (script instanceof Function

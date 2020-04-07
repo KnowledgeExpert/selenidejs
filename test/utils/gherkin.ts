@@ -17,7 +17,7 @@ import { TestUtils } from './testUtils';
 
 
 export class Gherkin {
-    
+
     constructor(private readonly browser: Browser) {
         this.browser = browser;
     }
@@ -43,7 +43,7 @@ export class Gherkin {
         return this.withBodyTimedOut(html, timeout);
     }
 
-    async executeScript(script: string) {
+    async executeScript(script: (string | ((document: Document, args?: any[], window?: Window) => any)), ...args: any[]) {
         return this.browser.executeScript(script);
     }
 

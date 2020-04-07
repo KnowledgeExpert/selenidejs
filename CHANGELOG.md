@@ -55,6 +55,18 @@
             const spans = div.all({ script: element => element.getElementsByTagName('span') });
             console.log(await spans.get(their.texts)); // ['second', 'third']
       ```
+  * (Shadow DOM)[https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM] support:
+      ```
+            // assume dom looks like
+            // <body>
+            // ...shadowRoot...
+            //   <span>first</span>
+            // ...shadowRoot...
+            // </body>
+
+            const span = browser.element('body').shadow.element('span');
+            console.log(await spans.get(its.text)); // 'first'
+      ```
 
 
 ## 1.2.2 (released on 2019.08.10)
