@@ -13,33 +13,41 @@
 // limitations under the License.
 
 import { WebElement } from 'selenium-webdriver';
+import { its } from '..';
 import { Collection } from '../collection';
-import { Configuration } from '../configuration';
 import { Element } from '../element';
-import { CashedWebElementLocator } from './cashedWebElementLocator';
 import { Locator } from './locator';
 
 
-export class ElementInEachByLocator implements Locator<Promise<WebElement[]>> {
+export class CollectedByLocator implements Locator<Promise<WebElement[]>> {
 
     constructor(
-        private readonly searchFunction: (element: Element) => Element,
+        private readonly searchFunction: (element: Element) => Element | Collection,
         private readonly collection: Collection,
-        private readonly configuration: Configuration
     ) {
         this.searchFunction = searchFunction;
         this.collection = collection;
     }
 
     async find(): Promise<WebElement[]> {
-        const rootElements = await this.collection.getWebElements();
-        const innerElements = [];
-        for (const rootElement of rootElements) {
-            const wrappedElement = new Element(new CashedWebElementLocator(rootElement), this.configuration);
-            const innerElement = await this.searchFunction(wrappedElement).getWebElement();
-            innerElements.push(innerElement);
+        const result = [];
+        for (let i = 0; i < await this.collection.get(its.size); i++) {
+            const rootElement = this.collection.elementAt(i);
+            const target = this.searchFunction(rootElement);
+            if (target instanceof Element) {
+                try {
+                    const sibling = await target.getWebElement();
+                    result.push(sibling);
+                } catch (err) {
+                    throw new Error(`Cannot find ${target.toString()}\n\t${err.message}`);
+                }
+            } else {
+                const siblings = await target.getWebElements();
+                result.push(...siblings);
+
+            }
         }
-        return innerElements;
+        return result;
     }
 
     toString(): string {

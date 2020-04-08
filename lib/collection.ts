@@ -20,8 +20,7 @@ import { Assertable, Entity, Matchable } from './entity';
 import { ElementByConditionWebElementLocator } from './locators/byConditionWebElementLocator';
 import { ByIndexWebElementLocator } from './locators/byIndexWebElementLocator';
 import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
-import { ElementInEachByLocator } from './locators/elementInEachByLocator';
-import { ElementsInEachByLocator } from './locators/elementsInEachByLocator';
+import { CollectedByLocator } from './locators/collectedByLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SlicedWebElementsLocator } from './locators/slicedWebElementsLocator';
@@ -81,17 +80,7 @@ export class Collection extends Entity implements Assertable, Matchable {
     }
 
     collected(searchFunction: (element: Element) => Element | Collection): Collection {
-        if (searchFunction(this.first) instanceof Element) {
-            return new Collection(
-                new ElementInEachByLocator(searchFunction as (element: Element) => Element, this, this.configuration),
-                this.configuration
-            );
-        } else {
-            return new Collection(
-                new ElementsInEachByLocator(searchFunction as (element: Element) => Collection, this, this.configuration),
-                this.configuration
-            );
-        }
+        return new Collection(new CollectedByLocator(searchFunction, this), this.configuration);
     }
 
     async getWebElements(): Promise<WebElement[]> {
