@@ -55,7 +55,7 @@
             const spans = div.all({ script: element => element.getElementsByTagName('span') });
             console.log(await spans.get(their.texts)); // ['second', 'third']
       ```
-  * (Shadow DOM)[https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM] support:
+  * [ Shadow DOM ]( https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM ) support:
       ```
             // assume dom looks like
             // <body>
