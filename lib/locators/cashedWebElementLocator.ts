@@ -17,12 +17,17 @@ import { Locator } from './locator';
 
 export class CashedWebElementLocator implements Locator<Promise<WebElement>> {
 
-    constructor(private readonly cash: WebElement) {
+    constructor(private readonly cash: WebElement,
+                private readonly description: string) {
         this.cash = cash;
+        this.description = description;
     }
 
     async find(): Promise<WebElement> {
         return this.cash;
     }
 
+    toString(): string {  // todo: do we really need this toString()?
+        return this.description;
+    }
 }

@@ -31,7 +31,8 @@ export class CollectedByLocator implements Locator<Promise<WebElement[]>> {
 
     async find(): Promise<WebElement[]> {
         const result = [];
-        for (let i = 0; i < await this.collection.get(its.size); i++) {
+        const size = await this.collection.get(its.size);
+        for (let i = 0; i < size; i++) {
             const rootElement = this.collection.elementAt(i);
             const target = this.searchFunction(rootElement);
             if (target instanceof Element) {
