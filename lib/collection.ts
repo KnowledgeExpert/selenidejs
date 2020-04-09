@@ -20,10 +20,12 @@ import { Assertable, Entity, Matchable } from './entity';
 import { ElementByConditionWebElementLocator } from './locators/byConditionWebElementLocator';
 import { ByIndexWebElementLocator } from './locators/byIndexWebElementLocator';
 import { CashedWebElementLocator } from './locators/cashedWebElementLocator';
+import { CollectedByLocator } from './locators/collectedByLocator';
 import { FilteredByConditionWebElementsLocator } from './locators/filteredByConditionWebElementsLocator';
 import { Locator } from './locators/locator';
 import { SlicedWebElementsLocator } from './locators/slicedWebElementsLocator';
 import { Condition } from './wait';
+
 
 export class Collection extends Entity implements Assertable, Matchable {
 
@@ -75,6 +77,10 @@ export class Collection extends Entity implements Assertable, Matchable {
             new ElementByConditionWebElementLocator(Condition.all(...conditions), this),
             this.configuration
         );
+    }
+
+    collected(searchFunction: (element: Element) => Element | Collection): Collection {
+        return new Collection(new CollectedByLocator(searchFunction, this), this.configuration);
     }
 
     async getWebElements(): Promise<WebElement[]> {

@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Element } from '../../element';
 import { By } from 'selenium-webdriver';
+import { Browser } from '../../browser';
 import { Collection } from '../../collection';
 import { ElementCondition } from '../../conditions';
-import { Browser } from '../../browser';
+import { Element } from '../../element';
 
 export namespace find {
 
@@ -25,8 +25,8 @@ export namespace find {
     export const element = (cssOrXpathOrBy: string | By) =>
         (context: Element | Browser) => context.element(cssOrXpathOrBy);
 
-    export const all = (cssOrXpathOrBy: string | By) =>
-        (context: Element | Browser) => context.all(cssOrXpathOrBy);
+    export const collected = (searchFunction: (element: Element) => Element | Collection) =>
+        (collection: Collection) => collection.collected(searchFunction);
 
     /* Element.* builders */
     export const parent = (element: Element) => element.parent;
