@@ -1,14 +1,12 @@
-> **[selenidejs](../README.md)**
-
-[CannotPerformActionError](cannotperformactionerror.md) /
+[selenidejs](../README.md) › [CannotPerformActionError](cannotperformactionerror.md)
 
 # Class: CannotPerformActionError
 
 ## Hierarchy
 
-* `Error`
+* [Error](conditionnotmatchederror.md#static-error)
 
-  * **CannotPerformActionError**
+  ↳ **CannotPerformActionError**
 
 ## Index
 
@@ -29,7 +27,7 @@
 
 \+ **new CannotPerformActionError**(`message`: string): *[CannotPerformActionError](cannotperformactionerror.md)*
 
-*Defined in [errors/cannotPerformActionError.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/cannotPerformActionError.ts#L16)*
+*Defined in [lib/errors/cannotPerformActionError.ts:16](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/errors/cannotPerformActionError.ts#L16)*
 
 **Parameters:**
 
@@ -45,9 +43,9 @@ Name | Type |
 
 • **message**: *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[message](conditionnotmatchederror.md#message)*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
+Defined in node_modules/typescript/lib/lib.es5.d.ts:974
 
 ___
 
@@ -55,9 +53,9 @@ ___
 
 • **name**: *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[name](conditionnotmatchederror.md#name)*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
+Defined in node_modules/typescript/lib/lib.es5.d.ts:973
 
 ___
 
@@ -65,16 +63,14 @@ ___
 
 • **stack**? : *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[stack](conditionnotmatchederror.md#optional-stack)*
 
-*Overrides void*
-
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+Defined in node_modules/typescript/lib/lib.es5.d.ts:975
 
 ___
 
 ### `Static` Error
 
-▪ **Error**: *`ErrorConstructor`*
+▪ **Error**: *ErrorConstructor*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974
+Defined in node_modules/typescript/lib/lib.es5.d.ts:984

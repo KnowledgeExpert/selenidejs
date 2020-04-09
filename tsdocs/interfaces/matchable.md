@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Matchable](matchable.md) /
+[selenidejs](../README.md) › [Matchable](matchable.md)
 
 # Interface: Matchable
 
@@ -29,30 +27,30 @@
 
 ###  matching
 
-▸ **matching**(`condition`: [Condition](../classes/condition.md)‹*this*›): *`Promise<boolean>`*
+▸ **matching**(`condition`: [Condition](../classes/condition.md)‹this›): *Promise‹boolean›*
 
-*Defined in [entity.ts:43](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L43)*
+*Defined in [lib/entity.ts:43](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L43)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | [Condition](../classes/condition.md)‹*this*› |
+`condition` | [Condition](../classes/condition.md)‹this› |
 
-**Returns:** *`Promise<boolean>`*
+**Returns:** *Promise‹boolean›*
 
 ___
 
 ###  waitUntil
 
-▸ **waitUntil**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
+▸ **waitUntil**(...`conditions`: [Condition](../classes/condition.md)‹this›[]): *Promise‹boolean›*
 
-*Defined in [entity.ts:42](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L42)*
+*Defined in [lib/entity.ts:42](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L42)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<this>>` |
+`...conditions` | [Condition](../classes/condition.md)‹this›[] |
 
-**Returns:** *`Promise<boolean>`*
+**Returns:** *Promise‹boolean›*

@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Command](command.md) /
+[selenidejs](../README.md) › [Command](command.md)
 
 # Class: Command <**T**>
 
@@ -13,13 +11,13 @@ Command can pass or fail with Error correspondingly.
 
 ## Hierarchy
 
-* [Query](query.md)‹*`T`*, *void*›
+* [Query](query.md)‹T, void›
 
-  * **Command**
+  ↳ **Command**
 
 ## Implements
 
-* [Fn](../interfaces/fn.md)‹*`T`*, *void*›
+* [Fn](../interfaces/fn.md)‹T, void›
 
 ## Index
 
@@ -40,7 +38,7 @@ Command can pass or fail with Error correspondingly.
 
 *Inherited from [Query](query.md).[constructor](query.md#constructor)*
 
-*Defined in [wait.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L41)*
+*Defined in [lib/wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 **Parameters:**
 
@@ -55,21 +53,21 @@ Name | Type |
 
 ###  call
 
-▸ **call**(`entity`: `T`): *`Promise<void>`*
+▸ **call**(`entity`: T): *Promise‹void›*
 
 *Implementation of [Fn](../interfaces/fn.md)*
 
 *Inherited from [Query](query.md).[call](query.md#call)*
 
-*Defined in [wait.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L48)*
+*Defined in [lib/wait.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L48)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`entity` | `T` |
+`entity` | T |
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
@@ -79,6 +77,6 @@ ___
 
 *Inherited from [Query](query.md).[toString](query.md#tostring)*
 
-*Defined in [wait.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L52)*
+*Defined in [lib/wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
 **Returns:** *string*

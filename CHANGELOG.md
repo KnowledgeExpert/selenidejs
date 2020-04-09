@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.0
+## 1.3.0 (released on 2020.04.09)
 
 ### New Features
 

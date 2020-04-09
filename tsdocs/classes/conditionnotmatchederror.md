@@ -1,16 +1,14 @@
-> **[selenidejs](../README.md)**
-
-[ConditionNotMatchedError](conditionnotmatchederror.md) /
+[selenidejs](../README.md) › [ConditionNotMatchedError](conditionnotmatchederror.md)
 
 # Class: ConditionNotMatchedError
 
 ## Hierarchy
 
-* `Error`
+* [Error](conditionnotmatchederror.md#static-error)
 
-  * **ConditionNotMatchedError**
+  ↳ **ConditionNotMatchedError**
 
-  * [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
+  ↳ [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
 
 ## Index
 
@@ -31,7 +29,7 @@
 
 \+ **new ConditionNotMatchedError**(`message`: string): *[ConditionNotMatchedError](conditionnotmatchederror.md)*
 
-*Defined in [errors/conditionDoesNotMatchError.ts:16](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L16)*
+*Defined in [lib/errors/conditionDoesNotMatchError.ts:16](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L16)*
 
 **Parameters:**
 
@@ -47,9 +45,9 @@ Name | Type | Default |
 
 • **message**: *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[message](conditionnotmatchederror.md#message)*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
+Defined in node_modules/typescript/lib/lib.es5.d.ts:974
 
 ___
 
@@ -57,9 +55,9 @@ ___
 
 • **name**: *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[name](conditionnotmatchederror.md#name)*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
+Defined in node_modules/typescript/lib/lib.es5.d.ts:973
 
 ___
 
@@ -67,16 +65,14 @@ ___
 
 • **stack**? : *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[stack](conditionnotmatchederror.md#optional-stack)*
 
-*Overrides void*
-
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+Defined in node_modules/typescript/lib/lib.es5.d.ts:975
 
 ___
 
 ### `Static` Error
 
-▪ **Error**: *`ErrorConstructor`*
+▪ **Error**: *ErrorConstructor*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974
+Defined in node_modules/typescript/lib/lib.es5.d.ts:984

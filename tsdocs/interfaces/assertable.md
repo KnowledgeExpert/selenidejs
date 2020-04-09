@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Assertable](assertable.md) /
+[selenidejs](../README.md) › [Assertable](assertable.md)
 
 # Interface: Assertable
 
@@ -28,14 +26,14 @@
 
 ###  should
 
-▸ **should**(`condition`: [Condition](../classes/condition.md)‹*this*›): *`Promise<this>`*
+▸ **should**(`condition`: [Condition](../classes/condition.md)‹this›): *Promise‹this›*
 
-*Defined in [entity.ts:38](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L38)*
+*Defined in [lib/entity.ts:38](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L38)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | [Condition](../classes/condition.md)‹*this*› |
+`condition` | [Condition](../classes/condition.md)‹this› |
 
-**Returns:** *`Promise<this>`*
+**Returns:** *Promise‹this›*

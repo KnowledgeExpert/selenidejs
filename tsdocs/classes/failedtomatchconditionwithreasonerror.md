@@ -1,14 +1,12 @@
-> **[selenidejs](../README.md)**
-
-[FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md) /
+[selenidejs](../README.md) › [FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)
 
 # Class: FailedToMatchConditionWithReasonError
 
 ## Hierarchy
 
-  * [ConditionNotMatchedError](conditionnotmatchederror.md)
+  ↳ [ConditionNotMatchedError](conditionnotmatchederror.md)
 
-  * **FailedToMatchConditionWithReasonError**
+  ↳ **FailedToMatchConditionWithReasonError**
 
 ## Index
 
@@ -26,18 +24,18 @@
 
 ###  constructor
 
-\+ **new FailedToMatchConditionWithReasonError**(`expected`: string, `reason`: `Error`): *[FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)*
+\+ **new FailedToMatchConditionWithReasonError**(`expected`: string, `reason`: [Error](conditionnotmatchederror.md#static-error)): *[FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)*
 
 *Overrides [ConditionNotMatchedError](conditionnotmatchederror.md).[constructor](conditionnotmatchederror.md#constructor)*
 
-*Defined in [errors/conditionDoesNotMatchError.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L23)*
+*Defined in [lib/errors/conditionDoesNotMatchError.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/errors/conditionDoesNotMatchError.ts#L23)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
 `expected` | string |
-`reason` | `Error` |
+`reason` | [Error](conditionnotmatchederror.md#static-error) |
 
 **Returns:** *[FailedToMatchConditionWithReasonError](failedtomatchconditionwithreasonerror.md)*
 
@@ -47,9 +45,9 @@ Name | Type |
 
 • **message**: *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[message](conditionnotmatchederror.md#message)*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964
+Defined in node_modules/typescript/lib/lib.es5.d.ts:974
 
 ___
 
@@ -57,9 +55,9 @@ ___
 
 • **name**: *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[name](conditionnotmatchederror.md#name)*
 
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963
+Defined in node_modules/typescript/lib/lib.es5.d.ts:973
 
 ___
 
@@ -67,8 +65,6 @@ ___
 
 • **stack**? : *string*
 
-*Inherited from void*
+*Inherited from [ConditionNotMatchedError](conditionnotmatchederror.md).[stack](conditionnotmatchederror.md#optional-stack)*
 
-*Overrides void*
-
-Defined in /Users/yashaka/Dropbox (Personal)/yashaka (box)/selenidejs/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965
+Defined in node_modules/typescript/lib/lib.es5.d.ts:975

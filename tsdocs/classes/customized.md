@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Customized](customized.md) /
+[selenidejs](../README.md) › [Customized](customized.md)
 
 # Class: Customized <**T**>
 
@@ -43,7 +41,7 @@
 
 \+ **new Customized**(`customizedType`: any): *[Customized](customized.md)*
 
-*Defined in [configuration.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L93)*
+*Defined in [lib/configuration.ts:93](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L93)*
 
 **Parameters:**
 
@@ -57,9 +55,9 @@ Name | Type |
 
 ### `Private` configuration
 
-• **configuration**: *`Partial<Configuration>`*
+• **configuration**: *Partial‹[Configuration](configuration.md)›*
 
-*Defined in [configuration.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L93)*
+*Defined in [lib/configuration.ts:93](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L93)*
 
 ___
 
@@ -67,15 +65,15 @@ ___
 
 • **customizedType**: *any*
 
-*Defined in [configuration.ts:96](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L96)*
+*Defined in [lib/configuration.ts:96](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L96)*
 
 ## Methods
 
 ###  baseUrl
 
-▸ **baseUrl**(`base`: string): *`this`*
+▸ **baseUrl**(`base`: string): *this*
 
-*Defined in [configuration.ts:110](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L110)*
+*Defined in [lib/configuration.ts:110](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L110)*
 
 **Parameters:**
 
@@ -83,41 +81,41 @@ Name | Type |
 ------ | ------ |
 `base` | string |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  build
 
-▸ **build**(): *`T`*
+▸ **build**(): *T*
 
-*Defined in [configuration.ts:101](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L101)*
+*Defined in [lib/configuration.ts:101](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L101)*
 
-**Returns:** *`T`*
+**Returns:** *T*
 
 ___
 
 ###  driver
 
-▸ **driver**(`webdriver`: `WebDriver`): *`this`*
+▸ **driver**(`webdriver`: WebDriver): *this*
 
-*Defined in [configuration.ts:105](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L105)*
+*Defined in [lib/configuration.ts:105](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L105)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`webdriver` | `WebDriver` |
+`webdriver` | WebDriver |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  fullPageScreenshot
 
-▸ **fullPageScreenshot**(`turnedOn`: boolean): *`this`*
+▸ **fullPageScreenshot**(`turnedOn`: boolean): *this*
 
-*Defined in [configuration.ts:150](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L150)*
+*Defined in [lib/configuration.ts:150](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L150)*
 
 **Parameters:**
 
@@ -125,15 +123,15 @@ Name | Type |
 ------ | ------ |
 `turnedOn` | boolean |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  setValueByJs
 
-▸ **setValueByJs**(`value`: boolean): *`this`*
+▸ **setValueByJs**(`value`: boolean): *this*
 
-*Defined in [configuration.ts:130](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L130)*
+*Defined in [lib/configuration.ts:130](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L130)*
 
 **Parameters:**
 
@@ -141,15 +139,15 @@ Name | Type |
 ------ | ------ |
 `value` | boolean |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  timeout
 
-▸ **timeout**(`milliseconds`: number): *`this`*
+▸ **timeout**(`milliseconds`: number): *this*
 
-*Defined in [configuration.ts:115](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L115)*
+*Defined in [lib/configuration.ts:115](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L115)*
 
 **Parameters:**
 
@@ -157,15 +155,15 @@ Name | Type |
 ------ | ------ |
 `milliseconds` | number |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  typeByJs
 
-▸ **typeByJs**(`value`: boolean): *`this`*
+▸ **typeByJs**(`value`: boolean): *this*
 
-*Defined in [configuration.ts:135](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L135)*
+*Defined in [lib/configuration.ts:135](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L135)*
 
 **Parameters:**
 
@@ -173,15 +171,15 @@ Name | Type |
 ------ | ------ |
 `value` | boolean |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  windowHeight
 
-▸ **windowHeight**(`value`: string): *`this`*
+▸ **windowHeight**(`value`: string): *this*
 
-*Defined in [configuration.ts:125](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L125)*
+*Defined in [lib/configuration.ts:125](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L125)*
 
 **Parameters:**
 
@@ -189,15 +187,15 @@ Name | Type |
 ------ | ------ |
 `value` | string |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ###  windowWidth
 
-▸ **windowWidth**(`value`: string): *`this`*
+▸ **windowWidth**(`value`: string): *this*
 
-*Defined in [configuration.ts:120](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L120)*
+*Defined in [lib/configuration.ts:120](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L120)*
 
 **Parameters:**
 
@@ -205,24 +203,24 @@ Name | Type |
 ------ | ------ |
 `value` | string |
 
-**Returns:** *`this`*
+**Returns:** *this*
 
 ___
 
 ### `Static` browser
 
-▸ **browser**(): *[Customized](customized.md)‹*[Browser](browser.md)*›*
+▸ **browser**(): *[Customized](customized.md)‹[Browser](browser.md)›*
 
-*Defined in [configuration.ts:85](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L85)*
+*Defined in [lib/configuration.ts:85](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L85)*
 
-**Returns:** *[Customized](customized.md)‹*[Browser](browser.md)*›*
+**Returns:** *[Customized](customized.md)‹[Browser](browser.md)›*
 
 ___
 
 ### `Static` configuration
 
-▸ **configuration**(): *[Customized](customized.md)‹*[Configuration](configuration.md)*›*
+▸ **configuration**(): *[Customized](customized.md)‹[Configuration](configuration.md)›*
 
-*Defined in [configuration.ts:89](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/configuration.ts#L89)*
+*Defined in [lib/configuration.ts:89](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/configuration.ts#L89)*
 
-**Returns:** *[Customized](customized.md)‹*[Configuration](configuration.md)*›*
+**Returns:** *[Customized](customized.md)‹[Configuration](configuration.md)›*
