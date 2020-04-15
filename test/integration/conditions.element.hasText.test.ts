@@ -37,10 +37,10 @@ describe('Conditions.element.hasText (via should*)', () => {
                 <button>hey, click me!</button>
         `);
 
-        await browser.element('button').should(have.text(/click/g));
-        await browser.element('button').should(have.text(/hey, click me!/g));
-        await browser.element('button').should(have.no.text(/\d.*/g));
-    })
+        await browser.element('button').should(have.text(/.*click.*/g));
+        await browser.element('button').should(have.text(/^hey, click me!$/g));
+        await browser.element('button').should(have.no.text(/\s{2}click\s{2}/g));
+    });
 
     // todo: add test for invisible element with some text...
 

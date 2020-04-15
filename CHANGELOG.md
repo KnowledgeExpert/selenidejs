@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1 (released on 2020.04.15)
+
+### FIXES
+  * fixed `have.text` condition - it was using always `match` instead of using `match` or `includes` depending on passed argument
+
 ## 1.3.0 (released on 2020.04.09)
 
 ### New Features

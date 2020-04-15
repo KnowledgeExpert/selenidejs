@@ -161,7 +161,7 @@ export namespace condition {
         export const hasText = (expected: string | number | RegExp) => new Condition(
             `has text: ${expected}`,
             throwIfNotActual(query.text,
-                expected instanceof String
+                typeof expected === 'string'
                     ? predicate.includes(expected)
                     : predicate.matches(expected)
             )
