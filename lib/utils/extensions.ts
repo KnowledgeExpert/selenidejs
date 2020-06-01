@@ -45,8 +45,12 @@ export namespace Extensions {
     }
 
     export function toBy(cssOrXpathOrBy: string | By): By {  // todo: probably we need to enhance xpath identification
+        const isXpath = (str: string) => str.startsWith('/')
+        || str.startsWith('./')
+        || str.startsWith('..')
+        || str.startsWith('(');
         return (typeof cssOrXpathOrBy === 'string')
-            ? cssOrXpathOrBy.includes('/') ? by.xpath(cssOrXpathOrBy) : by.css(cssOrXpathOrBy)
+            ? isXpath(cssOrXpathOrBy) ? by.xpath(cssOrXpathOrBy) : by.css(cssOrXpathOrBy)
             : cssOrXpathOrBy;
     }
 
