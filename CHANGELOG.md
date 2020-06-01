@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.2 (released on 2020.06.01)
+
+### FIXES
+  * fixed finding by xpath when using `element`/`all` methods
+
 ## 1.3.1 (released on 2020.04.15)
 
 ### FIXES
