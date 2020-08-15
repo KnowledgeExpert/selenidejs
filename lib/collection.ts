@@ -40,7 +40,7 @@ export class Collection extends Entity implements Assertable, Matchable {
     }
 
     // todo: should not we move it to queries?, or rename to asCashedArray() ?
-    async getAsCashedArray(): Promise<Element[]> {
+    async getAsCashedArray(): Promise<Element[]> { // todo: rename to ...Cached, todo: why do we need get?
         return (await this.getWebElements())
             .map((it, index) => new Element(
                 new CashedWebElementLocator(it, `${this}[${index}]`), this.configuration)
