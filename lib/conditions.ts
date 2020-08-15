@@ -158,23 +158,26 @@ export namespace condition {
                 ))
         );
 
-        // todo: do we need string | number
-        export const hasText = (expected: string) => new Condition(
+        export const hasText = (expected: string | number | RegExp) => new Condition(
             `has text: ${expected}`,
-            throwIfNotActual(query.text, predicate.includes(expected))
+            throwIfNotActual(query.text,
+                typeof expected === 'string'
+                    ? predicate.includes(expected)
+                    : predicate.matches(expected)
+            )
         );
 
-        export const hasExactText = (expected: string) => // todo: do we need string | number ?
+        export const hasExactText = (expected: string | number) =>
             new Condition(`has exact text: ${expected}`,
                 throwIfNotActual(query.text, predicate.equals(expected)));
 
-        export const hasAttributeWithValue = (name: string, value: string) => new Condition(
+        export const hasAttributeWithValue = (name: string, value: string | number) => new Condition(
             `has attribute '${name}' with value '${value}'`,
             throwIfNotActual(query.attribute(name), predicate.equals(value))
         );
 
 
-        export const hasAttributeWithValueContaining = (name: string, partialValue: string) => new Condition(
+        export const hasAttributeWithValueContaining = (name: string, partialValue: string | number) => new Condition(
             `has attribute '${name}' with value '${partialValue}'`,
             throwIfNotActual(query.attribute(name), predicate.includes(partialValue))
         );
@@ -184,10 +187,10 @@ export namespace condition {
             throwIfNotActual(query.attribute('class'), predicate.includesWord(cssClass))
         );
 
-        export const hasValue = (expected: string) =>
+        export const hasValue = (expected: string | number) =>
             hasAttributeWithValue('value', expected);
 
-        export const hasValueContaining = (expected: string) =>
+        export const hasValueContaining = (expected: string | number) =>
             hasAttributeWithValueContaining('value', expected);
 
         // TODO do we need to have message `should have text '' but was ... and value '' but was ...`
@@ -225,12 +228,12 @@ export namespace condition {
         // update: for invisible element `getText` will return error or empty string, and
         // it can be confused with message like `but was 'foo', '', 'bar'` when he see on
         // screen only 'foo', 'bar'
-        export const hasTexts = (texts: string[]): CollectionCondition => new Condition(
+        export const hasTexts = (texts: string[] | number[]): CollectionCondition => new Condition(
             `has texts ${texts}`,
             throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts))
         );
 
-        export const hasExactTexts = (texts: string[]): CollectionCondition => new Condition(
+        export const hasExactTexts = (texts: string[] | number[]): CollectionCondition => new Condition(
             `has exact texts ${texts}`,
             throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts))
         );
@@ -273,9 +276,8 @@ export namespace condition {
             throwIfNotActual(query.tabsNumber, predicate.isLessThan(num))
         );
 
-        /* tslint:disable:ban-types */
         export const hasJsReturned =
-            (expected: any, script: string | Function, ...args: any[]): BrowserCondition => new Condition(
+            (expected: any, script: string | ((document: Document) => any), ...args: any[]): BrowserCondition => new Condition(
                 `has execute script returned ${JSON.stringify(expected)}`,
                 async (browser: Browser) => {
                     const actual = await browser.executeScript(script, ...args);
@@ -290,6 +292,5 @@ export namespace condition {
                     }
                 }
             );
-        /* tslint:enable:ban-types */
     }
 }

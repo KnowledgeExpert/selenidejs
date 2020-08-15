@@ -17,20 +17,22 @@ import { Collection } from './collection';
 import { command } from './commands';
 import { Configuration } from './configuration';
 import { Assertable, Entity, Matchable } from './entity';
+import { ElementWebElementByJs } from './locators/ElementWebElementByJs';
 import { ElementWebElementByLocator } from './locators/ElementWebElementByLocator';
+import { ElementWebElementsByJs } from './locators/ElementWebElementsByJs';
 import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLocator';
 import { Locator } from './locators/locator';
 import { by } from './support/selectors/by';
 import { lambda } from './utils';
 import { Extensions } from './utils/extensions';
+import { Shadow } from './shadow';
 
 
 export class Element extends Entity implements Assertable, Matchable {
-    // todo: why not have private readonly driver property?
 
-    constructor(private readonly locator: Locator<Promise<WebElement>>,
-        // readonly configuration: Configuration) {
-                protected readonly configuration: Configuration) {
+    readonly locator: Locator<Promise<WebElement>>;
+
+    constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration) {
         super(configuration);
         this.locator = locator;
     }
@@ -49,12 +51,39 @@ export class Element extends Entity implements Assertable, Matchable {
         return new Element(this.locator, new Configuration({ ...this.configuration, ...customConfig }));
     }
 
-    element(cssOrXpathOrBy: string | By): Element { // todo: think on refactoring string | By to a new type
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ElementWebElementByLocator(by, this);
-        return new Element(locator, this.configuration);
+    element(
+        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }),
+        customized?: Partial<Configuration>
+    ): Element {
+        const configuration = customized === undefined ?
+            this.configuration :
+            new Configuration({ ...this.configuration, ...customized });
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
+            const locator = new ElementWebElementByLocator(by, this);
+            return new Element(locator, configuration);
+        } else {
+            const locator = new ElementWebElementByJs(this, located.script, located.args);
+            return new Element(locator, configuration);
+        }
     }
 
+    all(
+        located: string | By | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
+        customized?: Partial<Configuration>
+    ): Collection {
+        const configuration = customized === undefined ?
+            this.configuration :
+            new Configuration({ ...this.configuration, ...customized });
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
+            const locator = new ElementWebElementsByLocator(by, this);
+            return new Collection(locator, configuration);
+        } else {
+            const locator = new ElementWebElementsByJs(this, located.script, located.args);
+            return new Collection(locator, configuration);
+        }
+    }
 
     get parent(): Element {
         return this.element(by.xpath('./..'));
@@ -64,38 +93,19 @@ export class Element extends Entity implements Assertable, Matchable {
         return this.element(by.xpath('./following-sibling::*'));
     }
 
-    all(cssOrXpathOrBy: string | By): Collection {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new ElementWebElementsByLocator(by, this);
-        return new Collection(locator, this.configuration);
+    get shadow(): Shadow {
+        return new Shadow(this.element({ script: element => element.shadowRoot }), this.configuration);
     }
 
     /* Commands */
-
-    /* todo: consider the following implementation:
-
-    async executeScript(script: string, ...args: any[]) {
-        const wrappedScript =
-            `
-            var element = arguments[0];
-            return (function(arguments) {
-                ${script}
-            })(arguments);
-            `;
+    async executeScript(script: string | ((element: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
+        const wrappedScript = 'var [ element, ...args ] = arguments;' +
+            (script instanceof Function
+                ? `return (${script.toString()})(element, args, window);`
+                : `return (function(element, args, window) { ${script} })(element, args, window);`);
         const webelement = await this.getWebElement();
-        return this.driver.executeScript(wrappedScript, webelement, ...args);
+        return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
     }
-
-     */
-
-    // todo: do we need to wrap it into this.wait. ? which benefits will it add? at least more or less good error msg...
-    /* tslint:disable:ban-types */
-    async executeScript(scriptOnThisWebElement: string | Function, ...additionalArgs: any[]) {
-        return this.configuration.driver.executeScript(
-            scriptOnThisWebElement, await this.getWebElement(), ...additionalArgs
-        );
-    }
-    /* tslint:enable:ban-types */
 
     async click() {
         await this.wait.command(lambda('click', async element =>

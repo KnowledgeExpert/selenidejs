@@ -12,16 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Builder, By, Capabilities, IRectangle, WebDriver, WebElement } from 'selenium-webdriver';
-import { Extensions } from './utils/extensions';
+import { Builder, By, Capabilities, WebDriver } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
 import { Assertable, Entity, Matchable } from './entity';
-import isAbsoluteUrl = Extensions.isAbsoluteUrl;
-import { query } from './queries';
+import { BrowserWebElementByJs } from './locators/BrowserWebElementByJs';
 import { BrowserWebElementByLocator } from './locators/BrowserWebElementByLocator';
+import { BrowserWebElementsByJs } from './locators/BrowserWebElementsByJs';
 import { BrowserWebElementsByLocator } from './locators/BrowserWebElementsByLocator';
+import { query } from './queries';
+import { Extensions } from './utils/extensions';
+import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 
 export class Browser extends Entity implements Assertable, Matchable {
 
@@ -56,33 +58,49 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     /* Elements */
 
-    element(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Element {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new BrowserWebElementByLocator(by, this);
+    element(
+        located: (string | By | { script: string | ((document: Document) => HTMLElement), args?: any[] }),
+        customized?: Partial<Configuration>
+    ): Element {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        return new Element(locator, configuration);
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
+            const locator = new BrowserWebElementByLocator(by, this);
+            return new Element(locator, configuration);
+        } else {
+            const locator = new BrowserWebElementByJs(this, located.script, located.args);
+            return new Element(locator, configuration);
+        }
     }
 
-    all(cssOrXpathOrBy: string | By, customized?: Partial<Configuration>): Collection {
-        const by = Extensions.toBy(cssOrXpathOrBy);
-        const locator = new BrowserWebElementsByLocator(by, this);
+    all(
+        located: string | By | { script: string | ((document: Document) => HTMLCollectionOf<HTMLElement>), args?: any[] },
+        customized?: Partial<Configuration>
+    ): Collection {
         const configuration = customized === undefined ?
             this.configuration :
             new Configuration({ ...this.configuration, ...customized });
-        return new Collection(locator, configuration);
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
+            const locator = new BrowserWebElementsByLocator(by, this);
+            return new Collection(locator, configuration);
+        } else {
+            const locator = new BrowserWebElementsByJs(this, located.script, located.args);
+            return new Collection(locator, configuration);
+        }
     }
 
     /* Commands */
 
-    // todo: should we implement all following commands through calling perform method from above?
-
-    /* tslint:disable:ban-types */
-    async executeScript(script: string | Function, ...args: any[]) {
-        return this.driver.executeScript(script, ...args);
+    async executeScript(script: (string | ((document: Document, args?: any[], window?: Window) => any)), ...args: any[]) {
+        const wrappedScript = 'var args = arguments;' +
+            (script instanceof Function
+                ? `return (${script.toString()})(document, args, window);`
+                : `return (function(document, args, window) { ${script} })(document, args, window);`);
+        return this.driver.executeScript(wrappedScript, ...args);
     }
-    /* tslint:enable:ban-types */
 
     async open(relativeOrAbsoluteUrl: string): Promise<Browser> {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
@@ -101,7 +119,7 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     async resizeWindow(width: number, height: number): Promise<Browser> {
-        await this.driver.manage().window().setRect({width, height});
+        await this.driver.manage().window().setRect({ width, height });
         return this;
     }
 
@@ -159,12 +177,12 @@ export class Browser extends Entity implements Assertable, Matchable {
         return this;
     }
 
-/*    async switchToFrame(frameElement: Element): Promise<Browser> {
-        await this.wait.command(async browser => {
-            browser.driver.switchTo().frame(await frameElement.getWebElement());
-        });
-        return this;
-    }*/
+    /*    async switchToFrame(frameElement: Element): Promise<Browser> {
+            await this.wait.command(async browser => {
+                browser.driver.switchTo().frame(await frameElement.getWebElement());
+            });
+            return this;
+        }*/
 
     async switchToDefaultFrame(): Promise<Browser> {
         await this.driver.switchTo().defaultContent();
@@ -172,52 +190,52 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     // todo: cache is not the same as LocalAndSessionStorage; so we have to be verbose in name; but do we need it then?
-/*    async clearLocalAndSessionStorageAndCookies(): Promise<Browser> {
-        await this.driver.executeScript('window.localStorage.clear();')
-            .catch(ignored => {});
-        await this.driver.executeScript('window.sessionStorage.clear();')
-            .catch(ignored => {});
-        await this.driver.manage().deleteAllCookies()
-            .catch(ignored => {});
-        return this;
-    }*/
+    /*    async clearLocalAndSessionStorageAndCookies(): Promise<Browser> {
+            await this.driver.executeScript('window.localStorage.clear();')
+                .catch(ignored => {});
+            await this.driver.executeScript('window.sessionStorage.clear();')
+                .catch(ignored => {});
+            await this.driver.manage().deleteAllCookies()
+                .catch(ignored => {});
+            return this;
+        }*/
 
     async clearLocalStorage(): Promise<Browser> {
         await this.driver.executeScript('window.localStorage.clear();')
-            .catch(ignored => {});
+            .catch(ignored => { });
         return this;
     }
 
     async clearSessionStorage(): Promise<Browser> {
         await this.driver.executeScript('window.sessionStorage.clear();')
-            .catch(ignored => {});
+            .catch(ignored => { });
         return this;
     }
 
     async clearCookies(): Promise<Browser> {
         await this.driver.manage().deleteAllCookies()
-            .catch(ignored => {});
+            .catch(ignored => { });
         return this;
     }
 
-/*
-    async deleteCookie(name: string): Promise<Browser> {
-        await this.driver.manage().deleteCookie(name);
-        return this;
-    }*/
+    /*
+        async deleteCookie(name: string): Promise<Browser> {
+            await this.driver.manage().deleteCookie(name);
+            return this;
+        }*/
 
     get alert() {
         return this.driver.switchTo().alert();
     }
 
     // todo: there are lot more methods in switchTo().alert() should not we just expose switchTo or alert?
-/*    async acceptAlert(): Promise<Browser> {
-        await this.driver.switchTo().alert().accept();
-        return this;
-    }
+    /*    async acceptAlert(): Promise<Browser> {
+            await this.driver.switchTo().alert().accept();
+            return this;
+        }
 
-    async dismissAlert(): Promise<Browser> {
-        await this.driver.switchTo().alert().dismiss();
-        return this;
-    }*/
+        async dismissAlert(): Promise<Browser> {
+            await this.driver.switchTo().alert().dismiss();
+            return this;
+        }*/
 }

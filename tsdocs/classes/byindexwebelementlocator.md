@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[ByIndexWebElementLocator](byindexwebelementlocator.md) /
+[selenidejs](../README.md) › [ByIndexWebElementLocator](byindexwebelementlocator.md)
 
 # Class: ByIndexWebElementLocator
 
@@ -10,7 +8,7 @@
 
 ## Implements
 
-* [Locator](../interfaces/locator.md)‹*`Promise<WebElement>`*›
+* [Locator](../interfaces/locator.md)‹Promise‹WebElement››
 
 ## Index
 
@@ -34,7 +32,7 @@
 
 \+ **new ByIndexWebElementLocator**(`index`: number, `collection`: [Collection](collection.md)): *[ByIndexWebElementLocator](byindexwebelementlocator.md)*
 
-*Defined in [locators/byIndexWebElementLocator.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L20)*
+*Defined in [lib/locators/byIndexWebElementLocator.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L20)*
 
 **Parameters:**
 
@@ -51,7 +49,7 @@ Name | Type |
 
 • **collection**: *[Collection](collection.md)*
 
-*Defined in [locators/byIndexWebElementLocator.ts:23](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L23)*
+*Defined in [lib/locators/byIndexWebElementLocator.ts:23](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L23)*
 
 ___
 
@@ -59,19 +57,19 @@ ___
 
 • **index**: *number*
 
-*Defined in [locators/byIndexWebElementLocator.ts:22](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L22)*
+*Defined in [lib/locators/byIndexWebElementLocator.ts:22](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L22)*
 
 ## Methods
 
 ###  find
 
-▸ **find**(): *`Promise<WebElement>`*
+▸ **find**(): *Promise‹WebElement›*
 
 *Implementation of [Locator](../interfaces/locator.md)*
 
-*Defined in [locators/byIndexWebElementLocator.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L28)*
+*Defined in [lib/locators/byIndexWebElementLocator.ts:28](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L28)*
 
-**Returns:** *`Promise<WebElement>`*
+**Returns:** *Promise‹WebElement›*
 
 ___
 
@@ -79,6 +77,6 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [locators/byIndexWebElementLocator.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L39)*
+*Defined in [lib/locators/byIndexWebElementLocator.ts:39](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/byIndexWebElementLocator.ts#L39)*
 
 **Returns:** *string*

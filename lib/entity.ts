@@ -39,7 +39,7 @@ export interface Assertable {
 }
 
 export interface Matchable {
-    waitUntil(...conditions: Array<Condition<this>>): Promise<boolean>;
+    waitUntil(...conditions: Condition<this>[]): Promise<boolean>;
     matching(condition: Condition<this>): Promise<boolean>;
 }
 /* todo: discuss somewhere do we need it or not... (it could be used mainly in onFailureHooks)
@@ -49,9 +49,10 @@ export interface Configured {
 
 export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
 
+    readonly configuration: Configuration;
     protected readonly wait: Wait<this>;
 
-    constructor(protected readonly configuration: Configuration) {
+    constructor(configuration: Configuration) {
         this.configuration = configuration;
         this.wait = new Wait(this, configuration.timeout);
     }
@@ -73,18 +74,18 @@ export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
 
     /* Assertable */
 
-    async should(...conditions: Array<Condition<this>>): Promise<this> {
+    async should(...conditions: Condition<this>[]): Promise<this> {
         await this.wait.for(Condition.all(...conditions));
         return this;
     }
 
     /* Matchable */
 
-    async waitUntil(...conditions: Array<Condition<this>>): Promise<boolean> {
+    async waitUntil(...conditions: Condition<this>[]): Promise<boolean> {
         return this.wait.until(Condition.all(...conditions));
     }
 
-    async matching(...conditions: Array<Condition<this>>): Promise<boolean> {
+    async matching(...conditions: Condition<this>[]): Promise<boolean> {
         return Condition.asPredicate(...conditions)(this);
     }
 

@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Browser](browser.md) /
+[selenidejs](../README.md) › [Browser](browser.md)
 
 # Class: Browser
 
@@ -8,7 +6,7 @@
 
 * [Entity](entity.md)
 
-  * **Browser**
+  ↳ **Browser**
 
 ## Implements
 
@@ -25,7 +23,7 @@
 
 ### Properties
 
-* [configuration](browser.md#protected-configuration)
+* [configuration](browser.md#configuration)
 * [wait](browser.md#protected-wait)
 
 ### Accessors
@@ -68,74 +66,74 @@
 
 ###  constructor
 
-\+ **new Browser**(`configuration`: `Partial<Configuration>`): *[Browser](browser.md)*
+\+ **new Browser**(`configuration`: Partial‹[Configuration](configuration.md)›): *[Browser](browser.md)*
 
 *Overrides [Entity](entity.md).[constructor](entity.md#constructor)*
 
-*Defined in [browser.ts:39](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L39)*
+*Defined in [lib/browser.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L41)*
 
 **Parameters:**
 
 Name | Type | Default |
 ------ | ------ | ------ |
-`configuration` | `Partial<Configuration>` |  {} |
+`configuration` | Partial‹[Configuration](configuration.md)› | {} |
 
 **Returns:** *[Browser](browser.md)*
 
 ## Properties
 
-### `Protected` configuration
+###  configuration
 
 • **configuration**: *[Configuration](configuration.md)*
 
-*Inherited from [Entity](entity.md).[configuration](entity.md#protected-configuration)*
+*Inherited from [Entity](entity.md).[configuration](entity.md#configuration)*
 
-*Defined in [entity.ts:54](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L54)*
+*Defined in [lib/entity.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L52)*
 
 ___
 
 ### `Protected` wait
 
-• **wait**: *[Wait](wait.md)‹*this*›*
+• **wait**: *[Wait](wait.md)‹this›*
 
 *Inherited from [Entity](entity.md).[wait](entity.md#protected-wait)*
 
-*Defined in [entity.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L52)*
+*Defined in [lib/entity.ts:53](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L53)*
 
 ## Accessors
 
 ###  alert
 
-• **get alert**(): *`AlertPromise`*
+• **get alert**(): *AlertPromise‹›*
 
-*Defined in [browser.ts:209](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L209)*
+*Defined in [lib/browser.ts:227](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L227)*
 
-**Returns:** *`AlertPromise`*
+**Returns:** *AlertPromise‹›*
 
 ___
 
 ###  driver
 
-• **get driver**(): *`WebDriver`*
+• **get driver**(): *WebDriver*
 
-*Defined in [browser.ts:49](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L49)*
+*Defined in [lib/browser.ts:51](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L51)*
 
-**Returns:** *`WebDriver`*
+**Returns:** *WebDriver*
 
 ## Methods
 
 ###  all
 
-▸ **all**(`cssOrXpathOrBy`: string | `By`, `customized?`: `Partial<Configuration>`): *[Collection](collection.md)*
+▸ **all**(`located`: string | By | object, `customized?`: Partial‹[Configuration](configuration.md)›): *[Collection](collection.md)*
 
-*Defined in [browser.ts:68](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L68)*
+*Defined in [lib/browser.ts:78](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L78)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`cssOrXpathOrBy` | string \| `By` |
-`customized?` | `Partial<Configuration>` |
+`located` | string &#124; By &#124; object |
+`customized?` | Partial‹[Configuration](configuration.md)› |
 
 **Returns:** *[Collection](collection.md)*
 
@@ -143,66 +141,66 @@ ___
 
 ###  back
 
-▸ **back**(): *`Promise<void>`*
+▸ **back**(): *Promise‹void›*
 
-*Defined in [browser.ts:127](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L127)*
+*Defined in [lib/browser.ts:145](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L145)*
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  clearCookies
 
-▸ **clearCookies**(): *`Promise<Browser>`*
+▸ **clearCookies**(): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:197](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L197)*
+*Defined in [lib/browser.ts:215](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L215)*
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  clearLocalStorage
 
-▸ **clearLocalStorage**(): *`Promise<Browser>`*
+▸ **clearLocalStorage**(): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:185](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L185)*
+*Defined in [lib/browser.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L203)*
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  clearSessionStorage
 
-▸ **clearSessionStorage**(): *`Promise<Browser>`*
+▸ **clearSessionStorage**(): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:191](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L191)*
+*Defined in [lib/browser.ts:209](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L209)*
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  closeCurrentTab
 
-▸ **closeCurrentTab**(): *`Promise<Browser>`*
+▸ **closeCurrentTab**(): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:114](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L114)*
+*Defined in [lib/browser.ts:132](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L132)*
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  element
 
-▸ **element**(`cssOrXpathOrBy`: string | `By`, `customized?`: `Partial<Configuration>`): *[Element](element.md)*
+▸ **element**(`located`: string | By‹› | object, `customized?`: Partial‹[Configuration](configuration.md)›): *[Element](element.md)*
 
-*Defined in [browser.ts:59](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L59)*
+*Defined in [lib/browser.ts:61](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L61)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`cssOrXpathOrBy` | string \| `By` |
-`customized?` | `Partial<Configuration>` |
+`located` | string &#124; By‹› &#124; object |
+`customized?` | Partial‹[Configuration](configuration.md)› |
 
 **Returns:** *[Element](element.md)*
 
@@ -210,38 +208,38 @@ ___
 
 ###  executeScript
 
-▸ **executeScript**(`script`: string | `Function`, ...`args`: any[]): *`Promise<Object>`*
+▸ **executeScript**(`script`: string | function, ...`args`: any[]): *Promise‹unknown›*
 
-*Defined in [browser.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L82)*
+*Defined in [lib/browser.ts:97](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L97)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`script` | string \| `Function` |
+`script` | string &#124; function |
 `...args` | any[] |
 
-**Returns:** *`Promise<Object>`*
+**Returns:** *Promise‹unknown›*
 
 ___
 
 ###  forward
 
-▸ **forward**(): *`Promise<void>`*
+▸ **forward**(): *Promise‹void›*
 
-*Defined in [browser.ts:131](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L131)*
+*Defined in [lib/browser.ts:149](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L149)*
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  get
 
-▸ **get**<**R**>(`query`: [Lambda](../README.md#lambda)‹*this*, *`R`*›): *`Promise<R>`*
+▸ **get**<**R**>(`query`: [Lambda](../README.md#lambda)‹this, R›): *Promise‹R›*
 
 *Inherited from [Entity](entity.md).[get](entity.md#get)*
 
-*Defined in [entity.ts:102](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L102)*
+*Defined in [lib/entity.ts:103](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L103)*
 
 **Type parameters:**
 
@@ -251,71 +249,71 @@ ___
 
 Name | Type |
 ------ | ------ |
-`query` | [Lambda](../README.md#lambda)‹*this*, *`R`*› |
+`query` | [Lambda](../README.md#lambda)‹this, R› |
 
-**Returns:** *`Promise<R>`*
+**Returns:** *Promise‹R›*
 
 ___
 
 ###  goToNextTab
 
-▸ **goToNextTab**(): *`Promise<Browser>`*
+▸ **goToNextTab**(): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:135](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L135)*
+*Defined in [lib/browser.ts:153](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L153)*
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  goToPreviousTab
 
-▸ **goToPreviousTab**(): *`Promise<Browser>`*
+▸ **goToPreviousTab**(): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:142](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L142)*
+*Defined in [lib/browser.ts:160](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L160)*
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  goToTab
 
-▸ **goToTab**(`indexOrId`: number | string): *`Promise<Browser>`*
+▸ **goToTab**(`indexOrId`: number | string): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:149](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L149)*
+*Defined in [lib/browser.ts:167](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L167)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`indexOrId` | number \| string |
+`indexOrId` | number &#124; string |
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  matching
 
-▸ **matching**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
+▸ **matching**(...`conditions`: [Condition](condition.md)‹this›[]): *Promise‹boolean›*
 
 *Inherited from [Entity](entity.md).[matching](entity.md#matching)*
 
-*Defined in [entity.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L87)*
+*Defined in [lib/entity.ts:88](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L88)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<this>>` |
+`...conditions` | [Condition](condition.md)‹this›[] |
 
-**Returns:** *`Promise<boolean>`*
+**Returns:** *Promise‹boolean›*
 
 ___
 
 ###  open
 
-▸ **open**(`relativeOrAbsoluteUrl`: string): *`Promise<Browser>`*
+▸ **open**(`relativeOrAbsoluteUrl`: string): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:87](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L87)*
+*Defined in [lib/browser.ts:105](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L105)*
 
 **Parameters:**
 
@@ -323,53 +321,53 @@ Name | Type |
 ------ | ------ |
 `relativeOrAbsoluteUrl` | string |
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  perform
 
-▸ **perform**(`command`: [Lambda](../README.md#lambda)‹*this*, *void*›): *`Promise<this>`*
+▸ **perform**(`command`: [Lambda](../README.md#lambda)‹this, void›): *Promise‹this›*
 
 *Inherited from [Entity](entity.md).[perform](entity.md#perform)*
 
-*Defined in [entity.ts:93](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L93)*
+*Defined in [lib/entity.ts:94](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L94)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`command` | [Lambda](../README.md#lambda)‹*this*, *void*› |
+`command` | [Lambda](../README.md#lambda)‹this, void› |
 
-**Returns:** *`Promise<this>`*
+**Returns:** *Promise‹this›*
 
 ___
 
 ###  quit
 
-▸ **quit**(): *`Promise<void>`*
+▸ **quit**(): *Promise‹void›*
 
-*Defined in [browser.ts:119](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L119)*
+*Defined in [lib/browser.ts:137](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L137)*
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  refresh
 
-▸ **refresh**(): *`Promise<void>`*
+▸ **refresh**(): *Promise‹void›*
 
-*Defined in [browser.ts:123](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L123)*
+*Defined in [lib/browser.ts:141](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L141)*
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  resizeWindow
 
-▸ **resizeWindow**(`width`: number, `height`: number): *`Promise<Browser>`*
+▸ **resizeWindow**(`width`: number, `height`: number): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:103](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L103)*
+*Defined in [lib/browser.ts:121](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L121)*
 
 **Parameters:**
 
@@ -378,45 +376,45 @@ Name | Type |
 `width` | number |
 `height` | number |
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
 ###  screenshot
 
-▸ **screenshot**(): *`Promise<Buffer>`*
+▸ **screenshot**(): *Promise‹Buffer›*
 
-*Defined in [browser.ts:108](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L108)*
+*Defined in [lib/browser.ts:126](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L126)*
 
-**Returns:** *`Promise<Buffer>`*
+**Returns:** *Promise‹Buffer›*
 
 ___
 
 ###  should
 
-▸ **should**(...`conditions`: `Array<Condition<this>>`): *`Promise<this>`*
+▸ **should**(...`conditions`: [Condition](condition.md)‹this›[]): *Promise‹this›*
 
 *Inherited from [Entity](entity.md).[should](entity.md#should)*
 
-*Defined in [entity.ts:76](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L76)*
+*Defined in [lib/entity.ts:77](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L77)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<this>>` |
+`...conditions` | [Condition](condition.md)‹this›[] |
 
-**Returns:** *`Promise<this>`*
+**Returns:** *Promise‹this›*
 
 ___
 
 ###  switchToDefaultFrame
 
-▸ **switchToDefaultFrame**(): *`Promise<Browser>`*
+▸ **switchToDefaultFrame**(): *Promise‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:169](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L169)*
+*Defined in [lib/browser.ts:187](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L187)*
 
-**Returns:** *`Promise<Browser>`*
+**Returns:** *Promise‹[Browser](browser.md)›*
 
 ___
 
@@ -424,7 +422,7 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [browser.ts:53](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L53)*
+*Defined in [lib/browser.ts:55](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L55)*
 
 **Returns:** *string*
 
@@ -432,35 +430,35 @@ ___
 
 ###  waitUntil
 
-▸ **waitUntil**(...`conditions`: `Array<Condition<this>>`): *`Promise<boolean>`*
+▸ **waitUntil**(...`conditions`: [Condition](condition.md)‹this›[]): *Promise‹boolean›*
 
 *Implementation of [Matchable](../interfaces/matchable.md)*
 
 *Inherited from [Entity](entity.md).[waitUntil](entity.md#waituntil)*
 
-*Defined in [entity.ts:83](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/entity.ts#L83)*
+*Defined in [lib/entity.ts:84](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/entity.ts#L84)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<this>>` |
+`...conditions` | [Condition](condition.md)‹this›[] |
 
-**Returns:** *`Promise<boolean>`*
+**Returns:** *Promise‹boolean›*
 
 ___
 
 ###  with
 
-▸ **with**(`customConfig`: `Partial<Configuration>`): *[Browser](browser.md)*
+▸ **with**(`customConfig`: Partial‹[Configuration](configuration.md)›): *[Browser](browser.md)*
 
-*Defined in [browser.ts:45](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L45)*
+*Defined in [lib/browser.ts:47](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L47)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`customConfig` | `Partial<Configuration>` |
+`customConfig` | Partial‹[Configuration](configuration.md)› |
 
 **Returns:** *[Browser](browser.md)*
 
@@ -470,7 +468,7 @@ ___
 
 ▸ **chrome**(): *[Browser](browser.md)*
 
-*Defined in [browser.ts:37](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L37)*
+*Defined in [lib/browser.ts:39](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L39)*
 
 **Returns:** *[Browser](browser.md)*
 
@@ -478,18 +476,18 @@ ___
 
 ### `Static` chromeWith
 
-▸ **chromeWith**(): *[Customized](customized.md)‹*[Browser](browser.md)*›*
+▸ **chromeWith**(): *[Customized](customized.md)‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:32](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L32)*
+*Defined in [lib/browser.ts:34](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L34)*
 
-**Returns:** *[Customized](customized.md)‹*[Browser](browser.md)*›*
+**Returns:** *[Customized](customized.md)‹[Browser](browser.md)›*
 
 ___
 
 ### `Static` configuredWith
 
-▸ **configuredWith**(): *[Customized](customized.md)‹*[Browser](browser.md)*›*
+▸ **configuredWith**(): *[Customized](customized.md)‹[Browser](browser.md)›*
 
-*Defined in [browser.ts:28](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/browser.ts#L28)*
+*Defined in [lib/browser.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/browser.ts#L30)*
 
-**Returns:** *[Customized](customized.md)‹*[Browser](browser.md)*›*
+**Returns:** *[Customized](customized.md)‹[Browser](browser.md)›*

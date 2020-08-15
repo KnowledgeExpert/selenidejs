@@ -127,7 +127,7 @@ export namespace Condition {
      * @param {Condition<T>} conditions
      * @returns {Condition<T>}
      */
-    export const and = <T>(...conditions: Array<Condition<T>>): Condition<T> =>
+    export const and = <T>(...conditions: Condition<T>[]): Condition<T> =>
         new Condition(conditions.map(toString).join(' and '), async (entity: T) => {
             for (const condition of conditions) {
                 await condition.call(entity);
@@ -139,7 +139,7 @@ export namespace Condition {
      * @param {Condition<T>} conditions
      * @returns {Condition<T>}
      */
-    export const or = <T>(...conditions: Array<Condition<T>>): Condition<T> =>
+    export const or = <T>(...conditions: Condition<T>[]): Condition<T> =>
         new Condition(conditions.map(toString).join(' or '), async (entity: T) => {
             const errors: Error[] = [];
             for (const condition of conditions) {
@@ -158,7 +158,7 @@ export namespace Condition {
      * @param {Array<Condition<T>>} conditions
      * @returns {Condition<T>}
      */
-    export const all = <T>(...conditions: Array<Condition<T>>): Condition<T> => {
+    export const all = <T>(...conditions: Condition<T>[]): Condition<T> => {
         if (conditions.length === 0) {
             throw new Error('at least one condition should be provided as argument to Condition.all');
         }
@@ -173,7 +173,7 @@ export namespace Condition {
      * @param {Array<Condition<T>>} conditions
      * @returns {Condition<T>}
      */
-    export const allNot = <T>(...conditions: Array<Condition<T>>): Condition<T> => {
+    export const allNot = <T>(...conditions: Condition<T>[]): Condition<T> => {
         if (conditions.length === 0) {
             throw new Error('at least one condition should be provided as argument to Condition.all');
         }
@@ -190,7 +190,7 @@ export namespace Condition {
      * @param {Array<Condition<T>>} conditions
      * @returns {(entity: T) => Promise<boolean>}
      */
-    export const asPredicate = <T>(...conditions: Array<Condition<T>>) =>
+    export const asPredicate = <T>(...conditions: Condition<T>[]) =>
         (entity: T): Promise<boolean> =>
             Condition.all(...conditions).call(entity).then(_ => true, _ => false);
 }

@@ -23,26 +23,26 @@ export namespace have {
 
     /* Element conditions */
 
-    export const exactText = (value: string/* | number*/): ElementCondition =>
+    export const exactText = (value: string | number): ElementCondition =>
         condition.element.hasExactText(value);
 
-    export const text = (value: string/* | number*/): ElementCondition =>
+    export const text = (value: string | number | RegExp): ElementCondition =>
         condition.element.hasText(value);
 
     export const attribute = (name: string): ElementCondition =>
         condition.element.hasAttribute(name);
 
-    export const attributeWithValue = (attributeName: string, attributeValue: string/* | number*/): ElementCondition =>
+    export const attributeWithValue = (attributeName: string, attributeValue: string | number): ElementCondition =>
         condition.element.hasAttributeWithValue(attributeName, attributeValue);
 
-    export const attributeWithValueContaining = (attributeName: string, attributeValue: string/* | number*/)
+    export const attributeWithValueContaining = (attributeName: string, attributeValue: string | number)
         : ElementCondition =>
         condition.element.hasAttributeWithValueContaining(attributeName, attributeValue);
 
-    export const value = (value: string/* | number*/): ElementCondition =>
+    export const value = (value: string | number): ElementCondition =>
         condition.element.hasValue(value);
 
-    export const valueContaining = (expected: string/* | number*/): ElementCondition =>
+    export const valueContaining = (expected: string | number): ElementCondition =>
         condition.element.hasValueContaining(expected);
 
     export const cssClass = (cssClass: string): ElementCondition =>

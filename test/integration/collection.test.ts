@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, WHEN } from './base';
-import { have } from '../../lib';
+import { by, have } from '../../lib';
+import { browser, data, GIVEN, WHEN } from './base';
 
 describe('Collection', () => {
 
@@ -118,4 +118,6 @@ Reason:
                 );
             });
     });
+
 });
+

@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Condition](condition.md) /
+[selenidejs](../README.md) › [Condition](condition.md)
 
 # Class: Condition <**E**>
 
@@ -21,7 +19,7 @@ Read "void" in Query<T, void> as "matched", or "passed".
 
 ## Implements
 
-* [Fn](../interfaces/fn.md)‹*`E`*, *void*›
+* [Fn](../interfaces/fn.md)‹E, void›
 
 ## Index
 
@@ -53,7 +51,7 @@ Read "void" in Query<T, void> as "matched", or "passed".
 
 \+ **new Condition**(`description`: any, `fn`: any): *[Condition](condition.md)*
 
-*Defined in [wait.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L75)*
+*Defined in [lib/wait.ts:75](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L75)*
 
 **Parameters:**
 
@@ -70,29 +68,29 @@ Name | Type |
 
 • **description**: *string*
 
-*Defined in [wait.ts:74](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L74)*
+*Defined in [lib/wait.ts:74](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L74)*
 
 ___
 
 ### `Private` fn
 
-• **fn**: *[Lambda](../README.md#lambda)‹*`E`*, *void*›*
+• **fn**: *[Lambda](../README.md#lambda)‹E, void›*
 
-*Defined in [wait.ts:75](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L75)*
+*Defined in [lib/wait.ts:75](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L75)*
 
 ## Methods
 
 ###  and
 
-▸ **and**(`condition`: [Condition](condition.md)‹*`E`*›): *any*
+▸ **and**(`condition`: [Condition](condition.md)‹E›): *any*
 
-*Defined in [wait.ts:86](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L86)*
+*Defined in [lib/wait.ts:86](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L86)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | [Condition](condition.md)‹*`E`*› |
+`condition` | [Condition](condition.md)‹E› |
 
 **Returns:** *any*
 
@@ -100,35 +98,35 @@ ___
 
 ###  call
 
-▸ **call**(`entity`: `E`): *`Promise<void>`*
+▸ **call**(`entity`: E): *Promise‹void›*
 
 *Implementation of [Fn](../interfaces/fn.md)*
 
-*Defined in [wait.ts:82](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L82)*
+*Defined in [lib/wait.ts:82](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L82)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`entity` | `E` |
+`entity` | E |
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  or
 
-▸ **or**(`condition`: [Condition](condition.md)‹*`E`*›): *any*
+▸ **or**(`condition`: [Condition](condition.md)‹E›): *[Condition](condition.md)‹E›*
 
-*Defined in [wait.ts:90](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L90)*
+*Defined in [lib/wait.ts:90](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L90)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | [Condition](condition.md)‹*`E`*› |
+`condition` | [Condition](condition.md)‹E› |
 
-**Returns:** *any*
+**Returns:** *[Condition](condition.md)‹E›*
 
 ___
 
@@ -136,7 +134,7 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [wait.ts:94](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L94)*
+*Defined in [lib/wait.ts:94](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L94)*
 
 **Returns:** *string*
 
@@ -144,9 +142,9 @@ ___
 
 ### `Static` all
 
-▸ **all**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
+▸ **all**<**T**>(...`conditions`: [Condition](condition.md)‹T›[]): *[Condition](condition.md)‹T›*
 
-*Defined in [wait.ts:161](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L161)*
+*Defined in [lib/wait.ts:161](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L161)*
 
 Transforms conditions array provided as varargs to condition by applying Condition.and
 
@@ -158,17 +156,17 @@ Transforms conditions array provided as varargs to condition by applying Conditi
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<T>>` |
+`...conditions` | [Condition](condition.md)‹T›[] |
 
-**Returns:** *[Condition](condition.md)‹*`T`*›*
+**Returns:** *[Condition](condition.md)‹T›*
 
 ___
 
 ### `Static` allNot
 
-▸ **allNot**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
+▸ **allNot**<**T**>(...`conditions`: [Condition](condition.md)‹T›[]): *[Condition](condition.md)‹T›*
 
-*Defined in [wait.ts:176](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L176)*
+*Defined in [lib/wait.ts:176](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L176)*
 
 Transforms conditions array provided as varargs to condition by applying Condition.and
 
@@ -180,17 +178,17 @@ Transforms conditions array provided as varargs to condition by applying Conditi
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<T>>` |
+`...conditions` | [Condition](condition.md)‹T›[] |
 
-**Returns:** *[Condition](condition.md)‹*`T`*›*
+**Returns:** *[Condition](condition.md)‹T›*
 
 ___
 
 ### `Static` and
 
-▸ **and**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
+▸ **and**<**T**>(...`conditions`: [Condition](condition.md)‹T›[]): *[Condition](condition.md)‹T›*
 
-*Defined in [wait.ts:130](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L130)*
+*Defined in [lib/wait.ts:130](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L130)*
 
 Combines conditions by logical AND
 
@@ -202,17 +200,17 @@ Combines conditions by logical AND
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<T>>` |
+`...conditions` | [Condition](condition.md)‹T›[] |
 
-**Returns:** *[Condition](condition.md)‹*`T`*›*
+**Returns:** *[Condition](condition.md)‹T›*
 
 ___
 
 ### `Static` asPredicate
 
-▸ **asPredicate**<**T**>(...`conditions`: `Array<Condition<T>>`): *`(Anonymous function)`*
+▸ **asPredicate**<**T**>(...`conditions`: [Condition](condition.md)‹T›[]): *(Anonymous function)*
 
-*Defined in [wait.ts:193](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L193)*
+*Defined in [lib/wait.ts:193](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L193)*
 
 Transforms Conditions (returning (void | throws Error)), combined by AND if more than one,
 to async Predicate   (returning (true | false))
@@ -225,17 +223,17 @@ to async Predicate   (returning (true | false))
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<T>>` |
+`...conditions` | [Condition](condition.md)‹T›[] |
 
-**Returns:** *`(Anonymous function)`*
+**Returns:** *(Anonymous function)*
 
 ___
 
 ### `Static` not
 
-▸ **not**<**T**>(`condition`: [Condition](condition.md)‹*`T`*›, `description?`: string): *[Condition](condition.md)‹*`T`*›*
+▸ **not**<**T**>(`condition`: [Condition](condition.md)‹T›, `description?`: string): *[Condition](condition.md)‹T›*
 
-*Defined in [wait.ts:109](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L109)*
+*Defined in [lib/wait.ts:109](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L109)*
 
 Negates condition. Making the negated condition to:
 - pass (return void) in case original condition would throw Error
@@ -249,18 +247,18 @@ Negates condition. Making the negated condition to:
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`condition` | [Condition](condition.md)‹*`T`*› | original condition to be negated |
+`condition` | [Condition](condition.md)‹T› | original condition to be negated |
 `description?` | string | custom description if "not <original description>" version is not enough |
 
-**Returns:** *[Condition](condition.md)‹*`T`*›*
+**Returns:** *[Condition](condition.md)‹T›*
 
 ___
 
 ### `Static` or
 
-▸ **or**<**T**>(...`conditions`: `Array<Condition<T>>`): *[Condition](condition.md)‹*`T`*›*
+▸ **or**<**T**>(...`conditions`: [Condition](condition.md)‹T›[]): *[Condition](condition.md)‹T›*
 
-*Defined in [wait.ts:142](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L142)*
+*Defined in [lib/wait.ts:142](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L142)*
 
 Combines conditions by logical OR
 
@@ -272,6 +270,6 @@ Combines conditions by logical OR
 
 Name | Type |
 ------ | ------ |
-`...conditions` | `Array<Condition<T>>` |
+`...conditions` | [Condition](condition.md)‹T›[] |
 
-**Returns:** *[Condition](condition.md)‹*`T`*›*
+**Returns:** *[Condition](condition.md)‹T›*

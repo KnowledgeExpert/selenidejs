@@ -269,7 +269,7 @@ We use [npm](https://www.npmjs.com/) for versioning. for the versions available,
 
 The Selenide was originally started to be ported from Java to JavaScript by [@yashaka](https://github.com/yashaka) (Iakiv Kramarenko) in the [selenejs](https://github.com/automician/selenejs) repository (originally named also as selenidejs).
 
-Then Knowledge Expert picked the Iakiv's race, and under Iakiv's leadership rewrote the initial draft implementation in TypeScript. [@aleksanderpopov](https://github.com/aleksanderpopov) (Alexander Popov) put main efforts in the beginning to build the first working version.
+Then Knowledge Expert picked the Iakiv's race, and under Iakiv's leadership rewrote the initial draft implementation in TypeScript. [@alex-popov-tech](https://github.com/alex-popov-tech) (Alexander Popov) put main efforts in the beginning to build the first working version.
 
 In Feb 2019, after refining the API and hardening the implementation, the 1.0 version was released.
 

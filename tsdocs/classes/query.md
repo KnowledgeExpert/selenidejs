@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Query](query.md) /
+[selenidejs](../README.md) › [Query](query.md)
 
 # Class: Query <**T, R**>
 
@@ -17,11 +15,11 @@ So a query can pass and return something of type R or failed with Error correspo
 
 * **Query**
 
-  * [Command](command.md)
+  ↳ [Command](command.md)
 
 ## Implements
 
-* [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›
+* [Fn](../interfaces/fn.md)‹T, R›
 
 ## Index
 
@@ -45,7 +43,7 @@ So a query can pass and return something of type R or failed with Error correspo
 
 \+ **new Query**(`description`: any, `fn`: any): *[Query](query.md)*
 
-*Defined in [wait.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L41)*
+*Defined in [lib/wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 **Parameters:**
 
@@ -62,33 +60,33 @@ Name | Type |
 
 • **description**: *string*
 
-*Defined in [wait.ts:40](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L40)*
+*Defined in [lib/wait.ts:40](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L40)*
 
 ___
 
 ### `Private` fn
 
-• **fn**: *[Lambda](../README.md#lambda)‹*`T`*, *`R`*›*
+• **fn**: *[Lambda](../README.md#lambda)‹T, R›*
 
-*Defined in [wait.ts:41](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L41)*
+*Defined in [lib/wait.ts:41](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L41)*
 
 ## Methods
 
 ###  call
 
-▸ **call**(`entity`: `T`): *`Promise<R>`*
+▸ **call**(`entity`: T): *Promise‹R›*
 
 *Implementation of [Fn](../interfaces/fn.md)*
 
-*Defined in [wait.ts:48](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L48)*
+*Defined in [lib/wait.ts:48](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L48)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`entity` | `T` |
+`entity` | T |
 
-**Returns:** *`Promise<R>`*
+**Returns:** *Promise‹R›*
 
 ___
 
@@ -96,6 +94,6 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [wait.ts:52](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L52)*
+*Defined in [lib/wait.ts:52](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L52)*
 
 **Returns:** *string*

@@ -14,20 +14,26 @@
 
 import { WebElement } from 'selenium-webdriver';
 import { Locator } from './locator';
+import { Browser } from '../browser';
 
-export class CashedWebElementLocator implements Locator<Promise<WebElement>> {
 
-    constructor(private readonly cash: WebElement,
-                private readonly description: string) {
-        this.cash = cash;
-        this.description = description;
+export class BrowserWebElementsByJs implements Locator<Promise<WebElement[]>> {
+
+    constructor(
+        private readonly browser: Browser,
+        private readonly script: (string | ((document: Document) => HTMLCollectionOf<HTMLElement>)),
+        private readonly args: any[]
+    ) {
+        this.browser = browser;
+        this.script = script;
+        this.args = args || [];
     }
 
-    async find(): Promise<WebElement> {
-        return this.cash;
+    async find(): Promise<WebElement[]> {
+        return this.browser.executeScript(this.script, ...this.args) as Promise<WebElement[]>;
     }
 
-    toString(): string {  // todo: do we really need this toString()?
-        return this.description;
+    toString(): string {
+        return `browser.all(${this.script.toString()})`;
     }
 }

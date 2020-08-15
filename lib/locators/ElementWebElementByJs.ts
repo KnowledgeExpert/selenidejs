@@ -13,21 +13,27 @@
 // limitations under the License.
 
 import { WebElement } from 'selenium-webdriver';
+import { Element } from '../element';
 import { Locator } from './locator';
 
-export class CashedWebElementLocator implements Locator<Promise<WebElement>> {
 
-    constructor(private readonly cash: WebElement,
-                private readonly description: string) {
-        this.cash = cash;
-        this.description = description;
+export class ElementWebElementByJs implements Locator<Promise<WebElement>> {
+
+    constructor(
+        private readonly element: Element,
+        private readonly script: (string | ((element: HTMLElement) => HTMLElement | ShadowRoot)),
+        private readonly args: any[]
+    ) {
+        this.element = element;
+        this.script = script;
+        this.args = args || [];
     }
 
     async find(): Promise<WebElement> {
-        return this.cash;
+        return this.element.executeScript(this.script, ...this.args) as Promise<WebElement>;
     }
 
-    toString(): string {  // todo: do we really need this toString()?
-        return this.description;
+    toString(): string {
+        return `${this.element.toString()}.element(${this.script.toString()})`;
     }
 }

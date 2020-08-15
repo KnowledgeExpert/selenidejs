@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, WHEN, driver } from './base';
 import { be } from '../../lib';
+import { browser, data, driver, GIVEN, WHEN } from './base';
 
 describe('Element search', () => {
 
@@ -77,7 +77,7 @@ describe('Element search', () => {
         const started = new Date().getTime();
 
         await browser.element('a')
-            .with({timeout: data.timeouts.biggerThanDefault + data.timeouts.step})
+            .with({ timeout: data.timeouts.biggerThanDefault + data.timeouts.step })
             .click();
         expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.biggerThanDefault);
         expect(await driver.getCurrentUrl()).toContain('second');
@@ -100,6 +100,71 @@ describe('Element search', () => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(await driver.getCurrentUrl()).not.toContain('second');
             });
+    });
+
+    it('should find element inside shadow root', async () => {
+        await GIVEN.openedEmptyPage();
+        await GIVEN.executeScript(document => {
+            const shadow = document.body.attachShadow({ mode: 'open' });
+            shadow.innerHTML = '<span>hello from shadow</span>';
+        });
+
+        await browser.element('body')
+            .shadow
+            .element('span')
+            .getWebElement()
+            .then(webelement => webelement.getText())
+            .then(text => expect(text).toBe('hello from shadow'));
+    });
+
+    it('should find elements inside shadow root', async () => {
+        await GIVEN.openedEmptyPage();
+        await GIVEN.executeScript(document => {
+            const shadow = document.body.attachShadow({ mode: 'open' });
+            shadow.innerHTML = '<span>hello</span><span>from</span><span>shadow</span>';
+        });
+
+        const webelements = await browser.element('body')
+            .shadow
+            .all('span')
+            .getWebElements();
+        const texts = [];
+        for (const webelement of webelements) {
+            texts.push(await webelement.getText());
+        }
+        expect(texts).toEqual(['hello', 'from', 'shadow']);
+    });
+
+    it('should find nested shadow root', async () => {
+        await GIVEN.openedEmptyPage();
+        await GIVEN.executeScript(document => {
+            const shadow = document.body.attachShadow({ mode: 'open' });
+            const shadowChild = document.createElement('div');
+            shadow.appendChild(shadowChild);
+            const nestedShadow = shadowChild.attachShadow({ mode: 'open' });
+            nestedShadow.innerHTML = '<span>hello from nested shadow</span>';
+        });
+
+        await browser.element('body')
+            .shadow
+            .element('div')
+            .shadow
+            .element('span')
+            .getWebElement()
+            .then(webelement => webelement.getText())
+            .then(text => expect(text).toBe('hello from nested shadow'));
+    });
+
+    it('should have correct error message on fail find shadow', async () => {
+        await GIVEN.openedEmptyPage();
+        await browser.element('body')
+            .shadow
+            .element('div')
+            .click()
+            .then(
+                () => { throw new Error('Click should not pass'); },
+                (err) => expect(err.message).toContain('browser.element(By(css selector, body)).element(element => element.shadowRoot)')
+            );
     });
 
 });

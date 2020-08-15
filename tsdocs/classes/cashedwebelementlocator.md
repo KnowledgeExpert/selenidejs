@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[CashedWebElementLocator](cashedwebelementlocator.md) /
+[selenidejs](../README.md) › [CashedWebElementLocator](cashedwebelementlocator.md)
 
 # Class: CashedWebElementLocator
 
@@ -10,7 +8,7 @@
 
 ## Implements
 
-* [Locator](../interfaces/locator.md)‹*`Promise<WebElement>`*›
+* [Locator](../interfaces/locator.md)‹Promise‹WebElement››
 
 ## Index
 
@@ -32,15 +30,15 @@
 
 ###  constructor
 
-\+ **new CashedWebElementLocator**(`cash`: `WebElement`, `description`: string): *[CashedWebElementLocator](cashedwebelementlocator.md)*
+\+ **new CashedWebElementLocator**(`cash`: WebElement, `description`: string): *[CashedWebElementLocator](cashedwebelementlocator.md)*
 
-*Defined in [locators/cashedWebElementLocator.ts:18](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L18)*
+*Defined in [lib/locators/cashedWebElementLocator.ts:18](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L18)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`cash` | `WebElement` |
+`cash` | WebElement |
 `description` | string |
 
 **Returns:** *[CashedWebElementLocator](cashedwebelementlocator.md)*
@@ -49,9 +47,9 @@ Name | Type |
 
 ### `Private` cash
 
-• **cash**: *`WebElement`*
+• **cash**: *WebElement*
 
-*Defined in [locators/cashedWebElementLocator.ts:20](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L20)*
+*Defined in [lib/locators/cashedWebElementLocator.ts:20](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L20)*
 
 ___
 
@@ -59,19 +57,19 @@ ___
 
 • **description**: *string*
 
-*Defined in [locators/cashedWebElementLocator.ts:21](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L21)*
+*Defined in [lib/locators/cashedWebElementLocator.ts:21](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L21)*
 
 ## Methods
 
 ###  find
 
-▸ **find**(): *`Promise<WebElement>`*
+▸ **find**(): *Promise‹WebElement›*
 
 *Implementation of [Locator](../interfaces/locator.md)*
 
-*Defined in [locators/cashedWebElementLocator.ts:25](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L25)*
+*Defined in [lib/locators/cashedWebElementLocator.ts:26](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L26)*
 
-**Returns:** *`Promise<WebElement>`*
+**Returns:** *Promise‹WebElement›*
 
 ___
 
@@ -79,6 +77,6 @@ ___
 
 ▸ **toString**(): *string*
 
-*Defined in [locators/cashedWebElementLocator.ts:29](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L29)*
+*Defined in [lib/locators/cashedWebElementLocator.ts:30](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/locators/cashedWebElementLocator.ts#L30)*
 
 **Returns:** *string*

@@ -1,6 +1,4 @@
-> **[selenidejs](../README.md)**
-
-[Wait](wait.md) /
+[selenidejs](../README.md) › [Wait](wait.md)
 
 # Class: Wait <**T**>
 
@@ -34,15 +32,15 @@
 
 ###  constructor
 
-\+ **new Wait**(`entity`: `T`, `timeout`: number): *[Wait](wait.md)*
+\+ **new Wait**(`entity`: T, `timeout`: number): *[Wait](wait.md)*
 
-*Defined in [wait.ts:203](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L203)*
+*Defined in [lib/wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`entity` | `T` |
+`entity` | T |
 `timeout` | number |
 
 **Returns:** *[Wait](wait.md)*
@@ -51,9 +49,9 @@ Name | Type |
 
 ### `Private` entity
 
-• **entity**: *`T`*
+• **entity**: *T*
 
-*Defined in [wait.ts:202](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L202)*
+*Defined in [lib/wait.ts:202](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L202)*
 
 ___
 
@@ -61,31 +59,31 @@ ___
 
 • **timeout**: *number*
 
-*Defined in [wait.ts:203](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L203)*
+*Defined in [lib/wait.ts:203](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L203)*
 
 ## Methods
 
 ###  command
 
-▸ **command**(`fn`: [Lambda](../README.md#lambda)‹*`T`*, *void*›): *`Promise<void>`*
+▸ **command**(`fn`: [Lambda](../README.md#lambda)‹T, void›): *Promise‹void›*
 
-*Defined in [wait.ts:214](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L214)*
+*Defined in [lib/wait.ts:214](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L214)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`fn` | [Lambda](../README.md#lambda)‹*`T`*, *void*› |
+`fn` | [Lambda](../README.md#lambda)‹T, void› |
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
 ###  for
 
-▸ **for**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›): *`Promise<R>`*
+▸ **for**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹T, R›): *Promise‹R›*
 
-*Defined in [wait.ts:222](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L222)*
+*Defined in [lib/wait.ts:222](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L222)*
 
 **Type parameters:**
 
@@ -95,17 +93,17 @@ ___
 
 Name | Type |
 ------ | ------ |
-`fn` | [Fn](../interfaces/fn.md)‹*`T`*, *`R`*› |
+`fn` | [Fn](../interfaces/fn.md)‹T, R› |
 
-**Returns:** *`Promise<R>`*
+**Returns:** *Promise‹R›*
 
 ___
 
 ###  query
 
-▸ **query**<**R**>(`fn`: [Lambda](../README.md#lambda)‹*`T`*, *`R`*›): *`Promise<R>`*
+▸ **query**<**R**>(`fn`: [Lambda](../README.md#lambda)‹T, R›): *Promise‹R›*
 
-*Defined in [wait.ts:210](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L210)*
+*Defined in [lib/wait.ts:210](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L210)*
 
 **Type parameters:**
 
@@ -115,17 +113,17 @@ ___
 
 Name | Type |
 ------ | ------ |
-`fn` | [Lambda](../README.md#lambda)‹*`T`*, *`R`*› |
+`fn` | [Lambda](../README.md#lambda)‹T, R› |
 
-**Returns:** *`Promise<R>`*
+**Returns:** *Promise‹R›*
 
 ___
 
 ###  until
 
-▸ **until**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹*`T`*, *`R`*›): *`Promise<boolean>`*
+▸ **until**<**R**>(`fn`: [Fn](../interfaces/fn.md)‹T, R›): *Promise‹boolean›*
 
-*Defined in [wait.ts:218](https://github.com/KnowledgeExpert/selenidejs/blob/master/lib/wait.ts#L218)*
+*Defined in [lib/wait.ts:218](https://github.com/knowledgeexpert/selenidejs/blob/master/lib/wait.ts#L218)*
 
 **Type parameters:**
 
@@ -135,6 +133,6 @@ ___
 
 Name | Type |
 ------ | ------ |
-`fn` | [Fn](../interfaces/fn.md)‹*`T`*, *`R`*› |
+`fn` | [Fn](../interfaces/fn.md)‹T, R› |
 
-**Returns:** *`Promise<boolean>`*
+**Returns:** *Promise‹boolean›*
