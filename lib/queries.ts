@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Query } from './wait';
-import { Element } from './element';
-import { Collection } from './collection';
 import { Browser } from './browser';
+import { Collection } from './collection';
+import { Element } from './element';
 import { lambda } from './utils';
 
 // export type ElementQuery<R> = Query<Element, R>;
@@ -78,8 +77,24 @@ export namespace query {
 
     export const texts = lambda('texts', async (collection: Collection) => {
         const webelements = await collection.getWebElements();
-        return Promise.all(webelements.map(webElement => webElement.getText()));
+        const texts = [];
+        for (const webelement of webelements) {
+            texts.push(await webelement.getText());
+        }
+        return texts;
     });
+
+    export const attributes = (attributeName: string) =>
+        lambda(
+            `'${attributeName}' attribute values`,
+            async (collection: Collection) => {
+                const webelements = await collection.getWebElements();
+                const attributes = [];
+                for (const webelement of webelements) {
+                    attributes.push(await webelement.getAttribute(attributeName));
+                }
+                return attributes;
+            });
 
     /* Browser queries */
 
@@ -116,5 +131,5 @@ export namespace query {
         (await browser.driver.getAllWindowHandles()).length);
 
     export const pageSource = lambda('page source', async (browser: Browser) =>
-       browser.driver.getPageSource());
+        browser.driver.getPageSource());
 }

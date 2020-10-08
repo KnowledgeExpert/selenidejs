@@ -128,12 +128,19 @@ export namespace condition {
 
         export const isHidden = Condition.not(isVisible, 'is hidden');
 
-        export const hasAttribute = (name: string) => new Condition(
+        export const hasAttribute = (name: string) => new (class extends Condition<Element> {
+            values(...values: string[]) {
+                return new Condition<Collection>(
+                    `have attribute '${name}' with values ${values}`,
+                    throwIfNotActual(query.attributes(name), predicate.equalsToArray(values))
+                );
+            }
+        })(
             `has attribute '${name}'`,
             throwIfNotActual(query.attribute(name), predicate.isTruthy)
-        );
+        ) as Condition<Element> & { values: (...attributeValues: string[]) => Condition<Collection> };
 
-        export const isSelected = hasAttribute('elementIsSelected');
+        export const isSelected: Condition<Element> = hasAttribute('elementIsSelected');
 
         export const isEnabled = new Condition(
             'is enabled',
@@ -235,7 +242,7 @@ export namespace condition {
 
         export const hasExactTexts = (texts: string[] | number[]): CollectionCondition => new Condition(
             `has exact texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts))
+            throwIfNotActual(query.texts, predicate.equalsToArray(texts))
         );
     }
 
