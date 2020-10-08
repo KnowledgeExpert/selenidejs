@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.3 (released on 2020.10.08)
+
+### FIXES
+  * fixed `byXpath` function, so it trims input now to allow passing values such as `     .//div     `
+
 ## 1.3.2 (released on 2020.06.01)
 
 ### FIXES
