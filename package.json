@@ -2,7 +2,7 @@
   "name": "selenidejs",
   "description": "Test-oriented Wrapper for Selenium Webdriver",
   "homepage": "https://github.com/KnowledgeExpert/selenidejs",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {

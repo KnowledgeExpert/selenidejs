@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.4 (to be released on 2022.05.31)
+
+### CHANGES
+  * update selenium to 4.1.0
+
+### FIXES
+  * 
+
+
 ## 1.3.3 (released on 2020.10.08)
 
 ### FIXES
