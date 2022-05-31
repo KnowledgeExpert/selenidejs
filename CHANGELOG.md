@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.4 (to be released on 2022.05.31)
+## 1.3.4 (released on 2022.05.31)
 
 ### New Features
   * added Configuration._locationStrategy 
@@ -28,7 +28,7 @@
     ```
     Hence you can provide any other custom conversion fn;)
     For example adapt selenidejs for appium with corresponding mobile selectors,
-    see an example at [github.com/automician/selenidejs-mobile-test-appium-ts-template](https://github.com/automician/selenidejs-mobile-test-appium-ts-template/blob/10713cc097ce973aed2e1d2c589b263a06af8360/__tests__/mobile.example.selenidejs.drd.test.ts#L12)
+    see an example for android at [github.com/automician/selenidejs-mobile-test-appium-ts-template](https://github.com/automician/selenidejs-mobile-test-appium-ts-template/blob/32d1e55c8d749f56774a84f467b0166c7cd893e0/common/selenidejs/mobile.extensions.ts#L4) with usage in test by [link](https://github.com/automician/selenidejs-mobile-test-appium-ts-template/blob/main/__tests__/mobile.example.selenidejs.drd.test.ts)
     
     * !NOTE! The option starts with underscore dangle. 
       In selenidejs the underscore dangle is used as a mark of "experimental" featues
