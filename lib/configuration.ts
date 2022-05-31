@@ -12,13 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as path from 'path';
+// import * as path from 'path';
 import { Builder, Capabilities, WebDriver } from 'selenium-webdriver';
 import { Browser } from './browser';
 import { OnFailureHook } from './wait';
 import { Collection } from './collection';
 import { Element } from './element';
-
 
 /**
  * A one place to configure everything.
@@ -31,7 +30,6 @@ import { Element } from './element';
 export type OnEntityFailureHook = OnFailureHook<Browser | Element | Collection>;
 
 export class Configuration {
-
     static with(): Customized<Configuration> {
         return Customized.configuration();
     }
@@ -40,18 +38,25 @@ export class Configuration {
         return Configuration.with().driver(driver);
     }
 
-    readonly driver: WebDriver               = null;
-    readonly timeout: number                 = 4000; // todo: seems like explicit types are not needed somewhere...
-    readonly baseUrl: string                 = '';
-    readonly setValueByJs: boolean           = false;
-    readonly typeByJs: boolean               = false;
-    readonly windowWidth: string             = '';  // todo: why not as number?
-    readonly windowHeight: string            = '';  // todo: why not as number?
+    readonly driver: WebDriver = null;
+
+    readonly timeout: number = 4000; // todo: seems like explicit types are not needed somewhere...
+
+    readonly baseUrl: string = '';
+
+    readonly setValueByJs: boolean = false;
+
+    readonly typeByJs: boolean = false;
+
+    readonly windowWidth: string = ''; // todo: why not as number?
+
+    readonly windowHeight: string = ''; // todo: why not as number?
+
     // readonly htmlPath: string                = path.resolve('./htmls');
     // readonly screenshotPath: string          = path.resolve('./screenshots');
-    readonly fullPageScreenshot: boolean     = true;
+    readonly fullPageScreenshot: boolean = true;
     // todo: should we bother and make it immutable?
-/*    readonly onFailureHooks: OnEntityFailureHook[] = [
+    /*    readonly onFailureHooks: OnEntityFailureHook[] = [
         async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
             const configuration = (entity as Entity).configuration;
             const driver = configuration.driver;
@@ -66,7 +71,7 @@ export class Configuration {
         async (failure: Error, entity: Collection): Promise<void | Error> => {
             // ...
         }
-    ];*/
+    ]; */
 
     constructor(init?: Partial<Configuration>) {
         Object.assign(this, init);
@@ -81,7 +86,7 @@ export class Configuration {
  *   Customizing.browser().driver(driver).timeout(1000).build()
  *    Customized.browser().driver(driver).timeout(1000).build()
  */
-export class Customized<T> {  // todo: add generic? Customized<T> ... constructor(...T...) ... build():T
+export class Customized<T> { // todo: add generic? Customized<T> ... constructor(...T...) ... build():T
     static browser(): Customized<Browser> {
         return new Customized(Browser);
     }
@@ -103,41 +108,41 @@ export class Customized<T> {  // todo: add generic? Customized<T> ... constructo
     }
 
     driver(webdriver: WebDriver) {
-        this.configuration = {...this.configuration, driver: webdriver};
+        this.configuration = { ...this.configuration, driver: webdriver };
         return this;
     }
 
     baseUrl(base: string) {
-        this.configuration = {...this.configuration, baseUrl: base};
+        this.configuration = { ...this.configuration, baseUrl: base };
         return this;
     }
 
     timeout(milliseconds: number) {
-        this.configuration = {...this.configuration, timeout: milliseconds};
+        this.configuration = { ...this.configuration, timeout: milliseconds };
         return this;
     }
 
     windowWidth(value: string) {
-        this.configuration = {...this.configuration, windowWidth: value};
+        this.configuration = { ...this.configuration, windowWidth: value };
         return this;
     }
 
     windowHeight(value: string) {
-        this.configuration = {...this.configuration, windowHeight: value};
+        this.configuration = { ...this.configuration, windowHeight: value };
         return this;
     }
 
     setValueByJs(value: boolean) {
-        this.configuration = {...this.configuration, setValueByJs: value};
+        this.configuration = { ...this.configuration, setValueByJs: value };
         return this;
     }
 
     typeByJs(value: boolean) {
-        this.configuration = {...this.configuration, typeByJs: value};
+        this.configuration = { ...this.configuration, typeByJs: value };
         return this;
     }
 
-/*    htmlPath(path: string) {
+    /*    htmlPath(path: string) {
         this.configuration = {...this.configuration, htmlPath: path};
         return this;
     }
@@ -145,15 +150,15 @@ export class Customized<T> {  // todo: add generic? Customized<T> ... constructo
     screenshotPath(path: string) {
         this.configuration = {...this.configuration, screenshotPath: path};
         return this;
-    }*/
+    } */
 
     fullPageScreenshot(turnedOn: boolean) {
-        this.configuration = {...this.configuration, fullPageScreenshot: turnedOn};
+        this.configuration = { ...this.configuration, fullPageScreenshot: turnedOn };
         return this;
     }
 
 /*    onFailureHooks(hooks: OnEntityFailureHook[]) { // todo: consider switching to varargs
         this.configuration = {...this.configuration, onFailureHooks: hooks};
         return this;
-    }*/
+    } */
 }

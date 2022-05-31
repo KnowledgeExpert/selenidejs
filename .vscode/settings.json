@@ -1,0 +1,6 @@
+{
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "search.exclude": {
+    "**/package-lock.json": true
+  }
+}

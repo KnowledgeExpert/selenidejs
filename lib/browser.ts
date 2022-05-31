@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Builder, By, Capabilities, WebDriver } from 'selenium-webdriver';
+import {
+    Builder, By, Capabilities, WebDriver,
+} from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
@@ -26,7 +28,6 @@ import { Extensions } from './utils/extensions';
 import isAbsoluteUrl = Extensions.isAbsoluteUrl;
 
 export class Browser extends Entity implements Assertable, Matchable {
-
     static configuredWith(): Customized<Browser> {
         return Customized.browser();
     }
@@ -52,6 +53,7 @@ export class Browser extends Entity implements Assertable, Matchable {
         return this.configuration.driver;
     }
 
+    // eslint-disable-next-line class-methods-use-this
     toString() {
         return 'browser';
     }
@@ -59,60 +61,63 @@ export class Browser extends Entity implements Assertable, Matchable {
     /* Elements */
 
     element(
-        located: (string | By | { script: string | ((document: Document) => HTMLElement), args?: any[] }),
-        customized?: Partial<Configuration>
+        located: (
+            string | By | { script: string | ((document: Document) => HTMLElement), args?: any[] }
+        ),
+        customized?: Partial<Configuration>,
     ): Element {
-        const configuration = customized === undefined ?
-            this.configuration :
-            new Configuration({ ...this.configuration, ...customized });
+        const configuration = customized === undefined
+            ? this.configuration
+            : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
             const by = Extensions.toBy(located);
             const locator = new BrowserWebElementByLocator(by, this);
             return new Element(locator, configuration);
-        } else {
-            const locator = new BrowserWebElementByJs(this, located.script, located.args);
-            return new Element(locator, configuration);
         }
+        const locator = new BrowserWebElementByJs(this, located.script, located.args);
+        return new Element(locator, configuration);
     }
 
     all(
         located: string | By | { script: string | ((document: Document) => HTMLCollectionOf<HTMLElement>), args?: any[] },
-        customized?: Partial<Configuration>
+        customized?: Partial<Configuration>,
     ): Collection {
-        const configuration = customized === undefined ?
-            this.configuration :
-            new Configuration({ ...this.configuration, ...customized });
+        const configuration = customized === undefined
+            ? this.configuration
+            : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
             const by = Extensions.toBy(located);
             const locator = new BrowserWebElementsByLocator(by, this);
             return new Collection(locator, configuration);
-        } else {
-            const locator = new BrowserWebElementsByJs(this, located.script, located.args);
-            return new Collection(locator, configuration);
         }
+        const locator = new BrowserWebElementsByJs(this, located.script, located.args);
+        return new Collection(locator, configuration);
     }
 
     /* Commands */
 
-    async executeScript(script: (string | ((document: Document, args?: any[], window?: Window) => any)), ...args: any[]) {
-        const wrappedScript = 'var args = arguments;' +
-            (script instanceof Function
+    async executeScript(
+        script: (string | ((document: Document, args?: any[], window?: Window) => any)),
+        ...args
+    ) {
+        const wrappedScript = `var args = arguments;${
+            script instanceof Function
                 ? `return (${script.toString()})(document, args, window);`
-                : `return (function(document, args, window) { ${script} })(document, args, window);`);
+                : `return (function(document, args, window) { ${script} })(document, args, window);`}`;
         return this.driver.executeScript(wrappedScript, ...args);
     }
 
     async open(relativeOrAbsoluteUrl: string): Promise<Browser> {
         if (this.configuration.windowHeight && this.configuration.windowWidth) {
             await this.resizeWindow(
-                parseInt(this.configuration.windowWidth),
-                parseInt(this.configuration.windowHeight)
+                parseInt(this.configuration.windowWidth, 10),
+                parseInt(this.configuration.windowHeight, 10),
             );
         }
 
-        const absoluteUrl = isAbsoluteUrl(relativeOrAbsoluteUrl) ?
-            relativeOrAbsoluteUrl :
-            this.configuration.baseUrl + relativeOrAbsoluteUrl;
+        const absoluteUrl = isAbsoluteUrl(relativeOrAbsoluteUrl)
+            ? relativeOrAbsoluteUrl
+            : this.configuration.baseUrl + relativeOrAbsoluteUrl;
 
         await this.driver.get(absoluteUrl);
         return this;
@@ -125,7 +130,7 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     async screenshot(): Promise<Buffer> {
         return this.configuration.fullPageScreenshot
-            ? Buffer.from(await this.driver.takeScreenshot(), 'base64')  // todo: change to fullPageScreenshot(driver);
+            ? Buffer.from(await this.driver.takeScreenshot(), 'base64') // todo: change to fullPageScreenshot(driver);
             : Buffer.from(await this.driver.takeScreenshot(), 'base64');
     }
 
@@ -182,7 +187,7 @@ export class Browser extends Entity implements Assertable, Matchable {
                 browser.driver.switchTo().frame(await frameElement.getWebElement());
             });
             return this;
-        }*/
+        } */
 
     async switchToDefaultFrame(): Promise<Browser> {
         await this.driver.switchTo().defaultContent();
@@ -198,7 +203,7 @@ export class Browser extends Entity implements Assertable, Matchable {
             await this.driver.manage().deleteAllCookies()
                 .catch(ignored => {});
             return this;
-        }*/
+        } */
 
     async clearLocalStorage(): Promise<Browser> {
         await this.driver.executeScript('window.localStorage.clear();')
@@ -222,7 +227,7 @@ export class Browser extends Entity implements Assertable, Matchable {
         async deleteCookie(name: string): Promise<Browser> {
             await this.driver.manage().deleteCookie(name);
             return this;
-        }*/
+        } */
 
     get alert() {
         return this.driver.switchTo().alert();
@@ -237,5 +242,5 @@ export class Browser extends Entity implements Assertable, Matchable {
         async dismissAlert(): Promise<Browser> {
             await this.driver.switchTo().alert().dismiss();
             return this;
-        }*/
+        } */
 }

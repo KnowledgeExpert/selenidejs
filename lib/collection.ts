@@ -26,9 +26,7 @@ import { Locator } from './locators/locator';
 import { SlicedWebElementsLocator } from './locators/slicedWebElementsLocator';
 import { Condition } from './wait';
 
-
 export class Collection extends Entity implements Assertable, Matchable {
-
     private readonly locator: Locator<Promise<WebElement[]>>;
 
     constructor(locator: Locator<Promise<WebElement[]>>, configuration: Configuration) {
@@ -43,9 +41,7 @@ export class Collection extends Entity implements Assertable, Matchable {
     // todo: should not we move it to queries?, or rename to asCashedArray() ?
     async getAsCashedArray(): Promise<Element[]> { // todo: rename to ...Cached, todo: why do we need get?
         return (await this.getWebElements())
-            .map((it, index) => new Element(
-                new CashedWebElementLocator(it, `${this}[${index}]`), this.configuration)
-            );
+            .map((it, index) => new Element(new CashedWebElementLocator(it, `${this}[${index}]`), this.configuration));
     }
 
     elementAt(index: number): Element {
@@ -68,14 +64,14 @@ export class Collection extends Entity implements Assertable, Matchable {
     filteredBy(...conditions: ElementCondition[]): Collection {
         return new Collection(
             new FilteredByConditionWebElementsLocator(Condition.all(...conditions), this),
-            this.configuration
+            this.configuration,
         );
     }
 
     elementBy(...conditions: ElementCondition[]): Element {
         return new Element(
             new ElementByConditionWebElementLocator(Condition.all(...conditions), this),
-            this.configuration
+            this.configuration,
         );
     }
 

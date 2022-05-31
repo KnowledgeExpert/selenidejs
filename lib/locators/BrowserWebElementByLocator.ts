@@ -16,11 +16,11 @@ import { By, WebElement } from 'selenium-webdriver';
 import { Locator } from './locator';
 import { Browser } from '../browser';
 
-
 export class BrowserWebElementByLocator implements Locator<Promise<WebElement>> {
-
-    constructor(private readonly by: By,
-                private readonly browser: Browser) {
+    constructor(
+        private readonly by: By,
+        private readonly browser: Browser,
+    ) {
         this.by = by;
         this.browser = browser;
     }
@@ -29,7 +29,7 @@ export class BrowserWebElementByLocator implements Locator<Promise<WebElement>> 
         return this.browser.driver.findElement(this.by);
     }
 
-    toString(): string {  // todo: do we really need this toString()?
+    toString(): string { // todo: do we really need this toString()?
         return `${this.browser}.element(${this.by})`;
     }
 }

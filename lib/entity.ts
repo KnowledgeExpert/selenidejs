@@ -45,11 +45,11 @@ export interface Matchable {
 /* todo: discuss somewhere do we need it or not... (it could be used mainly in onFailureHooks)
 export interface Configured {
     readonly configuration: Configuration;
-}*/
+} */
 
-export abstract class Entity implements Assertable, Matchable/*, Configured*/ {
-
+export abstract class Entity implements Assertable, Matchable/* , Configured */ {
     readonly configuration: Configuration;
+
     protected readonly wait: Wait<this>;
 
     constructor(configuration: Configuration) {

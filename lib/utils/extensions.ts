@@ -17,44 +17,43 @@ import { By, WebDriver } from 'selenium-webdriver';
 import { by } from '../support/selectors/by';
 
 export namespace Extensions {
-  // todo: Why not to move it Browser
-  export async function savePageSource(driver: WebDriver, filePath: string): Promise<string> {
-    const pageTitle = await driver.getTitle();
-    const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
-    const fileName = `${pageTitle}_${dateTime}.html`;
-    const completeFilePath = `${filePath}/${fileName}`;
-    const pageSource = await driver.getPageSource();
-    fs.outputFileSync(completeFilePath, pageSource);
-    return completeFilePath;
-  }
-
-  export async function saveScreenshot(driver: WebDriver, filePath: string): Promise<string> {
-    const pageTitle = await driver.getTitle();
-    const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
-    const fileName = `${pageTitle}_${dateTime}.png`;
-    const completeFilePath = `${filePath}/${fileName}`;
-    const screenshot = Buffer.from(await driver.takeScreenshot(), 'base64');
-    fs.outputFileSync(completeFilePath, screenshot);
-    return completeFilePath;
-  }
-
-  export function toBy(cssOrXpathOrBy: string | By): By {
-    if (cssOrXpathOrBy instanceof By) {
-      return cssOrXpathOrBy;
+    // todo: Why not to move it Browser
+    export async function savePageSource(driver: WebDriver, filePath: string): Promise<string> {
+        const pageTitle = await driver.getTitle();
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
+        const fileName = `${pageTitle}_${dateTime}.html`;
+        const completeFilePath = `${filePath}/${fileName}`;
+        const pageSource = await driver.getPageSource();
+        fs.outputFileSync(completeFilePath, pageSource);
+        return completeFilePath;
     }
-    const cssOrXpath = cssOrXpathOrBy.trim();
-    const isXpath = (str: string) =>
-      str.startsWith('/') || str.startsWith('./') || str.startsWith('..') || str.startsWith('(');
-    return isXpath(cssOrXpath) ? by.xpath(cssOrXpath) : by.css(cssOrXpath);
-  }
 
-  export function isAbsoluteUrl(relativeOrAbsoluteUrl: string): boolean {
-    return (
-      relativeOrAbsoluteUrl.toLowerCase().startsWith('http:') ||
-      relativeOrAbsoluteUrl.toLowerCase().startsWith('https:') ||
-      relativeOrAbsoluteUrl.toLowerCase().startsWith('file:') ||
-      relativeOrAbsoluteUrl.toLowerCase().startsWith('about:') ||
-      relativeOrAbsoluteUrl.toLowerCase().startsWith('data:')
-    );
-  }
+    export async function saveScreenshot(driver: WebDriver, filePath: string): Promise<string> {
+        const pageTitle = await driver.getTitle();
+        const dateTime = new Date().toLocaleString().replace(/ |:|-/g, '_');
+        const fileName = `${pageTitle}_${dateTime}.png`;
+        const completeFilePath = `${filePath}/${fileName}`;
+        const screenshot = Buffer.from(await driver.takeScreenshot(), 'base64');
+        fs.outputFileSync(completeFilePath, screenshot);
+        return completeFilePath;
+    }
+
+    export function toBy(cssOrXpathOrBy: string | By): By {
+        if (cssOrXpathOrBy instanceof By) {
+            return cssOrXpathOrBy;
+        }
+        const cssOrXpath = cssOrXpathOrBy.trim();
+        const isXpath = (str: string) => str.startsWith('/') || str.startsWith('./') || str.startsWith('..') || str.startsWith('(');
+        return isXpath(cssOrXpath) ? by.xpath(cssOrXpath) : by.css(cssOrXpath);
+    }
+
+    export function isAbsoluteUrl(relativeOrAbsoluteUrl: string): boolean {
+        return (
+            relativeOrAbsoluteUrl.toLowerCase().startsWith('http:')
+      || relativeOrAbsoluteUrl.toLowerCase().startsWith('https:')
+      || relativeOrAbsoluteUrl.toLowerCase().startsWith('file:')
+      || relativeOrAbsoluteUrl.toLowerCase().startsWith('about:')
+      || relativeOrAbsoluteUrl.toLowerCase().startsWith('data:')
+        );
+    }
 }

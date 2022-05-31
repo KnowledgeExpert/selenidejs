@@ -30,14 +30,13 @@ export interface Fn<T, R> {
     call(entity: T): Promise<R>;
 }
 
-
 /**
  * We use queries to perform an async query on entity of type T, i.e. get something from entity.
  * So a query can pass and return something of type R or failed with Error correspondingly.
  */
 export class Query<T, R> implements Fn<T, R> {
-
     private readonly description: string;
+
     private readonly fn: Lambda<T, R>;
 
     constructor(description, fn) {
@@ -70,8 +69,8 @@ export class Command<T> extends Query<T, void> { }
  * Read "void" in Query<T, void> as "matched", or "passed".
  */
 export class Condition<E> implements Fn<E, void> {
-
     private readonly description: string;
+
     private readonly fn: Lambda<E, void>;
 
     constructor(description, fn) {
@@ -109,7 +108,7 @@ export namespace Condition {
     export const not = <T>(condition: Condition<T>, description?: string): Condition<T> => {
         const [isOrHave, ...conditionName] = condition.toString().split(' ');
         return new Condition(
-            description || `${isOrHave} ${'is' === isOrHave ? 'not' : 'no'} ${conditionName.join(' ')}`,
+            description || `${isOrHave} ${isOrHave === 'is' ? 'not' : 'no'} ${conditionName.join(' ')}`,
             async (entity: T) => {
                 try {
                     await condition.call(entity);
@@ -117,9 +116,9 @@ export namespace Condition {
                     return;
                 }
                 throw new ConditionNotMatchedError();
-            });
+            },
+        );
     };
-
 
     /**
      * Combines conditions by logical AND
@@ -127,31 +126,29 @@ export namespace Condition {
      * @param {Condition<T>} conditions
      * @returns {Condition<T>}
      */
-    export const and = <T>(...conditions: Condition<T>[]): Condition<T> =>
-        new Condition(conditions.map(toString).join(' and '), async (entity: T) => {
-            for (const condition of conditions) {
-                await condition.call(entity);
-            }
-        });
+    export const and = <T>(...conditions: Condition<T>[]): Condition<T> => new Condition(conditions.map(toString).join(' and '), async (entity: T) => {
+        for (const condition of conditions) {
+            await condition.call(entity);
+        }
+    });
 
     /**
      * Combines conditions by logical OR
      * @param {Condition<T>} conditions
      * @returns {Condition<T>}
      */
-    export const or = <T>(...conditions: Condition<T>[]): Condition<T> =>
-        new Condition(conditions.map(toString).join(' or '), async (entity: T) => {
-            const errors: Error[] = [];
-            for (const condition of conditions) {
-                try {
-                    await condition.call(entity);
-                    return;
-                } catch (error) {
-                    errors.push(error);
-                }
+    export const or = <T>(...conditions: Condition<T>[]): Condition<T> => new Condition(conditions.map(toString).join(' or '), async (entity: T) => {
+        const errors: Error[] = [];
+        for (const condition of conditions) {
+            try {
+                await condition.call(entity);
+                return;
+            } catch (error) {
+                errors.push(error);
             }
-            throw new Error(errors.map(toString).join('; '));
-        });
+        }
+        throw new Error(errors.map(toString).join('; '));
+    });
 
     /**
      * Transforms conditions array provided as varargs to condition by applying Condition.and
@@ -163,9 +160,9 @@ export namespace Condition {
             throw new Error('at least one condition should be provided as argument to Condition.all');
         }
 
-        return conditions.length > 1 ?
-            Condition.and(...conditions) :
-            conditions[0];
+        return conditions.length > 1
+            ? Condition.and(...conditions)
+            : conditions[0];
     };
 
     /**
@@ -179,9 +176,9 @@ export namespace Condition {
         }
         const negated = conditions.map(c => Condition.not(c));
 
-        return conditions.length > 1 ?
-            Condition.and(...negated) :
-            negated[0];
+        return conditions.length > 1
+            ? Condition.and(...negated)
+            : negated[0];
     };
 
     /**
@@ -190,16 +187,14 @@ export namespace Condition {
      * @param {Array<Condition<T>>} conditions
      * @returns {(entity: T) => Promise<boolean>}
      */
-    export const asPredicate = <T>(...conditions: Condition<T>[]) =>
-        (entity: T): Promise<boolean> =>
-            Condition.all(...conditions).call(entity).then(_ => true, _ => false);
+    export const asPredicate = <T>(...conditions: Condition<T>[]) => (entity: T): Promise<boolean> => Condition.all(...conditions).call(entity).then(_ => true, _ => false);
 }
 
 export type OnFailureHook<T> = (failure: Error, entity: T) => Promise<void | Error>;
 
 export class Wait<T> {
-
     private readonly entity: T;
+
     private readonly timeout: number;
 
     constructor(entity: T, timeout: number) {
@@ -229,12 +224,12 @@ export class Wait<T> {
                 if (new Date().getTime() > finishTime) {
                     // todo: should we move this error formatting to the Error class definition?
                     const failure = new TimeoutError(
-                        '\n' +
-                        `\tTimed out after ${this.timeout}ms, while waiting for:\n` +
-                        `\t${this.entity.toString()}.${fn.toString()}\n` + // todo: if string has trailing
+                        '\n'
+                        + `\tTimed out after ${this.timeout}ms, while waiting for:\n`
+                        + `\t${this.entity.toString()}.${fn.toString()}\n` // todo: if string has trailing
                         // and leading spaces it will not be readable
-                        'Reason:\n' +
-                        `\t${error.message}`
+                        + 'Reason:\n'
+                        + `\t${error.message}`,
                     );
 
                     throw failure;

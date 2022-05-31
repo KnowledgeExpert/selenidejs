@@ -23,42 +23,39 @@ import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLoca
 import { Extensions } from './utils/extensions';
 
 export class Shadow {
-  constructor(private readonly context: Element, readonly configuration: Configuration) {
-    this.context = context;
-  }
-
-  element(
-    located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }),
-    customized?: Partial<Configuration>
-  ): Element {
-    const configuration = customized === undefined ?
-      this.configuration :
-      new Configuration({ ...this.configuration, ...customized });
-    if (located instanceof By || typeof located === 'string') {
-      const by = Extensions.toBy(located);
-      const locator = new ElementWebElementByLocator(by, this.context);
-      return new Element(locator, configuration);
-    } else {
-      const locator = new ElementWebElementByJs(this.context, located.script, located.args);
-      return new Element(locator, configuration);
+    constructor(private readonly context: Element, readonly configuration: Configuration) {
+        this.context = context;
     }
-  }
 
-  all(
-    located: string | By | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
-    customized?: Partial<Configuration>
-  ): Collection {
-    const configuration = customized === undefined ?
-      this.configuration :
-      new Configuration({ ...this.configuration, ...customized });
-    if (located instanceof By || typeof located === 'string') {
-      const by = Extensions.toBy(located);
-      const locator = new ElementWebElementsByLocator(by, this.context);
-      return new Collection(locator, configuration);
-    } else {
-      const locator = new ElementWebElementsByJs(this.context, located.script, located.args);
-      return new Collection(locator, configuration);
+    element(
+        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }),
+        customized?: Partial<Configuration>,
+    ): Element {
+        const configuration = customized === undefined
+            ? this.configuration
+            : new Configuration({ ...this.configuration, ...customized });
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
+            const locator = new ElementWebElementByLocator(by, this.context);
+            return new Element(locator, configuration);
+        }
+        const locator = new ElementWebElementByJs(this.context, located.script, located.args);
+        return new Element(locator, configuration);
     }
-  }
 
+    all(
+        located: string | By | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
+        customized?: Partial<Configuration>,
+    ): Collection {
+        const configuration = customized === undefined
+            ? this.configuration
+            : new Configuration({ ...this.configuration, ...customized });
+        if (located instanceof By || typeof located === 'string') {
+            const by = Extensions.toBy(located);
+            const locator = new ElementWebElementsByLocator(by, this.context);
+            return new Collection(locator, configuration);
+        }
+        const locator = new ElementWebElementsByJs(this.context, located.script, located.args);
+        return new Collection(locator, configuration);
+    }
 }

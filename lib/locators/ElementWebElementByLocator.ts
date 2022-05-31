@@ -16,11 +16,11 @@ import { By, WebElement } from 'selenium-webdriver';
 import { Locator } from './locator';
 import { Element } from '../element';
 
-
 export class ElementWebElementByLocator implements Locator<Promise<WebElement>> {
-
-    constructor(private readonly by: By,
-                private readonly element: Element) {
+    constructor(
+        private readonly by: By,
+        private readonly element: Element,
+    ) {
         this.by = by;
         this.element = element;
     }
@@ -29,7 +29,7 @@ export class ElementWebElementByLocator implements Locator<Promise<WebElement>> 
         return this.element.getWebElement().then(it => it.findElement(this.by));
     }
 
-    toString(): string {  // todo: do we really need this toString()?
+    toString(): string { // todo: do we really need this toString()?
         return `${this.element}.element(${this.by})`;
     }
 }

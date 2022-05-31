@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Button, By, Key, WebElement } from 'selenium-webdriver';
+import {
+    By, Key, WebElement,
+} from 'selenium-webdriver';
 import { Collection } from './collection';
 import { command } from './commands';
 import { Configuration } from './configuration';
@@ -27,9 +29,7 @@ import { lambda } from './utils';
 import { Extensions } from './utils/extensions';
 import { Shadow } from './shadow';
 
-
 export class Element extends Entity implements Assertable, Matchable {
-
     readonly locator: Locator<Promise<WebElement>>;
 
     constructor(locator: Locator<Promise<WebElement>>, configuration: Configuration) {
@@ -53,36 +53,34 @@ export class Element extends Entity implements Assertable, Matchable {
 
     element(
         located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }),
-        customized?: Partial<Configuration>
+        customized?: Partial<Configuration>,
     ): Element {
-        const configuration = customized === undefined ?
-            this.configuration :
-            new Configuration({ ...this.configuration, ...customized });
+        const configuration = customized === undefined
+            ? this.configuration
+            : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
-            const by = Extensions.toBy(located);
-            const locator = new ElementWebElementByLocator(by, this);
-            return new Element(locator, configuration);
-        } else {
-            const locator = new ElementWebElementByJs(this, located.script, located.args);
+            const byLocator = Extensions.toBy(located);
+            const locator = new ElementWebElementByLocator(byLocator, this);
             return new Element(locator, configuration);
         }
+        const locator = new ElementWebElementByJs(this, located.script, located.args);
+        return new Element(locator, configuration);
     }
 
     all(
         located: string | By | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
-        customized?: Partial<Configuration>
+        customized?: Partial<Configuration>,
     ): Collection {
-        const configuration = customized === undefined ?
-            this.configuration :
-            new Configuration({ ...this.configuration, ...customized });
+        const configuration = customized === undefined
+            ? this.configuration
+            : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
-            const by = Extensions.toBy(located);
-            const locator = new ElementWebElementsByLocator(by, this);
-            return new Collection(locator, configuration);
-        } else {
-            const locator = new ElementWebElementsByJs(this, located.script, located.args);
+            const byLocator = Extensions.toBy(located);
+            const locator = new ElementWebElementsByLocator(byLocator, this);
             return new Collection(locator, configuration);
         }
+        const locator = new ElementWebElementsByJs(this, located.script, located.args);
+        return new Collection(locator, configuration);
     }
 
     get parent(): Element {
@@ -99,57 +97,52 @@ export class Element extends Entity implements Assertable, Matchable {
 
     /* Commands */
     async executeScript(script: string | ((element: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
-        const wrappedScript = 'var [ element, ...args ] = arguments;' +
-            (script instanceof Function
+        const wrappedScript = `var [ element, ...args ] = arguments;${
+            script instanceof Function
                 ? `return (${script.toString()})(element, args, window);`
-                : `return (function(element, args, window) { ${script} })(element, args, window);`);
+                : `return (function(element, args, window) { ${script} })(element, args, window);`}`;
         const webelement = await this.getWebElement();
         return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
     }
 
     async click() {
-        await this.wait.command(lambda('click', async element =>
-            element.getWebElement().then(it => it.click())
-        ));
+        await this.wait.command(lambda('click', async element => element.getWebElement().then(it => it.click())));
         return this;
     }
 
     async clear() {
-        await this.wait.command(lambda('clear', async element =>
-            element.getWebElement().then(it => it.clear())
-        ));
+        await this.wait.command(lambda('clear', async element => element.getWebElement().then(it => it.clear())));
         return this;
     }
 
-    async setValue(value: string | number) {  // todo: should we rename it just to set?
+    async setValue(value: string | number) { // todo: should we rename it just to set?
         // kind of more readable and reflects user context
         await this.wait.command(
-            this.configuration.setValueByJs ?
-                command.js.setValue(value) :
-                lambda(`set value: ${value}`, async element => {
+            this.configuration.setValueByJs
+                ? command.js.setValue(value)
+                : lambda(`set value: ${value}`, async element => {
                     const webelement = await element.getWebElement();
                     await webelement.clear();
                     await webelement.sendKeys(String(value));
-                })
+                }),
         );
         return this;
     }
 
     async type(keys: string | number) {
         await this.wait.command(
-            this.configuration.typeByJs ?
-                command.js.type(keys) :
-                lambda(`type: ${keys}`, async element =>
-                    element.getWebElement().then(it => it.sendKeys(String(keys))))
+            this.configuration.typeByJs
+                ? command.js.type(keys)
+                : lambda(`type: ${keys}`, async element => element.getWebElement().then(it => it.sendKeys(String(keys)))),
         );
         return this;
     }
 
     async doubleClick() {
-        const driver = this.configuration.driver;
+        const { driver } = this.configuration;
         await this.wait.command(lambda('double-click', async element => {
             const webelement = await element.getWebElement();
-            if (! await webelement.isDisplayed()) {
+            if (!await webelement.isDisplayed()) {
                 throw new Error('element is hidden'); // todo: consider refactoring/DRYing to throwErrorIfHidden(webel)
             }
             driver.actions().doubleClick(webelement).perform();
@@ -158,25 +151,27 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     async hover() {
-        const driver = this.configuration.driver;
+        const { driver } = this.configuration;
         await this.wait.command(lambda('hover', async element => {
             const webelement = await element.getWebElement();
-            if (! await webelement.isDisplayed()) {
+            if (!await webelement.isDisplayed()) {
                 throw new Error('element is hidden');
             }
-            driver.actions().move({ x: 0, y: 0, duration: 100, origin: await element.getWebElement() }).perform();
+            driver.actions().move({
+                x: 0, y: 0, duration: 100, origin: await element.getWebElement(),
+            }).perform();
         }));
         return this;
     }
 
     async contextClick() {
-        const driver = this.configuration.driver;
+        const { driver } = this.configuration;
         await this.wait.command(lambda('context-click', async element => {
             const webelement = await element.getWebElement();
-            if (! await webelement.isDisplayed()) {
+            if (!await webelement.isDisplayed()) {
                 throw new Error('element is hidden');
             }
-            driver.actions().click(await element.getWebElement(), String(Button.RIGHT)).perform();
+            driver.actions().contextClick(await element.getWebElement()).perform();
         }));
         return this;
     }

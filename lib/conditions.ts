@@ -21,7 +21,6 @@ import { query } from './queries';
 import { predicate } from './utils/predicates';
 import { Condition, Lambda } from './wait';
 
-
 export type ElementCondition = Condition<Element>;
 export type CollectionCondition = Condition<Collection>;
 export type BrowserCondition = Condition<Browser>;
@@ -108,9 +107,9 @@ export namespace condition {
      */
     function throwIfNotActual<E, A>(
         query: (entity: E) => Promise<A>,
-        predicate: (actual: A) => boolean)
+        predicate: (actual: A) => boolean,
+    )
         : Lambda<E, void> {
-
         return async (entity: E) => {
             const actual = await query(entity);
             if (!predicate(actual)) {
@@ -123,75 +122,73 @@ export namespace condition {
 
         export const isVisible = new Condition(
             'is visible',
-            throwIfNot(async (element: Element) => element.getWebElement().then(webelement => webelement.isDisplayed()))
+            throwIfNot(async (element: Element) => element.getWebElement().then(webelement => webelement.isDisplayed())),
         );
 
         export const isHidden = Condition.not(isVisible, 'is hidden');
 
         export const hasAttribute = (name: string) => new Condition(
             `has attribute '${name}'`,
-            throwIfNotActual(query.attribute(name), predicate.isTruthy)
+            throwIfNotActual(query.attribute(name), predicate.isTruthy),
         );
 
         export const isSelected = hasAttribute('elementIsSelected');
 
         export const isEnabled = new Condition(
             'is enabled',
-            throwIfNot(async (element: Element) => element.getWebElement().then(webelement => webelement.isEnabled()))
+            throwIfNot(async (element: Element) => element.getWebElement().then(webelement => webelement.isEnabled())),
         );
 
         export const isDisabled = Condition.not(isEnabled, 'is disabled');
 
         export const isPresent = new Condition(
             'is present',
-            throwIfNot(async (element: Element) => element.getWebElement().then(_ => true, _ => false)
-            ));
+            throwIfNot(async (element: Element) => element.getWebElement().then(_ => true, _ => false)),
+        );
 
         export const isAbsent = Condition.not(isPresent, 'is absent');
 
         export const isFocused = new Condition(
             'is focused',
-            throwIfNot(async (element: Element) =>
-                WebElement.equals(
-                    await element.executeScript('return document.activeElement') as WebElement,
-                    await element.getWebElement()
-                ))
+            throwIfNot(async (element: Element) => WebElement.equals(
+                await element.executeScript('return document.activeElement') as WebElement,
+                await element.getWebElement(),
+            )),
         );
 
         export const hasText = (expected: string | number | RegExp) => new Condition(
             `has text: ${expected}`,
-            throwIfNotActual(query.text,
+            throwIfNotActual(
+                query.text,
                 typeof expected === 'string'
                     ? predicate.includes(expected)
-                    : predicate.matches(expected)
-            )
+                    : predicate.matches(expected),
+            ),
         );
 
-        export const hasExactText = (expected: string | number) =>
-            new Condition(`has exact text: ${expected}`,
-                throwIfNotActual(query.text, predicate.equals(expected)));
+        export const hasExactText = (expected: string | number) => new Condition(
+            `has exact text: ${expected}`,
+            throwIfNotActual(query.text, predicate.equals(expected)),
+        );
 
         export const hasAttributeWithValue = (name: string, value: string | number) => new Condition(
             `has attribute '${name}' with value '${value}'`,
-            throwIfNotActual(query.attribute(name), predicate.equals(value))
+            throwIfNotActual(query.attribute(name), predicate.equals(value)),
         );
-
 
         export const hasAttributeWithValueContaining = (name: string, partialValue: string | number) => new Condition(
             `has attribute '${name}' with value '${partialValue}'`,
-            throwIfNotActual(query.attribute(name), predicate.includes(partialValue))
+            throwIfNotActual(query.attribute(name), predicate.includes(partialValue)),
         );
 
         export const hasCssClass = (cssClass: string) => new Condition(
             `has css class '${cssClass}'`,
-            throwIfNotActual(query.attribute('class'), predicate.includesWord(cssClass))
+            throwIfNotActual(query.attribute('class'), predicate.includesWord(cssClass)),
         );
 
-        export const hasValue = (expected: string | number) =>
-            hasAttributeWithValue('value', expected);
+        export const hasValue = (expected: string | number) => hasAttributeWithValue('value', expected);
 
-        export const hasValueContaining = (expected: string | number) =>
-            hasAttributeWithValueContaining('value', expected);
+        export const hasValueContaining = (expected: string | number) => hasAttributeWithValueContaining('value', expected);
 
         // TODO do we need to have message `should have text '' but was ... and value '' but was ...`
         // or we can do just `should be blank` ?
@@ -201,27 +198,27 @@ export namespace condition {
     export namespace collection { // todo: collection vs Collection in collection.ts ?
         export const hasSize = (expected: number): CollectionCondition => new Condition(
             `has size ${expected}`,
-            throwIfNotActual(query.size, predicate.equals(expected))
+            throwIfNotActual(query.size, predicate.equals(expected)),
         );
 
         export const hasSizeGreaterThan = (size: number): CollectionCondition => new Condition(
             `has size more than ${size}`,
-            throwIfNotActual(query.size, predicate.isGreaterThan(size))
+            throwIfNotActual(query.size, predicate.isGreaterThan(size)),
         );
 
         export const hasSizeGreaterThanOrEqual = (size: number): CollectionCondition => new Condition(
             `has size more than ${size}`,
-            throwIfNotActual(query.size, predicate.isGreaterThanOrEqual(size))
+            throwIfNotActual(query.size, predicate.isGreaterThanOrEqual(size)),
         );
 
         export const hasSizeLessThan = (size: number): CollectionCondition => new Condition(
             `has size less than ${size}`,
-            throwIfNotActual(query.size, predicate.isLessThan(size))
+            throwIfNotActual(query.size, predicate.isLessThan(size)),
         );
 
         export const hasSizeLessThanOrEqual = (size: number): CollectionCondition => new Condition(
             `has size less than ${size}`,
-            throwIfNotActual(query.size, predicate.isLessThanOrEqual(size))
+            throwIfNotActual(query.size, predicate.isLessThanOrEqual(size)),
         );
 
         // todo: should we filter collection for visibility before applying this condition?
@@ -230,12 +227,12 @@ export namespace condition {
         // screen only 'foo', 'bar'
         export const hasTexts = (texts: string[] | number[]): CollectionCondition => new Condition(
             `has texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts))
+            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts)),
         );
 
         export const hasExactTexts = (texts: string[] | number[]): CollectionCondition => new Condition(
             `has exact texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts))
+            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts)),
         );
     }
 
@@ -243,54 +240,51 @@ export namespace condition {
         // todo: do we need string | number
         export const hasUrlContaining = (partialUrl: string): BrowserCondition => new Condition(
             `has url containing ${partialUrl}`,
-            throwIfNotActual(query.url, predicate.includes(partialUrl))
+            throwIfNotActual(query.url, predicate.includes(partialUrl)),
         );
 
         export const hasUrl = (url: string): BrowserCondition => new Condition(
             `has url ${url}`,
-            throwIfNotActual(query.url, predicate.equals(url))
+            throwIfNotActual(query.url, predicate.equals(url)),
         );
 
         export const hasTitle = (title: string): BrowserCondition => new Condition(
             `has title ${title}`,
-            throwIfNotActual(query.title, predicate.equals(title))
+            throwIfNotActual(query.title, predicate.equals(title)),
         );
 
         export const hasTitleContaining = (partialTitle: string): BrowserCondition => new Condition(
             `has title containing ${partialTitle}`,
-            throwIfNotActual(query.title, predicate.includes(partialTitle))
+            throwIfNotActual(query.title, predicate.includes(partialTitle)),
         );
 
         export const hasTabsNumber = (num: number): BrowserCondition => new Condition(
             `has tabs number ${num}`,
-            throwIfNotActual(query.tabsNumber, predicate.equals(num))
+            throwIfNotActual(query.tabsNumber, predicate.equals(num)),
         );
 
         export const hasTabsNumberMoreThan = (num: number): BrowserCondition => new Condition(
             `has tabs number more than ${num}`,
-            throwIfNotActual(query.tabsNumber, predicate.isGreaterThan(num))
+            throwIfNotActual(query.tabsNumber, predicate.isGreaterThan(num)),
         );
 
         export const hasTabsNumberLessThan = (num: number): BrowserCondition => new Condition(
             `has tabs number less than ${num}`,
-            throwIfNotActual(query.tabsNumber, predicate.isLessThan(num))
+            throwIfNotActual(query.tabsNumber, predicate.isLessThan(num)),
         );
 
-        export const hasJsReturned =
-            (expected: any, script: string | ((document: Document) => any), ...args: any[]): BrowserCondition => new Condition(
-                `has execute script returned ${JSON.stringify(expected)}`,
-                async (browser: Browser) => {
-                    const actual = await browser.executeScript(script, ...args);
-                    if (typeof expected === 'number' || typeof expected === 'string') {
-                        if (expected !== actual) {
-                            throw new Error(`actual: ${actual}`);
-                        }
-                    } else {
-                        if (predicate.equals(expected)(actual)) {
-                            throw new Error(`actual: ${JSON.stringify(actual)}`);
-                        }
+        export const hasJsReturned = (expected: any, script: string | ((document: Document) => any), ...args: any[]): BrowserCondition => new Condition(
+            `has execute script returned ${JSON.stringify(expected)}`,
+            async (browser: Browser) => {
+                const actual = await browser.executeScript(script, ...args);
+                if (typeof expected === 'number' || typeof expected === 'string') {
+                    if (expected !== actual) {
+                        throw new Error(`actual: ${actual}`);
                     }
+                } else if (predicate.equals(expected)(actual)) {
+                    throw new Error(`actual: ${JSON.stringify(actual)}`);
                 }
-            );
+            },
+        );
     }
 }

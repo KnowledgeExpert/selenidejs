@@ -1,0 +1,41 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./lib/tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "airbnb-base",
+        "airbnb-typescript/base"
+    ],
+    "rules": {
+        // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
+        "import/prefer-default-export": "off",
+        "import/no-default-export": "error",
+        // Allow most functions to rely on type inference. If the function is exported, then `@typescript-eslint/explicit-module-boundary-types` will ensure it's typed.
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "arrow-parens": [
+            "error",
+            "as-needed"
+        ],
+        "@typescript-eslint/indent": ["error", 4],
+        "max-len": [
+            "error",
+            {
+                "code": 140,
+                "ignorePattern": "^(import| *test\\( *it\\(| *describe\\()",
+                "ignoreComments": true
+            }
+        ],
+        "no-nested-ternary": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/no-cycle": "off",
+        "max-classes-per-file": "off"
+    }
+}

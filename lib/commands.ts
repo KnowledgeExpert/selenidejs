@@ -32,61 +32,53 @@ export namespace command {
 
         /* Element commands */
 
-        export const clickWithOffset = (xOffset: number, yOffset: number) =>
-            lambda(`click by js with offset - x: ${xOffset}, y: ${yOffset}`, async (element: Element) => {
-                await element.executeScript(
-                    (element, args: number[], window) => {
-                        element.dispatchEvent(new MouseEvent(
-                            'click',
-                            {
-                                bubbles: true,
-                                cancelable: true,
-                                clientX: element.getClientRects()[0].left + args[0],
-                                clientY: element.getClientRects()[0].top + args[1],
-                                view: window,
-                            }
-                        ));
-                    }, xOffset, yOffset
-                );
-            });
+        export const clickWithOffset = (xOffset: number, yOffset: number) => lambda(`click by js with offset - x: ${xOffset}, y: ${yOffset}`, async (element: Element) => {
+            await element.executeScript((element, args: number[], window) => {
+                element.dispatchEvent(new MouseEvent(
+                    'click',
+                    {
+                        bubbles: true,
+                        cancelable: true,
+                        clientX: element.getClientRects()[0].left + args[0],
+                        clientY: element.getClientRects()[0].top + args[1],
+                        view: window,
+                    },
+                ));
+            }, xOffset, yOffset);
+        });
 
         export const click = lambda('click by js', clickWithOffset(0, 0));
 
-        export const setValue = (value: string | number) =>
-            lambda(`set value by js: ${value}`, async (element: Element) => {
-                await element.executeScript(
-                    (element: HTMLInputElement, args) => {
-                        const text = args[0];
-                        const maxlength = element.getAttribute('maxlength') === null
-                            ? -1
-                            : parseInt(element.getAttribute('maxlength'));
-                        element.value = maxlength === -1
-                            ? text
-                            : text.length <= maxlength
-                                ? text
-                                : text.substring(0, maxlength);
-                        return null;
-                    }, value
-                );
-            });
-
-        export const type = (keys: string | number) =>
-            lambda(`type by js (append value): ${keys}`, async (element: Element) => {
-                await element.executeScript((element: HTMLInputElement, args) => {
-                    const text = element.getAttribute('value').concat(args[0]);
-                    const maxlength = element.getAttribute('maxlength') === null
-                        ? -1
-                        : parseInt(element.getAttribute('maxlength'));
-                    element.value = maxlength === -1
+        export const setValue = (value: string | number) => lambda(`set value by js: ${value}`, async (element: Element) => {
+            await element.executeScript((element: HTMLInputElement, args) => {
+                const text = args[0];
+                const maxlength = element.getAttribute('maxlength') === null
+                    ? -1
+                    : parseInt(element.getAttribute('maxlength'));
+                element.value = maxlength === -1
+                    ? text
+                    : text.length <= maxlength
                         ? text
-                        : text.length <= maxlength
-                            ? text
-                            : text.substring(0, maxlength);
-                    return null;
-                }, keys);
-            });
+                        : text.substring(0, maxlength);
+                return null;
+            }, value);
+        });
 
-        export const scrollIntoView = lambda('scroll into view', async element =>
-            element.executeScript((element: HTMLInputElement) => element.scrollIntoView(true)));
+        export const type = (keys: string | number) => lambda(`type by js (append value): ${keys}`, async (element: Element) => {
+            await element.executeScript((element: HTMLInputElement, args) => {
+                const text = element.getAttribute('value').concat(args[0]);
+                const maxlength = element.getAttribute('maxlength') === null
+                    ? -1
+                    : parseInt(element.getAttribute('maxlength'));
+                element.value = maxlength === -1
+                    ? text
+                    : text.length <= maxlength
+                        ? text
+                        : text.substring(0, maxlength);
+                return null;
+            }, keys);
+        });
+
+        export const scrollIntoView = lambda('scroll into view', async element => element.executeScript((element: HTMLInputElement) => element.scrollIntoView(true)));
     }
 }
