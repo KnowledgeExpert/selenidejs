@@ -2,6 +2,40 @@
 
 ## 1.3.4 (to be released on 2022.05.31)
 
+### New Features
+  * added Configuration._locationStrategy 
+    to customize the conversion from string selector to By in element builders
+    like browser.element(selector), browser.all(selector), 
+         element.element(selector), element.all(selector)
+    By default equals to built in Extensions.cssOrXpathToBy function
+    that is as simple as:
+    ```
+        export function cssOrXPathToBy(selector: string): By {
+        const cssOrXPath = selector.trim();
+
+        const isXpath = (str: string) => (
+            str.startsWith('/')
+            || str.startsWith('./')
+            || str.startsWith('..')
+            || str.startsWith('(')
+            || str.startsWith('*/')
+        );
+
+        return isXpath(cssOrXPath)
+            ? by.xpath(cssOrXPath)
+            : by.css(cssOrXPath);
+    }
+    ```
+    Hence you can provide any other custom conversion fn;)
+    For example adapt selenidejs for appium with corresponding mobile selectors,
+    see an example at [github.com/automician/selenidejs-mobile-test-appium-ts-template](https://github.com/automician/selenidejs-mobile-test-appium-ts-template/blob/10713cc097ce973aed2e1d2c589b263a06af8360/__tests__/mobile.example.selenidejs.drd.test.ts#L12)
+    
+    * !NOTE! The option starts with underscore dangle. 
+      In selenidejs the underscore dangle is used as a mark of "experimental" featues
+      that might change in future releases. 
+      Speaking about `_locationStrategy` either its name of signature of fn value can be changed
+
+
 ### CHANGES
   * update selenium to 4.1.0
 

@@ -35,7 +35,7 @@ export class Shadow {
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
-            const by = Extensions.toBy(located);
+            const by = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new ElementWebElementByLocator(by, this.context);
             return new Element(locator, configuration);
         }
@@ -51,7 +51,7 @@ export class Shadow {
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
-            const by = Extensions.toBy(located);
+            const by = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new ElementWebElementsByLocator(by, this.context);
             return new Collection(locator, configuration);
         }

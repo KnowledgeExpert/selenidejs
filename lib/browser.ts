@@ -69,11 +69,13 @@ export class Browser extends Entity implements Assertable, Matchable {
         const configuration = customized === undefined
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
+
         if (located instanceof By || typeof located === 'string') {
-            const by = Extensions.toBy(located);
+            const by = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new BrowserWebElementByLocator(by, this);
             return new Element(locator, configuration);
         }
+
         const locator = new BrowserWebElementByJs(this, located.script, located.args);
         return new Element(locator, configuration);
     }
@@ -86,7 +88,7 @@ export class Browser extends Entity implements Assertable, Matchable {
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
-            const by = Extensions.toBy(located);
+            const by = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new BrowserWebElementsByLocator(by, this);
             return new Collection(locator, configuration);
         }

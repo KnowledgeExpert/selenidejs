@@ -13,11 +13,12 @@
 // limitations under the License.
 
 // import * as path from 'path';
-import { Builder, Capabilities, WebDriver } from 'selenium-webdriver';
+import { Builder, By, Capabilities, WebDriver } from 'selenium-webdriver';
 import { Browser } from './browser';
 import { OnFailureHook } from './wait';
 import { Collection } from './collection';
 import { Element } from './element';
+import { Extensions } from './utils/extensions';
 
 /**
  * A one place to configure everything.
@@ -72,6 +73,8 @@ export class Configuration {
             // ...
         }
     ]; */
+
+    readonly _locationStrategy: (selector: string | By) => By = Extensions.cssOrXPathToBy;
 
     constructor(init?: Partial<Configuration>) {
         Object.assign(this, init);
@@ -161,4 +164,9 @@ export class Customized<T> { // todo: add generic? Customized<T> ... constructor
         this.configuration = {...this.configuration, onFailureHooks: hooks};
         return this;
     } */
+
+    _locationStrategy(fn: (selector: string) => By) {
+        this.configuration = { ...this.configuration, _locationStrategy: fn };
+        return this;
+    }
 }

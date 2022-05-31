@@ -59,7 +59,7 @@ export class Element extends Entity implements Assertable, Matchable {
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
-            const byLocator = Extensions.toBy(located);
+            const byLocator = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new ElementWebElementByLocator(byLocator, this);
             return new Element(locator, configuration);
         }
@@ -75,7 +75,7 @@ export class Element extends Entity implements Assertable, Matchable {
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
         if (located instanceof By || typeof located === 'string') {
-            const byLocator = Extensions.toBy(located);
+            const byLocator = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new ElementWebElementsByLocator(byLocator, this);
             return new Collection(locator, configuration);
         }

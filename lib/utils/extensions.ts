@@ -38,13 +38,27 @@ export namespace Extensions {
         return completeFilePath;
     }
 
+    export function cssOrXPathToBy(selector: string): By {
+        const cssOrXPath = selector.trim();
+
+        const isXpath = (str: string) => (
+            str.startsWith('/')
+            || str.startsWith('./')
+            || str.startsWith('..')
+            || str.startsWith('(')
+            || str.startsWith('*/')
+        );
+
+        return isXpath(cssOrXPath)
+            ? by.xpath(cssOrXPath)
+            : by.css(cssOrXPath);
+    }
+
     export function toBy(cssOrXpathOrBy: string | By): By {
         if (cssOrXpathOrBy instanceof By) {
             return cssOrXpathOrBy;
         }
-        const cssOrXpath = cssOrXpathOrBy.trim();
-        const isXpath = (str: string) => str.startsWith('/') || str.startsWith('./') || str.startsWith('..') || str.startsWith('(');
-        return isXpath(cssOrXpath) ? by.xpath(cssOrXpath) : by.css(cssOrXpath);
+        return cssOrXPathToBy(cssOrXpathOrBy);
     }
 
     export function isAbsoluteUrl(relativeOrAbsoluteUrl: string): boolean {

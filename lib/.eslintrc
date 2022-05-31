@@ -33,6 +33,8 @@
                 "ignoreComments": true
             }
         ],
+        "no-underscore-dangle": "off",
+        "@typescript-eslint/no-namespace": "off",
         "no-nested-ternary": "off",
         "import/no-extraneous-dependencies": "off",
         "import/no-cycle": "off",
