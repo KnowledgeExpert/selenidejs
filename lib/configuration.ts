@@ -35,11 +35,11 @@ export class Configuration {
         return Customized.configuration();
     }
 
-    static withDriver(driver: WebDriver): Customized<Configuration> {
+    static withDriver(driver: WebDriver | (() => WebDriver)): Customized<Configuration> {
         return Configuration.with().driver(driver);
     }
 
-    readonly driver: WebDriver = null;
+    readonly driver: WebDriver | (() => WebDriver) = null;
 
     readonly timeout: number = 4000; // todo: seems like explicit types are not needed somewhere...
 
@@ -110,7 +110,7 @@ export class Customized<T> { // todo: add generic? Customized<T> ... constructor
         return new this.customizedType(this.configuration);
     }
 
-    driver(webdriver: WebDriver) {
+    driver(webdriver: WebDriver | (() => WebDriver)) {
         this.configuration = { ...this.configuration, driver: webdriver };
         return this;
     }

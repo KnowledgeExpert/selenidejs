@@ -1,15 +1,33 @@
 # Changelog
 
+## 1.3.5 (to be released on 2022.07.12)
+
+### New Features
+
+* now you can pass a function that returns driver to provide smarter driver management: 
+
+  ```typescript
+  let globalDriver: WebDriver; // to be initialized later
+
+  Browser.configuredWith()
+    .driver(() => globalDriver)
+    ._locationStrategy(mobile.selectorToBy)
+    .timeout(10000)
+    .build();
+  ```
+
 ## 1.3.4 (released on 2022.05.31)
 
 ### New Features
-  * added Configuration._locationStrategy 
+
+* added Configuration._locationStrategy
     to customize the conversion from string selector to By in element builders
-    like browser.element(selector), browser.all(selector), 
+    like browser.element(selector), browser.all(selector),
          element.element(selector), element.all(selector)
     By default equals to built in Extensions.cssOrXpathToBy function
     that is as simple as:
-    ```
+
+    ```typescript
         export function cssOrXPathToBy(selector: string): By {
         const cssOrXPath = selector.trim();
 
@@ -26,52 +44,57 @@
             : by.css(cssOrXPath);
     }
     ```
+
     Hence you can provide any other custom conversion fn;)
     For example adapt selenidejs for appium with corresponding mobile selectors,
     see an example for android at [github.com/automician/selenidejs-mobile-test-appium-ts-template](https://github.com/automician/selenidejs-mobile-test-appium-ts-template/blob/32d1e55c8d749f56774a84f467b0166c7cd893e0/common/selenidejs/mobile.extensions.ts#L4) with usage in test by [link](https://github.com/automician/selenidejs-mobile-test-appium-ts-template/blob/main/__tests__/mobile.example.selenidejs.drd.test.ts)
-    
-    * !NOTE! The option starts with underscore dangle. 
+
+  * !NOTE! The option starts with underscore dangle.
       In selenidejs the underscore dangle is used as a mark of "experimental" featues
-      that might change in future releases. 
+      that might change in future releases.
       Speaking about `_locationStrategy` either its name of signature of fn value can be changed
 
-
 ### CHANGES
-  * update selenium to 4.1.0
+
+* update selenium to 4.1.0
 
 ### FIXES
-  * 
 
+*
 
 ## 1.3.3 (released on 2020.10.08)
 
 ### FIXES
-  * fixed `byXpath` function, so it trims input now to allow passing values such as `     .//div     `
+
+* fixed `byXpath` function, so it trims input now to allow passing values such as `.//div`
 
 ## 1.3.2 (released on 2020.06.01)
 
 ### FIXES
-  * fixed finding by xpath when using `element`/`all` methods
+
+* fixed finding by xpath when using `element`/`all` methods
 
 ## 1.3.1 (released on 2020.04.15)
 
 ### FIXES
-  * fixed `have.text` condition - it was using always `match` instead of using `match` or `includes` depending on passed argument
+
+* fixed `have.text` condition - it was using always `match` instead of using `match` or `includes` depending on passed argument
 
 ## 1.3.0 (released on 2020.04.09)
 
 ### New Features
 
-  * `executeScript` improvements:
-    * `browser.executeScript(...)` and `element.executeScript(...)` - now accepts not plain `string`/`Function` - but brand new ones:
-      * `browser.executeScript` - now accepts `(document, args, window) => ...` function, where:
-        * `document` - is [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
-        * `args` - is an array of passed additional arguments, like `browser.executeScript((document, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
-        * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
-      * `element.executeScript` - now accepts `(element, args, window) => ...` function, where:
-        * `element` - is [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) which corresponds to `element`'s actual `WebElement`
-        * `args` - is an array of passed additional arguments, like `element.executeScript((element, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
-        * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+* `executeScript` improvements:
+  * `browser.executeScript(...)` and `element.executeScript(...)` - now accepts not plain `string`/`Function` - but brand new ones:
+    * `browser.executeScript` - now accepts `(document, args, window) => ...` function, where:
+      * `document` - is [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+      * `args` - is an array of passed additional arguments, like `browser.executeScript((document, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
+      * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+    * `element.executeScript` - now accepts `(element, args, window) => ...` function, where:
+      * `element` - is [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) which corresponds to `element`'s actual `WebElement`
+      * `args` - is an array of passed additional arguments, like `element.executeScript((element, args) => args[0] === 'foo' && args[1] === 'bar', 'foo', 'bar')`
+      * `window` - is [Window](https://developer.mozilla.org/en-US/docs/Web/API/Window)
+
             ```
             // assume dom looks like
             // <body>
@@ -96,8 +119,9 @@
             );
             console.log(texts); // ['first', 'second', 'third']
             ```
-    * all new arguments for `executeScript` function are typed, so if you use Typescript - you will be able to use full completion inside passed function right in your IDE
-  * you can now find elements not only with `string` (which is xpath or css) or `By`, but using js function also:
+  * all new arguments for `executeScript` function are typed, so if you use Typescript - you will be able to use full completion inside passed function right in your IDE
+* you can now find elements not only with `string` (which is xpath or css) or `By`, but using js function also:
+
       ```
             // assume dom looks like
             // <body>
@@ -113,7 +137,9 @@
             const spans = div.all({ script: element => element.getElementsByTagName('span') });
             console.log(await spans.get(their.texts)); // ['second', 'third']
       ```
-  * [ Shadow DOM ]( https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM ) support:
+
+* [Shadow DOM]( https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM ) support:
+
       ```
             // assume dom looks like
             // <body>
@@ -125,7 +151,9 @@
             const span = browser.element('body').shadow.element('span');
             console.log(await span.get(its.text)); // 'first'
       ```
-  * mapping collection elements to inner (relative) elements:
+
+* mapping collection elements to inner (relative) elements:
+
       ```
             // assume dom looks like
             // <body>
@@ -149,56 +177,60 @@
 ## 1.2.2 (released on 2019.08.10)
 
 ### FIXES
-  * fixed `setSize(...)` to `setRect({height: ..., width:...})` in `resizeWindow` according to latest upgrade of`selenium-webdriver` version up to `4.0.0-alpha.4`
+
+* fixed `setSize(...)` to `setRect({height: ..., width:...})` in `resizeWindow` according to latest upgrade of`selenium-webdriver` version up to `4.0.0-alpha.4`
 
 ## 1.2.1 (released on 2019.08.16)
 
 ### CHANGES
-  * updated `selenium-webdriver` version up to `4.0.0-alpha.4`
+
+* updated `selenium-webdriver` version up to `4.0.0-alpha.4`
 
 ## 1.2.0
 
 ### BREAKING CHANGES
-  * removed
-    * `Browser.drivedBy` (see [#88](https://github.com/KnowledgeExpert/selenidejs/issues/88))
-    * (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
-      * `wait.untilNot`
-      * `entity.*Not`
-        * like `element.shouldNot`, etc.
-        * use now something like `element.should(be.not.*)` instead
-  * changed
-    * (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
-      * refactored conditions to be object-based over function-based (should not break anything actually, if you have not created your own conditions...)
-      * `wait.until` now accepts only one argument (no varargs anymore)
-      * changed `have.jsReturnedTrue` to `have.jsReturned` which accepts expected result now ( f.e. `have.jsReturned(10, 'return 10;')` )
+
+* removed
+  * `Browser.drivedBy` (see [#88](https://github.com/KnowledgeExpert/selenidejs/issues/88))
+  * (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
+    * `wait.untilNot`
+    * `entity.*Not`
+      * like `element.shouldNot`, etc.
+      * use now something like `element.should(be.not.*)` instead
+* changed
+  * (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
+    * refactored conditions to be object-based over function-based (should not break anything actually, if you have not created your own conditions...)
+    * `wait.until` now accepts only one argument (no varargs anymore)
+    * changed `have.jsReturnedTrue` to `have.jsReturned` which accepts expected result now ( f.e. `have.jsReturned(10, 'return 10;')` )
 
 ### New Features
 
-  * added `condition.or` and `condition.and` (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
-    * example: `elements.filteredBy(have.cssClass('green').or(have.cssClass('red')))`
-  * added `be.not.*` and `have.no.*`
-    * example:
-      * `element.should(be.not.visible)`
-      * `element.should(have.no.text('foo'))`
-      * `elements.filteredBy(have.no.cssClass('green'))`
+* added `condition.or` and `condition.and` (see [#92](https://github.com/KnowledgeExpert/selenidejs/issues/92))
+  * example: `elements.filteredBy(have.cssClass('green').or(have.cssClass('red')))`
+* added `be.not.*` and `have.no.*`
+  * example:
+    * `element.should(be.not.visible)`
+    * `element.should(have.no.text('foo'))`
+    * `elements.filteredBy(have.no.cssClass('green'))`
 
 ## 1.1.0 (released on 2019.03.02)
 
 ### BREAKING CHANGES (hot fixing main release:D)
-  * changed Collection#first
-    * `browser.all('#alphabet *').first().should(have.text('a'))`
-    * to
-    * `browser.all('#alphabet *').first.should(have.text('a'))`
-  * changed Element#followingSibling
-    * `browser.element('#alphabet *').followingSibling('[@class="vowel"]').should(have.text('e'))`
-    * to
-    * `browser.element('#alphabet *').followingSibling.should(have.text('b'))`
-      * to achieve the same, you have to be more verbose now:
-        * `browser.element('#alphabet *').element('./followingSibling::*[@class="vowel"]').should(have.text('e'))`
-  * renamed according to correct english grammar (read [more-than-VS-greater-than](http://www.gmatpill.com/more-than-vs-greater-than-vs-less-than-fewer-than/))
-    * `condition.collection.hasSizeMoreThan`
-    * to
-    * `condition.collection.hasGreaterThan`
+
+* changed Collection#first
+  * `browser.all('#alphabet *').first().should(have.text('a'))`
+  * to
+  * `browser.all('#alphabet *').first.should(have.text('a'))`
+* changed Element#followingSibling
+  * `browser.element('#alphabet *').followingSibling('[@class="vowel"]').should(have.text('e'))`
+  * to
+  * `browser.element('#alphabet *').followingSibling.should(have.text('b'))`
+    * to achieve the same, you have to be more verbose now:
+      * `browser.element('#alphabet *').element('./followingSibling::*[@class="vowel"]').should(have.text('e'))`
+* renamed according to correct english grammar (read [more-than-VS-greater-than](http://www.gmatpill.com/more-than-vs-greater-than-vs-less-than-fewer-than/))
+  * `condition.collection.hasSizeMoreThan`
+  * to
+  * `condition.collection.hasGreaterThan`
 
 ### New features
 
@@ -214,4 +246,3 @@
 ## 1.0.0 (released on 2019.02.23)
 
 The all new API. Let's do our best to keep it stable:)
-

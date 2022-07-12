@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import {
-    By, Key, WebElement,
+    By, Key, WebDriver, WebElement,
 } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { command } from './commands';
@@ -26,7 +26,6 @@ import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLoca
 import { Locator } from './locators/locator';
 import { by } from './support/selectors/by';
 import { lambda } from './utils';
-import { Extensions } from './utils/extensions';
 import { Shadow } from './shadow';
 
 export class Element extends Entity implements Assertable, Matchable {
@@ -95,6 +94,12 @@ export class Element extends Entity implements Assertable, Matchable {
         return new Shadow(this.element({ script: element => element.shadowRoot }), this.configuration);
     }
 
+    private get driver(): WebDriver {
+        return typeof this.configuration.driver === 'function'
+            ? this.configuration.driver()
+            : this.configuration.driver;
+    }
+
     /* Commands */
     async executeScript(script: string | ((element: HTMLElement, args?: any[], window?: Window) => any), ...args: any[]) {
         const wrappedScript = `var [ element, ...args ] = arguments;${
@@ -102,7 +107,7 @@ export class Element extends Entity implements Assertable, Matchable {
                 ? `return (${script.toString()})(element, args, window);`
                 : `return (function(element, args, window) { ${script} })(element, args, window);`}`;
         const webelement = await this.getWebElement();
-        return this.configuration.driver.executeScript(wrappedScript, webelement, ...args);
+        return this.driver.executeScript(wrappedScript, webelement, ...args);
     }
 
     async click() {
@@ -139,25 +144,23 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     async doubleClick() {
-        const { driver } = this.configuration;
         await this.wait.command(lambda('double-click', async element => {
             const webelement = await element.getWebElement();
             if (!await webelement.isDisplayed()) {
                 throw new Error('element is hidden'); // todo: consider refactoring/DRYing to throwErrorIfHidden(webel)
             }
-            driver.actions().doubleClick(webelement).perform();
+            this.driver.actions().doubleClick(webelement).perform();
         }));
         return this;
     }
 
     async hover() {
-        const { driver } = this.configuration;
         await this.wait.command(lambda('hover', async element => {
             const webelement = await element.getWebElement();
             if (!await webelement.isDisplayed()) {
                 throw new Error('element is hidden');
             }
-            driver.actions().move({
+            this.driver.actions().move({
                 x: 0, y: 0, duration: 100, origin: await element.getWebElement(),
             }).perform();
         }));
@@ -165,20 +168,19 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     async contextClick() {
-        const { driver } = this.configuration;
         await this.wait.command(lambda('context-click', async element => {
             const webelement = await element.getWebElement();
             if (!await webelement.isDisplayed()) {
                 throw new Error('element is hidden');
             }
-            driver.actions().contextClick(await element.getWebElement()).perform();
+            this.driver.actions().contextClick(await element.getWebElement()).perform();
         }));
         return this;
     }
 
     // async switchToFrame(): Promise<Element> {
     //     await this.wait.command(lambda('switch to frame', async element =>
-    //         this.configuration.driver.switchTo().frame(await element.getWebElement())
+    //         this.driver.switchTo().frame(await element.getWebElement())
     //     ));
     //     return this;
     // }

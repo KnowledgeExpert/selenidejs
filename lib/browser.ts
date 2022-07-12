@@ -50,7 +50,9 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     get driver(): WebDriver {
-        return this.configuration.driver;
+        return typeof this.configuration.driver === 'function'
+            ? this.configuration.driver()
+            : this.configuration.driver;
     }
 
     // eslint-disable-next-line class-methods-use-this
