@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.3.5 (to be released on 2022.07.12)
+## 1.3.6 (to be released on 2022.07.12)
 
 ### New Features
 
@@ -19,6 +19,8 @@
 ### CHANGES
 
 * update selenium from 4.1.0 to 4.3.1
+
+## 1.3.5 (broken release)
 
 ## 1.3.4 (released on 2022.05.31)
 
