@@ -16,6 +16,10 @@
     .build();
   ```
 
+### CHANGES
+
+* update selenium from 4.1.0 to 4.3.1
+
 ## 1.3.4 (released on 2022.05.31)
 
 ### New Features
