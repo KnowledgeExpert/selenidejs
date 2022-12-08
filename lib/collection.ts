@@ -52,6 +52,10 @@ export class Collection extends Entity implements Assertable, Matchable {
         return this.elementAt(0);
     }
 
+    get second(): Element {
+        return this.elementAt(1);
+    }
+
     /**
      * Represents a new collection sliced from 'start' element index to 'end' element index exclusive.
      * @param start The inclusive "start" index of collection to be sliced.
@@ -62,6 +66,10 @@ export class Collection extends Entity implements Assertable, Matchable {
     }
 
     filteredBy(...conditions: ElementCondition[]): Collection {
+        return this.by(...conditions);
+    }
+
+    by(...conditions: ElementCondition[]): Collection {
         return new Collection(
             new FilteredByConditionWebElementsLocator(Condition.all(...conditions), this),
             this.configuration,

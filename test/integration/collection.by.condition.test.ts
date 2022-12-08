@@ -18,7 +18,7 @@ import {have, be} from '../../lib';
 describe('Collection filtered by condition', () => {
 
     it('should not be found on creation', async () => {
-        const collection = browser.all('.not-existing').filteredBy(have.cssClass('black-hole'));
+        const collection = browser.all('.not-existing').by(have.cssClass('black-hole'));
 
         expect(collection.toString()).toBeTruthy();
     });
@@ -31,7 +31,7 @@ describe('Collection filtered by condition', () => {
                     <li class='test'>Kate</li>
                 </ul>
         `);
-        const collection = browser.all('li').filteredBy(have.no.cssClass('test'));
+        const collection = browser.all('li').by(have.no.cssClass('test'));
 
         expect(await collection.matching(have.texts('John'))).toBe(true);
     });
@@ -44,7 +44,7 @@ describe('Collection filtered by condition', () => {
                     <li style="display: none">Third</li>
                 </ul>
         `);
-        const collection = browser.all('li').filteredBy(be.not.hidden);
+        const collection = browser.all('li').by(be.not.hidden);
 
         expect(await collection.matching(have.texts('Second'))).toBe(true);
         await collection.should(have.texts('Second'))
@@ -58,7 +58,7 @@ describe('Collection filtered by condition', () => {
                     <li class='will-exist'>Kate</li>
                 </ul>
         `);
-        const collection = browser.all('li').filteredBy(have.cssClass('will-exist'));
+        const collection = browser.all('li').by(have.cssClass('will-exist'));
 
         await WHEN.withBody(`
                 <ul>Hello to:
@@ -74,7 +74,7 @@ describe('Collection filtered by condition', () => {
 
     it('is performed on each subsequent "ask"', async () => {
         await GIVEN.openedEmptyPage();
-        const collection = browser.all('li').filteredBy(have.cssClass('will-exist'));
+        const collection = browser.all('li').by(have.cssClass('will-exist'));
 
         await WHEN.withBody(`
                 <ul>Hello to:
@@ -101,7 +101,7 @@ describe('Collection filtered by condition', () => {
                     <li>John</li>
                 </ul>
         `);
-        const collection = browser.all('li').filteredBy(have.cssClass('will-exist'));
+        const collection = browser.all('li').by(have.cssClass('will-exist'));
         expect(await collection.matching(have.texts('Bob', 'Kate'))).toBe(false);
 
         const started = new Date().getTime();
@@ -127,7 +127,7 @@ describe('Collection filtered by condition', () => {
                     <li class='will-exist' style="display: none">Bob</li>
                 </ul>
         `);
-        const collection = browser.all('li').filteredBy(have.no.attribute('class'))
+        const collection = browser.all('li').by(have.no.attribute('class'))
         const started = new Date().getTime();
 
         await collection.should(have.texts('Bob'))
@@ -135,7 +135,7 @@ describe('Collection filtered by condition', () => {
             .catch(error => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(error.message)
-                    .toContain(`browser.all(By(css selector, li)).filteredBy(has no attribute 'class').has texts Bob`);
+                    .toContain(`browser.all(By(css selector, li)).by(has no attribute 'class').has texts Bob`);
             });
 
     });
@@ -147,7 +147,7 @@ describe('Collection filtered by condition', () => {
                     <li class='will-exist' style="display: none">Bob</li>
                 </ul>
         `);
-        const collection = browser.all('li').filteredBy(have.cssClass('will-exist'));
+        const collection = browser.all('li').by(have.cssClass('will-exist'));
 
         await WHEN.withBodyAfter(data.timeouts.biggerThanDefault, `
                 <ul>Hello to:
@@ -164,7 +164,7 @@ describe('Collection filtered by condition', () => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.all(By(css selector, li)).filteredBy(has css class 'will-exist').has texts Bob,Kate
+\tbrowser.all(By(css selector, li)).by(has css class 'will-exist').has texts Bob,Kate
 Reason:
 \tactual texts: ` // todo: seems weird a bit, the "emptiness" after colon, but in fact this is an actual result:)
                 );

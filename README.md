@@ -10,23 +10,33 @@ JavaScript/TypeScript.
 
 ## Table of content
 
-* [Usage](#usage)
-* [Quick Start](#quick-start)
-  * [Basic api](#basic-api)
-  * [More advanced tricks](#more-advanced-tricks)
-* [Examples](#more-examples)
-  * [SelenideJS + Jasmine](#selenidejs-on-top-of-selenium-webdriver-with-jasmine-as-test-runner-typescript-version)
-  * [SelenideJS + Protractor](#selenidejs-on-top-of-protractor-typescript-version)
-  * [SelenideJS + Webdriverio](#selenidejs-on-top-of-webdriverio-typescript-version)
-  * [SelenideJS + Toundra](#selenidejs-on-top-of-selenium-webdriver-with-toundra-as-test-runner-typescript-version)
-* [Tutorials](#tutorials)
-  * [General](#general)
-    * [TypeScript](#typescript-tutorial)
-    * [JavaScript](#javascript-tutorial)
-  * [How to create custom conditions](#how-to-create-custom-conditions)
-* [API documentation](#api-documentation)
-* [Contribution](#for-contributors)
-* [License](#license)
+- [SelenideJS](#selenidejs)
+  - [Table of content](#table-of-content)
+  - [Prerequisites](#prerequisites)
+  - [Installing](#installing)
+  - [Usage](#usage)
+  - [Quick Start](#quick-start)
+    - [Basic API](#basic-api)
+    - [More advanced tricks](#more-advanced-tricks)
+  - [More Examples](#more-examples)
+        - [SelenideJS on top of Selenium Webdriver with Jasmine as test runner (TypeScript version)](#selenidejs-on-top-of-selenium-webdriver-with-jasmine-as-test-runner-typescript-version)
+        - [SelenideJS on top of Protractor (TypeScript version)](#selenidejs-on-top-of-protractor-typescript-version)
+        - [SelenideJS on top of Webdriverio (TypeScript version)](#selenidejs-on-top-of-webdriverio-typescript-version)
+        - [SelenideJS on top of Selenium Webdriver with Toundra as test runner (TypeScript version)](#selenidejs-on-top-of-selenium-webdriver-with-toundra-as-test-runner-typescript-version)
+  - [Tutorials](#tutorials)
+    - [General](#general)
+          - [Typescript tutorial](#typescript-tutorial)
+          - [Javascript tutorial](#javascript-tutorial)
+    - [How to create custom conditions](#how-to-create-custom-conditions)
+  - [API Documentation](#api-documentation)
+  - [For Contributors](#for-contributors)
+    - [Guide](#guide)
+    - [Running the tests](#running-the-tests)
+      - [Prerequisites](#prerequisites-1)
+    - [Run code style test](#run-code-style-test)
+  - [Versioning](#versioning)
+  - [History \& Contributors](#history--contributors)
+  - [License](#license)
 
 ## Prerequisites
 
@@ -105,7 +115,7 @@ AND
 
     import { be } from 'selenidejs';
 
-    const results = browser.all('.srg .g').filteredBy(be.visible);
+    const results = browser.all('.srg .g').by(be.visible);
 ```
 
 THEN

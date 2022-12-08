@@ -46,7 +46,7 @@ export class FilteredByConditionWebElementsLocator implements Locator<Promise<We
     }
 
     toString(): string {
-        return `${this.collection.toString()}.filteredBy(${this.condition.toString()})`;
+        return `${this.collection.toString()}.by(${this.condition.toString()})`;
     }
 
 }

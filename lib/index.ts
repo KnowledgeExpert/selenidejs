@@ -67,7 +67,7 @@ export { by } from './support/selectors/by';
  *
  *     import { be } from 'selenidejs';
  *
- *     const results = browser.all('.srg .g').filteredBy(be.visible);
+ *     const results = browser.all('.srg .g').by(be.visible);
  *
  */
 export { be } from './support/conditions/be';
