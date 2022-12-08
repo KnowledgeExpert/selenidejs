@@ -1,10 +1,11 @@
 # Changelog
 
-## 1.3.7 (to be released on 2022.07.12)
+## 1.3.7 (to be released on 2022.12.08)
 
 * added `collection.second` as alias to `collection.elementAt(1)`
 * added `collection.by(condition)` as alias to `collection.filteredBy(condition)`
   * filteredBy will be deprecated in future releases
+* updated selenium to 4.7.0
 
 ## 1.3.6 (to be released on 2022.07.12)
 
