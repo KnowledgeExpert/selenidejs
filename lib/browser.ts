@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import {
-    Builder, By, Capabilities, WebDriver,
+    Builder, By, Capabilities, ThenableWebDriver, WebDriver,
 } from 'selenium-webdriver';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
@@ -46,13 +46,11 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     with(customConfig: Partial<Configuration>): Browser {
-        return new Browser(new Configuration({ ...this.configuration, ...customConfig }));
+        return new Browser({ ...this.configuration, ...customConfig });
     }
 
-    get driver(): WebDriver {
-        return typeof this.configuration.driver === 'function'
-            ? this.configuration.driver()
-            : this.configuration.driver;
+    get driver(): ThenableWebDriver {
+        return this.configuration.driver;
     }
 
     // eslint-disable-next-line class-methods-use-this
@@ -123,7 +121,14 @@ export class Browser extends Entity implements Assertable, Matchable {
             ? relativeOrAbsoluteUrl
             : this.configuration.baseUrl + relativeOrAbsoluteUrl;
 
-        await this.driver.get(absoluteUrl);
+        // await this.driver.getSession().then(
+        //     _ => this.driver.get(absoluteUrl),
+        //     onFailure => {
+        //         this.config.driver = undefined;
+        //         this.driver.get(absoluteUrl);
+        //     },
+        // );
+        this.driver.get(absoluteUrl);
         return this;
     }
 
@@ -144,7 +149,7 @@ export class Browser extends Entity implements Assertable, Matchable {
     }
 
     async quit() {
-        await this.driver.quit();
+        await this.config._resetDriver();
     }
 
     async refresh() {

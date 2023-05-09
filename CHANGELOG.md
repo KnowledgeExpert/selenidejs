@@ -1,5 +1,19 @@
 # Changelog
 
+## next
+
+* think on refactoring
+  * `await browser.element('#new-todo').type('do something').then(perform.pressEnter)`
+  * to
+  * `await browser.element('#new-todo').type('do something').then(command.pressEnter)`
+* consider returning ElementPromise from all Element.* commands to allow:
+  * `await browser.element('#new-todo').type('do something').pressEnter()`
+  * same like in raw Selenium WebDriver
+
+## 1.4.0
+
+* add prebuilt browser object to selenidejs imports
+
 ## 1.3.7 (to be released on 2022.12.08)
 
 * added `collection.second` as alias to `collection.elementAt(1)`

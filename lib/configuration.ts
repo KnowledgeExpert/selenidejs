@@ -13,7 +13,10 @@
 // limitations under the License.
 
 // import * as path from 'path';
-import { Builder, By, Capabilities, WebDriver } from 'selenium-webdriver';
+import {
+    Builder, By, Capabilities, ThenableWebDriver, WebDriver,
+} from 'selenium-webdriver';
+import * as capabilities from 'selenium-webdriver/lib/capabilities';
 import { Browser } from './browser';
 import { OnFailureHook } from './wait';
 import { Collection } from './collection';
@@ -28,6 +31,11 @@ import { Extensions } from './utils/extensions';
  * Enjoy;)
  */
 
+/**
+ * Same as corresponding Capabilities.<browserName> key
+ */
+type BrowserName = 'chrome' | 'edge' | 'firefox' | 'ie' | 'safari';
+
 export type OnEntityFailureHook = OnFailureHook<Browser | Element | Collection>;
 
 export class Configuration {
@@ -35,27 +43,27 @@ export class Configuration {
         return Customized.configuration();
     }
 
-    static withDriver(driver: WebDriver | (() => WebDriver)): Customized<Configuration> {
+    static withDriver(driver: ThenableWebDriver | (() => ThenableWebDriver)): Customized<Configuration> {
         return Configuration.with().driver(driver);
     }
 
-    readonly driver: WebDriver | (() => WebDriver) = null;
+    driver: ThenableWebDriver | undefined;
 
-    readonly timeout: number = 4000; // todo: seems like explicit types are not needed somewhere...
+    timeout: number = 4000; // todo: seems like explicit types are not needed somewhere...
 
-    readonly baseUrl: string = '';
+    baseUrl: string = '';
 
-    readonly setValueByJs: boolean = false;
+    setValueByJs: boolean = false;
 
-    readonly typeByJs: boolean = false;
+    typeByJs: boolean = false;
 
-    readonly windowWidth: string = ''; // todo: why not as number?
+    windowWidth: string = ''; // todo: why not as number?
 
-    readonly windowHeight: string = ''; // todo: why not as number?
+    windowHeight: string = ''; // todo: why not as number?
 
     // readonly htmlPath: string                = path.resolve('./htmls');
     // readonly screenshotPath: string          = path.resolve('./screenshots');
-    readonly fullPageScreenshot: boolean = true;
+    fullPageScreenshot: boolean = true;
     // todo: should we bother and make it immutable?
     /*    readonly onFailureHooks: OnEntityFailureHook[] = [
         async (failure: Error, entity: Browser | Element | Collection): Promise<void | Error> => {
@@ -74,13 +82,84 @@ export class Configuration {
         }
     ]; */
 
-    readonly _locationStrategy: (selector: string | By) => By = Extensions.cssOrXPathToBy;
+    _locationStrategy: (selector: string | By) => By = Extensions.cssOrXPathToBy;
 
-    constructor(init?: Partial<Configuration>) {
-        Object.assign(this, init);
-        if (this.driver === null) {
-            this.driver = new Builder().withCapabilities(Capabilities.chrome()).build();
-        }
+    _driver: ThenableWebDriver;
+
+    __getDriver: () => ThenableWebDriver = undefined; // TODO: deprecate
+
+    _buildDriver: (config?: Configuration) => ThenableWebDriver;
+
+    // todo: should we name it quitDriver? or tearDownDriver?
+    _resetDriver: (config?: Configuration) => Promise<void>;
+
+    // todo: should we add something like isDriverAlive()? by default = this._driver != undefined
+
+    // should we refactor out driver, buildDriver, resetDriver, etc into driverManager? for SRP at least
+
+    browserName: BrowserName = 'chrome';
+
+    capabilities: Capabilities | undefined = undefined;
+
+    remoteUrl: string | undefined = undefined;
+
+    // TODO: cover other builder.using* properties like proxy and agent
+
+    constructor({
+        driver, _driver, _buildDriver: buildDriver, ...options
+    }: Partial<Configuration> = {}) {
+        Object.assign(this, options);
+
+        // if (driver) {
+        //     this._driver = driver;
+        // }
+        Object.assign(this, { _driver: driver ?? _driver });
+
+        this._buildDriver = buildDriver ?? function fromConfig(config: Configuration) {
+            const builder = new Builder();
+            const caps = Capabilities[config.browserName ?? 'chrome']();
+            if (config.capabilities) {
+                caps.merge(config.capabilities);
+            }
+            if (config.remoteUrl) {
+                builder.usingServer(config.remoteUrl);
+            }
+            return builder.withCapabilities(caps).build();
+        };
+
+        Object.defineProperty(this, 'driver', {
+            enumerable: false,
+            get() {
+                if (this.__getDriver) {
+                    return this.__getDriver();
+                }
+
+                // TODO: should we also check if driver is not closed (i.e. alive)?
+                this._driver = this._driver ?? this._buildDriver(this);
+                return this._driver;
+            },
+            set(value = undefined) {
+                this._driver = value;
+            },
+        });
+
+        this._resetDriver = driver
+            // ? async function justQuitDriverThatWasManuallyPassed()
+            ? async () => this.driver.quit()
+            // : async function quitAndRemoveStoredInstance() {
+            : async () => {
+                if (!this._driver) {
+                    return;
+                }
+                await this.driver.getSession().then(
+                    _ => this.driver.quit(),
+                    error => console.warn(
+                        'You seem to try to quit a browser that is already not alive:',
+                        error,
+                    ),
+                );
+                this.driver = undefined;
+            };
     }
 }
 
@@ -110,8 +189,15 @@ export class Customized<T> { // todo: add generic? Customized<T> ... constructor
         return new this.customizedType(this.configuration);
     }
 
-    driver(webdriver: WebDriver | (() => WebDriver)) {
-        this.configuration = { ...this.configuration, driver: webdriver };
+    driver(webdriver: WebDriver | ThenableWebDriver | (() => ThenableWebDriver) | (() => WebDriver)) {
+        this.configuration = {
+            ...this.configuration,
+            ...(
+                typeof webdriver === 'function'
+                    ? { __getDriver: webdriver as () => ThenableWebDriver } // todo: refactor as ...
+                    : { driver: webdriver as ThenableWebDriver } // todo: refactor as ...
+            ),
+        };
         return this;
     }
 

@@ -2,7 +2,7 @@
   "name": "selenidejs",
   "description": "Test-oriented Wrapper for Selenium Webdriver",
   "homepage": "https://github.com/KnowledgeExpert/selenidejs",
-  "version": "1.3.7",
+  "version": "1.4.0",
   "main": "built/index.js",
   "typings": "built/index.d.ts",
   "dependencies": {
@@ -31,7 +31,8 @@
     "clean": "rm -rf ./built",
     "compile-test": "npm run clean && tsc --skipLibCheck --project test",
     "compile": "npm run clean && tsc --skipLibCheck --project lib",
-    "startserver": "http-server ./resources -p 4445",
+    "compile:watch": "npm run clean && tsc -w --skipLibCheck --project lib",
+    "startserver": "http-server ./resources -p 4446",
     "lint": "eslint ./lib --ext .ts",
     "pretest": "npm run compile-test",
     "test": "nyc --nycrc-path=./test/.nycrc jasmine --config=./test/jasmine.json",

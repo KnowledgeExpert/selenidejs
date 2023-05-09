@@ -57,6 +57,10 @@ export abstract class Entity implements Assertable, Matchable/* , Configured */ 
         this.wait = new Wait(this, configuration.timeout);
     }
 
+    get config(): Configuration {
+        return this.configuration;
+    }
+
     /*
      * todo: consider assert or shouldMatch aliases for should
      * should is good for

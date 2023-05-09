@@ -95,9 +95,7 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     private get driver(): WebDriver {
-        return typeof this.configuration.driver === 'function'
-            ? this.configuration.driver()
-            : this.configuration.driver;
+        return this.config.driver;
     }
 
     /* Commands */

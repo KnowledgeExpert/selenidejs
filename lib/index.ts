@@ -44,6 +44,7 @@
  * ```
  */
 export { Browser } from './browser';
+export { browser } from './support/shared';
 
 /**
  * AND:
