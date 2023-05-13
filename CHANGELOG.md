@@ -10,7 +10,7 @@
   * `await browser.element('#new-todo').type('do something').pressEnter()`
   * same like in raw Selenium WebDriver
 
-## 1.4.1
+## 1.4.2
 
 * accept Locator in browser.element, browser.element.element, browser.element.all, and browser.all
 * update Selenium to 4.9.2
