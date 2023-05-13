@@ -13,6 +13,7 @@
 ## 1.4.1
 
 * accept Locator in browser.element, browser.element.element, browser.element.all, and browser.all
+* update Selenium to 4.9.2
 
 ## 1.4.0
 
