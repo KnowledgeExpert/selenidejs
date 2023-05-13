@@ -16,6 +16,9 @@ import { have } from '../../lib';
 import { browser, data, driver, GIVEN, WHEN } from './base';
 
 describe('Browser', () => {
+    beforeEach(async () => {
+        await browser.refresh();
+    });
 
     it('waits for matched condition (like have.title) in should', async () => {
         await GIVEN.openedEmptyPage();

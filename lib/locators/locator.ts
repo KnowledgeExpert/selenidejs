@@ -15,3 +15,8 @@
 export interface Locator<T> {
     find(): T;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function isLocator<T>(object: any): object is Locator<T> {
+    return 'find' in object;
+}

@@ -23,7 +23,7 @@ import { ElementWebElementByJs } from './locators/ElementWebElementByJs';
 import { ElementWebElementByLocator } from './locators/ElementWebElementByLocator';
 import { ElementWebElementsByJs } from './locators/ElementWebElementsByJs';
 import { ElementWebElementsByLocator } from './locators/ElementWebElementsByLocator';
-import { Locator } from './locators/locator';
+import { Locator, isLocator } from './locators/locator';
 import { by } from './support/selectors/by';
 import { lambda } from './utils';
 import { Shadow } from './shadow';
@@ -51,33 +51,55 @@ export class Element extends Entity implements Assertable, Matchable {
     }
 
     element(
-        located: (string | By | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }),
+        located: (
+            string
+            | By
+            | Locator<Promise<WebElement>>
+            | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }
+        ),
         customized?: Partial<Configuration>,
     ): Element {
         const configuration = customized === undefined
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
+
         if (located instanceof By || typeof located === 'string') {
             const byLocator = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new ElementWebElementByLocator(byLocator, this);
             return new Element(locator, configuration);
         }
+
+        if (isLocator<Promise<WebElement>>(located)) {
+            return new Element(located, configuration);
+        }
+
         const locator = new ElementWebElementByJs(this, located.script, located.args);
         return new Element(locator, configuration);
     }
 
     all(
-        located: string | By | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] },
+        located: (
+            string
+            | By
+            | Locator<Promise<WebElement[]>>
+            | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] }
+        ),
         customized?: Partial<Configuration>,
     ): Collection {
         const configuration = customized === undefined
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
+
         if (located instanceof By || typeof located === 'string') {
             const byLocator = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new ElementWebElementsByLocator(byLocator, this);
             return new Collection(locator, configuration);
         }
+
+        if (isLocator<Promise<WebElement[]>>(located)) {
+            return new Collection(located, configuration);
+        }
+
         const locator = new ElementWebElementsByJs(this, located.script, located.args);
         return new Collection(locator, configuration);
     }

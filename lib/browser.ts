@@ -13,8 +13,9 @@
 // limitations under the License.
 
 import {
-    Builder, By, Capabilities, ThenableWebDriver, WebDriver,
+    Builder, By, Capabilities, ThenableWebDriver, WebDriver, WebElement,
 } from 'selenium-webdriver';
+import { Locator, isLocator } from './locators/locator';
 import { Collection } from './collection';
 import { Configuration, Customized } from './configuration';
 import { Element } from './element';
@@ -62,7 +63,10 @@ export class Browser extends Entity implements Assertable, Matchable {
 
     element(
         located: (
-            string | By | { script: string | ((document: Document) => HTMLElement), args?: any[] }
+            string
+            | By
+            | Locator<Promise<WebElement>>
+            | { script: string | ((document: Document) => HTMLElement), args?: any[] }
         ),
         customized?: Partial<Configuration>,
     ): Element {
@@ -76,22 +80,35 @@ export class Browser extends Entity implements Assertable, Matchable {
             return new Element(locator, configuration);
         }
 
+        if (isLocator<Promise<WebElement>>(located)) {
+            return new Element(located, configuration);
+        }
+
         const locator = new BrowserWebElementByJs(this, located.script, located.args);
         return new Element(locator, configuration);
     }
 
     all(
-        located: string | By | { script: string | ((document: Document) => HTMLCollectionOf<HTMLElement>), args?: any[] },
+        located: string
+        | By
+        | Locator<Promise<WebElement[]>>
+        | { script: string | ((document: Document) => HTMLCollectionOf<HTMLElement>), args?: any[] },
         customized?: Partial<Configuration>,
     ): Collection {
         const configuration = customized === undefined
             ? this.configuration
             : new Configuration({ ...this.configuration, ...customized });
+
         if (located instanceof By || typeof located === 'string') {
             const by = located instanceof By ? located : this.configuration._locationStrategy(located);
             const locator = new BrowserWebElementsByLocator(by, this);
             return new Collection(locator, configuration);
         }
+
+        if (isLocator<Promise<WebElement[]>>(located)) {
+            return new Collection(located, configuration);
+        }
+
         const locator = new BrowserWebElementsByJs(this, located.script, located.args);
         return new Collection(locator, configuration);
     }

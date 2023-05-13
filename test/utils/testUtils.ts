@@ -29,7 +29,7 @@ export namespace TestUtils {
     }
 
     export function resourcesUrl(): string {
-        return 'http://localhost:4445/';
+        return 'http://localhost:4446/';
     }
 
     export function buildWebDriver(): WebDriver {

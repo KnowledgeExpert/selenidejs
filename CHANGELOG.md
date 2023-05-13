@@ -10,6 +10,10 @@
   * `await browser.element('#new-todo').type('do something').pressEnter()`
   * same like in raw Selenium WebDriver
 
+## 1.4.1
+
+* accept Locator in browser.element, browser.element.element, browser.element.all, and browser.all
+
 ## 1.4.0
 
 * add prebuilt browser object to selenidejs imports
