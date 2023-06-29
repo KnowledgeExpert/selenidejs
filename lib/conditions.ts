@@ -168,7 +168,7 @@ export namespace condition {
 
         export const hasExactText = (expected: string | number) => new Condition(
             `has exact text: ${expected}`,
-            throwIfNotActual(query.text, predicate.equals(expected)),
+            throwIfNotActual(query.text, predicate.equals(expected.toString())),
         );
 
         export const hasAttributeWithValue = (name: string, value: string | number) => new Condition(
@@ -225,14 +225,14 @@ export namespace condition {
         // update: for invisible element `getText` will return error or empty string, and
         // it can be confused with message like `but was 'foo', '', 'bar'` when he see on
         // screen only 'foo', 'bar'
-        export const hasTexts = (texts: string[] | number[]): CollectionCondition => new Condition(
+        export const hasTexts = (texts: (string | number)[]): CollectionCondition => new Condition(
             `has texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts)),
+            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts.map(it => it.toString()))),
         );
 
-        export const hasExactTexts = (texts: string[] | number[]): CollectionCondition => new Condition(
+        export const hasExactTexts = (texts: (string | number)[]): CollectionCondition => new Condition(
             `has exact texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts)),
+            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts.map(it => it.toString()))),
         );
     }
 

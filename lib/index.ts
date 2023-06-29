@@ -122,7 +122,8 @@ export { should } from './support/asserts/should';
  *     await query.pressEnter();
  * ```
  */
-export { perform } from './support/commands/perform';
+export { perform } from './support/commands/perform'; // TODO: deprecate?
+export { perform as command } from './support/commands/perform';
 
 /**
  * Not sure when you will need it, but just in case:) ...
