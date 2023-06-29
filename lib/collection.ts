@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { WebElement } from 'selenium-webdriver';
+import { By, WebElement } from 'selenium-webdriver';
 import { ElementCondition } from './conditions';
 import { Configuration } from './configuration';
 import { Element } from './element';
@@ -60,9 +60,18 @@ export class Collection extends Entity implements Assertable, Matchable {
      * Represents a new collection sliced from 'start' element index to 'end' element index exclusive.
      * @param start The inclusive "start" index of collection to be sliced.
      * @param end The exclusive "end" index of collection to be sliced
+     * @param step The step of slicing. Default is 1.
      */
-    sliced(start: number, end: number): Collection {
-        return new Collection(new SlicedWebElementsLocator(start, end, this), this.configuration);
+    sliced(start: number, end: number, step = 1): Collection {
+        return new Collection(new SlicedWebElementsLocator(start, end, step, this), this.configuration);
+    }
+
+    get even(): Collection {
+        return this.sliced(1, undefined, 2);
+    }
+
+    get odd(): Collection {
+        return this.sliced(undefined, undefined, 2);
     }
 
     filteredBy(...conditions: ElementCondition[]): Collection {
@@ -85,6 +94,24 @@ export class Collection extends Entity implements Assertable, Matchable {
 
     collected(searchFunction: (element: Element) => Element | Collection): Collection {
         return new Collection(new CollectedByLocator(searchFunction, this), this.configuration);
+    }
+
+    all(located: (
+        string
+        | By
+        | Locator<Promise<WebElement[]>>
+        | { script: string | ((element: HTMLElement) => HTMLCollectionOf<HTMLElement>), args?: any[] }
+    )) {
+        return this.collected(its => its.all(located));
+    }
+
+    allFirst(located: (
+        string
+        | By
+        | Locator<Promise<WebElement>>
+        | { script: string | ((element: HTMLElement) => HTMLElement | ShadowRoot), args?: any[] }
+    )) {
+        return this.collected(its => its.element(located));
     }
 
     async getWebElements(): Promise<WebElement[]> {

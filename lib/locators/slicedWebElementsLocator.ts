@@ -28,18 +28,37 @@ export class SlicedWebElementsLocator implements Locator<Promise<WebElement[]>> 
      */
     constructor(private readonly start: number,
                 private readonly end: number,
+                private readonly step: number,
                 private readonly collection: Collection) {
         this.start = start;
         this.end = end;
+        this.step = step;
         this.collection = collection;
     }
 
     async find(): Promise<WebElement[]> {
-        return (await this.collection.getWebElements()).slice(this.start, this.end);
+        // TODO: consider using https://www.npmjs.com/package/slice
+        const webelements = (await this.collection.getWebElements());
+        const sliced = webelements.slice(this.start, this.end);
+        const toBeFiltered = this.step > 0 ? sliced : sliced.reverse();
+        const step = this.step < 0 ? -this.step : this.step;
+        return toBeFiltered.reduce(
+            (acc: WebElement[], element: WebElement, i: number) => (
+                i % step === 0
+                    ? [...acc, element]
+                    : acc
+            ),
+            [],
+        );
     }
 
     toString(): string {
-        return `${this.collection.toString()}[${this.start.toString()}:${this.end.toString()}]`;
+        return `${this.collection.toString()}[${
+            this.start ? this.start.toString() : ''
+        }:${
+            this.end ? this.end.toString() : ''
+        }${
+            this.step?.toString() === '1' ? '' : `:${this.step?.toString()}`
+        }]`;
     }
-
 }

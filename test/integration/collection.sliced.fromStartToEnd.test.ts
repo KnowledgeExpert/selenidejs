@@ -121,7 +121,7 @@ describe('Collection sliced elements from start to end exclusive', () => {
                 expect(new Date().getTime() - started).toBeGreaterThanOrEqual(data.timeouts.byDefault);
                 expect(error.message).toContain(`
 \tTimed out after ${data.timeouts.byDefault}ms, while waiting for:
-\tbrowser.all(By(css selector, li))[0:2].has texts Bob,Kate
+\tbrowser.all(By(css selector, li))[:2].has texts Bob,Kate
 Reason:
 \tactual texts: ` // todo: seems weird a bit, the "emptiness" after colon, but in fact this is an actual result:)
                 );
