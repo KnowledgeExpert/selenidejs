@@ -10,7 +10,7 @@
   * `await browser.element('#new-todo').type('do something').pressEnter()`
   * same like in raw Selenium WebDriver
 
-## 1.4.3 (to be released on 2023.06.29)
+## 1.4.4 (to be released on 2023.06.29)
 
 new commands:
 
@@ -27,11 +27,18 @@ new import alias:
 
 fix bugs:
 
-* have.exactText does not accept numbers
-* have.exactTexts does not type hint for expected texts as numbers
 * once `collection.should(have.texts(...))` fails,
   sometimes returns unclear reason in error message:
   "Cannot read properties of undefined (reading 'includes')"
+
+upgrade selenium to 4.10.0
+
+## 1.4.3
+
+fix bugs:
+
+* have.exactText does not accept numbers
+* have.exactTexts does not type hint for expected texts as numbers
 
 ## 1.4.2
 
