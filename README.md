@@ -149,6 +149,11 @@ FINALLY
     import { perform } from 'selenidejs';
 
     await browser.element(by.name('q')).type('selenium').then(perform.pressEnter);
+    
+    // OR:
+    import { command } from 'selenidejs';
+
+    await browser.element(by.name('q')).type('selenium').then(command.pressEnter);
 
     // instead of
     const query = browser.element(by.name('q'));

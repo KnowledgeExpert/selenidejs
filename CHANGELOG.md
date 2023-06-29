@@ -10,6 +10,29 @@
   * `await browser.element('#new-todo').type('do something').pressEnter()`
   * same like in raw Selenium WebDriver
 
+## 1.4.3 (to be released on 2023.06.29)
+
+new commands:
+
+* collection.even
+* collection.odd
+* collection.sliced(start, end, STEP)
+* collection.all(selector)
+* collection.allFirst(selector)
+
+new import alias:
+
+* `import { command } from 'selenidejs'`
+  * as alias to `import { perform } from 'selenidejs'`
+
+fix bugs:
+
+* have.exactText does not accept numbers
+* have.exactTexts does not type hint for expected texts as numbers
+* once `collection.should(have.texts(...))` fails,
+  sometimes returns unclear reason in error message:
+  "Cannot read properties of undefined (reading 'includes')"
+
 ## 1.4.2
 
 * accept Locator in browser.element, browser.element.element, browser.element.all, and browser.all
