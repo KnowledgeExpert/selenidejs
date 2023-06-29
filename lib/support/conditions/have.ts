@@ -62,10 +62,10 @@ export namespace have {
         condition.collection.hasSizeGreaterThanOrEqual(size);
 
 
-    export const texts = (...texts: (string | number)[]): CollectionCondition =>
+    export const texts = (...texts: (string | number | (string | number)[])[]): CollectionCondition =>
         condition.collection.hasTexts(texts);
 
-    export const exactTexts = (...texts: (string | number)[]): CollectionCondition =>
+    export const exactTexts = (...texts: (string | number | (string | number)[])[]): CollectionCondition =>
         condition.collection.hasExactTexts(texts);
 
     export const url = (url: string): BrowserCondition =>

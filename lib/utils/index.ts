@@ -19,4 +19,13 @@ export function lambda<F>(toString: string, fn: F): F {
     return fn;
 }
 
+export function flatten(arr: any[]): any[] {
+    return arr.reduce(
+        (acc, val) => (
+            Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val)
+        ),
+        [],
+    );
+}
+
 export const toString = <O>(obj: O) => obj.toString();

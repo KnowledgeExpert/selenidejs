@@ -10,7 +10,46 @@
   * `await browser.element('#new-todo').type('do something').pressEnter()`
   * same like in raw Selenium WebDriver
 
-## 1.4.4 (to be released on 2023.06.29)
+## 1.4.5 (to be released on 2023.06.29)
+
+Flatten inner lists inside `have.texts(HERE)`. Now you can pass nested arrays to `have.texts`:
+
+```typescript
+// Like:
+await table.all('tr').all('td').should(
+    have.texts(
+        ['Bach', 'Frank', 'fbach@yahoo.com'],
+        ['Conway', 'Tim', 'tconway@earthlink.net'],
+    )
+)
+
+// Instead of:
+await table.all('tr').all('td').should(
+    have.texts(
+        'Bach', 'Frank', 'fbach@yahoo.com',
+        'Conway', 'Tim', 'tconway@earthlink.net',
+    )
+)
+```
+
+You might need this if you use formatter like prettier, that will format your code more like:
+
+```typescript
+await table.all('tr').all('td').should(
+    have.texts(
+        'Bach',
+        'Frank',
+        'fbach@yahoo.com',
+        'Conway', 
+        'Tim', 
+        'tconway@earthlink.net',
+    )
+)
+```
+
+– that is pretty not readable in context of table data...
+
+## 1.4.4 (released on 2023.06.29)
 
 new commands:
 

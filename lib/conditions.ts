@@ -20,6 +20,7 @@ import { ConditionNotMatchedError } from './errors/conditionDoesNotMatchError';
 import { query } from './queries';
 import { predicate } from './utils/predicates';
 import { Condition, Lambda } from './wait';
+import { flatten } from './utils';
 
 export type ElementCondition = Condition<Element>;
 export type CollectionCondition = Condition<Collection>;
@@ -225,14 +226,14 @@ export namespace condition {
         // update: for invisible element `getText` will return error or empty string, and
         // it can be confused with message like `but was 'foo', '', 'bar'` when he see on
         // screen only 'foo', 'bar'
-        export const hasTexts = (texts: (string | number)[]): CollectionCondition => new Condition(
+        export const hasTexts = (texts: (string | number | (string | number)[])[]): CollectionCondition => new Condition(
             `has texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts.map(it => it.toString()))),
+            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(flatten(texts).map(it => it.toString()))),
         );
 
-        export const hasExactTexts = (texts: (string | number)[]): CollectionCondition => new Condition(
+        export const hasExactTexts = (texts: (string | number | (string | number)[])[]): CollectionCondition => new Condition(
             `has exact texts ${texts}`,
-            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(texts.map(it => it.toString()))),
+            throwIfNotActual(query.texts, predicate.equalsByContainsToArray(flatten(texts).map(it => it.toString()))),
         );
     }
 

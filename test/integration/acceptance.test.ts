@@ -62,6 +62,11 @@ Reason:
             'Bach', 'Frank', 'fbach@yahoo.com',
             'Conway', 'Tim', 'tconway@earthlink.net',
         ))
+        // works same way, but more readable and formatters-friendly (all extra brackets will be stripped off)
+        await table.all('tr').even.collected(its => its.all('td').sliced(0, -3)).should(have.texts(
+            ['Bach', 'Frank', 'fbach@yahoo.com'],
+            ['Conway', 'Tim', 'tconway@earthlink.net'],
+        ))
     })
 
     afterEach(async () => {
