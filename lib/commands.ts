@@ -1,3 +1,7 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable radix */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable max-len */
 // Copyright 2018 Knowledge Expert SA
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,7 +70,7 @@ export namespace command {
 
         export const type = (keys: string | number) => lambda(`type by js (append value): ${keys}`, async (element: Element) => {
             await element.executeScript((element: HTMLInputElement, args) => {
-                const text = element.getAttribute('value').concat(args[0]);
+                const text = String(element.getAttribute('value')).concat(args[0]);
                 const maxlength = element.getAttribute('maxlength') === null
                     ? -1
                     : parseInt(element.getAttribute('maxlength'));
