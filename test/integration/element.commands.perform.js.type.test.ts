@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { browser, GIVEN, data, webelement, textOf, isAbsentInDom, valueOf } from './base';
-import { perform, be, command, have } from '../../lib';
+import { browser, GIVEN, textOf } from './base';
+import { perform, be } from '../../lib';
 
 /* short reminder of test helpers, that are not part of SelenideJs API;)
  * driver = common well known Selenium WebDriver
  * webelement('selector') = driver.findElement(By.css('selector'))
  */
 
-fdescribe('Element.* commands: perform.js.type', () => {
+describe('Element.* commands: perform.js.type', () => {
 
     it('types by js', async () => {
         await GIVEN.openedEmptyPageWithBody(`
@@ -39,7 +39,7 @@ fdescribe('Element.* commands: perform.js.type', () => {
             .then(perform.js.type('typed by JS'))
             .then(perform.pressTab);
 
-        expect(await textOf('#text')).toContain('The text was typed by JS');
+        expect(await textOf('#text')).toBe('The text was typed by JS');
     })
 
     it('types by js, when value is null', async () => {
@@ -59,7 +59,7 @@ fdescribe('Element.* commands: perform.js.type', () => {
             .then(perform.js.type('The text was typed by JS from blank'))
             .then(perform.pressTab);
 
-        expect(await textOf('#text')).toContain('The text was typed by JS from blank');
+        expect(await textOf('#text')).toBe('The text was typed by JS from blank');
     })
 
 })
