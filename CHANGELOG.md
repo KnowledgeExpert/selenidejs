@@ -10,7 +10,11 @@
   * `await browser.element('#new-todo').type('do something').pressEnter()`
   * same like in raw Selenium WebDriver
 
-## 1.4.5 (to be released on 2023.06.29)
+## 1.4.6 (to be released on 2023.11.20)
+
+* fix `command.js.type` working when when value is `null`
+
+## 1.4.5 (released on 2023.06.29)
 
 Flatten inner lists inside `have.texts(HERE)`. Now you can pass nested arrays to `have.texts`:
 
