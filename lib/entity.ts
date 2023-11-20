@@ -95,7 +95,7 @@ export abstract class Entity implements Assertable, Matchable/* , Configured */ 
 
     /* Commands */
 
-    async perform(command: Lambda<this, void>): Promise<this> { // todo: should we accept real Command over Lambda here?
+    async perform(command: Lambda<this, void | this>): Promise<this> { // todo: should we accept real Command over Lambda here?
         // todo: should we use Lambda<this, void | any> ?
         //  (right now we can't write something like: browser.perform(perform.*)
         await this.wait.command(command);

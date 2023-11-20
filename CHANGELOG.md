@@ -13,6 +13,8 @@
 ## 1.4.6 (to be released on 2023.11.20)
 
 * fix `command.js.type` working when when value is `null`
+* fix `element.perform(command)` incorrect typing issues
+* update selenium to 4.15.0
 
 ## 1.4.5 (released on 2023.06.29)
 

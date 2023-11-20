@@ -18,6 +18,7 @@ import { toString } from './utils';
 
 /* tslint:disable:prefer-template */
 
+// TODO: shouldn't we rename it to AsyncLambda? o_O
 /**
  * Just a type alias to one-argument-async-function...
  */
@@ -206,7 +207,7 @@ export class Wait<T> {
         return this.for(new Query(fn.toString(), fn)) as Promise<R>;
     }
 
-    async command(fn: Lambda<T, void>): Promise<void> {
+    async command(fn: Lambda<T, void | T>): Promise<void> {
         return this.for(new Command(fn.toString(), fn));
     }
 
