@@ -14,7 +14,7 @@
 
 * fix `command.js.type` working when when value is `null`
 * fix `element.perform(command)` incorrect typing issues
-* update selenium to 4.15.0
+* update selenium dependency to >=4.10.0, i.e. will install 4.15.0 as of 2023.11.20
 
 ## 1.4.5 (released on 2023.06.29)
 
